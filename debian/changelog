@@ -34,6 +34,9 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
     - Dan's checking code for old copies in libc6 preinst fixes
       installation breakage when /usr/lib/debug is in /etc/ld.so.conf.
       (Closes: #165374).
+    - debhelper.in/libc.preinst: add kernel version sanity check for
+      sun4m arch which needs at least 2.4.21 due to hardware multiplication
+      instruction is used by default.  (Closes: #215010, #215012)
 
  -- Daniel Jacobowitz <dan@debian.org>  Mon, 27 Oct 2003 01:02:37 -0500
 
