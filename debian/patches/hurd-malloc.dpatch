@@ -1,0 +1,55 @@
+#! /bin/sh -e
+
+# All lines beginning with `# DP:' are a description of the patch.
+# DP: Description: Always #include <stdbool.h>
+# DP: Related bugs: 
+# DP: Author: Alfred M. Szmidt
+# DP: Upstream status: In CVS
+# DP: Status Details: 
+# DP: Date: 2005-03-01
+
+if [ $# -ne 2 ]; then
+    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+    exit 1
+fi
+case "$1" in
+    -patch) patch -d "$2" -f --no-backup-if-mismatch -p0 < $0;;
+    -unpatch) patch -d "$2" -f --no-backup-if-mismatch -R -p0 < $0;;
+    *)
+	echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
+	exit 1
+esac
+exit 0
+
+2005-03-01  Alfred M. Szmidt  <ams@gnu.org>
+
+	* malloc/arena.c: #include <stdbool.h> outside of [SHARED &&
+	USE_TLS && !USE___THREAD].
+
+--- malloc/arena.c	10 Dec 2004 12:42:08 +0100	1.13
++++ malloc/arena.c	25 Feb 2005 05:30:11 +0100	
+@@ -1,5 +1,5 @@
+ /* Malloc implementation for multiple threads without lock contention.
+-   Copyright (C) 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
++   Copyright (C) 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+    Contributed by Wolfram Gloger <wg@malloc.de>, 2001.
+ 
+@@ -20,6 +20,8 @@
+ 
+ /* $Id: arena.c,v 1.13 2004/12/10 11:42:08 drepper Exp $ */
+ 
++#include <stdbool.h>
++
+ /* Compile-time constants.  */
+ 
+ #define HEAP_MIN_SIZE (32*1024)
+@@ -353,8 +355,6 @@ libc_hidden_proto (_dl_open_hook);
+ # endif
+ 
+ # if defined SHARED && defined USE_TLS && !USE___THREAD
+-# include <stdbool.h>
+-
+ /* This is called by __pthread_initialize_minimal when it needs to use
+    malloc to set up the TLS state.  We cannot do the full work of
+    ptmalloc_init (below) until __pthread_initialize_minimal has finished,

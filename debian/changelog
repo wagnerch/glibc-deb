@@ -132,6 +132,12 @@ glibc (2.3.4-1) experimental; urgency=low
       - s390-pthread-fpic.dpatch
       - syslog-locale.dpatch
 
+    * Hurd update:
+      - debian/patches/hurd-string.dpatch: Removed, it's already in cvs.
+      - debian/patches/00list.hurd-i386: Removed.
+      - debian/patches/hurd-malloc.dpatch: Add to fix Hurd build fix, patch
+        from Michael Banck <mbanck@debian.org>.
+
   -- GOTO Masanori <gotom@debian.org>  Fri, 18 Mar 2005 09:41:49 +0900
 
 glibc (2.3.2.ds1-21) unstable; urgency=low
