@@ -41,7 +41,7 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGUL
 
 	dh_installdeb -p$(curpass)
 	# dh_shlibdeps -p$(curpass)
-	dh_gencontrol -p$(curpass)
+	dh_gencontrol -p$(curpass) -- $($(curpass)_control_flags)
 	dh_md5sums -p$(curpass)
 	dh_builddeb -p$(curpass)
 

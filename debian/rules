@@ -110,6 +110,8 @@ NOSTRIP_$(libc)-dbg = 1
 -include debian/sysdeps/$(DEB_BUILD_GNU_SYSTEM).mk
 -include debian/sysdeps/$(DEB_BUILD_ARCH).mk
 
+include debian/sysdeps/depflags.mk
+
 ifeq ($(threads),yes)
 DEB_ARCH_REGULAR_PACKAGES += nscd
 endif
