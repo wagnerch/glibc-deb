@@ -17,6 +17,12 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
       (glibc23-libio-compat.dpatch).
     - Remove fuzzy markers from fr.po.  Patch from Denis Barbier
       <barbier@debian.org> (Closes: #217865).
+    - Re-add debian/patches/80_glibc232-locales-nb_NO-fix.dpatch, which had
+      gotten lost.
+    - Re-add typo fixes to iconv.1 and rpcgen.1.
+    - Merge iconv.1 fix to iconv.pod.
+    - Fix ld.so name in ld.so.8.
+    - Re-add fix for locale-gen and POSIXLY_CORRECT.
 
   * Jeff Bailey <jbailey@nisa.net>
 
@@ -29,7 +35,7 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
 
     - debian/debhelper.in/locales.dirs: Add /usr/lib/locale, because
       localedef stops to create locale data if this dir is not found.
-    - debian/debhelper.in/libc-otherbuild.preinst: Fix typo which 
+    - debian/debhelper.in/libc-otherbuild.preinst: Fix typo which
       disturbs to install libc-otherbuild package.
     - Dan's checking code for old copies in libc6 preinst fixes
       installation breakage for example /usr/lib/debug is in
@@ -39,7 +45,7 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
       sun4m arch which needs at least 2.4.21 due to hardware multiplication
       instruction is used by default.  (Closes: #215010, #215012)
 
- -- Daniel Jacobowitz <dan@debian.org>  Mon, 27 Oct 2003 01:02:37 -0500
+ -- Daniel Jacobowitz <dan@debian.org>  Tue, 28 Oct 2003 00:39:10 -0500
 
 glibc (2.3.2.ds1-7) experimental; urgency=low
 

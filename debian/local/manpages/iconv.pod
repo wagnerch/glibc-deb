@@ -29,7 +29,7 @@ List known coded character sets
 
 B<--output>, B<-o> I<file>
 
-Specify output file (instead of stdin)
+Specify output file (instead of stdout)
 
 B<--verbose>
 
