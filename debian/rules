@@ -127,9 +127,9 @@ clean:: debhelper-clean
 
 linux-kernel-headers/include/linux/autoconf.h:
 	if test -f linux-kernel-headers/include/linux/autoconf-$(KERNEL_HOST_CPU).h; then \
-	  ln -s autoconf-$(KERNEL_HOST_CPU).h autoconf.h; \
+	  ln -s autoconf-$(KERNEL_HOST_CPU).h $@; \
 	else \
-	  ln -s autoconf-i386.h autoconf.h; \
+	  ln -s autoconf-i386.h $@; \
 	fi
 
 linux-kernel-headers/include/asm:
