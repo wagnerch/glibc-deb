@@ -8,13 +8,19 @@ glibc (2.3.2.ds1-4) experimental; urgency=low
     - Include symlinks in optimized library directories to placate
       dpkg-shlibdeps.
     - Fix shlibs files to include a version again.
+    - Re-enable make check.
+    - Update makeconfig.dpatch to fix a typo that broke make check.
+    - Add glibc-make-check-perms.dpatch to fix an upstream make check
+      problem.
+    - Build some optimized libraries using appropriate --build options
+      so that they can run make check.
 
   * Jeff Bailey <jbailey@nisa.net>
 
     - Build libraries for sparcv9 and sparc64.
     - Enable TLS for ia64.
 
- -- Daniel Jacobowitz <dan@debian.org>  Sun, 12 Oct 2003 15:17:49 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Sun, 12 Oct 2003 19:42:11 -0400
 
 glibc (2.3.2.ds1-3) experimental; urgency=low
 

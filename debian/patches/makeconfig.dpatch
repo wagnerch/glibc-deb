@@ -27,7 +27,7 @@ exit 0
  				   $(tests-static)),, \
  			  $(elf-objpfx)$(rtld-installed-name) \
 -			  --library-path $(rpath-link)$(patsubst %,:%,$(sysdep-library-path)))
-+			  --library-path $(rpath-link)$(patsubst %,:%,$(sysdep-library-path)))$(ld_envlib_path)
++			  --library-path $(rpath-link)$(patsubst %,:%,$(sysdep-library-path))$(ld_envlib_path))
  else
  run-program-prefix =
  endif

@@ -37,7 +37,7 @@ endif
 		AUTOCONF=false \
 		$(CURDIR)/$(DEB_SRCDIR)/configure \
 		--host=$(call xx,configure_target) \
-		--build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --without-cvs \
+		--build=$(call xx,configure_build) --prefix=/usr --without-cvs \
 		--enable-add-ons="$(call xx,add-ons)" \
 		$(call xx,with_headers) $(call xx,extra_config_options) 2>&1 | tee -a $(log_build)
 

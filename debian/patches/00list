@@ -58,3 +58,4 @@ alpha-crti
 arm-output-format
 #linuxthreads-big-stacks
 pthread-cleanup
+glibc-make-check-perms
