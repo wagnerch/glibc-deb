@@ -1,0 +1,29 @@
+General:
+- generate debhelper files per libc version
+  Note that this needs to split things into -opt packages based
+  on GLIBC_PASSES with the exception of nptl which is special-cased.
+- update changelog
+  Specifically: Update dpatch, use debhelper, use nptl, breakout sysdeps
+  Essentially rewrite the rules file, move all files we provide
+  into debian/local Remove dependancy of kernel-headers-foo
+- resurrect udeb handling
+
+libc-dev:
+- usr/include/asm, usr/include/linux
+
+libc:
+- preinst, postinst, prerm, postrm
+- drow says nptl can safely be i686 only for now, since the implementation
+  is completely separate and will satisfy most people.
+
+glibc-doc:
+- preinst, postinst, prerm, postrm
+- HTML docs
+- /usr/share/doc-base/glibc-manual
+  
+nscd:
+- preinst, postinst, prerm, postrm
+
+locales:
+- preinst, postinst, prerm, postrm
+- debconf
