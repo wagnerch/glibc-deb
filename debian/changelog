@@ -1,3 +1,11 @@
+glibc (2.3.2.ds1-4) experimental; urgency=low
+
+  * Daniel Jacobowitz <dan@debian.org>
+
+    - Update i686 timing patch to fix clock_gettime.
+
+ -- Daniel Jacobowitz <dan@debian.org>  Sun, 12 Oct 2003 13:42:50 -0400
+
 glibc (2.3.2.ds1-3) experimental; urgency=low
 
   * Daniel Jacobowitz <dan@debian.org>
