@@ -49,8 +49,7 @@ $(stamp)debhelper:
 	  sed -e "s#TMPDIR#debian/tmp-libc#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
 	  case $$z in \
-	    *inst) ;; \
-	    *) sed -e "s/^#.*//" -i $$z ;; \
+	    *.install) sed -e "s/^#.*//" -i $$z ;; \
 	  esac; \
 	done  
 
@@ -61,8 +60,7 @@ $(stamp)debhelper:
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
 	  sed -e "s#DESTLIBDIR#$$x#" -i $$z; \
 	  case $$z in \
-	    *inst) ;; \
-	    *) sed -e "s/^#.*//" -i $$z ;; \
+	    *.install) sed -e "s/^#.*//" -i $$z ;; \
 	  esac; \
 	done
 
@@ -78,8 +76,7 @@ $(stamp)debhelper:
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
 	  sed -e "s#DESTLIBDIR#tls#" -i $$z; \
 	  case $$z in \
-	    *inst) ;; \
-	    *) sed -e "s/^#.*//" -i $$z ;; \
+	    *.install) sed -e "s/^#.*//" -i $$z ;; \
 	  esac; \
 	done
 
