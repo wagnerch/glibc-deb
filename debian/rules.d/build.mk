@@ -50,10 +50,10 @@ $(stamp)build_%: $(stamp)configure_%
 $(patsubst %,check_%,$(GLIBC_PASSES)) :: check_% : $(stamp)check_%
 $(stamp)check_%: $(stamp)build_%
 	@if [ -z $(findstring nocheck,$(DEB_BUILD_OPTIONS)) ]; then \
-	  @echo Testing $(curpass); \
+	  echo Testing $(curpass); \
 	  $(MAKE) -C $(DEB_BUILDDIR) -j $(NJOBS) -k check 2>&1 | tee -a $(log_test); \
 	else \
-	  @echo "DEB_BUILD_OPTIONS contains nocheck, skipping tests."; \
+	  echo "DEB_BUILD_OPTIONS contains nocheck, skipping tests."; \
 	fi
 	touch $@
 
@@ -67,6 +67,7 @@ $(stamp)install_%: $(stamp)check_%
 	if [ $(curpass) = libc ]; then \
 	  $(MAKE) -f debian/generate-supported.mk IN=$(DEB_SRCDIR)/localedata/SUPPORTED \
 	    OUT=debian/tmp-$(curpass)/usr/share/i18n/SUPPORTED; \
+	  (cd $(DEB_SRCDIR)/manual && texi2html -split_chapter libc.texinfo); \
 	fi
 
 	$(call xx,extra_install)

@@ -42,10 +42,6 @@ TODO
  - Make sure that prep.sh and version aren't in the root of the source
    package.
 
-* glibc-doc:
- - HTML docs
- - /usr/share/doc-base/glibc-manual
-
 * libc:
  - Check what headers we need to install for nptl.
  - Only add some libraries to the optimized packages and to /lib/tls,

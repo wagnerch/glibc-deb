@@ -50,6 +50,10 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
 
     - debian/sysdeps/gnu.mk: Define slibdir.
     - debian/rules.d/build.mk: Only set slibdir in configparms if its set.
+    - debian/debhelper.in/glibc-doc.doc-base: New file.
+    - debian/debhelper.in/glibc-doc.install: New file.
+    - debian/debhelper.in/glibc-doc.links: New file.
+    - debian/rules.d/build.mk: Generate HTML files.
 
  -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 20:30:59 -0400
 
