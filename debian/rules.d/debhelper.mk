@@ -36,7 +36,11 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGUL
 	fi
 
 	dh_compress -p$(curpass)
-	dh_fixperms -p$(curpass) -X lib/ld
+	dh_fixperms -p$(curpass)
+	# Use this instead of -X to dh_fixperms so that we can use
+	# an unescaped regular expression.
+	find debian/$(curpass) -type f -regex '.*lib.*/ld.*so.*' \
+		-exec chmod a+x '{}' ';'
 	dh_makeshlibs -p$(curpass) -V "$(call xx,shlib_dep)"
 
 	dh_installdeb -p$(curpass)
@@ -55,7 +59,9 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
 	dh_installdirs -p$(curpass)
 	dh_install -p$(curpass)
 	dh_compress -p$(curpass)
-	dh_fixperms -p$(curpass) -X lib/ld
+	dh_fixperms -p$(curpass)
+	find debian/$(curpass) -type f -regex '.*lib.*/ld.*so.*' \
+		-exec chmod a+x '{}' ';'
 	dh_makeshlibs -p$(curpass) -V "$(call xx,shlib_dep)"
 	dh_installdeb -p$(curpass)
 	# dh_shlibdeps -p$(curpass)
