@@ -119,11 +119,12 @@ DEB_UDEB_PACKAGES = libc-udeb
 NOSTRIP_$(libc)-dbg = 1
 
 # Generic kernel version check
-kernel_check = $(shell if [ $(CURRENT_KERNEL_VERSION) -ge $(1) ]; then \
-  echo ""; \
-else \
+define kernel_check
+if [ $(CURRENT_KERNEL_VERSION) -lt $(1) ]; then \
   echo '$$(error You must running at least kernel version $(1) to compile this.)'; \
-fi)
+  exit 1; \
+fi
+endef
 
 # Pull in all the per-arch magic!
 

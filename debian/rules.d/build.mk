@@ -13,8 +13,8 @@ $(patsubst %,configure_%,$(GLIBC_PASSES)) :: configure_% : $(stamp)configure_%
 $(stamp)configure_%: $(stamp)mkbuilddir_%
 
 ifeq ($(call xx,configure_target),$(call xx,configure_build))
-	@echo Checking that we're running at least kernel version: $(call xx,MIN_KERNEL_VERSION)
-	$(eval $(call kernel_check,$(MIN_KERNEL_SUPPORTED)))
+	@echo "Checking that we're running at least kernel version: $(call xx,MIN_KERNEL_SUPPORTED)"
+	$(call kernel_check,$(MIN_KERNEL_SUPPORTED))
 endif
 
 	@echo Configuring $(curpass)
