@@ -5,6 +5,8 @@ glibc (2.3.2.ds1-4) experimental; urgency=low
     - Update i686 timing patch to fix clock_gettime.
     - Update glibc23-cmov patch to let ld load tls libraries from
       ld.so.cache.
+    - Include symlinks in optimized library directories to placate
+      dpkg-shlibdeps.
 
   * Jeff Bailey <jbailey@nisa.net>
 
