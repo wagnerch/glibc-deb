@@ -16,6 +16,7 @@ $(stamp)binaryinst_$(libc)-pic:: $(stamp)debhelper
 	install --mode=0644 build-tree/$(DEB_HOST_ARCH)-libc/resolv/libresolv_pic.a debian/$(libc)-pic/usr/lib/.
 	install --mode=0644 build-tree/$(DEB_HOST_ARCH)-libc/libresolv.map debian/$(libc)-pic/usr/lib/libresolv_pic.map
 
+# Should each of these have per-package options?
 
 $(patsubst %,binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGULAR_PACKAGES)) :: binaryinst_% : $(stamp)binaryinst_%
 $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGULAR_PACKAGES)):: $(stamp)debhelper
@@ -36,7 +37,7 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGUL
 	fi
 
 	dh_compress -p$(curpass)
-	dh_fixperms -p$(curpass)
+	dh_fixperms -p$(curpass) -Xpt_chown
 	# Use this instead of -X to dh_fixperms so that we can use
 	# an unescaped regular expression.
 	find debian/$(curpass) -type f -regex '.*lib.*/ld.*so.*' \
