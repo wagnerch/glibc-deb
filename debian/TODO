@@ -51,5 +51,3 @@ Make sure that prep.sh and version aren't in the root of the package.
 ldconfig and ld.so disagree about search order:
   ldconfig finds /lib/i686/libc.so.6
   ld.so finds /lib/tls/libc.so.6 without any cache file
-
-Start running make check again :)
