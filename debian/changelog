@@ -5,7 +5,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - Fix TLS libraries, which belong in /lib/tls, not /libtls.
     - Fix -march for NPTL libraries on i386 - was i686, should have
       been i486.
-    - Move i686 libraries to /lib/i686/cmov.
+    - Move i686 libraries to /lib/tls/i686/cmov.
     - Include make check output in the libc package.
     - S/390 perversely uses /lib/ld64.so.1 as the dynamic linker; include
       a symlink.
@@ -14,6 +14,8 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - Update ldconfig to prefer /lib/tls to /lib/i686/cmov.
     - Disable conflicts between optimized libraries and libsafe/memprof;
       they've worked for a while.
+    - Switch the i686 optimized libraries to use NPTL, and update their
+      description.
 
   * Phil Blundell <pb@nexus.co.uk>
 
