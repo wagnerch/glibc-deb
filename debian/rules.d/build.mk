@@ -4,7 +4,8 @@
 xx=$(if $($(curpass)_$(1)),$($(curpass)_$(1)),$($(1)))
 
 $(patsubst %,mkbuilddir_%,$(GLIBC_PASSES)) :: mkbuilddir_% : $(stamp)mkbuilddir_%
-$(stamp)mkbuilddir_%: linux-kernel-headers/include/asm $(stamp)patch-stamp
+$(stamp)mkbuilddir_%: linux-kernel-headers/include/asm $(stamp)patch-stamp \
+		      linux-kernel-headers/include/linux/autoconf.h
 	@echo Making builddir for $(curpass)
 	test -d $(DEB_BUILDDIR) || mkdir $(DEB_BUILDDIR)
 	touch $@
@@ -59,4 +60,5 @@ $(stamp)install_%: $(stamp)check_%
 	@echo Installing $(curpass)
 	rm -rf $(CURDIR)/debian/tmp-$(curpass)
 	$(MAKE) -C $(DEB_BUILDDIR) install_root=$(CURDIR)/debian/tmp-$(curpass) install
+	$(extra_install)
 	touch $@

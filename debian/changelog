@@ -1,3 +1,15 @@
+glibc (2.3.2.ds1-2) experimental; urgency=low
+
+  * Daniel Jacobowitz <dan@debian.org>
+
+    - Install the right headers in /usr/include/asm, instead of trying to
+      replace the directory with a symlink (Closes: #214233).
+    - Map DEB_HOST_GNU_CPU to a uname value for creating the asm symlink.
+    - Move libc6-dev's postinst back to preinst.
+    - Support multiple autoconf.h headers.
+
+ -- Daniel Jacobowitz <dan@debian.org>  Sun,  5 Oct 2003 12:34:22 -0400
+
 glibc (2.3.2.ds1-1) experimental; urgency=low
 
   * NPTL and optimized library support.  Primarily by Jeff Bailey and
