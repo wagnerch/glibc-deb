@@ -53,5 +53,9 @@ ldconfig and ld.so disagree about search order:
 
 Don't do make install for libc6-i686 if we aren't going to use the results -
 it's very slow.  We may need to make install for nptl to get the few headers
-that differ.  What do we do for headers on 32/64 systems?  Do we generate
-#if wrappers for /usr/include?
+that differ.
+
+What do we do for headers on 32/64 systems?  Do we generate
+#if wrappers for /usr/include?  This looks like a non-issue.
+
+-dev support for library variants (sparc64, s390x)
