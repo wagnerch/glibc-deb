@@ -31,9 +31,13 @@ TODO
    1) the file list of every package
    2) the control information (dependencies etc.)
    3) the shlibs files
+   4) the other contents of DEBIAN/
 
    on every architecture against unstable to make sure we didn't lose
    anything we didn't want to lose.
+
+   [Right now we're OK on i386 except for a couple mantainer script bugs and
+    maybe some po-debconf issues...]
 
  - Make sure that prep.sh and version aren't in the root of the source
    package.
