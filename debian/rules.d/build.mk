@@ -52,7 +52,7 @@ $(patsubst %,check_%,$(GLIBC_PASSES)) :: check_% : $(stamp)check_%
 $(stamp)check_%: $(stamp)build_%
 	@if [ -z $(findstring nocheck,$(DEB_BUILD_OPTIONS)) ]; then \
 	  @echo Testing $(curpass); \
-	  $(MAKE) -C $(DEB_BUILDDIR) -k check 2>&1 | tee -a $(log_test); \
+	  $(MAKE) -C $(DEB_BUILDDIR) -j $(NJOBS) -k check 2>&1 | tee -a $(log_test); \
 	else \
 	  @echo "DEB_BUILD_OPTIONS contains nocheck, skipping tests."; \
 	fi
@@ -62,7 +62,8 @@ $(patsubst %,install_%,$(GLIBC_PASSES)) :: install_% : $(stamp)install_%
 $(stamp)install_%: $(stamp)check_%
 	@echo Installing $(curpass)
 	rm -rf $(CURDIR)/debian/tmp-$(curpass)
-	$(MAKE) -C $(DEB_BUILDDIR) install_root=$(CURDIR)/debian/tmp-$(curpass) install
+	$(MAKE) -C $(DEB_BUILDDIR) -j $(NJOBS) \
+	  install_root=$(CURDIR)/debian/tmp-$(curpass) install
 
 	if [ $(curpass) = libc ]; then \
 	  $(MAKE) -f debian/generate-supported.mk IN=$(DEB_SRCDIR)/localedata/SUPPORTED \
