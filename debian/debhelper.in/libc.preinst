@@ -127,11 +127,11 @@ check_dirs () {
       if test -n "$output"; then
 	echo "These libraries were found in $dir:"
 	echo "$output"
-	return 1
+	return 0
       fi
     fi
   done
-  return 0
+  return 1
 }
 
 if [ "$1" != abort-upgrade ]
