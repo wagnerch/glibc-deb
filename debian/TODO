@@ -37,11 +37,12 @@ Other architecture builds for -3:
  m68k - Not tested.
  arm - Not tested.
 
-Before it leaves experimental, verify the contents of every package on every
-architecture against unstable to make sure we didn't lose files.
-
-Before it leaves experimental, verify all package control information
-against unstable to make sure we didn't lose anything important.
+Before it leaves experimental, verify:
+ - the file list of every package
+ - the control information (dependencies etc.)
+ - the shlibs files
+on every architecture against unstable to make sure we didn't lose anything
+we didn't want to lose.
 
 Add patch to display linux-gate.so.1 in ldd.
 Check dpkg-shlibdeps for linux-gate.so.1 handling.
