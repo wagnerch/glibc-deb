@@ -11,7 +11,7 @@ ifndef LINUX_SOURCE
 endif
 
 # Minimum Kernel supported
-with_headers = --with-headers=$(LINUX_SOURCE)/include --enable-kernel=$(MIN_KERNEL_SUPPORTED)
+with_headers = --with-headers=$(LINUX_SOURCE)/include --enable-kernel=$(call xx,MIN_KERNEL_SUPPORTED)
 
 # NPTL Config
 nptl_add-ons = nptl $(add-ons)
