@@ -1,63 +1,71 @@
-General:
-- generate debhelper files per libc version
-  Note that this needs to split things into -opt packages based
-  on GLIBC_PASSES with the exception of nptl which is special-cased.
-- update changelog
-  Specifically: Update dpatch, use debhelper, use nptl, breakout sysdeps
-  Essentially rewrite the rules file, move all files we provide
-  into debian/local Remove dependancy of kernel-headers-foo
-  Make sure to specifically mention: Jeff Bailey, Branden Robinson, Daniel
-  Jacobowitz
+Architecture builds
+===================
 
-gotom doesn't like local directory, prefers is still broken down by package.
+ i386: -6 Built okay 
+ ia64: -5 Built okay.
+ alpha: -3 Built okay.
+ ppc: -6 Built okay.
+ sparc: Not built.
+ s390: -6 Built okay.
+ mips: Not built.
+ mipsel: Not built.
+ hppa: Not built.
+ m68k: Not built.
+ arm: Not built.
+ hurd-i386: Not built.
+ freebsd-i386: Not built.
+ netbsd-i386: Not built.
 
-Test all the $(GLIBC_PASSES)_MIN_KERNEL_VERSION and such to make sure that we're compiling with at least that kernel version.  Otherwise some things may fail
+Outstanding concerns
+====================
 
-glibc-doc:
-- HTML docs
-- /usr/share/doc-base/glibc-manual
+  - gotom doesn't like local directory, prefers is still broken down by
+    package.
 
-Build nptl packages for i686 instead of i486
-Check what headers we need to install for nptl.
-Only add some libraries to the optimized packages and to /lib/tls, instead
-of all of them?
+TODO
+====
 
-Other architecture builds for -3:
- i386 - Built okay.
- ia64 - Built okay, works in chroot.
- alpha - Built okay.
- ppc - Built okay.
- sparc - Not tested.
- s390 - Not tested.
- mips - Not tested.
- mipsel - Not tested.
- hppa - Not tested.
- m68k - Not tested.
- arm - Not tested.
+* General:
 
-Before it leaves experimental, verify:
- - the file list of every package
- - the control information (dependencies etc.)
- - the shlibs files
-on every architecture against unstable to make sure we didn't lose anything
-we didn't want to lose.
+ - Test all the $(GLIBC_PASSES)_MIN_KERNEL_VERSION and such to make 
+   sure that we're compiling with at least that kernel version. 
+   Otherwise some things may fail
 
-Add patch to display linux-gate.so.1 in ldd.
-Check dpkg-shlibdeps for linux-gate.so.1 handling.
+ - Before it leaves experimental, verify:
+   1) the file list of every package
+   2) the control information (dependencies etc.)
+   3) the shlibs files
 
-Make sure that prep.sh and version aren't in the root of the package.
+   on every architecture against unstable to make sure we didn't lose
+   anything we didn't want to lose.
 
-Don't do make install for libc6-i686 if we aren't going to use the results -
-it's very slow.  We may need to make install for nptl to get the few headers
-that differ.
+ - Make sure that prep.sh and version aren't in the root of the source
+   package.
 
-What do we do for headers on 32/64 systems?  Do we generate
-#if wrappers for /usr/include?  This looks like a non-issue since only asm
-needs it.
+* glibc-doc:
+ - HTML docs
+ - /usr/share/doc-base/glibc-manual
 
--dev support for library variants like nptl?  64-bit libraries are covered.
+* libc:
+ - Check what headers we need to install for nptl.
+ - Only add some libraries to the optimized packages and to /lib/tls,
+   instead of all of them?
+ - Add patch to display linux-gate.so.1 in ldd.
+ - Check dpkg-shlibdeps for linux-gate.so.1 handling.
+ - Some documentation missing from libc6 package
 
-Known missing:
-  most of glibc-doc
-  some documentation from libc6 package
-  libc6-dev dependency on matching libc6
+ - Don't do make install for libc6-i686 if we aren't going to use the
+   results - it's very slow.  We may need to make install for nptl to
+   get the few headers that differ.
+
+* libc-dev:
+
+ - What do we do for headers on 32/64 systems?  Do we generate
+   #if wrappers for /usr/include?  This looks like a non-issue since
+   only asm needs it.
+ - libc6-dev dependency on matching libc6
+ - -dev support for library variants like nptl?  64-bit libraries are
+   covered.
+
+* glibc-doc:
+ - HTML Documentation
