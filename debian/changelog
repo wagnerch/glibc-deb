@@ -32,8 +32,9 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
     - debian/debhelper.in/libc-otherbuild.preinst: Fix typo which 
       disturbs to install libc-otherbuild package.
     - Dan's checking code for old copies in libc6 preinst fixes
-      installation breakage when /usr/lib/debug is in /etc/ld.so.conf.
-      (Closes: #165374).
+      installation breakage for example /usr/lib/debug is in
+      /etc/ld.so.conf, or so on.
+      (Closes: #165374, #212224).
     - debhelper.in/libc.preinst: add kernel version sanity check for
       sun4m arch which needs at least 2.4.21 due to hardware multiplication
       instruction is used by default.  (Closes: #215010, #215012)
