@@ -7,17 +7,29 @@ threads = yes
 libc_add-ons = linuxthreads $(add-ons)
 
 ifndef LINUX_SOURCE
-  LINUX_SOURCE := $(CURDIR)/linux-kernel-headers
+  LINUX_HEADERS := /usr/include
+else
+  LINUX_HEADERS := $(LINUX_SOURCE)/include
 endif
 
 # Minimum Kernel supported
-with_headers = --with-headers=$(LINUX_SOURCE)/include --enable-kernel=$(call xx,MIN_KERNEL_SUPPORTED)
+with_headers = --with-headers=$(shell pwd)/debian/include --enable-kernel=$(call xx,MIN_KERNEL_SUPPORTED)
 
 # NPTL Config
 nptl_add-ons = nptl $(add-ons)
 nptl_extra_config_options = $(extra_config_options) --with-tls --with-__thread --disable-profile --enable-omitfp
 nptl_MIN_KERNEL_SUPPORTED = 2.6.0
 
-define extra_install
-cp -a $(LINUX_SOURCE)/include/asm-$(KERNEL_HOST_CPU) debian/tmp-$(curpass)/usr/include/asm
-endef
+LINUX_HEADER_DIR = debian/include
+debian/include:
+	rm -rf debian/include
+	mkdir debian/include
+	ln -s $(LINUX_HEADERS)/linux debian/include
+	ln -s $(LINUX_HEADERS)/asm-generic debian/include
+	ln -s $(LINUX_HEADERS)/asm debian/include
+
+	# To make configure happy if libc6-dev is not installed.
+	touch debian/include/assert.h
+
+# Also to make configure happy.
+export CPPFLAGS = -isystem $(shell pwd)/debian/include

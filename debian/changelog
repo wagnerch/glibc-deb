@@ -8,6 +8,7 @@ glibc (2.3.2.ds1-6) experimental; urgency=low
   * Daniel Jacobowitz <dan@debian.org>
 
     - Add debhelper build dependency.
+    - Use linux-kernel-headers package for headers.
 
  -- Philip Blundell <pb@nexus.co.uk>  Wed, 15 Oct 2003 00:09:07 +0100
 

@@ -134,21 +134,7 @@ clean:: debhelper-clean
 	rm -rf $(build-tree)
 	rm -rf $(stamp)
 	rm -f log-*
-	rm -f linux-kernel-headers/include/asm
-	rm -f linux-kernel-headers/include/linux/autoconf.h
-
-linux-kernel-headers/include/linux/autoconf.h:
-	if test -f linux-kernel-headers/include/linux/autoconf-$(KERNEL_HOST_CPU).h; then \
-	  ln -s autoconf-$(KERNEL_HOST_CPU).h $@; \
-	else \
-	  ln -s autoconf-i386.h $@; \
-	fi
-
-linux-kernel-headers/include/asm:
-	ln -s asm-$(KERNEL_HOST_CPU) $@
-ifeq ($(KERNEL_HOST_CPU),arm)
-	rm -rf $@/proc $@/arch; ln -s proc-armv $@/proc; ln -s arch-ebsa285 $@/arch
-endif
+	rm -rf debian/include
 
 # Required Debian targets
 binary-indep: testroot debian/control $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_INDEP_REGULAR_PACKAGES))
