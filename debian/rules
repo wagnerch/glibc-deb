@@ -107,8 +107,8 @@ NOSTRIP_$(libc)-dbg = 1
 
 # Pull in all the per-arch magic!
 
--include debian/sysdeps/$(DEB_BUILD_GNU_SYSTEM).mk
--include debian/sysdeps/$(DEB_BUILD_ARCH).mk
+-include debian/sysdeps/$(DEB_HOST_GNU_SYSTEM).mk
+-include debian/sysdeps/$(DEB_HOST_ARCH).mk
 
 include debian/sysdeps/depflags.mk
 
