@@ -59,7 +59,7 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
 	dh_makeshlibs -p$(curpass)
 	dh_installdeb -p$(curpass)
 	# dh_shlibdeps -p$(curpass)
-	dh_gencontrol -p$(curpass) -fdebian/files~
+	dh_gencontrol -p$(curpass) -- -fdebian/files~
 	dpkg-distaddfile $(curpass)_$(DEB_VERSION)_$(DEB_BUILD_ARCH).udeb debian-installer required
 	dh_builddeb -p$(curpass) --filename=$(curpass)_$(DEB_VERSION)_$(DEB_BUILD_ARCH).udeb
 
