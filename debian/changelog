@@ -128,8 +128,44 @@ glibc (2.3.2.ds1-2) experimental; urgency=low
 
 glibc (2.3.2.ds1-1) experimental; urgency=low
 
-  * NPTL and optimized library support.  Primarily by Jeff Bailey and
-    Branden Robinson.
+  * Essentially redo the debian/ packaging directory.
+
+    Specifically, the following directories were changed:
+    - debian/sysdeps/*: Redo into os-based and arch-based handling.
+    - debian/debhelper.in/*: Use debhelper for all package management.
+    - debian/rules.d/*: Split out rules file into logical pieces.
+    - debian/local/*: Move all of the files that Debian provides to here.
+
+    Update dpatch to more closely match the debian package:
+    - debian/patches/0list: Rename to 00list to match dpatch update.
+    - debian/rules.d/dpatch.mk: Sync with Debian package with the
+      following four changes:
+      1) Support srcdir != builddir builds.
+      2) Support $(stampdir)
+      3) patch target depends on unpack
+      4) Use $(DEB_SOURCE_PACKAGE) instead of $(PACKAGE)
+
+    Remove dependency on various kernel-headers packages, bring into
+    the package:
+    - linux-kernel-headers/: New directory, import from 2.6.0-test2
+
+    Add NPTL support on i386:
+    - debian/sysdeps/i386.mk: Add NPTL patterns, set minimum kernel.
+
+    Redo "DBS-Style" tarball support:
+    - debian/rules.d/tarball.mk: New file
+    - debian/sysdeps/linux.mk: Bring in linuxthreads and nptl overlays.
+    - prep.sh: Remove.
+    - version: Remove.
+
+    Update to recent CVS snapshot to support NPTL:
+    - debian/patches/10_cvs.dpatch: update
+
+    This cleanup project is the result of several discussions between
+    Jeff Bailey, GOTO Masanori, Daniel Jacobowitz, and Philip Blundell.
+
+    The initial work here was done by Jeff Bailey, Branden Robinson,
+    and Daniel Jacobowitz.
 
  -- Daniel Jacobowitz <dan@debian.org>  Thu,  2 Oct 2003 13:47:40 -0400
 
