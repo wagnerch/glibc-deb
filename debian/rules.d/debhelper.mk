@@ -47,13 +47,10 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGUL
 
 	touch $@
 
-# This makes a softlink to $(libc)-udeb to libc-udeb.  The debhelper
-# generation script will have made $(libc)-udeb.  We will eventually
-# want that.  Like 30 seconds after sarge releases.
+# We may eventually want $(libc)-udeb instead of libc-udeb.
 $(patsubst %,binaryinst_%,$(DEB_UDEB_PACKAGES)) :: binaryinst_% : $(stamp)binaryinst_%
 $(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
 	@echo Running debhelper for $(curpass)
-	ln -s $(libc)-udeb debian/libc-udeb
 	dh_testroot
 	dh_installdirs -p$(curpass)
 	dh_install -p$(curpass)
