@@ -25,3 +25,8 @@ glibc-doc:
 - HTML docs
 - /usr/share/doc-base/glibc-manual
 
+Build i686 optimized packages with optimized cflags instead of just
+  optimized assembly
+Build nptl packages for i686 instead of i486
+Check what headers we need to install for nptl.
+
