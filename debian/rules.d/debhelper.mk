@@ -156,6 +156,9 @@ $(stamp)debhelper:
 	  esac; \
 	done
 
+	# Substitute __SUPPORTED_LOCALES__.
+	perl -i -pe 'BEGIN {undef $$/; open(IN, "debian/tmp-libc/usr/share/i18n/SUPPORTED"); $$j=<IN>;} s/__SUPPORTED_LOCALES__/$$j/g;' debian/locales.config
+
 	touch $(stamp)debhelper
 
 debhelper-clean:

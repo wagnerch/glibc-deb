@@ -10,6 +10,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - S/390 perversely uses /lib/ld64.so.1 as the dynamic linker; include
       a symlink.
     - Leave /lib64/ld64.so.1 executable on S/390.
+    - Generate SUPPORTED again.
 
   * Phil Blundell <pb@nexus.co.uk>
 
@@ -34,7 +35,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/rules.d/build.mk: Use -j $(NJOBS) during build.
     Based on patch from Ian Wienand <ianw@gelato.unsw.edu.au>
 
- -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 18:50:46 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 19:08:33 -0400
 
 glibc (2.3.2.ds1-6) experimental; urgency=low
 

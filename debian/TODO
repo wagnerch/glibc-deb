@@ -65,4 +65,4 @@ Known missing:
   pt_chown
   SONAME links in libc6-dbg
   libc6-dev dependency on matching libc6
-  locales SUPPORTED file and dependencies
+  locales dependencies
