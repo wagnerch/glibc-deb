@@ -1,3 +1,20 @@
+glibc (2.3.4-2) experimental; urgency=low
+
+  * GOTO Masanori <gotom@debian.org>
+
+    * Fix libc6 installation breakage when old libc6 and libc6-i686 was
+      installed, and it's replaced with a new libc6.  This fix is limited
+      for i686 optimized package, not for sparc multiple opt packages.
+      (Closes: #300806, #300842)
+      - debian/debhelper.in/libc.postinst: Add check for the existence of
+        multiple optimized packages.
+      - debian/rules.d/debhelper.mk: Add the replace code from CURRENT_VER
+        to $(DEB_VERSION) for libc.postinst.  Install libc-otherbuild.postrm.
+      - debian/debhelper.in/libc-otherbuild.postrm: Added to remove
+        unneeded ld.so.nohwcap for single optimized package.
+
+ -- GOTO Masanori <gotom@debian.org>  Tue, 22 Mar 2005 11:17:32 +0900
+
 glibc (2.3.4-1) experimental; urgency=low
 
   * GOTO Masanori <gotom@debian.org>
