@@ -12,6 +12,8 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - Leave /lib64/ld64.so.1 executable on S/390.
     - Generate SUPPORTED again.
     - Update ldconfig to prefer /lib/tls to /lib/i686/cmov.
+    - Disable conflicts between optimized libraries and libsafe/memprof;
+      they've worked for a while.
 
   * Phil Blundell <pb@nexus.co.uk>
 
@@ -35,8 +37,9 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/sysdeps/linux.mk: Define NJOBS based on number of processors
     - debian/rules.d/build.mk: Use -j $(NJOBS) during build.
     Based on patch from Ian Wienand <ianw@gelato.unsw.edu.au>
+  * 
 
- -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 20:18:33 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 20:30:59 -0400
 
 glibc (2.3.2.ds1-6) experimental; urgency=low
 

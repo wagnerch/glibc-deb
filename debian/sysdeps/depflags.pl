@@ -116,9 +116,6 @@ if ($DEB_HOST_GNU_TYPE eq "alpha-linux") {
 	'libreadlineg2-dev (<< 2.1-13.1)');
 }
 
-# XXX: Our optimized libs do not like some programs
-push @{$libc_opt_c{'Conflicts'}}, ('libsafe', "memprof");
-
 # Conflict/Replace netkit-rpc, and its manpages
 push @{$libc_c{'Conflicts'}}, 'netkit-rpc';
 push @{$libc_c{'Replaces'}}, 'netkit-rpc';
@@ -140,8 +137,6 @@ if ($type eq "libc") {
     %pkg = %libc_c;
 } elsif ($type eq "libc_dev") {
     %pkg = %libc_dev_c;
-} elsif ($type eq "libc_opt") {
-    %pkg = %libc_opt_c;
 } else {
     die "Unknown package $type";
 }
