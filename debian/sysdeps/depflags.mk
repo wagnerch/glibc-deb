@@ -4,7 +4,7 @@ depflags = libc=$(libc) glibc=glibc \
 	  perl debian/sysdeps/depflags.pl
 
 libc_control_flags = $(shell $(depflags) libc)
-libc_dev_control_flags = $(shell $(depflags) libc_dev)
+libc_dev_control_flags = $(shell $(depflags) libc_dev) $(libc) (= $(DEB_VERSION))
 
 $(libc)_control_flags = $(libc_control_flags)
 $(libc)-dev_control_flags = $(libc_dev_control_flags)

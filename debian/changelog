@@ -26,6 +26,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - Install info menu entries for functions provided by libc, in
       glibc-doc.
     - Include changelog in glibc-doc also.
+    - Re-add libc6-dev dependency on matching libc6.
 
   * Phil Blundell <pb@nexus.co.uk>
 
