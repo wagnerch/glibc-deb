@@ -7,9 +7,8 @@ nptl_configure_target=i486-linux
 i686_configure_target=i686-linux
 
 # tls doesn't appear to work with Linuxthreads at the moment.
-i686_extra_config_options = $(extra_config_options) --disable-profile --enable-omitfp # --with-tls
+i686_extra_config_options = $(extra_config_options) --disable-profile --enable-omitfp --with-tls --without-__thread
 
-# libc_extra_config_options = $(extra_config_options) --with-tls
+libc_extra_config_options = $(extra_config_options) --with-tls --without-__thread
 
 i686_add-ons = linuxthreads $(add-ons)
-

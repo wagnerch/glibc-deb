@@ -15,6 +15,6 @@ with_headers = --with-headers=$(LINUX_SOURCE)/include --enable-kernel=$(call xx,
 
 # NPTL Config
 nptl_add-ons = nptl $(add-ons)
-nptl_extra_config_options = $(extra_config_options) --with-tls --disable-profile --enable-omitfp
+nptl_extra_config_options = $(extra_config_options) --with-tls --with-__thread --disable-profile --enable-omitfp
 nptl_MIN_KERNEL_SUPPORTED = 2.6.0
 
