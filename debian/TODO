@@ -56,8 +56,9 @@ it's very slow.  We may need to make install for nptl to get the few headers
 that differ.
 
 What do we do for headers on 32/64 systems?  Do we generate
-#if wrappers for /usr/include?  This looks like a non-issue.
+#if wrappers for /usr/include?  This looks like a non-issue since only asm
+needs it.
 
--dev support for library variants (sparc64, s390x, nptl?)
+-dev support for library variants like nptl?  64-bit libraries are covered.
 
 Parallel make support.
