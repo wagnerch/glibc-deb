@@ -3,7 +3,7 @@
 set -e
 
 if [ "$1" != abort-upgrade ] && [ "`uname -s`" = Linux ]; then
-  package=`basename $0 .postinst`
+  package=`basename $0 .preinst`
   opt=`echo $package | sed 's/.*-//'`
 
   touch /etc/ld.so.nohwcap

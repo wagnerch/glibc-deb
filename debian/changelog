@@ -22,6 +22,7 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
     - Re-add typo fixes to iconv.1 and rpcgen.1.
     - Merge iconv.1 fix to iconv.pod.
     - Re-add fix for locale-gen and POSIXLY_CORRECT.
+    - Update ldso-disable-hwcap.dpatch and preinst/postinst scripts.
 
   * Jeff Bailey <jbailey@nisa.net>
 
