@@ -98,10 +98,13 @@ curpass = $(filter-out %_,$(subst _,_ ,$@))
 -include debian/sysdeps/$(DEB_BUILD_GNU_SYSTEM).mk
 -include debian/sysdeps/$(DEB_BUILD_ARCH).mk
 
-#FIXME $(libc)-dbg $(libc)-prof
-DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev
+#FIXME $(libc)-prof
+DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-dbg
 DEB_INDEP_REGULAR_PACKAGES = glibc-doc locales
 DEB_UDEB_PACKAGES = libc-udeb
+
+# Don't run dh_strip on this package
+NOSTRIP_libc6-dbg = 1
 
 ifeq ($(threads),yes)
 DEB_ARCH_REGULAR_PACKAGES += nscd
@@ -110,13 +113,12 @@ endif
 # And now the rules...
 include debian/rules.d/*.mk
 
-clean::
+clean:: debhelper-clean
 	rm -rf $(patsubst %,debian/tmp-%,$(GLIBC_PASSES))
 	rm -rf $(build-tree)
 	rm -rf $(stamp)*
 	rm -f log-*
 	rm -f linux-kernel-headers/include/asm
-	dh_clean
 
 linux-kernel-headers/include/asm:
 	ln -s asm-$(DEB_HOST_GNU_CPU) $@

@@ -10,7 +10,7 @@ General:
 libc-dev:
 - usr/include/asm, usr/include/linux
 
-libc-prof, libc-dbg, libc-udeb:
+libc-prof, libc-udeb:
 - Create the packages. =)
 
 glibc-doc:
