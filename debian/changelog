@@ -7,7 +7,8 @@ glibc (2.3.4-3) experimental; urgency=low
       /etc/ld.so.hwcappkgs to track hwcap packages.
       - debian/debhelper.in/libc.postinst: Create /etc/ld.so.hwcappkgs if
         such file is not existed.  Check hwcap packages and decide to keep
-        /etc/ld.so.nohwcap.
+        /etc/ld.so.nohwcap.  Put special ld.so.nohwcap string when the
+        downgraded version does not support ld.so.hwcappkgs.
       - debian/debhelper.in/libc-otherbuild.postinst: When it's configured,
         check /etc/ld.so.hwcappkgs and decides to keep /etc/ld.so.nohwcap.
       - debian/debhelper.in/libc-otherbuild.postrm: When it's removed,

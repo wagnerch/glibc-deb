@@ -195,14 +195,14 @@ then
 	if [ ! -f /etc/ld.so.hwcappkgs ]; then
 	    case "`uname -m`" in
 		i?86)
-		    pkgs="libc6 libc6-i686"
+		    hwcappkgs="libc6 libc6-i686"
 		    ;;
 		sparc*)
-		    pkgs="libc6 libc6-sparcv9 libc6-sparcv9b"
+		    hwcappkgs="libc6 libc6-sparcv9 libc6-sparcv9b"
 		    ;;
 	    esac
-	    if [ -n "$pkgs" ]; then
-		for pkg in $pkgs; do
+	    if [ -n "$hwcappkgs" ]; then
+		for pkg in $hwcappkgs; do
 		    ver=$(checkpkgver $pkg)
 		    if [ -n "$ver" ]; then
 			echo "$pkg $ver" >> /etc/ld.so.hwcappkgs
@@ -233,6 +233,9 @@ then
 		    if [ "$new_hwcappkgs" != yes ]; then
 			ver=$(checkpkgver $pkg)
 		    fi
+		    if [ -z "$ver" ]; then
+			continue
+		    fi
 		    dpkg --compare-versions $curver ne $ver && optunmatch=yes
 		fi
 		echo "$pkg $ver" >> /etc/ld.so.hwcappkgs.tmp
@@ -244,7 +247,7 @@ then
 	fi
 
 	# nohwcap during upgrade.
-	grep -v '^glibc$' /etc/ld.so.nohwcap > /etc/ld.so.nohwcap.tmp || true
+	egrep -v '^glibc$|^downgrade-to-old-glibc$' /etc/ld.so.nohwcap > /etc/ld.so.nohwcap.tmp || true
 	mv /etc/ld.so.nohwcap.tmp /etc/ld.so.nohwcap
 	if [ "$optunmatch" != "yes" ]; then
 	    test -s /etc/ld.so.nohwcap || rm -f /etc/ld.so.nohwcap
