@@ -35,6 +35,7 @@ if ($DEB_HOST_GNU_SYSTEM eq "linux") {
     push @{$libc_dev_c{'Recommends'}}, 'c-compiler';
     push @{$libc_dev_c{'Replaces'}}, ('man-db (<= 2.3.10-41)', 'gettext (<= 0.10.26-1)',
 		'ppp (<= 2.2.0f-24)', 'libgdbmg1-dev (<= 1.7.3-24)');
+    push @{$libc_dev_c{'Depends'}}, 'linux-kernel-headers';
 }
 
 # ${glibc}-doc is suggested by $libc_c and $libc_dev_c.
