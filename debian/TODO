@@ -15,18 +15,19 @@ Add debhelper dependency
 
 Test all the $(GLIBC_PASSES)_MIN_KERNEL_VERSION and such to make sure that we're compiling with at least that kernel version.  Otherwise some things may fail
 
-libc-dev:
-- usr/include/asm, usr/include/linux
-
-libc-prof, libc-udeb:
-- Create the packages. =)
-
 glibc-doc:
 - HTML docs
 - /usr/share/doc-base/glibc-manual
 
 Build nptl packages for i686 instead of i486
 Check what headers we need to install for nptl.
-Only add some libraries to the optimized packages and to /lib/tls?
+Only add some libraries to the optimized packages and to /lib/tls, instead
+of all of them?
 
 Re-add disabled dpatches.
+
+The i386 vs. i686 libraries patch (HP_TIMING) is not correct.  The timers
+need to be either initialized in libc.so's initializer instead, or else
+ld.so needs to do cpu detection and conditionally initialize them.
+
+Other architecture builds.
