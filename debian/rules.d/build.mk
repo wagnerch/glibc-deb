@@ -14,7 +14,7 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 
 ifeq ($(call xx,configure_target),$(call xx,configure_build))
 	@echo "Checking that we're running at least kernel version: $(call xx,MIN_KERNEL_SUPPORTED)"
-	$(call kernel_check,$(MIN_KERNEL_SUPPORTED))
+	$(call kernel_check,$(call xx,MIN_KERNEL_SUPPORTED))
 endif
 
 	@echo Configuring $(curpass)
