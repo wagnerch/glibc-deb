@@ -167,8 +167,6 @@ then
 	rm -f /lib/libdb.so.3.old
     fi
 
-    ldconfig
-
     if [ -f /etc/ld.so.nohwcap ]; then
 	grep -v glibc /etc/ld.so.nohwcap > /etc/ld.so.nohwcap.tmp || true
 	mv /etc/ld.so.nohwcap.tmp /etc/ld.so.nohwcap

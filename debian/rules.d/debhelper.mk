@@ -146,7 +146,8 @@ $(stamp)debhelper:
 
 	# Hack: special-case passes whose destdir is 64 (i.e. /lib64)
 	# to use a different install template, which includes more
-	# libraries.  Also generate a -dev.
+	# libraries.  Also generate a -dev.  Non-64 libraries get scripts
+	# to temporarily disable hwcap.  This needs some cleaning up.
 	set -- $(OPT_DESTDIRS); \
 	for x in $(OPT_PASSES); do \
 	  destdir=$$1; \
@@ -163,13 +164,13 @@ $(stamp)debhelper:
 	    sed -e "s/^#.*//" -i $$zd; \
 	  else \
 	    cp debian/debhelper.in/libc-otherbuild.install $$z; \
+	    cp debian/debhelper.in/libc-otherbuild.preinst debian/$(libc)-$$x.preinst ; \
+	    cp debian/debhelper.in/libc-otherbuild.postinst debian/$(libc)-$$x.postinst ; \
 	  fi; \
 	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
 	  sed -e "s#DESTLIBDIR#$$destdir#" -i $$z; \
-	  case $$z in \
-	    *.install) sed -e "s/^#.*//" -i $$z ;; \
-	  esac; \
+	  sed -e "s/^#.*//" -i $$z; \
 	done
 
 	# We use libc-otherbuild for this, since it's just a special case of

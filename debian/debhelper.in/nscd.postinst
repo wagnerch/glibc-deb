@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+# We remove a relic of the past /usr/doc/<package> symlinks.
+# This script should keep at least until sarge release.
+package=`basename $0 .postinst`
+if [ -L "/usr/doc/$package" ]; then
+    rm -f "/usr/doc/$package"
+fi
+
+#DEBHELPER#
+
+exit 0

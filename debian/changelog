@@ -5,6 +5,7 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
     - Don't use --enable-omitfp since we don't install libc_g.a.
     - Enable NPTL for S/390.
     - Fix the /lib/ld64.so.1 symlink for s390x.
+    - Update maintainer scripts for fixes lost in the rewrite.
 
   * Jeff Bailey <jbailey@nisa.net>
 
