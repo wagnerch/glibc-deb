@@ -42,6 +42,9 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
 
     - debian/debhelper.in/libc.install: Install pt_chown
     - debian/rules.d/debhelper.mk: Don't clobber SUID on pt_chown
+    - debian/debhelper.in/glibc-doc.docs: Install DEB_SRCDIR/ChangeLog*
+    - debian/rules.d/build.mk: Don't run testsuite if DEB_BUILD_OPTIONS
+      contains nocheck
 
  -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 20:30:59 -0400
 

@@ -50,8 +50,12 @@ $(stamp)build_%: $(stamp)configure_%
 
 $(patsubst %,check_%,$(GLIBC_PASSES)) :: check_% : $(stamp)check_%
 $(stamp)check_%: $(stamp)build_%
-	@echo Testing $(curpass)
-	$(MAKE) -C $(DEB_BUILDDIR) -k check 2>&1 | tee -a $(log_test)
+	@if [ -z $(findstring nocheck,$(DEB_BUILD_OPTIONS)) ]; then \
+	  @echo Testing $(curpass); \
+	  $(MAKE) -C $(DEB_BUILDDIR) -k check 2>&1 | tee -a $(log_test); \
+	else \
+	  @echo "DEB_BUILD_OPTIONS contains nocheck, skipping tests."; \
+	fi
 	touch $@
 
 $(patsubst %,install_%,$(GLIBC_PASSES)) :: install_% : $(stamp)install_%
