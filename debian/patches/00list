@@ -56,6 +56,7 @@ alpha-crti
 #alpha-pwrite - no longer needed or valid with 2.6 headers
 #revert-old-libio - [drow] I think this isn't needed any more
 arm-output-format
+arm-ioperm
 #linuxthreads-big-stacks
 pthread-cleanup
 glibc-make-check-perms

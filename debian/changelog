@@ -2,8 +2,7 @@ glibc (2.3.2.ds1-6) experimental; urgency=low
 
   * Phil Blundell <pb@debian.org>
 
-    - add hack to create asm/arch and asm/proc symlinks in kernel-headers
-      when building for arm.
+    - debian/patches/arm-ioperm.dpatch: New.
 
   * Daniel Jacobowitz <dan@debian.org>
 
