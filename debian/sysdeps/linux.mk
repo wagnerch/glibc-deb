@@ -19,5 +19,5 @@ nptl_extra_config_options = $(extra_config_options) --with-tls --with-__thread -
 nptl_MIN_KERNEL_SUPPORTED = 2.6.0
 
 define extra_install
-cp -a $(LINUX_SOURCE)/asm-$(KERNEL_HOST_CPU) debian/tmp-$(curpass)/usr/include/asm
+cp -a $(LINUX_SOURCE)/include/asm-$(KERNEL_HOST_CPU) debian/tmp-$(curpass)/usr/include/asm
 endef
