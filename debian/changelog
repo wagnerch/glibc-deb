@@ -31,6 +31,9 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
       localedef stops to create locale data if this dir is not found.
     - debian/debhelper.in/libc-otherbuild.preinst: Fix typo which 
       disturbs to install libc-otherbuild package.
+    - Dan's checking code for old copies in libc6 preinst fixes
+      installation breakage when /usr/lib/debug is in /etc/ld.so.conf.
+      (Closes: #165374).
 
  -- Daniel Jacobowitz <dan@debian.org>  Mon, 27 Oct 2003 01:02:37 -0500
 
