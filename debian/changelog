@@ -5,8 +5,10 @@ glibc (2.3.2.ds1-3) experimental; urgency=low
     - Use ldd* in debhelper.in/libc6, because non-i386 arches don't have
       lddlibc4.
     - Include gconv-modules in libc6.
+    - Don't include some unnecessary generated kernel headers.
+    - Start merging previous .dpatch files.
 
- -- Daniel Jacobowitz <dan@debian.org>  Mon,  6 Oct 2003 15:58:33 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Mon,  6 Oct 2003 16:30:02 -0400
 
 glibc (2.3.2.ds1-2) experimental; urgency=low
 
