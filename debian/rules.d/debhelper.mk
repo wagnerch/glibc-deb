@@ -37,7 +37,7 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGUL
 
 	dh_compress -p$(curpass)
 	dh_fixperms -p$(curpass) -X lib/ld
-	dh_makeshlibs -p$(curpass) $(call xx,shlib_dep)
+	dh_makeshlibs -p$(curpass) -V "$(call xx,shlib_dep)"
 
 	dh_installdeb -p$(curpass)
 	# dh_shlibdeps -p$(curpass)
@@ -56,7 +56,7 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
 	dh_install -p$(curpass)
 	dh_compress -p$(curpass)
 	dh_fixperms -p$(curpass) -X lib/ld
-	dh_makeshlibs -p$(curpass) $(call xx,shlib_dep)
+	dh_makeshlibs -p$(curpass) -V "$(call xx,shlib_dep)"
 	dh_installdeb -p$(curpass)
 	# dh_shlibdeps -p$(curpass)
 	dh_gencontrol -p$(curpass) -- -fdebian/files~
