@@ -1,11 +1,53 @@
+glibc (2.2.5-14) unstable; urgency=low
+
+  * GOTO Masanori <gotom@debian.or.jp>
+    - debian/patches/sh-sysdep.dpatch: Added the patch to compile for sh[34]
+      sh[34]eb. Closes: #156273
+    - debian/patches/glibc22-m68k-compat.dpatch: Newer m68k debian specific
+      compatibility patch. Patched by Michael Fedrowitz <michaelf@debian.org>.
+    - debian/patches/malloc-security.dpatch: Applied malloc security patch
+      Patched by Wolfram Gloger <wg@malloc.de>.
+    - debian/patches/alpha-build-failure.dpatch: Fix alpha build failure.
+
+ -- GOTO Masanori <gotom@debian.or.jp>  Wed,  7 Aug 2002 20:56:54 +0900
+
 glibc (2.2.5-13) unstable; urgency=low
 
-  * Last maintainer upload for me.
-  * Fix double getent listing for build of libc package.
-  * Set maintainer to the debian-glibc mailing list. Set uploaders to myself
-    and others.
+  * Ben Collins
+    - Last maintainer upload for me.
+    - Fix double getent listing for build of libc package.
+      Closes: #154133, #152866
+    - Set maintainer to the debian-glibc mailing list. Set uploaders to myself
+      and others.
+    - Placed into CVS (this log entry is the first test commit).
+    - ia64 build failure was fixed in last NMU. Closes: #151956
+    - This sshd/libc bug is long since gone. Closes: #72596, #82468
+    - ldconfig search order has also since been fixed. Closes: #105249
+    - Add patches that OpenOffice needs in order to build. Closes: #153107
+    - Bump min kernel supported to 2.2.0. Closes: #149529
+    - Remove db1 compat library. The only user I know of this is coda. Coda
+      can include it's own version of the library now. I've emailed the coda
+      maintainer.
+    - Bump the shlibs ver because of the min-kernel change, and db1 removal.
+    - Add xdr-array.c security patch, Closes: #154992
 
- -- Ben Collins <bcollins@debian.org>  Thu, 25 Jul 2002 10:02:04 -0400
+  * GOTO Masanori <gotom@debian.or.jp>
+    - applied patches/locale-de_CH.
+    - debian/control: fix my uploader address due to my obsolete gpg key.
+    - debian/copyright: update copyright year.
+
+  * Jeff Bailey <jbailey@debian.org>
+    - Add hurd-i386 patch for support LFS from CVS
+    - Add patch to only declare sys_errlist and sys_nerr on Linux.  This
+      allows gcc to build cleanly on hurd-i386.
+    - Require mig >= 1.3-2 (hurd-i386 only), and hurd-dev >= 20020608-1
+      (hurd-i386 only)
+    - Prune hurd-ldflags from Hurd patch list.  Noone is quite sure what
+      it's for.  With this change, all hurd-i386 patches are now upstream
+      in CVS.
+    - Add 'mathpatch' to fix a math testsuite failure.
+
+ -- Ben Collins <bcollins@debian.org>  Thu, 25 Jul 2002 11:13:22 -0400
 
 glibc (2.2.5-12) unstable; urgency=low
 

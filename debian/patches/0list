@@ -1,10 +1,8 @@
 glibc-cvs
 glibc22-misc
-db1-addon-enabler
 manual-texinfo4
 ldd
 glibcbug
-hurd-ldflags
 fhs-linux-paths
 pthread_create-manpage
 string2-pointer-arith
@@ -39,3 +37,12 @@ ia64-strncpy
 ia64-perf
 sparc-misc
 resolv-nss_dns
+glibc-openoffice-fixes
+xdr-array-security
+locales-de_CH
+hurd-lfs64
+syserrlist
+mathpatch
+sh-sysdep
+malloc-security
+alpha-build-failure
