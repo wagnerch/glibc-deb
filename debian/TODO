@@ -1,7 +1,7 @@
 Architecture builds
 ===================
 
- i386: -6 Built okay 
+ i386: -7 Built okay 
  ia64: -5 Built okay.
  alpha: -3 Built okay.
  ppc: -6 Built okay.
@@ -36,8 +36,7 @@ TODO
    on every architecture against unstable to make sure we didn't lose
    anything we didn't want to lose.
 
-   [Right now we're OK on i386 except for a couple mantainer script bugs and
-    maybe some po-debconf issues...]
+   As of 2003-10-26 22:06:00 GMT, all of these are OK on i386.
 
  - Make sure that prep.sh and version aren't in the root of the source
    package.
@@ -45,7 +44,7 @@ TODO
 * libc:
  - Only add some libraries to the optimized packages and to /lib/tls,
    instead of all of them?
- - Add patch to display linux-gate.so.1 in ldd.
+ - Add patch to display (or ignore) linux-gate.so.1 in ldd.
  - Check dpkg-shlibdeps for linux-gate.so.1 handling.
  - Don't do make install for libc6-i686 if we aren't going to use the
    results - it's very slow.  We may need to make install for nptl to
@@ -56,7 +55,6 @@ TODO
  - What do we do for headers on 32/64 systems?  Do we generate
    #if wrappers for /usr/include?  This looks like a non-issue since
    only asm needs it.
- - libc6-dev dependency on matching libc6
  - -dev support for library variants like nptl?  64-bit libraries are
    covered.
 
