@@ -3,7 +3,6 @@
 set -e
 
 if [ "$1" != abort-upgrade ] && [ "`uname -s`" = Linux ]; then
-then
   package=`basename $0 .postinst`
   opt=`echo $package | sed 's/.*-//'`
 
