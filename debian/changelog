@@ -68,6 +68,11 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/sysdeps/gnu.mk: Add in GLIBC_OVERLAYS to allow patching to work,
       create ld.so symlink at end of build.
 
+  * GOTO Masanori <gotom@debian.org>
+
+    - debian/po/ru.po: Update.  Patched by Ilgiz Kalmetev
+      <translator@ilgiz.pp.ru>.  (Closes: #214349)
+
  -- Daniel Jacobowitz <dan@debian.org>  Sat, 25 Oct 2003 12:58:30 -0400
 
 glibc (2.3.2.ds1-6) experimental; urgency=low
