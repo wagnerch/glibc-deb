@@ -77,7 +77,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/sysdeps/s390.mk: Likewise.
     - debian/rules: Define kernel_check macro.
     - debian/sysdeps/linux.mk: Override kernel_check for Linux.
-    - debian/rules.d/build.mk: Call kernel_check macro when --build !=
+    - debian/rules.d/build.mk: Call kernel_check macro when --build ==
       --host
 
   * GOTO Masanori <gotom@debian.org>
