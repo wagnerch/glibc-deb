@@ -23,5 +23,3 @@ debian/tmp-libc/usr/lib/pt_chown usr/lib
 debian/local/usr_sbin/tzconfig usr/sbin
 debian/local/etc_init.d/devpts.sh etc/init.d
 debian/local/etc_default/devpts etc/default
-
-DEB_SRCDIR/linuxthreads/ChangeLog usr/share/doc/LIBC/linuxthreads
