@@ -94,22 +94,21 @@ endif
 # Which build pass are we on?
 curpass = $(filter-out %_,$(subst _,_ ,$@))
 
-#FIXME $(libc)-prof
-DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-dbg
+DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-dbg $(libc)-prof $(libc)-pic
 DEB_INDEP_REGULAR_PACKAGES = glibc-doc locales
 DEB_UDEB_PACKAGES = libc-udeb
 
 # Don't run dh_strip on this package
-NOSTRIP_libc6-dbg = 1
-
-ifeq ($(threads),yes)
-DEB_ARCH_REGULAR_PACKAGES += nscd
-endif
+NOSTRIP_$(libc)-dbg = 1
 
 # Pull in all the per-arch magic!
 
 -include debian/sysdeps/$(DEB_BUILD_GNU_SYSTEM).mk
 -include debian/sysdeps/$(DEB_BUILD_ARCH).mk
+
+ifeq ($(threads),yes)
+DEB_ARCH_REGULAR_PACKAGES += nscd
+endif
 
 # And now the rules...
 include debian/rules.d/*.mk
