@@ -7,6 +7,10 @@ General:
   Essentially rewrite the rules file, move all files we provide
   into debian/local Remove dependancy of kernel-headers-foo
 
+gotom doesn't like local directory, prefers is still broken down by package.
+
+Add debhelper dependency
+
 libc-dev:
 - usr/include/asm, usr/include/linux
 
