@@ -94,11 +94,6 @@ endif
 # Which build pass are we on?
 curpass = $(filter-out %_,$(subst _,_ ,$@))
 
-# Pull in all the per-arch magic!
-
--include debian/sysdeps/$(DEB_BUILD_GNU_SYSTEM).mk
--include debian/sysdeps/$(DEB_BUILD_ARCH).mk
-
 #FIXME $(libc)-prof
 DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-dbg
 DEB_INDEP_REGULAR_PACKAGES = glibc-doc locales
@@ -110,6 +105,11 @@ NOSTRIP_libc6-dbg = 1
 ifeq ($(threads),yes)
 DEB_ARCH_REGULAR_PACKAGES += nscd
 endif
+
+# Pull in all the per-arch magic!
+
+-include debian/sysdeps/$(DEB_BUILD_GNU_SYSTEM).mk
+-include debian/sysdeps/$(DEB_BUILD_ARCH).mk
 
 # And now the rules...
 include debian/rules.d/*.mk
