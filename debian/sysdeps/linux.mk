@@ -38,3 +38,13 @@ $(stamp)mkincludedir:
 
 # Also to make configure happy.
 export CPPFLAGS = -isystem $(shell pwd)/debian/include
+
+# This round of ugliness decomposes the Linux kernel version number
+# into an integer so it can be easily compared and then does so.
+kernel_check = $(shell minimum=$$((`echo $(1) | sed 's/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 65536 + \2 \* 256 + \3/'`)); \
+current=$$((`echo $(CURRENT_KERNEL_VERSION) | sed 's/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 65536 + \2 \* 256 + \3/'`)); \
+if [ $$current -ge $$minimum ]; then \
+  echo ""; \
+  else \
+    echo '$$(error You must running at least kernel version $(1) to compile this)'; \
+fi)

@@ -67,6 +67,13 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/sysdeps/kfreebsd.mk: Deleted.
     - debian/sysdeps/gnu.mk: Add in GLIBC_OVERLAYS to allow patching to work,
       create ld.so symlink at end of build.
+    - debian/sysdeps/sparc.mk: Change MIN_KERNEL_REQUIRED to
+      MIN_KERNEL_SUPPORTED.
+    - debian/sysdeps/s390.mk: Likewise.
+    - debian/rules: Define kernel_check macro.
+    - debian/sysdeps/linux.mk: Override kernel_check for Linux.
+    - debian/rules.d/build.mk: Call kernel_check macro when --build !=
+      --host
 
   * GOTO Masanori <gotom@debian.org>
 

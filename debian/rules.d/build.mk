@@ -11,6 +11,12 @@ $(stamp)mkbuilddir_%: $(stamp)patch-stamp $(LINUX_HEADER_DIR)
 
 $(patsubst %,configure_%,$(GLIBC_PASSES)) :: configure_% : $(stamp)configure_%
 $(stamp)configure_%: $(stamp)mkbuilddir_%
+
+ifneq ($(call xx,configure_target),$(call xx,configure_build))
+	@echo Checking that we're running at least kernel version: $(call xx,MIN_KERNEL_VERSION)
+	$(eval $(call kernel_check,$(MIN_KERNEL_SUPPORTED)))
+endif
+
 	@echo Configuring $(curpass)
 	rm -f $(DEB_BUILDDIR)/configparms
 	echo "CC = $(call xx,CC)"	>> $(DEB_BUILDDIR)/configparms
