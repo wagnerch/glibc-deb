@@ -7,8 +7,8 @@ i686_MIN_KERNEL_SUPPORTED = 2.4.18
 nptl_configure_target=i486-linux
 i686_configure_target=i686-linux
 
-nptl_extra_cflags = -march=i686 -mtune=i686
-i686_extra_cflags = -march=i686 -mtune=i686
+nptl_extra_cflags = -march=i686 -mcpu=i686
+i686_extra_cflags = -march=i686 -mcpu=i686
 
 i686_extra_config_options = $(extra_config_options) --disable-profile --enable-omitfp --with-tls --without-__thread
 
