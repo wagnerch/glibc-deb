@@ -86,11 +86,12 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
 	dh_testroot
 	dh_installdirs -p$(curpass)
 	dh_install -p$(curpass)
+	dh_strip -p$(curpass)
 	dh_compress -p$(curpass)
 	dh_fixperms -p$(curpass)
 	find debian/$(curpass) -type f -regex '.*lib.*/ld.*so.*' \
 		-exec chmod a+x '{}' ';'
-	dh_makeshlibs -p$(curpass) -V "$(call xx,shlib_dep)"
+	# dh_makeshlibs -p$(curpass) -V "$(call xx,shlib_dep)"
 	dh_installdeb -p$(curpass)
 	# dh_shlibdeps -p$(curpass)
 	dh_gencontrol -p$(curpass) -- -fdebian/files~
@@ -133,7 +134,7 @@ $(stamp)debhelper:
 
 	for x in `find debian/debhelper.in -type f -maxdepth 1`; do \
 	  y=debian/`basename $$x`; \
-	  z=`echo $$y | sed -e 's#/libc#/$(libc)#'`; \
+	  z=`echo $$y | sed -e '/udeb/! s#/libc#/$(libc)#'`; \
 	  cp $$x $$z; \
 	  sed -e "s#TMPDIR#debian/tmp-libc#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \

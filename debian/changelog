@@ -27,6 +27,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
       glibc-doc.
     - Include changelog in glibc-doc also.
     - Re-add libc6-dev dependency on matching libc6.
+    - Fix libc-udeb build.
 
   * Phil Blundell <pb@nexus.co.uk>
 

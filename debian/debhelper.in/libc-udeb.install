@@ -1,9 +1,12 @@
-debian/tmp-libc/lib/ld-*.so lib
-debian/tmp-libc/lib/libm-*.so lib
-debian/tmp-libc/lib/libdl-*.so lib
-debian/tmp-libc/lib/libresolv-*.so lib
-debian/tmp-libc/lib/libnss_dns-*.so lib
-debian/tmp-libc/lib/libc-*.so lib
+# FIXME: someday we may need to handle installing into non-lib.
+debian/tmp-libc/lib/ld*.so* lib
+debian/tmp-libc/lib/libm-*.so* lib
+debian/tmp-libc/lib/libm.so* lib
+debian/tmp-libc/lib/libdl*.so* lib
+debian/tmp-libc/lib/libresolv*.so* lib
+debian/tmp-libc/lib/libnss_dns*.so* lib
+debian/tmp-libc/lib/libc-*.so* lib
+debian/tmp-libc/lib/libc.so* lib
 # FIXME: This should be with_threads arch's only.
-debian/tmp-libc/lib/libpthread-0.10.so lib
+debian/tmp-libc/lib/libpthread*.so* lib
 
