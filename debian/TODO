@@ -31,3 +31,6 @@ need to be either initialized in libc.so's initializer instead, or else
 ld.so needs to do cpu detection and conditionally initialize them.
 
 Other architecture builds.
+
+Before it leaves experimental, verify the contents of every package on every
+architecture against unstable to make sure we didn't lose files.
