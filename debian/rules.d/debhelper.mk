@@ -93,6 +93,7 @@ $(stamp)debhelper:
 	  cp $$x $$z; \
 	  sed -e "s#TMPDIR#debian/tmp-libc#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
+	  sed -e "s#LIBC#$(libc)#" -i $$z; \
 	  case $$z in \
 	    *.install) sed -e "s/^#.*//" -i $$z ;; \
 	  esac; \
@@ -109,6 +110,7 @@ $(stamp)debhelper:
 	  cp $$x $$z; \
 	  sed -e "s#TMPDIR#debian/tmp-libc#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
+	  sed -e "s#LIBC#$(libc)#" -i $$z; \
 	  case $$z in \
 	    *.install) sed -e "s/^#.*//" -i $$z ;; \
 	  esac; \
@@ -128,6 +130,7 @@ $(stamp)debhelper:
 	    cp debian/debhelper.in/libc-alt-dev.install $$zd; \
 	    sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$zd; \
 	    sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$zd; \
+	    sed -e "s#LIBC#$(libc)#" -i $$z; \
 	    sed -e "s#DESTLIBDIR#$$destdir#" -i $$zd; \
 	    sed -e "s/^#.*//" -i $$zd; \
 	  else \

@@ -54,6 +54,9 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/debhelper.in/glibc-doc.install: New file.
     - debian/debhelper.in/glibc-doc.links: New file.
     - debian/rules.d/build.mk: Generate HTML files.
+    - debian/rules.d/debhelper.mk: Map LIBC to $(libc) in generated files.
+    - debian/debhelper.in/libc.install: Install Linuxthreads ChangeLog.
+    - debian/debhelper.in/libc.docs: Install various docs.
 
  -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 20:30:59 -0400
 

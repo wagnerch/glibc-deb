@@ -47,7 +47,6 @@ TODO
    instead of all of them?
  - Add patch to display linux-gate.so.1 in ldd.
  - Check dpkg-shlibdeps for linux-gate.so.1 handling.
- - Some documentation missing from libc6 package
  - Don't do make install for libc6-i686 if we aren't going to use the
    results - it's very slow.  We may need to make install for nptl to
    get the few headers that differ.
