@@ -57,3 +57,4 @@ pthread-cleanup
 glibc-make-check-perms
 glibc-2.3.2-ldconfig-tls
 glibc23-mips-msq
+glibc23-libio-compat
