@@ -17,6 +17,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - Switch the i686 optimized libraries to use NPTL, and update their
       description.
     - Fix dependencies for locales package.
+    - Include SONAME symlinks in libc6-dbg.
 
   * Phil Blundell <pb@nexus.co.uk>
 

@@ -1,1 +1,1 @@
-TMPDIR/lib/*-*.so* usr/lib/debug
+TMPDIR/lib/*.so* usr/lib/debug
