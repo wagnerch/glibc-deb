@@ -1,0 +1,7 @@
+control
+files
+libc*
+glibc-doc*
+locales*
+tmp-*
+nscd*
