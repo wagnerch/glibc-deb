@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "remove" ]; then
+    if [ -f /etc/ld.so.nohwcap ] && [ ! -s /etc/ld.so.nohwcap ]; then
+	rm -f /etc/ld.so.nohwcap
+    fi
+fi
+
+#DEBHELPER#
+
+exit 0
