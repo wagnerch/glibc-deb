@@ -24,6 +24,7 @@ Architecture: all
 Section: base
 Priority: standard
 Provides: i18ndata
+Depends: ${locale:Depends}, debconf (>= 0.2.26)
 Conflicts: localebin, wg15-locale, i18ndata, locale-ja, locale-ko, locale-vi, locale-zh
 Replaces: localebin, wg15-locale, libc6-bin, i18ndata, glibc2, locale-ja, locale-ko, locale-vi, locale-zh
 Description: GNU C Library: National Language (locale) data [support]
@@ -52,6 +53,7 @@ Package: libc6
 Architecture: arm i386 m68k mips mipsel powerpc sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: base
 Priority: required
+Provides: ${locale:Depends}
 Description: GNU C Library: Shared libraries and Timezone data
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -108,6 +110,7 @@ Package: libc6.1
 Architecture: alpha ia64
 Section: base
 Priority: required
+Provides: ${locale:Depends}
 Description: GNU C Library: Shared libraries and Timezone data
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -164,6 +167,7 @@ Package: libc0.3
 Architecture: hurd-i386
 Section: base
 Priority: required
+Provides: ${locale:Depends}
 Description: GNU C Library: Shared libraries and Timezone data
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -220,6 +224,7 @@ Package: libc1
 Architecture: freebsd-i386
 Section: base
 Priority: required
+Provides: ${locale:Depends}
 Description: GNU C Library: Shared libraries and Timezone data
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -341,13 +346,15 @@ Description: GNU C Library: Shared libraries [i686 optimized]
  the system. This package includes shared versions of the standard C
  library and the standard math library, as well as many others.
  .
- This set of libraries is optimized for i686 machines. Only install this
- if you have a i686 class CPU (check the output of `uname -m'). This
- usually includes Pentium Pro, Pentium II/III, Celeron CPU's and similar
- class CPU's (including clones such as AMD). For standard Pentium class
- machines, check the libc6-i586 package.
+ This set of libraries is optimized for i686 machines, and will only be
+ used if you have an i686 class CPU (check the output of `uname -m').  This
+ includes Pentium Pro, Pentium II/III, Celeron CPU's and similar class
+ CPU's (including clones such as AMD, but not the Via C3).
  .
- WARNING: Some commercial programs do not work well with these libraries.
+ This package includes support for NPTL.  The optimized libraries will not
+ be used unless you are using a 2.6 kernel.
+ .
+ WARNING: Some commercial programs may not work well with these libraries.
  Most notably, IBM's JDK. If you experience problems with such
  applications, you will need to remove this package.
 
@@ -355,6 +362,7 @@ Package: libc-udeb
 Architecture: any
 Section: debian-installer
 Priority: required
+Provides: ${locale:Depends}
 Description: GNU C Library: Shared libraries and Timezone data - udeb
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library

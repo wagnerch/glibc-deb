@@ -64,9 +64,9 @@ $(stamp)install_%: $(stamp)check_%
 	rm -rf $(CURDIR)/debian/tmp-$(curpass)
 	$(MAKE) -C $(DEB_BUILDDIR) install_root=$(CURDIR)/debian/tmp-$(curpass) install
 
-	if [ $(curpass) = libc ]; then
-	  $(MAKE) -f debian/generate-supported.mk IN=$(DEB_SRCDIR)/localedata/SUPPORTED.orig \
-	    OUT=debian/tmp-$(curpass)/usr/share/i18n/SUPPORTED
+	if [ $(curpass) = libc ]; then \
+	  $(MAKE) -f debian/generate-supported.mk IN=$(DEB_SRCDIR)/localedata/SUPPORTED \
+	    OUT=debian/tmp-$(curpass)/usr/share/i18n/SUPPORTED; \
 	fi
 
 	$(call xx,extra_install)

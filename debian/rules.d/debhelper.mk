@@ -160,6 +160,14 @@ $(stamp)debhelper:
 	# Substitute __SUPPORTED_LOCALES__.
 	perl -i -pe 'BEGIN {undef $$/; open(IN, "debian/tmp-libc/usr/share/i18n/SUPPORTED"); $$j=<IN>;} s/__SUPPORTED_LOCALES__/$$j/g;' debian/locales.config
 
+	# Generate common substvars files.
+	echo "locale:Depends=$(shell perl debian/debver2localesdep.pl $(DEB_VERSION))" > tmp.substvars
+
+	for pkg in $(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGULAR_PACKAGES) $(DEB_UDEB_PACKAGES); do \
+	  cp tmp.substvars debian/$$pkg.substvars; \
+	done
+	rm -f tmp.substvars
+
 	touch $(stamp)debhelper
 
 debhelper-clean:
