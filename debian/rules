@@ -64,7 +64,7 @@ include debian/rules.d/source.mk
 clean: debian/control setperms
 	rm -rf glibc-$(VERSION)
 	rm -f debian/libc/DEBIAN/shlibs
-	rm -f debian/control.in/libc{6,6.1,0.3}
+	rm -f debian/control.in/libc{6,6.1,0.3,1}
 	rm -f debian/files debian/substvars log-*
 	rm -f unpacked-source patched-source patched-sourceT -r patched
 	rm -f `find debian -name 'libc*' -type l`
@@ -81,7 +81,9 @@ ifeq ($(NO_LOG),)
 	@if [ -s $(log_build) ]; then savelog $(log_build); fi
 endif
 	@echo 'Building GNU C Library for a $(DEB_BUILD_GNU_TYPE) host.'
-	$(MAKE) -C $(objdir) PARALLELMFLAGS="$(PARALLELMFLAGS)" 2>&1 | tee $(log_build)
+	date >$(log_build)
+	$(MAKE) -C $(objdir) PARALLELMFLAGS="$(PARALLELMFLAGS)" 2>&1 | tee -a $(log_build)
+	date >>$(log_build)
 	@echo 'Running GNU C Library test suite.'
 	$(MAKE) -f debian/rules check
 	touch $@
@@ -92,7 +94,9 @@ ifeq ($(NO_LOG),)
 	@if [ -s $(log_test) ]; then savelog $(log_test); fi
 endif
 	$(warning Please check results before uploading in case of test failures.)
-	-$(MAKE) -k SHELL=/bin/bash -C $(objdir) check 2>&1 | tee $(log_test)
+	date >$(log_test)
+	-$(MAKE) -k SHELL=/bin/bash -C $(objdir) check 2>&1 | tee -a $(log_test)
+	date >>$(log_test)
 endif
 
 install: $(stamp_install)
@@ -106,7 +110,7 @@ configure: $(stamp_configure)
 $(stamp_configure): $(stamp_unpack) $(stamp_patch)
 	$(make_directory) $(objdir) $(stampdir)
 	chmod 755 glibc-$(VERSION)/scripts/cpp # XXX Hack!
-ifneq ($(DEB_HOST_GNU_SYSTEM),gnu)
+ifeq ($(DEB_HOST_GNU_SYSTEM),linux)
 	@if [ "$(num_headers)" != "1" ]; then \
 		echo; \
 		echo "Either you have more than one set of kernel headers in /usr/src"; \
@@ -119,26 +123,34 @@ endif
 	rm -f $(objdir)/configparms
 	echo "CC = $(CC)"		  >> $(objdir)/configparms
 	echo "BUILD_CC = $(BUILD_CC)"	  >> $(objdir)/configparms
+#	Reduce optimization level of build on i386.  This needs to
+#	be properly put into sysdeps somewhere until the bug is
+#	fixed. - JB 2002-Oct-17
+ifeq ($(DEB_HOST_GNU_CPU),i386)
+	echo "CFLAGS = -O"		  >> $(objdir)/configparms
+	echo "BUILD_CFLAGS = -O"	  >> $(objdir)/configparms
+else
 	echo "CFLAGS = $(HOST_CFLAGS)"	  >> $(objdir)/configparms
 	echo "BUILD_CFLAGS = -O2"	  >> $(objdir)/configparms
+endif
 	echo "BASH := /bin/bash"	  >> $(objdir)/configparms
 	echo "KSH := /bin/bash"		  >> $(objdir)/configparms
 	echo "mandir = $(mandir)"	  >> $(objdir)/configparms
 	echo "infodir = $(infodir)"	  >> $(objdir)/configparms
 	echo "libexecdir = $(libexecdir)" >> $(objdir)/configparms
 	echo "LIBGD = no"		  >> $(objdir)/configparms
-ifeq ($(DEB_HOST_GNU_SYSTEM),gnu)
+ifneq ($(DEB_HOST_GNU_SYSTEM),linux)
 	echo "slibdir = /lib"		  >> $(objdir)/configparms
 	echo "rootsbindir = /sbin"	  >> $(objdir)/configparms
 	echo "sysconfdir = /etc"	  >> $(objdir)/configparms
 endif
-	cd $(objdir) && $(srcdir)/configure --host=$(DEB_HOST_GNU_TYPE) \
+	cd $(objdir) && CC=$(CC) $(srcdir)/configure --host=$(DEB_HOST_GNU_TYPE) \
 		--build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --without-cvs \
 		--enable-add-ons="$(add-ons)" $(with_headers) $(extra_config_options)
 
 	touch $@
 
-arch_packages  += $(libc) $(libc)-dev $(libc)-prof $(libc)-dbg \
+arch_packages  += $(libc) libc-udeb $(libc)-dev $(libc)-prof $(libc)-dbg \
 $(libc)-pic $(addsuffix -pkg,$(opt_packages))
 
 indep_packages = locales $(glibc)-doc
@@ -159,6 +171,7 @@ binary-indep: $(indep_packages)
 binary-arch: $(arch_packages)
 
 include $(package_rules)/libc.mk
+include $(package_rules)/libc-udeb.mk
 include $(package_rules)/libc-dev.mk
 include $(package_rules)/libc-dbg.mk
 include $(package_rules)/libc-pic.mk
@@ -201,9 +214,6 @@ $(stamp_unpack): prep.sh
 	$(SHELL) prep.sh
 	$(MAKE) -f debian/rules links
 	$(MAKE) -f debian/rules setperms
-	ln -s . glibc-$(VERSION)/db/db1
-	# Stopgap, since memset.S on ppc is broken...
-	rm -f glibc-$(VERSION)/sysdeps/powerpc/memset.S
 	touch $@
 
 include debian/rules.d/shlibs.mk

@@ -1,11 +1,335 @@
+glibc (2.3.1-2) unstable; urgency=low
+
+  * This is the "Why did everything stop working, mommy?" release
+
+  * Jeff Bailey <jbailey@nisa.net>
+    - debian/libc/DEBIAN/postinst: Warn about NSS changes if upgrading
+    from older than 2.2.94-1.  Add ssh-krb5 and apache2 to list of
+    services that definetly need restarting.
+
+    Add libc-udeb (closes: #158589) Thanks to Tollef Fog Heen.
+    - debian/control.in/libc-udeb: New file
+    - debian/packages.d/libc-udeb.mk: New file
+    - debian/rules: Call udeb machinery.
+    - debian/rules.d/control.mk: Call udeb machinery.
+
+    - debian/sysdeps/build-options.mk: Strip libc on alpha
+
+    - debian/control.in/main: 2.13.90.0.10-1 is broken on s390
+    require 2.13.90.0.4-1 for them.
+
+  * GOTO Masanori <gotom@debian.or.jp>
+    - debian/patches/0list: disable ip6-fix.dpatch. Closes: #165287
+    - debian/packages.d/libc-udeb.mk: Clean up and fix indent crap.
+    - debian/rules.d/shlibs.mk: bump up to 2.3.1-1. Closes: #165456
+
+ -- Jeff Bailey <jbailey@nisa.net>  Fri, 18 Oct 2002 11:27:07 -0400
+
+glibc (2.3.1-1) unstable; urgency=low
+
+  * This is the "twilight" release...
+
+  * Jeff Bailey <jbailey@nisa.net>
+    - Upgrade tarballs to 2.3.1
+    - version: Update to 2.3.1
+
+    - debian/sysdeps/linux.mk: Do not build optimized libraries
+    - debian/rules.d/control.mk: Likewise
+
+    - debian/control.in/main: Require binutils 2.13.90.0.10-1 for ppc
+
+    - debian/patches/elf-machine-rela-mips.dpatch: New file
+    - debian/patches/0list: Update accordingly.
+
+    - debian/rules: Use -O on i386.  This should go somewhere else,
+    but I want to get this release out.
+
+  * XXX Below here was during the 2.3 development, and never released.
+
+  * Jeff Bailey <jbailey@nisa.net>
+    - Upgrade tarballs to 2.3
+    - version: Update to 2.3
+
+    - debian/patches/hppa-data-start.dpatch: Remove, incorporated upstream
+    - debian/patches/various-lsb-fixes.dpatch: Remove, incorporated upstream
+
+    - debian/patches/0list: adjust accordingly
+                            Also, prune ia64-reloc-none from the list.
+			    I can't tell from the code snippet if this
+			    has been incorporated or not.
+
+    - .cvsignore: Add the stamp directories
+
+    - debian/rules: Don't put CFLAGS in configparms, resolves ldconfig
+      miscompile on i386
+
+    - debian/rules: Add freebsd-i386 support
+    - debian/rules.d/control.mk: Add freebsd-i386 support
+    - debian/sysdeps/freebsd.mk: New file to add freebsd-i386 support
+    - debian/sysdeps/paths.mk: Add freebsd-i386 support
+    - debian/sysdeps/soname.mk: Add freebsd-i386 support
+
+  * XXX Below here was during the 2.2.94 development, and never released.
+
+  * Jeff Bailey <jbailey@nisa.net>
+    - Upgrade tarballs to 2.2.94
+    - version: Update to 2.2.94
+
+    - debian/patches/cvs: Remove
+    - debian/patches/manual-texinfo4: Remove, incorporated upstream.
+    - debian/patches/i386-mathinline.dpatch: Remove, glibc headers require
+      ANSI compilers.
+    - debian/patches/db1-addon-enabler.dpatch: Remove
+    - debian/patches/0list: adjust accordingly
+
+    - debian/patches/0list: Comment out string2-pointer-arith.
+      This was originally created to fix #44697, but without this
+      patch, 44697 is no longer reproducable.
+
+    - debian/patches/fhs-linux-paths.dpatch: Update to new template format
+
+    - .cvsignore: New file
+
+  * XXX Below here was during the 2.2.93 development, and never released.
+
+  * Jeff Bailey <jbailey@nisa.net>
+     - Upgrade tarballs to 2.2.93
+     - version: Update to 2.2.93
+
+     The following important patches are still disabled:
+
+       glibc22-hppa-pthreads, glibc22-hppa-rela, ia64-perf
+
+     - debian/patches/0list: prune commented out patches that won't
+       be needed anymore
+
+     - debian/patches/ia64-reloc-none.dpatch: Updated, thank to
+       Randolph Chung <randolph@tausq.org>
+
+     - debian/make-cvs-patch.sh: New file.
+
+     - debian/patches/template.dpatch: Update headers to new format.
+
+     - debian/patches/hurd-ioperms.dpatch - Deleted
+     - debian/patches/hurd-lfs64.dpatch - Deleted
+     - debian/patches/hurd-update.dpatch - Deleted
+     - debian/patches/syserrlist.dpatch - Deleted
+
+     - debian/README - More updates
+
+     - debian/rules.d/control.mk: debian/control should Depend on
+       debian/sysdeps/depflags.pl
+
+     - debian/sysdeps/depflags.pl: Actually add the dependancy on
+       libdb1-compat.  This is an update to GOTO Masanori's change,
+       Thanks to Ryan Murray for catching this.
+
+     - debian/patches/mathpatch.dpatch: Prune
+
+     - debian/rules.d/patch.mk: Add `setup' as an alias for `patch'
+       to provide dbs compatability.
+
+     - debian/patches/cvs.dpatch: Sync with CVS from September 14th.
+     - debian/patches/0list: Updated
+
+  * GOTO Masanori <gotom@debian.or.jp>
+     - debian/packages.d/glibc-doc.mk: change texi2html processed file from
+       chapters.texi to libc.texinfo. Closes: #159417
+     - debian/packages.d/libc-{dbg,pic,prof}.mk: fix /usr/doc removal
+       compilation failure.
+     - debian/libc/DEBIAN/postinst: Fix 'grep -v' failure if the size of
+       /etc/ld.so.nohwcap is 0.
+     - debian/rules.d/control.mk: Generate libc-opt control information.
+
+     - Updating 2.2.9x fixes LSB 1.2 compliance. Closes: #156821
+     - debian/control: add Depends: libdb1-compat.
+       Until woody, libdb1 is included in libc6 package. However after sarge,
+       libdb1 support is removed. libdb1-compat contains libdb1 which is
+       formerly provided by libc6. Now libc6 depends on libdb1-compat,
+       so upgrading from woody to sarge does not break any libdb1 issues.
+       Closes: #155904
+
+     - debian/patches/glibc22-hppa-fcntl.dpatch: added, patched by
+       Carlos O'Donell <carlos@baldric.uwo.ca>.
+     - debian/patches/glibc22-hppa-fcntl-lfs.dpatch: added, patched by
+       Randolph Chung <tausq@debian.org>. Closes: #160846
+
+  * Ben Collins <bcollins@debian.org>
+    - Make sparc64 build use gcc-3.2.
+    - Update all config options to not use --disable-sanity-checks, since we
+      are actually using gcc-3.2 for everything.
+    - Patch cleanups.
+    - Re-enable optimized libs. Includes a simple mechanism which should fix
+      the conflicting symbols during libc/libc-opt upgrade scenarios. This
+      means that libc6-v9, libc6-i586 and libc6-i686 are back in full swing.
+    - Remove all references to /usr/doc symlink crap, which is deprecated.
+
+  * XXX Below here was during the 2.2.92 development, and never released.
+
+  * Jeff Bailey <jbailey@nisa.net>
+     - Upgrade tarballs to 2.2.92
+     - version: Update to 2.2.92
+     - debian/control.in/main: Require gcc-3.2 for all archs
+     - debian/patches/0list: prune glibc-cvs, glibc22-s390-resource,
+       gmon-start, locales-de_CH, sh-sysdep, alpha-build-failure
+
+       These are already included in the 2.3 series.
+
+     - debian/patches/glibc22-misc.dpatch: Split into ...
+       debian/patches/makeconfig.dpatch: ... this
+       debian/patches/locale-es_AR.dpatch: ... and this
+       debian/patches/i386-mathinline.dpatch: ... and this
+       debian/patches/ldconfig.dpatch: ... and this.
+
+     - debian/patches/makeconfig.dpatch: Update for 2.3 series
+
+     - debian/patches/0list: Temporarily disable some other patches:
+
+       glibc22-hppa-pthreads, glibc22-hppa-rela, ia64-perf
+
+     - debian/rules: memset.S works on ppc now, so stop deleting it.  Thanks
+       to Jack Howarth <howarth@fuse.net> for letting us know.
+
+     - debian/sysdeps/gnu.mk: Remove --enable-libio, now set by default.  Add
+       NO_TEST = yes, make check does not run on i386-gnu.
+
+     - debian/sysdeps/tools.mk: Hardcode gcc-3.2 for $(CC) and $(BUILD_CC)
+       until gcc-defaults switches.
+
+     - debian/rules: use CC=$(CC) when calling configure to get any changed
+       definitions.
+
+     - debian/control.in/main: Require binutils (>= 2.13.90.0.4-1)
+
+     - debian/rules: Add time/date stamps to beginning and end of log files
+
+     - db1-addon-2.1.3.tar.bz2: Delete
+
+     - debian/ppc-memset.S: Delete
+
+     - debian/README: Update
+
+  * GOTO Masanori <gotom@debian.or.jp>
+     - debian/packages.d/libc-dbg.mk: update libpthread-0.9 -> 0.10.
+     - packages.d/libc.mk: likewise.
+     - packages.d/optimized.mk: likewise.
+     - packages.d/sparc64.mk: likewise.
+
+     - debian/patches/glibc22-hppa-mcontext.dpatch: Fix unmatched userland
+       mcontext_t definition differed from kernel. Patched by
+       Carlos O'Donell <carlos@baldric.uwo.ca>. Closes: #157374
+
+  * XXX Below here was during the 2.2.5 development, and never released.
+
+  * GOTO Masanori <gotom@debian.or.jp>
+    - debian/patches/glibc-cvs.dpatch: Update from Glibc CVS.
+    - debian/patches: Dropped applying below patches due to updating
+      glibc-cvs.dpatch.
+        hurd-update, hurd-ioperms, ia64-strncpy, sparc-misc, resolv-nss_dns,
+        glibc-openoffice-fixes, xdr-array-security, hurd-lfs64,
+        syserrlist, mathpatch
+    - Fix gcc 3.1/3.2 compatibility building for glibc on ppc, with upstream
+      patched by Jack Howarth <howarth@bromo.msbb.uc.edu> and
+      Franz Sirl <Franz.Sirl-kernel@lauterbach.com>.
+      Closes: #155606
+
+ -- Jeff Bailey <jbailey@nisa.net>  Thu, 17 Oct 2002 08:37:52 -0400
+
+glibc (2.2.5-15) unstable; urgency=low
+
+  * debian/patches/dl-procinfo-fix.dpatch: Fix libssl optimization
+    problem occured by glibc dl-procinfo.
+      Closes: #161700, #161717, #161720, #161740, #161773, #161774
+      Closes: #161786, #161788, #161813
+
+ -- GOTO Masanori <gotom@debian.or.jp>  Thu,  3 Oct 2002 09:56:46 +0900
+
+glibc (2.2.5-14.3) unstable; urgency=low
+
+  * NMU
+  * debian/patches/glibc22-mips-mcontext.dpatch: delete.
+
+ -- Ryan Murray <rmurray@debian.org>  Sun, 15 Sep 2002 14:21:21 -0700
+
+glibc (2.2.5-14.2) unstable; urgency=medium
+
+  * NMU
+  * debian/patches/alpha-stxncpy.dpatch: keep testsuite patch (accepted
+    upstream), but disable all use of stxncpy until a correct patch can
+    be made.
+
+ -- Ryan Murray <rmurray@debian.org>  Thu, 12 Sep 2002 13:04:47 -0700
+
+glibc (2.2.5-14.1) unstable; urgency=low
+
+  * NMU
+  * sysdeps/depflags.pl: Make libc{6,6.1} depend on libdb1-compat
+    (closes: #155904)
+  * debian/patches/alpha-stxncpy.dpatch: Add patch from Daniel Jacobowitz
+    for alpha stxncpy (closes: #159633)
+  * debian/patches/glibc22-mips-msq.dpatch: Add
+    sysdeps/unix/sysv/linux/mips/bits/msq.h for mips (closes: #159923)
+  * debian/patches/glibc22-hppa-fcntl.dpatch: Add DN_* and F_NOTIFY definitions
+    for hppa (closes: #159636)
+  * debian/patches/glibc22-hppa-mcontext.dpatch: correct definition of mcontext
+    to match kernel (closes: #157374)
+  * debian/patches/glibc22-mips-mcontext.dpatch: correct definition of mcontext
+    to match kernel (closes: #160462)
+  * add build-depends on dpkg 1.10.8 to ensure we use the install-info that
+    has the perl 5.8 workaround.
+
+ -- Ryan Murray <rmurray@debian.org>  Tue, 10 Sep 2002 22:35:48 -0700
+
+glibc (2.2.5-14) unstable; urgency=low
+
+  * GOTO Masanori <gotom@debian.or.jp>
+    - debian/patches/sh-sysdep.dpatch: Added the patch to compile for sh[34]
+      sh[34]eb. Closes: #156273
+    - debian/patches/glibc22-m68k-compat.dpatch: Newer m68k debian specific
+      compatibility patch. Patched by Michael Fedrowitz <michaelf@debian.org>.
+    - debian/patches/malloc-security.dpatch: Applied malloc security patch
+      Patched by Wolfram Gloger <wg@malloc.de>.
+    - debian/patches/alpha-build-failure.dpatch: Fix alpha build failure.
+
+ -- GOTO Masanori <gotom@debian.or.jp>  Wed,  7 Aug 2002 20:56:54 +0900
+
 glibc (2.2.5-13) unstable; urgency=low
 
-  * Last maintainer upload for me.
-  * Fix double getent listing for build of libc package.
-  * Set maintainer to the debian-glibc mailing list. Set uploaders to myself
-    and others.
+  * Ben Collins
+    - Last maintainer upload for me.
+    - Fix double getent listing for build of libc package.
+      Closes: #154133, #152866
+    - Set maintainer to the debian-glibc mailing list. Set uploaders to myself
+      and others.
+    - Placed into CVS (this log entry is the first test commit).
+    - ia64 build failure was fixed in last NMU. Closes: #151956
+    - This sshd/libc bug is long since gone. Closes: #72596, #82468
+    - ldconfig search order has also since been fixed. Closes: #105249
+    - Add patches that OpenOffice needs in order to build. Closes: #153107
+    - Bump min kernel supported to 2.2.0. Closes: #149529
+    - Remove db1 compat library. The only user I know of this is coda. Coda
+      can include it's own version of the library now. I've emailed the coda
+      maintainer.
+    - Bump the shlibs ver because of the min-kernel change, and db1 removal.
+    - Add xdr-array.c security patch, Closes: #154992
 
- -- Ben Collins <bcollins@debian.org>  Thu, 25 Jul 2002 10:02:04 -0400
+  * GOTO Masanori <gotom@debian.or.jp>
+    - applied patches/locale-de_CH.
+    - debian/control: fix my uploader address due to my obsolete gpg key.
+    - debian/copyright: update copyright year.
+
+  * Jeff Bailey <jbailey@debian.org>
+    - Add hurd-i386 patch for support LFS from CVS
+    - Add patch to only declare sys_errlist and sys_nerr on Linux.  This
+      allows gcc to build cleanly on hurd-i386.
+    - Require mig >= 1.3-2 (hurd-i386 only), and hurd-dev >= 20020608-1
+      (hurd-i386 only)
+    - Prune hurd-ldflags from Hurd patch list.  Noone is quite sure what
+      it's for.  With this change, all hurd-i386 patches are now upstream
+      in CVS.
+    - Add 'mathpatch' to fix a math testsuite failure.
+
+ -- Ben Collins <bcollins@debian.org>  Thu, 25 Jul 2002 11:13:22 -0400
 
 glibc (2.2.5-12) unstable; urgency=low
 

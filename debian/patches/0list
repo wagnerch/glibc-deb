@@ -1,13 +1,10 @@
-glibc-cvs
-glibc22-misc
-db1-addon-enabler
-manual-texinfo4
+makeconfig
+locale-es_AR
+ldconfig
 ldd
 glibcbug
-hurd-ldflags
 fhs-linux-paths
-pthread_create-manpage
-string2-pointer-arith
+# JB - 44697 string2-pointer-arith
 glibc22-nss-upgrade
 glibc22-getaddrinfo
 glibc22-eo_EO
@@ -18,24 +15,18 @@ sparc64-fixups
 glibc22-getdents-fix
 glibc22-ttyname-devfs
 powerpc-sysconf
-glibc22-hppa-pthreads
-glibc22-hppa-rela
+#JB - Update for 2.3 glibc22-hppa-pthreads
+#JB - Update for 2.3 glibc22-hppa-rela
 glibc22-hppa-unwind
-glibc22-s390-resource
-ip6-fix
+#ip6-fix - Bug#165287
 arm-no-hwcap
 locales-stuff
-hppa-data-start
-gmon-start
 glibc22-hppa-tests
-#sparc64-got-fix
-various-lsb-fixes
-ia64-reloc-none
-#glibc2.2.6-nice
+#JB - Update for 2.3? ia64-reloc-none
 nscd-security-fix
-hurd-update
-hurd-ioperms
-ia64-strncpy
-ia64-perf
-sparc-misc
-resolv-nss_dns
+#JB - Update for 2.3 ia64-perf
+glibc22-hppa-mcontext
+glibc22-hppa-fcntl
+ldso-disable-hwcap
+glibc22-hppa-fcntl-lfs
+elf-machine-rela-mips
