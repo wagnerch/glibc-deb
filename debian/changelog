@@ -11,7 +11,7 @@ glibc (2.3.2.ds1-6) experimental; urgency=low
     - Add S/390 support.
     - Build libc6-dev-sparc64.
 
- -- Philip Blundell <pb@nexus.co.uk>  Wed, 15 Oct 2003 00:09:07 +0100
+ -- Daniel Jacobowitz <dan@debian.org>  Mon, 20 Oct 2003 16:27:39 -0400
 
 glibc (2.3.2.ds1-5) experimental; urgency=low
 
