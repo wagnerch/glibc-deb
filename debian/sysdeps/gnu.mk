@@ -2,3 +2,4 @@
 
 threads = no
 libc = libc0.3
+slibdir = /lib

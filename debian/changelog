@@ -48,6 +48,9 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/rules.d/build.mk: Don't run testsuite if DEB_BUILD_OPTIONS
       contains nocheck
 
+    - debian/sysdeps/gnu.mk: Define slibdir.
+    - debian/rules.d/build.mk: Only set slibdir in configparms if its set.
+
  -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 20:30:59 -0400
 
 glibc (2.3.2.ds1-6) experimental; urgency=low

@@ -25,9 +25,8 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 	echo "LIBGD = no"		>> $(DEB_BUILDDIR)/configparms
 	echo "sysconfdir = /etc"	>> $(DEB_BUILDDIR)/configparms
 	echo "rootsbindir = /sbin"	>> $(DEB_BUILDDIR)/configparms
-# FIXME - Remove this linux'ism.
-ifneq ($(DEB_HOST_GNU_SYSTEM),linux)
-	echo "slibdir = /lib"		>> $(DEB_BUILDDIR)/configparms
+ifneq ($(call xx,slibdir),)
+	echo "slibdir = $(call xx,slibdir)" >> $(DEB_BUILDDIR)/configparms
 endif
 
 	# Prevent autoconf from running unexpectedly by setting it to false.
