@@ -8,6 +8,8 @@ glibc (2.3.2.ds1-6) experimental; urgency=low
 
     - Add debhelper build dependency.
     - Use linux-kernel-headers package for headers.
+    - Add S/390 support.
+    - Build libc6-dev-sparc64.
 
  -- Philip Blundell <pb@nexus.co.uk>  Wed, 15 Oct 2003 00:09:07 +0100
 

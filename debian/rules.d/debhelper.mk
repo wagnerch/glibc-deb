@@ -75,6 +75,7 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
 # But after 10 hours of staring at this thing, I can't figure it out.
 
 OPT_PASSES = $(filter-out libc nptl,$(GLIBC_PASSES))
+OPT_DESTDIRS = $(foreach pass,$(OPT_PASSES),$($(pass)_LIBDIR))
 NPTL = $(filter nptl,$(GLIBC_PASSES))
 
 debhelper: $(stamp)debhelper
@@ -106,12 +107,28 @@ $(stamp)debhelper:
 	  esac; \
 	done
 
+	# Hack: special-case passes whose destdir is 64 (i.e. /lib64)
+	# to use a different install template, which includes more
+	# libraries.  Also generate a -dev.
+	set -- $(OPT_DESTDIRS); \
 	for x in $(OPT_PASSES); do \
+	  destdir=$$1; \
+	  shift; \
 	  z=debian/$(libc)-$$x.install; \
-	  cp debian/debhelper.in/libc-otherbuild.install $$z; \
+	  if test $$destdir = 64; then \
+	    cp debian/debhelper.in/libc-alt.install $$z; \
+	    zd=debian/$(libc)-dev-$$x.install; \
+	    cp debian/debhelper.in/libc-alt-dev.install $$zd; \
+	    sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$zd; \
+	    sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$zd; \
+	    sed -e "s#DESTLIBDIR#$$destdir#" -i $$zd; \
+	    sed -e "s/^#.*//" -i $$zd; \
+	  else \
+	    cp debian/debhelper.in/libc-otherbuild.install $$z; \
+	  fi; \
 	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
-	  sed -e "s#DESTLIBDIR#$$x#" -i $$z; \
+	  sed -e "s#DESTLIBDIR#$$destdir#" -i $$z; \
 	  case $$z in \
 	    *.install) sed -e "s/^#.*//" -i $$z ;; \
 	  esac; \
