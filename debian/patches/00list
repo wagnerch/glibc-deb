@@ -55,3 +55,4 @@ arm-ioperm
 #linuxthreads-big-stacks
 pthread-cleanup
 glibc-make-check-perms
+glibc-2.3.2-ldconfig-tls
