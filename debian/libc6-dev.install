@@ -1,0 +1,10 @@
+debian/tmp-linuxthreads/usr/bin/gencat usr/bin
+debian/tmp-linuxthreads/usr/bin/getconf usr/bin
+debian/tmp-linuxthreads/usr/bin/mtrace usr/bin
+debian/tmp-linuxthreads/usr/bin/rpcgen usr/bin
+
+debian/tmp-linuxthreads/usr/lib/*.a usr/lib
+debian/tmp-linuxthreads/usr/lib/*.o usr/lib
+debian/tmp-linuxthreads/usr/lib/*.so usr/lib
+debian/tmp-linuxthreads/usr/include/* usr/include
+

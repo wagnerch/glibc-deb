@@ -1,0 +1,25 @@
+
+debian/tmp-linuxthreads/lib/*.so* lib
+debian/tmp-linuxthreads/usr/lib/gconv/*.so usr/lib/gconv
+debian/tmp-linuxthreads/usr/share/zoneinfo/* usr/share/zoneinfo
+debian/tmp-linuxthreads/usr/bin/iconv usr/bin
+debian/tmp-linuxthreads/usr/bin/locale usr/bin
+debian/tmp-linuxthreads/usr/bin/localedef usr/bin
+debian/tmp-linuxthreads/usr/bin/getent usr/bin
+debian/tmp-linuxthreads/usr/bin/catchsegv usr/bin
+debian/tmp-linuxthreads/usr/bin/glibcbug usr/bin
+debian/tmp-linuxthreads/usr/bin/tzselect usr/bin
+debian/tmp-linuxthreads/usr/bin/ldd usr/bin
+debian/tmp-linuxthreads/usr/bin/lddlibc4 usr/bin
+debian/tmp-linuxthreads/usr/sbin/zdump usr/bin
+debian/tmp-linuxthreads/usr/sbin/rpcinfo usr/bin
+
+debian/tmp-linuxthreads/usr/sbin/zic usr/sbin
+debian/tmp-linuxthreads/usr/sbin/iconvconfig usr/sbin
+
+debian/tmp-linuxthreads/sbin/ldconfig sbin
+
+debian/local/usr_sbin/tzconfig usr/sbin
+debian/local/etc_init.d/devpts.sh etc/init.d
+debian/local/etc_default/devpts etc/default
+
