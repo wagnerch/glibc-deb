@@ -11,8 +11,6 @@ General:
 
 gotom doesn't like local directory, prefers is still broken down by package.
 
-Add debhelper dependency
-
 Test all the $(GLIBC_PASSES)_MIN_KERNEL_VERSION and such to make sure that we're compiling with at least that kernel version.  Otherwise some things may fail
 
 glibc-doc:
