@@ -7,6 +7,9 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
     - Fix the /lib/ld64.so.1 symlink for s390x.
     - Update maintainer scripts for fixes lost in the rewrite.
     - Enable NPTL for ia64.  Thanks to Ian Wienand for testing.
+    - Automatically cross-compile if the kernel is too old to build
+      an optimized library.
+    - Do not run make check if cross compiling.
 
   * Jeff Bailey <jbailey@nisa.net>
 

@@ -12,11 +12,6 @@ $(stamp)mkbuilddir_%: $(stamp)patch-stamp $(LINUX_HEADER_DIR)
 $(patsubst %,configure_%,$(GLIBC_PASSES)) :: configure_% : $(stamp)configure_%
 $(stamp)configure_%: $(stamp)mkbuilddir_%
 
-ifeq ($(call xx,configure_target),$(call xx,configure_build))
-	@echo "Checking that we're running at least kernel version: $(call xx,MIN_KERNEL_SUPPORTED)"
-	$(call kernel_check,$(call xx,MIN_KERNEL_SUPPORTED))
-endif
-
 	@echo Configuring $(curpass)
 	rm -f $(DEB_BUILDDIR)/configparms
 	echo "CC = $(call xx,CC)"	>> $(DEB_BUILDDIR)/configparms
@@ -37,11 +32,19 @@ endif
 
 	# Prevent autoconf from running unexpectedly by setting it to false.
 
+	configure_build=$(call xx,configure_build); \
+	if [ $(call xx,configure_target) = $$configure_build ]; then \
+	  echo "Checking that we're running at least kernel version: $(call xx,MIN_KERNEL_SUPPORTED)"; \
+	  if ! $(call kernel_check,$(call xx,MIN_KERNEL_SUPPORTED)); then \
+	    configure_build=`echo $$configure_build | sed 's/^\([^-]*\)-\([^-]*\)$$/\1-dummy-\2/'`; \
+	    echo "No.  Forcing cross-compile by setting build to $$configure_build."; \
+	  fi; \
+	fi; \
 	cd $(DEB_BUILDDIR) && \
 		AUTOCONF=false \
 		$(CURDIR)/$(DEB_SRCDIR)/configure \
 		--host=$(call xx,configure_target) \
-		--build=$(call xx,configure_build) --prefix=/usr --without-cvs \
+		--build=$$configure_build --prefix=/usr --without-cvs \
 		--enable-add-ons="$(call xx,add-ons)" \
 		$(call xx,with_headers) $(call xx,extra_config_options) 2>&1 | tee -a $(log_build)
 
@@ -55,11 +58,15 @@ $(stamp)build_%: $(stamp)configure_%
 
 $(patsubst %,check_%,$(GLIBC_PASSES)) :: check_% : $(stamp)check_%
 $(stamp)check_%: $(stamp)build_%
-	@if [ -z $(findstring nocheck,$(DEB_BUILD_OPTIONS)) ]; then \
+	if [ -n "$(findstring nocheck,$(DEB_BUILD_OPTIONS))" ]; then \
+	  echo "DEB_BUILD_OPTIONS contains nocheck, skipping tests."; \
+	elif [ $(call xx,configure_build) != $(call xx,configure_target) ]; then \
+	  echo "Cross compiling, skipping tests."; \
+	elif ! $(call kernel_check,$(call xx,MIN_KERNEL_SUPPORTED)); then \
+	  echo "Kernel too old, skipping tests."; \
+	else \
 	  echo Testing $(curpass); \
 	  $(MAKE) -C $(DEB_BUILDDIR) -j $(NJOBS) -k check 2>&1 | tee -a $(log_test); \
-	else \
-	  echo "DEB_BUILD_OPTIONS contains nocheck, skipping tests."; \
 	fi
 	touch $@
 

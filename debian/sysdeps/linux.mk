@@ -54,10 +54,9 @@ export CPPFLAGS = -isystem $(shell pwd)/debian/include
 # into an integer so it can be easily compared and then does so.
 CURRENT_KERNEL_VERSION=$(shell uname -r)
 define kernel_check
-@minimum=$$((`echo $(1) | sed 's/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 65536 + \2 \* 256 + \3/'`)); \
+(minimum=$$((`echo $(1) | sed 's/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 65536 + \2 \* 256 + \3/'`)); \
 current=$$((`echo $(CURRENT_KERNEL_VERSION) | sed 's/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 65536 + \2 \* 256 + \3/'`)); \
 if [ $$current -lt $$minimum ]; then \
-  echo 'You must running at least kernel version $(1) to compile this'; \
-  exit 1; \
-fi
+  false; \
+fi)
 endef
