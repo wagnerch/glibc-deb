@@ -91,9 +91,15 @@ HOST_CFLAGS = -pipe -O2 -fstrict-aliasing -g $(call xx,extra_cflags)
 
 configure_target := $(DEB_HOST_GNU_TYPE)
 
+# Normally we'll just use this for --build.  If the architecture requires
+# that build daemons be able to run a particular optimized library, then
+# they can set the --build to match --host for that optimized build.
+# Among other things this lets tests run.
+configure_build := $(DEB_BUILD_GNU_TYPE)
+
 ifneq ($(NO_LOG),yes)
-log_build   = $(CURDIR)/log-build-$(DEB_HOST_GNU_TYPE)-$(curpass)
-log_test    = $(CURDIR)/log-test-$(DEB_HOST_GNU_TYPE)-$(curpass)
+log_build   = $(CURDIR)/log-build-$(call xx,configure_target)-$(curpass)
+log_test    = $(CURDIR)/log-test-$(call xx,configure_target)-$(curpass)
 else
 log_build   := /dev/tty
 log_test    := /dev/tty
@@ -152,7 +158,8 @@ binary-arch: testroot debian/control $(build-tree) \
 
 binary: binary-indep binary-arch
 
-build: $(patsubst %,$(stamp)build_%,$(GLIBC_PASSES))
+build:	$(patsubst %,$(stamp)build_%,$(GLIBC_PASSES)) \
+	$(patsubst %,$(stamp)check_%,$(GLIBC_PASSES))
 
 testroot:
 	dh_testroot
