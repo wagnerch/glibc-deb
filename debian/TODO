@@ -34,3 +34,6 @@ Other architecture builds.
 
 Before it leaves experimental, verify the contents of every package on every
 architecture against unstable to make sure we didn't lose files.
+
+Before it leaves experimental, verify all package control information
+against unstable to make sure we didn't lose anything important.
