@@ -16,7 +16,7 @@ i686_add-ons = nptl $(add-ons)
 i686_configure_target=i686-linux
 i686_configure_build=i686-linux
 i686_extra_cflags = -march=i686 -mcpu=i686
-i686_LIBDIR = tls/i686/cmov
+i686_LIBDIR = /tls/i686/cmov
 i686_MIN_KERNEL_SUPPORTED = 2.6.0
 i686_extra_config_options = $(extra_config_options) --disable-profile --enable-omitfp --with-tls --with-__thread
 
