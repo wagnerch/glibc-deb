@@ -67,5 +67,3 @@ TODO
  - -dev support for library variants like nptl?  64-bit libraries are
    covered.
 
-* glibc-doc:
- - HTML Documentation
