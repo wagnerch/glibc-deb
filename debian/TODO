@@ -37,3 +37,5 @@ architecture against unstable to make sure we didn't lose files.
 
 Before it leaves experimental, verify all package control information
 against unstable to make sure we didn't lose anything important.
+
+Check dpkg-shlibdeps for linux-gate.so.1 handling.
