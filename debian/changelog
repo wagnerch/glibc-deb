@@ -57,6 +57,11 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/rules.d/debhelper.mk: Map LIBC to $(libc) in generated files.
     - debian/debhelper.in/libc.install: Install Linuxthreads ChangeLog.
     - debian/debhelper.in/libc.docs: Install various docs.
+    - debian/sysdeps/kfreebsd-gnu.mk: New file.  Put in all the magic
+      from the old packaging.
+    - debian/sysdeps/kfreebsd.mk: Deleted.
+    - debian/sysdeps/gnu.mk: Add in GLIBC_OVERLAYS to allow patching to work,
+      create ld.so symlink at end of build.
 
  -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 20:30:59 -0400
 
