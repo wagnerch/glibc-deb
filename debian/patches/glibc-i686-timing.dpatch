@@ -141,7 +141,7 @@ exit 0
 +static void
 +dlinit_hptiming (void)
 +{
-+#ifdef HP_TIMING_AVAIL
++#if HP_TIMING_AVAIL || HP_SMALL_TIMING_AVAIL
 +  if (GL(dl_cpuclock_offset) == 0)
 +    HP_TIMING_NOW (GL(dl_cpuclock_offset));
 +#endif
