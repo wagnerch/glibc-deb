@@ -10,3 +10,8 @@ s390x_extra_cflags = -g0
 s390x_LIBDIR = 64
 
 extra_config_options := --enable-omitfp
+
+define s390x_extra_install
+mkdir -p debian/tmp-$(curpass)/lib
+ln -s /lib64/ld64.so.1 debian/tmp-$(curpass)/lib
+endef

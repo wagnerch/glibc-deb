@@ -7,6 +7,8 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
       been i486.
     - Move i686 libraries to /lib/i686/cmov.
     - Include make check output in the libc package.
+    - S/390 perversely uses /lib/ld64.so.1 as the dynamic linker; include
+      a symlink.
 
   * Phil Blundell <pb@nexus.co.uk>
 
@@ -31,7 +33,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/rules.d/build.mk: Use -j $(NJOBS) during build.
     Based on patch from Ian Wienand <ianw@gelato.unsw.edu.au>
 
- -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 18:32:43 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 18:42:10 -0400
 
 glibc (2.3.2.ds1-6) experimental; urgency=low
 
