@@ -8,3 +8,6 @@ debian/tmp-libc/usr/lib/*.o usr/lib
 debian/tmp-libc/usr/lib/*.so usr/lib
 debian/tmp-libc/usr/include/* usr/include
 
+linux-kernel-headers/include/asm* usr/include
+linux-kernel-headers/include/linux usr/include
+

@@ -48,27 +48,30 @@ $(stamp)debhelper:
 	  cp $$x $$z; \
 	  sed -e "s#TMPDIR#debian/tmp-libc#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
+	  sed -e "s/^#.*//" -i $$z; \
 	done  
 
 	for x in $(OPT_PASSES); do \
 	  z=debian/$(libc)-$$x.install; \
-	  cp debian/debhelper.in/libc-opt.install $$z; \
+	  cp debian/debhelper.in/libc-otherbuild.install $$z; \
 	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
 	  sed -e "s#DESTLIBDIR#$$x#" -i $$z; \
+	  sed -e "s/^#.*//" -i $$z; \
 	done
 
-	# We use libc-opt for this, since it's just a special case of
+	# We use libc-otherbuild for this, since it's just a special case of
 	# an optimised library that needs to wind up in /lib/tls
 	# FIXME: We do not cover the case of processor optimised 
 	# nptl libraries, like /lib/i686/tls
 	# We probably don't care for now.
 	for x in $(NPTL); do \
 	  z=debian/$(libc).install; \
-	  cat debian/debhelper.in/libc-opt.install >>$$z; \
+	  cat debian/debhelper.in/libc-otherbuild.install >>$$z; \
 	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
 	  sed -e "s#DESTLIBDIR#tls#" -i $$z; \
+	  sed -e "s/^#.*//" -i $$z; \
 	done
 
 
