@@ -25,55 +25,36 @@ locales-stuff
 #nscd-security-fix	- disabled. later this is removed.
 #JB - Update for 2.3 ia64-perf
 #ldso-disable-hwcap - Will be re-enabled when it gets fixed
-#
-#STOPPED HERE
-#
-#librt-mips
-#glibc23-ctype-compat
-#glibc23-01-hppa-dl-machine
-#glibc23-07-hppa-atomicity
-##s390-types
-##glibc23-ia64-strncpy - ok to remove in 2.3.2., but it has string/bug-strncpy.c test code. need to contact to randolph chung.
-#glibc23-hppa-Rminkernel
-#glibc23-function-compat
-#glibc23-errno
-#glibc23-asserth-decls
-#alpha-pic
-#glibc23-cmov
-#libgcc-compat-all
-#locales-supported
-#glibc23-hppa-compat
-#libgcc-compat-other
-#glibc23-00-hppa-pthreads 
-#glibc23-hppa-malloc8
-#s390-tls
-#hurd-enable-ldconfig
-#30_glibc232-base
-#50_glibc232-mips-buildfix
-#50_glibc23-hppa-entry
-#sparcv8-target
-##sparc32-buildfix
-#50_glibc232-arm-dwarf2-buildfix
-#50_glibc232-m68k-dwarf2-buildfix
-#alpha-crti
-#alpha-pwrite
-#80_glibc232-locales-header
-#80_glibc232-wcsmbs-fix
-#80_glibc232-futimes-buildfix
-#80_glibc232-iconvdata-fix
-#80_glibc232-fesetround-fix
-#81_glibc232-utimes-fix
-#revert-old-libio
-#arm-output-format
-##linuxthreads-big-stacks
-#nss_compat-shadow
-#pthread_cond_timedwait
-#linuxthreads-push-pop
-#linuxthreads-jumptable-wine
-#ia64-memccpy
-#80_glibc232-locales-lo_LA
-#pthread-cleanup
-#arm-vfork
-#arm-updates
-#80_glibc232-locales-nb_NO-fix
-#82_glibc232-iconv-euc-jp-ms-fix
+librt-mips
+glibc23-ctype-compat
+glibc23-01-hppa-dl-machine
+glibc23-07-hppa-atomicity
+#s390-types
+#glibc23-ia64-strncpy - ok to remove in 2.3.2., but it has string/bug-strncpy.c test code. need to contact to randolph chung.
+glibc23-hppa-Rminkernel
+glibc23-function-compat
+glibc23-errno
+glibc23-asserth-decls
+alpha-pic
+glibc23-cmov
+libgcc-compat-all
+locales-supported
+glibc23-hppa-compat
+libgcc-compat-other
+glibc23-00-hppa-pthreads 
+glibc23-hppa-malloc8
+s390-tls
+hurd-enable-ldconfig
+30_glibc232-base
+#50_glibc232-mips-buildfix - no longer needed with CVS?  2003-10-07
+50_glibc23-hppa-entry
+sparcv8-target
+#sparc32-buildfix
+50_glibc232-arm-dwarf2-buildfix
+50_glibc232-m68k-dwarf2-buildfix
+alpha-crti
+#alpha-pwrite - no longer needed or valid with 2.6 headers
+#revert-old-libio - [drow] I think this isn't needed any more
+arm-output-format
+#linuxthreads-big-stacks
+pthread-cleanup

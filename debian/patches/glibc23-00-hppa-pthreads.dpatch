@@ -331,7 +331,7 @@ diff -urN glibc-2.3.1.orig/linuxthreads/sysdeps/hppa/pt-machine.h glibc-2.3.1/li
  #include <bits/initspin.h>
  
  #ifndef PT_EI
- # define PT_EI extern inline
+ # define PT_EI extern inline __attribute__ ((always_inline))
  #endif
  
 -extern long int testandset (int *spinlock);

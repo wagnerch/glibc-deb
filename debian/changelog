@@ -6,7 +6,7 @@ glibc (2.3.2.ds1-3) experimental; urgency=low
       lddlibc4.
     - Include gconv-modules in libc6.
     - Don't include some unnecessary generated kernel headers.
-    - Start merging previous .dpatch files (Closes: #214470).
+    - Merge previous .dpatch files (Closes: #214470).
     - Run depflags.pl again (Closes: #214468).
     - Don't include profiled libraries in libc-dev (Closes: #214504).
     - Ship /usr/include/asm-generic (Closes: #214512).
