@@ -38,4 +38,9 @@ architecture against unstable to make sure we didn't lose files.
 Before it leaves experimental, verify all package control information
 against unstable to make sure we didn't lose anything important.
 
+Add patch to display linux-gate.so.1 in ldd.
 Check dpkg-shlibdeps for linux-gate.so.1 handling.
+
+ldconfig and ld.so disagree about search order:
+  ldconfig finds /lib/i686/libc.so.6
+  ld.so finds /lib/tls/libc.so.6 without any cache file
