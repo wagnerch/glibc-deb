@@ -12,7 +12,7 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
     - Do not run make check if cross compiling.
     - Fix msqid_ds on MIPS.  Dpatch from Guido Guenther, patch by
       Thiemo Seufer (Closes: #215273, #200215, #217593).
-    - Check for old copies of glibc in a couple of places.
+    - Check for old copies of glibc in a couple of places (Closes: #212224).
     - Fix a libio compatibility code bug which crashed the Citrix client
       (glibc23-libio-compat.dpatch).
     - Remove fuzzy markers from fr.po.  Patch from Denis Barbier
