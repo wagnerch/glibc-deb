@@ -58,4 +58,6 @@ that differ.
 What do we do for headers on 32/64 systems?  Do we generate
 #if wrappers for /usr/include?  This looks like a non-issue.
 
--dev support for library variants (sparc64, s390x)
+-dev support for library variants (sparc64, s390x, nptl?)
+
+Parallel make support.
