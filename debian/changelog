@@ -1,3 +1,12 @@
+glibc (2.3.2.ds1-8) experimental; urgency=low
+
+  * Daniel Jacobowitz <dan@debian.org>
+
+    - Don't use --enable-omitfp since we don't install libc_g.a.
+    - Enable NPTL for S/390.
+
+ -- Daniel Jacobowitz <dan@debian.org>  Sun, 26 Oct 2003 11:23:28 -0500
+
 glibc (2.3.2.ds1-7) experimental; urgency=low
 
   * Daniel Jacobowitz <dan@debian.org>
