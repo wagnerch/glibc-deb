@@ -55,8 +55,6 @@ DEB_TARBALL ?= $(shell ls glibc-[0-9]*.[0-9]*.[0-9]*.tar.*)
 DEB_SRCDIR ?= $(shell ls -d $(build-tree)/glibc-*)
 DEB_BUILDDIR ?= $(build-tree)/$(DEB_BUILD_ARCH)-$(curpass)
 
-DEB_PACKAGES ?= $(libc) locales glibc-doc nscd $(libc)-dev
-
 prefix=/usr
 bindir=$(prefix)/bin
 datadir=$(prefix)/share
@@ -97,6 +95,15 @@ curpass = $(filter-out %_,$(subst _,_ ,$@))
 -include debian/sysdeps/$(DEB_BUILD_GNU_SYSTEM).mk
 -include debian/sysdeps/$(DEB_BUILD_ARCH).mk
 
+#FIXME $(libc)-dbg $(libc)-prof
+DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev
+DEB_INDEP_REGULAR_PACKAGES = glibc-doc locales
+DEB_UDEB_PACKAGES = libc-udeb
+
+ifeq ($(threads),yes)
+DEB_ARCH_REGULAR_PACKAGES += nscd
+endif
+
 # And now the rules...
 include debian/rules.d/*.mk
 
@@ -112,8 +119,8 @@ linux-kernel-headers/include/asm:
 	ln -s asm-$(DEB_HOST_GNU_CPU) $@
 
 # Required Debian targets
-binary-indep:
-binary-arch: $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES))
+binary-indep: $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_INDEP_REGULAR_PACKAGES))
+binary-arch: $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES))
 
 binary: binary-indep binary-arch
 
