@@ -145,6 +145,15 @@ filerc() {
     echo ""
 }
 
+checkpkgver () {
+    local status pkg
+    pkg=$1
+    status=$(dpkg -s $pkg 2>/dev/null | grep ^Status: | sed -e 's/^Status: \(.*\) \(.*\) \(.*\)/\3/g')
+    if [ -n "$status" ] && [ "$status" != "not-installed" ] && [ "$status" != "config-files" ]; then
+	echo $(dpkg -s $pkg 2>/dev/null | grep ^Version: | sed -e 's/^Version: *//');
+    fi
+}
+
 # We remove a relic of the past /usr/doc/<package> symlinks.
 # This script should keep at least until sarge release.
 package=LIBC
@@ -180,26 +189,61 @@ then
     # If they're unmatched, we keep /etc/ld.so.nohwcap file until libc-opt
     # package is installed or removed.
     if [ -f /etc/ld.so.nohwcap ]; then
-	curver=CURRENT_VER
-	case "`uname -m`" in
-	    i?86)
-		optpkgs=libc6-i686
-		;;
-	    sparc*)
-		optpkgs="libc6-sparcv9 libc6-sparcv9b"
-		;;
-	esac
-	if [ -n "$optpkgs" ]; then
-	    for optpkg in $optpkgs; do
-		status=$(dpkg -s $optpkg 2>/dev/null | grep ^Status: | sed -e 's/^Status: \(.*\) \(.*\) \(.*\)/\3/g')
-		if [ -n "$status" ] && \
-		   [ "$status" != "not-installed" ] && [ "$status" != "config-files" ]; then
-		    optver=$(dpkg -s $optpkg 2>/dev/null | grep ^Version: | sed -e 's/^Version: *//');
-		    dpkg --compare-versions $curver ne $optver && optunmatch=yes
-		fi
-	    done
-        fi
+	# We check the availability of ld.so.hwcappkgs.  If it's not existed,
+	# it's first time to install ld.so.hwcappkgs aware packages.  We record
+	# all current hwcap package status.
+	if [ ! -f /etc/ld.so.hwcappkgs ]; then
+	    case "`uname -m`" in
+		i?86)
+		    pkgs="libc6 libc6-i686"
+		    ;;
+		sparc*)
+		    pkgs="libc6 libc6-sparcv9 libc6-sparcv9b"
+		    ;;
+	    esac
+	    if [ -n "$pkgs" ]; then
+		for pkg in $pkgs; do
+		    ver=$(checkpkgver $pkg)
+		    if [ -n "$ver" ]; then
+			echo "$pkg $ver" >> /etc/ld.so.hwcappkgs
+			new_hwcappkgs=yes
+		    fi
+		done
+	    fi
+	fi
 
+	# If ld.so.hwcappkgs is existed, it may have one or more opt packages.
+	# Update the current package's version, and compare the consistency of
+	# those optimized packages.  If inconsistency is found, keep
+	# /etc/ld.so.nohwcap.
+	if [ -f /etc/ld.so.hwcappkgs ]; then
+	    curver=CURRENT_VER
+	    rm -f /etc/ld.so.hwcappkgs.tmp
+	    while read LINE; do
+		case $LINE in
+		    \#*|"") continue
+		esac
+		set -- $LINE
+		pkg=$1; ver=$2
+		if [ "$pkg" = "$package" ]; then
+		    # libc6
+		    ver=$curver
+		    isrecorded=yes
+		else
+		    if [ "$new_hwcappkgs" != yes ]; then
+			ver=$(checkpkgver $pkg)
+		    fi
+		    dpkg --compare-versions $curver ne $ver && optunmatch=yes
+		fi
+		echo "$pkg $ver" >> /etc/ld.so.hwcappkgs.tmp
+	    done < /etc/ld.so.hwcappkgs
+	    if [ "$isrecorded" != yes ]; then
+		echo "$package $curver" >> /etc/ld.so.hwcappkgs.tmp
+	    fi
+	    mv /etc/ld.so.hwcappkgs.tmp /etc/ld.so.hwcappkgs
+	fi
+
+	# nohwcap during upgrade.
 	grep -v '^glibc$' /etc/ld.so.nohwcap > /etc/ld.so.nohwcap.tmp || true
 	mv /etc/ld.so.nohwcap.tmp /etc/ld.so.nohwcap
 	if [ "$optunmatch" != "yes" ]; then

@@ -1,3 +1,23 @@
+glibc (2.3.4-3) experimental; urgency=low
+
+  * GOTO Masanori <gotom@debian.org>
+
+    * The complete libc6 installation breakage is fixed when hwcap packages
+      (libc6-i686 and libc6-sparcv9/sparcv9b) is installed.  It introduced
+      /etc/ld.so.hwcappkgs to track hwcap packages.
+      - debian/debhelper.in/libc.postinst: Create /etc/ld.so.hwcappkgs if
+        such file is not existed.  Check hwcap packages and decide to keep
+        /etc/ld.so.nohwcap.
+      - debian/debhelper.in/libc-otherbuild.postinst: When it's configured,
+        check /etc/ld.so.hwcappkgs and decides to keep /etc/ld.so.nohwcap.
+      - debian/debhelper.in/libc-otherbuild.postrm: When it's removed,
+        check /etc/ld.so.hwcappkgs and search other hwcap package's version
+        consistency.  Then it decides to remove /etc/ld.so.nohwcap.
+      - debian/rules.d/debhelper.mk: Include "libc-" into OPT string
+        replacement.
+
+ -- GOTO Masanori <gotom@debian.org>  Tue, 29 Mar 2005 17:22:25 +0900
+
 glibc (2.3.4-2) experimental; urgency=low
 
   * GOTO Masanori <gotom@debian.org>
