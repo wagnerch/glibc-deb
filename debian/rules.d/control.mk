@@ -24,8 +24,7 @@ debian/control: debian/control.in/main $(control_deps) \
 	cat debian/control.in/libc1		>> $@T
 	cat debian/control.in/sparc64		>> $@T
 	cat debian/control.in/s390x		>> $@T
-	# Uncomment this to add optimized package lists
-	# cat debian/control.in/opt		>> $@T
+	cat debian/control.in/opt		>> $@T
 	cat debian/control.in/libc-udeb         >> $@T
 	sed -e 's%@libc@%$(libc)%g;s%@glibc@%glibc%g' \
 	    -e 's%@threads_archs@%$(threads_archs)%g' < $@T > $@

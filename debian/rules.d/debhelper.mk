@@ -17,7 +17,7 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGUL
 	fi
 
 	dh_compress -p$(curpass)
-	dh_fixperms -p$(curpass)
+	dh_fixperms -p$(curpass) -X lib/ld
 	dh_makeshlibs -p$(curpass)
 
 	dh_installdeb -p$(curpass)
@@ -58,12 +58,17 @@ $(stamp)debhelper:
 	  sed -e "s#DESTLIBDIR#$$x#" -i $$z; \
 	done
 
+	# We use libc-opt for this, since it's just a special case of
+	# an optimised library that needs to wind up in /lib/tls
+	# FIXME: We do not cover the case of processor optimised 
+	# nptl libraries, like /lib/i686/tls
+	# We probably don't care for now.
 	for x in $(NPTL); do \
 	  z=debian/$(libc).install; \
 	  cat debian/debhelper.in/libc-opt.install >>$$z; \
 	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
-	  sed -e "s#DESTLIBDIR#$$x#" -i $$z; \
+	  sed -e "s#DESTLIBDIR#tls#" -i $$z; \
 	done
 
 

@@ -30,6 +30,7 @@
 # limitations, they can be overridden and spread all over.
 build-tree := build-tree
 stamp := $(CURDIR)/stamp-dir/
+DUMMY := $(shell mkdir -p $(stamp))
 
 # Beyond here you shouldn't need to customise anything:
 
@@ -116,7 +117,7 @@ include debian/rules.d/*.mk
 clean:: debhelper-clean
 	rm -rf $(patsubst %,debian/tmp-%,$(GLIBC_PASSES))
 	rm -rf $(build-tree)
-	rm -rf $(stamp)*
+	rm -rf $(stamp)
 	rm -f log-*
 	rm -f linux-kernel-headers/include/asm
 
