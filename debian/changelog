@@ -7,13 +7,14 @@ glibc (2.3.2.ds1-4) experimental; urgency=low
       ld.so.cache.
     - Include symlinks in optimized library directories to placate
       dpkg-shlibdeps.
+    - Fix shlibs files to include a version again.
 
   * Jeff Bailey <jbailey@nisa.net>
 
     - Build libraries for sparcv9 and sparc64.
     - Enable TLS for ia64.
 
- -- Daniel Jacobowitz <dan@debian.org>  Sun, 12 Oct 2003 14:58:20 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Sun, 12 Oct 2003 15:17:49 -0400
 
 glibc (2.3.2.ds1-3) experimental; urgency=low
 
