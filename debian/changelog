@@ -18,6 +18,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
       description.
     - Fix dependencies for locales package.
     - Include SONAME symlinks in libc6-dbg.
+    - Remove vestigial gconv-modules Provides.
 
   * Phil Blundell <pb@nexus.co.uk>
 
@@ -63,7 +64,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/sysdeps/gnu.mk: Add in GLIBC_OVERLAYS to allow patching to work,
       create ld.so symlink at end of build.
 
- -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 20:30:59 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Sat, 25 Oct 2003 11:57:44 -0400
 
 glibc (2.3.2.ds1-6) experimental; urgency=low
 

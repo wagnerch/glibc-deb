@@ -28,7 +28,6 @@ if ($DEB_HOST_GNU_SYSTEM eq "gnu") {
 }
 if ($DEB_HOST_GNU_SYSTEM eq "linux") {
     push @{$libc_c{'Suggests'}}, 'locales';
-    push @{$libc_c{'Provides'}}, 'gconv-modules';
     #db1 compat libraries from libc 2.0/2.1, we need to depend on them
     #until after sarge is released
     push @{$libc_c{'Depends'}}, "libdb1-compat";
