@@ -30,3 +30,4 @@ Build i686 optimized packages with optimized cflags instead of just
 Build nptl packages for i686 instead of i486
 Check what headers we need to install for nptl.
 
+Re-add disabled dpatches.
