@@ -6,6 +6,7 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
     - Enable NPTL for S/390.
     - Fix the /lib/ld64.so.1 symlink for s390x.
     - Update maintainer scripts for fixes lost in the rewrite.
+    - Enable NPTL for ia64.  Thanks to Ian Wienand for testing.
 
   * Jeff Bailey <jbailey@nisa.net>
 
@@ -14,7 +15,7 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
       is not consistent between arch's.
     - debian/.cvsignore: New file.
 
- -- Daniel Jacobowitz <dan@debian.org>  Sun, 26 Oct 2003 11:23:28 -0500
+ -- Daniel Jacobowitz <dan@debian.org>  Mon, 27 Oct 2003 01:02:37 -0500
 
 glibc (2.3.2.ds1-7) experimental; urgency=low
 
