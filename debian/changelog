@@ -15,6 +15,11 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
       is not consistent between arch's.
     - debian/.cvsignore: New file.
 
+  * GOTO Masanori <gotom@debian.org>
+
+    - debian/debhelper.in/locales.dirs: Add /usr/lib/locale, because
+      localedef stops to create locale data if this dir is not found.
+
  -- Daniel Jacobowitz <dan@debian.org>  Mon, 27 Oct 2003 01:02:37 -0500
 
 glibc (2.3.2.ds1-7) experimental; urgency=low
