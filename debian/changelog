@@ -7,8 +7,9 @@ glibc (2.3.2.ds1-2) experimental; urgency=low
     - Map DEB_HOST_GNU_CPU to a uname value for creating the asm symlink.
     - Move libc6-dev's postinst back to preinst.
     - Support multiple autoconf.h headers.
+    - Add an ia64 autoconf.h, from Branden Robinson.
 
- -- Daniel Jacobowitz <dan@debian.org>  Sun,  5 Oct 2003 12:34:22 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Sun,  5 Oct 2003 14:47:05 -0400
 
 glibc (2.3.2.ds1-1) experimental; urgency=low
 
