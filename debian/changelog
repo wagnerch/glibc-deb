@@ -11,6 +11,20 @@ glibc (2.3.2.ds1-6) experimental; urgency=low
     - Add S/390 support.
     - Build libc6-dev-sparc64.
 
+  * Jeff Bailey <jbailey@nisa.net>
+
+    Welcome back HPPA, Thanks to Carlos O'Donell <carlos@baldric.uwo.ca>
+
+    - debian/patches/50_glibc232-hppa-full-nptl-2003-10-22.dpatch: New.
+    - debian/patches/50_glibc23-hppa-entry.dpatch: Remove.
+    - debian/patches/glibc23-00-hppa-pthreads.dpatch: Remove.
+    - debian/patches/glibc23-01-hppa-dl-machine.dpatch: Remove.
+    - debian/patches/glibc23-07-hppa-atomicity.dpatch: Remove.
+    - debian/patches/glibc23-hppa-compat.dpatch: Remove.
+    - debian/patches/glibc23-hppa-malloc8.dpatch: Remove.
+
+    - debian/patches/00list: Update.
+
  -- Daniel Jacobowitz <dan@debian.org>  Mon, 20 Oct 2003 16:27:39 -0400
 
 glibc (2.3.2.ds1-5) experimental; urgency=low
