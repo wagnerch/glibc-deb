@@ -5,3 +5,4 @@ glibc-doc*
 locales*
 tmp-*
 nscd*
+include
