@@ -72,9 +72,8 @@ fi
 
 # We remove a relic of the past /usr/doc/<package> symlinks.
 # This script should keep at least until sarge release.
-package=`basename $0 .postinst`
-if [ -L "/usr/doc/$package" ]; then
-    rm -f "/usr/doc/$package"
+if [ -L "/usr/doc/locales" ]; then
+    rm -f "/usr/doc/locales"
 fi
 
 #DEBHELPER#

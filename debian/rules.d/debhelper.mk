@@ -115,17 +115,6 @@ NPTL = $(filter nptl,$(GLIBC_PASSES))
 
 debhelper: $(stamp)debhelper
 $(stamp)debhelper:
-	for x in `find debian/debhelper.in -type f -maxdepth 1`; do \
-	  y=debian/`basename $$x`; \
-	  z=`echo $$y | sed -e 's#/libc#/$(libc)#'`; \
-	  cp $$x $$z; \
-	  sed -e "s#TMPDIR#debian/tmp-libc#" -i $$z; \
-	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
-	  sed -e "s#LIBC#$(libc)#" -i $$z; \
-	  case $$z in \
-	    *.install) sed -e "s/^#.*//" -i $$z ;; \
-	  esac; \
-	done  
 
 # This little bit of fun works around the bug that libc-udeb is misnamed:
 # It doesn't have the version number attached to it.  We'll piss off the
@@ -166,6 +155,8 @@ $(stamp)debhelper:
 	    cp debian/debhelper.in/libc-otherbuild.install $$z; \
 	    cp debian/debhelper.in/libc-otherbuild.preinst debian/$(libc)-$$x.preinst ; \
 	    cp debian/debhelper.in/libc-otherbuild.postinst debian/$(libc)-$$x.postinst ; \
+	    sed -e "s#OPT#$$x#" -i debian/$(libc)-$$x.preinst; \
+	    sed -e "s#OPT#$$x#" -i debian/$(libc)-$$x.postinst; \
 	  fi; \
 	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \

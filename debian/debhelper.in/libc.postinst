@@ -3,7 +3,7 @@ set -e
 
 package_name()
 {
-    echo $(basename $0 .postinst)
+    echo LIBC
 }
 
 zone_banner() {
@@ -139,13 +139,13 @@ filerc() {
 
 # We remove a relic of the past /usr/doc/<package> symlinks.
 # This script should keep at least until sarge release.
-package=`basename $0 .postinst`
+package=LIBC
 if [ -L "/usr/doc/$package" ]; then
     rm -f "/usr/doc/$package"
 fi
 # I'm so lazy that libc6-{dbg,dev,pic,prof} are removed in this file - gotom.
-for surfix in -dbg -dev -pic -prof; do
-    package_name="$package""$surfix"
+for suffix in -dbg -dev -pic -prof; do
+    package_name="$package""$suffix"
     if [ -L "/usr/doc/$package_name" ]; then
 	rm -f "/usr/doc/$package_name"
     fi
