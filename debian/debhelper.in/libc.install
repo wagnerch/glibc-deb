@@ -1,0 +1,25 @@
+
+@TMPDIR@/lib/*.so* lib
+@TMPDIR@/usr/lib/gconv/*.so usr/lib/gconv
+@TMPDIR@/usr/share/zoneinfo/* usr/share/zoneinfo
+@TMPDIR@/usr/bin/iconv usr/bin
+@TMPDIR@/usr/bin/locale usr/bin
+@TMPDIR@/usr/bin/localedef usr/bin
+@TMPDIR@/usr/bin/getent usr/bin
+@TMPDIR@/usr/bin/catchsegv usr/bin
+@TMPDIR@/usr/bin/glibcbug usr/bin
+@TMPDIR@/usr/bin/tzselect usr/bin
+@TMPDIR@/usr/bin/ldd usr/bin
+@TMPDIR@/usr/bin/lddlibc4 usr/bin
+@TMPDIR@/usr/sbin/zdump usr/bin
+@TMPDIR@/usr/sbin/rpcinfo usr/bin
+
+@TMPDIR@/usr/sbin/zic usr/sbin
+@TMPDIR@/usr/sbin/iconvconfig usr/sbin
+
+@TMPDIR@/sbin/ldconfig sbin
+
+debian/local/usr_sbin/tzconfig usr/sbin
+debian/local/etc_init.d/devpts.sh etc/init.d
+debian/local/etc_default/devpts etc/default
+

@@ -119,10 +119,12 @@ linux-kernel-headers/include/asm:
 	ln -s asm-$(DEB_HOST_GNU_CPU) $@
 
 # Required Debian targets
-binary-indep: $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_INDEP_REGULAR_PACKAGES))
-binary-arch: $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES))
+binary-indep: testroot $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_INDEP_REGULAR_PACKAGES))
+binary-arch: testroot $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES))
 
 binary: binary-indep binary-arch
 
 build: $(patsubst %,$(stamp)build_%,$(GLIBC_PASSES))
 
+testroot:
+	dh_testroot

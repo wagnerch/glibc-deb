@@ -1,5 +1,0 @@
-debian/tmp-linuxthreads/usr/sbin/nscd usr/sbin
-debian/tmp-linuxthreads/usr/sbin/nscd_nischeck usr/sbin
-debian/local/etc_init.d/nscd etc/init.d
-build-tree/glibc-2.3.2/nscd/nscd.conf /etc
-

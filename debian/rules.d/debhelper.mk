@@ -1,6 +1,7 @@
 $(patsubst %,binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGULAR_PACKAGES)) :: binaryinst_% : $(stamp)binaryinst_%
 $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGULAR_PACKAGES)): 
 	@echo Running debhelper for $(curpass)
+	dh_testroot
 	dh_installdirs -p$(curpass)
 	dh_install -p$(curpass)
 	dh_installman -p$(curpass)

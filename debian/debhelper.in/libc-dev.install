@@ -1,0 +1,10 @@
+@TMPDIR@/usr/bin/gencat usr/bin
+@TMPDIR@/usr/bin/getconf usr/bin
+@TMPDIR@/usr/bin/mtrace usr/bin
+@TMPDIR@/usr/bin/rpcgen usr/bin
+
+@TMPDIR@/usr/lib/*.a usr/lib
+@TMPDIR@/usr/lib/*.o usr/lib
+@TMPDIR@/usr/lib/*.so usr/lib
+@TMPDIR@/usr/include/* usr/include
+
