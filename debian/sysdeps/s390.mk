@@ -10,7 +10,7 @@ s390x_extra_cflags = -g0 -O3 -fomit-frame-pointer -D__USE_STRING_INLINES
 s390x_LIBDIR = 64
 s390x_extra_config_options := $(extra_config_options) --disable-profile
 
-define s390x_extra_install
-mkdir -p debian/tmp-$(curpass)/lib
-ln -s /lib64/ld64.so.1 debian/tmp-$(curpass)/lib
+define libc6-s390x_extra_pkg_install
+mkdir -p debian/$(curpass)/lib
+ln -s /lib64/ld64.so.1 debian/$(curpass)/lib
 endef
