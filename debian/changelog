@@ -16,7 +16,7 @@ glibc (2.3.2.ds1-8) experimental; urgency=low
     - Fix a libio compatibility code bug which crashed the Citrix client
       (glibc23-libio-compat.dpatch).
     - Remove fuzzy markers from fr.po.  Patch from Denis Barbier
-      <barbier@debian.org>.
+      <barbier@debian.org> (Closes: #217865).
 
   * Jeff Bailey <jbailey@nisa.net>
 
