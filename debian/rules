@@ -146,6 +146,9 @@ linux-kernel-headers/include/linux/autoconf.h:
 
 linux-kernel-headers/include/asm:
 	ln -s asm-$(KERNEL_HOST_CPU) $@
+ifeq ($(KERNEL_HOST_CPU),arm)
+	rm -rf $@/proc $@/arch; ln -s proc-armv $@/proc; ln -s arch-ebsa285 $@/arch
+endif
 
 # Required Debian targets
 binary-indep: testroot debian/control $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_INDEP_REGULAR_PACKAGES))
