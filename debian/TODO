@@ -47,10 +47,6 @@ Check dpkg-shlibdeps for linux-gate.so.1 handling.
 
 Make sure that prep.sh and version aren't in the root of the package.
 
-ldconfig and ld.so disagree about search order:
-  ldconfig finds /lib/i686/libc.so.6
-  ld.so finds /lib/tls/libc.so.6 without any cache file
-
 Don't do make install for libc6-i686 if we aren't going to use the results -
 it's very slow.  We may need to make install for nptl to get the few headers
 that differ.
