@@ -144,7 +144,7 @@ $(stamp)debhelper:
 	  cat debian/debhelper.in/libc-otherbuild.install >>$$z; \
 	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
-	  sed -e "s#DESTLIBDIR#tls#" -i $$z; \
+	  sed -e "s#DESTLIBDIR#/tls#" -i $$z; \
 	  case $$z in \
 	    *.install) sed -e "s/^#.*//" -i $$z ;; \
 	  esac; \
@@ -168,5 +168,6 @@ debhelper-clean:
 	rm -f debian/*.config
 	rm -f debian/*.templates
 	rm -f debian/*.dirs
+	rm -f debian/*.docs
 
 	rm -f $(stamp)binaryinst*

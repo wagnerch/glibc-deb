@@ -1,5 +1,9 @@
 glibc (2.3.2.ds1-7) experimental; urgency=low
 
+  * Daniel Jacobowitz <dan@debian.org>
+
+    - Fix TLS libraries, which belong in /lib/tls, not /libtls.
+
   * Phil Blundell <pb@nexus.co.uk>
 
     - debian/patches/arm-ioperm.dpatch: Try again.
@@ -23,7 +27,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/rules.d/build.mk: Use -j $(NJOBS) during build.
     Based on patch from Ian Wienand <ianw@gelato.unsw.edu.au>
 
- -- Jeff Bailey <jbailey@ia64.fundserv.com>  Thu, 23 Oct 2003 00:33:16 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 18:22:15 -0400
 
 glibc (2.3.2.ds1-6) experimental; urgency=low
 
