@@ -18,7 +18,7 @@ sparc64-fixups
 #glibc22-getdents-fix - There's a workaround in the kernel. Upstream refused this.
 glibc22-ttyname-devfs
 powerpc-sysconf
-##ip6-fix - Bug#165287
+#ip6-fix - Bug#165287
 arm-no-hwcap
 locales-stuff
 #JB - Update for 2.3? ia64-reloc-none
