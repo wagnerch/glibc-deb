@@ -30,7 +30,18 @@ The i386 vs. i686 libraries patch (HP_TIMING) is not correct.  The timers
 need to be either initialized in libc.so's initializer instead, or else
 ld.so needs to do cpu detection and conditionally initialize them.
 
-Other architecture builds.
+Other architecture builds:
+ i386 - Built okay.
+ ia64 - Built okay, works in chroot.
+ alpha - Built okay.
+ ppc - Built okay.
+ sparc - Not tested.
+ s390 - Not tested.
+ mips - Not tested.
+ mipsel - Not tested.
+ hppa - Not tested.
+ m68k - Not tested.
+ arm - Not tested.
 
 Before it leaves experimental, verify the contents of every package on every
 architecture against unstable to make sure we didn't lose files.
@@ -40,6 +51,8 @@ against unstable to make sure we didn't lose anything important.
 
 Add patch to display linux-gate.so.1 in ldd.
 Check dpkg-shlibdeps for linux-gate.so.1 handling.
+
+Make sure that prep.sh and version aren't in the root of the package.
 
 ldconfig and ld.so disagree about search order:
   ldconfig finds /lib/i686/libc.so.6
