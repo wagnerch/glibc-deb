@@ -24,13 +24,7 @@ Check what headers we need to install for nptl.
 Only add some libraries to the optimized packages and to /lib/tls, instead
 of all of them?
 
-Re-add disabled dpatches.
-
-The i386 vs. i686 libraries patch (HP_TIMING) is not correct.  The timers
-need to be either initialized in libc.so's initializer instead, or else
-ld.so needs to do cpu detection and conditionally initialize them.
-
-Other architecture builds:
+Other architecture builds for -3:
  i386 - Built okay.
  ia64 - Built okay, works in chroot.
  alpha - Built okay.
@@ -57,3 +51,5 @@ Make sure that prep.sh and version aren't in the root of the package.
 ldconfig and ld.so disagree about search order:
   ldconfig finds /lib/i686/libc.so.6
   ld.so finds /lib/tls/libc.so.6 without any cache file
+
+Start running make check again :)
