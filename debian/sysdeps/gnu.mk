@@ -1,4 +1,4 @@
+# This is for the GNU OS.  Commonly known as the Hurd.
+
 threads = no
-config-os = gnu-gnu
-add-ons =
-NO_TEST = yes
+libc = libc0.3
