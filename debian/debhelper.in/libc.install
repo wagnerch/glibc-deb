@@ -19,6 +19,8 @@ debian/tmp-libc/usr/sbin/iconvconfig usr/sbin
 
 debian/tmp-libc/sbin/ldconfig sbin
 
+debian/tmp-libc/usr/lib/pt_chown usr/lib
+
 debian/local/usr_sbin/tzconfig usr/sbin
 debian/local/etc_init.d/devpts.sh etc/init.d
 debian/local/etc_default/devpts etc/default

@@ -2,6 +2,9 @@ GLIBC_OVERLAYS ?= $(shell ls nptl* glibc-linuxthreads*)
 MIN_KERNEL_SUPPORTED := 2.2.0
 libc = libc6
 
+# Support multiple makes at once based on number of processors
+NJOBS=$(shell if [ -f /proc/cpuinfo ] ; then echo `cat /proc/cpuinfo | grep 'processor' | wc -l` ; else echo 1 ; fi)
+
 # Linuxthreads Config
 threads = yes
 libc_add-ons = linuxthreads $(add-ons)

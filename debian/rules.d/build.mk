@@ -45,7 +45,7 @@ endif
 $(patsubst %,build_%,$(GLIBC_PASSES)) :: build_% : $(stamp)build_%
 $(stamp)build_%: $(stamp)configure_%
 	@echo Building $(curpass)
-	$(MAKE) -C $(DEB_BUILDDIR) 2>&1 | tee -a $(log_build)
+	$(MAKE) -C $(DEB_BUILDDIR) -j $(NJOBS) 2>&1 | tee -a $(log_build)
 	touch $@
 
 $(patsubst %,check_%,$(GLIBC_PASSES)) :: check_% : $(stamp)check_%

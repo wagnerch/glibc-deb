@@ -1,15 +1,4 @@
-glibc (2.3.2.ds1-6) experimental; urgency=low
-
-  * Phil Blundell <pb@debian.org>
-
-    - debian/patches/arm-ioperm.dpatch: New.
-
-  * Daniel Jacobowitz <dan@debian.org>
-
-    - Add debhelper build dependency.
-    - Use linux-kernel-headers package for headers.
-    - Add S/390 support.
-    - Build libc6-dev-sparc64.
+glibc (2.3.2.ds1-7) experimental; urgency=low
 
   * Jeff Bailey <jbailey@nisa.net>
 
@@ -24,6 +13,26 @@ glibc (2.3.2.ds1-6) experimental; urgency=low
     - debian/patches/glibc23-hppa-malloc8.dpatch: Remove.
 
     - debian/patches/00list: Update.
+
+    - debian/rules: Define NJOBS as 1.
+    - debian/sysdeps/linux.mk: Define NJOBS based on number of processors
+    - debian/rules.d/build.mk: Use -j $(NJOBS) during build.
+    Based on patch from Ian Wienand <ianw@gelato.unsw.edu.au>
+
+ -- Jeff Bailey <jbailey@ia64.fundserv.com>  Thu, 23 Oct 2003 00:33:16 -0400
+
+glibc (2.3.2.ds1-6) experimental; urgency=low
+
+  * Phil Blundell <pb@debian.org>
+
+    - debian/patches/arm-ioperm.dpatch: New.
+
+  * Daniel Jacobowitz <dan@debian.org>
+
+    - Add debhelper build dependency.
+    - Use linux-kernel-headers package for headers.
+    - Add S/390 support.
+    - Build libc6-dev-sparc64.
 
  -- Daniel Jacobowitz <dan@debian.org>  Mon, 20 Oct 2003 16:27:39 -0400
 
