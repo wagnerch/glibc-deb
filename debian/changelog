@@ -1,5 +1,9 @@
 glibc (2.3.2.ds1-7) experimental; urgency=low
 
+  * Phil Blundell <pb@nexus.co.uk>
+
+    - debian/patches/arm-ioperm.dpatch: Try again.
+
   * Jeff Bailey <jbailey@nisa.net>
 
     Welcome back HPPA, Thanks to Carlos O'Donell <carlos@baldric.uwo.ca>
