@@ -48,7 +48,10 @@ $(stamp)debhelper:
 	  cp $$x $$z; \
 	  sed -e "s#TMPDIR#debian/tmp-libc#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
-	  sed -e "s/^#.*//" -i $$z; \
+	  case $$z in \
+	    *inst) ;; \
+	    *) sed -e "s/^#.*//" -i $$z ;; \
+	  esac; \
 	done  
 
 	for x in $(OPT_PASSES); do \
@@ -57,7 +60,10 @@ $(stamp)debhelper:
 	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
 	  sed -e "s#DESTLIBDIR#$$x#" -i $$z; \
-	  sed -e "s/^#.*//" -i $$z; \
+	  case $$z in \
+	    *inst) ;; \
+	    *) sed -e "s/^#.*//" -i $$z ;; \
+	  esac; \
 	done
 
 	# We use libc-otherbuild for this, since it's just a special case of
@@ -71,9 +77,13 @@ $(stamp)debhelper:
 	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
 	  sed -e "s#DESTLIBDIR#tls#" -i $$z; \
-	  sed -e "s/^#.*//" -i $$z; \
+	  case $$z in \
+	    *inst) ;; \
+	    *) sed -e "s/^#.*//" -i $$z ;; \
+	  esac; \
 	done
 
+	touch $(stamp)debhelper
 
 debhelper-clean:
 	dh_clean 
