@@ -79,7 +79,7 @@ BUILD_CC = $(CC)
 endif
 
 BUILD_CFLAGS = -O2 -g
-HOST_CFLAGS = -pipe -O2 -fstrict-aliasing -g
+HOST_CFLAGS = -pipe -O2 -fstrict-aliasing -g $(call xx, extra_cflags)
 
 configure_target := $(DEB_HOST_GNU_TYPE)
 
