@@ -1,5 +1,5 @@
-$(patsubst %,binaryinst-%,$(GLIBC_PASSES)) :: binaryinst-% : $(stamp)binaryinst-%
-$(stamp)binaryinst-%: $(stamp)install-%
+$(patsubst %,binaryinst_%,$(DEB_PACKAGES)) :: binaryinst_% : $(stamp)binaryinst_%
+$(patsubst %,$(stamp)binaryinst_%,$(DEB_PACKAGES)): #$(stamp)install_%
 	@echo Running debhelper for $(curpass)
 	dh_installdirs -p$(curpass)
 	dh_install -p$(curpass)

@@ -55,6 +55,8 @@ DEB_TARBALL ?= $(shell ls glibc-[0-9]*.[0-9]*.[0-9]*.tar.*)
 DEB_SRCDIR ?= $(shell ls -d $(build-tree)/glibc-*)
 DEB_BUILDDIR ?= $(build-tree)/$(DEB_BUILD_ARCH)-$(curpass)
 
+DEB_PACKAGES ?= $(libc) locales glibc-doc nscd $(libc)-dev
+
 prefix=/usr
 bindir=$(prefix)/bin
 datadir=$(prefix)/share
@@ -88,7 +90,7 @@ log_test    := /dev/tty
 endif
 
 # Which build pass are we on?
-curpass = $(filter-out %-,$(subst -,- ,$@))
+curpass = $(filter-out %_,$(subst _,_ ,$@))
 
 # Pull in all the per-arch magic!
 
@@ -109,14 +111,11 @@ clean::
 linux-kernel-headers/include/asm:
 	ln -s asm-$(DEB_HOST_GNU_CPU) $@
 
-$(build-tree):
-	mkdir $(build-tree)
-
 # Required Debian targets
 binary-indep:
-binary-arch: $(build-tree) $(patsubst %,$(stamp)install-%,$(GLIBC_PASSES))
+binary-arch: $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES))
 
 binary: binary-indep binary-arch
 
-build: $(patsubst %,$(stamp)build-%,$(GLIBC_PASSES))
+build: $(patsubst %,$(stamp)build_%,$(GLIBC_PASSES))
 

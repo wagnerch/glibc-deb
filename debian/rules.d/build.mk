@@ -3,14 +3,14 @@
 # This little bit of magic makes it possible:
 xx=$(if $($(curpass)_$(1)),$($(curpass)_$(1)),$($(1)))
 
-$(patsubst %,mkbuilddir-%,$(GLIBC_PASSES)) :: mkbuilddir-% : $(stamp)mkbuilddir-%
-$(stamp)mkbuilddir-%: linux-kernel-headers/include/asm $(stamp)patch-stamp
+$(patsubst %,mkbuilddir_%,$(GLIBC_PASSES)) :: mkbuilddir_% : $(stamp)mkbuilddir_%
+$(stamp)mkbuilddir_%: linux-kernel-headers/include/asm $(stamp)patch-stamp
 	@echo Making builddir for $(curpass)
 	test -d $(DEB_BUILDDIR) || mkdir $(DEB_BUILDDIR)
 	touch $@
 
-$(patsubst %,configure-%,$(GLIBC_PASSES)) :: configure-% : $(stamp)configure-%
-$(stamp)configure-%: $(stamp)mkbuilddir-%
+$(patsubst %,configure_%,$(GLIBC_PASSES)) :: configure_% : $(stamp)configure_%
+$(stamp)configure_%: $(stamp)mkbuilddir_%
 	@echo Configuring $(curpass)
 	rm -f $(DEB_BUILDDIR)/configparms
 	echo "CC = $(CC)"		>> $(DEB_BUILDDIR)/configparms
@@ -38,20 +38,20 @@ endif
 
 	touch $@
 
-$(patsubst %,build-%,$(GLIBC_PASSES)) :: build-% : $(stamp)build-%
-$(stamp)build-%: $(stamp)configure-%
+$(patsubst %,build_%,$(GLIBC_PASSES)) :: build_% : $(stamp)build_%
+$(stamp)build_%: $(stamp)configure_%
 	@echo Building $(curpass)
 	$(MAKE) -C $(DEB_BUILDDIR) 2>&1 | tee -a $(log_build)
 	touch $@
 
-$(patsubst %,check-%,$(GLIBC_PASSES)) :: check-% : $(stamp)check-%
-$(stamp)check-%: $(stamp)build-%
+$(patsubst %,check_%,$(GLIBC_PASSES)) :: check_% : $(stamp)check_%
+$(stamp)check_%: $(stamp)build_%
 	@echo Testing $(curpass)
 	@echo $(MAKE) -C $(DEB_BUILDDIR) check 2>&1 | tee -a $(log_test)
 	touch $@
 
-$(patsubst %,install-%,$(GLIBC_PASSES)) :: install-% : $(stamp)install-%
-$(stamp)install-%: $(stamp)check-%
+$(patsubst %,install_%,$(GLIBC_PASSES)) :: install_% : $(stamp)install_%
+$(stamp)install_%: $(stamp)check_%
 	@echo Installing $(curpass)
 	rm -rf $(CURDIR)/debian/tmp-$(curpass)
 	$(MAKE) -C $(DEB_BUILDDIR) install_root=$(CURDIR)/debian/tmp-$(curpass) install
