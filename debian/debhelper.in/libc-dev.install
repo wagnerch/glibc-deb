@@ -1,10 +1,10 @@
-@TMPDIR@/usr/bin/gencat usr/bin
-@TMPDIR@/usr/bin/getconf usr/bin
-@TMPDIR@/usr/bin/mtrace usr/bin
-@TMPDIR@/usr/bin/rpcgen usr/bin
+debian/tmp-libc/usr/bin/gencat usr/bin
+debian/tmp-libc/usr/bin/getconf usr/bin
+debian/tmp-libc/usr/bin/mtrace usr/bin
+debian/tmp-libc/usr/bin/rpcgen usr/bin
 
-@TMPDIR@/usr/lib/*.a usr/lib
-@TMPDIR@/usr/lib/*.o usr/lib
-@TMPDIR@/usr/lib/*.so usr/lib
-@TMPDIR@/usr/include/* usr/include
+debian/tmp-libc/usr/lib/*.a usr/lib
+debian/tmp-libc/usr/lib/*.o usr/lib
+debian/tmp-libc/usr/lib/*.so usr/lib
+debian/tmp-libc/usr/include/* usr/include
 

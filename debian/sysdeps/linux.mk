@@ -2,9 +2,9 @@ GLIBC_OVERLAYS ?= $(shell ls nptl* glibc-linuxthreads*)
 MIN_KERNEL_SUPPORTED := 2.2.0
 libc = libc6
 
-# By default we just do linuxthreads.
-GLIBC_PASSES=linuxthreads
+# Linuxthreads Config
 threads = yes
+libc_add-ons = linuxthreads $(add-ons)
 
 ifndef LINUX_SOURCE
   LINUX_SOURCE := $(CURDIR)/linux-kernel-headers
@@ -18,5 +18,3 @@ nptl_add-ons = nptl $(add-ons)
 nptl_extra_config_options = $(extra_config_options) --with-tls --disable-profile --enable-omitfp
 nptl_MIN_KERNEL_SUPPORTED = 2.6.0
 
-# Linuxthreads Config
-linuxthreads_add-ons = linuxthreads $(add-ons)

@@ -1,5 +1,5 @@
-@TMPDIR@/usr/share/locale/* usr/share/locale
-@TMPDIR@/usr/share/locale/locale.alias etc
-@TMPDIR@/usr/share/i18n/* usr/share/i18n
+debian/tmp-libc/usr/share/locale/* usr/share/locale
+debian/tmp-libc/usr/share/locale/locale.alias etc
+debian/tmp-libc/usr/share/i18n/* usr/share/i18n
 debian/local/usr_sbin/locale-gen usr/sbin
 

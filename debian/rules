@@ -28,7 +28,7 @@
 
 # These are done as absolute paths so that in the case of filesystem size
 # limitations, they can be overridden and spread all over.
-build-tree := $(CURDIR)/build-tree
+build-tree := build-tree
 stamp := $(CURDIR)/stamp-dir/
 
 # Beyond here you shouldn't need to customise anything:
@@ -54,6 +54,9 @@ DEB_TARBALL ?= $(shell ls glibc-[0-9]*.[0-9]*.[0-9]*.tar.*)
 
 DEB_SRCDIR ?= $(shell ls -d $(build-tree)/glibc-*)
 DEB_BUILDDIR ?= $(build-tree)/$(DEB_BUILD_ARCH)-$(curpass)
+
+# Default setup
+GLIBC_PASSES ?= libc
 
 prefix=/usr
 bindir=$(prefix)/bin
@@ -119,8 +122,8 @@ linux-kernel-headers/include/asm:
 	ln -s asm-$(DEB_HOST_GNU_CPU) $@
 
 # Required Debian targets
-binary-indep: testroot $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_INDEP_REGULAR_PACKAGES))
-binary-arch: testroot $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES))
+binary-indep: testroot debian/control $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_INDEP_REGULAR_PACKAGES))
+binary-arch: testroot debian/control $(build-tree) $(patsubst %,$(stamp)install_%,$(GLIBC_PASSES)) $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES))
 
 binary: binary-indep binary-arch
 

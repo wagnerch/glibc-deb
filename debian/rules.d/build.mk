@@ -30,7 +30,7 @@ ifneq ($(DEB_HOST_GNU_SYSTEM),linux)
 	echo "slibdir = /lib"		>> $(DEB_BUILDDIR)/configparms
 endif
 
-	cd $(DEB_BUILDDIR) && $(DEB_SRCDIR)/configure \
+	cd $(DEB_BUILDDIR) && $(CURDIR)/$(DEB_SRCDIR)/configure \
 		--host=$(call xx,configure_target) \
 		--build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --without-cvs \
 		--enable-add-ons="$(call xx,add-ons)" \
