@@ -9,7 +9,7 @@ libc_opt_control_flags = $(shell $(depflags) libc_opt)
 
 $(libc)_control_flags = $(libc_control_flags)
 $(libc)-dev_control_flags = $(libc_dev_control_flags)
-$(libc)-dev_control_flags = $(libc_dev_control_flags)
+$(libc)-opt_control_flags = $(libc_opt_control_flags)
 
 test_depflags:
 	@echo
