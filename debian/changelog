@@ -23,6 +23,9 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - Correct section for zdump.8 man page.
     - Install ld.so.8 in the right directory (debhelper thinks that .so is a
       language extension).
+    - Install info menu entries for functions provided by libc, in
+      glibc-doc.
+    - Include changelog in glibc-doc also.
 
   * Phil Blundell <pb@nexus.co.uk>
 
@@ -80,7 +83,7 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/po/ru.po: Update.  Patched by Ilgiz Kalmetev
       <translator@ilgiz.pp.ru>.  (Closes: #214349)
 
- -- Daniel Jacobowitz <dan@debian.org>  Sat, 25 Oct 2003 12:58:30 -0400
+ -- Daniel Jacobowitz <dan@debian.org>  Sat, 25 Oct 2003 15:09:02 -0400
 
 glibc (2.3.2.ds1-6) experimental; urgency=low
 

@@ -74,6 +74,8 @@ $(stamp)install_%: $(stamp)check_%
 	  $(MAKE) -f debian/generate-supported.mk IN=$(DEB_SRCDIR)/localedata/SUPPORTED \
 	    OUT=debian/tmp-$(curpass)/usr/share/i18n/SUPPORTED; \
 	  (cd $(DEB_SRCDIR)/manual && texi2html -split_chapter libc.texinfo); \
+	  install --mode=0644 $(DEB_SRCDIR)/manual/dir-add.info \
+	    debian/tmp-$(curpass)/usr/share/info/libc-dir-add.info; \
 	fi
 
 	$(call xx,extra_install)
