@@ -39,7 +39,9 @@ glibc (2.3.2.ds1-7) experimental; urgency=low
     - debian/sysdeps/linux.mk: Define NJOBS based on number of processors
     - debian/rules.d/build.mk: Use -j $(NJOBS) during build.
     Based on patch from Ian Wienand <ianw@gelato.unsw.edu.au>
-  * 
+
+    - debian/debhelper.in/libc.install: Install pt_chown
+    - debian/rules.d/debhelper.mk: Don't clobber SUID on pt_chown
 
  -- Daniel Jacobowitz <dan@debian.org>  Fri, 24 Oct 2003 20:30:59 -0400
 
