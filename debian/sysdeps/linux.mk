@@ -20,8 +20,8 @@ nptl_add-ons = nptl $(add-ons)
 nptl_extra_config_options = $(extra_config_options) --with-tls --with-__thread --disable-profile --enable-omitfp
 nptl_MIN_KERNEL_SUPPORTED = 2.6.0
 
-LINUX_HEADER_DIR = debian/include
-debian/include:
+LINUX_HEADER_DIR = $(stamp)mkincludedir
+$(stamp)mkincludedir:
 	rm -rf debian/include
 	mkdir debian/include
 	ln -s $(LINUX_HEADERS)/linux debian/include
@@ -30,6 +30,8 @@ debian/include:
 
 	# To make configure happy if libc6-dev is not installed.
 	touch debian/include/assert.h
+
+	touch $@
 
 # Also to make configure happy.
 export CPPFLAGS = -isystem $(shell pwd)/debian/include
