@@ -52,7 +52,7 @@ $(stamp)build_%: $(stamp)configure_%
 $(patsubst %,check_%,$(GLIBC_PASSES)) :: check_% : $(stamp)check_%
 $(stamp)check_%: $(stamp)build_%
 	@echo Testing $(curpass)
-	$(MAKE) -C $(DEB_BUILDDIR) check 2>&1 | tee -a $(log_test)
+	$(MAKE) -C $(DEB_BUILDDIR) -k check 2>&1 | tee -a $(log_test)
 	touch $@
 
 $(patsubst %,install_%,$(GLIBC_PASSES)) :: install_% : $(stamp)install_%

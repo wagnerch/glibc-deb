@@ -1,3 +1,12 @@
+glibc (2.3.2.ds1-5) experimental; urgency=low
+
+  * Daniel Jacobowitz <dan@debian.org>
+
+    - Fix a think in i686 timing patch for non-HP_TIMING architectures.
+    - Add -k to make check.
+
+ -- Daniel Jacobowitz <dan@debian.org>  Mon, 13 Oct 2003 10:53:31 -0400
+
 glibc (2.3.2.ds1-4) experimental; urgency=low
 
   * Daniel Jacobowitz <dan@debian.org>
