@@ -26,6 +26,12 @@ glibc (2.3.5-1) experimental; urgency=low
       amd64, i386, powerpc, s390, sh and sparc.
       - debian/patches/linuxthreads-sizefix.dpatch: Update.
 
+    * Fix more libc6 upgrade problem from old <= 2.3.4-1:
+      - debian/debhelper.in/libc.postinst: Don't use uname -m, use
+        dpkg --print-installation-architecture.  Hwcappkgs mechanism does not
+        work on (ex:) install architecture: i386, kernel architecture: amd64.
+      - debian/debhelper.in/libc.postrm: Likewise.
+
  -- GOTO Masanori <gotom@debian.org>  Sun, 10 Apr 2005 14:02:19 +0900
 
 glibc (2.3.4-3) experimental; urgency=low

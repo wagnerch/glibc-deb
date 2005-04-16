@@ -12,8 +12,8 @@ if [ "$1" = remove ]; then
 fi
 
 if [ "$1" = upgrade ]; then
-    case "`uname -m`" in
-	i?86|sparc*)
+    case $(dpkg --print-installation-architecture) in
+	i386|sparc)
 	    if dpkg --compare-versions "$2" lt 2.3.4-3; then
 		hwcappkgs=remove
 	    fi
