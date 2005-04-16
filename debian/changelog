@@ -3,6 +3,7 @@ glibc (2.3.5-1) experimental; urgency=low
   * GOTO Masanori <gotom@debian.org>
 
     * New upstream release.
+      - debian/shlibver: Bump up to 2.3.5-1.
 
     * Merge with 2.3.2.ds1-21, added:
       - debian/patches/linuxthreads-sizefix.dpatch: Added.
