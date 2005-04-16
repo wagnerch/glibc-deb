@@ -22,6 +22,10 @@ glibc (2.3.5-1) experimental; urgency=low
       - debian/debhelper.in/libc.preinst: Add export LC_ALL=C.
       - debian/patches/00list: Update.
 
+    * Update linuxthreads size fix for not only ia64, but also alpha,
+      amd64, i386, powerpc, s390, sh and sparc.
+      - debian/patches/linuxthreads-sizefix.dpatch: Update.
+
  -- GOTO Masanori <gotom@debian.org>  Sun, 10 Apr 2005 14:02:19 +0900
 
 glibc (2.3.4-3) experimental; urgency=low
@@ -40,6 +44,8 @@ glibc (2.3.4-3) experimental; urgency=low
       - debian/debhelper.in/libc-otherbuild.postrm: When it's removed,
         check /etc/ld.so.hwcappkgs and search other hwcap package's version
         consistency.  Then it decides to remove /etc/ld.so.nohwcap.
+      - debian/debhelper.in/libc.postrm: Leave /etc/ld.so.nohwcap if it's
+        downgrade to hwcappkgs incompatible version.
       - debian/rules.d/debhelper.mk: Include "libc-" into OPT string
         replacement.
 

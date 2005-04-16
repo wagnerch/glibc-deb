@@ -346,11 +346,11 @@ exit 0
  
  /* Alignment requirements for the TCB.  */
  #  define TLS_TCB_ALIGN __alignof__ (struct _pthread_descr_struct)
---- glibc-2.3.2-net/nptl/Makefile	4 Oct 2003 11:53:45 -0000	1.1.1.67
-+++ glibc-2.3.2-redhat/nptl/Makefile	4 Oct 2003 12:06:23 -0000	1.72
-@@ -465,15 +465,19 @@ $(addprefix $(objpfx), \
-     $(tests) $(test-srcs))): $(objpfx)libpthread.so \
- 			     $(objpfx)libpthread_nonshared.a
+--- glibc-2.3.2/nptl/Makefile	2005-04-16 23:01:34.000000000 +0900
++++ glibc-2.3.2-gotom/nptl/Makefile	2005-04-16 23:03:14.000000000 +0900
+@@ -499,15 +499,19 @@
+     $(tests) $(xtests) $(test-srcs))): $(objpfx)libpthread.so \
+ 				       $(objpfx)libpthread_nonshared.a
  $(objpfx)tst-unload: $(common-objpfx)dlfcn/libdl.so
 -# $(objpfx)../libc.so is used instead of $(common-objpfx)libc.so,
 +# $(objpfx)linklibc.so is used instead of $(common-objpfx)libc.so,
@@ -360,7 +360,7 @@ exit 0
 +  $(objpfx)linklibc.so $(objpfx)libpthread.so \
    $(objpfx)libpthread_nonshared.a
  $(objpfx)../libc.so: $(common-objpfx)libc.so ;
- $(addprefix $(objpfx),$(tests-static)): $(objpfx)libpthread.a
+ $(addprefix $(objpfx),$(tests-static) $(xtests-static)): $(objpfx)libpthread.a
  
  $(objpfx)tst-atfork2.out: $(objpfx)tst-atfork2mod.so
 +
