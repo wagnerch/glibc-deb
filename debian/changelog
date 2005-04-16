@@ -5,6 +5,10 @@ glibc (2.3.5-1) experimental; urgency=low
     * New upstream release.
       - debian/shlibver: Bump up to 2.3.5-1.
 
+    * Drop patches:
+      - debian/patches/hurd-malloc.dpatch: Removed, it's already applied in
+        the upstream source.
+
     * Merge with 2.3.2.ds1-21, added:
       - debian/patches/linuxthreads-sizefix.dpatch: Added.
       - debian/po/fi.po: Added.
