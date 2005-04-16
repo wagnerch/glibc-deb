@@ -12,7 +12,8 @@ glibc (2.3.5-1) experimental; urgency=low
     * Merge with 2.3.2.ds1-21, added:
       - debian/patches/linuxthreads-sizefix.dpatch: Added.
       - debian/po/fi.po: Added.
-      - debian/patches/glibc23-mips-lazy-eval.dpatch: Added.
+      - debian/patches/glibc23-mips-lazy-eval.dpatch: Added, drop dl-machine.h
+        because the recent upstream should not need such change.
       - debian/patches/glibc232-tls-crashfix.dpatch: Added, remove some parts
         that are applied in the recent version.
 
