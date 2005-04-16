@@ -86,5 +86,18 @@ $(stamp)install_%: $(stamp)check_%
 	  (cd $(DEB_SRCDIR)/manual && texi2html -split_chapter libc.texinfo); \
 	fi
 
+	# /usr/lib/nptl and /usr/include/nptl.  It assumes tmp-libc is already installed.
+	if [ $(curpass) = nptl ]; then \
+	  for file in `find debian/tmp-$(curpass)/usr/include -type f | sed 's/^debian\/tmp-nptl\///'`; do \
+	    if ! [ -f debian/tmp-$(curpass)/$$file ] || \
+	       ! cmp -s debian/tmp-$(curpass)/$$file debian/tmp-libc/$$file; then \
+	      target=`echo $$file | sed 's/^usr\/include\///'`; \
+	      install -d `dirname debian/tmp-libc/usr/include/nptl/$$target`; \
+	      install -m 644 debian/tmp-$(curpass)/usr/include/$$target \
+			     debian/tmp-libc/usr/include/nptl/$$target; \
+	    fi; \
+	  done; \
+	fi
+
 	$(call xx,extra_install)
 	touch $@

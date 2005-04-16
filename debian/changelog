@@ -32,6 +32,10 @@ glibc (2.3.5-1) experimental; urgency=low
         work on (ex:) install architecture: i386, kernel architecture: amd64.
       - debian/debhelper.in/libc.postrm: Likewise.
 
+    * Support libc6-dev NPTL headers into /usr/include/nptl:
+      - debian/rules.d/build.mk: Add include file installation code.
+        (Closes: #279423)
+
  -- GOTO Masanori <gotom@debian.org>  Sun, 10 Apr 2005 14:02:19 +0900
 
 glibc (2.3.4-3) experimental; urgency=low
