@@ -1,3 +1,23 @@
+glibc (2.3.5-1) experimental; urgency=low
+
+  * GOTO Masanori <gotom@debian.org>
+
+    * New upstream release.
+
+    * Merge with 2.3.2.ds1-21, added:
+      - debian/patches/linuxthreads-sizefix.dpatch: Added.
+      - debian/po/fi.po: Added.
+      - debian/patches/glibc23-mips-lazy-eval.dpatch: Added.
+      - debian/patches/glibc232-tls-crashfix.dpatch: Added, remove some parts
+        that are applied in the recent version.
+
+    * Merge with 2.3.2.ds1-21, changed:
+      - debian/debhelper.in/libc.preinst: Fix typo, proofreading.
+      - debian/debhelper.in/libc.preinst: Add export LC_ALL=C.
+      - debian/patches/00list: Update.
+
+ -- GOTO Masanori <gotom@debian.org>  Sun, 10 Apr 2005 14:02:19 +0900
+
 glibc (2.3.4-3) experimental; urgency=low
 
   * GOTO Masanori <gotom@debian.org>
@@ -178,17 +198,54 @@ glibc (2.3.4-1) experimental; urgency=low
 
  -- GOTO Masanori <gotom@debian.org>  Fri, 18 Mar 2005 09:41:49 +0900
 
-glibc (2.3.2.ds1-21) unstable; urgency=low
+glibc (2.3.2.ds1-21) unstable; urgency=high
 
   * GOTO Masanori <gotom@debian.org>
 
+    - debian/patches/linuxthreads-sizefix.dpatch: Fix ia64 TLS_PRE_TCB_SIZE
+      alignment where TLS_DTV_AT_TP is defined between linuxthreads and nptl.
+      It breaks evolution on ia64 linuxthreads ld.so + nptl environment.
+      (Closes: #292673)
+    - debian/patches/glibc232-sigsetjmp.dpatch: Fix gcc-4.0 compilation
+      breakage on amd64.  (Closes: #295457)
     - debian/debhelper.in/libc.manpages: Add tzconfig.8.  Reported by Matthijs
       Mohlmann <matthijs@cacholong.nl>.  (Closes: #182981)
-    - debian/local/manpages/iconv.1: Escape hyphens for Unicode environments.
-      Patched by Lars Wirzenius <liw@iki.fi>.  (Closes: #292013)
+    - debian/patches/90_glibc232-timezones.dpatch: Update to tzdata2005h.
+    - debian/patches/hurd-weak-aliases.dpatch: Add to fix undefined references
+      to build putty on Hurd, patched by Michael Banck <mbanck@debian.org>.
+      (Closes: #295118)
+    - debian/debhelper.in/libc.preinst: Fix typo, proofreading.
+      (Closes: #294816, #303478)
+    - debian/rules: Bump up shlib_dep_ver 2.3.2.ds1-21.  It's required by
+      adding GLIBC_2.3.4 symbol.
 
-    - debian/po/pl.po: Add Polish debconf translation.  Patched by Emilian
-      Nowak <emil5@go2.pl>.  (Closes: #294444)
+    - Bastian Blank <waldi@debian.org>:
+      - debian/patches/sched-update.dpatch: Update sched_[gs]et_affinity to
+        new interface and library version.  Add GLIBC_2.3.4 versioned symbol
+        for new interface.  (Closes: #297769)
+    - Jeff Bailey <jbailey@raspberryginger.com>:
+      - debian/patches/glibc232-tls-crashfix.dpatch: Fix tls assertion that
+        crashes xmms/nvidia.  (Closes: #219352)
+      - debian/patches/glibc232-pthread-cancellation.dpatch: Fix pthread
+        cancellation bug that causes JVM lockups.  (Closes: #300943)
+    - Denis Barbier <barbier@debian.org>:
+      - debian/debhelper.in/libc.preinst: Add export LC_ALL=C like
+        libc.postinst, it corrects some locale dependent behavior,
+        especially for `tr'.  (Closes: #304257)
+    - Lars Wirzenius <liw@iki.fi>:
+      - debian/local/manpages/iconv.1: Escape hyphens for Unicode
+        environments.  (Closes: #292013)
+    - Emilian Nowak <emil5@go2.pl>:
+      - debian/po/pl.po: Add Polish debconf translation.  (Closes: #294444)
+    - Matti Polla <mpo@iki.fi>:
+      - debian/po/fi.po: Add Finnish debconf translation.  (Closes: #303816)
+    - Khalid Aziz <khalid_aziz@hp.com>:
+      - debian/patches/glibc232-clock_settime.dpatch: Fix clock_settime
+        always fails with EINVAL.  (Closes: #304668)
+    - Thiemo Seufer <ths@debian.org>:
+      - debian/patches/glibc23-mips-lazy-eval.dpatch: Workaround fix for
+        broken symbol resolving of lazy evaluation stubs on mips/mipsel,
+        that causes fakeroot breakage.  (Closes: #265678, #264920)
 
  -- GOTO Masanori <gotom@debian.org>  Mon, 14 Feb 2005 09:26:26 +0900
 
