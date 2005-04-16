@@ -57,3 +57,6 @@ glibc234-hppa-full-nptl-2004-12-20
 #50_glibc232-hppa-full-nptl-2003-10-22	# g: lock initializer part is not applied, cheated by glibc234-hppa-remove-mallocdef.dpatch.
 glibc234-hppa-remove-mallocdef
 hurd-malloc
+linuxthreads-sizefix
+glibc232-tls-crashfix
+glibc23-mips-lazy-eval
