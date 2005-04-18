@@ -32,9 +32,11 @@ glibc (2.3.5-1) experimental; urgency=low
         work on (ex:) install architecture: i386, kernel architecture: amd64.
       - debian/debhelper.in/libc.postrm: Likewise.
 
-    * Support libc6-dev NPTL headers into /usr/include/nptl:
-      - debian/rules.d/build.mk: Add include file installation code.
-        (Closes: #279423)
+    * Support libc6-dev NPTL static libraries and headers into
+      /usr/lib/nptl and /usr/include/nptl.  (Closes: #276062, #279423)
+      - debian/rules.d/build.mk: Add installation code from tmp-nptl to
+        tmp-libc.
+      - debian/debhelper.in/libc-dev.install: Add tmp-libc/usr/lib/nptl*.
 
  -- GOTO Masanori <gotom@debian.org>  Sun, 10 Apr 2005 14:02:19 +0900
 

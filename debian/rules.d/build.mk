@@ -86,7 +86,7 @@ $(stamp)install_%: $(stamp)check_%
 	  (cd $(DEB_SRCDIR)/manual && texi2html -split_chapter libc.texinfo); \
 	fi
 
-	# /usr/lib/nptl and /usr/include/nptl.  It assumes tmp-libc is already installed.
+	# /usr/include/nptl and /usr/lib/nptl.  It assumes tmp-libc is already installed.
 	if [ $(curpass) = nptl ]; then \
 	  for file in `find debian/tmp-$(curpass)/usr/include -type f | sed 's/^debian\/tmp-nptl\///'`; do \
 	    if ! [ -f debian/tmp-$(curpass)/$$file ] || \
@@ -97,6 +97,16 @@ $(stamp)install_%: $(stamp)check_%
 			     debian/tmp-libc/usr/include/nptl/$$target; \
 	    fi; \
 	  done; \
+	  install -d debian/tmp-libc/usr/lib/nptl; \
+	  for file in libc.a libpthread.a libpthread_nonshared.a librt.a; do \
+	    install -m 644 debian/tmp-$(curpass)/usr/lib/$$file \
+			   debian/tmp-libc/usr/lib/nptl/$$file; \
+	  done; \
+	  for file in libc.so libpthread.so; do \
+	    sed 's/\/lib\//\/lib\/tls\//g' < debian/tmp-$(curpass)/usr/lib/$$file \
+	    > debian/tmp-libc/usr/lib/nptl/$$file; \
+	  done; \
+	  ln -sf /lib/tls/librt.so.1 debian/tmp-libc/usr/lib/nptl/; \
 	fi
 
 	$(call xx,extra_install)
