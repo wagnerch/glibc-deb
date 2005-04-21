@@ -1,3 +1,21 @@
+glibc (2.3.5-2) experimental; urgency=low
+
+  * GOTO Masanori <gotom@debian.org>
+
+    * Move /etc/locale.alias to /usr/share/locale/locale.alias.
+      Don't install locale.alias.5.  (Closes: #144670, #185991, #298784)
+      - debian/local/usr_sbin/locale-gen: Use /usr/share/locale/locale.alias
+        instead of /etc/locale.alias.
+      - debian/local/manpages/locale-gen.8: Delete reference to
+        locale.alias.5.
+      - debian/local/manpages/locale.gen.5: Likewise.
+      - debian/debhelper.in/locales.links: Removed file, don't link to /etc.
+      - debian/debhelper.in/locales.install: Install locale.alias under 
+        /usr/share/locale, not /etc/.
+      - debian/debhelper.in/locales.manpages: Don't install locale.alias.5
+
+ -- GOTO Masanori <gotom@debian.org>  Thu, 21 Apr 2005 16:52:36 +0900
+
 glibc (2.3.5-1) experimental; urgency=low
 
   * GOTO Masanori <gotom@debian.org>
