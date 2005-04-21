@@ -17,7 +17,10 @@ glibc (2.3.5-2) experimental; urgency=low
     * Add documents:
       - debian/debhelper.in/libc.docs: Add CONFORMANCE and NAMESPACE.
 
-    * A Costa <agcosta@gis.net>:
+    * Fix messages to add a patience message.  (Closes: #305400)
+      - debian/local/usr_sbin/locale-gen
+
+    * A Costa <agcosta@gis.net>.  (Closes: #305662, #305666)
       - debian/local/manpages/tzconfig.8: Fixed typo.
       - debian/local/manpages/ldconfig.8: Likewise.
 
