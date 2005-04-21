@@ -9,7 +9,7 @@ glibc (2.3.5-2) experimental; urgency=low
       - debian/local/manpages/locale-gen.8: Delete reference to
         locale.alias.5.
       - debian/local/manpages/locale.gen.5: Likewise.
-      - debian/debhelper.in/locales.links: Removed file, don't link to /etc.
+      - debian/debhelper.in/locales.links: Remove file, don't link to /etc.
       - debian/debhelper.in/locales.install: Install locale.alias under 
         /usr/share/locale, not /etc/.
       - debian/debhelper.in/locales.manpages: Don't install locale.alias.5
@@ -19,6 +19,15 @@ glibc (2.3.5-2) experimental; urgency=low
 
     * Fix messages to add a patience message.  (Closes: #305400)
       - debian/local/usr_sbin/locale-gen
+
+    * Move sprof from libc-prof to libc-dev.  (Closes: #280030)
+      - debian/sysdeps/depflags.pl: Add Replaces: libc-dev (<< 2.3.5-2).
+      - debian/debhelper.in/libc-prof.install: Remove sprof install.
+      - debian/debhelper.in/libc-dev.install: Install sprof moved from -prof.
+      - debian/debhelper.in/libc-dev.install.hurd-i386: Likewise.
+      - debian/debhelper.in/libc-dev.manpages: Add sprof.1 install.
+      - debian/debhelper.in/libc-prof.manpages: Remove file, don't install
+        sprof.1.
 
     * A Costa <agcosta@gis.net>.  (Closes: #305662, #305666)
       - debian/local/manpages/tzconfig.8: Fixed typo.
