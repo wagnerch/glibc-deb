@@ -17,6 +17,10 @@ glibc (2.3.5-2) experimental; urgency=low
     * Add documents:
       - debian/debhelper.in/libc.docs: Add CONFORMANCE and NAMESPACE.
 
+    * A Costa <agcosta@gis.net>:
+      - debian/local/manpages/tzconfig.8: Fixed typo.
+      - debian/local/manpages/ldconfig.8: Likewise.
+
  -- GOTO Masanori <gotom@debian.org>  Thu, 21 Apr 2005 16:52:36 +0900
 
 glibc (2.3.5-1) experimental; urgency=low
