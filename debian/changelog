@@ -14,6 +14,9 @@ glibc (2.3.5-2) experimental; urgency=low
         /usr/share/locale, not /etc/.
       - debian/debhelper.in/locales.manpages: Don't install locale.alias.5
 
+    * Add documents:
+      - debian/debhelper.in/libc.docs: Add CONFORMANCE and NAMESPACE.
+
  -- GOTO Masanori <gotom@debian.org>  Thu, 21 Apr 2005 16:52:36 +0900
 
 glibc (2.3.5-1) experimental; urgency=low
