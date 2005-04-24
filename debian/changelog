@@ -29,6 +29,10 @@ glibc (2.3.5-2) experimental; urgency=low
       - debian/debhelper.in/libc-prof.manpages: Remove file, don't install
         sprof.1.
 
+    * Remove Depends: lib64gcc1 from libc6-sparc64.  (Closes: #258647)
+      - debian/control.in/sparc64: Delete Depends: lib64gcc1.
+      - debian/control: Likewise.
+
     * A Costa <agcosta@gis.net>.  (Closes: #305662, #305666)
       - debian/local/manpages/tzconfig.8: Fixed typo.
       - debian/local/manpages/ldconfig.8: Likewise.
