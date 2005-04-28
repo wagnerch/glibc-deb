@@ -33,6 +33,9 @@ glibc (2.3.5-2) experimental; urgency=low
       - debian/control.in/sparc64: Delete Depends: lib64gcc1.
       - debian/control: Likewise.
 
+    * Small change for libc6 upgrade problem.
+      - debian/debhelper.in/libc.postrm: Add plain messages and clean up.
+
     * A Costa <agcosta@gis.net>.  (Closes: #305662, #305666)
       - debian/local/manpages/tzconfig.8: Fixed typo.
       - debian/local/manpages/ldconfig.8: Likewise.
