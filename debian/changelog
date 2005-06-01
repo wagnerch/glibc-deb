@@ -36,6 +36,11 @@ glibc (2.3.5-2) experimental; urgency=low
     * Small change for libc6 upgrade problem.
       - debian/debhelper.in/libc.postrm: Add plain messages and clean up.
 
+    * Add conflicts to old initrd-tools for avoiding new glibc 2.3.4/5 ldd
+      blocks to generate initrd images.  Suggested by Goswin von Brederlow
+      <brederlo@informatik.uni-tuebingen.de>.
+      - debian/sysdeps/depflags.pl: Add conflicts initrd-tools (<< 0.1.79).
+
     * A Costa <agcosta@gis.net>.  (Closes: #305662, #305666)
       - debian/local/manpages/tzconfig.8: Fixed typo.
       - debian/local/manpages/ldconfig.8: Likewise.
