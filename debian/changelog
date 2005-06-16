@@ -41,6 +41,10 @@ glibc (2.3.5-2) experimental; urgency=low
       <brederlo@informatik.uni-tuebingen.de>.
       - debian/sysdeps/depflags.pl: Add conflicts initrd-tools (<< 0.1.79).
 
+    * debian/sysdeps/hppa.mk: Add /usr/hppa64-linux-gnu/include symlinks for
+      dpkg-architecture changes.  Reported by Matthias Klose
+      <doko@cs.tu-berlin.de>.  (Closes: #313404)
+
     * A Costa <agcosta@gis.net>.  (Closes: #305662, #305666)
       - debian/local/manpages/tzconfig.8: Fixed typo.
       - debian/local/manpages/ldconfig.8: Likewise.
