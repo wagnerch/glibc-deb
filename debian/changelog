@@ -53,6 +53,9 @@ glibc (2.3.5-2) experimental; urgency=low
       - debian/po/vi.po: Add the Vietnamese translation for locales.
         (Closes: #309618)
 
+    * Jens Seidel <jensseidel@users.sf.net>:
+      - debian/po/de.po: Fix typo.  (Closes: #314084)
+
  -- GOTO Masanori <gotom@debian.org>  Thu, 21 Apr 2005 16:52:36 +0900
 
 glibc (2.3.5-1) experimental; urgency=low
