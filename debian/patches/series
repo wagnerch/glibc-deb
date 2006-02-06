@@ -86,6 +86,7 @@ i386-amd64-biarch.diff -p1
 mips-bits-syscall.diff -p1
 hppa-iitlbp.diff -p1
 hppa-fenv-align.diff -p1
+glibc235-hppa-fpu.diff -p1
 eh-frame-terminator.diff -p1
 sparc-socket-weakalias.diff -p0
 powerpc-socket-weakalias.diff -p0
@@ -111,4 +112,3 @@ locale/preprocessor-collate.diff
 locale/LC_IDENTIFICATION-optional-fields.diff
 locale/LC_COLLATE-keywords-ordering.diff
 locale/locale-print-LANGUAGE.diff
-glibc235-hppa-fpu.diff
