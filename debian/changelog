@@ -1,3 +1,17 @@
+glibc (2.3.5-13) UNRELEASED; urgency=low
+
+  [ Clint Adams ]
+  * Acknowledge NMU.  (Closes: #342545)
+
+ -- Clint Adams <schizo@debian.org>  Wed,  1 Feb 2006 20:52:13 -0500
+
+glibc (2.3.5-12.1) unstable; urgency=low
+
+  * NMU
+  * glibc235-hppa-fpu.diff: New, fixes hppa FPU issues.  Closes: #342545
+
+ -- LaMont Jones <lamont@bld-4.mmjgroup.com>  Wed,  1 Feb 2006 09:47:57 -0700
+
 glibc (2.3.5-12) unstable; urgency=low
 
   * debian/patches/glibc235-nis-netgrp.diff: New file to fix assertion
