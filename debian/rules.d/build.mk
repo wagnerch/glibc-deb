@@ -80,7 +80,8 @@ $(patsubst %,check_%,$(GLIBC_PASSES)) :: check_% : $(stamp)check_%
 $(stamp)check_%: $(stamp)build_%
 	if [ -n "$(findstring nocheck,$(DEB_BUILD_OPTIONS))" ]; then \
 	  echo "DEB_BUILD_OPTIONS contains nocheck, skipping tests."; \
-	elif [ $(call xx,configure_build) != $(call xx,configure_target) ]; then \
+	elif [ $(call xx,configure_build) != $(call xx,configure_target) ] && \
+	     ! $(DEB_BUILDDIR)/libc.so >/dev/null 2>&1 ; then \
 	  echo "Cross compiling, skipping tests."; \
 	elif ! $(call kernel_check,$(call xx,MIN_KERNEL_SUPPORTED)); then \
 	  echo "Kernel too old, skipping tests."; \
@@ -105,6 +106,11 @@ $(stamp)install_%: $(stamp)check_%
 	  (cd $(DEB_SRCDIR)/manual && texi2html -split_chapter libc.texinfo); \
 	fi
 
+	# Remove ld.so from optimized libraries
+	if [ $(curpass) != libc ] && [ $(call xx,configure_build) = $(call xx,configure_target) ]; then \
+		rm -f debian/tmp-$(curpass)/$(call xx,slibdir)/ld*.so* ; \
+	fi
+	
 	# /usr/include/nptl and /usr/lib/nptl.  It assumes tmp-libc is already installed.
 	if [ $(curpass) = nptl ]; then \
 	  for file in `find debian/tmp-$(curpass)/usr/include -type f | sed 's/^debian\/tmp-nptl\///'`; do \
@@ -117,9 +123,13 @@ $(stamp)install_%: $(stamp)check_%
 	    fi; \
 	  done; \
 	  install -d debian/tmp-libc/usr/lib/nptl; \
-	  for file in libc.a libc_nonshared.a libpthread.a libpthread_nonshared.a librt.a libc.so libpthread.so; do \
-	    install -m 644 debian/tmp-$(curpass)/usr/lib/nptl/$$file \
+	  for file in libc.a libc_nonshared.a libpthread.a libpthread_nonshared.a librt.a ; do \
+	    install -m 644 debian/tmp-$(curpass)/usr/lib/$$file \
 			   debian/tmp-libc/usr/lib/nptl/$$file; \
+	  done; \
+	  for file in libc.so libpthread.so; do \
+	    sed 's/\/usr\/lib\//\/usr\/lib\/nptl\//g' < debian/tmp-$(curpass)/usr/lib/$$file \
+	      > debian/tmp-libc/usr/lib/nptl/$$file; \
 	  done; \
 	  ln -sf /lib/tls/librt.so.1 debian/tmp-libc/usr/lib/nptl/; \
 	fi
