@@ -52,7 +52,6 @@ localedata/locale-eu_FR.diff -p0
 #linuxthreads-sizefix.diff -p1
 #glibc232-tls-crashfix.diff -p1
 glibc23-mips-lazy-eval.diff -p2
-#glibc235-gcc4-elf.diff -p0
 glibc235-gcc4-wcstol_l.diff -p1
 glibc235-gcc4-ppc-procfs.diff -p0
 #glibc235-gcc4-arm-inline.diff -p1
