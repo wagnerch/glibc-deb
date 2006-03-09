@@ -78,7 +78,6 @@ i386-amd64-biarch.diff -p1
 #hppa-fenv-align.diff -p1
 #glibc235-hppa-fpu.diff -p1
 #eh-frame-terminator.diff -p1
-#sparc-socket-weakalias.diff -p0
 #powerpc-socket-weakalias.diff -p0
 #arm-socket-weakalias.diff -p0
 #divdi3-moddi3.diff -p0
