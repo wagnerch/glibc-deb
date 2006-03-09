@@ -81,7 +81,6 @@ i386-amd64-biarch.diff -p1
 #divdi3-moddi3.diff -p0
 #powerpc-executable-got.diff -p0
 #ctan.diff -p0
-#glibc-235-sparc-datastart.diff -p0
 #glibc235-nis-netgrp.diff
 localedata/locale-ku_TR.diff -p0
 #localedata/discard-dz_BT.diff	# not needed when complex-collate is applied
