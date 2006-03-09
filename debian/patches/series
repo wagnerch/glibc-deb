@@ -127,4 +127,3 @@ ldconfig-multiarch.diff -p1
 #rtld.diff -p1
 #resource_h.diff -p1
 #hppa-inlining.diff -p1
-#tst-setcontext_c.diff -p1
