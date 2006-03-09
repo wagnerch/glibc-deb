@@ -129,7 +129,7 @@ fi)
 endef
 
 # Include libidn for both NPTL and LinuxThreads targets.
-standard-add-ons = libidn,
+standard-add-ons = nptl,libidn,
 
 # Pull in all the per-arch magic!
 

@@ -26,10 +26,10 @@ case "$1" in
 	secure=""
 	for table in passwd group
 	do
-		if egrep '^'$table':.*nisplus' /etc/nsswitch.conf >/dev/null
-		then
-			/usr/sbin/nscd_nischeck $table ||
-				secure="$secure -S $table,yes"
+#		if egrep '^'$table':.*nisplus' /etc/nsswitch.conf >/dev/null
+#		then
+#			/usr/sbin/nscd_nischeck $table ||
+#				secure="$secure -S $table,yes"
 		fi
 	done
         echo -n "Starting Name Service Cache Daemon: nscd"

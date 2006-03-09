@@ -1,3 +1,5 @@
+localedata/cvs-localedata.diff -p0
+cvs-tzdata.diff -p0
 localedata/locale-de_CH.diff -p1
 locale-ru_RU.diff -p1
 localedata/locale-eo_EO.diff -p1
@@ -9,13 +11,13 @@ ldconfig.diff -p0
 ldd.diff -p0
 fhs-linux-paths.diff -p1
 glibc22-nss-upgrade.diff -p1
-glibc22-m68k-compat.diff -p1
-glibc22-m68k-fpic.diff -p1
+#glibc22-m68k-compat.diff -p1
+#glibc22-m68k-fpic.diff -p1
 sparc64-fixups.diff -p1
 glibc22-ttyname-devfs.diff -p0
 powerpc-sysconf.diff -p1
-arm-no-hwcap.diff -p0
-librt-mips.diff -p0
+#arm-no-hwcap.diff -p0
+#librt-mips.diff -p0
 #glibc23-ctype-compat.diff -p1	# g: untilsarge
 glibc23-hppa-Rminkernel.diff -p0
 #glibc23-function-compat.diff -p1	# g: untilsarge
@@ -23,68 +25,71 @@ glibc23-hppa-Rminkernel.diff -p0
 glibc23-asserth-decls.diff -p0
 #alpha-pic.diff -p0	# g: suspended
 glibc23-cmov.diff -p0
-libgcc-compat-all.diff -p0
-libgcc-compat-other.diff -p1
+#libgcc-compat-all.diff -p0
+#libgcc-compat-other.diff -p1
 hurd-enable-ldconfig.diff -p1
 #30_glibc232-base.diff -p0	# g: suspended
 sparcv8-target.diff -p0
 50_glibc232-arm-dwarf2-buildfix.diff -p0
 50_glibc232-m68k-dwarf2-buildfix.diff -p0
 #arm-output-format.diff -p0	# g: suspended
-arm-ioperm.diff -p0
-arm-float-byteorder.diff -p0
+#arm-ioperm.diff -p0
+#arm-float-byteorder.diff -p0
 #glibc-make-check-perms.diff -p1	# g: suspended
 glibc-2.3.2-ldconfig-tls.diff -p1
-glibc23-mips-msq.diff -p0
-ldso-disable-hwcap.diff -p0
-glibc23-version-sanity.diff -p1
-glibc23-sse-oldkernel.diff -p0
+#glibc23-mips-msq.diff -p0
+#ldso-disable-hwcap.diff -p0
+#glibc23-version-sanity.diff -p1
+#glibc23-sse-oldkernel.diff -p0
 #glibc23-errno-hack.diff -p1	# g: untilsarge
 90_glibc233_tcsetaddr.diff -p1
 localedef-fix-trampoline.diff -p1
 localedata/locale-eu_FR.diff -p0
-glibc232-m68k-reloc.diff -p1
+#glibc232-m68k-reloc.diff -p1
 #glibc232-globfree-clear.diff -p1	# g: suspended
-hppa-drop-utimes.diff -p1
-glibc234-alpha-xstat.diff -p0
-glibc234-hppa-linesep.diff -p0
+#hppa-drop-utimes.diff -p1
+#glibc234-alpha-xstat.diff -p0
+#glibc234-hppa-linesep.diff -p0
 #glibc234-hppa-remove-mallocdef.diff -p0		# g: this should be replaced by Carlos' new patch.
-linuxthreads-sizefix.diff -p1
-glibc232-tls-crashfix.diff -p1
+#linuxthreads-sizefix.diff -p1
+#glibc232-tls-crashfix.diff -p1
 glibc23-mips-lazy-eval.diff -p2
-glibc235-gcc4-elf.diff -p0
+#glibc235-gcc4-elf.diff -p0
 glibc235-gcc4-wcstol_l.diff -p1
 glibc235-gcc4-ppc-procfs.diff -p0
-glibc235-gcc4-arm-inline.diff -p1
-glibc235-gcc4-sparc-mv8.diff -p0
-glibc235-gcc4-mips-inline.diff -p0
-glibc235-gcc4-mips-sysdeps.diff -p0
-hurd-ioctl-pfinet.diff -p0
-glibc235-hppa-lt.diff -p1
-glibc235-hppa-sysdeps.diff -p1
-glibc235-gcc4-sparc-inline.diff -p0
-glibc235-gcc4-alpha-profile.diff -p0
-glibc235-gcc34-m68k-seccomment.diff -p0
+#glibc235-gcc4-arm-inline.diff -p1
+#glibc235-gcc4-sparc-mv8.diff -p0
+#glibc235-gcc4-mips-inline.diff -p0
+#glibc235-gcc4-mips-sysdeps.diff -p0
+#hurd-ioctl-pfinet.diff -p0
+#glibc235-hppa-lt.diff -p1
+#glibc235-hppa-sysdeps.diff -p1
+#glibc235-gcc4-sparc-inline.diff -p0
+#glibc235-gcc4-alpha-profile.diff -p0
+#glibc235-gcc34-m68k-seccomment.diff -p0
+locale/cvs-iso4217.diff -p0
+locale/cvs-iso639.diff -p0
 locale/iso4217-RON.diff -p0
 localedata/locale-ro_RO.diff -p0
-glibc235-gcc4-hppa-profile.diff -p0
+#glibc235-gcc4-hppa-profile.diff -p0
 glibc235-dl-execstack.diff -p0
 i386-amd64-biarch.diff -p1
-hppa-iitlbp.diff -p1
-hppa-fenv-align.diff -p1
-glibc235-hppa-fpu.diff -p1
-eh-frame-terminator.diff -p1
-sparc-socket-weakalias.diff -p0
-powerpc-socket-weakalias.diff -p0
-arm-socket-weakalias.diff -p0
-divdi3-moddi3.diff -p0
-powerpc-executable-got.diff -p0
-ctan.diff -p0
-glibc-235-sparc-datastart.diff -p0
-glibc235-dash.diff -p0
-glibc235-nis-netgrp.diff
+#hppa-iitlbp.diff -p1
+#hppa-fenv-align.diff -p1
+#glibc235-hppa-fpu.diff -p1
+#eh-frame-terminator.diff -p1
+#sparc-socket-weakalias.diff -p0
+#powerpc-socket-weakalias.diff -p0
+#arm-socket-weakalias.diff -p0
+#divdi3-moddi3.diff -p0
+#powerpc-executable-got.diff -p0
+#ctan.diff -p0
+#glibc-235-sparc-datastart.diff -p0
+#glibc235-dash.diff -p0
+#glibc235-nis-netgrp.diff
 localedata/locale-ku_TR.diff -p0
 #localedata/discard-dz_BT.diff	# not needed when complex-collate is applied
+locale/complex-collate.diff
 locale/fix-exhausted-memory.diff
 #locale/check-unknown-symbols.diff	# locales have to be fixed first
 locale/fix-LC_COLLATE-rules.diff
@@ -116,16 +121,16 @@ localedata/fix-lang.diff
 localedata/fix-unknown-symbols.diff
 localedata/first_weekday.diff -p0
 localedata/sort-UTF8-first.diff -p0
-hppa-pie-relocs.diff -p1
-hurd-getresuid-dyslexia.diff -p0
-hppa-no-ldbl-128.diff -p1
-glibc-manual-memory.diff -p1
+#hppa-pie-relocs.diff -p1
+#hurd-getresuid-dyslexia.diff -p0
+#hppa-no-ldbl-128.diff -p1
+#glibc-manual-memory.diff -p1
 hurd-ioctl-decode-argument.diff -p0
-glibc-manual-string.diff -p1
+#glibc-manual-string.diff -p1
 ld-multiarch.diff -p1
 ldconfig-multiarch.diff -p1
-rtld.diff -p1
-resource_h.diff -p1
-hppa-inlining.diff -p1
-regcomp_c.diff -p1
-tst-setcontext_c.diff -p1
+#rtld.diff -p1
+#resource_h.diff -p1
+#hppa-inlining.diff -p1
+#regcomp_c.diff -p1
+#tst-setcontext_c.diff -p1
