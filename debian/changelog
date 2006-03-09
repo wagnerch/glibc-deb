@@ -1,5 +1,6 @@
 glibc (2.3.999-2) UNRELEASED; urgency=low
 
+  [ Clint Adams ]
   * New upstream version 2.4.
     - Remove sparc-socket-weakalias.diff (merged upstream).
     - Remove glibc235-dash.diff (merged upstream).
@@ -13,6 +14,11 @@ glibc (2.3.999-2) UNRELEASED; urgency=low
     - Remove divdi3-moddi3.diff (merged upstream).
     - Remove glibc235-gcc4-elf.diff (merged upstream).
     - debian/shlibver: Bump up to 2.4-1.
+
+  [ Denis Barbier ]
+    - Remove complex-collate.diff (merged upstream).
+    - Remove cvs-{localedata,iso4217,iso639,tzdata}.diff,
+    - Remove from forward-backward-collation.diff a chunk merged upstream.
 
  -- Clint Adams <schizo@debian.org>  Mon,  6 Mar 2006 16:49:38 -0500
 
