@@ -10,6 +10,7 @@ glibc (2.3.999-2) UNRELEASED; urgency=low
     - Remove tst-setcontext_c.diff (merged upstream).
     - Remove glibc-manual-memory.diff (merged upstream).
     - Remove glibc-manual-string.diff (merged upstream).
+    - Remove divdi3-moddi3.diff (merged upstream).
     - debian/shlibver: Bump up to 2.4-1.
 
  -- Clint Adams <schizo@debian.org>  Mon,  6 Mar 2006 16:49:38 -0500

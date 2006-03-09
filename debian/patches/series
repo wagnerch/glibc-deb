@@ -74,7 +74,6 @@ i386-amd64-biarch.diff -p1
 #eh-frame-terminator.diff -p1
 #powerpc-socket-weakalias.diff -p0
 #arm-socket-weakalias.diff -p0
-#divdi3-moddi3.diff -p0
 #powerpc-executable-got.diff -p0
 #ctan.diff -p0
 #glibc235-nis-netgrp.diff
