@@ -4,7 +4,8 @@ glibc (2.3.999-2) UNRELEASED; urgency=low
     - Remove sparc-socket-weakalias.diff (merged upstream).
     - Remove glibc235-dash.diff (merged upstream).
     - Remove glibc235-gcc4-sparc-inline.diff (merged upstream).
-    - Remove debian/patches/regcomp_c.diff (merged upstream).
+    - Remove regcomp_c.diff (merged upstream).
+    - Remove glibc235-gcc4-sparc-mv8.diff (merged upstream).
 
  -- Clint Adams <schizo@debian.org>  Mon,  6 Mar 2006 16:49:38 -0500
 
