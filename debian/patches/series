@@ -1,5 +1,3 @@
-localedata/cvs-localedata.diff -p0
-cvs-tzdata.diff -p0
 localedata/locale-de_CH.diff -p1
 locale-ru_RU.diff -p1
 localedata/locale-eo_EO.diff -p1
@@ -65,8 +63,6 @@ glibc235-gcc4-ppc-procfs.diff -p0
 #glibc235-hppa-sysdeps.diff -p1
 #glibc235-gcc4-alpha-profile.diff -p0
 #glibc235-gcc34-m68k-seccomment.diff -p0
-locale/cvs-iso4217.diff -p0
-locale/cvs-iso639.diff -p0
 locale/iso4217-RON.diff -p0
 localedata/locale-ro_RO.diff -p0
 #glibc235-gcc4-hppa-profile.diff -p0
@@ -84,7 +80,6 @@ i386-amd64-biarch.diff -p1
 #glibc235-nis-netgrp.diff
 localedata/locale-ku_TR.diff -p0
 #localedata/discard-dz_BT.diff	# not needed when complex-collate is applied
-locale/complex-collate.diff
 locale/fix-exhausted-memory.diff
 #locale/check-unknown-symbols.diff	# locales have to be fixed first
 locale/fix-LC_COLLATE-rules.diff
