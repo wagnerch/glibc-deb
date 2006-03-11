@@ -13,6 +13,7 @@ glibc (2.3.999-2) UNRELEASED; urgency=low
     - Remove glibc-manual-string.diff (merged upstream).
     - Remove divdi3-moddi3.diff (merged upstream).
     - Remove glibc235-gcc4-elf.diff (merged upstream).
+    - Remove everything to do with nscd_nischeck.
     - debian/shlibver: Bump up to 2.4-1.
 
   [ Denis Barbier ]
