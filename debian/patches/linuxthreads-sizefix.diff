@@ -66,9 +66,11 @@ exit 0
 	if __need_struct_pthread_size, instead define lll_lock_t.
 
 
---- glibc-2.3.2-net/linuxthreads/Makefile	4 Oct 2003 11:52:58 -0000	1.1.1.53
-+++ glibc-2.3.2-redhat/linuxthreads/Makefile	4 Oct 2003 12:06:23 -0000	1.32
-@@ -244,15 +244,18 @@ $(addprefix $(objpfx), \
+Index: glibc-2.4/linuxthreads/Makefile
+===================================================================
+--- glibc-2.4.orig/linuxthreads/Makefile	2006-02-28 02:13:34.000000000 -0500
++++ glibc-2.4/linuxthreads/Makefile	2006-03-11 01:00:38.000000000 -0500
+@@ -242,15 +242,18 @@
    $(filter-out $(tests-static) $(tests-reverse) unload, \
      $(tests) $(test-srcs))): $(objpfx)libpthread.so \
  			     $(objpfx)libpthread_nonshared.a
@@ -89,9 +91,11 @@ exit 0
  else
  $(addprefix $(objpfx),$(tests) $(test-srcs)): $(objpfx)libpthread.a
  $(addprefix $(objpfx),$(librt-tests)): $(common-objpfx)rt/librt.a
---- glibc-2.3.2-net/linuxthreads/sysdeps/alpha/tls.h	5 Feb 2003 09:13:41 -0000	1.1.1.4
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/alpha/tls.h	12 Aug 2003 11:35:57 -0000	1.5
-@@ -53,54 +53,76 @@ typedef struct
+Index: glibc-2.4/linuxthreads/sysdeps/alpha/tls.h
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/alpha/tls.h	2005-01-09 15:01:12.000000000 -0500
++++ glibc-2.4/linuxthreads/sysdeps/alpha/tls.h	2006-03-11 01:00:38.000000000 -0500
+@@ -58,54 +58,76 @@
  #  include <sysdep.h>
  
  /* This is the size of the initial TCB.  */
@@ -180,9 +184,11 @@ exit 0
  
  /* Get the thread descriptor definition.  */
  #  include <linuxthreads/descr.h>
---- glibc-2.3.2-net/linuxthreads/sysdeps/i386/tls.h	13 May 2003 19:51:58 -0000	1.1.1.18
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/i386/tls.h	28 Jul 2003 10:42:00 -0000	1.14
-@@ -81,7 +81,14 @@ typedef struct
+Index: glibc-2.4/linuxthreads/sysdeps/i386/tls.h
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/i386/tls.h	2005-01-09 15:01:13.000000000 -0500
++++ glibc-2.4/linuxthreads/sysdeps/i386/tls.h	2006-03-11 01:00:38.000000000 -0500
+@@ -86,7 +86,14 @@
  #  define TLS_INIT_TCB_ALIGN __alignof__ (tcbhead_t)
  
  /* This is the size of the TCB.  */
@@ -198,9 +204,11 @@ exit 0
  
  /* Alignment requirements for the TCB.  */
  #  define TLS_TCB_ALIGN __alignof__ (struct _pthread_descr_struct)
---- glibc-2.3.2-net/linuxthreads/sysdeps/ia64/tls.h	31 Jul 2003 23:17:32 -0000	1.1.1.6
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/ia64/tls.h	31 Jul 2003 23:26:38 -0000	1.5
-@@ -59,7 +59,14 @@ typedef struct
+Index: glibc-2.4/linuxthreads/sysdeps/ia64/tls.h
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/ia64/tls.h	2005-01-09 15:01:13.000000000 -0500
++++ glibc-2.4/linuxthreads/sysdeps/ia64/tls.h	2006-03-11 01:00:38.000000000 -0500
+@@ -65,7 +65,14 @@
  #  define TLS_TCB_SIZE sizeof (tcbhead_t)
  
  /* This is the size we need before TCB.  */
@@ -216,9 +224,11 @@ exit 0
  
  /* Alignment requirements for the TCB.  */
  #  define TLS_TCB_ALIGN __alignof__ (struct _pthread_descr_struct)
---- glibc-2.3.2-net/linuxthreads/sysdeps/powerpc/tls.h	26 Apr 2003 08:30:11 -0000	1.1.1.4
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/powerpc/tls.h	28 Jul 2003 10:42:00 -0000	1.2
-@@ -64,11 +64,19 @@ typedef struct
+Index: glibc-2.4/linuxthreads/sysdeps/powerpc/tls.h
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/powerpc/tls.h	2005-01-09 15:01:14.000000000 -0500
++++ glibc-2.4/linuxthreads/sysdeps/powerpc/tls.h	2006-03-11 01:00:38.000000000 -0500
+@@ -69,11 +69,19 @@
  #  define TLS_TCB_ALIGN		__alignof__ (struct _pthread_descr_struct)
  
  /* This is the size we need before TCB.  */
@@ -240,9 +250,11 @@ exit 0
     TCB + 0x7000 (per the ABI).  This implies that TCB address is
     TP - 0x7000.  As we define TLS_DTV_AT_TP we can
     assume that the pthread_descr is allocated immediately ahead of the
---- glibc-2.3.2-net/linuxthreads/sysdeps/pthread/Makefile	14 Aug 2003 13:32:49 -0000	1.1.1.6
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/pthread/Makefile	14 Aug 2003 14:10:45 -0000	1.8
-@@ -12,3 +12,15 @@ endif
+Index: glibc-2.4/linuxthreads/sysdeps/pthread/Makefile
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/pthread/Makefile	2003-08-13 20:14:22.000000000 -0400
++++ glibc-2.4/linuxthreads/sysdeps/pthread/Makefile	2006-03-11 01:00:38.000000000 -0500
+@@ -12,3 +12,15 @@
  ifeq ($(subdir),posix)
  CFLAGS-confstr.c += -DLIBPTHREAD_VERSION="\"$(shell sed 's/\(.*\) by .*/\1/' ../linuxthreads/Banner)\""
  endif
@@ -258,8 +270,10 @@ exit 0
 +	@echo '#define NPTL_STRUCT_PTHREAD_SIZE 0' > $@
 +endif
 +endif
---- glibc-2.3.2-net/linuxthreads/sysdeps/pthread/nptl-struct-pthread.sym 1 Jan 1970 00:00:00 -0000
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/pthread/nptl-struct-pthread.sym	28 Jul 2003 10:42:00 -0000	1.1
+Index: glibc-2.4/linuxthreads/sysdeps/pthread/nptl-struct-pthread.sym
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ glibc-2.4/linuxthreads/sysdeps/pthread/nptl-struct-pthread.sym	2006-03-11 01:00:38.000000000 -0500
 @@ -0,0 +1,13 @@
 +#ifdef HAVE_TLS_SUPPORT
 +# ifndef HAVE_FORCED_UNWIND
@@ -274,9 +288,11 @@ exit 0
 +#ifdef HAVE_TLS_SUPPORT
 +NPTL_STRUCT_PTHREAD_SIZE	sizeof (struct pthread)
 +#endif
---- glibc-2.3.2-net/linuxthreads/sysdeps/s390/tls.h	5 Feb 2003 09:13:41 -0000	1.1.1.3
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/s390/tls.h	28 Jul 2003 10:42:00 -0000	1.3
-@@ -72,7 +72,14 @@ typedef struct
+Index: glibc-2.4/linuxthreads/sysdeps/s390/tls.h
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/s390/tls.h	2005-01-09 15:01:14.000000000 -0500
++++ glibc-2.4/linuxthreads/sysdeps/s390/tls.h	2006-03-11 01:00:38.000000000 -0500
+@@ -77,7 +77,14 @@
  #  define TLS_INIT_TCB_ALIGN __alignof__ (tcbhead_t)
  
  /* This is the size of the TCB.  */
@@ -292,9 +308,11 @@ exit 0
  
  /* Alignment requirements for the TCB.  */
  #  define TLS_TCB_ALIGN __alignof__ (struct _pthread_descr_struct)
---- glibc-2.3.2-net/linuxthreads/sysdeps/sh/tls.h	3 Mar 2003 11:22:41 -0000	1.1.1.8
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/sh/tls.h	28 Jul 2003 10:42:00 -0000	1.2
-@@ -64,7 +64,14 @@ typedef struct
+Index: glibc-2.4/linuxthreads/sysdeps/sh/tls.h
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/sh/tls.h	2005-11-11 19:49:59.000000000 -0500
++++ glibc-2.4/linuxthreads/sysdeps/sh/tls.h	2006-03-11 01:00:38.000000000 -0500
+@@ -76,7 +76,14 @@
  #  define TLS_TCB_SIZE sizeof (tcbhead_t)
  
  /* This is the size we need before TCB.  */
@@ -310,9 +328,11 @@ exit 0
  
  /* Alignment requirements for the TCB.  */
  #  define TLS_TCB_ALIGN __alignof__ (struct _pthread_descr_struct)
---- glibc-2.3.2-net/linuxthreads/sysdeps/sparc/tls.h	5 Feb 2003 09:13:41 -0000	1.1.1.3
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/sparc/tls.h	2 Sep 2003 11:54:06 -0000	1.2
-@@ -64,7 +64,14 @@ typedef struct
+Index: glibc-2.4/linuxthreads/sysdeps/sparc/tls.h
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/sparc/tls.h	2005-01-09 15:01:15.000000000 -0500
++++ glibc-2.4/linuxthreads/sysdeps/sparc/tls.h	2006-03-11 01:00:38.000000000 -0500
+@@ -69,7 +69,14 @@
  #  define TLS_INIT_TCB_ALIGN __alignof__ (tcbhead_t)
  
  /* This is the size of the TCB.  */
@@ -328,9 +348,11 @@ exit 0
  
  /* Alignment requirements for the TCB.  */
  #  define TLS_TCB_ALIGN __alignof__ (struct _pthread_descr_struct)
---- glibc-2.3.2-net/linuxthreads/sysdeps/x86_64/tls.h	18 Jun 2003 17:37:28 -0000	1.1.1.4
-+++ glibc-2.3.2-redhat/linuxthreads/sysdeps/x86_64/tls.h	28 Jul 2003 10:42:00 -0000	1.2
-@@ -63,7 +63,14 @@ typedef struct
+Index: glibc-2.4/linuxthreads/sysdeps/x86_64/tls.h
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/x86_64/tls.h	2005-01-09 15:01:15.000000000 -0500
++++ glibc-2.4/linuxthreads/sysdeps/x86_64/tls.h	2006-03-11 01:00:38.000000000 -0500
+@@ -71,7 +71,14 @@
  #  define TLS_INIT_TCB_ALIGN __alignof__ (tcbhead_t)
  
  /* This is the size of the TCB.  */
@@ -346,9 +368,11 @@ exit 0
  
  /* Alignment requirements for the TCB.  */
  #  define TLS_TCB_ALIGN __alignof__ (struct _pthread_descr_struct)
---- glibc-2.3.2/nptl/Makefile	2005-04-16 23:01:34.000000000 +0900
-+++ glibc-2.3.2-gotom/nptl/Makefile	2005-04-16 23:03:14.000000000 +0900
-@@ -499,15 +499,19 @@
+Index: glibc-2.4/nptl/Makefile
+===================================================================
+--- glibc-2.4.orig/nptl/Makefile	2006-02-28 04:36:05.000000000 -0500
++++ glibc-2.4/nptl/Makefile	2006-03-11 01:00:38.000000000 -0500
+@@ -519,15 +519,19 @@
      $(tests) $(xtests) $(test-srcs))): $(objpfx)libpthread.so \
  				       $(objpfx)libpthread_nonshared.a
  $(objpfx)tst-unload: $(common-objpfx)dlfcn/libdl.so
@@ -370,8 +394,10 @@ exit 0
  else
  $(addprefix $(objpfx),$(tests) $(test-srcs)): $(objpfx)libpthread.a
  endif
---- glibc-2.3.2-net/nptl/descr.h	28 Jul 2003 10:05:59 -0000	1.1.1.16
-+++ glibc-2.3.2-redhat/nptl/descr.h	28 Jul 2003 10:42:00 -0000	1.2
+Index: glibc-2.4/nptl/descr.h
+===================================================================
+--- glibc-2.4.orig/nptl/descr.h	2006-02-24 02:28:57.000000000 -0500
++++ glibc-2.4/nptl/descr.h	2006-03-11 01:00:38.000000000 -0500
 @@ -27,9 +27,13 @@
  #include <sys/types.h>
  #include <hp-timing.h>
@@ -386,3 +412,25 @@ exit 0
  #include "../nptl_db/thread_db.h"
  #include <tls.h>
  #ifdef HAVE_FORCED_UNWIND
+Index: glibc-2.4/linuxthreads/sysdeps/pthread/bits/pthreadtypes.h
+===================================================================
+--- glibc-2.4.orig/linuxthreads/sysdeps/pthread/bits/pthreadtypes.h	2006-03-11 01:05:57.000000000 -0500
++++ glibc-2.4/linuxthreads/sysdeps/pthread/bits/pthreadtypes.h	2006-03-11 01:10:02.000000000 -0500
+@@ -149,4 +149,17 @@
+ /* Thread identifiers */
+ typedef unsigned long int pthread_t;
+ 
++#if __WORDSIZE == 64
++typedef struct __pthread_internal_list
++{
++  struct __pthread_internal_list *__prev;
++  struct __pthread_internal_list *__next;
++} __pthread_list_t;
++#else
++typedef struct __pthread_internal_slist
++{
++  struct __pthread_internal_slist *__next;
++} __pthread_slist_t;
++#endif
++
+ #endif	/* bits/pthreadtypes.h */
