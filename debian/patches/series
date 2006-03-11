@@ -49,7 +49,7 @@ localedata/locale-eu_FR.diff -p0
 #glibc234-alpha-xstat.diff -p0
 #glibc234-hppa-linesep.diff -p0
 #glibc234-hppa-remove-mallocdef.diff -p0		# g: this should be replaced by Carlos' new patch.
-#linuxthreads-sizefix.diff -p1
+linuxthreads-sizefix.diff -p1
 #glibc232-tls-crashfix.diff -p1
 glibc23-mips-lazy-eval.diff -p2
 glibc235-gcc4-wcstol_l.diff -p1
@@ -58,7 +58,7 @@ glibc235-gcc4-ppc-procfs.diff -p0
 #glibc235-gcc4-mips-inline.diff -p0
 #glibc235-gcc4-mips-sysdeps.diff -p0
 #hurd-ioctl-pfinet.diff -p0
-#glibc235-hppa-lt.diff -p1
+glibc235-hppa-lt.diff -p1
 #glibc235-hppa-sysdeps.diff -p1
 #glibc235-gcc4-alpha-profile.diff -p0
 #glibc235-gcc34-m68k-seccomment.diff -p0
