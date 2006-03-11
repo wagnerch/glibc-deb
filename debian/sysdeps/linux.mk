@@ -1,5 +1,4 @@
-#GLIBC_OVERLAYS ?= $(shell ls glibc-linuxthreads* glibc-ports* glibc-libidn*)
-GLIBC_OVERLAYS ?= $(shell ls glibc-ports* glibc-libidn*)
+GLIBC_OVERLAYS ?= $(shell ls glibc-linuxthreads* glibc-ports* glibc-libidn*)
 MIN_KERNEL_SUPPORTED := 2.2.0
 libc = libc6
 
@@ -22,8 +21,7 @@ endif
 
 # Linuxthreads Config
 threads = yes
-#libc_add-ons = linuxthreads $(add-ons)
-libc_add-ons = $(add-ons)
+libc_add-ons = linuxthreads $(add-ons)
 
 ifndef LINUX_SOURCE
   LINUX_HEADERS := /usr/include
