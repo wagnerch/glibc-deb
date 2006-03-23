@@ -21,7 +21,7 @@ Priority: optional
 Conflicts: libc-doc
 Replaces: libc-doc
 Provides: libc-doc
-Recommands: @glibc@-doc-reference
+Recommends: @glibc@-doc-reference
 Description: GNU C Library: Documentation
  Contains man pages for libpthread functions and the complete GNU C Library
  ChangeLog.  The GNU C Library Reference manual has been moved into
