@@ -21,6 +21,9 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - Remove complex-collate.diff (merged upstream).
     - Remove cvs-{localedata,iso4217,iso639,tzdata}.diff,
     - Remove from forward-backward-collation.diff a chunk merged upstream.
+    - debian/rules.d/tarball.mk: glibc-<foo>-2.4.tar.bz2 add-on unpacks
+      into either <foo> or glibc-<foo>-2.4, in which case it is renamed
+      into <foo>.
 
  -- Clint Adams <schizo@debian.org>  Mon,  6 Mar 2006 16:49:38 -0500
 
