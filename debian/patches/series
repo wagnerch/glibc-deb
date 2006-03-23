@@ -115,6 +115,7 @@ localedata/sort-UTF8-first.diff -p0
 hurd-ioctl-decode-argument.diff -p0
 ld-multiarch.diff -p1
 ldconfig-multiarch.diff -p1
+remove-manual.diff
 #rtld.diff -p1
 #resource_h.diff -p1
 #hppa-inlining.diff -p1
