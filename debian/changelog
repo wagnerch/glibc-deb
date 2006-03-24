@@ -28,6 +28,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
       not DFSG-free.  (Closes: #181494)
       The whole glibc-2.4/manual directory is removed from glibc-2.4.tar.bz2.
     - debian/control: Drop Build-Depends: texinfo, texi2html.
+    - debian/control: Drop references to the antique libc-doc package.
 
  -- Clint Adams <schizo@debian.org>  Mon,  6 Mar 2006 16:49:38 -0500
 

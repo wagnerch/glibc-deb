@@ -18,9 +18,6 @@ Package: @glibc@-doc
 Architecture: all
 Section: doc
 Priority: optional
-Conflicts: libc-doc
-Replaces: libc-doc
-Provides: libc-doc
 Recommends: @glibc@-doc-reference
 Description: GNU C Library: Documentation
  Contains man pages for libpthread functions and the complete GNU C Library
