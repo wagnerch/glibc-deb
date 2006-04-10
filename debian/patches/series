@@ -53,7 +53,6 @@ linuxthreads-sizefix.diff -p1
 #glibc232-tls-crashfix.diff -p1
 glibc23-mips-lazy-eval.diff -p2
 glibc235-gcc4-wcstol_l.diff -p1
-glibc235-gcc4-ppc-procfs.diff -p0
 #glibc235-gcc4-arm-inline.diff -p1
 #glibc235-gcc4-mips-inline.diff -p0
 #glibc235-gcc4-mips-sysdeps.diff -p0
@@ -66,6 +65,7 @@ locale/iso4217-RON.diff -p0
 localedata/locale-ro_RO.diff -p0
 #glibc235-gcc4-hppa-profile.diff -p0
 glibc235-dl-execstack.diff -p0
+amd64-i386-biarch.diff -p1
 i386-amd64-biarch.diff -p1
 #hppa-iitlbp.diff -p1
 #hppa-fenv-align.diff -p1
@@ -102,8 +102,10 @@ localedata/new-catalan-locales.diff
 localedata/locale-csb_PL.diff
 localedata/locale-te_IN.diff
 localedata/locale-nr_ZA.diff
+localedata/locale-en_NZ.diff
 localedata/dz_BT-collation.diff
 localedata/update-ZA.diff
+localedata/locale-ia.diff
 localedata/tailor-iso14651_t1.diff -p0
 localedata/fix-lang.diff
 localedata/fix-unknown-symbols.diff
@@ -121,5 +123,6 @@ remove-manual.diff
 #hppa-inlining.diff -p1
 strfmon.diff
 #argp_h.diff -p1
-getcwd_ia64.diff -p1
+getcwd_c.diff -p1
+siginfo_h.diff -p1
 

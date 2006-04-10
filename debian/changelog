@@ -38,6 +38,30 @@ glibc (2.4-1) UNRELEASED; urgency=low
   
  -- Clint Adams <schizo@debian.org>  Mon,  6 Mar 2006 16:49:38 -0500
 
+glibc (2.3.6-5) unstable; urgency=low
+
+  [ Denis Barbier ]
+  * Add am_pm formatting information to en_NZ.  (Closes: #356328)
+  * Add interlingua locale.  (Closes: #224756)
+  * Move locale variables from /etc/environment into a dedicated
+    /etc/default/locale file.  (Closes: #214898, #349503)
+  * Add a new /usr/sbin/update-locale program to handle this new file.
+
+  [ Aurelien Jarno ]
+  * Fix ldconfig multiarch patch for reiserfs filesystems.
+  * Make ldconfig look into /lib32 and /usr/lib32 on amd64. Add /lib32 ->
+    /emul/ia32-linux/lib and /usr/lib32 -> /emul/ia32-linux/usr/lib links.
+  * Remove glibc235-gcc4-ppc-procfs.diff from debian/patches/series.
+    (Closes: #360126)
+  * Add siginfo_h.diff (fixes a typo in ILL_ILLOPN definition), backported
+    from upstream.  (Closes: #358041)
+  * Replace getcwd_ia64.diff by getcwd_c.diff (fix getcwd on platforms where
+    PAGE_SIZE >> PATH_MAX), backported from upstream.  (Closes: #355109)
+  * debian/control: drop alternative build-depends on ia32-libs-dev as this
+    package does not exist anymore.
+
+ -- Denis Barbier <barbier@debian.org>  Tue,  4 Apr 2006 18:07:21 +0200
+
 glibc (2.3.6-4) unstable; urgency=low
 
   [ Aurelien Jarno ]
