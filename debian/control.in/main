@@ -9,10 +9,29 @@ Build-Depends: gettext, make (>= 3.80-1), dpkg-dev (>= 1.13.5), bzip2, file,
  autoconf, sed (>= 4.0.5-4), gawk, debhelper (>= 4.1.76),
  libc6-dev-amd64 [i386], libc6-dev-ppc64 [powerpc], libc6-dev-i386 [amd64], libc6-dev-powerpc [ppc64],
  quilt
-Build-Depends-Indep: perl, po-debconf
+Build-Depends-Indep: perl, po-debconf (>= 1.0)
 Maintainer: GNU Libc Maintainers <debian-glibc@lists.debian.org>
 Uploaders: Ben Collins <bcollins@debian.org>, GOTO Masanori <gotom@debian.org>, Philip Blundell <pb@nexus.co.uk>, Jeff Bailey <jbailey@raspberryginger.com>, Daniel Jacobowitz <dan@debian.org>, Clint Adams <schizo@debian.org>, Denis Barbier <barbier@debian.org>, Aurelien Jarno <aurel32@debian.org>
 Standards-Version: 3.6.2
+
+Package: libc-bin
+Architecture: any
+Section: libs
+Priority: required
+Depends: @libc@ (>= ${Source-Version})
+Replaces: libc0.1, libc0.3, libc6, libc6.1
+Description: GNU C Library: Binaries
+ Contains the binary programs needed by the standard C library.
+
+Package: libc-dev-bin
+Architecture: any
+Section: libdevel
+Priority: required
+Depends: @libc@ (>= ${Source-Version})
+Replaces: libc0.1-dev, libc0.3-dev, libc6-dev, libc6.1-dev
+Description: GNU C Library: Development Binaries
+ Contains the binary programs needed to compile and link programs which 
+ use the standard C library.
 
 Package: @glibc@-doc
 Architecture: all
@@ -40,6 +59,16 @@ Description: GNU C Library: National Language (locale) data [support]
  you to customize which definitions actually get generated. This is a
  savings over how this package used to be, where all locales were generated
  by default. This created a package that unpacked to an excess of 30 megs.
+
+Package: tzdata
+Architecture: all
+Section: libs
+Priority: required
+Depends: libc-bin (>= ${Source-Version})
+Replaces: libc0.1, libc0.3, libc6, libc6.1
+Description: GNU C Library: Timezone data
+ This package contains data files with rules for various timezones around
+ the world.
 
 Package: nscd
 Architecture: @threads_archs@

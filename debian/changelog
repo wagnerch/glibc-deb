@@ -38,6 +38,31 @@ glibc (2.4-1) UNRELEASED; urgency=low
   
  -- Clint Adams <schizo@debian.org>  Mon,  6 Mar 2006 16:49:38 -0500
 
+ glibc (2.3.6-6) UNRELEASED; urgency=low
+ 
+   [ Aurelien Jarno ]
+   * Split out timezone data in a separate package. It's a first step, it
+     should finally be built from a separate source package.
+   * Split out binaries from libc6 into libc-bin, and binaries from libc6-bin
+     into libc-bin-dev.  (Closes: #330735)
+   * Put each test log file in the corresponding package instead of putting all
+     of them in libc6.
+ 
+   [ Denis Barbier ]
+   * debian/debhelper.in/locales.config: /etc/locale.gen was not generated at
+     initial installation.  (Closes: #357523)
+   * update-locale: Fix buggy sanity check between LANGUAGE and LANG.
+     (Closes: #361091)
+   * Add new Galician debconf translation, by Jacobo Tarrio.  (Closes: #361101)
+   * Use new features of po-debconf 1.0 to remove unneeded strings from PO
+     files.
+ 
+   [ Michael Banck ]
+   * Add hurd-machrules-make.diff (fixes build problems with make-3.81 for
+     Mach interface generation rules) by Roland McGrath (patch from HEAD).
+ 
+  -- Denis Barbier <barbier@debian.org>  Wed,  5 Apr 2006 22:53:28 +0200
+
 glibc (2.3.6-5) unstable; urgency=low
 
   [ Denis Barbier ]
