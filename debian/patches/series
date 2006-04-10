@@ -119,3 +119,7 @@ remove-manual.diff
 #rtld.diff -p1
 #resource_h.diff -p1
 #hppa-inlining.diff -p1
+strfmon.diff
+#argp_h.diff -p1
+getcwd_ia64.diff -p1
+
