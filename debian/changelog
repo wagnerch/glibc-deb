@@ -19,6 +19,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - debian/shlibver: Bump up to 2.4-1.
     - Add any/local-bashisms.diff: fix invalid test operator (==)
       in run-iconv-test.sh
+    - debian/rules.d/build.mk: don't try to build html documentation.
 
   [ Denis Barbier ]
     - Remove complex-collate.diff (merged upstream).
