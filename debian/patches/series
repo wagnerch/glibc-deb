@@ -22,7 +22,6 @@ glibc23-asserth-decls.diff -p0
 glibc23-cmov.diff -p0
 #libgcc-compat-all.diff -p0
 #libgcc-compat-other.diff -p1
-hurd-enable-ldconfig.diff -p1
 #30_glibc232-base.diff -p0	# g: suspended
 50_glibc232-arm-dwarf2-buildfix.diff -p0
 50_glibc232-m68k-dwarf2-buildfix.diff -p0
@@ -122,9 +121,10 @@ any/local-ldconfig-multiarch.diff -p1
 amd64/local-biarch.diff -p1
 
 hurd-i386/cvs-machrules-make.diff -p1
+hurd-i386/local-enable-ldconfig.diff -p1
 hurd-i386/submitted-ioctl-decode-argument.diff -p0
+
+powerpc/local-sysconf.diff -p1
 
 sparc/local-sparcv8-target.diff -p0
 sparc/submitted-timing.diff -p1
-
-powerpc/local-sysconf.diff -p1
