@@ -11,7 +11,6 @@ glibc22-nss-upgrade.diff -p1
 #glibc22-m68k-compat.diff -p1
 #glibc22-m68k-fpic.diff -p1
 glibc22-ttyname-devfs.diff -p0
-powerpc-sysconf.diff -p1
 #arm-no-hwcap.diff -p0
 #librt-mips.diff -p0
 #glibc23-ctype-compat.diff -p1	# g: untilsarge
@@ -67,9 +66,7 @@ i386-amd64-biarch.diff -p1
 #hppa-fenv-align.diff -p1
 #glibc235-hppa-fpu.diff -p1
 #eh-frame-terminator.diff -p1
-#powerpc-socket-weakalias.diff -p0
 #arm-socket-weakalias.diff -p0
-#powerpc-executable-got.diff -p0
 #ctan.diff -p0
 #any/submitted-nis-netgrp.diff
 localedata/locale-ku_TR.diff -p0
@@ -129,3 +126,5 @@ hurd-i386/submitted-ioctl-decode-argument.diff -p0
 
 sparc/local-sparcv8-target.diff -p0
 sparc/submitted-timing.diff -p1
+
+powerpc/local-sysconf.diff -p1
