@@ -46,6 +46,9 @@ glibc (2.3.6-7) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * Urgency set to medium because this version fixes and RC bug in testing.
+  * Bumped the minimum kernel to 2.4.1 instead of 2.4.0 as there are some
+    important new features in this version. Thanks to Petr Salinger for
+    noticing me.
   * debian/sysdeps/sparc.mk: build sparcv9b optimized libraries with
     -mtune=ultrasparc3.
 
@@ -60,6 +63,15 @@ glibc (2.3.6-7) unstable; urgency=medium
      into libc-bin-dev.  (Closes: #330735)
    * Put each test log file in the corresponding package instead of putting all
      of them in libc6.
+   * Switch minimum kernel to at least 2.4.0 on all arches but m68k, and change
+     kernelcheck.sh accordingly. Affected architectures:
+     - alpha: from 2.2.0 to 2.4.0
+     - arm: from 2.2.0 to 2.4.0 (but 2.4.0 was checked at installed time)
+     - i386: from 2.2.0 to 2.4.0
+     - powerpc: from 2.2.0 to 2.4.0
+     - s390: from 2.2.10 to 2.4.0
+     - sparc: from 2.2.0 to 2.4.0
+     (Closes: #174270, #220992)
    * Fix a typo in the description of the libc6-sparcv9 and libc6-sparcv9b
      packages.
  
