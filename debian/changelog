@@ -60,6 +60,8 @@ glibc (2.3.6-7) unstable; urgency=medium
      into libc-bin-dev.  (Closes: #330735)
    * Put each test log file in the corresponding package instead of putting all
      of them in libc6.
+   * Fix a typo in the description of the libc6-sparcv9 and libc6-sparcv9b
+     packages.
  
    [ Denis Barbier ]
    * debian/debhelper.in/locales.config: /etc/locale.gen was not generated at
