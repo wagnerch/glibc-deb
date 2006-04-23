@@ -17,20 +17,6 @@
 # DP: Status Details: We apply for a while (until sarge is released)
 # DP: Date: 2002-12-19
 
-if [ $# -ne 2 ]; then
-    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-    exit 1
-fi
-case "$1" in
-    -patch) patch -d "$2" -f --no-backup-if-mismatch -p1 < $0;;
-    -unpatch) patch -d "$2" -f --no-backup-if-mismatch -R -p1 < $0;;
-    *)
-	echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-	exit 1
-esac
-exit 0
-
-# append the patch here and adjust the -p? flag in the patch calls.
 --- glibc-2.3.1-cygnus/posix/Versions	2002-12-19 00:13:27.000000000 +0900
 +++ glibc-2.3.1-redhat/posix/Versions	2002-12-19 00:14:34.000000000 +0900
 @@ -3,6 +3,9 @@

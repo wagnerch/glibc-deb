@@ -8,21 +8,6 @@
 # DP: Status Details: to be merged by Carlos
 # DP: Date: Sun, 15 Jan 2006
 
-PATCHLEVEL=1
-
-if [ $# -ne 2 ]; then
-    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-    exit 1
-fi
-case "$1" in
-    -patch) patch -d "$2" -f --no-backup-if-mismatch -p$PATCHLEVEL < $0;;
-    -unpatch) patch -d "$2" -f --no-backup-if-mismatch -R -p$PATCHLEVEL < $0;;
-    *)
-	echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-	exit 1
-esac
-exit 0
-
 # append the patch here and adjust the -p? flag in the patch calls.
 diff -uNr glibc-2.3.5/sysdeps/hppa/fpu.orig/fegetenv.c glibc-2.3.5/sysdeps/hppa/fpu/fegetenv.c
 --- glibc-2.3.5/sysdeps/hppa/fpu.orig/fegetenv.c	2006-01-14 10:17:19.000000000 -0800

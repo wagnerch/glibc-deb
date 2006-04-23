@@ -12,7 +12,6 @@ glibc22-nss-upgrade.diff -p1
 #glibc22-m68k-fpic.diff -p1
 glibc22-ttyname-devfs.diff -p0
 #arm-no-hwcap.diff -p0
-#librt-mips.diff -p0
 #glibc23-ctype-compat.diff -p1	# g: untilsarge
 glibc23-hppa-Rminkernel.diff -p0
 #glibc23-function-compat.diff -p1	# g: untilsarge
@@ -30,7 +29,6 @@ glibc23-cmov.diff -p0
 #arm-float-byteorder.diff -p0
 #glibc-make-check-perms.diff -p1	# g: suspended
 glibc-2.3.2-ldconfig-tls.diff -p1
-#glibc23-mips-msq.diff -p0
 #ldso-disable-hwcap.diff -p0
 #glibc23-version-sanity.diff -p1
 #glibc23-sse-oldkernel.diff -p0
@@ -46,11 +44,8 @@ localedata/locale-eu_FR.diff -p0
 #glibc234-hppa-remove-mallocdef.diff -p0		# g: this should be replaced by Carlos' new patch.
 linuxthreads-sizefix.diff -p1
 #glibc232-tls-crashfix.diff -p1
-glibc23-mips-lazy-eval.diff -p2
 glibc235-gcc4-wcstol_l.diff -p1
 #glibc235-gcc4-arm-inline.diff -p1
-#glibc235-gcc4-mips-inline.diff -p0
-#glibc235-gcc4-mips-sysdeps.diff -p0
 #hurd-ioctl-pfinet.diff -p0
 glibc235-hppa-lt.diff -p1
 #glibc235-hppa-sysdeps.diff -p1
@@ -123,6 +118,12 @@ amd64/local-biarch.diff -p1
 hurd-i386/cvs-machrules-make.diff -p1
 hurd-i386/local-enable-ldconfig.diff -p1
 hurd-i386/submitted-ioctl-decode-argument.diff -p0
+
+mips/local-lazy-eval.diff -p2
+#mips/local-librt.diff -p0
+#mips/submitted-msq.diff -p0
+#mips/cvs-gcc4-inline.diff -p0
+#mips/cvs-gcc4-sysdeps.diff -p0
 
 powerpc/local-sysconf.diff -p1
 
