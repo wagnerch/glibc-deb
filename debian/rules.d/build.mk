@@ -104,9 +104,12 @@ $(stamp)install_%: $(stamp)check_%
 	if [ $(curpass) = libc ]; then \
 	  $(MAKE) -f debian/generate-supported.mk IN=$(DEB_SRCDIR)/localedata/SUPPORTED \
 	    OUT=debian/tmp-$(curpass)/usr/share/i18n/SUPPORTED; \
-	  $(MAKE) -C $(DEB_SRCDIR)/localedata -j $(NJOBS) \
+	  $(MAKE) -C $(DEB_BUILDDIR) -j $(NJOBS) \
 	    objdir=$(DEB_BUILDDIR) install_root=$(CURDIR)/debian/tmp-$(curpass) \
-	    install-locales; \
+	    localedata/install-locales; \
+	  rm -rf $(CURDIR)/debian/locales-all/usr/lib; \
+	  install -d $(CURDIR)/debian/locales-all/usr/lib; \
+	  mv $(CURDIR)/debian/tmp-libc/usr/lib/locale $(CURDIR)/debian/locales-all/usr/lib/locales-all; \
 	  (cd $(DEB_SRCDIR)/manual && texi2html -split_chapter libc.texinfo); \
 	fi
 
