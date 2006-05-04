@@ -9,3 +9,4 @@ mkdir -p debian/$(curpass)/usr/hppa64-linux-gnu
 ln -sf /usr/include debian/$(curpass)/usr/hppa64-linux-gnu/include
 endef
 
+libc_extra_config_options = $(extra_config_options) --without-__thread --disable-sanity-checks

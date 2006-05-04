@@ -5,3 +5,4 @@ MIN_KERNEL_SUPPORTED := 2.2.0
 CC = gcc-3.4
 BUILD_CC = gcc-3.4
 
+libc_extra_config_options = $(extra_config_options) --without-__thread --disable-sanity-checks
