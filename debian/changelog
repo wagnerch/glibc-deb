@@ -33,6 +33,12 @@ glibc (2.4-1) UNRELEASED; urgency=low
       The whole glibc-2.4/manual directory is removed from glibc-2.4.tar.bz2.
     - debian/control: Drop Build-Depends: texinfo, texi2html.
     - debian/control: Drop references to the antique libc-doc package.
+  * Ship a new locales-all package with all supported locales precompiled.
+    Let locales-all Provides: locales instead of a virtual generated-locales
+    package.  This is requested by Jeroen van Wolffelaar to allow this new
+    package enter unstable.  Packages which Build-Depends on locales are
+    likely to FTBFS if locales-all is installed, this dependency will be
+    fixed in a later release.  (Closes: #308020)
 
   [ Michael Banck ]
   * debian/sysdeps/hurd.mk: Only use libidn for add-ons.
