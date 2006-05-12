@@ -23,6 +23,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - debian/sysdeps/hppa.mk: build with linuxthreads instead of NPTL
     - debian/sysdeps/ia64.mk: build with linuxthreads instead of NPTL
     - debian/sysdeps/m68k.mk: build with linuxthreads instead of NPTL
+    - debian/sysdeps/mips.mk: build with linuxthreads instead of NPTL
 
   [ Denis Barbier ]
     - Remove complex-collate.diff (merged upstream).
