@@ -17,22 +17,28 @@ $(stamp)binaryinst_$(libc)-pic:: $(stamp)debhelper
 	install --mode=0644 build-tree/$(DEB_HOST_ARCH)-libc/libresolv.map debian/$(libc)-pic/usr/lib/libresolv_pic.map
 
 # Some per-package extra files to install.
-define libc-bin_debhelper_pkg_install
+define $(libc)_extra_debhelper_pkg_install
+	install --mode=0644 $(DEB_SRCDIR)/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/changelog
+	install --mode=0644 $(DEB_SRCDIR)/linuxthreads/README debian/$(curpass)/usr/share/doc/$(curpass)/README.linuxthreads
+	install --mode=0644 $(DEB_SRCDIR)/linuxthreads/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/ChangeLog.linuxthreads
+	case " $(GLIBC_PASSES) " in \
+	*" nptl "*) \
+	  install --mode=0644 $(DEB_SRCDIR)/nptl/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/ChangeLog.nptl; \
+	  ;; \
+	esac
 	sed -e "/KERNEL_VERSION_CHECK/r debian/script.in/kernelcheck.sh" \
 		debian/local/etc_init.d/glibc.sh | \
 		sed -e "s/EXIT_CHECK/sleep 5/" -e "s/DEB_HOST_ARCH/$(DEB_HOST_ARCH)/" > debian/glibc.sh.generated
 	install --mode=0755 debian/glibc.sh.generated debian/$(curpass)/etc/init.d/glibc.sh
 	# dh_installmanpages thinks that .so is a language.
 	install --mode=0644 debian/local/manpages/ld.so.8 debian/$(curpass)/usr/share/man/man8/ld.so.8
+
 	install --mode=0644 debian/FAQ debian/$(curpass)/usr/share/doc/$(curpass)/README.Debian
-	install --mode=0644 $(DEB_SRCDIR)/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/changelog
-	install --mode=0644 $(DEB_SRCDIR)/linuxthreads/README debian/$(curpass)/usr/share/doc/$(curpass)/README.linuxthreads
-	install --mode=0644 $(DEB_SRCDIR)/linuxthreads/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/ChangeLog.linuxthreads
-	install --mode=0644 $(DEB_SRCDIR)/nptl/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/ChangeLog.nptl 
 endef
 
 define locales_extra_debhelper_pkg_install
 	install --mode=0644 $(DEB_SRCDIR)/localedata/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/changelog
+	install --mode=0644 debian/locales.NEWS.Debian debian/$(curpass)/usr/share/doc/locales/NEWS.Debian
 endef
 
 define glibc-doc_extra_debhelper_pkg_install
@@ -56,20 +62,11 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGUL
 	dh_installdirs -p$(curpass)
 	dh_install -p$(curpass)
 	dh_installman -p$(curpass)
+	dh_installinfo -p$(curpass)
 	dh_installdebconf -p$(curpass)
-	case $(curpass) in \
-	  $(libc)*-bin) \
-	    dh_installchangelogs -p$(curpass) ; \
-	    dh_installdocs -p$(curpass) ;; \
-	  $(libc)-dev*) \
-	    dh_link -p$(curpass) usr/share/doc/libc-dev-bin usr/share/doc/$(curpass) ;; \
-	  $(libc)-* | $(libc)) \
-	    dh_link -p$(curpass) usr/share/doc/libc-bin usr/share/doc/$(curpass) ;; \
-	  *) \
-	    dh_installchangelogs -p$(curpass) ; \
-	    dh_installdocs -p$(curpass) ;; \
-	esac
+	dh_installchangelogs -p$(curpass)
 	dh_installinit -p$(curpass)
+	dh_installdocs -p$(curpass) 
 	dh_link -p$(curpass)
 
 	# extra_debhelper_pkg_install is used for debhelper.mk only.
@@ -180,12 +177,6 @@ $(stamp)debhelper:
 	for x in `find debian/debhelper.in -type f -maxdepth 1`; do \
 	  y=debian/`basename $$x`; \
 	  z=`echo $$y | sed -e 's#/libc#/$(libc)#'`; \
-	  case $$y in \
-	    debian/libc-bin* | debian/libc-dev-bin*) \
-	      z=$$y ;; \
-	    *) \
-	      z=`echo $$y | sed -e 's#/libc#/$(libc)#'` ;; \
-          esac; \
 	  cp $$x $$z; \
 	  sed -e "s#TMPDIR#debian/tmp-libc#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
@@ -193,8 +184,10 @@ $(stamp)debhelper:
 	  sed -e "s#CURRENT_VER#$(DEB_VERSION)#" -i $$z; \
 	  sed -e "/KERNEL_VERSION_CHECK/r debian/script.in/kernelcheck.sh" -i $$z; \
 	  sed -e "s#EXIT_CHECK##" -i $$z; \
+	  sed -e "s#DEB_HOST_ARCH#$(DEB_HOST_ARCH)#" -i $$z; \
 	  case $$z in \
 	    *.install) sed -e "s/^#.*//" -i $$z ;; \
+	    debian/$(libc).preinst) l=`grep ^RTLDLIST= debian/tmp-libc/usr/bin/ldd | sed -e 's/^RTLDLIST=//'`; sed -e "s#RTLDLIST#$$l#" -i $$z ;; \
 	  esac; \
 	done
 
@@ -214,29 +207,30 @@ $(stamp)debhelper:
 	    cp debian/debhelper.in/libc-alt.install $$z; \
 	    zd=debian/$(libc)-dev-$$x.install; \
 	    cp debian/debhelper.in/libc-alt-dev.install $$zd; \
-	    sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$zd; \
-	    sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$zd; \
+	    sed -e "s#TMPDIR#debian/tmp-$$x#g" -i $$zd; \
+	    sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#g" -i $$zd; \
 	    sed -e "s#LIBC#$(libc)#" -i $$z; \
-	    sed -e "s#FLAVOR#$$x#" -i $$z; \
 	    sed -e "s#LIBDIR#$$libdir#g" -i $$zd; \
-	    sed -e "s/^#.*//" -i $$zd; \
+	    sed -e "s/^#.*//g" -i $$zd; \
 	    ;; \
 	  *) \
 	    cp debian/debhelper.in/libc-otherbuild.install $$z; \
 	    cp debian/debhelper.in/libc-otherbuild.preinst debian/$(libc)-$$x.preinst ; \
 	    cp debian/debhelper.in/libc-otherbuild.postinst debian/$(libc)-$$x.postinst ; \
 	    cp debian/debhelper.in/libc-otherbuild.postrm debian/$(libc)-$$x.postrm ; \
-	    sed -e "s#OPT#$(libc)-$$x#" -i debian/$(libc)-$$x.preinst; \
-	    sed -e "s#OPT#$(libc)-$$x#" -i debian/$(libc)-$$x.postinst; \
-	    sed -e "s#OPT#$(libc)-$$x#" -i debian/$(libc)-$$x.postrm; \
-	    sed -e "s#CURRENT_VER#$(DEB_VERSION)#" -i debian/$(libc)-$$x.postinst; \
-	    sed -e "s#CURRENT_VER#$(DEB_VERSION)#" -i debian/$(libc)-$$x.postrm; \
+	    sed -e "s#OPT#$(libc)-$$x#g" -i debian/$(libc)-$$x.preinst; \
+	    sed -e "s#OPT#$(libc)-$$x#g" -i debian/$(libc)-$$x.postinst; \
+	    sed -e "s#OPT#$(libc)-$$x#g" -i debian/$(libc)-$$x.postrm; \
+	    sed -e "s#CURRENT_VER#$(DEB_VERSION)#g" -i debian/$(libc)-$$x.postinst; \
+	    sed -e "s#CURRENT_VER#$(DEB_VERSION)#g" -i debian/$(libc)-$$x.postrm; \
 	    ;; \
 	  esac; \
-	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
-	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
+	  sed -e "s#TMPDIR#debian/tmp-$$x#g" -i $$z; \
+	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#g" -i $$z; \
 	  sed -e "s#SLIBDIR#$$slibdir#g" -i $$z; \
 	  sed -e "s#LIBDIR#$$libdir#g" -i $$z; \
+	  sed -e "s#FLAVOR#$$x#g" -i $$z; \
+	  sed -e "s#LIBC#$(libc)#g" -i $$z; \
 	  sed -e "s/^#.*//" -i $$z; \
 	done
 
@@ -248,12 +242,13 @@ $(stamp)debhelper:
 	for x in $(NPTL); do \
 	  z=debian/$(libc).install; \
 	  cat debian/debhelper.in/libc-otherbuild.install >>$$z; \
-	  sed -e "s#TMPDIR#debian/tmp-$$x#" -i $$z; \
-	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
-	  sed -e "s#FLAVOR#nptl#" -i $$z; \
+	  sed -e "s#TMPDIR#debian/tmp-$$x#g" -i $$z; \
+	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#g" -i $$z; \
+	  sed -e "s#LIBC-FLAVOR#$(libc)#g" -i $$z; \
+	  sed -e "s#FLAVOR#nptl#g" -i $$z; \
 	  sed -e "s#SLIBDIR#/lib/tls#g" -i $$z; \
 	  case $$z in \
-	    *.install) sed -e "s/^#.*//" -i $$z ;; \
+	    *.install) sed -e "s/^#.*//g" -i $$z ;; \
 	  esac; \
 	done
 

@@ -37,29 +37,55 @@ glibc (2.4-1) UNRELEASED; urgency=low
       The whole glibc-2.4/manual directory is removed from glibc-2.4.tar.bz2.
     - debian/control: Drop Build-Depends: texinfo, texi2html.
     - debian/control: Drop references to the antique libc-doc package.
-  * Ship a new locales-all package with all supported locales precompiled.
-    Let locales-all Provides: locales instead of a virtual generated-locales
-    package.  This is requested by Jeroen van Wolffelaar to allow this new
-    package enter unstable.  Packages which Build-Depends on locales are
-    likely to FTBFS if locales-all is installed, this dependency will be
-    fixed in a later release.  (Closes: #308020)
+  * Enable the generation of the new locales-all package.  (Closes: #308020)
 
   [ Michael Banck ]
   * debian/sysdeps/hurd.mk: Only use libidn for add-ons.
 
   [ Aurelien Jarno ]
     - Remove argp_h.diff (merged upstream).
-  
- -- Clint Adams <schizo@debian.org>  Mon,  6 Mar 2006 16:49:38 -0500
 
 glibc (2.3.6-8) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
+  * Disable m68k/local-mathinline_h.diff, it breaks the build of the glibc on
+    m68k.
+  * Add all/local-pt_BR.diff (fix a small typo in the Brazilian Portuguese
+    translation) by Guilherme de S. Pastore.  (Closes: #319422)
+  * Add hurd-i386/local-mlock.diff (fix mlock on Hurd/Mach), by Samuel
+    Thibault.  (Closes: #349204)
   * sysdeps/i386.mk: build glibc with --with-__thread on i386.
   * debian/local/manpages: s/woody/etch/g.  (Closes: #364198)
+  * sysdeps/depflags.pl: bumped the versioned conflicts with initrd-tools 
+    to 0.1.84.1, as older version use LD_ASSUME_KERNEL=2.4.  (Closes: #365647)
+  * Follow symlinks while checking for other copy of the C library.
+    (Closes: #365838)
+  * Invalidate nscd cache when calling /etc/init.d/nscd restart.
+    (Closes: #365676, #365677)
+  * /usr/sbin/tzconfig: set umask to 022.  (Closes: #367145)
+  * debian/main/control.in: make locales Replaces: lliurex-belocs-locales-data.
+    (Closes: #365651)
+  * Move the NJOBS part to debian/sysdeps/(system) to debian/rules.
+  * debian/debhelper.in/libc-otherbuild.postinst: fixed parsing of
+    /etc/ld.so.hwcappkgs.  (Closes: #364666)
+  * debhelper.in/libc-otherbuild.{preinst,postinst}: change the shell from
+    /bin/bash to /bin/sh.
 
   [ Denis Barbier ]
+  * Fix location of locales/NEWS.Debian.  Thanks Matthijs Mohlmann.
+    (Closes: #362763)
   * locales.postinst: Do not abort if the current locale is not generated.
+  * locales.config: Fix shell scripting when "All locales" is selected along
+    with other choices,  Thanks Olivier Trichet.  (Closes: #364251)
+  * update-locale: When checking for invalid locale settings, do not mess up
+    with current environment settings.
+  * Remove sem_*.3 manual pages from glibc-doc, these manual pages are updated
+    and maintained in the manpages-dev package.  (Closes: #365547)
+
+  [ Michael Banck ]
+  * Add hurd-i386/cvs-posix-opts.diff (Define many missing options, most
+    notably _POSIX_THREAD_SAFE_FUNCTIONS) by Roland McGrath (patch from 
+    HEAD).
 
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 14 Apr 2006 20:28:41 +0200
 
@@ -67,51 +93,98 @@ glibc (2.3.6-7) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * Urgency set to medium because this version fixes and RC bug in testing.
+  * Optimized libraries should actually be cross-compiled as we don't know the
+    CPU that will be used.
+  * Allow the glibc to be cross-compiled for Linux and kFreeBSD.  (Closes:
+    #358771)
   * Bumped the minimum kernel to 2.4.1 instead of 2.4.0 as there are some
     important new features in this version. Thanks to Petr Salinger for
     noticing me.
+  * Add m68k/local-mathinline_h.diff (fix bits/mathinline.h), by Roger Leigh.
+    (Closes: #340871)
+  * Add beginning and end timestamps to both the build logs and the
+    testsuite logs.  (Closes: #155690)
   * debian/sysdeps/sparc.mk: build sparcv9b optimized libraries with
     -mtune=ultrasparc3.
+  * debian/sysdeps/kfreebsd/local-sysdeps.diff: update from the latest SVN.
+  * debian/patches/series: Fix the patchlevel for local-i486_ldt_support.diff
+    (Closes: #226716)
+  * Fix a typo in the previous changelog entry (s/not/now/).  (Closes: #362460)
+
+  [ Denis Barbier ]
+  * Remove ldd calls from libc.preinst.
+  * Do no more transfer variables from /etc/environment to /etc/default/locale
+    in locales.postinst, but instead add /usr/share/doc/locales/NEWS.Debian
+    to explain that /etc/environment needs to be cleaned up.
+    (Closes: #361048)
+  * Create a new locales-all package with all supported locales precompiled,
+    but keep it disabled for now.
+    Both locales and locales-all packages provide a virtual generated-locales
+    package.  Packages which currently depends on locales should instead
+    depend on 'locales | generated-locales'.
+  * Add a new ca_ES@valencia locale, requested by Robert Millan (Closes: #361972)
 
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 14 Apr 2006 13:48:30 +0200
 
- glibc (2.3.6-6) UNRELEASED; urgency=low
- 
-   [ Aurelien Jarno ]
-   * Remove the timezone database from the libc6 package. It is not provided
-     by a separate package called tzdata.
-   * Split out binaries from libc6 into libc-bin, and binaries from libc6-bin
-     into libc-bin-dev.  (Closes: #330735)
-   * Put each test log file in the corresponding package instead of putting all
-     of them in libc6.
-   * Remove sparc/local-sparc64-fixups.diff as /lib64 and /usr/lib64 are now a
-     default search path on 32/64-bit architectures.
-   * Switch minimum kernel to at least 2.4.0 on all arches but m68k, and change
-     kernelcheck.sh accordingly. Affected architectures:
-     - alpha: from 2.2.0 to 2.4.0
-     - arm: from 2.2.0 to 2.4.0 (but 2.4.0 was checked at installed time)
-     - i386: from 2.2.0 to 2.4.0
-     - powerpc: from 2.2.0 to 2.4.0
-     - s390: from 2.2.10 to 2.4.0
-     - sparc: from 2.2.0 to 2.4.0
-     (Closes: #174270, #220992)
-   * Fix a typo in the description of the libc6-sparcv9 and libc6-sparcv9b
-     packages.
- 
-   [ Denis Barbier ]
-   * debian/debhelper.in/locales.config: /etc/locale.gen was not generated at
-     initial installation.  (Closes: #357523)
-   * update-locale: Fix buggy sanity check between LANGUAGE and LANG.
-     (Closes: #361091)
-   * Add new Galician debconf translation, by Jacobo Tarrio.  (Closes: #361101)
-   * Use new features of po-debconf 1.0 to remove unneeded strings from PO
-     files.
- 
-   [ Michael Banck ]
-   * Add hurd-machrules-make.diff (fixes build problems with make-3.81 for
-     Mach interface generation rules) by Roland McGrath (patch from HEAD).
- 
-  -- Denis Barbier <barbier@debian.org>  Wed,  5 Apr 2006 22:53:28 +0200
+glibc (2.3.6-6) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * Remove the timezone database from the libc6 package. It is now provided
+    by a separate package called tzdata.
+  * Put each test log file in the corresponding package instead of putting all
+    of them in libc6.
+  * Remove sparc/local-sparc64-fixups.diff as /lib64 and /usr/lib64 are now a
+    default search path on 32/64-bit architectures.
+  * Switch minimum kernel to at least 2.4.0 on all arches but m68k, and change
+    kernelcheck.sh accordingly. Affected architectures:
+    - alpha: from 2.2.0 to 2.4.0
+    - arm: from 2.2.0 to 2.4.0 (but 2.4.0 was checked at installed time)
+    - i386: from 2.2.0 to 2.4.0
+    - powerpc: from 2.2.0 to 2.4.0
+    - s390: from 2.2.10 to 2.4.0
+    - sparc: from 2.2.0 to 2.4.0
+    (Closes: #174270, #220992)
+  * Add i386/local-i486_ldt_support.diff (add ldt support and thus TLS support
+    on i486 machines). Thanks to Petr Salinger for the hint.  (Closes: #226716)
+  * Bump shlib to (>= 2.3.6-6) on i386.
+  * debian/debhelper.in/libc-alt.install: Add gconv-modules to the bi-arch
+    packages.  (Closes: #361642)
+  * /etc/ld.so.nohwcap is now supported on non-Linux architectures. Drop the
+    "Linux" check from libc-otherbuild.preinst.
+  * Build a libc6-xen flavour on i386.
+  * Fix a typo in the description of the libc6-sparcv9 and libc6-sparcv9b
+    packages.
+  * local/usr_sbin/tzconfig:
+    - Put a copy of the current timezone into /etc/localtime instead of a
+      symlink.  (Closes: #346342)
+    - Handle the case where /etc/localtime does not exists.  (Closes:
+      #360383).
+  * local/manpages/tzconfig.8: Update the manpage accordingly.
+  * script.in/kernelcheck.sh: Also take in account 64-bit mips(el) kernels.
+  * Add GNU/kFreeBSD patches, using conditional patching until they get
+    accepted upstream.
+  * Correctly replace DEB_HOST_ARCH by its value in libc6.preinst. Thanks to
+    Denis for noticing me.
+
+  [ Denis Barbier ]
+  * debian/debhelper.in/locales.config: /etc/locale.gen was not generated at
+    initial installation.  (Closes: #357523)
+  * update-locale: Fix buggy sanity check between LANGUAGE and LANG.
+    (Closes: #361091)
+  * update-locale: Drop the --remove flag, it is useless.
+  * update-locale: Fix the --locale-file flag.
+  * Add new Galician debconf translation, by Jacobo Tarrio.  (Closes: #361101)
+  * Use new features of po-debconf 1.0 to remove unneeded strings from PO
+    files.
+  * Fix day, abmon and mon fields for wo_SN locale.  (Closes: #361338)
+
+  [ Michael Banck ]
+  * Add hurd-machrules-make.diff (fixes build problems with make-3.81 for
+    Mach interface generation rules) by Roland McGrath (patch from HEAD).
+  * Add hurd-sysvshm.diff (implements SysV shared memory for GNU/Hurd)
+    by Marcus Brinkmann.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 10 Apr 2006 20:19:55 +0200
 
 glibc (2.3.6-5) unstable; urgency=low
 
