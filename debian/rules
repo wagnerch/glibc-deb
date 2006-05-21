@@ -86,7 +86,7 @@ ifdef SETNJOBS
 endif
 
 # Default setup
-GLIBC_PASSES ?= libc
+GLIBC_PASSES ?= libc udeb
 
 prefix=/usr
 bindir=$(prefix)/bin
@@ -97,6 +97,10 @@ docdir=$(prefix)/share/doc
 mandir=$(prefix)/share/man
 sbindir=$(prefix)/sbin
 libexecdir=$(prefix)/lib
+
+udeb_add-ons = linuxthreads $(add-ons)
+udeb_rtlddir = /lib
+udeb_slibdir = /lib
 
 BUILD_CC = gcc-4.0
 
@@ -131,8 +135,7 @@ endif
 # Which build pass are we on?
 curpass = $(filter-out %_,$(subst _,_ ,$@))
 
-DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-dbg $(libc)-prof $(libc)-pic
-#DEB_ARCH_REGULAR_PACKAGES += locales-all
+DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-dbg $(libc)-prof $(libc)-pic locales-all
 DEB_INDEP_REGULAR_PACKAGES = glibc-doc locales
 DEB_UDEB_PACKAGES = $(libc)-udeb libnss-dns-udeb libnss-files-udeb
 
