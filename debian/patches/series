@@ -22,8 +22,8 @@ glibc23-cmov.diff -p0
 #libgcc-compat-all.diff -p0
 #libgcc-compat-other.diff -p1
 #any/local-base.diff -p0	# g: suspended
-50_glibc232-arm-dwarf2-buildfix.diff -p0
-50_glibc232-m68k-dwarf2-buildfix.diff -p0
+arm/local-dwarf2-buildfix.diff -p0
+m68k/local-dwarf2-buildfix.diff -p0
 #arm-output-format.diff -p0	# g: suspended
 #arm-ioperm.diff -p0
 #arm-float-byteorder.diff -p0
