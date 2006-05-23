@@ -102,7 +102,7 @@ udeb_add-ons = linuxthreads $(add-ons)
 udeb_rtlddir = /lib
 udeb_slibdir = /lib
 
-BUILD_CC = gcc-4.0
+BUILD_CC = gcc-4.1
 
 RUN_TESTSUITE = yes
 
