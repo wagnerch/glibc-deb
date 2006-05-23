@@ -4,23 +4,23 @@ localedata/locale-eo_EO.diff -p1
 localedata/locale-no_NO.diff -p0
 glibc-i686-timing.diff -p1
 makeconfig.diff -p0
-ldconfig.diff -p0
+any/local-ldconfig.diff -p0
 ldd.diff -p0
 fhs-linux-paths.diff -p1
 glibc22-nss-upgrade.diff -p1
 #glibc22-m68k-compat.diff -p1
 #glibc22-m68k-fpic.diff -p1
-glibc22-ttyname-devfs.diff -p0
+any/local-ttyname-devfs.diff -p0
 #arm-no-hwcap.diff -p0
 #glibc23-ctype-compat.diff -p1	# g: untilsarge
 glibc23-hppa-Rminkernel.diff -p0
 #glibc23-function-compat.diff -p1	# g: untilsarge
 #glibc23-errno.diff -p1	# g: untilsarge
-glibc23-asserth-decls.diff -p0
-#alpha-pic.diff -p0	# g: suspended
+any/local-asserth-decls.diff -p0
+#alpha/submitted-pic.diff -p0	# g: suspended
 glibc23-cmov.diff -p0
-#libgcc-compat-all.diff -p0
-#libgcc-compat-other.diff -p1
+#any/local-libgcc-compat-all.diff -p0
+#any/local-libgcc-compat-others.diff -p1
 #any/local-base.diff -p0	# g: suspended
 arm/local-dwarf2-buildfix.diff -p0
 m68k/local-dwarf2-buildfix.diff -p0
@@ -33,35 +33,35 @@ glibc-2.3.2-ldconfig-tls.diff -p1
 #glibc23-version-sanity.diff -p1
 #glibc23-sse-oldkernel.diff -p0
 #glibc23-errno-hack.diff -p1	# g: untilsarge
-90_glibc233_tcsetaddr.diff -p1
+any/local-tcsetaddr.diff -p1
 localedef-fix-trampoline.diff -p1
 localedata/locale-eu_FR.diff -p0
 #glibc232-m68k-reloc.diff -p1
 #glibc232-globfree-clear.diff -p1	# g: suspended
 #hppa-drop-utimes.diff -p1
-#glibc234-alpha-xstat.diff -p0
+#alpha/submitted-xstat.diff -p0
 #glibc234-hppa-linesep.diff -p0
 #glibc234-hppa-remove-mallocdef.diff -p0		# g: this should be replaced by Carlos' new patch.
-linuxthreads-sizefix.diff -p1
+any/local-linuxthreads-sizefix.diff -p1
 #glibc232-tls-crashfix.diff -p1
-glibc235-gcc4-wcstol_l.diff -p1
+any/local-gcc4-wcstol_l.diff -p1
 #glibc235-gcc4-arm-inline.diff -p1
 #hurd-ioctl-pfinet.diff -p0
 glibc235-hppa-lt.diff -p1
 #glibc235-hppa-sysdeps.diff -p1
-#glibc235-gcc4-alpha-profile.diff -p0
+#alpha/cvs-gcc4-profile.diff -p0
 #glibc235-gcc34-m68k-seccomment.diff -p0
 locale/iso4217-RON.diff -p0
 localedata/locale-ro_RO.diff -p0
 #glibc235-gcc4-hppa-profile.diff -p0
-glibc235-dl-execstack.diff -p0
+any/local-dl-execstack.diff -p0
 i386-amd64-biarch.diff -p1
 #hppa-iitlbp.diff -p1
-#hppa-fenv-align.diff -p1
+#hppa/submitted-fenv-align.diff -p1
 #glibc235-hppa-fpu.diff -p1
 #eh-frame-terminator.diff -p1
 #arm-socket-weakalias.diff -p0
-#ctan.diff -p0
+#any/cvs-ctan.diff -p0
 #any/submitted-nis-netgrp.diff
 localedata/locale-ku_TR.diff -p0
 #localedata/discard-dz_BT.diff	# not needed when complex-collate is applied
@@ -102,11 +102,11 @@ localedata/local-all-no-archive.diff
 #hppa/cvs-pie-relocs.diff -p1
 #hurd-i386/cvs-getresuid-dyslexia.diff -p0
 #hppa/cvs-no-ldbl-128.diff -p1
-remove-manual.diff
+any/remove-manual.diff
 #any/local-rtld.diff -p1
 #any/cvs-resource_h.diff  -p1
 #hppa/local-inlining.diff  -p1
-strfmon.diff
+any/submitted-strfmon.diff
 #any/cvs-argp_h.diff  -p1
 
 any/cvs-getcwd_c.diff -p1

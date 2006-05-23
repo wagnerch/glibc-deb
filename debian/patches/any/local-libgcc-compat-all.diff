@@ -1,5 +1,3 @@
-#! /bin/sh -e
-
 # DP: Description: libgcc-compat symbols for mips, sparc, alpha, & i386
 # DP: Author: Guido Guenther
 # DP: Upstream status: Not submitted

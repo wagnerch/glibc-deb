@@ -1,5 +1,3 @@
-#! /bin/sh -e
-
 # All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: /usr/include/assert.h
 # DP:	One must be allowed to include <assert.h> multiple times with different

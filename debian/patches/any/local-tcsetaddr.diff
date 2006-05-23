@@ -1,5 +1,3 @@
-#! /bin/sh -e
-
 # All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: tcsetattr sanity check on PARENB/CREAD/CSIZE for ptys
 # DP: Related bugs: 218131

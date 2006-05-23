@@ -1,5 +1,3 @@
-#! /bin/sh -e
-
 # DP: Fixes ttyname and ttyname_r in the case of being used in a setuid
 # DP: application on a devfs system.
 

@@ -2,20 +2,21 @@ glibc (2.4-1) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream version 2.4.
-    - Remove sparc-socket-weakalias.diff (merged upstream).
-    - Remove glibc235-dash.diff (merged upstream).
-    - Remove glibc235-gcc4-sparc-inline.diff (merged upstream).
-    - Remove regcomp_c.diff (merged upstream).
-    - Remove glibc235-gcc4-sparc-mv8.diff (merged upstream).
-    - Remove glibc-235-sparc-datastart.diff (merged upstream).
-    - Remove tst-setcontext_c.diff (merged upstream).
-    - Remove glibc-manual-memory.diff (merged upstream).
-    - Remove glibc-manual-string.diff (merged upstream).
-    - Remove divdi3-moddi3.diff (merged upstream).
-    - Remove glibc235-gcc4-elf.diff (merged upstream).
-    - Remove siginfo_h.diff (merged upstream).
+    - Remove all/cvs-manual-memory.diff (merged upstream).
+    - Remove all/cvs-manual-string.diff (merged upstream).
+    - Remove any/cvs-divdi3-moddi3.diff (merged upstream).
+    - Remove any/cvs-errlist.diff (merged upstream).
+    - Remove any/cvs-siginfo_h.diff (merged upstream).
+    - Remove any/cvs-regcomp_c.diff (merged upstream).
+    - Remove any/cvs-tst-setcontext_c.diff (merged upstream).
+    - Remove any/local-dash.diff (merged upstream).
+    - Remove any/local-gcc4-elf.diff (merged upstream).
+    - Remove sparc/cvs-datastart.diff (merged upstream).
+    - Remove sparc/cvs-gcc4-inline.diff (merged upstream).
+    - Remove sparc/local-gcc4-mv8.diff (merged upstream).
+    - Remove sparc/submitted-socket-weakalias.diff (merged upstream).
     - Remove everything to do with nscd_nischeck.
-    - Update linuxthreads-sizefix.diff.
+    - Update any/local-linuxthreads-sizefix.diff.
     - Update glibc235-hppa-lt.diff.
     - debian/shlibver: Bump up to 2.4-1.
     - Add any/local-bashisms.diff: fix invalid test operator (==)
