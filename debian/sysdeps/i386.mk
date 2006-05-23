@@ -1,6 +1,6 @@
 udeb_MIN_KERNEL_SUPPORTED = 2.4.1
 
-libc_extra_config_options = $(extra_config_options) --without-__thread
+libc_extra_config_options = $(extra_config_options) --without-__thread --disable-sanity-checks
 
 # NPTL requires at least i486 assembly.  We don't need to take
 # special measures for i386 systems, since Debian kernel images now
