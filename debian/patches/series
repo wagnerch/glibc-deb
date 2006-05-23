@@ -130,3 +130,4 @@ powerpc/local-sysconf.diff -p1
 
 sparc/local-sparcv8-target.diff -p0
 sparc/submitted-timing.diff -p1
+sparc/local-linuxthreads.diff
