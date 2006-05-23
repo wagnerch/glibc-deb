@@ -27,6 +27,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - debian/sysdeps/mips.mk: build with linuxthreads instead of NPTL
     - debian/sysdeps/i386.mk: disable sanity checks on linuxthreads build
     - Build with gcc 4.1 on all architectures.
+    - debian/patches/sparc/local-linuxthreads.diff: fill in missing
+      preprocessor macros.
 
   [ Denis Barbier ]
     - Remove complex-collate.diff (merged upstream).
