@@ -15,7 +15,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - Remove glibc235-gcc4-elf.diff (merged upstream).
     - Remove siginfo_h.diff (merged upstream).
     - Remove everything to do with nscd_nischeck.
-    - Update linuxthreads-sizefix.diff for 2.4.
+    - Update linuxthreads-sizefix.diff.
+    - Update glibc235-hppa-lt.diff.
     - debian/shlibver: Bump up to 2.4-1.
     - Add any/local-bashisms.diff: fix invalid test operator (==)
       in run-iconv-test.sh
