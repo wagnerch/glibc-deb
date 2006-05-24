@@ -39,3 +39,5 @@ ln -sf /emul/ia32-linux/lib/ld-linux.so.2 debian/libc6-i386/lib
 ln -sf /emul/ia32-linux/lib debian/libc6-i386/lib32
 ln -sf /emul/ia32-linux/usr/lib debian/libc6-i386/usr/lib32
 endef
+
+udeb_add-ons = nptl $(add-ons)
