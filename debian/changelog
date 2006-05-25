@@ -30,6 +30,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - Build with gcc 4.1 on all architectures.
     - debian/patches/sparc/local-linuxthreads.diff: fill in missing
       preprocessor macros.
+    - debian/control: bump to Standards-Version 3.7.2.
 
   [ Denis Barbier ]
     - Remove complex-collate.diff (merged upstream).
