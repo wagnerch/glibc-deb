@@ -50,7 +50,9 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * debian/sysdeps/hurd.mk: Only use libidn for add-ons.
 
   [ Aurelien Jarno ]
-    - Remove argp_h.diff (merged upstream).
+  * Remove argp_h.diff (merged upstream).
+  * Remove any/cvs-futimes.diff (merged upstream).
+  * Remove any/local-kernel-features.diff (merged upstream).
 
 glibc (2.3.6-11) UNRELEASED; urgency=low
 
