@@ -30,7 +30,7 @@ case "$1" in
 #		then
 #			/usr/sbin/nscd_nischeck $table ||
 #				secure="$secure -S $table,yes"
-		fi
+#		fi
 	done
         echo -n "Starting Name Service Cache Daemon: nscd"
 	start-stop-daemon --start --quiet --exec /usr/sbin/nscd -- $secure
