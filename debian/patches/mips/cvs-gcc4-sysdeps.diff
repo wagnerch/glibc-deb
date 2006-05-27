@@ -1,5 +1,3 @@
-#! /bin/sh -e
-
 # All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: Make glibc-2.3.5 compile with gcc-4.0 on mips for
 #		   the breakage of large syscall arguments handling.

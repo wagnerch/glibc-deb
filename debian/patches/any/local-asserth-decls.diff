@@ -1,4 +1,3 @@
-# All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: /usr/include/assert.h
 # DP:	One must be allowed to include <assert.h> multiple times with different
 # DP:	values for NDEBUG, so the file is not protected against multiple

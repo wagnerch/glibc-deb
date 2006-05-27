@@ -1,6 +1,3 @@
-#! /bin/sh -e
-
-# All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: Support libraries that has execstack on <= 2.4.18 kernels.
 # DP: Related bugs: #321718
 # DP: Dpatch author: GOTO Masanori <gotom@debian.org>

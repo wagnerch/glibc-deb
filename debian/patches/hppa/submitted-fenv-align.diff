@@ -1,6 +1,3 @@
-#! /bin/sh -e
-
-# All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: Use temporary, 8-byte-aligned buffers for doubleword transfer.
 # DP: Dpatch author: Daniel Jacobowitz <dan@debian.org>
 # DP: Patch author: Daniel Jacobowitz <dan@debian.org>

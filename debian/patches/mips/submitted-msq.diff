@@ -1,5 +1,3 @@
-#! /bin/sh -e
-
 # DP: Description: fix msqs on mips
 # DP: Related bugs: 215273
 # DP: Author: Thiemo Seufer <ica2_ts@csv.ica.uni-stuttgart.de>

@@ -1,5 +1,3 @@
-#! /bin/sh -e
-
 # All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: parisc patches based on 50_glibc232-hppa-full-nptl-2003-10-22.
 #		   This dpatch excepts (1) patches applied already in cvs

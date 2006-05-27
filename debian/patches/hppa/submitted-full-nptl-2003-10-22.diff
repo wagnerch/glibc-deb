@@ -1,5 +1,3 @@
-#! /bin/sh -e
-
 # All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: HP-PARISC GNU/Libc Fixes 2003-10-22
 # DP: Related bugs: 
