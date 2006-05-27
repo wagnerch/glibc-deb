@@ -29,11 +29,11 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - debian/sysdeps/i386.mk: disable sanity checks on linuxthreads build
     - debian/sysdeps/powerpc.mk: build with linuxthreads instead of NPTL
     - debian/sysdeps/arm.mk: use ports add-on
-
     - Build with gcc 4.1 on all architectures.
     - debian/patches/sparc/local-linuxthreads.diff: fill in missing
       preprocessor macros.
     - debian/control: bump to Standards-Version 3.7.2.
+    - debian/debhelper.in/libc.preinst: use POSIX syntax for kill.
 
   [ Denis Barbier ]
     - Remove complex-collate.diff (merged upstream).
