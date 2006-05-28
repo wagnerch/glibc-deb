@@ -63,6 +63,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update hurd-i386/submitted-sysvshm.diff.
   * Remove m32r/cvs-elf-m32r_rel32.diff (merged upstream).
 
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 28 May 2006 03:28:14 +0200
+
 glibc (2.3.6-11) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
