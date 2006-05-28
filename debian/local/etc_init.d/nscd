@@ -42,10 +42,10 @@ start()
 	SECURE=""
 	for TABLE in passwd group
 	do
-		if egrep '^'$TABLE':.*nisplus' /etc/nsswitch.conf >/dev/null
-		then
-			/usr/sbin/nscd_nischeck "$TABLE" || SECURE="$SECURE -S $TABLE,yes"
-		fi
+#		if egrep '^'$TABLE':.*nisplus' /etc/nsswitch.conf >/dev/null
+#		then
+#			/usr/sbin/nscd_nischeck "$TABLE" || SECURE="$SECURE -S $TABLE,yes"
+#		fi
 	done
 	start-stop-daemon --start --quiet --pidfile "$PIDFILE" --exec "$DAEMON" --test > /dev/null || return 1
 	start-stop-daemon --start --quiet --pidfile "$PIDFILE" --exec "$DAEMON" -- \
