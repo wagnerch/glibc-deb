@@ -95,6 +95,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Add sparc/local-sysdep.diff (pull in __syscall_error routine when 
     building with linuxthreads).
   * debian/sysdeps/mips(el).mk: disable TLS (as on 2.3.6).
+  * Add any/local-__thread.diff (make glibc buildable without __thread support)
+    from Michael Bank.  (Closes: #361064)
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 
