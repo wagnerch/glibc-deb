@@ -54,9 +54,12 @@ glibc (2.4-1) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
   * Remove any/cvs-argp_h.diff (merged upstream).
+  * Remove any/cvs-ctan.diff (merged upstream).
   * Remove any/cvs-futimes.diff (merged upstream).
   * Remove any/cvs-nfs_h.diff (merged upstream).
   * Remove any/cvs-path_log.diff (merged upstream).
+  * Remove any/cvs-resource_h.diff (merged upstream).
+  * Remove any/cvs-tls-crashfix.diff (merged upstream).
   * Remove any/local-kernel-features.diff (merged upstream).
   * Remove hppa/cvs-linesep.diff (merged upstream).
   * Update hppa/submitted-fenv-align.diff to reflect the new port add-on.
