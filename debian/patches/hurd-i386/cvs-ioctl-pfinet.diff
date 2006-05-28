@@ -1,6 +1,3 @@
-#! /bin/sh -e
-
-# All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: Add SIOCGIFHWADDR ioctls for hurd-i386.
 # DP: Related bugs: #295117
 # DP: Dpatch author: GOTO Masanori <gotom@debian.org>

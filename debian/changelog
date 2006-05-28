@@ -58,7 +58,9 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove any/cvs-nfs_h.diff (merged upstream).
   * Remove any/cvs-path_log.diff (merged upstream).
   * Remove any/local-kernel-features.diff (merged upstream).
+  * Remove hurd-i386/cvs-posix-opts.diff (merged upstream).
   * Remove powerpc/cvs-gcc41-initfini.diff (merged upstream).
+  * Update hurd-i386/submitted-sysvshm.diff.
 
 glibc (2.3.6-11) UNRELEASED; urgency=low
 
