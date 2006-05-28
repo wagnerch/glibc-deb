@@ -94,6 +94,7 @@ powerpc/local-sysconf.diff -p1
 sparc/local-fork.diff -p0
 sparc/local-linuxthreads.diff
 sparc/local-sparcv8-target.diff -p0
+sparc/local-sysdep.diff -p0
 sparc/submitted-timing.diff -p1
 
 all/local-remove-manual.diff
