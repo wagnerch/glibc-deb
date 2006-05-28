@@ -34,6 +34,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - Build with gcc 4.1 on all architectures.
     - debian/patches/sparc/local-linuxthreads.diff: fill in missing
       preprocessor macros.
+    - debian/debhelper.in/nscd.init: partially sync nscd initscript
+      with upstream.
 
   [ Denis Barbier ]
     - Remove locale/complex-collate.diff (merged upstream).
