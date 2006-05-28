@@ -1,5 +1,3 @@
-#! /bin/sh -e
-
 # DP: Make sure libc_nonshared.a is compiled with -fPIC on m68k
 
 diff -urN glibc-2.2.3.orig/sysdeps/m68k/Makefile glibc-2.2.3/sysdeps/m68k/Makefi

@@ -1,6 +1,3 @@
-#! /bin/sh -e
-
-# All lines beginning with `# DP:' are a description of the patch.
 # DP: Description: binutils bug workaround
 # DP: Related bugs: #263601: m68k: workaround for binutils problem
 # DP: Dpatch author: Roman Zippel <zippel@linux-m68k.org>

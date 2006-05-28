@@ -1,76 +1,14 @@
 localedata/locale-de_CH.diff -p1
-any/local-libgcc-static.diff
-all/local-ru_RU.diff -p1
-all/submitted-new-brf-encoding.diff -p0
 localedata/locale-eo_EO.diff -p1
 localedata/locale-no_NO.diff -p0
-glibc-i686-timing.diff -p1
-any/local-makeconfig.diff -p0
-any/local-ldconfig.diff -p0
-any/local-ldd.diff -p0
-any/local-fhs-linux-paths.diff -p1
-any/local-nss-upgrade.diff -p1
-#m68k/local-compat.diff -p1
-#m68k/local-fpic.diff -p1
-any/local-ttyname-devfs.diff -p0
-#arm/local-no-hwcap.diff -p0
-#glibc23-ctype-compat.diff -p1	# g: untilsarge
-hppa/local-Rminkernel.diff -p0
-#glibc23-function-compat.diff -p1	# g: untilsarge
-#glibc23-errno.diff -p1	# g: untilsarge
-any/local-asserth-decls.diff -p0
-#alpha/submitted-pic.diff -p0	# g: suspended
-i386/local-cmov.diff -p0
-#any/local-libgcc-compat-all.diff -p0
-#any/local-libgcc-compat-others.diff -p1
-#any/local-base.diff -p0	# g: suspended
-arm/local-dwarf2-buildfix.diff -p0
-m68k/local-dwarf2-buildfix.diff -p0
-#arm-output-format.diff -p0	# g: suspended
-#arm/local-ioperm.diff -p0
-#arm/cvs-float-byteorder.diff -p0
-#glibc-make-check-perms.diff -p1	# g: suspended
-any/local-ldconfig-tls.diff -p1
-#any/local-ldso-disable-hwcap.diff -p0
-#any/local-version-sanity.diff -p1
-#i386/local-sse-oldkernel.diff -p0
-#glibc23-errno-hack.diff -p1	# g: untilsarge
-any/local-tcsetaddr.diff -p1
-any/local-localedef-fix-trampoline.diff -p1
 localedata/locale-eu_FR.diff -p0
-#m68k/local-reloc.diff -p1
-#any/local-globfree-clear.diff -p1	# g: suspended
-#hppa/submitted-drop-utimes.diff -p1
-#alpha/submitted-xstat.diff -p0
-#hppa/cvs-linesep.diff -p0
-#hppa/local-remove-mallocdef.diff -p0		# g: this should be replaced by Carlos' new patch.
-any/local-linuxthreads-sizefix.diff -p1
-#any/cvs-tls-crashfix.diff -p1
-any/local-gcc4-wcstol_l.diff -p1
-#glibc235-gcc4-arm-inline.diff -p1
-#hurd-i386/cvs-ioctl-pfinet.diff -p0
-hppa/submitted-lt.diff -p1
-#hppa/submitted-sysdeps.diff -p1
-#alpha/cvs-gcc4-profile.diff -p0
-#m68k/submitted-gcc34-seccomment.diff -p0
 locale/iso4217-RON.diff -p0
 localedata/locale-ro_RO.diff -p0
-#hppa/local-gcc-4-profile.diff -p0
-any/local-dl-execstack.diff -p0
-i386/local-biarch.diff -p1
-#hppa/submitted-iitlbp.diff -p1
-#hppa/submitted-fenv-align.diff -p1
-#hppa/submitted-fpu.diff -p1
-#any/submitted-eh-frame-terminator.diff -p1
-#arm/cvs-socket-weakalias.diff -p0
-#any/cvs-ctan.diff -p0
-#any/submitted-nis-netgrp.diff
 localedata/locale-ku_TR.diff -p0
 #localedata/discard-dz_BT.diff	# not needed when complex-collate is applied
 locale/fix-exhausted-memory.diff
 #locale/check-unknown-symbols.diff	# locales have to be fixed first
 locale/fix-LC_COLLATE-rules.diff
-any/local-forward-backward-collation.diff
 locale/preprocessor-collate.diff
 locale/LC_IDENTIFICATION-optional-fields.diff
 locale/LC_COLLATE-keywords-ordering.diff
@@ -95,42 +33,108 @@ localedata/locale-en_NZ.diff
 localedata/dz_BT-collation.diff
 localedata/update-ZA.diff
 localedata/locale-ia.diff
+localedata/new-valencian-locale.diff
 localedata/tailor-iso14651_t1.diff -p0
 localedata/fix-lang.diff
 localedata/fix-unknown-symbols.diff
 localedata/first_weekday.diff -p0
 localedata/sort-UTF8-first.diff -p0
 localedata/local-all-no-archive.diff
-#hppa/cvs-pie-relocs.diff -p1
-#hurd-i386/cvs-getresuid-dyslexia.diff -p0
-#hppa/cvs-no-ldbl-128.diff -p1
-any/remove-manual.diff
-#any/local-rtld.diff -p1
-#any/cvs-resource_h.diff  -p1
-#hppa/local-inlining.diff  -p1
-any/submitted-strfmon.diff
-#any/cvs-argp_h.diff  -p1
 
-any/cvs-getcwd_c.diff -p1
-any/local-bashisms.diff
-any/local-ld-multiarch.diff -p1
-any/local-ldconfig-multiarch.diff -p1
+#alpha/cvs-gcc4-profile.diff -p0
+#alpha/submitted-pic.diff -p0	# g: suspended
+#alpha/submitted-xstat.diff -p0
 
 amd64/local-biarch.diff -p1
 
+#arm/cvs-float-byteorder.diff -p0
+#arm/cvs-gcc4-inline.diff -p1
+#arm/cvs-socket-weakalias.diff -p0
+arm/local-dwarf2-buildfix.diff -p0
+#arm/local-ioperm.diff -p0
+#arm/local-no-hwcap.diff -p0
+
+hppa/local-Rminkernel.diff -p0
+#hppa/submitted-drop-utimes.diff -p1
+#hppa/cvs-linesep.diff -p0
+#hppa/local-remove-mallocdef.diff -p0		# g: this should be replaced by Carlos' new patch.
+hppa/submitted-lt.diff -p1
+#hppa/submitted-sysdeps.diff -p1
+#hppa/local-gcc-4-profile.diff -p0
+#hppa/submitted-iitlbp.diff -p1
+#hppa/submitted-fenv-align.diff -p1
+#hppa/submitted-fpu.diff -p1
+#hppa/cvs-pie-relocs.diff -p1
+#hppa/cvs-no-ldbl-128.diff -p1
+#hppa/local-inlining.diff  -p1
+
+#hurd-i386/cvs-getresuid-dyslexia.diff -p0
+#hurd-i386/cvs-ioctl-pfinet.diff -p0
 hurd-i386/cvs-machrules-make.diff -p1
 hurd-i386/local-enable-ldconfig.diff -p1
 hurd-i386/submitted-ioctl-decode-argument.diff -p0
 
-mips/local-lazy-eval.diff -p2
-#mips/local-librt.diff -p0
-#mips/submitted-msq.diff -p0
+i386/local-i486_ldt_support.diff -p1
+i386/local-biarch.diff -p1
+i386/local-cmov.diff -p0
+#i386/local-sse-oldkernel.diff -p0
+i386/submitted-i686-timing.diff -p1
+
+#m68k/local-compat.diff -p1
+m68k/local-dwarf2-buildfix.diff -p0
+#m68k/local-fpic.diff -p1
+#m68k/local-mathinline_h.diff -p1
+#m68k/local-reloc.diff -p1
+#m68k/submitted-gcc34-seccomment.diff -p0
+
 #mips/cvs-gcc4-inline.diff -p0
 #mips/cvs-gcc4-sysdeps.diff -p0
+#mips/local-librt.diff -p0
+mips/local-lazy-eval.diff -p2
+#mips/submitted-msq.diff -p0
 
 powerpc/local-sysconf.diff -p1
 
+sparc/local-linuxthreads.diff
 sparc/local-sparcv8-target.diff -p0
 sparc/submitted-timing.diff -p1
-sparc/local-linuxthreads.diff
-i386/local-i486_ldt_support.diff
+
+all/local-remove-manual.diff
+all/local-ru_RU.diff -p1
+all/local-pt_BR.diff -p1
+all/submitted-new-brf-encoding.diff -p0
+
+#any/cvs-argp_h.diff  -p1
+#any/cvs-ctan.diff -p0
+any/cvs-getcwd_c.diff -p1
+#any/cvs-resource_h.diff  -p1
+#any/cvs-tls-crashfix.diff -p1
+any/local-asserth-decls.diff -p0
+#any/local-base.diff -p0	# g: suspended
+any/local-bashisms.diff
+any/local-dl-execstack.diff -p0
+any/local-fhs-linux-paths.diff -p1
+any/local-forward-backward-collation.diff
+any/local-gcc4-wcstol_l.diff -p1
+#any/local-globfree-clear.diff -p1	# g: suspended
+any/local-ld-multiarch.diff -p1
+any/local-ldd.diff -p0
+#any/local-ldso-disable-hwcap.diff -p0
+any/local-ldconfig.diff -p0
+any/local-ldconfig-multiarch.diff -p1
+any/local-ldconfig-tls.diff -p1
+#any/local-libgcc-compat-all.diff -p0
+#any/local-libgcc-compat-others.diff -p1
+any/local-libgcc-static.diff -p0
+any/local-linuxthreads-sizefix.diff -p1
+any/local-localedef-fix-trampoline.diff -p1
+any/local-makeconfig.diff -p0
+any/local-nss-upgrade.diff -p1
+#any/local-rtld.diff -p1
+any/local-tcsetaddr.diff -p1
+any/local-ttyname-devfs.diff -p0
+#any/local-version-sanity.diff -p1
+#any/submitted-eh-frame-terminator.diff -p1
+#any/submitted-nis-netgrp.diff
+any/submitted-strfmon.diff
+
