@@ -1,4 +1,4 @@
-libc_extra_config_options = $(extra_config_options) --without-__thread --disable-sanity-checks
+libc_extra_config_options = $(extra_config_options) --disable-sanity-checks
 
 # udeb Config
 udeb_extra_cflags = -Os
