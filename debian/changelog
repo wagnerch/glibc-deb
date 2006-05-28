@@ -69,6 +69,9 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove any/submitted-eh-frame-terminator.diff (merged upstream).
   * Update any/submitted-nis-netgrp.diff.
   * Remove hppa/cvs-linesep.diff (merged upstream).
+  * Update hppa/cvs-no-ldbl-128.diff to reflect the new port add-on.
+  * Update hppa/cvs-pie-relocs.diff to reflect the new port add-on.
+  * Update hppa/local-inlining.diff to reflect the new port add-on.
   * Update hppa/submitted-fenv-align.diff to reflect the new port add-on.
   * Remove hurd-i386/cvs-ioctl-pfinet.diff (merged upstream).
   * Remove hurd-i386/cvs-getresuid-dyslexia.diff (merged upstream).
@@ -83,6 +86,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * debian/sysdeps/sparc.mk: do an NPTL pass.
   * Update any/local-libgcc-compat-{all,others}.diff and split them into
     any/local-libgcc-compat-{main,ports}.diff.
+  * Add sparc/local-fork.diff (use fork.c instead of fork.S).
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 

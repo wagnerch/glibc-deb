@@ -63,9 +63,9 @@ hppa/submitted-lt.diff -p1
 #hppa/submitted-iitlbp.diff -p1
 hppa/submitted-fenv-align.diff -p0
 #hppa/submitted-fpu.diff -p1
-#hppa/cvs-pie-relocs.diff -p1
-#hppa/cvs-no-ldbl-128.diff -p1
-#hppa/local-inlining.diff  -p1
+hppa/cvs-pie-relocs.diff -p0
+hppa/cvs-no-ldbl-128.diff -p0
+hppa/local-inlining.diff -p0
 
 hurd-i386/cvs-machrules-make.diff -p1
 hurd-i386/local-enable-ldconfig.diff -p1
@@ -91,6 +91,7 @@ mips/submitted-msq.diff -p0
 
 powerpc/local-sysconf.diff -p1
 
+sparc/local-fork.diff -p0
 sparc/local-linuxthreads.diff
 sparc/local-sparcv8-target.diff -p0
 sparc/submitted-timing.diff -p1
