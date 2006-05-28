@@ -11,8 +11,8 @@
 
 	* sysdeps/hppa/dl-machine.h: Remove strong_alias.
 
---- sysdeps/hppa/dl-machine.h.gotom	2005-08-04 23:43:40.000000000 +0900
-+++ sysdeps/hppa/dl-machine.h	2005-08-04 23:47:35.000000000 +0900
+--- ports/sysdeps/hppa/dl-machine.h.gotom	2005-08-04 23:43:40.000000000 +0900
++++ ports/sysdeps/hppa/dl-machine.h	2005-08-04 23:47:35.000000000 +0900
 @@ -538,8 +538,7 @@
    TRAMPOLINE_TEMPLATE (_dl_runtime_profile, profile_fixup);
  #else

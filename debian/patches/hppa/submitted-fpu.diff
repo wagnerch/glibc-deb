@@ -6,9 +6,9 @@
 # DP: Status Details: to be merged by Carlos
 # DP: Date: Sun, 15 Jan 2006
 
-diff -uNr glibc-2.3.5/sysdeps/hppa/fpu.orig/fegetenv.c glibc-2.3.5/sysdeps/hppa/fpu/fegetenv.c
---- glibc-2.3.5/sysdeps/hppa/fpu.orig/fegetenv.c	2006-01-14 10:17:19.000000000 -0800
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fegetenv.c	2006-01-14 10:19:08.000000000 -0800
+diff -uNr ports/sysdeps/hppa/fpu.orig/fegetenv.c ports/sysdeps/hppa/fpu/fegetenv.c
+--- ports/sysdeps/hppa/fpu.orig/fegetenv.c	2006-01-14 10:17:19.000000000 -0800
++++ ports/sysdeps/hppa/fpu/fegetenv.c	2006-01-14 10:19:08.000000000 -0800
 @@ -27,10 +27,7 @@
    unsigned long long buf[4], *bufptr = buf;
  
@@ -21,9 +21,9 @@ diff -uNr glibc-2.3.5/sysdeps/hppa/fpu.orig/fegetenv.c glibc-2.3.5/sysdeps/hppa/
  	   : "=m" (buf), "+r" (bufptr));
    memcpy (envp, buf, sizeof (*envp));
    return 0;
-diff -uNr glibc-2.3.5/sysdeps/hppa/fpu.orig/feholdexcpt.c glibc-2.3.5/sysdeps/hppa/fpu/feholdexcpt.c
---- glibc-2.3.5/sysdeps/hppa/fpu.orig/feholdexcpt.c	2006-01-14 10:17:19.000000000 -0800
-+++ glibc-2.3.5/sysdeps/hppa/fpu/feholdexcpt.c	2006-01-14 10:20:21.000000000 -0800
+diff -uNr ports/sysdeps/hppa/fpu.orig/feholdexcpt.c ports/sysdeps/hppa/fpu/feholdexcpt.c
+--- ports/sysdeps/hppa/fpu.orig/feholdexcpt.c	2006-01-14 10:17:19.000000000 -0800
++++ ports/sysdeps/hppa/fpu/feholdexcpt.c	2006-01-14 10:20:21.000000000 -0800
 @@ -30,10 +30,7 @@
    /* Store the environment.  */
    bufptr = clear.buf;
@@ -48,9 +48,9 @@ diff -uNr glibc-2.3.5/sysdeps/hppa/fpu.orig/feholdexcpt.c glibc-2.3.5/sysdeps/hp
  	   : : "r" (bufptr), "m" (clear));
  
    return 0;
-diff -uNr glibc-2.3.5/sysdeps/hppa/fpu.orig/fesetenv.c glibc-2.3.5/sysdeps/hppa/fpu/fesetenv.c
---- glibc-2.3.5/sysdeps/hppa/fpu.orig/fesetenv.c	2006-01-14 10:17:19.000000000 -0800
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fesetenv.c	2006-01-14 10:20:44.000000000 -0800
+diff -uNr ports/sysdeps/hppa/fpu.orig/fesetenv.c ports/sysdeps/hppa/fpu/fesetenv.c
+--- ports/sysdeps/hppa/fpu.orig/fesetenv.c	2006-01-14 10:17:19.000000000 -0800
++++ ports/sysdeps/hppa/fpu/fesetenv.c	2006-01-14 10:20:44.000000000 -0800
 @@ -34,10 +34,7 @@
       we want to use from the environment specified by the parameter.  */
    bufptr = temp.buf;

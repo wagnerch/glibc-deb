@@ -71,8 +71,13 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove hppa/cvs-linesep.diff (merged upstream).
   * Update hppa/cvs-no-ldbl-128.diff to reflect the new port add-on.
   * Update hppa/cvs-pie-relocs.diff to reflect the new port add-on.
+  * Update hppa/local-gcc-4-profile.diff to reflect the new port add-on.
   * Update hppa/local-inlining.diff to reflect the new port add-on.
+  * Update hppa/submitted-drop-utimes.diff.
   * Update hppa/submitted-fenv-align.diff to reflect the new port add-on.
+  * Update hppa/submitted-fpu.diff to reflect the new port add-on.
+  * Update hppa/submitted-iitlbp.diff to reflect the new port add-on.
+  * Update hppa/submitted-sysdeps.diff.
   * Remove hurd-i386/cvs-ioctl-pfinet.diff (merged upstream).
   * Remove hurd-i386/cvs-getresuid-dyslexia.diff (merged upstream).
   * Remove hurd-i386/cvs-posix-opts.diff (merged upstream).

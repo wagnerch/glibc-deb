@@ -7,8 +7,8 @@
 # DP: Status Details: 
 # DP: Date: 2005-07-17
 
---- libc-orig/sysdeps/generic/dl-sysdep.c	2004-12-14 15:30:41.000000000 -0500
-+++ libc/sysdeps/generic/dl-sysdep.c	2004-12-14 15:30:29.000000000 -0500
+--- elf/dl-sysdep.c	2004-12-14 15:30:41.000000000 -0500
++++ elf/dl-sysdep.c	2004-12-14 15:30:29.000000000 -0500
 @@ -89,7 +89,7 @@
  #else
    uid_t uid = 0;
@@ -18,8 +18,8 @@
  # define set_seen_secure() (seen = -1)
  # ifdef HAVE_AUX_XID
  #  define set_seen(tag) (tag)	/* Evaluate for the side effects.  */
---- libc-orig/sysdeps/hppa/atomicity.h	1969-12-31 19:00:00.000000000 -0500
-+++ libc/sysdeps/hppa/atomicity.h	2003-12-08 21:25:00.000000000 -0500
+--- ports/sysdeps/hppa/atomicity.h	1969-12-31 19:00:00.000000000 -0500
++++ ports/sysdeps/hppa/atomicity.h	2003-12-08 21:25:00.000000000 -0500
 @@ -0,0 +1,55 @@
 +/* Low-level functions for atomic operations.  HP-PARISC version.
 +   Copyright (C) 1997,2001 Free Software Foundation, Inc.
@@ -76,8 +76,8 @@
 +}
 +
 +#endif /* atomicity.h */
---- libc-orig/sysdeps/hppa/bits/link.h	2005-01-28 14:39:49.000000000 -0500
-+++ libc/sysdeps/hppa/bits/link.h	2005-03-01 13:42:58.000000000 -0500
+--- ports/sysdeps/hppa/bits/link.h	2005-01-28 14:39:49.000000000 -0500
++++ ports/sysdeps/hppa/bits/link.h	2005-03-01 13:42:58.000000000 -0500
 @@ -0,0 +1,63 @@
 +/* Copyright (C) 2005 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -142,8 +142,8 @@
 +					const char *symname);
 +
 +__END_DECLS
---- libc-orig/sysdeps/hppa/dl-trampoline.S	1969-12-31 19:00:00.000000000 -0500
-+++ libc/sysdeps/hppa/dl-trampoline.S	2005-04-05 15:51:55.000000000 -0400
+--- ports/sysdeps/hppa/dl-trampoline.S	1969-12-31 19:00:00.000000000 -0500
++++ ports/sysdeps/hppa/dl-trampoline.S	2005-04-05 15:51:55.000000000 -0400
 @@ -0,0 +1,194 @@
 +/* PLT trampolines. hppa version.
 +   Copyright (C) 2005 Free Software Foundation, Inc.
@@ -339,8 +339,8 @@
 +
 +
 +
---- libc-orig/sysdeps/hppa/fpu/libm-test-ulps	2003-03-22 19:52:10.000000000 -0500
-+++ libc/sysdeps/hppa/fpu/libm-test-ulps	2004-09-29 23:50:16.000000000 -0400
+--- ports/sysdeps/hppa/fpu/libm-test-ulps	2003-03-22 19:52:10.000000000 -0500
++++ ports/sysdeps/hppa/fpu/libm-test-ulps	2004-09-29 23:50:16.000000000 -0400
 @@ -1,6 +1,9 @@
  # Begin of automatic generation
  
@@ -395,8 +395,8 @@
  Function: Imaginary part of "ctan":
  double: 1
  idouble: 1
---- libc-orig/sysdeps/hppa/sysdep.h	2003-10-15 01:31:42.000000000 -0400
-+++ libc/sysdeps/hppa/sysdep.h	2004-11-01 01:51:58.000000000 -0500
+--- ports/sysdeps/hppa/sysdep.h	2003-10-15 01:31:42.000000000 -0400
++++ ports/sysdeps/hppa/sysdep.h	2004-11-01 01:51:58.000000000 -0500
 @@ -22,9 +22,8 @@
  #include <sys/syscall.h>
  #include "config.h"
@@ -425,8 +425,8 @@
  #else
  #define CALL_MCOUNT		/* Do nothing.  */
  #endif
---- libc-orig/sysdeps/unix/sysv/linux/hppa/sysdep.c	2003-10-15 01:45:16.000000000 -0400
-+++ libc/sysdeps/unix/sysv/linux/hppa/sysdep.c	2004-09-20 14:04:24.000000000 -0400
+--- ports/sysdeps/unix/sysv/linux/hppa/sysdep.c	2003-10-15 01:45:16.000000000 -0400
++++ ports/sysdeps/unix/sysv/linux/hppa/sysdep.c	2004-09-20 14:04:24.000000000 -0400
 @@ -46,13 +46,13 @@
    {
      register unsigned long int __res asm("r28");
@@ -444,8 +444,8 @@
      __sys_res = __res;
    }
    if ((unsigned long int) __sys_res >= (unsigned long int) -4095)
---- libc-orig/sysdeps/unix/sysv/linux/hppa/sysdep.h	2003-11-03 12:18:38.000000000 -0500
-+++ libc/sysdeps/unix/sysv/linux/hppa/sysdep.h	2005-04-05 03:40:47.000000000 -0400
+--- ports/sysdeps/unix/sysv/linux/hppa/sysdep.h	2003-11-03 12:18:38.000000000 -0500
++++ ports/sysdeps/unix/sysv/linux/hppa/sysdep.h	2005-04-05 03:40:47.000000000 -0400
 @@ -24,26 +24,33 @@
  #include <sys/syscall.h>
  #include "config.h"
@@ -890,8 +890,8 @@
  
  /* Even with zero args we use r20 for the syscall number */
  #define ASM_ARGS_0
---- libc-orig/sysdeps/unix/sysv/linux/posix_fadvise.c	2003-08-16 20:36:22.000000000 -0400
-+++ libc/sysdeps/unix/sysv/linux/posix_fadvise.c	2004-09-26 22:45:33.000000000 -0400
+--- sysdeps/unix/sysv/linux/posix_fadvise.c	2003-08-16 20:36:22.000000000 -0400
++++ sysdeps/unix/sysv/linux/posix_fadvise.c	2004-09-26 22:45:33.000000000 -0400
 @@ -35,6 +35,19 @@
      return INTERNAL_SYSCALL_ERRNO (ret, err);
    return 0;
@@ -912,12 +912,13 @@
 +# endif
  #endif
  }
---- glibc-2.3.5.old/sysdeps/hppa/dl-lookupcfg.h	2005-05-15 20:36:10.383193082 -0600
-+++ glibc-2.3.5/sysdeps/hppa/dl-lookupcfg.h	2005-05-15 21:44:07.543952666 -0600
-@@ -67,3 +69,15 @@
+--- ports/sysdeps/hppa/dl-lookupcfg.h	2005-05-15 20:36:10.383193082 -0600
++++ ports/sysdeps/hppa/dl-lookupcfg.h	2005-05-15 21:44:07.543952666 -0600
+@@ -63,3 +63,15 @@
+   ((Elf32_Addr)(addr) & 2 ? (addr) : DL_AUTO_FUNCTION_ADDRESS (map, addr))
  #define DL_DT_FINI_ADDRESS(map, addr) \
    ((Elf32_Addr)(addr) & 2 ? (addr) : DL_AUTO_FUNCTION_ADDRESS (map, addr))
- 
++
 +/* The type of the return value of fixup/profile_fixup */
 +#define DL_FIXUP_VALUE_TYPE struct fdesc
 +
@@ -929,4 +930,3 @@
 +#define DL_FIXUP_VALUE_CODE_ADDR(value) ((value).ip)
 +#define DL_FIXUP_VALUE_ADDR(value) ((uintptr_t) &(value))
 +#define DL_FIXUP_ADDR_VALUE(addr) (*(struct fdesc *) (addr))
-+
