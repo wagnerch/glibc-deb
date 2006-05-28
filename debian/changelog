@@ -60,6 +60,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove any/local-kernel-features.diff (merged upstream).
   * Remove hppa/cvs-linesep.diff (merged upstream).
   * Update hppa/submitted-fenv-align.diff to reflect the new port add-on.
+  * Remove hurd-i386/cvs-ioctl-pfinet.diff (merged upstream).
+  * Remove hurd-i386/cvs-getresuid-dyslexia.diff (merged upstream).
   * Remove hurd-i386/cvs-posix-opts.diff (merged upstream).
   * Update hurd-i386/submitted-sysvshm.diff.
   * Remove m32r/cvs-elf-m32r_rel32.diff (merged upstream).
