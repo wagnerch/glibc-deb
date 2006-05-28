@@ -79,6 +79,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update mips/submitted-msq.diff to reflect the new port add-on.
   * Remove powerpc/cvs-gcc41-initfini.diff (merged upstream).
   * debian/sysdeps/sparc.mk: do an NPTL pass.
+  * Update any/local-libgcc-compat-{all,others}.diff and split them into
+    any/local-libgcc-compat-{main,ports}.diff.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 
