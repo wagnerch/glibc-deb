@@ -65,6 +65,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update any/local-ldso-disable-hwcap.diff.
   * Update any/local-rtld.diff.
   * Update any/local-version-sanity.diff.
+  * Remove any/submitted-eh-frame-terminator.diff (merged upstream).
   * Update any/submitted-nis-netgrp.diff.
   * Remove hppa/cvs-linesep.diff (merged upstream).
   * Update hppa/submitted-fenv-align.diff to reflect the new port add-on.
