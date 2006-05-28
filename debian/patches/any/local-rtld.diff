@@ -5,7 +5,6 @@
 	  
 2005-08-30  Andreas Jochen  <Andreas Jochens>
 	* Makeconfig: use rtlddir instead of slibdir
-	* dlfcn/Makefile: likewise
 	* elf/Makefile: likewise
 
 --- glibc-2.3.6/Makeconfig	2005-08-30 17:48:26.000000000 +0000
@@ -31,17 +30,6 @@
  endif
  endif
  ifndef link-libc
---- glibc-2.3.6/dlfcn/Makefile	2004-10-18 23:08:31.000000000 +0000
-+++ glibc-2.3.6/dlfcn/Makefile	2005-08-30 18:38:37.000000000 +0000
-@@ -65,7 +65,7 @@
- 
- include ../Rules
- 
--LDFLAGS-dl.so = -Wl,-dynamic-linker,$(slibdir)/$(rtld-installed-name)
-+LDFLAGS-dl.so = -Wl,-dynamic-linker,$(rtlddir)/$(rtld-installed-name)
- 
- test-modules = $(addprefix $(objpfx),$(addsuffix .so,$(modules-names)))
- $(test-modules): $(objpfx)%.so: $(objpfx)%.os $(common-objpfx)shlib.lds
 --- glibc-2.3.6/elf/Makefile	2005-08-30 17:48:26.000000000 +0000
 +++ glibc-2.3.6/elf/Makefile	2005-08-30 18:38:37.000000000 +0000
 @@ -296,7 +296,7 @@

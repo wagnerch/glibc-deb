@@ -101,7 +101,6 @@ all/local-pt_BR.diff -p1
 all/submitted-new-brf-encoding.diff -p0
 
 any/cvs-getcwd_c.diff -p1
-#any/cvs-tls-crashfix.diff -p1
 any/local-asserth-decls.diff -p0
 #any/local-base.diff -p0	# g: suspended
 any/local-bashisms.diff
@@ -112,7 +111,7 @@ any/local-gcc4-wcstol_l.diff -p1
 #any/local-globfree-clear.diff -p1	# g: suspended
 any/local-ld-multiarch.diff -p1
 any/local-ldd.diff -p0
-#any/local-ldso-disable-hwcap.diff -p0
+any/local-ldso-disable-hwcap.diff -p0
 any/local-ldconfig.diff -p0
 any/local-ldconfig-multiarch.diff -p1
 any/local-ldconfig-tls.diff -p1
@@ -123,10 +122,10 @@ any/local-linuxthreads-sizefix.diff -p1
 any/local-localedef-fix-trampoline.diff -p1
 any/local-makeconfig.diff -p0
 any/local-nss-upgrade.diff -p1
-#any/local-rtld.diff -p1
+any/local-rtld.diff -p1
 any/local-tcsetaddr.diff -p1
 any/local-ttyname-devfs.diff -p0
-#any/local-version-sanity.diff -p1
+any/local-version-sanity.diff -p1
 #any/submitted-eh-frame-terminator.diff -p1
-#any/submitted-nis-netgrp.diff
+any/submitted-nis-netgrp.diff
 any/submitted-strfmon.diff

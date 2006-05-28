@@ -61,6 +61,10 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove any/cvs-resource_h.diff (merged upstream).
   * Remove any/cvs-tls-crashfix.diff (merged upstream).
   * Remove any/local-kernel-features.diff (merged upstream).
+  * Update any/local-ldso-disable-hwcap.diff.
+  * Update any/local-rtld.diff.
+  * Update any/local-version-sanity.diff.
+  * Update any/submitted-nis-netgrp.diff.
   * Remove hppa/cvs-linesep.diff (merged upstream).
   * Update hppa/submitted-fenv-align.diff to reflect the new port add-on.
   * Remove hurd-i386/cvs-ioctl-pfinet.diff (merged upstream).
