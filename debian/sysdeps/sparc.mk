@@ -3,6 +3,9 @@ libc_extra_config_options = $(extra_config_options) --without-__thread --disable
 # udeb Config
 udeb_extra_cflags = -Os
 
+# NPTL Config
+GLIBC_PASSES += nptl
+
 # build 64-bit (sparc64) alternative library
 GLIBC_PASSES += sparc64
 DEB_ARCH_REGULAR_PACKAGES += libc6-sparc64 libc6-dev-sparc64

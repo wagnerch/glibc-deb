@@ -1,5 +1,5 @@
 libc_extra_config_options = $(extra_config_options) --without-__thread --disable-sanity-checks
-libc_add-ons = ports $(add-ons)
+libc_add-ons = ports linuxthreads $(add-ons)
 
 # hppa64 needs symlink /usr/hppa64-linux/include to /usr/include
 # (See: Bug#239020)  In future we may drop this file with supporting hppa64.

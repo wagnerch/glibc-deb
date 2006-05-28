@@ -88,7 +88,7 @@ m68k/local-dwarf2-buildfix.diff -p0
 #m68k/local-reloc.diff -p1
 #m68k/submitted-gcc34-seccomment.diff -p0
 
-#mips/local-librt.diff -p0
+mips/local-librt.diff -p0
 mips/local-lazy-eval.diff -p2
 mips/submitted-msq.diff -p0
 

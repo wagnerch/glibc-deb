@@ -23,14 +23,14 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - Add any/local-bashisms.diff: fix invalid test operator (==)
       in run-iconv-test.sh
     - debian/rules.d/build.mk: don't try to build html documentation.
-    - debian/sysdeps/hppa.mk: use ports add-on
+    - debian/sysdeps/hppa.mk: use ports and linuxthreads add-ons
     - debian/sysdeps/ia64.mk: build with linuxthreads instead of NPTL
-    - debian/sysdeps/m68k.mk: use ports add-on
-    - debian/sysdeps/mips.mk: use ports add-on
-    - debian/sysdeps/mipsel.mk: use ports add-on
+    - debian/sysdeps/m68k.mk: use ports and linuxthreads add-ons 
+    - debian/sysdeps/mips.mk: use ports and linuxthreads add-ons
+    - debian/sysdeps/mipsel.mk: use ports and linuxthreads add-ons
     - debian/sysdeps/i386.mk: disable sanity checks on linuxthreads build
     - debian/sysdeps/powerpc.mk: build with linuxthreads instead of NPTL
-    - debian/sysdeps/arm.mk: use ports add-on
+    - debian/sysdeps/arm.mk: use ports and linuxthreads add-ons
     - Build with gcc 4.1 on all architectures.
     - debian/patches/sparc/local-linuxthreads.diff: fill in missing
       preprocessor macros.
@@ -68,6 +68,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update mips/local-librt.diff to reflect the new port add-on.
   * Update mips/submitted-msq.diff to reflect the new port add-on.
   * Remove powerpc/cvs-gcc41-initfini.diff (merged upstream).
+  * debian/sysdeps/sparc.mk: do an NPTL pass.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 
