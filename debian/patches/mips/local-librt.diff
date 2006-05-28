@@ -6,12 +6,12 @@
 # DP: Patch author: Guido Guenther <agx@debian.org>, GOTO Masanori <gotom@debian.org>
 # DP: Upstream status: Debian-Specific
 # DP: Status Details: debian-specific, until etch will be released.
-# DP: Date: 2004-12-24 (updated)
+# DP: Date: 2006-05-28 (updated)
 
---- sysdeps/unix/sysv/linux/mips/Versions.orig	Tue Sep 24 15:56:55 2002
-+++ sysdeps/unix/sysv/linux/mips/Versions	Tue Sep 24 15:49:27 2002
-@@ -34,3 +34,9 @@
-     _sys_errlist; sys_errlist; _sys_nerr; sys_nerr;
+--- ports/sysdeps/unix/sysv/linux/mips/Versions.orig	Tue Sep 24 15:56:55 2002
++++ ports/sysdeps/unix/sysv/linux/mips/Versions	Tue Sep 24 15:49:27 2002
+@@ -29,3 +29,9 @@
+     _test_and_set;
    }
  }
 +librt {
@@ -63,7 +63,7 @@
    int retval;
  
 --- /dev/null	2004-09-27 19:55:25.000000000 +0900
-+++ sysdeps/unix/sysv/linux/mips/clock_settime.c	2004-12-23 12:07:36.000000000 +0900
++++ ports/sysdeps/unix/sysv/linux/mips/clock_settime.c	2004-12-23 12:07:36.000000000 +0900
 @@ -0,0 +1,18 @@
 +/*
 + * It adds for debian specific librt-mips binary incompatibility problems.
@@ -84,7 +84,7 @@
 +#endif
 +versioned_symbol (librt, __clock_settime, clock_settime, GLIBC_2_2);
 --- /dev/null	2004-09-27 19:55:25.000000000 +0900
-+++ sysdeps/unix/sysv/linux/mips/clock_gettime.c	2004-12-23 12:07:35.000000000 +0900
++++ ports/sysdeps/unix/sysv/linux/mips/clock_gettime.c	2004-12-23 12:07:35.000000000 +0900
 @@ -0,0 +1,18 @@
 +/*
 + * It adds for debian specific librt-mips binary incompatibility problems.

@@ -4,9 +4,9 @@
 # DP: Upstream status: Not submitted (yet)
 # DP: Date: 2005-10-14
 
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fclrexcpt.c glibc-2.3.5/sysdeps/hppa/fpu/fclrexcpt.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/fclrexcpt.c	2003-12-18 03:56:15.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fclrexcpt.c	2005-10-14 17:44:33.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/fclrexcpt.c ports/sysdeps/hppa/fpu/fclrexcpt.c
+--- ports/sysdeps/hppa.bak/fpu/fclrexcpt.c	2003-12-18 03:56:15.000000000 +0000
++++ ports/sysdeps/hppa/fpu/fclrexcpt.c	2005-10-14 17:44:33.000000000 +0000
 @@ -23,14 +23,14 @@
  int
  feclearexcept (int excepts)
@@ -26,9 +26,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fclrexcpt.c glibc-2.3.5/sysdeps/hppa/f
  
    /* Success.  */
    return 0;
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fedisblxcpt.c glibc-2.3.5/sysdeps/hppa/fpu/fedisblxcpt.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/fedisblxcpt.c	2001-07-06 04:55:52.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fedisblxcpt.c	2005-10-14 17:48:10.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/fedisblxcpt.c ports/sysdeps/hppa/fpu/fedisblxcpt.c
+--- ports/sysdeps/hppa.bak/fpu/fedisblxcpt.c	2001-07-06 04:55:52.000000000 +0000
++++ ports/sysdeps/hppa/fpu/fedisblxcpt.c	2005-10-14 17:48:10.000000000 +0000
 @@ -23,15 +23,16 @@
  int
  fedisableexcept (int excepts)
@@ -51,9 +51,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fedisblxcpt.c glibc-2.3.5/sysdeps/hppa
  
    return old_exc;
  }
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/feenablxcpt.c glibc-2.3.5/sysdeps/hppa/fpu/feenablxcpt.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/feenablxcpt.c	2001-07-06 04:55:52.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/feenablxcpt.c	2005-10-14 17:48:46.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/feenablxcpt.c ports/sysdeps/hppa/fpu/feenablxcpt.c
+--- ports/sysdeps/hppa.bak/fpu/feenablxcpt.c	2001-07-06 04:55:52.000000000 +0000
++++ ports/sysdeps/hppa/fpu/feenablxcpt.c	2005-10-14 17:48:46.000000000 +0000
 @@ -23,15 +23,16 @@
  int
  feenableexcept (int excepts)
@@ -76,9 +76,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/feenablxcpt.c glibc-2.3.5/sysdeps/hppa
  
    return old_exc;
  }
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fegetenv.c glibc-2.3.5/sysdeps/hppa/fpu/fegetenv.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/fegetenv.c	2003-12-18 03:56:50.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fegetenv.c	2005-10-14 18:10:42.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/fegetenv.c ports/sysdeps/hppa/fpu/fegetenv.c
+--- ports/sysdeps/hppa.bak/fpu/fegetenv.c	2003-12-18 03:56:50.000000000 +0000
++++ ports/sysdeps/hppa/fpu/fegetenv.c	2005-10-14 18:10:42.000000000 +0000
 @@ -19,15 +19,19 @@
     02111-1307 USA.  */
  
@@ -100,9 +100,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fegetenv.c glibc-2.3.5/sysdeps/hppa/fp
 +  memcpy (envp, buf, sizeof (*envp));
    return 0;
  }
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fegetexcept.c glibc-2.3.5/sysdeps/hppa/fpu/fegetexcept.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/fegetexcept.c	2001-07-06 04:55:52.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fegetexcept.c	2005-10-14 17:49:08.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/fegetexcept.c ports/sysdeps/hppa/fpu/fegetexcept.c
+--- ports/sysdeps/hppa.bak/fpu/fegetexcept.c	2001-07-06 04:55:52.000000000 +0000
++++ ports/sysdeps/hppa/fpu/fegetexcept.c	2005-10-14 17:49:08.000000000 +0000
 @@ -23,10 +23,10 @@
  int
  fegetexcept (void)
@@ -117,9 +117,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fegetexcept.c glibc-2.3.5/sysdeps/hppa
 -  return sw[0] & FE_ALL_EXCEPT;
 +  return s.sw[0] & FE_ALL_EXCEPT;
  }
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fegetround.c glibc-2.3.5/sysdeps/hppa/fpu/fegetround.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/fegetround.c	2001-07-06 04:55:52.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fegetround.c	2005-10-14 17:49:28.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/fegetround.c ports/sysdeps/hppa/fpu/fegetround.c
+--- ports/sysdeps/hppa.bak/fpu/fegetround.c	2001-07-06 04:55:52.000000000 +0000
++++ ports/sysdeps/hppa/fpu/fegetround.c	2005-10-14 17:49:28.000000000 +0000
 @@ -23,10 +23,10 @@
  int
  fegetround (void)
@@ -134,9 +134,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fegetround.c glibc-2.3.5/sysdeps/hppa/
 -  return sw[0] & FE_DOWNWARD;
 +  return s.sw[0] & FE_DOWNWARD;
  }
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/feholdexcpt.c glibc-2.3.5/sysdeps/hppa/fpu/feholdexcpt.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/feholdexcpt.c	2004-02-21 02:10:01.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/feholdexcpt.c	2005-10-14 18:14:13.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/feholdexcpt.c ports/sysdeps/hppa/fpu/feholdexcpt.c
+--- ports/sysdeps/hppa.bak/fpu/feholdexcpt.c	2004-02-21 02:10:01.000000000 +0000
++++ ports/sysdeps/hppa/fpu/feholdexcpt.c	2005-10-14 18:14:13.000000000 +0000
 @@ -24,33 +24,34 @@
  int
  feholdexcept (fenv_t *envp)
@@ -181,9 +181,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/feholdexcpt.c glibc-2.3.5/sysdeps/hppa
  
    return 0;
  }
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fesetenv.c glibc-2.3.5/sysdeps/hppa/fpu/fesetenv.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/fesetenv.c	2003-12-18 03:57:31.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fesetenv.c	2005-10-14 18:14:21.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/fesetenv.c ports/sysdeps/hppa/fpu/fesetenv.c
+--- ports/sysdeps/hppa.bak/fpu/fesetenv.c	2003-12-18 03:57:31.000000000 +0000
++++ ports/sysdeps/hppa/fpu/fesetenv.c	2005-10-14 18:14:21.000000000 +0000
 @@ -25,40 +25,42 @@
  int
  fesetenv (const fenv_t *envp)
@@ -239,9 +239,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fesetenv.c glibc-2.3.5/sysdeps/hppa/fp
  
    /* Success.  */
    return 0;
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fesetround.c glibc-2.3.5/sysdeps/hppa/fpu/fesetround.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/fesetround.c	2002-12-03 02:50:52.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fesetround.c	2005-10-14 17:58:24.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/fesetround.c ports/sysdeps/hppa/fpu/fesetround.c
+--- ports/sysdeps/hppa.bak/fpu/fesetround.c	2002-12-03 02:50:52.000000000 +0000
++++ ports/sysdeps/hppa/fpu/fesetround.c	2005-10-14 17:58:24.000000000 +0000
 @@ -23,17 +23,17 @@
  int
  fesetround (int round)
@@ -265,9 +265,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fesetround.c glibc-2.3.5/sysdeps/hppa/
  
    return 0;
  }
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/feupdateenv.c glibc-2.3.5/sysdeps/hppa/fpu/feupdateenv.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/feupdateenv.c	2004-04-17 22:51:43.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/feupdateenv.c	2005-10-14 18:10:40.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/feupdateenv.c ports/sysdeps/hppa/fpu/feupdateenv.c
+--- ports/sysdeps/hppa.bak/fpu/feupdateenv.c	2004-04-17 22:51:43.000000000 +0000
++++ ports/sysdeps/hppa/fpu/feupdateenv.c	2005-10-14 18:10:40.000000000 +0000
 @@ -19,18 +19,19 @@
     02111-1307 USA.  */
  
@@ -291,9 +291,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/feupdateenv.c glibc-2.3.5/sysdeps/hppa
  
    /* Success.  */
    return 0;
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fgetexcptflg.c glibc-2.3.5/sysdeps/hppa/fpu/fgetexcptflg.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/fgetexcptflg.c	2001-07-06 04:55:52.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fgetexcptflg.c	2005-10-14 17:57:37.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/fgetexcptflg.c ports/sysdeps/hppa/fpu/fgetexcptflg.c
+--- ports/sysdeps/hppa.bak/fpu/fgetexcptflg.c	2001-07-06 04:55:52.000000000 +0000
++++ ports/sysdeps/hppa/fpu/fgetexcptflg.c	2005-10-14 17:57:37.000000000 +0000
 @@ -23,12 +23,12 @@
  int
  fegetexceptflag (fexcept_t *flagp, int excepts)
@@ -310,9 +310,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fgetexcptflg.c glibc-2.3.5/sysdeps/hpp
  
    /* Success.  */
    return 0;
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fsetexcptflg.c glibc-2.3.5/sysdeps/hppa/fpu/fsetexcptflg.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/fsetexcptflg.c	2003-12-18 03:58:26.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/fsetexcptflg.c	2005-10-14 17:57:28.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/fsetexcptflg.c ports/sysdeps/hppa/fpu/fsetexcptflg.c
+--- ports/sysdeps/hppa.bak/fpu/fsetexcptflg.c	2003-12-18 03:58:26.000000000 +0000
++++ ports/sysdeps/hppa/fpu/fsetexcptflg.c	2005-10-14 17:57:28.000000000 +0000
 @@ -24,16 +24,16 @@
  int
  fesetexceptflag (const fexcept_t *flagp, int excepts)
@@ -334,9 +334,9 @@ diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/fsetexcptflg.c glibc-2.3.5/sysdeps/hpp
  
    /* Success.  */
    return 0;
-diff -ur glibc-2.3.5/sysdeps/hppa.bak/fpu/ftestexcept.c glibc-2.3.5/sysdeps/hppa/fpu/ftestexcept.c
---- glibc-2.3.5/sysdeps/hppa.bak/fpu/ftestexcept.c	2001-07-06 04:55:52.000000000 +0000
-+++ glibc-2.3.5/sysdeps/hppa/fpu/ftestexcept.c	2005-10-14 18:10:05.000000000 +0000
+diff -ur ports/sysdeps/hppa.bak/fpu/ftestexcept.c ports/sysdeps/hppa/fpu/ftestexcept.c
+--- ports/sysdeps/hppa.bak/fpu/ftestexcept.c	2001-07-06 04:55:52.000000000 +0000
++++ ports/sysdeps/hppa/fpu/ftestexcept.c	2005-10-14 18:10:05.000000000 +0000
 @@ -23,10 +23,10 @@
  int
  fetestexcept (int excepts)
