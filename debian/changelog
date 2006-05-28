@@ -125,9 +125,10 @@ glibc (2.3.6-11) UNRELEASED; urgency=low
     sarge into etch.
   * debian/sysdeps/kfreebsd.mk: build the udeb package with -Os on
     kfreebsd-i386 and kfreebsd-amd64.
-  * debian/sysdeps/*.mk: build the udeb with -Os on amd64, i386, mips and
+  * debian/sysdeps/*.mk: build the udeb with -Os, except on alpha, m68k and
     s390.
   * debian/sysdeps/hppa.mk: build the udeb with gcc 4.1.
+    mipsel, powerpc and sparc.
   * debian/sysdeps/arm.mk: set udeb_MIN_KERNEL_SUPPORTED to 2.4.1, as the
     arm build daemons are still running a 2.4 kernel.
   * patches/kfreebsd/local-sysdeps.diff: update to revision 1577 (from
@@ -142,6 +143,8 @@ glibc (2.3.6-11) UNRELEASED; urgency=low
   [ Denis Barbier ]
   * Add patches/all/submitted-new-brf-encoding.diff: Add new BRF encoding
     (ASCII Braille), submitted upstream by Samuel Thibault.
+  * Add patches/localedata/locale-zh_TW.diff: Remove <U897F><U5143> from
+    dates.  Thanks Dan Jacobson (Closes: #352600)
 
   [ Clint Adams ]
   * debian/debhelper.in/libc.preinst: use POSIX syntax for kill.
