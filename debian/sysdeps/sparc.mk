@@ -1,8 +1,5 @@
 libc_extra_config_options = $(extra_config_options) --disable-sanity-checks
 
-# udeb Config
-udeb_extra_cflags = -Os
-
 # NPTL Config
 GLIBC_PASSES += nptl
 

@@ -1,5 +1,5 @@
 # udeb Config
-udeb_extra_cflags = -Os
+udeb_add-ons = nptl $(add-ons)
 
 # build libc with nptl instead of linuxthreads
 libc_MIN_KERNEL_SUPPORTED = 2.6.0
@@ -43,4 +43,3 @@ ln -sf /emul/ia32-linux/lib debian/libc6-i386/lib32
 ln -sf /emul/ia32-linux/usr/lib debian/libc6-i386/usr/lib32
 endef
 
-udeb_add-ons = nptl $(add-ons)
