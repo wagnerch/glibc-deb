@@ -145,6 +145,17 @@ then
 	rm -f /lib/libdb.so.3.old
     fi
 
+    # Add support for /etc/ld.so.conf.d
+    if ! [ -e /etc/ld.so.conf ] ; then 
+       touch /etc/ld.so.conf
+    fi
+    if [ $(awk 'END {print NR}' /etc/ld.so.conf) != $(cat /etc/ld.so.conf | wc -l) ] ; then
+       echo >> /etc/ld.so.conf
+    fi
+    if ! grep -q '^include /etc/ld.so.conf.d/*.conf$' /etc/ld.so.conf ; then
+       echo 'include /etc/ld.so.conf.d/*.conf' >> /etc/ld.so.conf
+    fi
+
     # Handle upgrades when libc-opt package has been installed.
     # We check the version between the current installed libc and libc-opt.
     # If they're unmatched, we keep /etc/ld.so.nohwcap file until libc-opt
