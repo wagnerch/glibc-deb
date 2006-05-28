@@ -5,6 +5,7 @@ libc = libc6
 # Linuxthreads Config
 threads = yes
 libc_add-ons = linuxthreads $(add-ons)
+libc_extra_config_options = $(extra_config_options) --disable-sanity-checks
 
 ifndef LINUX_SOURCE
   ifeq ($(DEB_HOST_GNU_TYPE),$(DEB_BUILD_GNU_TYPE))
