@@ -63,6 +63,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove any/cvs-tls-crashfix.diff (merged upstream).
   * Remove any/local-kernel-features.diff (merged upstream).
   * Update any/local-ldso-disable-hwcap.diff.
+  * Update any/local-linuxthreads-sizefix.diff.
   * Update any/local-rtld.diff.
   * Update any/local-version-sanity.diff.
   * Remove any/submitted-eh-frame-terminator.diff (merged upstream).

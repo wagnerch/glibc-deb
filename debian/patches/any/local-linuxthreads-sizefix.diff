@@ -189,22 +189,30 @@ Index: glibc-2.4/linuxthreads/sysdeps/ia64/tls.h
 ===================================================================
 --- glibc-2.4.orig/linuxthreads/sysdeps/ia64/tls.h	2005-01-09 15:01:13.000000000 -0500
 +++ glibc-2.4/linuxthreads/sysdeps/ia64/tls.h	2006-03-11 01:00:38.000000000 -0500
-@@ -65,7 +65,14 @@
- #  define TLS_TCB_SIZE sizeof (tcbhead_t)
+@@ -69,13 +69,22 @@
+    If there is not any room for uintptr_t stack_guard and
+    uintptr_t pointer_guard in struct pthread's final padding,
+    we need to put struct pthread 16 byte slower.  */
+-# define TLS_PRE_TCB_SIZE \
++# define TLS_PRE_TCB_SIZE_LT \
+   (sizeof (struct pthread)						\
+    + (PTHREAD_STRUCT_END_PADDING < 2 * sizeof (uintptr_t)		\
+       ? ((2 * sizeof (uintptr_t) + __alignof__ (struct pthread) - 1)	\
+ 	 & ~(__alignof__ (struct pthread) - 1))				\
+       : 0))
  
- /* This is the size we need before TCB.  */
--#  define TLS_PRE_TCB_SIZE sizeof (struct _pthread_descr_struct)
 +#  ifndef IS_IN_rtld
-+#   define TLS_PRE_TCB_SIZE sizeof (struct _pthread_descr_struct)
++#   define TLS_TCB_SIZE TLS_PRE_TCB_SIZE_LT
 +#  else
 +#   include <nptl-struct-pthread.h>
-+#   define TLS_PRE_TCB_SIZE \
-+  (sizeof (struct _pthread_descr_struct) > NPTL_STRUCT_PTHREAD_SIZE	\
-+   ? sizeof (struct _pthread_descr_struct) : NPTL_STRUCT_PTHREAD_SIZE)
++#   define TLS_TCB_SIZE \
++   (TLS_PRE_TCB_SIZE_LT > NPTL_STRUCT_PTHREAD_SIZE    \
++    ? TLS_PRE_TCB_SIZE_LT : NPTL_STRUCT_PTHREAD_SIZE)
 +#  endif
- 
++
  /* Alignment requirements for the TCB.  */
  #  define TLS_TCB_ALIGN __alignof__ (struct _pthread_descr_struct)
+ 
 Index: glibc-2.4/linuxthreads/sysdeps/powerpc/tls.h
 ===================================================================
 --- glibc-2.4.orig/linuxthreads/sysdeps/powerpc/tls.h	2005-01-09 15:01:14.000000000 -0500
