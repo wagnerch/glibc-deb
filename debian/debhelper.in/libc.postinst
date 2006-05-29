@@ -146,11 +146,10 @@ then
     fi
 
     # Add support for /etc/ld.so.conf.d
-    if ! [ -e /etc/ld.so.conf ] ; then 
-       touch /etc/ld.so.conf
-    fi
-    if [ $(awk 'END {print NR}' /etc/ld.so.conf) != $(cat /etc/ld.so.conf | wc -l) ] ; then
-       echo >> /etc/ld.so.conf
+    if [ -e /etc/ld.so.conf ]; then
+	[ -z "$(tail -n 1 /etc/ld.so.conf)" ] || echo >> /etc/ld.so.conf
+    else
+	touch /etc/ld.so.conf
     fi
     if ! grep -q '^include /etc/ld.so.conf.d/*.conf$' /etc/ld.so.conf ; then
        echo 'include /etc/ld.so.conf.d/*.conf' >> /etc/ld.so.conf
