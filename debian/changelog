@@ -56,6 +56,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
   * Update all/submitted-new-brf-encoding.diff.
+  * Remove alpha/cvs-gcc4-profile.diff (not needed anymore).
+  * Update alpha/submitted-xstat.diff.
   * Remove any/cvs-argp_h.diff (merged upstream).
   * Remove any/cvs-ctan.diff (merged upstream).
   * Remove any/cvs-futimes.diff (merged upstream).

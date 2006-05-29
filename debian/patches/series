@@ -42,9 +42,8 @@ localedata/first_weekday.diff -p0
 localedata/sort-UTF8-first.diff -p0
 localedata/local-all-no-archive.diff
 
-#alpha/cvs-gcc4-profile.diff -p0
 #alpha/submitted-pic.diff -p0	# g: suspended
-#alpha/submitted-xstat.diff -p0
+alpha/submitted-xstat.diff -p0
 
 amd64/local-biarch.diff -p1
 
