@@ -154,8 +154,8 @@ $(stamp)install_%: $(stamp)check_%
 	  os=`sed '/^ *config-os *=/!d;s/.*= *//g' $(DEB_BUILDDIR)/config.make`; \
 	  triplet='$$machine-$$os'; \
 	  mkdir -p debian/tmp-$(curpass)/lib/$$triplet debian/tmp-$(curpass)/usr/lib/$$triplet; \
-	  conffile='debian/tmp-$(curpass)/etc/ld.so.conf.d/$$triplet'; \
-	  echo "# Multiarch support\n" > $$conffile; \
+	  conffile="debian/tmp-$(curpass)/etc/ld.so.conf.d/$$triplet"; \
+	  echo "# Multiarch support" > $$conffile; \
 	  echo /lib/$$machine-$$os >> $$conffile; \
 	  echo /usr/lib/$$machine-$$os >> $$conffile; \
 	fi
