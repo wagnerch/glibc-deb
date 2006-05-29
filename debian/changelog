@@ -86,6 +86,10 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove hurd-i386/cvs-getresuid-dyslexia.diff (merged upstream).
   * Remove hurd-i386/cvs-posix-opts.diff (merged upstream).
   * Update hurd-i386/submitted-sysvshm.diff.
+  * Remove kfreebsd/local-nscd_no_mremap.diff (not necessary anymore).
+  * Update kfreebsd/local-scripts.diff.
+  * Add kfreebsd/local-ftw.diff.
+  * Add kfreebsd/local-sysdeps-2.4.diff.
   * Remove m32r/cvs-elf-m32r_rel32.diff (merged upstream).
   * Remove mips/cvs-gcc4-inline.diff (merged upstream).
   * Remove mips/cvs-gcc4-sysdeps.diff (merged upstream).
