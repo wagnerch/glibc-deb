@@ -98,10 +98,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Add sparc/local-fork.diff (use fork.c instead of fork.S).
   * Add sparc/local-sysdep.diff (pull in __syscall_error routine when 
     building with linuxthreads).
-  * debian/sysdeps/mips(el).mk: disable TLS (as on 2.3.6).
   * Add any/local-__thread.diff (make glibc buildable without __thread support)
     from Michael Bank.  (Closes: #361064)
-  * debian/sysdeps/{arm,m68k,hppa}.mk: disable TLS (as on 2.3.6).
   * debian/debhelper.in/libc.postinst: add /etc/ld.so.conf.d/ support.
   * Drop any/local-ldconfig-multiarch.diff, use /etc/ld.so.conf.d/ to 
     configure multiarch libraries.

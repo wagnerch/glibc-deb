@@ -1,4 +1,3 @@
-libc_extra_config_options = $(extra_config_options) --without-tls --disable-sanity-checks
 libc_add-ons = ports linuxthreads $(add-ons)
 
 # udeb Config
