@@ -6,6 +6,3 @@ RUN_TESTSUITE = no
 
 # disabled for static linked pthread programs.
 libc_extra_config_options = $(extra_config_options) --without-__thread --disable-sanity-checks
-
-# udeb Config
-udeb_extra_cflags =
