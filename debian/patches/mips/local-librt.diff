@@ -46,6 +46,13 @@
  {
    int retval = -1;
  
+@@ -136,4 +136,6 @@
+ 
+   return retval;
+ }
++#ifndef DEBIAN_LIBRT_MIPS
+ librt_hidden_def (clock_gettime)
++#endif	
 --- sysdeps/unix/clock_settime.c~	2004-12-04 17:05:53.000000000 +0900
 +++ sysdeps/unix/clock_settime.c	2004-12-23 12:09:27.000000000 +0900
 @@ -37,8 +37,13 @@
