@@ -72,6 +72,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update any/local-version-sanity.diff.
   * Remove any/submitted-eh-frame-terminator.diff (merged upstream).
   * Update any/submitted-nis-netgrp.diff.
+  * Remove i386/local-i486_ldt_support.diff (merged upstream).
   * Remove hppa/cvs-linesep.diff (merged upstream).
   * Update hppa/cvs-no-ldbl-128.diff to reflect the new port add-on.
   * Update hppa/cvs-pie-relocs.diff to reflect the new port add-on.
