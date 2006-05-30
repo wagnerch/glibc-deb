@@ -108,6 +108,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Drop any/local-ldconfig-multiarch.diff, use /etc/ld.so.conf.d/ to 
     configure multiarch libraries.
   * debian/sysdeps/alpha.mk: do an NPTL pass.
+  * debian/sysdeps/alpha.mk: build with gcc-4.0.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 
