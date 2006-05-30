@@ -43,6 +43,7 @@ localedata/sort-UTF8-first.diff -p0
 localedata/local-all-no-archive.diff
 
 #alpha/submitted-pic.diff -p0	# g: suspended
+alpha/local-gcc4.1.diff -p0
 alpha/submitted-xstat.diff -p0
 
 amd64/local-biarch.diff -p1

@@ -108,7 +108,6 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Drop any/local-ldconfig-multiarch.diff, use /etc/ld.so.conf.d/ to 
     configure multiarch libraries.
   * debian/sysdeps/alpha.mk: do an NPTL pass.
-  * debian/sysdeps/alpha.mk: build with gcc-4.0.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 
@@ -116,6 +115,8 @@ glibc (2.3.6-12) UNRELEASED; urgency=low
 
   * Don't do a udeb pass, it is still too buggy.  (Closes: #369492)
   * debian/control.in/main: build-depends on libc6-dev-sparc64 on sparc.
+  * Add patches/alpha/local-gcc4.1.diff (fix build with gcc-4.1) from
+    Falk Hueffner.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 30 May 2006 06:53:29 +0200
 
