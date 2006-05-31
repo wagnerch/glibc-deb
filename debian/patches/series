@@ -119,7 +119,6 @@ any/local-ldconfig.diff -p0
 any/local-ldconfig-tls.diff -p1
 any/local-libgcc-compat-main.diff -p0
 any/local-libgcc-compat-ports.diff -p0
-any/local-libgcc-static.diff -p0
 any/local-linuxthreads-sizefix.diff -p1
 any/local-localedef-fix-trampoline.diff -p1
 any/local-makeconfig.diff -p0
