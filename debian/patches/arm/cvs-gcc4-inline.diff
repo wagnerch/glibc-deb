@@ -12,13 +12,13 @@
 
 Fetched from: http://kegel.com/crosstool/crosstool-0.37/patches/glibc-2.3.5/glibc-2.3.4-allow-gcc-4.0-arm.patch
 
---- glibc-2.3.4/sysdeps/arm/dl-machine.h.old	Sun Mar 20 17:54:37 2005
-+++ glibc-2.3.4/sysdeps/arm/dl-machine.h	Sun Mar 20 17:57:32 2005
-@@ -359,7 +359,14 @@
- # endif
+--- ports/sysdeps/arm/dl-machine.h.orig	2006-06-01 12:25:24.000000000 +0200
++++ ports/sysdeps/arm/dl-machine.h	2006-06-01 12:25:59.000000000 +0200
+@@ -282,7 +282,14 @@
+ #ifdef RESOLVE_MAP
  
  /* Deal with an out-of-range PC24 reloc.  */
--static Elf32_Addr
+-auto Elf32_Addr
 +#if __GNUC__ >= 4
 +  auto inline Elf32_Addr
 +#else
