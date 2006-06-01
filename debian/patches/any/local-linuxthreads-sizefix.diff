@@ -405,11 +405,12 @@ Index: glibc-2.4/linuxthreads/sysdeps/pthread/bits/pthreadtypes.h
 ===================================================================
 --- glibc-2.4.orig/linuxthreads/sysdeps/pthread/bits/pthreadtypes.h	2006-03-11 01:05:57.000000000 -0500
 +++ glibc-2.4/linuxthreads/sysdeps/pthread/bits/pthreadtypes.h	2006-03-11 01:10:02.000000000 -0500
-@@ -149,4 +149,17 @@
+@@ -149,4 +149,18 @@
  /* Thread identifiers */
  typedef unsigned long int pthread_t;
  
 +#if __WORDSIZE == 64
++#define __PTHREAD_MUTEX_HAVE_PREV      1
 +typedef struct __pthread_internal_list
 +{
 +  struct __pthread_internal_list *__prev;
