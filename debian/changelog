@@ -58,6 +58,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update all/submitted-new-brf-encoding.diff.
   * Remove alpha/cvs-gcc4-profile.diff (not needed anymore).
   * Update alpha/submitted-xstat.diff.
+  * Update arm/local-ioperm.diff to reflect the new port add-on.
+  * Update arm/local-no-hwcap.diff to reflect the new port add-on.
   * Remove any/cvs-argp_h.diff (merged upstream).
   * Remove any/cvs-ctan.diff (merged upstream).
   * Remove any/cvs-futimes.diff (merged upstream).
@@ -92,6 +94,11 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Add kfreebsd/local-ftw.diff.
   * Add kfreebsd/local-sysdeps-2.4.diff.
   * Remove m32r/cvs-elf-m32r_rel32.diff (merged upstream).
+  * Update m68k/local-compat.diff.
+  * Update m68k/local-mathinline_h.diff to reflect the new port add-on, but
+    keep it disabled.
+  * Update m68k/local-fpic.diff.
+  * Update m68k/local-reloc.diff to reflect the new port add-on.
   * Remove mips/cvs-gcc4-inline.diff (merged upstream).
   * Remove mips/cvs-gcc4-sysdeps.diff (merged upstream).
   * Update mips/local-librt.diff to reflect the new port add-on.

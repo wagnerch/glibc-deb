@@ -1,5 +1,5 @@
---- libc/sysdeps/m68k/fpu/bits/mathinline.h	2006-03-03 15:22:14.000000000 +0100
-+++ libc/sysdeps/m68k/fpu/bits/mathinline.h	2006-04-07 00:41:04.000000000 +0200
+--- libc/ports/sysdeps/m68k/fpu/bits/mathinline.h	2006-03-03 15:22:14.000000000 +0100
++++ libc/ports/sysdeps/m68k/fpu/bits/mathinline.h	2006-04-07 00:41:04.000000000 +0200
 @@ -100,7 +100,7 @@
  /* Define a const math function.  */
  #define __m81_defun(rettype, func, args)				      \

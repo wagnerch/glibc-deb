@@ -52,8 +52,8 @@ amd64/local-biarch.diff -p1
 #arm/cvs-gcc4-inline.diff -p1
 #arm/cvs-socket-weakalias.diff -p0
 arm/local-dwarf2-buildfix.diff -p0
-#arm/local-ioperm.diff -p0
-#arm/local-no-hwcap.diff -p0
+arm/local-ioperm.diff -p0
+arm/local-no-hwcap.diff -p0
 
 hppa/local-Rminkernel.diff -p0
 hppa/submitted-drop-utimes.diff -p1
@@ -78,11 +78,11 @@ i386/local-biarch.diff -p1
 i386/local-cmov.diff -p0
 i386/submitted-i686-timing.diff -p1
 
-#m68k/local-compat.diff -p1
+m68k/local-compat.diff -p0
 m68k/local-dwarf2-buildfix.diff -p0
-#m68k/local-fpic.diff -p1
+m68k/local-fpic.diff -p0
 #m68k/local-mathinline_h.diff -p1
-#m68k/local-reloc.diff -p1
+m68k/local-reloc.diff -p1
 #m68k/submitted-gcc34-seccomment.diff -p0
 
 mips/local-librt.diff -p0
