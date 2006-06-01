@@ -251,11 +251,11 @@ diff -Nuar sysdeps/m68k/Deps sysdeps/m68k/Deps
 diff -Nuar sysdeps/m68k/Makefile sysdeps/m68k/Makefile
 --- ports/sysdeps/m68k/Makefile	2003-02-27 19:29:49.000000000 +0900
 +++ ports/sysdeps/m68k/Makefile	2003-03-01 00:29:42.000000000 +0900
-@@ -36,3 +36,11 @@
- ifeq ($(subdir),elf)
- CFLAGS-rtld.c += -Wno-uninitialized -Wno-unused
- endif
-+
+@@ -40,3 +40,11 @@
+ # Build objects in libc_nonshared.a with -fPIC (instead of -fpic) to avoid
+ # possible linkage problems.
+ CFLAGS-.oS += -fPIC
++ 
 +ifeq ($(subdir),csu)
 +ifeq (yes,$(build-shared))
 +# Compatibility
