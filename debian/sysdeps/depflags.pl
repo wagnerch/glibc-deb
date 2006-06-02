@@ -50,7 +50,7 @@ push @{$libc_dev_c{'Suggests'}}, "manpages-dev";
 push @{$libc_c{'Recommends'}}, 'libnss-db';
 
 # tzdata is now separate
-push @($libc_c{'Depends'}}, 'tzdata';
+push @{$libc_c{'Depends'}}, 'tzdata';
 
 # Old strace doesn't work with current libc6
 push @{$libc_c{'Conflicts'}}, 'strace (<< 4.0-0)';
