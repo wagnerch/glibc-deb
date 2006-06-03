@@ -98,8 +98,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Add kfreebsd/local-sysdeps-2.4.diff.
   * Remove m32r/cvs-elf-m32r_rel32.diff (merged upstream).
   * Update m68k/local-compat.diff.
-  * Update m68k/local-mathinline_h.diff to reflect the new port add-on, but
-    keep it disabled.
+  * Update m68k/local-mathinline_h.diff to reflect the new port add-on.
   * Update m68k/local-fpic.diff.
   * Update m68k/local-reloc.diff to reflect the new port add-on.
   * Update m68k/submitted-gcc34-seccomment.diff.
@@ -135,6 +134,8 @@ glibc (2.3.6-14) UNRELEASED; urgency=low
     (Closes: #370124)
   * debian/debhelper.in/nscd: create /var/run/nscd if it does not already
     exist.  (Closes: #370122)
+  * Update m68k/local-mathinline_h.diff (fix bits/mathinline.h), by Roger Leigh.
+    Enable it.  (Closes: #340871)
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat,  3 Jun 2006 16:15:48 +0200
 
