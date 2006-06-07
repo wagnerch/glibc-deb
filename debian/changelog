@@ -171,6 +171,12 @@ glibc (2.3.6-14) unstable; urgency=low
   * debian/compat, debian/control.in/main: switch to debhelper 5.0.
 
   [ Denis Barbier ]
+  * debian/patches/localedata/tailor-iso14651_t1.diff: Fix several collation
+    rules, which could cause errors in regular expressions with character
+    ranges, in particular with et_EE locale.  (Closes: #362514)
+  * debian/patches/localedata/locale-csb_PL.diff
+  * debian/patches/localedata/locale-ro_RO.diff
+  * debian/patches/localedata/locale-se_NO.diff: Apply similar fixes.
   * debian/main/control.in: make locales Conflicts: belocs-locales-data.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed,  7 Jun 2006 23:16:58 +0200
