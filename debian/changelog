@@ -36,6 +36,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
       preprocessor macros.
     - debian/debhelper.in/nscd.init: partially sync nscd initscript
       with upstream.
+    - Remove mips/local-librt.diff.
 
   [ Denis Barbier ]
     - Remove locale/complex-collate.diff (merged upstream).
@@ -104,7 +105,6 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update m68k/submitted-gcc34-seccomment.diff.
   * Remove mips/cvs-gcc4-inline.diff (merged upstream).
   * Remove mips/cvs-gcc4-sysdeps.diff (merged upstream).
-  * Update mips/local-librt.diff to reflect the new port add-on.
   * Update mips/submitted-msq.diff to reflect the new port add-on.
   * Remove powerpc/cvs-gcc41-initfini.diff (merged upstream).
   * debian/sysdeps/sparc.mk: do an NPTL pass.
