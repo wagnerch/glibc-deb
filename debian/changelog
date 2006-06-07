@@ -60,6 +60,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove alpha/cvs-gcc4-profile.diff (not needed anymore).
   * Update alpha/submitted-xstat.diff.
   * Update arm/cvs-gcc4-inline.diff.
+  * Remove arm/cvs-gcc4.1-raise.diff (merged upstream).
   * Remove arm/cvs-float-byteorder.diff (merged upstream).
   * Remove arm/cvs-socket-weakalias.diff (merged upstream).
   * Update arm/local-ioperm.diff to reflect the new port add-on.
@@ -79,6 +80,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove any/submitted-eh-frame-terminator.diff (merged upstream).
   * Update any/submitted-nis-netgrp.diff.
   * Remove i386/local-i486_ldt_support.diff (merged upstream).
+  * Remove ia64/cvs-gcc41-atomic_h.diff (merged upstream).
   * Remove hppa/cvs-linesep.diff (merged upstream).
   * Update hppa/cvs-no-ldbl-128.diff to reflect the new port add-on.
   * Update hppa/cvs-pie-relocs.diff to reflect the new port add-on.
@@ -132,6 +134,16 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * debian/patches/series: Use it.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 28 May 2006 03:28:14 +0200
+
+glibc (2.3.6-15) UNRELEASED; urgency=low
+
+  * Add arm/cvs-gcc4.1-raise.diff (fix build failure with gcc-4.1) from
+    upstream.
+  * Add ia64/cvs-gcc41-atomic_h.diff (fix build failure with gcc-4.1) from
+    upstream.
+  * Build with gcc 4.1 on all architectures but hurd-i386.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu,  8 Jun 2006 00:51:49 +0200
 
 glibc (2.3.6-14) unstable; urgency=low
 
