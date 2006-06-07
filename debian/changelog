@@ -133,7 +133,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 
-glibc (2.3.6-14) UNRELEASED; urgency=low
+glibc (2.3.6-14) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * debian/debhelper.in/nscd: explicitely list the tables to invalidate.
@@ -142,13 +142,13 @@ glibc (2.3.6-14) UNRELEASED; urgency=low
     exist.  (Closes: #370122)
   * Update m68k/local-mathinline_h.diff (fix bits/mathinline.h), by Roger Leigh.
     Enable it.  (Closes: #340871)
-  * debian/debhelper.in/libc.preinst: also check for other copies of the libc in 
+  * debian/debhelper.in/libc.preinst: also check for other copies of the libc in
     /lib32 and /lib64.
   * debian/debhelper.in/libc.preinst, debian/rules.d/debhelper.mk: only use
     the default system linker when searching for other copies of the libc.
   * debian/sysdeps/i386.mk: make /lib/i386-linux-gnu and /usr/lib/i386-linux-gnu
     symlinks relative.
-  * debhelper.in/libnss-dns-udeb.install, debhelper.in/libnss-files-udeb.install: 
+  * debhelper.in/libnss-dns-udeb.install, debhelper.in/libnss-files-udeb.install:
     fix the installation path.  (Closes: #370523)
   * patches/kfreebsd/local-sysdeps.diff: update to revision 1583 (from glibc-bsd)
     to fix the build with gcc-4.1.
@@ -161,7 +161,7 @@ glibc (2.3.6-14) UNRELEASED; urgency=low
   [ Denis Barbier ]
   * debian/main/control.in: make locales Conflicts: belocs-locales-data.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat,  3 Jun 2006 16:15:48 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed,  7 Jun 2006 23:16:58 +0200
 
 glibc (2.3.6-13) unstable; urgency=low
 
