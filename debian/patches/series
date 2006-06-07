@@ -125,5 +125,6 @@ any/local-rtld.diff -p1
 any/local-tcsetaddr.diff -p1
 any/local-ttyname-devfs.diff -p0
 any/local-version-sanity.diff -p1
+any/local-dynamic-resolvconf.diff -p1
 any/submitted-nis-netgrp.diff
 any/submitted-strfmon.diff
