@@ -137,6 +137,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
 
 glibc (2.3.6-16) UNRELEASED; urgency=low
 
+  [ Aurelien Jarno ]
   * Add arm/cvs-gcc4.1-raise.diff (fix build failure with gcc-4.1) from
     upstream.
   * Add ia64/cvs-gcc41-atomic_h.diff (fix build failure with gcc-4.1) from
@@ -145,6 +146,13 @@ glibc (2.3.6-16) UNRELEASED; urgency=low
   * debian/sysdeps/s390.mk: switch s390x to nptl.
   * debian/rules.d/build.mk: use ld.so instead of libc.so to determine if the
     host CPU is able to run the testsuite.
+
+  [ Denis Barbier ]
+  * debian/control.in/main: also make locales Conflicts: belocs-locales-bin.
+  * debian/debhelper.in/locales.config: some programs keep modifying
+    /etc/environment to store locale variables, so read /etc/environment
+    even when upgrading new versions.  Of course, /etc/default/locale has
+    still a higher precedence over /etc/environment.  (Closes: #363644)
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu,  8 Jun 2006 08:03:49 +0200
 
