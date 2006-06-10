@@ -37,6 +37,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - debian/debhelper.in/nscd.init: partially sync nscd initscript
       with upstream.
     - Remove mips/local-librt.diff.
+    - debian/rules.d/tarball.mk: no longer run tar with -v.
 
   [ Denis Barbier ]
     - Remove locale/complex-collate.diff (merged upstream).
