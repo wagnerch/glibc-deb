@@ -29,6 +29,7 @@ Architecture: any
 Section: libs
 Priority: standard
 Depends: ${locale:Depends}, debconf | debconf-2.0, locales-data
+Replaces: @libc@ (<= 2.3.999.2-6)
 Conflicts: base-config, belocs-locales-bin
 Replaces: base-config, lliurex-belocs-locales-data
 Description: GNU C Library: National Language (locale) programs
