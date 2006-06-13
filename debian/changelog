@@ -103,6 +103,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update kfreebsd/local-scripts.diff.
   * Add kfreebsd/local-ftw.diff.
   * Add kfreebsd/local-sysdeps-2.4.diff.
+  * Add kfreebsd/local-memusage_no_mremap.diff.
   * Remove m32r/cvs-elf-m32r_rel32.diff (merged upstream).
   * Update m68k/local-compat.diff.
   * Update m68k/local-mathinline_h.diff to reflect the new port add-on.
