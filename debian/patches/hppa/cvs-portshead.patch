@@ -1,0 +1,1684 @@
+--- glibc-ports-2.4/ChangeLog.hppa	2006-02-28 17:20:13.000000000 -0500
++++ glibc/ports/ChangeLog.hppa	2006-06-14 21:53:57.000000000 -0400
+@@ -1,3 +1,127 @@
++2006-06-08  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/hppa/hppa1.1/Implies: Remove ieee754/ldbl-128. 
++	* sysdeps/unix/sysv/linux/hppa/kernel-features.h
++	[__LINUX_KERNEL_VERSION >= 0x020609]: Define __ASSUME_LWS_CAS.
++	* sysdeps/unix/sysv/linux/hppa/bits/atomic.h: New file.
++
++2006-06-08  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/unix/sysv/linux/hppa/bits/fcntl.h: Reformat
++	(SPLICE_F_MOVE, SPLICE_F_NONBLOCK, SPLICE_F_MORE, SPLICE_F_GIFT):
++	Define.
++
++2006-05-24  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/unix/sysv/linux/hppa/clone.S: .LerrorRest
++	is a label.
++
++2006-05-24  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/hppa/ldsodefs.h: New file.
++	* sysdeps/unix/sysv/linux/hppa/bits/mman.h:
++	Only define MADV_* macros when __USE_BSD is present.
++	(MADV_REMOVE, MADV_DONTFORK, MADV_DOFORK): Define.
++
++2006-05-15  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/unix/sysv/linux/hppa/clone.S: Accept extra arguments
++	required for NPTL.
++	* sysdeps/unix/sysv/linux/hppa/sysdep.c: Use var args for 6 arg
++	syscall.
++	* sysdeps/unix/sysv/linux/hppa/sysdep.h: Move DOARGS and UNDOARGS
++	into PSEUDO_*'s.
++	(ENTRY_LEAF): Define.
++	(PSEUDO_NOERRNO, PSEUDO_ERRVAL): Use ENTRY_LEAF.
++	(DO_CALL): Create frame.
++
++2006-05-15  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/hppa/dl-machine.h: Include tls.h
++	(elf_machine_fixup_plt): Returns fdesc.
++	(elf_machine_profile_fixup_plt): Remove.
++	(elf_machine_plt_value): Returns fdesc.
++	(elf_machine_runtime_setup): Check that dl_profile != NULL.
++	(ARCH_LA_PLTENT, ARCH_LA_PLTEXIT): Define.
++	(RTLD_START): Use iitlbp with sr0.
++	(elf_machine_type_class): Include TLS relocs.
++	(reassemble_21, reassemble_14): Define.
++	(elf_machine_rela): Add DIR21L, DIR14R, PLABEL21L, PLABEL14R,
++	TLS_DTPMOD32, TLS_TPREL32, TLS_DTPOFF32 support.
++	(TRAMPOLINE_TEMPLATE): Move to ...
++	* sysdeps/hppa/dl-trampoline.S: ... here.
++	* sysdeps/hppa/abort-instr.h: Use iitlbp with sr0.
++	* sysdeps/hppa/dl-lookupcfg.h: Inlcude dl-fptr.h.
++	(DL_FIXUP_VALUE_TYPE, DL_FIXUP_MAKE_VALUE, DL_FIXUP_VALUE_CODE_ADDR,
++	DL_FIXUP_VALUE_ADD, DL_FIXUP_ADDR_VALUE): Define.
++	* sysdeps/hppa/sysdep.h: Use "!" as a separator. Cleanup comments.
++	* sysdeps/hppa/bits/link.h (La_hppa_regs, La_hppa_retval): Define.
++	Define prototypes for la_hppa_gnu_pltenter and la_hppa_gnu_pltexit.
++
++2006-04-27  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/unix/sysv/linux/hppa/bits/fcntl.h: Include uio.h, and
++	define vmsplice.
++
++2006-04-21  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/hppa/dl-tls.h: New file
++	* sysdeps/hppa/libc-tls.c: Likewise.
++	* sysdeps/hppa/tls-macros.h: Likewise.
++	* sysdeps/hppa/elf/configure: Likewise.
++	* sysdeps/hppa/elf/configure.in: Likewise.
++
++2006-04-20  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/hppa/fpu/fclrexcpt.c (feclearexcept): Use union to
++	align parameters. Specify memory clobbers.
++	* sysdeps/hppa/fpu/fedisblxcpt.c (fedisableexcept): Likewise.
++	* sysdeps/hppa/fpu/feenablxcpt.c (feenableexcept): Likewise.
++	* sysdeps/hppa/fpu/fegetenv.c (fegetenv): Do not save exception
++	register. Use memcpy to align buffer.
++	* sysdeps/hppa/fpu/fegetexcept.c (fegetexcept): Store and reload
++	fr0. Use union to align parameters.
++	* sysdeps/hppa/fpu/fegetround.c (fegetround): Likewise.
++	* sysdeps/hppa/fpu/feholdexcpt.c (feholdexcept): Do not save
++	exception registers. Define libm_hidden_def.
++	* sysdeps/hppa/fpu/fesetenv.c (fesetenv): Do not save exception
++	registers.
++	* sysdeps/hppa/fpu/fesetround.c (fesetround): Use union to
++	align parameters, speficy memory clobbers. Define libm_hidde_def
++	* sysdeps/hppa/fpu/feupdateenv.c (feupdateenv): Use union to align
++	parameters. Use memcpy to align buffer.
++	* sysdeps/hppa/fpu/fgetexcptflg.c (fegetexceptflag): Likewise.
++	* sysdeps/hppa/fpu/fsetexcptflg.c (fesetexceptflag): Likewise.
++	* sysdeps/hppa/fpu/ftestexcept.c (fetestexcept): Likewise.
++	* sysdeps/hppa/fpu/libm-test-ulps: Update.
++	* sysdeps/hppa/fpu/bits/fenv.h: Add ABI comments.
++
++2006-04-19  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/unix/sysv/linux/hppa/bits/mman.h [__USE_GNU]: 
++	Define MMAP_FIXED.
++	* sysdeps/unix/sysv/linux/hppa/bits/fcntl.h [__USE_GNU]: 
++	Define SYNC_FILE_RANGE_WAIT_BEFORE, SYNC_FILE_RANGE_WRITE,
++	SYNC_FILE_RANGE_WAIT_AFTER, sync_file_range, splice, tee.
++
++2006-04-19  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/unix/sysv/linux/hppa/kernel-features.h: New file.
++
++2006-04-19  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/hppa/linuxthreads/pspinlock.c: New file.
++	* sysdeps/hppa/linuxthreads/pt-machine.h: Likewise.
++	* sysdeps/hppa/linuxthreads/tls.h: Likewise.
++	* sysdeps/unix/sysv/linux/hppa/linuxthreads/aio_cancel.c: Likewise.
++	* sysdeps/unix/sysv/linux/hppa/linuxthreads/malloc-machine.h:
++	Likewise.
++	* sysdeps/unix/sysv/linux/hppa/linuxthreads/pt-initfini.c: Likewise.
++	* sysdeps/unix/sysv/linux/hppa/linuxthreads/sysdep-cancel.h: Likewise.
++	* sysdeps/unix/sysv/linux/hppa/linuxthreads/bits/initspin.h: Likewise.
++	* sysdeps/unix/sysv/linux/hppa/linuxthreads/bits/pthreadtypes.h:
++	Likewise.
++
+ 2006-02-28  Roland McGrath  <roland@redhat.com>
+ 
+ 	* sysdeps/hppa/shlib-versions: New file.
+--- glibc-ports-2.4/sysdeps/hppa/bits/link.h	2005-01-06 17:40:18.000000000 -0500
++++ glibc/ports/sysdeps/hppa/bits/link.h	2006-05-26 23:02:19.000000000 -0400
+@@ -0,0 +1,57 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef	_LINK_H
++# error "Never include <bits/link.h> directly; use <link.h> instead."
++#endif
++
++/* Registers for entry into PLT on hppa.  */
++typedef struct La_hppa_regs
++{
++  uint32_t lr_reg[4];
++  double lr_fpreg[4];
++  uint32_t lr_sp;
++  uint32_t lr_ra;
++} La_hppa_regs;
++
++/* Return values for calls from PLT on hppa.  */
++typedef struct La_hppa_retval
++{
++  uint32_t lrv_r28;
++  uint32_t lrv_r29;
++  double lr_fr4;
++} La_hppa_retval;
++
++
++__BEGIN_DECLS
++
++extern Elf32_Addr la_hppa_gnu_pltenter (Elf32_Sym *__sym, unsigned int __ndx,
++				       uintptr_t *__refcook,
++				       uintptr_t *__defcook,
++				       La_hppa_regs *__regs,
++				       unsigned int *__flags,
++				       const char *__symname,
++				       long int *__framesizep);
++extern unsigned int la_hppa_gnu_pltexit (Elf32_Sym *__sym, unsigned int __ndx,
++					uintptr_t *__refcook,
++					uintptr_t *__defcook,
++					const La_hppa_regs *__inregs,
++					La_hppa_retval *__outregs,
++					const char *symname);
++
++__END_DECLS
+--- glibc-ports-2.4/sysdeps/hppa/dl-machine.h	2004-11-18 19:01:25.000000000 -0500
++++ glibc/ports/sysdeps/hppa/dl-machine.h	2006-05-26 23:02:19.000000000 -0400
+@@ -31,6 +31,7 @@
+ #include <errno.h>
+ #include <dl-fptr.h>
+ #include <abort-instr.h>
++#include <tls.h>
+ 
+ # define VALID_ELF_OSABI(osabi)		((osabi == ELFOSABI_SYSV) || (osabi == ELFOSABI_LINUX))
+ # define VALID_ELF_ABIVERSION(ver)	(ver == 0)
+@@ -116,43 +117,28 @@
+   return dynamic - elf_machine_dynamic ();
+ }
+ 
+-/* Fixup a PLT entry to bounce directly to the function at VALUE.  
+-   Optimized non-profile version. */
+-static inline Elf32_Addr
++/* Fixup a PLT entry to bounce directly to the function at VALUE. */ 
++static inline struct fdesc __attribute__ ((always_inline)) 
+ elf_machine_fixup_plt (struct link_map *map, lookup_t t,
+ 		       const Elf32_Rela *reloc,
+-		       Elf32_Addr *reloc_addr, Elf32_Addr value)
++		       Elf32_Addr *reloc_addr, struct fdesc value)
+ {
+   /* map is the link_map for the caller, t is the link_map for the object
+      being called */
+-  reloc_addr[1] = D_PTR (t, l_info[DT_PLTGOT]);
+-  reloc_addr[0] = value;
+-  /* Return the PLT slot rather than the function value so that the
+-     trampoline can load the new LTP. */
+-  return (Elf32_Addr) reloc_addr;
+-}
+-
+-/* Fixup a PLT entry to bounce directly to the function at VALUE.  */
+-#define ELF_MACHINE_PROFILE_FIXUP_PLT elf_machine_profile_fixup_plt
+-static inline Elf32_Addr
+-elf_machine_profile_fixup_plt (struct link_map *map, lookup_t t,
+-		       const Elf32_Rela *reloc,
+-		       Elf32_Addr *reloc_addr, Elf32_Addr value)
+-{
+-  if(__builtin_expect (t == NULL, 1)) 
+-    return (Elf32_Addr) reloc_addr;
+-  /* Return the PLT slot rather than the function value so that the
+-     trampoline can load the new LTP. */
+-  return (Elf32_Addr) elf_machine_fixup_plt(map, t, reloc, reloc_addr, value);
++  reloc_addr[1] = value.gp;
++  /* Need to ensure that the gp is visible before the code
++     entry point is updated */
++  ((volatile Elf32_Addr *) reloc_addr)[0] = value.ip;
++  return value;
+ }
+ 
+ /* Return the final value of a plt relocation.  */
+-static inline Elf32_Addr
++static inline struct fdesc 
+ elf_machine_plt_value (struct link_map *map, const Elf32_Rela *reloc,
+-		       Elf32_Addr value)
++		       struct fdesc value)
+ {
+-  /* We are rela only */
+-  return value + reloc->r_addend;
++  /* We are rela only, return a function descriptor as a plt entry. */
++  return (struct fdesc) { value.ip + reloc->r_addend, value.gp };
+ }
+ 
+ /* Set up the loaded object described by L so its unrelocated PLT
+@@ -181,7 +167,7 @@
+   
+   extern void _dl_runtime_resolve (void);
+   extern void _dl_runtime_profile (void);
+-  
++ 
+   /* Linking lazily */
+   if (lazy)
+     {
+@@ -215,9 +201,10 @@
+ 	    {
+               /* Found the GOT! */       	
+               register Elf32_Addr ltp __asm__ ("%r19");
+-              /* Identify this shared object. */
++              
++              /* Identify this shared object. Second entry in the got. */
+               got[1] = (Elf32_Addr) l;
+-
++              
+               /* This function will be called to perform the relocation. */
+               if (__builtin_expect (!profile, 1))
+                 {
+@@ -236,7 +223,8 @@
+                 }
+               else
+ 	        {
+-	          if (_dl_name_match_p (GLRO(dl_profile), l))
++	          if (GLRO(dl_profile) != NULL
++		      && _dl_name_match_p (GLRO(dl_profile), l))
+ 	            {
+ 		      /* This is the object we are looking for.  Say that
+ 		         we really want profiling and the timers are
+@@ -316,6 +304,11 @@
+   return lazy;
+ }
+ 
++
++/* Names of the architecture-specific auditing callback functions.  */
++#define ARCH_LA_PLTENTER hppa_gnu_pltenter
++#define ARCH_LA_PLTEXIT hppa_gnu_pltexit
++
+ /* Initial entry point code for the dynamic linker.
+    The C function `_dl_start' is the real entry point;
+    its return value is the user program's entry point.  */
+@@ -367,7 +360,7 @@
+ "	ldw,ma	8(%r26),%r19\n"						\
+ 									\
+ 	/* Uh oh!  We didn't find one.  Abort. */			\
+-"	iitlbp	%r0,(%r0)\n"						\
++"	iitlbp	%r0,(%sr0,%r0)\n"					\
+ 									\
+ "2:	ldw	-4(%r26),%r19\n"	/* Found it, load value. */	\
+ "	add	%r19,%r20,%r19\n"	/* And add the load offset. */	\
+@@ -471,85 +464,28 @@
+ "	ldw	4(%r3),%r19\n"	/* load the object's gp */		\
+ "	bv	%r0(%r2)\n"						\
+ "	depi	2,31,2,%r23\n"	/* delay slot */			\
+-	);
+-
++);
+ 
+-/* This code gets called via the .plt stub, and is used in
+-   dl-runtime.c to call the `fixup' function and then redirect to the
+-   address it returns.
+-   
+-   WARNING: This template is also used by gcc's __cffc, and expects
+-   that the "bl" for fixup() exist at a particular offset.
+-   Do not change this template without changing gcc, while the prefix
+-   "bl" should fix everything so gcc finds the right spot, it will
+-   slow down __cffc when it attempts to call fixup to resolve function
+-   descriptor references. Please refer to gcc/gcc/config/pa/fptr.c
+-   
+-   Enter with r19 = reloc offset, r20 = got-8, r21 = fixup ltp.  */
+-#define TRAMPOLINE_TEMPLATE(tramp_name, fixup_name) 			\
+-  extern void tramp_name (void);		    			\
+-  asm (									\
+- "	.text\n"							\
+- 	/* FAKE bl to provide gcc's __cffc with fixup's address */	\
+- "	bl	" #fixup_name ",%r2\n" /* Runtime address of fixup */	\
+- "	.globl " #tramp_name "\n"					\
+- "	.type " #tramp_name ",@function\n"				\
+-  #tramp_name ":\n"							\
+- "	.proc\n"							\
+- "	.callinfo frame=64,calls,save_rp\n"				\
+- "	.entry\n"							\
+- 	/* Save return pointer */					\
+- "	stw	%r2,-20(%sp)\n"						\
+- 	/* Save argument registers in the call stack frame. */		\
+- "	stw	%r26,-36(%sp)\n"					\
+- "	stw	%r25,-40(%sp)\n"					\
+- "	stw	%r24,-44(%sp)\n"					\
+- "	stw	%r23,-48(%sp)\n"					\
+- 	/* Build a call frame, and save structure pointer. */		\
+- "	stwm	%r28,64(%sp)\n"						\
+- 									\
+- 	/* Set up args to fixup func.  */				\
+- "	ldw	8+4(%r20),%r26\n" /* (1) got[1] == struct link_map */	\
+- "	copy	%r19,%r25\n"	  /* (2) reloc offset  */		\
+- "	copy    %r2,%r24\n"	  /* (3) profile_fixup needs rp */	\
+- 									\
+- 	/* Call the real address resolver. */				\
+- "	bl	" #fixup_name ",%r2\n"					\
+- "	copy	%r21,%r19\n"	  /* set fixup func ltp (DELAY SLOT)*/	\
+- 									\
+- "	ldw	0(%r28),%r22\n"	  /* load up the returned func ptr */	\
+- "	ldw	4(%r28),%r19\n"						\
+- "	ldwm	-64(%sp),%r28\n"					\
+- 	/* Arguments. */						\
+- "	ldw	-36(%sp),%r26\n"					\
+- "	ldw	-40(%sp),%r25\n"					\
+- "	ldw	-44(%sp),%r24\n"					\
+- "	ldw	-48(%sp),%r23\n"					\
+- 	/* Call the real function. */					\
+- "	bv	%r0(%r22)\n"						\
+- 	/* Return pointer. */						\
+- "	ldw	-20(%sp),%r2\n"						\
+- "	.exit\n"							\
+- "	.procend\n");
+-  
+-#ifndef PROF
+-#define ELF_MACHINE_RUNTIME_TRAMPOLINE			\
+-  TRAMPOLINE_TEMPLATE (_dl_runtime_resolve, fixup);	\
+-  TRAMPOLINE_TEMPLATE (_dl_runtime_profile, profile_fixup);
+-#else
+-#define ELF_MACHINE_RUNTIME_TRAMPOLINE			\
+-  TRAMPOLINE_TEMPLATE (_dl_runtime_resolve, fixup);	\
+-  strong_alias (_dl_runtime_resolve, _dl_runtime_profile);
+-#endif
+-
+-/* ELF_RTYPE_CLASS_PLT iff TYPE describes relocation of a PLT entry, so
+-   PLT entries should not be allowed to define the value.
++/* ELF_RTYPE_CLASS_PLT iff TYPE describes relocation of a PLT entry or 
++   a TLS variable, so references should not be allowed to define the value.
+    ELF_RTYPE_CLASS_NOCOPY iff TYPE should not be allowed to resolve to one
+    of the main executable's symbols, as for a COPY reloc.  */
+-#define elf_machine_type_class(type) \
+-  ((((type) == R_PARISC_IPLT || (type) == R_PARISC_EPLT)	\
+-    * ELF_RTYPE_CLASS_PLT)					\
++#if defined USE_TLS && (!defined RTLD_BOOTSTRAP || USE___THREAD)
++# define elf_machine_type_class(type)				\
++  ((((type) == R_PARISC_IPLT	 				\
++  || (type) == R_PARISC_EPLT					\
++  || (type) == R_PARISC_TLS_DTPMOD32				\
++  || (type) == R_PARISC_TLS_DTPOFF32				\
++  || (type) == R_PARISC_TLS_TPREL32)				\
++  * ELF_RTYPE_CLASS_PLT)					\
++  | (((type) == R_PARISC_COPY) * ELF_RTYPE_CLASS_COPY))
++#else
++#define elf_machine_type_class(type) 				\
++ ((((type) == R_PARISC_IPLT					\
++   || (type) == R_PARISC_EPLT)					\
++   * ELF_RTYPE_CLASS_PLT)					\
+    | (((type) == R_PARISC_COPY) * ELF_RTYPE_CLASS_COPY))
++#endif
+ 
+ /* Used by the runtime in fixup to figure out if reloc is *really* PLT */
+ #define ELF_MACHINE_JMP_SLOT R_PARISC_IPLT
+@@ -579,9 +515,22 @@
+ /* These are only actually used where RESOLVE_MAP is defined, anyway. */
+ #ifdef RESOLVE_MAP
+ 
++#define reassemble_21(as21) \
++  (  (((as21) & 0x100000) >> 20) \
++   | (((as21) & 0x0ffe00) >> 8) \
++   | (((as21) & 0x000180) << 7) \
++   | (((as21) & 0x00007c) << 14) \
++   | (((as21) & 0x000003) << 12))
++
++#define reassemble_14(as14) \
++  (  (((as14) & 0x1fff) << 1) \
++   | (((as14) & 0x2000) >> 13))
++
+ auto void __attribute__((always_inline))
+-elf_machine_rela (struct link_map *map, const Elf32_Rela *reloc,
+-		  const Elf32_Sym *sym, const struct r_found_version *version,
++elf_machine_rela (struct link_map *map, 
++    		  const Elf32_Rela *reloc,
++		  const Elf32_Sym *sym, 
++		  const struct r_found_version *version,
+ 		  void *const reloc_addr_arg)
+ {
+   Elf32_Addr *const reloc_addr = reloc_addr_arg;
+@@ -590,7 +539,7 @@
+   struct link_map *sym_map;
+   Elf32_Addr value;
+ 
+-# if !defined RTLD_BOOTSTRAP && !defined SHARED
++# if !defined RTLD_BOOTSTRAP && !defined HAVE_Z_COMBRELOC && !defined SHARED
+   /* This is defined in rtld.c, but nowhere in the static libc.a; make the
+      reference weak so static programs can still link.  This declaration
+      cannot be done when compiling rtld.c (i.e.  #ifdef RTLD_BOOTSTRAP)
+@@ -612,6 +561,7 @@
+ # else
+   sym_map = RESOLVE_MAP (&sym, version, r_type);
+ # endif
++  
+   if (sym_map)
+     {
+       value = sym ? sym_map->l_addr + sym->st_value : 0;
+@@ -635,6 +585,27 @@
+ 	}
+       break;
+ 
++    case R_PARISC_DIR21L:
++      {
++	unsigned int insn = *(unsigned int *)reloc_addr;
++        value = sym_map->l_addr + sym->st_value 
++		+ ((reloc->r_addend + 0x1000) & -0x2000);
++	value = value >> 11;
++	insn = (insn &~ 0x1fffff) | reassemble_21 (value);
++	*(unsigned int *)reloc_addr = insn;
++      }
++      return;
++
++    case R_PARISC_DIR14R:
++      {
++	unsigned int insn = *(unsigned int *)reloc_addr;
++	value = ((sym_map->l_addr + sym->st_value) & 0x7ff) 
++		+ (((reloc->r_addend & 0x1fff) ^ 0x1000) - 0x1000);
++	insn = (insn &~ 0x3fff) | reassemble_14 (value);
++	*(unsigned int *)reloc_addr = insn;
++      }
++      return;
++
+     case R_PARISC_PLABEL32:
+       /* Easy rule: If there is a symbol and it is global, then we
+          need to make a dynamic function descriptor.  Otherwise we
+@@ -653,15 +624,42 @@
+       value = (Elf32_Addr)((unsigned int)_dl_make_fptr (sym_map, sym, value) | 2);
+       break;
+ 
++    case R_PARISC_PLABEL21L:
++    case R_PARISC_PLABEL14R:
++      {
++	unsigned int insn = *(unsigned int *)reloc_addr;
++
++        if (__builtin_expect (sym == NULL, 0))
++          break;
++
++        value = (Elf32_Addr)((unsigned int)_dl_make_fptr (sym_map, sym, value) | 2);
++
++        if (r_type == R_PARISC_PLABEL21L)
++	  {
++	    value >>= 11;
++	    insn = (insn &~ 0x1fffff) | reassemble_21 (value);
++	  }
++        else
++	  {
++	    value &= 0x7ff;
++	    insn = (insn &~ 0x3fff) | reassemble_14 (value);
++	  }
++
++	*(unsigned int *)reloc_addr = insn;
++      }
++      return;
++
+     case R_PARISC_IPLT:
+       if (__builtin_expect (sym_map != NULL, 1))
+         {
+-	  elf_machine_fixup_plt (NULL, sym_map, reloc, reloc_addr, value);
++	  elf_machine_fixup_plt (NULL, sym_map, reloc, reloc_addr, 
++	      			 DL_FIXUP_MAKE_VALUE(sym_map, value));
+         } 
+       else 
+         {
+ 	  /* If we get here, it's a (weak) undefined sym.  */
+-	  elf_machine_fixup_plt (NULL, map, reloc, reloc_addr, value);
++	  elf_machine_fixup_plt (NULL, map, reloc, reloc_addr, 
++	      			 DL_FIXUP_MAKE_VALUE(map, value));
+         }
+       return;
+ 
+@@ -685,6 +683,28 @@
+       memcpy (reloc_addr_arg, (void *) value,
+ 	      MIN (sym->st_size, refsym->st_size));
+       return;
++
++#if defined USE_TLS && (!defined RTLD_BOOTSTRAP)
++    case R_PARISC_TLS_DTPMOD32:
++      value = sym_map->l_tls_modid;
++      break;
++
++    case R_PARISC_TLS_DTPOFF32:
++      /* During relocation all TLS symbols are defined and used.
++         Therefore the offset is already correct.  */
++      if (sym != NULL)
++        *reloc_addr = sym->st_value;
++      return;
++
++    case R_PARISC_TLS_TPREL32:
++      /* The offset is negative, forward from the thread pointer */
++      if (sym != NULL)
++        {
++          CHECK_STATIC_TLS (map, sym_map);
++	  value = sym_map->l_tls_offset + sym->st_value + reloc->r_addend;
++	}
++      break;
++#endif	/* use TLS */
+       
+     case R_PARISC_NONE:	/* Alright, Wilbur. */
+       return;
+--- glibc-ports-2.4/sysdeps/hppa/dl-tls.h	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/hppa/dl-tls.h	2006-04-21 22:21:00.000000000 -0400
+@@ -0,0 +1,29 @@
++/* Thread-local storage handling in the ELF dynamic linker.  hppa version.
++   Copyright (C) 2003 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++
++/* Type used for the representation of TLS information in the GOT.  */
++typedef struct
++{
++  unsigned long int ti_module;
++  unsigned long int ti_offset;
++} tls_index;
++
++
++extern void *__tls_get_addr (tls_index *ti);
+--- glibc-ports-2.4/sysdeps/hppa/dl-trampoline.S	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/hppa/dl-trampoline.S	2006-05-14 19:54:47.000000000 -0400
+@@ -0,0 +1,197 @@
++/* PLT trampolines. hppa version.
++   Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <sysdep.h>
++
++/* This code gets called via the .plt stub, and is used in
++   dl-runtime.c to call the `_dl_fixup' function and then redirect 
++   to the    address it returns. `_dl_fixup' takes two
++   arguments, however `_dl_profile_fixup' takes a number of 
++   parameters for use with library auditing (LA).
++   
++   WARNING: This template is also used by gcc's __cffc, and expects
++   that the "bl" for _dl_runtime_resolve exist at a particular offset.
++   Do not change this template without changing gcc, while the prefix
++   "bl" should fix everything so gcc finds the right spot, it will
++   slow down __cffc when it attempts to call fixup to resolve function
++   descriptor references. Please refer to gcc/gcc/config/pa/fptr.c
++   
++   Enter with r19 = reloc offset, r20 = got-8, r21 = fixup ltp.  */
++
++	/* FAKE bl to provide gcc's __cffc with fixup loc. */
++	.text
++	bl	_dl_fixup, %r2
++        .text
++        .align 4
++        .global _dl_runtime_resolve
++        .type _dl_runtime_resolve,@function
++_dl_runtime_resolve:
++        .PROC
++        .CALLINFO FRAME=128,CALLS,SAVE_RP,ENTRY_GR=3
++        .ENTRY
++        /* SAVE_RP says we do */
++        stw %rp, -20(%sp)
++
++	/* Save static link register */
++	stw	%r29,-16(%sp)
++ 	/* Save argument registers in the call stack frame. */
++	stw	%r26,-36(%sp)
++	stw	%r25,-40(%sp)
++	stw	%r24,-44(%sp)
++	stw	%r23,-48(%sp)
++
++	/* Build a call frame, and save structure pointer. */
++	copy	%sp, %r26	/* Copy previous sp */
++	/* Save function result address (on entry) */
++	stwm	%r28,128(%sp)
++
++	/* Save floating point argument registers */
++	ldo	-56(%sp),%r26	
++	fstd,ma	%fr4,-8(%r26)
++	fstd,ma	%fr5,-8(%r26)
++	fstd,ma	%fr6,-8(%r26)
++	fstd	%fr7,0(%r26)
++
++	/* Fillin some frame info to follow ABI */
++	stw	%r21,-32(%sp)	/* PIC register value */
++	stw	%r26,-4(%sp)	/* Previous sp */
++
++ 	/* Set up args to fixup func, needs only two arguments  */
++	ldw	8+4(%r20),%r26		/* (1) got[1] == struct link_map */
++	copy	%r19,%r25		/* (2) reloc offset  */
++
++ 	/* Call the real address resolver. */
++	bl	_dl_fixup,%rp
++	copy	%r21,%r19		/* set fixup func ltp */
++
++	/* Load up the returned func descriptor */
++	copy	%ret0, %r22
++	copy	%ret1, %r19
++
++	/* Reload arguments fp args */
++	ldo	-80(%sp),%r26
++	fldd,ma	8(%r26),%fr7
++	fldd,ma	8(%r26),%fr6
++	fldd,ma	8(%r26),%fr5
++	fldd	0(%r26),%fr4
++
++	/* Adjust sp, and restore function result address*/
++	ldwm	-128(%sp),%r28
++
++	/* Reload static link register */
++	ldw	-16(%sp),%r29
++	/* Reload general args */
++	ldw	-36(%sp),%r26
++	ldw	-40(%sp),%r25
++	ldw	-44(%sp),%r24
++	ldw	-48(%sp),%r23
++
++	/* Jump to new function, but return to previous function */
++	bv	%r0(%r22)
++	ldw	-20(%sp),%rp
++        .EXIT
++        .PROCEND
++	.size   _dl_runtime_resolve, . - _dl_runtime_resolve
++
++
++	/* FIXME:
++		Need to largely rewrite the bottom half of
++		this code in order to save and restore the
++		LA struct from the stack along with
++		interpreted parameters.
++	*/
++        .text
++        .align 4
++        .global _dl_runtime_profile
++        .type _dl_runtime_profile,@function
++_dl_runtime_profile:
++        .PROC
++        .CALLINFO FRAME=128,CALLS,SAVE_RP,ENTRY_GR=3
++        .ENTRY
++
++        /* SAVE_RP says we do */
++        stw %rp, -20(%sp)
++
++	/* Save static link register */
++	stw	%r29,-16(%sp)
++ 	/* Save argument registers in the call stack frame. */
++	stw	%r26,-36(%sp)
++	stw	%r25,-40(%sp)
++	stw	%r24,-44(%sp)
++	stw	%r23,-48(%sp)
++
++	/* Build a call frame, and save structure pointer. */
++	copy	%sp, %r26	/* Copy previous sp */
++	/* Save function result address (on entry) */
++	stwm	%r28,128(%sp)
++
++	/* Save floating point argument registers */
++	ldo	-56(%sp),%r26	
++	fstd,ma	%fr4,-8(%r26)
++	fstd,ma	%fr5,-8(%r26)
++	fstd,ma	%fr6,-8(%r26)
++	fstd	%fr7,0(%r26)
++
++	/* Fillin some frame info to follow ABI */
++	stw	%r21,-32(%sp)	/* PIC register value */
++	stw	%r26,-4(%sp)	/* Previous sp */
++
++ 	/* Set up args to fixup func, needs five arguments  */
++	ldw	8+4(%r20),%r26		/* (1) got[1] == struct link_map */
++	copy	%r19,%r25		/* (2) reloc offset  */
++	copy    %rp,%r24		/* (3) profile_fixup needs rp */
++	copy	%r0,%r23		/* (4) regs */
++	ldo	-56(%sp), %r1
++	stw	%r1, -52(%sp)		/* (5) long int *framesizep */
++
++ 	/* Call the real address resolver. */
++	bl	_dl_profile_fixup,%rp
++	copy	%r21,%r19		/* set fixup func ltp */
++
++	/* Load up the returned func descriptor */
++	copy	%ret0, %r22
++	copy	%ret1, %r19
++
++	/* Reload arguments fp args */
++	ldo	-80(%sp),%r26
++	fldd,ma	8(%r26),%fr7
++	fldd,ma	8(%r26),%fr6
++	fldd,ma	8(%r26),%fr5
++	fldd	0(%r26),%fr4
++
++	/* Adjust sp, and restore function result address*/
++	ldwm	-128(%sp),%r28
++
++	/* Reload static link register */
++	ldw	-16(%sp),%r29
++	/* Reload general args */
++	ldw	-36(%sp),%r26
++	ldw	-40(%sp),%r25
++	ldw	-44(%sp),%r24
++	ldw	-48(%sp),%r23
++
++	/* Jump to new function, but return to previous function */
++	bv	%r0(%r22)
++	ldw	-20(%sp),%rp
++        .EXIT
++        .PROCEND
++	.size   _dl_runtime_profile, . - _dl_runtime_profile
++
++
++
+--- glibc-ports-2.4/sysdeps/hppa/elf/configure	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/hppa/elf/configure	2006-04-21 22:21:00.000000000 -0400
+@@ -0,0 +1,63 @@
++# This file is generated from configure.in by Autoconf.  DO NOT EDIT!
++ # Local configure fragment for sysdeps/hppa/elf.
++
++if test "$usetls" != no; then
++# Check for support of thread-local storage handling in assembler and
++# linker.
++echo "$as_me:$LINENO: checking for hppa TLS support" >&5
++echo $ECHO_N "checking for hppa TLS support... $ECHO_C" >&6
++if test "${libc_cv_hppa_tls+set}" = set; then
++  echo $ECHO_N "(cached) $ECHO_C" >&6
++else
++  cat > conftest.s <<\EOF
++; Setup tls data
++.section ".tdata","awT",@progbits
++foo:	.data	32
++	.text
++; Test general dyanmic relocations
++test0:
++	addil 	LT'foo-$tls_gdidx$, %r19
++	ldo 	RT'foo-$tls_gdidx$(%r1), %r26
++	b 	__tls_get_addr
++	nop
++; Test local dynamic relocations
++test1:
++	addil 	LT'foo-$tls_ldidx$, %r19
++	b 	__tls_get_addr
++	ldo 	RT'foo-$tls_ldidx$(%r1), %r26
++	ldo 	RR'foo-$tls_dtpoff$(%r1), %r25
++	; More variables can be loaded...
++; Test initial exec reloctiosn
++test2:
++	mfctl 	%cr27, %r26
++	addil 	LT'foo-$tls_ieoff$, %r19
++	ldw 	RT'foo-$tls_ieoff$(%r1), %r25
++	add 	%r26, %r25, %r24
++; Test local exec relocations
++test3:
++	mfctl 	%cr27, %r26
++	addil 	LR'foo-$tls_leoff$, %r26
++	ldo 	RR'foo-$tls_leoff$(%r1), %r25
++; Done all the TLS tests.
++EOF
++if { ac_try='${CC-cc} -c $CFLAGS conftest.s 1>&5'
++  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
++  (eval $ac_try) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; }; then
++  libc_cv_hppa_tls=yes
++else
++  libc_cv_hppa_tls=no
++fi
++rm -f conftest*
++fi
++echo "$as_me:$LINENO: result: $libc_cv_hppa_tls" >&5
++echo "${ECHO_T}$libc_cv_hppa_tls" >&6
++if test $libc_cv_hppa_tls = yes; then
++  cat >>confdefs.h <<\_ACEOF
++#define HAVE_TLS_SUPPORT 1
++_ACEOF
++
++fi
++fi
+--- glibc-ports-2.4/sysdeps/hppa/elf/configure.in	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/hppa/elf/configure.in	2006-04-21 22:21:00.000000000 -0400
+@@ -0,0 +1,49 @@
++GLIBC_PROVIDES dnl See aclocal.m4 in the top level source directory.
++# Local configure fragment for sysdeps/hppa/elf.
++
++if test "$usetls" != no; then
++# Check for support of thread-local storage handling in assembler and
++# linker.
++AC_CACHE_CHECK(for hppa TLS support, libc_cv_hppa_tls, [dnl
++cat > conftest.s <<\EOF
++; Setup tls data
++.section ".tdata","awT",@progbits
++foo:	.data	32 
++	.text
++; Test general dyanmic relocations
++test0:
++	addil 	LT'foo-$tls_gdidx$, %r19	
++	ldo 	RT'foo-$tls_gdidx$(%r1), %r26
++	b 	__tls_get_addr
++	nop
++; Test local dynamic relocations
++test1:
++	addil 	LT'foo-$tls_ldidx$, %r19
++	b 	__tls_get_addr
++	ldo 	RT'foo-$tls_ldidx$(%r1), %r26
++	ldo 	RR'foo-$tls_dtpoff$(%r1), %r25
++	; More variables can be loaded...
++; Test initial exec reloctiosn
++test2:
++	mfctl 	%cr27, %r26
++	addil 	LT'foo-$tls_ieoff$, %r19
++	ldw 	RT'foo-$tls_ieoff$(%r1), %r25
++	add 	%r26, %r25, %r24
++; Test local exec relocations
++test3:
++	mfctl 	%cr27, %r26
++	addil 	LR'foo-$tls_leoff$, %r26 
++	ldo 	RR'foo-$tls_leoff$(%r1), %r25
++; Done all the TLS tests.
++EOF
++dnl
++if AC_TRY_COMMAND(${CC-cc} -c $CFLAGS conftest.s 1>&AS_MESSAGE_LOG_FD); then
++  libc_cv_hppa_tls=yes
++else
++  libc_cv_hppa_tls=no
++fi
++rm -f conftest*])
++if test $libc_cv_hppa_tls = yes; then
++  AC_DEFINE(HAVE_TLS_SUPPORT)
++fi
++fi
+--- glibc-ports-2.4/sysdeps/hppa/ldsodefs.h	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/hppa/ldsodefs.h	2006-05-24 11:31:25.000000000 -0400
+@@ -0,0 +1,42 @@
++/* Run-time dynamic linker data structures for loaded ELF shared objects.
++   Copyright (C) 2006 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef _HPPA_LDSODEFS_H
++#define _HPPA_LDSODEFS_H 1
++
++#include <elf.h>
++
++struct La_hppa_regs;
++struct La_hppa_retval;
++
++#define ARCH_PLTENTER_MEMBERS \
++    Elf32_Addr (*hppa_gnu_pltenter) (Elf32_Sym *, unsigned int, uintptr_t *,	\
++				     uintptr_t *, struct La_hppa_regs *,	\
++				     unsigned int *, const char *name,		\
++				     long int *framesizep);
++
++#define ARCH_PLTEXIT_MEMBERS \
++    unsigned int (*hppa_gnu_pltexit) (Elf32_Sym *, unsigned int, uintptr_t *,	\
++				      uintptr_t *,				\
++				      const struct La_hppa_regs *,		\
++				      struct La_hppa_retval *, const char *);
++
++#include_next <ldsodefs.h>
++
++#endif
+--- glibc-ports-2.4/sysdeps/hppa/libc-tls.c	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/hppa/libc-tls.c	2006-04-21 22:21:00.000000000 -0400
+@@ -0,0 +1,38 @@
++/* Thread-local storage handling in the ELF dynamic linker.  hppa version.
++   Copyright (C) 2003 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <csu/libc-tls.c>
++#include <dl-tls.h>
++
++#if USE_TLS
++
++/* On hppa, linker optimizations are not required, so __tls_get_addr
++   can be called even in statically linked binaries.  In this case module
++   must be always 1 and PT_TLS segment exist in the binary, otherwise it
++   would not link.  */
++
++void *
++__tls_get_addr (tls_index *ti)
++{
++  dtv_t *dtv = THREAD_DTV ();
++  return (char *) dtv[1].pointer.val + ti->ti_offset;
++}
++
++#endif
++
+--- glibc-ports-2.4/sysdeps/hppa/linuxthreads/pspinlock.c	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/hppa/linuxthreads/pspinlock.c	2006-04-19 01:35:34.000000000 -0400
+@@ -0,0 +1,82 @@
++/* POSIX spinlock implementation.  hppa version.
++   Copyright (C) 2000 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public License as
++   published by the Free Software Foundation; either version 2.1 of the
++   License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; see the file COPYING.LIB.  If not,
++   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.  */
++
++#include <errno.h>
++#include <pthread.h>
++#include "internals.h"
++
++int
++__pthread_spin_lock (pthread_spinlock_t *lock)
++{
++  volatile unsigned int *addr = __ldcw_align (lock);
++
++  while (__ldcw (addr) == 0)
++    while (*addr == 0) ;
++
++  return 0;
++}
++weak_alias (__pthread_spin_lock, pthread_spin_lock)
++
++
++int
++__pthread_spin_trylock (pthread_spinlock_t *lock)
++{
++  volatile unsigned int *a = __ldcw_align (lock);
++
++  return __ldcw (a) ? 0 : EBUSY;
++}
++weak_alias (__pthread_spin_trylock, pthread_spin_trylock)
++
++
++int
++__pthread_spin_unlock (pthread_spinlock_t *lock)
++{
++  volatile unsigned int *a = __ldcw_align (lock);
++  int tmp = 1;
++  /* This should be a memory barrier to newer compilers */
++  __asm__ __volatile__ ("stw,ma %1,0(%0)"
++                        : : "r" (a), "r" (tmp) : "memory");           
++  return 0;
++}
++weak_alias (__pthread_spin_unlock, pthread_spin_unlock)
++
++
++int
++__pthread_spin_init (pthread_spinlock_t *lock, int pshared)
++{
++  /* We can ignore the `pshared' parameter.  Since we are busy-waiting
++     all processes which can access the memory location `lock' points
++     to can use the spinlock.  */
++  volatile unsigned int *a = __ldcw_align (lock);
++  int tmp = 1;
++  /* This should be a memory barrier to newer compilers */
++  __asm__ __volatile__ ("stw,ma %1,0(%0)"
++                        : : "r" (a), "r" (tmp) : "memory");           
++  return 0;
++}
++weak_alias (__pthread_spin_init, pthread_spin_init)
++
++
++int
++__pthread_spin_destroy (pthread_spinlock_t *lock)
++{
++  /* Nothing to do.  */
++  return 0;
++}
++weak_alias (__pthread_spin_destroy, pthread_spin_destroy)
+--- glibc-ports-2.4/sysdeps/hppa/linuxthreads/pt-machine.h	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/hppa/linuxthreads/pt-machine.h	2006-04-19 01:35:34.000000000 -0400
+@@ -0,0 +1,134 @@
++/* Machine-dependent pthreads configuration and inline functions.
++   hppa version.
++   Copyright (C) 2000, 2002, 2003 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Richard Henderson <rth@tamu.edu>.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public License as
++   published by the Free Software Foundation; either version 2.1 of the
++   License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; see the file COPYING.LIB.  If not,
++   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.  */
++
++#ifndef _PT_MACHINE_H
++#define _PT_MACHINE_H   1
++
++#include <sys/types.h>
++#include <bits/initspin.h>
++
++#ifndef PT_EI
++# define PT_EI extern inline __attribute__ ((always_inline))
++#endif
++
++extern inline long int testandset (__atomic_lock_t *spinlock);
++extern inline int __compare_and_swap (long int *p, long int oldval, long int newval);
++extern inline int lock_held (__atomic_lock_t *spinlock); 
++extern inline int __load_and_clear (__atomic_lock_t *spinlock);
++
++/* Get some notion of the current stack.  Need not be exactly the top
++   of the stack, just something somewhere in the current frame.  */
++#define CURRENT_STACK_FRAME  stack_pointer
++register char * stack_pointer __asm__ ("%r30");
++
++/* Get/Set thread-specific pointer.  We have to call into the kernel to
++ * modify it, but we can read it in user mode.  */
++#ifndef THREAD_SELF
++#define THREAD_SELF __get_cr27()
++#endif
++
++#ifndef SET_THREAD_SELF
++#define SET_THREAD_SELF(descr) __set_cr27(descr)
++#endif
++/* Use this to determine type */
++struct _pthread_descr_struct *__thread_self;
++
++static inline struct _pthread_descr_struct * __get_cr27(void)
++{
++  long cr27;
++  asm ("mfctl %%cr27, %0" : "=r" (cr27) : );
++  return (struct _pthread_descr_struct *) cr27;
++}
++
++#ifndef INIT_THREAD_SELF
++#define INIT_THREAD_SELF(descr, nr) __set_cr27(descr)
++#endif
++
++static inline void __set_cr27(struct _pthread_descr_struct * cr27)
++{
++  asm ( "ble	0xe0(%%sr2, %%r0)\n\t"
++	"copy	%0, %%r26"
++	: : "r" (cr27) : "r26" );
++}
++
++/* We want the OS to assign stack addresses.  */
++#define FLOATING_STACKS	1
++#define ARCH_STACK_MAX_SIZE	8*1024*1024
++
++/* The hppa only has one atomic read and modify memory operation,
++   load and clear, so hppa spinlocks must use zero to signify that
++   someone is holding the lock.  The address used for the ldcw
++   semaphore must be 16-byte aligned.  */
++#define __ldcw(a) \
++({ 									\
++  unsigned int __ret;							\
++  __asm__ __volatile__("ldcw 0(%1),%0"					\
++                      : "=r" (__ret) : "r" (a) : "memory");		\
++  __ret;								\
++})
++
++/* Strongly ordered lock reset */
++#define __lock_reset(lock_addr, tmp) \
++({										\
++	__asm__ __volatile__ ("stw,ma %1,0(%0)"					\
++				: : "r" (lock_addr), "r" (tmp) : "memory"); 	\
++})
++
++/* Because malloc only guarantees 8-byte alignment for malloc'd data,
++   and GCC only guarantees 8-byte alignment for stack locals, we can't
++   be assured of 16-byte alignment for atomic lock data even if we
++   specify "__attribute ((aligned(16)))" in the type declaration.  So,
++   we use a struct containing an array of four ints for the atomic lock
++   type and dynamically select the 16-byte aligned int from the array
++   for the semaphore.  */
++#define __PA_LDCW_ALIGNMENT 16
++#define __ldcw_align(a) ({ \
++  volatile unsigned int __ret = (unsigned int) a;			\
++  if ((__ret & ~(__PA_LDCW_ALIGNMENT - 1)) < (unsigned int) a)		\
++    __ret = (__ret & ~(__PA_LDCW_ALIGNMENT - 1)) + __PA_LDCW_ALIGNMENT; \
++  (unsigned int *) __ret;						\
++})
++
++/* Spinlock implementation; required.  */
++PT_EI int
++__load_and_clear (__atomic_lock_t *spinlock)
++{
++  volatile unsigned int *a = __ldcw_align (spinlock);
++
++  return __ldcw (a);
++}
++
++/* Emulate testandset */
++PT_EI long int
++testandset (__atomic_lock_t *spinlock)
++{
++  return (__load_and_clear(spinlock) == 0);
++}
++
++PT_EI int
++lock_held (__atomic_lock_t *spinlock)
++{
++  volatile unsigned int *a = __ldcw_align (spinlock);
++
++  return *a == 0;
++}
++		
++#endif /* pt-machine.h */
+--- glibc-ports-2.4/sysdeps/hppa/linuxthreads/tls.h	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/hppa/linuxthreads/tls.h	2006-04-19 01:35:34.000000000 -0400
+@@ -0,0 +1,163 @@
++/* Definition for thread-local data handling.  linuxthreads/hppa version.
++   Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef _TLS_H
++#define _TLS_H
++
++#ifndef __ASSEMBLER__
++# include <pt-machine.h>
++# include <stdbool.h>
++# include <stddef.h>
++
++/* Type for the dtv.  */
++typedef union dtv
++{
++  size_t counter;
++  struct
++  {
++    void *val;
++    bool is_static;
++  } pointer;
++} dtv_t;
++
++#else /* __ASSEMBLER__ */
++# include <tcb-offsets.h>
++#endif /* __ASSEMBLER__ */
++
++
++#if defined HAVE_TLS_SUPPORT 
++
++/* Signal that TLS support is available.  */
++# define USE_TLS	1
++
++# ifndef __ASSEMBLER__
++
++typedef struct
++{
++  dtv_t *dtv;
++  void *private;
++} tcbhead_t;
++
++/* Include some syscall information for other headers */
++#  include <sysdep.h>
++
++/* This is the size of the initial TCB.  */
++#  define TLS_INIT_TCB_SIZE sizeof (tcbhead_t)
++
++/* Alignment requirements for the initial TCB.  */
++#  define TLS_INIT_TCB_ALIGN __alignof__ (tcbhead_t)
++
++/* This is the size of the TCB.  */
++#  define TLS_TCB_SIZE sizeof (tcbhead_t)
++
++/* This is the size we need before TCB.  */
++#  define TLS_PRE_TCB_SIZE sizeof (struct _pthread_descr_struct)
++
++/* Alignment requirements for the TCB.  */
++#  define TLS_TCB_ALIGN __alignof__ (struct _pthread_descr_struct)
++
++/* The TLS blocks start right after the TCB.  */
++#  define TLS_DTV_AT_TP	1
++
++/* Return the thread descriptor for the current thread.  */
++#  undef THREAD_SELF
++#  define THREAD_SELF 				\
++  ({ struct _pthread_descr_struct *__self;	\
++	__self = __get_cr27();			\
++   	__self - 1;				\
++   })
++
++#  undef INIT_THREAD_SELF
++#  define INIT_THREAD_SELF(descr, nr) 				\
++  ({ struct _pthread_descr_struct *__self = (void *)descr;	\
++	__set_cr27(__self + 1);					\
++   	0;							\
++   })
++
++/* Access to data in the thread descriptor is easy.  */
++#define THREAD_GETMEM(descr, member) \
++  ((void) sizeof (descr), THREAD_SELF->member)
++#define THREAD_GETMEM_NC(descr, member) \
++  ((void) sizeof (descr), THREAD_SELF->member)
++#define THREAD_SETMEM(descr, member, value) \
++  ((void) sizeof (descr), THREAD_SELF->member = (value))
++#define THREAD_SETMEM_NC(descr, member, value) \
++  ((void) sizeof (descr), THREAD_SELF->member = (value))
++
++/* Install the dtv pointer.  The pointer passed is to the element with
++   index -1 which contain the length.  */
++#  define INSTALL_DTV(tcbp, dtvp) \
++  ((tcbhead_t *) (tcbp))->dtv = dtvp + 1
++
++/* Install new dtv for current thread.  */
++#  define INSTALL_NEW_DTV(dtv) \
++  ({ tcbhead_t *__tcbp = (tcbhead_t *)__get_cr27();	\
++   	__tcbp->dtv = dtv;				\
++   })
++
++/* Return dtv of given thread descriptor.  */
++#  define GET_DTV(tcbp) \
++  (((tcbhead_t *) (tcbp))->dtv)
++
++/* Code to initially initialize the thread pointer.  This might need
++   special attention since 'errno' is not yet available and if the
++   operation can cause a failure 'errno' must not be touched.  */
++#  define TLS_INIT_TP(tcbp, secondcall) \
++  ({ __set_cr27(tcbp); 0; })
++
++/* Return the address of the dtv for the current thread.  */
++#  define THREAD_DTV() 					\
++  ({ tcbhead_t *__tcbp = (tcbhead_t *)__get_cr27();	\
++   	__tcbp->dtv;					\
++   })
++
++# define TLS_MULTIPLE_THREADS_IN_TCB 1
++
++/* Get the thread descriptor definition.  This must be after the
++   the definition of THREAD_SELF for TLS.  */
++#  include <linuxthreads/descr.h>
++
++# endif /* __ASSEMBLER__ */
++
++#else
++
++# ifndef __ASSEMBLER__
++
++typedef struct
++{
++  void *tcb;
++  dtv_t *dtv;
++  void *self;
++  int multiple_threads;
++} tcbhead_t;
++
++/* Get the thread descriptor definition.  */
++#  include <linuxthreads/descr.h>
++
++#  define NONTLS_INIT_TP \
++  do { 									\
++    static const tcbhead_t nontls_init_tp = { .multiple_threads = 0 };	\
++    INIT_THREAD_SELF(&nontls_init_tp, 0);	      			\
++  } while (0)
++
++# endif /* __ASSEMBLER__ */
++
++#endif	/* HAVE_TLS_SUPPORT */
++
++#endif	/* tls.h */
+--- glibc-ports-2.4/sysdeps/unix/sysv/linux/hppa/bits/atomic.h	1969-12-31 19:00:00.000000000 -0500
++++ glibc/ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h	2006-06-08 21:25:30.000000000 -0400
+@@ -0,0 +1,120 @@
++/* Copyright (C) 2003 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Carlos O'Donell <carlos@baldric.uwo.ca>, 2005.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <stdint.h>
++#include <sysdep.h>
++#include <abort-instr.h>
++#include <kernel-features.h>
++
++/* We need EFAULT, ENONSYS, and EAGAIN */
++#if !defined EFAULT && !defined ENOSYS && !defined EAGAIN
++#undef EFAULT
++#undef ENOSYS
++#undef EAGAIN
++#define EFAULT	14
++#define ENOSYS	251
++#define EAGAIN	11
++#endif
++
++#ifndef _BITS_ATOMIC_H
++#define _BITS_ATOMIC_H	1
++
++typedef int8_t atomic8_t;
++typedef uint8_t uatomic8_t;
++typedef int_fast8_t atomic_fast8_t;
++typedef uint_fast8_t uatomic_fast8_t;
++
++typedef int32_t atomic32_t;
++typedef uint32_t uatomic32_t;
++typedef int_fast32_t atomic_fast32_t;
++typedef uint_fast32_t uatomic_fast32_t;
++
++typedef intptr_t atomicptr_t;
++typedef uintptr_t uatomicptr_t;
++typedef intmax_t atomic_max_t;
++typedef uintmax_t uatomic_max_t;
++
++/* prev = *addr;
++   if (prev == old)
++     *addr = new;
++   return prev; */
++
++/* Use the kernel atomic light weight syscalls on hppa */ 
++#define LWS "0xb0"
++#define LWS_CAS 0x0
++/* Note r31 is the link register */
++#define LWS_CLOBBER "r1", "r26", "r25", "r24", "r23", "r22", "r21", "r20", "r28", "r31", "memory"
++#define ASM_EAGAIN "11"
++
++#if __ASSUME_LWS_CAS
++/* The only basic operation needed is compare and exchange.  */
++# define atomic_compare_and_exchange_val_acq(mem, newval, oldval) 	\
++  ({									\
++     volatile int lws_errno = EFAULT;					\
++     volatile int lws_ret = 0xdeadbeef;					\
++     asm volatile(							\
++	"0:					\n\t"			\
++	"copy	%3, %%r26			\n\t"			\
++	"copy	%4, %%r25			\n\t"			\
++	"copy	%5, %%r24			\n\t"			\
++	"ble	" LWS "(%%sr2, %%r0)		\n\t"			\
++	"ldi	0, %%r20			\n\t"			\
++	"cmpib,=,n " ASM_EAGAIN ",%%r21,0	\n\t"			\
++	"nop					\n\t"			\
++	"stw	%%r28, %0			\n\t"			\
++        "sub	%%r0, %%r21, %%r21		\n\t"			\
++	"stw	%%r21, %1			\n\t"			\
++	: "=m" (lws_ret), "=m" (lws_errno), "=m" (*mem)			\
++        : "r" (mem), "r" (oldval), "r" (newval)				\
++	: LWS_CLOBBER							\
++     );									\
++    									\
++     if(lws_errno == EFAULT || lws_errno == ENOSYS)			\
++     	ABORT_INSTRUCTION;						\
++    									\
++     lws_ret;								\
++   })
++
++# define atomic_compare_and_exchange_bool_acq(mem, newval, oldval) 	\
++  ({									\
++     int ret;								\
++     ret = atomic_compare_and_exchange_val_acq(mem, newval, oldval);	\
++     /* Return 1 if it was already acquired */				\
++     (ret != oldval);							\
++   })
++#else
++/* Non-atomic primitives. */
++# define atomic_compare_and_exchange_val_acq(mem, newval, oldval) \
++  ({ __typeof (mem) __gmemp = (mem);				      \
++     __typeof (*mem) __gret = *__gmemp;				      \
++     __typeof (*mem) __gnewval = (newval);			      \
++								      \
++     if (__gret == (oldval))					      \
++       *__gmemp = __gnewval;					      \
++     __gret; })
++
++# define atomic_compare_and_exchange_bool_acq(mem, newval, oldval) \
++  ({ __typeof (mem) __gmemp = (mem);				      \
++     __typeof (*mem) __gnewval = (newval);			      \
++								      \
++     *__gmemp == (oldval) ? (*__gmemp = __gnewval, 0) : 1; })
++#endif
++
++#endif	/* bits/atomic.h */
++
+--- glibc-ports-2.4/sysdeps/unix/sysv/linux/hppa/clone.S	2005-05-26 10:30:47.000000000 -0400
++++ glibc/ports/sysdeps/unix/sysv/linux/hppa/clone.S	2006-05-26 23:02:21.000000000 -0400
+@@ -26,35 +26,62 @@
+ #define _ERRNO_H	1
+ #include <bits/errno.h>
+ 
+-/* int clone(int (*fn)(void *arg), void *child_stack, int flags, void *arg) */
++/* Non-thread code calls __clone with the following parameters:
++   int clone(int (*fn)(void *arg), void *child_stack, int flags, void *arg)
++   
++   NPTL Code will call __clone with the following parameters:
++   int clone(int (*fn)(void *arg), void *child_stack, int flags, void *arg,
++	     int *parent_tidptr, struct user_desc *newtls, int *child_pidptr)
++	
++   The code should not mangle the extra input registers.
++   Syscall expects:				Input to __clone:
++	4(r25) - function pointer 		(r26, arg0) 
++	0(r25) - argument			(r23, arg3)
++	r26 - clone flags.			(r24, arg2)
++	r25+64 - user stack pointer.		(r25, arg1)
++	r24 - parent tid pointer.		(stack - 52)
++	r23 - struct user_desc newtls pointer.	(stack - 56)
++	r22 - child tid pointer.		(stack - 60)
++	r20 - clone syscall number		(constant)
++ */
+ 
+         .text
+ ENTRY(__clone)
+-	/* FIXME: I have no idea how profiling works on hppa. */
+ 
+ 	/* Sanity check arguments.  */
+-	comib,=  0,%arg0,.Lerror        /* no NULL function pointers */
+ 	ldi     -EINVAL,%ret0
+-	comib,=  0,%arg1,.Lerror        /* no NULL stack pointers */
+-	nop
++	comib,=,n  0,%arg0,.Lerror        /* no NULL function pointers */
++	comib,=,n  0,%arg1,.Lerror        /* no NULL stack pointers */
+ 
+ 	/* Save the fn ptr and arg on the new stack.  */
+-	stwm    %arg0,64(%arg1)
+-	stw	%arg3,-60(%arg1)
++	stwm    %r26,64(%r25)
++	stw	%r23,-60(%r25)
++	/* Clone arguments are (int flags, void * child_stack) */
++	copy	%r24,%r26	/* flags are first */
++	/* User stack pointer is in the correct register already */
++
++	/* Load args from stack... */
++	ldw	-52(%sp), %r24	/* Load parent_tidptr */
++	ldw	-56(%sp), %r23 	/* Load newtls */
++	ldw	-60(%sp), %r22	/* Load child_tidptr */
++
++	/* Create frame to get r3 free */
++	copy	%sp, %r21
++	stwm	%r3, 64(%sp)
++	stw	%r21, -4(%sp)
+ 
+ 	/* Save the PIC register. */
+ #ifdef PIC
+-	stw	%r19,-32(%sr0, %sp)	/* parent */
++	copy	%r19, %r3		/* parent */
+ #endif
+ 
+ 	/* Do the system call */
+-	copy	%arg2,%arg0
+ 	ble     0x100(%sr2,%r0)
+ 	ldi	__NR_clone,%r20
+ 
+ 	ldi	-4096,%r1
+ 	comclr,>>= %r1,%ret0,%r0	/* Note: unsigned compare. */
+-	b,n	.Lerror
++	b,n	.LerrorRest
+ 
+ 	comib,=,n 0,%ret0,thread_start
+ 
+@@ -63,18 +90,25 @@
+ 	   since we return immediately. */
+ 
+ 	bv	%r0(%rp)
+-	nop
+-
+-	/* Something bad happened -- no child created */
+-.Lerror:
++	ldwm	-64(%sp), %r3
+ 
++.LerrorRest:
+ 	/* Restore the PIC register on error */
+ #ifdef PIC
+-	ldw	-32(%sr0, %sp), %r19	/* parent */
++	copy	%r3, %r19		/* parent */ 
+ #endif
+ 
++	/* Something bad happened -- no child created */
++.Lerror:
++
++	/* Set errno, save ret0 so we return with that value. */
++	copy	%ret0, %r3
+ 	b	__syscall_error
+ 	sub     %r0,%ret0,%arg0
++	copy	%r3, %ret0
++	/* Return after setting errno, and restoring ret0 */
++	bv	%r0(%rp)
++	ldwm	-64(%sp), %r3
+ 
+ thread_start:
+ 
+@@ -92,7 +126,7 @@
+ 	copy	%ret0,%arg0
+ 
+ 	/* Die horribly.  */
+-	iitlbp	%r0,(%r0)
++	iitlbp	%r0,(%sr0,%r0)
+ 
+ PSEUDO_END(__clone)
+ 
+--- glibc-ports-2.4/sysdeps/unix/sysv/linux/hppa/sysdep.c	2003-10-15 01:45:16.000000000 -0400
++++ glibc/ports/sysdeps/unix/sysv/linux/hppa/sysdep.c	2006-05-26 23:02:21.000000000 -0400
+@@ -16,12 +16,12 @@
+    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+    02111-1307 USA.  */
+ 
++#include <stdarg.h>
+ #include <sysdep.h>
+ #include <errno.h>
+ 
+ extern int __syscall_error(int err_no);
+-extern int syscall (int sysnum, int arg0, int arg1, int arg2,
+-		    int arg3, int arg4, int arg5);
++extern long int syscall (long int __sysno, ...) __THROW;
+ 
+ /* This routine is jumped to by all the syscall handlers, to stash
+    an error number into errno.  */
+@@ -37,22 +37,35 @@
+    typically be in syscall.S. Also note that we have INLINE_SYSCALL,
+    INTERNAL_SYSCALL, and all the generated pure assembly syscall wrappers.
+    How often the function is used is unknown. */
+-int
+-syscall (int sysnum, int arg0, int arg1, int arg2, int arg3, int arg4,
+-	 int arg5)
++
++long int 
++syscall (long int __sysno, ...) 
+ {
+   /* FIXME: Keep this matching INLINE_SYSCALL for hppa */
++  va_list args;
++  long int arg0, arg1, arg2, arg3, arg4, arg5;
+   long int __sys_res;
++
++  /* Load varargs */
++  va_start (args, __sysno);
++  arg0 = va_arg (args, long int);
++  arg1 = va_arg (args, long int);
++  arg2 = va_arg (args, long int);
++  arg3 = va_arg (args, long int);
++  arg4 = va_arg (args, long int);
++  arg5 = va_arg (args, long int);
++  va_end (args);
++  
+   {
+     register unsigned long int __res asm("r28");
+     LOAD_ARGS_6 (arg0, arg1, arg2, arg3, arg4, arg5)
+-    asm volatile (STW_ASM_PIC
++    asm volatile (SAVE_ASM_PIC
+ 		  "	ble  0x100(%%sr2, %%r0)	\n"
+ 		  "	copy %1, %%r20		\n"
+-		  LDW_ASM_PIC
++		  LOAD_ASM_PIC
+ 		  : "=r" (__res)
+-		  : "r" (sysnum) ASM_ARGS_6
+-		  : CALL_CLOB_REGS CLOB_ARGS_6);
++		  : "r" (__sysno) ASM_ARGS_6
++		  : "memory", CALL_CLOB_REGS CLOB_ARGS_6);
+     __sys_res = __res;
+   }
+   if ((unsigned long int) __sys_res >= (unsigned long int) -4095)
+@@ -62,3 +75,4 @@
+     }
+   return __sys_res;
+ }
++

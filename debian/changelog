@@ -38,6 +38,10 @@ glibc (2.4-1) UNRELEASED; urgency=low
       with upstream.
     - Remove mips/local-librt.diff.
     - debian/rules.d/tarball.mk: no longer run tar with -v.
+    - Add hppa/cvs-portshead.patch (update hppa code to ports HEAD)
+    - Disable hppa/submitted-sysdeps.diff, hppa/local-gcc-4-profile.diff,
+      hppa/submitted-iitlbp.diff, hppa/cvs-pie-relocs.diff,
+      hppa/cvs-no-ldbl-128.diff.
 
   [ Denis Barbier ]
     - Remove locale/complex-collate.diff (merged upstream).
@@ -121,7 +125,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Add sparc/local-sysdep.diff (pull in __syscall_error routine when 
     building with linuxthreads).
   * Add any/local-__thread.diff (make glibc buildable without __thread support)
-    from Michael Bank.  (Closes: #361064)
+    from Michael Banck.  (Closes: #361064)
   * debian/debhelper.in/libc.postinst: add /etc/ld.so.conf.d/ support.
   * Drop any/local-ldconfig-multiarch.diff, use /etc/ld.so.conf.d/ to 
     configure multiarch libraries.
@@ -643,7 +647,7 @@ glibc (2.3.6-2) unstable; urgency=low
     install the glibc in (/usr)/lib, and to use the dynamic linker path
     specified by the ABI for path for libc objects.  (Closes: #325226)
   * Add -u option to the ldd manpage.  (Closes: #354074)
-  * Merged a patch from Michael Bank to use gcc-4.0 on Hurd.
+  * Merged a patch from Michael Banck to use gcc-4.0 on Hurd.
   * Add resource_h.diff (RLIMIT_NICE and RLIMIT_RTPRIO support) from MAIN.
     (Closes: #352636)
   * Add hppa-inlining.diff (Increase the maximal overall growth of the
