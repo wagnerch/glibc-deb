@@ -1,4 +1,4 @@
---- glibc-ports-2.4/ChangeLog.hppa	2006-02-28 17:20:13.000000000 -0500
+--- glibc/ports/ChangeLog.hppa	2006-02-28 17:20:13.000000000 -0500
 +++ glibc/ports/ChangeLog.hppa	2006-06-14 21:53:57.000000000 -0400
 @@ -1,3 +1,127 @@
 +2006-06-08  Carlos O'Donell  <carlos@systemhalted.org>
@@ -128,7 +128,7 @@
  2006-02-28  Roland McGrath  <roland@redhat.com>
  
  	* sysdeps/hppa/shlib-versions: New file.
---- glibc-ports-2.4/sysdeps/hppa/bits/link.h	2005-01-06 17:40:18.000000000 -0500
+--- glibc/ports/sysdeps/hppa/bits/link.h	2005-01-06 17:40:18.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/bits/link.h	2006-05-26 23:02:19.000000000 -0400
 @@ -0,0 +1,57 @@
 +/* Copyright (C) 2005 Free Software Foundation, Inc.
@@ -188,7 +188,7 @@
 +					const char *symname);
 +
 +__END_DECLS
---- glibc-ports-2.4/sysdeps/hppa/dl-machine.h	2004-11-18 19:01:25.000000000 -0500
+--- glibc/ports/sysdeps/hppa/dl-machine.h	2004-11-18 19:01:25.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/dl-machine.h	2006-05-26 23:02:19.000000000 -0400
 @@ -31,6 +31,7 @@
  #include <errno.h>
@@ -555,7 +555,7 @@
        
      case R_PARISC_NONE:	/* Alright, Wilbur. */
        return;
---- glibc-ports-2.4/sysdeps/hppa/dl-tls.h	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/hppa/dl-tls.h	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/dl-tls.h	2006-04-21 22:21:00.000000000 -0400
 @@ -0,0 +1,29 @@
 +/* Thread-local storage handling in the ELF dynamic linker.  hppa version.
@@ -587,7 +587,7 @@
 +
 +
 +extern void *__tls_get_addr (tls_index *ti);
---- glibc-ports-2.4/sysdeps/hppa/dl-trampoline.S	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/hppa/dl-trampoline.S	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/dl-trampoline.S	2006-05-14 19:54:47.000000000 -0400
 @@ -0,0 +1,197 @@
 +/* PLT trampolines. hppa version.
@@ -787,7 +787,7 @@
 +
 +
 +
---- glibc-ports-2.4/sysdeps/hppa/elf/configure	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/hppa/elf/configure	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/elf/configure	2006-04-21 22:21:00.000000000 -0400
 @@ -0,0 +1,63 @@
 +# This file is generated from configure.in by Autoconf.  DO NOT EDIT!
@@ -853,7 +853,7 @@
 +
 +fi
 +fi
---- glibc-ports-2.4/sysdeps/hppa/elf/configure.in	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/hppa/elf/configure.in	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/elf/configure.in	2006-04-21 22:21:00.000000000 -0400
 @@ -0,0 +1,49 @@
 +GLIBC_PROVIDES dnl See aclocal.m4 in the top level source directory.
@@ -905,7 +905,7 @@
 +  AC_DEFINE(HAVE_TLS_SUPPORT)
 +fi
 +fi
---- glibc-ports-2.4/sysdeps/hppa/ldsodefs.h	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/hppa/ldsodefs.h	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/ldsodefs.h	2006-05-24 11:31:25.000000000 -0400
 @@ -0,0 +1,42 @@
 +/* Run-time dynamic linker data structures for loaded ELF shared objects.
@@ -950,7 +950,7 @@
 +#include_next <ldsodefs.h>
 +
 +#endif
---- glibc-ports-2.4/sysdeps/hppa/libc-tls.c	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/hppa/libc-tls.c	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/libc-tls.c	2006-04-21 22:21:00.000000000 -0400
 @@ -0,0 +1,38 @@
 +/* Thread-local storage handling in the ELF dynamic linker.  hppa version.
@@ -991,7 +991,7 @@
 +
 +#endif
 +
---- glibc-ports-2.4/sysdeps/hppa/linuxthreads/pspinlock.c	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/hppa/linuxthreads/pspinlock.c	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/linuxthreads/pspinlock.c	2006-04-19 01:35:34.000000000 -0400
 @@ -0,0 +1,82 @@
 +/* POSIX spinlock implementation.  hppa version.
@@ -1076,7 +1076,7 @@
 +  return 0;
 +}
 +weak_alias (__pthread_spin_destroy, pthread_spin_destroy)
---- glibc-ports-2.4/sysdeps/hppa/linuxthreads/pt-machine.h	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/hppa/linuxthreads/pt-machine.h	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/linuxthreads/pt-machine.h	2006-04-19 01:35:34.000000000 -0400
 @@ -0,0 +1,134 @@
 +/* Machine-dependent pthreads configuration and inline functions.
@@ -1213,7 +1213,7 @@
 +}
 +		
 +#endif /* pt-machine.h */
---- glibc-ports-2.4/sysdeps/hppa/linuxthreads/tls.h	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/hppa/linuxthreads/tls.h	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/hppa/linuxthreads/tls.h	2006-04-19 01:35:34.000000000 -0400
 @@ -0,0 +1,163 @@
 +/* Definition for thread-local data handling.  linuxthreads/hppa version.
@@ -1379,7 +1379,7 @@
 +#endif	/* HAVE_TLS_SUPPORT */
 +
 +#endif	/* tls.h */
---- glibc-ports-2.4/sysdeps/unix/sysv/linux/hppa/bits/atomic.h	1969-12-31 19:00:00.000000000 -0500
+--- glibc/ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h	1969-12-31 19:00:00.000000000 -0500
 +++ glibc/ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h	2006-06-08 21:25:30.000000000 -0400
 @@ -0,0 +1,120 @@
 +/* Copyright (C) 2003 Free Software Foundation, Inc.
@@ -1502,7 +1502,7 @@
 +
 +#endif	/* bits/atomic.h */
 +
---- glibc-ports-2.4/sysdeps/unix/sysv/linux/hppa/clone.S	2005-05-26 10:30:47.000000000 -0400
+--- glibc/ports/sysdeps/unix/sysv/linux/hppa/clone.S	2005-05-26 10:30:47.000000000 -0400
 +++ glibc/ports/sysdeps/unix/sysv/linux/hppa/clone.S	2006-05-26 23:02:21.000000000 -0400
 @@ -26,35 +26,62 @@
  #define _ERRNO_H	1
@@ -1617,7 +1617,7 @@
  
  PSEUDO_END(__clone)
  
---- glibc-ports-2.4/sysdeps/unix/sysv/linux/hppa/sysdep.c	2003-10-15 01:45:16.000000000 -0400
+--- glibc/ports/sysdeps/unix/sysv/linux/hppa/sysdep.c	2003-10-15 01:45:16.000000000 -0400
 +++ glibc/ports/sysdeps/unix/sysv/linux/hppa/sysdep.c	2006-05-26 23:02:21.000000000 -0400
 @@ -16,12 +16,12 @@
     Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA

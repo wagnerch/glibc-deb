@@ -49,6 +49,7 @@ alpha/submitted-xstat.diff -p0
 
 amd64/local-biarch.diff -p1
 
+arm/cvs-portshead.patch
 arm/cvs-gcc4-inline.diff -p0
 arm/local-dwarf2-buildfix.diff -p0
 arm/local-ioperm.diff -p0
