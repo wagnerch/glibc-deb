@@ -57,9 +57,6 @@ glibc (2.4-1) UNRELEASED; urgency=low
       The whole glibc-2.4/manual directory is removed from glibc-2.4.tar.bz2.
     - debian/control: Drop Build-Depends: texinfo, texi2html.
     - debian/control: Drop references to the antique libc-doc package.
-    - Add a new locales-data package which contains source locale files, and
-      the locales package now contains programs needed to generate compiled
-      locale files.
 
   [ Michael Banck ]
   * debian/sysdeps/hurd.mk: Only use libidn for add-ons.

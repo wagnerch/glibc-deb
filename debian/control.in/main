@@ -25,26 +25,21 @@ Description: GNU C Library: Documentation
  @glibc@-doc-reference for licensing reasons.
 
 Package: locales
-Architecture: any
-Section: libs
-Priority: standard
-Depends: ${locale:Depends}, debconf | debconf-2.0, locales-data
-Replaces: @libc@ (<= 2.3.999.2-6)
-Conflicts: base-config, belocs-locales-bin
-Replaces: base-config, lliurex-belocs-locales-data
-Description: GNU C Library: National Language (locale) programs
- This package contains tools to generate locale definitions from source
- files (included in the locales-data package). It allows you to customize
- which definitions actually get generated.
-
-Package: locales-data
 Architecture: all
 Section: libs
 Priority: standard
-Conflicts: belocs-locales-data
-Replaces: locales
-Description: GNU C Library: National Language (locale) data files
- This package contains the libc.mo i18n files and locale source files.
+Depends: ${locale:Depends}, debconf | debconf-2.0
+Conflicts: base-config, belocs-locales-bin, belocs-locales-data
+Replaces: base-config, lliurex-belocs-locales-data
+Description: GNU C Library: National Language (locale) data [support]
+ Machine-readable data files, shared objects and programs used by the
+ C library for localization (l10n) and internationalization (i18n) support.
+ .
+ This package contains the libc.mo i18n files, plus tools to generate
+ locale definitions from source files (included in this package). It allows
+ you to customize which definitions actually get generated. This is a
+ savings over how this package used to be, where all locales were generated
+ by default. This created a package that unpacked to an excess of 30 megs.
 
 Package: locales-all
 Architecture: any
