@@ -164,6 +164,7 @@ glibc (2.3.6-16) UNRELEASED; urgency=low
     #372510)
   * debian/locales-all.README.Debian:  File removed, it is useless now.
     (Closes: #378191)
+  * Update Russian debconf translation, by Yuri Kozlov.  (Closes: #379395)
 
   [ Denis Barbier ]
   * debian/control.in/main: also make locales Conflicts: belocs-locales-bin.
