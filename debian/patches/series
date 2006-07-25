@@ -89,6 +89,7 @@ m68k/submitted-gcc34-seccomment.diff -p0
 mips/local-lazy-eval.diff -p2
 mips/submitted-msq.diff -p0
 
+powerpc/cvs-procfs.diff -i1
 powerpc/local-sysconf.diff -p1
 
 sparc/local-fork.diff -p0

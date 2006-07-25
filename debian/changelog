@@ -162,6 +162,8 @@ glibc (2.3.6-16) UNRELEASED; urgency=low
     option.  (Closes: #375741)
   * debian/local/manpages/iconv.1: fixed the use of the TH keyword.  (Closes:
     #372510)
+  * debian/locales-all.README.Debian:  File removed, it is useless now.
+    (Closes: #378191)
 
   [ Denis Barbier ]
   * debian/control.in/main: also make locales Conflicts: belocs-locales-bin.
