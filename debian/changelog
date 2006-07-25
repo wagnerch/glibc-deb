@@ -124,9 +124,6 @@ glibc (2.4-1) UNRELEASED; urgency=low
     building with linuxthreads).
   * Add any/local-__thread.diff (make glibc buildable without __thread support)
     from Michael Banck.  (Closes: #361064)
-  * debian/debhelper.in/libc.postinst: add /etc/ld.so.conf.d/ support.
-  * Drop any/local-ldconfig-multiarch.diff, use /etc/ld.so.conf.d/ to 
-    configure multiarch libraries.
   * debian/sysdeps/alpha.mk: do an NPTL pass.
 
   [Jeff Bailey]
@@ -165,6 +162,9 @@ glibc (2.3.6-16) UNRELEASED; urgency=low
   * debian/locales-all.README.Debian:  File removed, it is useless now.
     (Closes: #378191)
   * Update Russian debconf translation, by Yuri Kozlov.  (Closes: #379395)
+  * debian/debhelper.in/libc.postinst: add /etc/ld.so.conf.d/ support.
+  * Drop any/local-ldconfig-multiarch.diff, use /etc/ld.so.conf.d/ to
+    configure multiarch libraries.
 
   [ Denis Barbier ]
   * debian/control.in/main: also make locales Conflicts: belocs-locales-bin.
