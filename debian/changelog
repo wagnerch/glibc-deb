@@ -1,4 +1,19 @@
-glibc (2.3.6-16) UNRELEASED; urgency=low
+glibc (2.3.6-17) unstable; urgency=medium
+
+  (urgency set to medium as it fixes a FTBFS)
+
+  [ Aurelien Jarno ]
+  * Update ia64/cvs-gcc41-atomic_h.diff (fix build failure with gcc-4.1) from
+    upstream.
+
+  [ Michael Banck ]
+  * debian/sysdeps/hurd.mk: Disable RUN_TESTSUITE.
+
+ -- Aurelien Jarno <aurelien@aurel32.net>  Sun, 30 Jul 2006 21:25:32 +0200
+
+glibc (2.3.6-16) unstable; urgency=medium
+
+  (urgency set to medium as it fixes a FTBFS)
 
   [ Aurelien Jarno ]
   * Add arm/cvs-gcc4.1-raise.diff (fix build failure with gcc-4.1) from
@@ -7,15 +22,23 @@ glibc (2.3.6-16) UNRELEASED; urgency=low
     upstream.
   * Build with gcc 4.1 on all architectures but hurd-i386.
   * debian/sysdeps/s390.mk: switch s390x to nptl.
-  * debian/rules.d/build.mk: use ld.so libc.so instead of libc.so to 
+  * debian/rules.d/build.mk: use ld.so libc.so instead of libc.so to
     determine if the host CPU is able to run the testsuite.
   * debian/sysdeps/kfreebsd.mk: also use the nfs/ directory from kernel
     headers.
-  * patches/kfreebsd/local-sysdeps.diff: update to revision 1620 (from glibc-bsd).
+  * patches/kfreebsd/local-sysdeps.diff: update to revision 1631 (from glibc-bsd).
   * debian/local/manpages/iconv.1: fixed the description of the --silent
     option.  (Closes: #375741)
   * debian/local/manpages/iconv.1: fixed the use of the TH keyword.  (Closes:
     #372510)
+  * patches/powerpc/cvs-procfs.diff: patch from upstream (fix a build failure
+    with recent kernel headers).  (Closes: #377892)
+  * Update Russian debconf translation, by Yuri Kozlov.  (Closes: #379395)
+  * debian/debhelper.in/libc.postinst: add /etc/ld.so.conf.d/ support.
+  * Drop any/local-ldconfig-multiarch.diff, use /etc/ld.so.conf.d/ to
+    configure multiarch libraries.
+  * Update m68k/local-mathinline_h.diff (fix bits/mathinline.h), by Roger Leigh.
+    (Closes: #340871)
 
   [ Denis Barbier ]
   * debian/main/control.in: also make locales Conflicts: belocs-locales-bin.
@@ -40,7 +63,7 @@ glibc (2.3.6-16) UNRELEASED; urgency=low
   * debian/locales-all.README.Debian:  File removed, it is useless now.
     (Closes: #378191)
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu,  8 Jun 2006 08:03:49 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 25 Jul 2006 02:05:04 +0200
 
 glibc (2.3.6-15) unstable; urgency=low
 
