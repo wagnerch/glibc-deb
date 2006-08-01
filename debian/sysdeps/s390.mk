@@ -1,6 +1,3 @@
-# NPTL Config
-GLIBC_PASSES += nptl
-
 # build 64-bit (s390x) alternative library
 GLIBC_PASSES += s390x
 DEB_ARCH_REGULAR_PACKAGES += libc6-s390x libc6-dev-s390x
