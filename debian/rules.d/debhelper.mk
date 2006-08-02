@@ -169,7 +169,6 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
 
 OPT_PASSES = $(filter-out libc nptl, $(GLIBC_PASSES))
 OPT_DIRS = $(foreach pass,$(OPT_PASSES),$($(pass)_slibdir) $($(pass)_libdir))
-NPTL = $(filter nptl,$(GLIBC_PASSES))
 
 debhelper: $(stamp)debhelper
 $(stamp)debhelper:
@@ -188,9 +187,6 @@ $(stamp)debhelper:
 	  case $$z in \
 	    *.install) \
 	      sed -e "s/^#.*//" -i $$z ; \
-	      if [ -z "$(NPTL)" ] ; then \
-	        sed -i "/^.*nptl.*/d" $$z ; \
-	      fi ; \
 	      if [ $(DEB_HOST_ARCH) != $(DEB_BUILD_ARCH) ]; then \
 	        sed -i "/^.*librpcsvc.a.*/d" $$z ; \
 	      fi ; \
@@ -243,24 +239,6 @@ $(stamp)debhelper:
 	  sed -e "s#FLAVOR#$$x#g" -i $$z; \
 	  sed -e "s#LIBC#$(libc)#g" -i $$z; \
 	  sed -e "s/^#.*//" -i $$z; \
-	done
-
-	# We use libc-otherbuild for this, since it's just a special case of
-	# an optimised library that needs to wind up in /lib/tls
-	# FIXME: We do not cover the case of processor optimised 
-	# nptl libraries, like /lib/i686/tls
-	# We probably don't care for now.
-	for x in $(NPTL); do \
-	  z=debian/$(libc).install; \
-	  cat debian/debhelper.in/libc-otherbuild.install >>$$z; \
-	  sed -e "s#TMPDIR#debian/tmp-$$x#g" -i $$z; \
-	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#g" -i $$z; \
-	  sed -e "s#LIBC-FLAVOR#$(libc)#g" -i $$z; \
-	  sed -e "s#FLAVOR#nptl#g" -i $$z; \
-	  sed -e "s#SLIBDIR#/lib/tls#g" -i $$z; \
-	  case $$z in \
-	    *.install) sed -e "s/^#.*//g" -i $$z ;; \
-	  esac; \
 	done
 
 	# Substitute __SUPPORTED_LOCALES__.
