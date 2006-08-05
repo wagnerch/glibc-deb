@@ -1,6 +1,30 @@
---- glibc/ports/ChangeLog.arm	2006-03-02 10:23:41.000000000 -0500
-+++ glibc/ports/ChangeLog.arm	2006-06-14 21:53:57.000000000 -0400
-@@ -1,3 +1,61 @@
+Index: glibc-2.4/ports/ChangeLog.arm
+===================================================================
+--- glibc-2.4.orig/ports/ChangeLog.arm	2006-08-05 13:24:21.000000000 -0400
++++ glibc-2.4/ports/ChangeLog.arm	2006-08-05 13:25:14.000000000 -0400
+@@ -1,3 +1,83 @@
++2006-08-04  Daniel Jacobowitz  <dan@codesourcery.com>
++
++	Reported by Joseph Myers <joseph@codesourcery.com>:
++	* sysdeps/unix/sysv/linux/arm/nptl/lowlevellock.h (FUTEX_LOCK_PI,
++	FUTEX_UNLOCK_PI, FUTEX_TRYLOCK_PI): Define.
++
++2006-07-24  Daniel Jacobowitz  <dan@codesourcery.com>
++
++	* sysdeps/unix/sysv/linux/arm/sigaction.c: If WRAPPER_INCLUDE is
++	defined, include the named file.
++
++2006-07-05  Daniel Jacobowitz  <dan@codesourcery.com>
++
++	* sysdeps/unix/sysv/linux/arm/sys/ucontext.h: Include
++	<bits/sigcontext.h>.
++	(NGREG, mcontext_t, struct ucontext): Update to match the kernel.
++
++2006-07-05  Daniel Jacobowitz  <dan@codesourcery.com>
++
++	* sysdeps/arm/dl-machine.h (elf_machine_dynamic): Correct GOT access to
++	load the _DYNAMIC slot.
++
 +2006-06-08  Mark Shinwell  <shinwell@codesourcery.com>
 +
 +        * sysdeps/arm/nptl/pthreaddef.h (CURRENT_STACK_FRAME): Add -12.
@@ -62,8 +86,10 @@
  2006-03-02  Daniel Jacobowitz  <dan@codesourcery.com>
  
  	* sysdeps/unix/sysv/linux/arm/linuxthreads/sysdep-cancel.h
---- glibc/ports/sysdeps/arm/dl-machine.h	2005-11-16 13:08:52.000000000 -0500
-+++ glibc/ports/sysdeps/arm/dl-machine.h	2006-06-07 13:38:29.000000000 -0400
+Index: glibc-2.4/ports/sysdeps/arm/dl-machine.h
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/arm/dl-machine.h	2006-08-05 13:24:22.000000000 -0400
++++ glibc-2.4/ports/sysdeps/arm/dl-machine.h	2006-08-05 13:25:14.000000000 -0400
 @@ -46,13 +46,19 @@
  
  
@@ -80,7 +106,7 @@
 -  return *got;
 +  Elf32_Addr dynamic;
 +  asm ("ldr %0, 2f\n"
-+       "1: add %0, pc, %0\n"
++       "1: ldr %0, [pc, %0]\n"
 +       "b 3f\n"
 +       "2: .word _GLOBAL_OFFSET_TABLE_ - (1b+8)\n"
 +       "3:" : "=r" (dynamic));
@@ -88,8 +114,10 @@
  }
  
  
---- glibc/ports/sysdeps/arm/initfini.c	1969-12-31 19:00:00.000000000 -0500
-+++ glibc/ports/sysdeps/arm/initfini.c	2006-05-30 11:31:04.000000000 -0400
+Index: glibc-2.4/ports/sysdeps/arm/initfini.c
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ glibc-2.4/ports/sysdeps/arm/initfini.c	2006-08-05 13:25:14.000000000 -0400
 @@ -0,0 +1,42 @@
 +/* Special .init and .fini section support.  ARM version.
 +   Copyright (C) 2006 Free Software Foundation, Inc.
@@ -133,8 +161,10 @@
 +static void call_gmon_start (void) __attribute__((noinline));
 +
 +#include <sysdeps/generic/initfini.c>
---- glibc/ports/sysdeps/arm/nptl/pthreaddef.h	2005-11-16 14:03:42.000000000 -0500
-+++ glibc/ports/sysdeps/arm/nptl/pthreaddef.h	2006-06-14 21:53:57.000000000 -0400
+Index: glibc-2.4/ports/sysdeps/arm/nptl/pthreaddef.h
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/arm/nptl/pthreaddef.h	2006-08-05 13:24:22.000000000 -0400
++++ glibc-2.4/ports/sysdeps/arm/nptl/pthreaddef.h	2006-08-05 13:25:14.000000000 -0400
 @@ -30,8 +30,16 @@
  #define TCB_ALIGNMENT		16
  
@@ -154,8 +184,10 @@
  
  
  /* XXX Until we have a better place keep the definitions here.  */
---- glibc/ports/sysdeps/unix/sysv/linux/arm/bits/fcntl.h	2004-08-23 03:28:44.000000000 -0400
-+++ glibc/ports/sysdeps/unix/sysv/linux/arm/bits/fcntl.h	2006-06-14 21:53:58.000000000 -0400
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/bits/fcntl.h
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/unix/sysv/linux/arm/bits/fcntl.h	2006-08-05 13:24:22.000000000 -0400
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/bits/fcntl.h	2006-08-05 13:25:14.000000000 -0400
 @@ -1,5 +1,5 @@
  /* O_*, F_*, FD_* bit values for Linux.
 -   Copyright (C) 1995-1998, 2000, 2004 Free Software Foundation, Inc.
@@ -306,8 +338,10 @@
 +#endif
 +
  __END_DECLS
---- glibc/ports/sysdeps/unix/sysv/linux/arm/bits/mman.h	2005-10-31 15:41:32.000000000 -0500
-+++ glibc/ports/sysdeps/unix/sysv/linux/arm/bits/mman.h	2006-05-12 11:16:26.000000000 -0400
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/bits/mman.h
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/unix/sysv/linux/arm/bits/mman.h	2006-08-05 13:24:22.000000000 -0400
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/bits/mman.h	2006-08-05 13:25:14.000000000 -0400
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/ARM version.
 -   Copyright (C) 1997, 2000, 2003, 2005 Free Software Foundation, Inc.
@@ -334,8 +368,10 @@
  #endif
  
  /* The POSIX people had to invent similar names for the same things.  */
---- glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/linuxthreads/sysdep-cancel.h	2005-11-16 13:08:53.000000000 -0500
-+++ glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/linuxthreads/sysdep-cancel.h	2006-05-12 11:16:26.000000000 -0400
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/linuxthreads/sysdep-cancel.h
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/unix/sysv/linux/arm/eabi/linuxthreads/sysdep-cancel.h	2006-08-05 13:24:22.000000000 -0400
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/linuxthreads/sysdep-cancel.h	2006-08-05 13:25:14.000000000 -0400
 @@ -53,9 +53,9 @@
      UNDOARGS_##args;							\
      cmn r0, $4096;
@@ -360,8 +396,10 @@
  # ifdef IS_IN_libpthread
  #  define CENABLE	bl PLTJMP(__pthread_enable_asynccancel)
  #  define CDISABLE	bl PLTJMP(__pthread_disable_asynccancel)
---- glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/sysdep-cancel.h	2005-11-16 14:03:42.000000000 -0500
-+++ glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/sysdep-cancel.h	2006-05-12 11:16:26.000000000 -0400
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/sysdep-cancel.h
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/sysdep-cancel.h	2006-08-05 13:24:22.000000000 -0400
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/sysdep-cancel.h	2006-08-05 13:25:14.000000000 -0400
 @@ -64,9 +64,9 @@
      UNDOARGS_##args;							\
      cmn r0, $4096;
@@ -386,8 +424,10 @@
  # ifdef IS_IN_libpthread
  #  define CENABLE	bl PLTJMP(__pthread_enable_asynccancel)
  #  define CDISABLE	bl PLTJMP(__pthread_disable_asynccancel)
---- glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/socket.S	2005-11-16 14:03:42.000000000 -0500
-+++ glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/socket.S	1969-12-31 19:00:00.000000000 -0500
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/socket.S
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/unix/sysv/linux/arm/eabi/socket.S	2006-08-05 13:24:22.000000000 -0400
++++ /dev/null	1970-01-01 00:00:00.000000000 +0000
 @@ -1,131 +0,0 @@
 -/* Copyright (C) 1995, 1996, 1997, 1998, 2003, 2005
 -   Free Software Foundation, Inc.
@@ -520,8 +560,10 @@
 -#ifndef NO_WEAK_ALIAS
 -weak_alias (__socket, socket)
 -#endif
---- glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/syscalls.list	1969-12-31 19:00:00.000000000 -0500
-+++ glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/syscalls.list	2006-03-21 15:54:56.000000000 -0500
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/syscalls.list
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/syscalls.list	2006-08-05 13:25:14.000000000 -0400
 @@ -0,0 +1,34 @@
 +# File name	Caller	Syscall name	# args	Strong name	Weak names
 +
@@ -557,8 +599,10 @@
 +shutdown	-	shutdown	i:ii	__shutdown	shutdown
 +socket		-	socket		i:iii	__socket	socket
 +socketpair	-	socketpair	i:iiif	__socketpair	socketpair
---- glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/sysdep.h	2005-11-16 14:03:42.000000000 -0500
-+++ glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/sysdep.h	2006-05-12 11:16:26.000000000 -0400
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/sysdep.h
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/unix/sysv/linux/arm/eabi/sysdep.h	2006-08-05 13:24:22.000000000 -0400
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/sysdep.h	2006-08-05 13:25:14.000000000 -0400
 @@ -1,4 +1,4 @@
 -/* Copyright (C) 2005
 +/* Copyright (C) 2005, 2006
@@ -578,8 +622,10 @@
  /* The ARM EABI user interface passes the syscall number in r7, instead
     of in the swi.  This is more efficient, because the kernel does not need
     to fetch the swi from memory to find out the number; which can be painful
---- glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/umount.c	1969-12-31 19:00:00.000000000 -0500
-+++ glibc/ports/sysdeps/unix/sysv/linux/arm/eabi/umount.c	2006-03-21 15:54:56.000000000 -0500
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/umount.c
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/eabi/umount.c	2006-08-05 13:25:14.000000000 -0400
 @@ -0,0 +1,31 @@
 +/* Copyright (C) 2000, 2001 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -612,8 +658,10 @@
 +}
 +
 +weak_alias (__umount, umount);
---- glibc/ports/sysdeps/unix/sysv/linux/arm/kernel-features.h	1969-12-31 19:00:00.000000000 -0500
-+++ glibc/ports/sysdeps/unix/sysv/linux/arm/kernel-features.h	2006-06-07 13:38:32.000000000 -0400
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/kernel-features.h
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/kernel-features.h	2006-08-05 13:25:14.000000000 -0400
 @@ -0,0 +1,49 @@
 +/* Set flags signalling availability of kernel features based on given
 +   kernel version number.
@@ -664,3 +712,95 @@
 +#endif
 +
 +#include_next <kernel-features.h>
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/nptl/lowlevellock.h
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/unix/sysv/linux/arm/nptl/lowlevellock.h	2006-02-27 10:36:06.000000000 -0500
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/nptl/lowlevellock.h	2006-08-05 13:25:14.000000000 -0400
+@@ -31,6 +31,9 @@
+ #define FUTEX_CMP_REQUEUE	4
+ #define FUTEX_WAKE_OP		5
+ #define FUTEX_OP_CLEAR_WAKE_IF_GT_ONE	((4 << 24) | 1)
++#define FUTEX_LOCK_PI		6
++#define FUTEX_UNLOCK_PI		7
++#define FUTEX_TRYLOCK_PI	8
+ 
+ /* Initializer for compatibility lock.	*/
+ #define LLL_MUTEX_LOCK_INITIALIZER (0)
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/sigaction.c
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/unix/sysv/linux/arm/sigaction.c	2005-11-16 14:03:42.000000000 -0500
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/sigaction.c	2006-08-05 13:25:14.000000000 -0400
+@@ -1,4 +1,4 @@
+-/* Copyright (C) 1997, 1998, 1999, 2000, 2002, 2003, 2005
++/* Copyright (C) 1997, 1998, 1999, 2000, 2002, 2003, 2005, 2006
+    Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+ 
+@@ -151,6 +151,10 @@
+ }
+ libc_hidden_def (__libc_sigaction)
+ 
++#ifdef WRAPPER_INCLUDE
++# include WRAPPER_INCLUDE
++#endif
++
+ #ifndef LIBC_SIGACTION
+ weak_alias (__libc_sigaction, __sigaction)
+ libc_hidden_weak (__sigaction)
+Index: glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/sys/ucontext.h
+===================================================================
+--- glibc-2.4.orig/ports/sysdeps/unix/sysv/linux/arm/sys/ucontext.h	2001-07-06 00:56:13.000000000 -0400
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/arm/sys/ucontext.h	2006-08-05 13:25:14.000000000 -0400
+@@ -1,4 +1,4 @@
+-/* Copyright (C) 1998, 1999, 2001 Free Software Foundation, Inc.
++/* Copyright (C) 1998, 1999, 2001, 2006 Free Software Foundation, Inc.
+    This file is part of the GNU C Library.
+ 
+    The GNU C Library is free software; you can redistribute it and/or
+@@ -25,10 +25,14 @@
+ #include <signal.h>
+ #include <sys/procfs.h>
+ 
++/* We need the signal context definitions even if they are not used
++   included in <signal.h>.  */
++#include <bits/sigcontext.h>
++
+ typedef int greg_t;
+ 
+ /* Number of general registers.  */
+-#define NGREG	16
++#define NGREG	18
+ 
+ /* Container for all general registers.  */
+ typedef elf_gregset_t gregset_t;
+@@ -73,22 +77,21 @@
+ /* Structure to describe FPU registers.  */
+ typedef elf_fpregset_t	fpregset_t;
+ 
+-/* Context to describe whole processor state.  */
+-typedef struct
+-  {
+-    gregset_t gregs;
+-    fpregset_t fpregs;
+-  } mcontext_t;
++/* Context to describe whole processor state.  This only describes
++   the core registers; coprocessor registers get saved elsewhere
++   (e.g. in uc_regspace, or somewhere unspecified on the stack
++   during non-RT signal handlers).  */
++typedef struct sigcontext mcontext_t;
+ 
+ /* Userlevel context.  */
+ typedef struct ucontext
+   {
+-    unsigned long int uc_flags;
++    unsigned long uc_flags;
+     struct ucontext *uc_link;
+-    __sigset_t uc_sigmask;
+     stack_t uc_stack;
+     mcontext_t uc_mcontext;
+-    long int uc_filler[5];
++    __sigset_t uc_sigmask;
++    unsigned long uc_regspace[128] __attribute__((__aligned__(8)));
+   } ucontext_t;
+ 
+ #endif /* sys/ucontext.h */

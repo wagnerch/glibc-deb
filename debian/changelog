@@ -40,6 +40,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
       hppa/submitted-iitlbp.diff, hppa/cvs-pie-relocs.diff,
       hppa/cvs-no-ldbl-128.diff.
     - Add arm/cvs-portshead.patch (update arm code to ports HEAD)
+    - Add mips/cvs-portshead.patch (update mips code to ports HEAD)
 
   [ Denis Barbier ]
     - Remove locale/complex-collate.diff (merged upstream).
