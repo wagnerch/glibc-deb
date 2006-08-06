@@ -29,8 +29,6 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - debian/sysdeps/mipsel.mk: use ports add-on
     - debian/sysdeps/arm.mk: use ports add-on
     - Build with gcc 4.1 on all architectures.
-    - debian/patches/sparc/local-linuxthreads.diff: fill in missing
-      preprocessor macros.
     - debian/debhelper.in/nscd.init: partially sync nscd initscript
       with upstream.
     - Remove mips/local-librt.diff.
@@ -118,11 +116,12 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update any/local-libgcc-compat-{all,others}.diff and split them into
     any/local-libgcc-compat-{main,ports}.diff.
   * Add sparc/local-fork.diff (use fork.c instead of fork.S).
-  * Add sparc/local-sysdep.diff (pull in __syscall_error routine when 
-    building with linuxthreads).
   * Add any/local-__thread.diff (make glibc buildable without __thread support)
     from Michael Banck.  (Closes: #361064)
-  * debian/sysdeps/alpha.mk: do an NPTL pass.
+  * debian/sysdeps/m68k.mk: use linuxthreads instead of NPTL.
+  * debian/sysdeps/m32r.mk: use linuxthreads instead of NPTL.
+  * debian/script.in/kernelcheck.sh: set the minimum kernel version to 2.6.0,
+    except on m68k where it is set to 2.4.1.
 
   [Jeff Bailey]
 

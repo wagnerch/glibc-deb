@@ -1,4 +1,3 @@
-libc_MIN_KERNEL_SUPPORTED = 2.6.0
 libc_extra_cflags = -O3 -g1
 libc_slibdir = /lib
 libc_libdir = /usr/lib
@@ -23,7 +22,6 @@ i386_extra_config_options = $(extra_config_options) --includedir=/usr/include/i4
 i386_rtlddir = /lib
 i386_slibdir = /emul/ia32-linux/lib
 i386_libdir = /emul/ia32-linux/usr/lib
-i386_MIN_KERNEL_SUPPORTED = 2.6.0
 
 define libc6-dev-i386_extra_pkg_install
 mkdir -p debian/libc6-dev-i386/usr/include
