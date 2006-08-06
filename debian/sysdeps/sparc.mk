@@ -1,6 +1,7 @@
 # build 64-bit (sparc64) alternative library
 GLIBC_PASSES += sparc64
 DEB_ARCH_REGULAR_PACKAGES += libc6-sparc64 libc6-dev-sparc64
+sparc64_add-ons = nptl $(add-ons)
 sparc64_configure_target=sparc64-linux
 sparc64_CC = $(BUILD_CC) -m64
 sparc64_extra_cflags = -g1 -O3
@@ -12,6 +13,7 @@ sparc64_libdir = /usr/lib64
 # build a sparcv9 optimized library
 GLIBC_PASSES += sparcv9
 DEB_ARCH_REGULAR_PACKAGES += libc6-sparcv9
+sparcv9_add-ons = nptl $(add-ons)
 sparcv9_configure_target=sparcv9-linux
 sparcv9_configure_build=sparcv9-linux
 sparcv9_extra_cflags = -g1 -O3
@@ -22,6 +24,7 @@ sparcv9_slibdir = /lib/v9
 # build a sparcv9b optimized library
 GLIBC_PASSES += sparcv9b
 DEB_ARCH_REGULAR_PACKAGES += libc6-sparcv9b
+sparcv9b_add-ons = nptl $(add-ons)
 sparcv9b_configure_target=sparcv9b-linux
 sparcv9b_configure_build=sparcv9b-linux
 sparcv9b_extra_cflags = -mtune=ultrasparc3 -g1 -O3

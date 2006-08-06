@@ -16,6 +16,7 @@ libc_extra_cflags = -march=i486 -mtune=i686 -g1 -O3
 # The optimized libraries also use NPTL!
 GLIBC_PASSES += i686
 DEB_ARCH_REGULAR_PACKAGES += libc6-i686
+i686_add-ons = nptl $(add-ons)
 i686_configure_target=i686-linux
 i686_extra_cflags = -march=i686 -mtune=i686 -g1 -O3
 i686_rtlddir = /lib
@@ -26,6 +27,7 @@ i686_extra_config_options = $(extra_config_options) --disable-profile
 # greatly reduce the speed when running under the Xen hypervisor.
 GLIBC_PASSES += xen
 DEB_ARCH_REGULAR_PACKAGES += libc6-xen
+xen_add-ons = nptl $(add-ons)
 xen_configure_target=i686-linux
 xen_extra_cflags = -march=i686 -mtune=i686 -g1 -O3 -mno-tls-direct-seg-refs
 xen_rtlddir = /lib
@@ -36,6 +38,7 @@ xen_extra_config_options = $(extra_config_options) --disable-profile
 GLIBC_PASSES += amd64
 DEB_ARCH_REGULAR_PACKAGES += libc6-amd64 libc6-dev-amd64
 libc6-amd64_shlib_dep = libc6-amd64 (>= $(shlib_dep_ver))
+amd64_add-ons = nptl $(add-ons)
 amd64_configure_target = x86_64-linux
 # __x86_64__ is defined here because Makeconfig uses -undef and the
 # /usr/include/asm wrappers need that symbol.

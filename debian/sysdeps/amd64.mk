@@ -13,7 +13,7 @@ endef
 GLIBC_PASSES += i386
 DEB_ARCH_REGULAR_PACKAGES += libc6-i386 libc6-dev-i386
 libc6-i386_shlib_dep = libc6-i386 (>= $(shlib_dep_ver))
-
+i386_add-ons = nptl $(add-ons)
 i386_configure_target = i486-linux
 i386_CC = $(CC) -m32
 i386_add-ons = nptl $(add-ons)
