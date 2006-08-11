@@ -38,7 +38,6 @@ glibc (2.4-1) UNRELEASED; urgency=low
       hppa/submitted-iitlbp.diff, hppa/cvs-pie-relocs.diff,
       hppa/cvs-no-ldbl-128.diff.
     - Add arm/cvs-portshead.patch (update arm code to ports HEAD)
-    - Add mips/cvs-portshead.patch (update mips code to ports HEAD)
 
   [ Denis Barbier ]
     - Remove locale/complex-collate.diff (merged upstream).
@@ -108,6 +107,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update m68k/local-fpic.diff.
   * Update m68k/local-reloc.diff to reflect the new port add-on.
   * Update m68k/submitted-gcc34-seccomment.diff.
+  * Add mips/cvs-fork.diff (fix the path to i386/fork.c) from CVS.
+  * Add mips/cvs-resource.diff (fix a typo in bits/resource.h) from CVS.
   * Remove mips/cvs-gcc4-inline.diff (merged upstream).
   * Remove mips/cvs-gcc4-sysdeps.diff (merged upstream).
   * Update mips/submitted-msq.diff to reflect the new port add-on.
@@ -122,7 +123,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * debian/script.in/kernelcheck.sh: set the minimum kernel version to 2.6.0,
     except on m68k where it is set to 2.4.1.
 
-  [Jeff Bailey]
+  [ Jeff Bailey ]
 
   * debian/control.in/libc: Move tzdata dependancy to ...
   * debian/sysdeps/depflags.mk: ... here.
