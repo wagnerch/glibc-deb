@@ -23,8 +23,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - Add any/local-bashisms.diff: fix invalid test operator (==)
       in run-iconv-test.sh
     - debian/rules.d/build.mk: don't try to build html documentation.
-    - debian/sysdeps/hppa.mk: use ports add-on
-    - debian/sysdeps/m68k.mk: use ports add-on
+    - debian/sysdeps/hppa.mk: use ports and linuxthreads add-ons
+    - debian/sysdeps/m68k.mk: use ports and linuxthreads add-ons
     - debian/sysdeps/mips.mk: use ports add-on
     - debian/sysdeps/mipsel.mk: use ports add-on
     - debian/sysdeps/arm.mk: use ports add-on
