@@ -20,7 +20,7 @@ i686_add-ons = nptl $(add-ons)
 i686_configure_target=i686-linux
 i686_extra_cflags = -march=i686 -mtune=i686 -g1 -O3
 i686_rtlddir = /lib
-i686_slibdir = /lib/tls/i686/cmov
+i686_slibdir = /lib/i686/cmov
 i686_extra_config_options = $(extra_config_options) --disable-profile
 
 # We use -mno-tls-direct-seg-refs to not wrap-around segments, as it
@@ -31,7 +31,7 @@ xen_add-ons = nptl $(add-ons)
 xen_configure_target=i686-linux
 xen_extra_cflags = -march=i686 -mtune=i686 -g1 -O3 -mno-tls-direct-seg-refs
 xen_rtlddir = /lib
-xen_slibdir = /lib/tls/i686/cmov
+xen_slibdir = /lib/i686/cmov
 xen_extra_config_options = $(extra_config_options) --disable-profile
 
 # build 64-bit (amd64) alternative library
