@@ -102,6 +102,7 @@ all/local-remove-manual.diff
 all/local-ru_RU.diff -p1
 all/local-pt_BR.diff -p1
 all/submitted-new-brf-encoding.diff -p0
+all/submitted-uninitialized-byte-LC_CTYPE.diff
 
 any/cvs-getcwd_c.diff -p1
 any/cvs-thread_signals.diff -p0
@@ -125,6 +126,7 @@ any/local-localedef-fix-trampoline.diff -p1
 any/local-makeconfig.diff -p0
 any/local-nss-upgrade.diff -p1
 any/local-rtld.diff -p1
+any/local-sysctl.diff -p1
 any/local-tcsetaddr.diff -p1
 any/local-ttyname-devfs.diff -p0
 any/local-version-sanity.diff -p1
