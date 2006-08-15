@@ -34,8 +34,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - Remove mips/local-librt.diff.
     - debian/rules.d/tarball.mk: no longer run tar with -v.
     - Add hppa/cvs-portshead.patch (update hppa code to ports HEAD)
-    - Disable hppa/submitted-sysdeps.diff, hppa/local-gcc-4-profile.diff,
-      hppa/cvs-pie-relocs.diff, hppa/cvs-no-ldbl-128.diff.
+    - Disable hppa/submitted-sysdeps.diff, hppa/cvs-pie-relocs.diff, 
+      hppa/cvs-no-ldbl-128.diff.
     - Add arm/cvs-portshead.patch (update arm code to ports HEAD)
 
   [ Denis Barbier ]
@@ -86,7 +86,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove hppa/cvs-linesep.diff (merged upstream).
   * Update hppa/cvs-no-ldbl-128.diff to reflect the new port add-on.
   * Update hppa/cvs-pie-relocs.diff to reflect the new port add-on.
-  * Update hppa/local-gcc-4-profile.diff to reflect the new port add-on.
+  * Remove hppa/local-gcc-4-profile.diff (not necessary anymore).
   * Update hppa/local-inlining.diff to reflect the new port add-on.
   * Update hppa/submitted-drop-utimes.diff.
   * Update hppa/submitted-fenv-align.diff to reflect the new port add-on.
