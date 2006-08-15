@@ -17,7 +17,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - Remove sparc/local-gcc4-mv8.diff (merged upstream).
     - Remove sparc/submitted-socket-weakalias.diff (merged upstream).
     - Remove everything to do with nscd_nischeck.
-    - Update any/local-linuxthreads-sizefix.diff.
+    - Remove any/local-linuxthreads-sizefix.diff (not necessary anymore).
     - Update hppa/submitted-lt.diff.
     - debian/shlibver: Bump up to 2.4-1.
     - Add any/local-bashisms.diff: fix invalid test operator (==)
