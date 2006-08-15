@@ -1,0 +1,33 @@
+2006-04-27  Ulrich Drepper  <drepper@redhat.com>
+
+	* Protect against multiple inclusion.
+
+	* Allow inclusion from <fcntl.h>.
+
+===================================================================
+RCS file: /cvs/glibc/libc/sysdeps/unix/sysv/linux/bits/uio.h,v
+retrieving revision 1.4
+retrieving revision 1.6
+diff -u -r1.4 -r1.6
+--- libc/sysdeps/unix/sysv/linux/bits/uio.h	2006/04/26 22:12:30	1.4
++++ libc/sysdeps/unix/sysv/linux/bits/uio.h	2006/04/27 04:10:30	1.6
+@@ -16,10 +16,12 @@
+    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+    02111-1307 USA.  */
+ 
+-#ifndef _SYS_UIO_H
++#if !defined _SYS_UIO_H && !defined _FCNTL_H
+ # error "Never include <bits/uio.h> directly; use <sys/uio.h> instead."
+ #endif
+ 
++#ifndef _BITS_UIO_H
++#define _BITS_UIO_H	1
+ 
+ #include <sys/types.h>
+ 
+@@ -44,3 +46,5 @@
+     void *iov_base;	/* Pointer to data.  */
+     size_t iov_len;	/* Length of data.  */
+   };
++
++#endif

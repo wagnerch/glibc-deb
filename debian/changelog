@@ -73,6 +73,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove any/cvs-path_log.diff (merged upstream).
   * Remove any/cvs-resource_h.diff (merged upstream).
   * Remove any/cvs-tls-crashfix.diff (merged upstream).
+  * Add any/cvs-uio_h.diff from upstream to allow inclusion of bits/uio.h from
+    fcntl.h and prevent multiple inclusions.
   * Remove any/local-kernel-features.diff (merged upstream).
   * Update any/local-ldso-disable-hwcap.diff.
   * Update any/local-linuxthreads-sizefix.diff.
