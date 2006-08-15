@@ -90,7 +90,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update hppa/local-inlining.diff to reflect the new port add-on.
   * Update hppa/submitted-drop-utimes.diff.
   * Update hppa/submitted-fenv-align.diff to reflect the new port add-on.
-  * Update hppa/submitted-fpu.diff to reflect the new port add-on.
+  * Remove hppa/submitted-fpu.diff (merged upstream).
   * Remove hppa/submitted-iitlbp.diff (merged upstream).
   * Update hppa/submitted-sysdeps.diff.
   * Remove hurd-i386/cvs-ioctl-pfinet.diff (merged upstream).
