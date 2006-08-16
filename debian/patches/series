@@ -115,6 +115,7 @@ any/local-ldso-disable-hwcap.diff -p0
 any/local-ldconfig.diff -p0
 any/local-libgcc-compat-main.diff -p0
 any/local-libgcc-compat-ports.diff -p0
+any/local-linuxthreads-tst-sighandler.diff -p1
 any/local-localedef-fix-trampoline.diff -p1
 any/local-makeconfig.diff -p0
 any/local-nss-upgrade.diff -p1

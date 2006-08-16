@@ -76,7 +76,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
     fcntl.h and prevent multiple inclusions.
   * Remove any/local-kernel-features.diff (merged upstream).
   * Update any/local-ldso-disable-hwcap.diff.
-  * Update any/local-linuxthreads-sizefix.diff.
+  * Add any/local-linuxthreads-tst-sighandler.diff to disable
+    tst-sighandler{1,2} tests, which seems to be buggy.
   * Update any/local-rtld.diff.
   * Update any/local-sysctl.diff to reflect the new port add-on.
   * Update any/local-version-sanity.diff.
