@@ -59,7 +59,6 @@ hppa/cvs-portshead.patch
 hppa/local-Rminkernel.diff -p0
 hppa/submitted-drop-utimes.diff -p1
 hppa/submitted-lt.diff -p1
-#hppa/submitted-sysdeps.diff -p0
 hppa/cvs-pie-relocs.diff -p0
 hppa/local-inlining.diff -p0
 

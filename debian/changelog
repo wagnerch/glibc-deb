@@ -96,7 +96,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Remove hppa/submitted-fenv-align.diff (merged upstream).
   * Remove hppa/submitted-fpu.diff (merged upstream).
   * Remove hppa/submitted-iitlbp.diff (merged upstream).
-  * Update hppa/submitted-sysdeps.diff.
+  * Remove hppa/submitted-sysdeps.diff (merged upstream).
   * Remove hurd-i386/cvs-ioctl-pfinet.diff (merged upstream).
   * Remove hurd-i386/cvs-getresuid-dyslexia.diff (merged upstream).
   * Remove hurd-i386/cvs-posix-opts.diff (merged upstream).
