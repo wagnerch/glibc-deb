@@ -1,4 +1,22 @@
-glibc (2.3.6-20) UNRELEASED; urgency=low
+glibc (2.3.6.ds1-2) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * rules.d/build.mk: removed the call to texi2html.  (Closes: #383276).
+  * New debian/patches/any/cvs-ctermid.diff from upstream to fix a segfault in
+    ctermid(NULL).  Thanks Denis for the hint.  (Closes: #380504, #383362).
+  * New debian/patches/localedata/reverted-for-etch.diff: revert a few
+    locales changes done in 2.3.6.ds1-1 and refused by the release managers:
+    - locales/vi_VN: Various fixes
+    - locales/ru_RU: Use U2002 for thousands_sep and mon_throusands_sep.
+
+  [ Denis Barbier ]
+  * debian/patches/localedata/cvs-localedata.diff: A new test target
+    tst-strfmon1 was previously added into localedata/Makefile,
+    so add localedata/tst-strfmon1.c to really perform this test.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 17 Aug 2006 00:32:25 +0200
+
+glibc (2.3.6.ds1-1) unstable; urgency=low
 
   [ Denis Barbier ]
   * New all/submitted-uninitialized-byte-LC_CTYPE.diff patch to fix
@@ -11,12 +29,47 @@ glibc (2.3.6-20) UNRELEASED; urgency=low
   * debian/debhelper.in/locales.postinst: Pass --no-checks to update-locale
     to not break installation of this package even if non working locales
     are selected.  Thanks Robert Millan.  (Closes: #365628)
+  * debian/patches/locale/cvs-iso4217.diff: Update to CVS 2006-08-12.
+  * debian/patches/localedata/cvs-localedata.diff: Update to CVS 2006-08-12
+    Among other changes:
+    * New locale files: as_IN, ca_AD, csb_PL, el_CY, fr_AD, it_AD, nr_ZA,
+      or_IN, pa_PK and tr_CY.
+    * charmaps/MIK: New file.
+    * Sync bg_BG bs_BA es_MX ru_RU tg_TJ tt_RU with latest iso-4217.def
+    * Add transliateration support to LC_CTYPE for most locales.
+    * Fix date fields for several *_IN locales.
+    * locales/{*_ZA,ro_RO,vi_VN}: Various fixes
+    * locales/de_DE: Fix date_fmt.
+    * locales/hu_HU: Better month name abbreviations.
+    * locales/pl_PL: Don't ignore U0020 in collation.
+    * locales/ru_RU: Use U2002 for thousands_sep and mon_throusands_sep.
+    * locales/es_UY: Change currency_symbol. Closes: #378151
+    * locales/de_CH: Change thousand separator to '.
+  * The following patches have been merged into localedata/cvs-localedata.diff
+    and are dropped:
+      locale/iso4217-RON.diff               localedata/locale-ro_RO.diff
+      localedata/new-catalan-locales.diff   localedata/locale-te_IN.diff
+      localedata/locale-nr_ZA.diff          localedata/update-ZA.diff
 
   [ Aurelien Jarno ]
   * sysdeps/{powerpc,s390,ia64}.mk: make the NPTL version buildable on 2.4
     kernels.
+  * New any/local-sysctl.diff patch to remove the annoying warning messages
+    that appear with 2.6.18+ kernels, and to warn users to not use sysctl().
+  * debian/debhelper.in/libc.postinst: update list of optimized glibc
+    packages.  Thanks Petr Salinger.  (Closes: #383168).
+  * New any/cvs-static-getpid.diff patch from upstream to fix getpid() in
+    statically linked programs on some architectures.  (Closes: #367656).
+  * Backport from experimental (thanks Denis):
+    - Remove the GNU Libc Reference manual from glibc-doc because it is
+      not DFSG-free. (Closes: #181494)
+      The whole glibc-2.3.6/manual directory is removed from glibc-2.3.6.ds1.tar.bz2.
+    - debian/control: Drop Build-Depends: texinfo, texi2html.
+    - debian/control: Drop references to the antique libc-doc package.
+    - all/cvs-manual-memory.diff: removed.
+    - all/cvs-manual-string.diff: removed.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 10 Aug 2006 21:23:07 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 15 Aug 2006 23:01:43 +0200
 
 glibc (2.3.6-19) unstable; urgency=low
 
