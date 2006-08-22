@@ -99,6 +99,7 @@ all/submitted-uninitialized-byte-LC_CTYPE.diff
 
 any/cvs-getcwd_c.diff -p1
 any/cvs-uio_h.diff -p1
+any/cvs-sysctl.diff -p1
 any/cvs-thread_signals.diff -p0
 any/local-__thread.diff -p0
 any/local-asserth-decls.diff -p0
