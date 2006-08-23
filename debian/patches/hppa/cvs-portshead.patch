@@ -1,7 +1,12 @@
 diff -Nurd glibc-2.4/ports/ChangeLog.hppa glibc-2.4/ports/ChangeLog.hppa
 --- glibc-2.4/ports/ChangeLog.hppa	2006-02-28 23:20:13.000000000 +0100
-+++ glibc-2.4/ports/ChangeLog.hppa	2006-08-06 09:40:19.000000000 +0200
-@@ -1,3 +1,187 @@
++++ glibc-2.4/ports/ChangeLog.hppa	2006-08-13 20:26:45.000000000 +0200
+@@ -1,3 +1,192 @@
++2006-08-13  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/unix/sysv/linux/hppa/nptl/lowlevellock.h (FUTEX_LOCK_PI,
++	FUTEX_UNLOCK_PI, FUTEX_TRYLOCK_PI): Define.
++
 +2006-07-24  Carlos O'Donell  <carlos@systemhalted.org>
 +
 +	* sysdeps/unix/sysv/linux/hppa/nptl/bits/pthreadtypes.h: 
@@ -1468,7 +1473,7 @@ diff -Nurd glibc-2.4/ports/sysdeps/hppa/fpu/libm-test-ulps glibc-2.4/ports/sysde
  idouble: 1
 diff -Nurd glibc-2.4/ports/sysdeps/hppa/hppa1.1/Implies glibc-2.4/ports/sysdeps/hppa/hppa1.1/Implies
 --- glibc-2.4/ports/sysdeps/hppa/hppa1.1/Implies	2000-10-15 05:25:29.000000000 +0200
-+++ glibc-2.4/ports/sysdeps/hppa/hppa1.1/Implies	2006-08-06 09:40:19.000000000 +0200
++++ glibc-2.4/ports/sysdeps/hppa/hppa1.1/Implies	2006-06-09 03:25:30.000000000 +0200
 @@ -1,4 +1,3 @@
  wordsize-32
  ieee754/flt-32
@@ -1953,6 +1958,407 @@ diff -Nurd glibc-2.4/ports/sysdeps/hppa/linuxthreads/tls.h glibc-2.4/ports/sysde
 +#endif	/* HAVE_TLS_SUPPORT */
 +
 +#endif	/* tls.h */
+diff -Nurd glibc-2.4/ports/sysdeps/hppa/nptl/jmpbuf-unwind.h glibc-2.4/ports/sysdeps/hppa/nptl/jmpbuf-unwind.h
+--- glibc-2.4/ports/sysdeps/hppa/nptl/jmpbuf-unwind.h	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/hppa/nptl/jmpbuf-unwind.h	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,31 @@
++/* Copyright (C) 2003, 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <setjmp.h>
++#include <jmpbuf-offsets.h>
++#include <stdint.h>
++#include <unwind.h>
++
++#define _JMPBUF_CFA_UNWINDS_ADJ(_jmpbuf, _context, _adj) \
++  _JMPBUF_UNWINDS_ADJ (_jmpbuf, (void *) _Unwind_GetCFA (_context), _adj)
++
++#define _JMPBUF_UNWINDS_ADJ(_jmpbuf, _address, _adj) \
++  ((uintptr_t) (_address) - (_adj) > (uintptr_t)(((unsigned long *) _jmpbuf)[JB_SP]) - (_adj))
++
++/* We use the normal longjmp for unwinding.  */
++#define __libc_unwind_longjmp(buf, val) __libc_longjmp (buf, val)
+diff -Nurd glibc-2.4/ports/sysdeps/hppa/nptl/Makefile glibc-2.4/ports/sysdeps/hppa/nptl/Makefile
+--- glibc-2.4/ports/sysdeps/hppa/nptl/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/hppa/nptl/Makefile	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,21 @@
++# Copyright (C) 2005 Free Software Foundation, Inc.
++# This file is part of the GNU C Library.
++#
++# The GNU C Library is free software; you can redistribute it and/or
++# modify it under the terms of the GNU Lesser General Public
++# License as published by the Free Software Foundation; either
++# version 2.1 of the License, or (at your option) any later version.
++#
++# The GNU C Library is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++# Lesser General Public License for more details.
++#
++# You should have received a copy of the GNU Lesser General Public
++# License along with the GNU C Library; if not, write to the Free
++# Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++# 02111-1307 USA.
++
++ifeq ($(subdir),csu)
++gen-as-const-headers += tcb-offsets.sym
++endif
+diff -Nurd glibc-2.4/ports/sysdeps/hppa/nptl/pthreaddef.h glibc-2.4/ports/sysdeps/hppa/nptl/pthreaddef.h
+--- glibc-2.4/ports/sysdeps/hppa/nptl/pthreaddef.h	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/hppa/nptl/pthreaddef.h	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,40 @@
++/* Copyright (C) 2002, 2003, 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++/* Default stack size.  */
++#define ARCH_STACK_DEFAULT_SIZE	(8 * 1024 * 1024)
++
++/* Required stack pointer alignment at beginning.  */
++#define STACK_ALIGN		64
++
++/* Minimal stack size after allocating thread descriptor and guard size.  */
++#define MINIMAL_REST_STACK	2048
++
++/* Alignment requirement for TCB, note that this must be larger than STACK_ALIGN  */
++#define TCB_ALIGNMENT		STACK_ALIGN
++
++
++/* Location of current stack frame.  */
++#define CURRENT_STACK_FRAME  stack_pointer
++register char * stack_pointer __asm__ ("%r30");
++
++
++/* XXX Until we have a better place keep the definitions here.  */
++
++#define __exit_thread_inline(val) \
++  INLINE_SYSCALL (exit, 1, (val))
+diff -Nurd glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_lock.c glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_lock.c
+--- glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_lock.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_lock.c	2006-07-19 00:46:12.000000000 +0200
+@@ -0,0 +1,38 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <atomic.h>
++#include "pthreadP.h"
++
++int
++pthread_spin_lock (pthread_spinlock_t *lock)
++{
++#if 0
++  volatile unsigned int *addr = __ldcw_align (lock);
++
++  while (__ldcw (addr) == 0)
++    while (*addr == 0) ;
++
++  return 0;
++#endif
++
++  while (atomic_compare_and_exchange_val_acq(lock, 1, 0) == 1)
++    while (*lock == 1);
++  
++  return 0;
++}
+diff -Nurd glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_trylock.c glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_trylock.c
+--- glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_trylock.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_trylock.c	2006-07-19 00:46:12.000000000 +0200
+@@ -0,0 +1,34 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <errno.h>
++#include <atomic.h>
++#include "pthreadP.h"
++
++int
++pthread_spin_trylock (pthread_spinlock_t *lock)
++{
++#if 0
++  volatile unsigned int *a = __ldcw_align (lock);
++
++  return __ldcw (a) ? 0 : EBUSY;
++#endif
++
++  return atomic_compare_and_exchange_val_acq(lock, 1, 0) ? EBUSY : 0;
++
++}
+diff -Nurd glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_unlock.c glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_unlock.c
+--- glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_unlock.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/hppa/nptl/pthread_spin_unlock.c	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,36 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++/* Ugly hack to avoid the declaration of pthread_spin_init.  */
++#define pthread_spin_init pthread_spin_init_XXX
++#include "pthreadP.h"
++#undef pthread_spin_init
++
++int
++pthread_spin_unlock (pthread_spinlock_t *lock)
++{
++#if 0
++  volatile unsigned int *a = __ldcw_align (lock);
++#endif
++  int tmp = 0;
++  /* This should be a memory barrier to newer compilers */
++  __asm__ __volatile__ ("stw,ma %1,0(%0)"
++                        : : "r" (lock), "r" (tmp) : "memory");           
++  return 0;
++}
++strong_alias (pthread_spin_unlock, pthread_spin_init)
+diff -Nurd glibc-2.4/ports/sysdeps/hppa/nptl/tcb-offsets.sym glibc-2.4/ports/sysdeps/hppa/nptl/tcb-offsets.sym
+--- glibc-2.4/ports/sysdeps/hppa/nptl/tcb-offsets.sym	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/hppa/nptl/tcb-offsets.sym	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,18 @@
++#include <sysdep.h>
++#include <tls.h>
++
++RESULT			offsetof (struct pthread, result)
++TID			offsetof (struct pthread, tid)
++PID			offsetof (struct pthread, pid)
++CANCELHANDLING		offsetof (struct pthread, cancelhandling)
++CLEANUP_JMP_BUF		offsetof (struct pthread, cleanup_jmp_buf)
++MULTIPLE_THREADS_OFFSET	offsetof (struct pthread, header.multiple_threads)
++TLS_PRE_TCB_SIZE	sizeof (struct pthread)
++MUTEX_FUTEX		offsetof (pthread_mutex_t, __data.__lock)
++
++-- Use a thread_offset when working with asm to make things simpler
++-- This way we get the offset of a member in the struct pthread that
++-- preceeds the thread pointer (which points to the dtv).
++#define thread_offsetof(mem)    (unsigned int)(offsetof(struct pthread, mem) - sizeof(struct pthread))
++PID_THREAD_OFFSET		thread_offsetof (pid)
++MULTIPLE_THREADS_THREAD_OFFSET	thread_offsetof (header.multiple_threads)
+diff -Nurd glibc-2.4/ports/sysdeps/hppa/nptl/tls.h glibc-2.4/ports/sysdeps/hppa/nptl/tls.h
+--- glibc-2.4/ports/sysdeps/hppa/nptl/tls.h	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/hppa/nptl/tls.h	2006-07-16 20:25:24.000000000 +0200
+@@ -0,0 +1,151 @@
++/* Definition for thread-local data handling.  NPTL/hppa version.
++   Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef _TLS_H
++#define _TLS_H	1
++
++#include <dl-sysdep.h>
++
++#ifndef __ASSEMBLER__
++# include <stdbool.h>
++# include <stddef.h>
++# include <stdint.h>
++
++/* Type for the dtv.  */
++typedef union dtv
++{
++  size_t counter;
++  struct
++  {
++    void *val;
++    bool is_static;
++  } pointer;
++} dtv_t;
++
++#else /* __ASSEMBLER__ */
++# include <tcb-offsets.h>
++#endif /* __ASSEMBLER__ */
++
++
++/* We require TLS support in the tools.  */
++#ifndef HAVE_TLS_SUPPORT
++# error "TLS support is required."
++#endif
++
++/* Signal that TLS support is available.  */
++#define USE_TLS	1
++
++#ifndef __ASSEMBLER__
++
++/* Get system call information.  */
++# include <sysdep.h>
++
++/* The TP points to the start of the thread blocks.  */
++# define TLS_DTV_AT_TP	1
++
++/* Get the thread descriptor definition.  */
++# include <nptl/descr.h>
++
++typedef struct
++{
++  dtv_t *dtv;
++  void *private;
++} tcbhead_t;
++
++/* This is the size of the initial TCB.  */
++# define TLS_INIT_TCB_SIZE	sizeof (tcbhead_t)
++
++/* Alignment requirements for the initial TCB.  */
++# define TLS_INIT_TCB_ALIGN	__alignof__ (tcbhead_t)
++
++/* This is the size of the TCB.  */
++# define TLS_TCB_SIZE		sizeof (tcbhead_t)
++
++/* Alignment requirements for the TCB.  */
++# define TLS_TCB_ALIGN		__alignof__ (struct pthread)
++
++/* This is the size we need before TCB */
++# define TLS_PRE_TCB_SIZE	sizeof (struct pthread)
++
++/* Install the dtv pointer.  The pointer passed is to the element with
++   index -1 which contain the length.  */
++# define INSTALL_DTV(tcbp, dtvp) \
++  ((tcbhead_t *) (tcbp))->dtv = (dtvp) + 1
++
++/* Install new dtv for current thread.  */
++# define INSTALL_NEW_DTV(dtv) \
++  ({ tcbhead_t *__tcbp = (tcbhead_t *)__get_cr27();	\
++   	__tcbp->dtv = dtv;				\
++   })
++
++/* Return dtv of given thread descriptor.  */
++# define GET_DTV(tcbp) \
++  (((tcbhead_t *) (tcbp))->dtv)
++
++/* Code to initially initialize the thread pointer.  This might need
++   special attention since 'errno' is not yet available and if the
++   operation can cause a failure 'errno' must not be touched.  */
++# define TLS_INIT_TP(tcbp, secondcall) \
++  ({ __set_cr27(tcbp); NULL; })
++
++/* Return the address of the dtv for the current thread.  */
++# define THREAD_DTV() \
++  ({ tcbhead_t *__tcbp = (tcbhead_t *)__get_cr27();	\
++   	__tcbp->dtv;					\
++   })
++
++/* Return the thread descriptor for the current thread.  */
++# define THREAD_SELF \
++  ({ struct pthread *__self;			\
++	__self = __get_cr27();			\
++   	__self - 1;				\
++   })
++
++/* FIXME */
++/* Magic for libthread_db to know how to do THREAD_SELF.  */
++# define DB_THREAD_SELF \
++  REGISTER (32, 32, 32 * 4, -sizeof (struct pthread))
++
++/* Access to data in the thread descriptor is easy.  */
++# define THREAD_GETMEM(descr, member) \
++  descr->member
++# define THREAD_GETMEM_NC(descr, member, idx) \
++  descr->member[idx]
++# define THREAD_SETMEM(descr, member, value) \
++  descr->member = (value)
++# define THREAD_SETMEM_NC(descr, member, idx, value) \
++  descr->member[idx] = (value)
++
++static inline struct pthread *__get_cr27(void)
++{
++  long cr27;
++  asm ("mfctl %%cr27, %0" : "=r" (cr27) : );
++  return (struct pthread *) cr27;
++}
++
++static inline void __set_cr27(struct pthread *cr27)
++{
++  asm ( "ble	0xe0(%%sr2, %%r0)\n\t"
++	"copy	%0, %%r26"
++	: : "r" (cr27) : "r26" );
++}
++
++#endif /* __ASSEMBLER__ */
++
++#endif	/* tls.h */
 diff -Nurd glibc-2.4/ports/sysdeps/hppa/sysdep.h glibc-2.4/ports/sysdeps/hppa/sysdep.h
 --- glibc-2.4/ports/sysdeps/hppa/sysdep.h	2003-10-15 07:31:42.000000000 +0200
 +++ glibc-2.4/ports/sysdeps/hppa/sysdep.h	2006-05-15 01:54:47.000000000 +0200
@@ -1986,7 +2392,7 @@ diff -Nurd glibc-2.4/ports/sysdeps/hppa/sysdep.h glibc-2.4/ports/sysdeps/hppa/sy
  #endif
 diff -Nurd glibc-2.4/ports/sysdeps/hppa/tls-macros.h glibc-2.4/ports/sysdeps/hppa/tls-macros.h
 --- glibc-2.4/ports/sysdeps/hppa/tls-macros.h	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.4/ports/sysdeps/hppa/tls-macros.h	2006-08-06 09:40:19.000000000 +0200
++++ glibc-2.4/ports/sysdeps/hppa/tls-macros.h	2006-07-16 20:31:20.000000000 +0200
 @@ -0,0 +1,115 @@
 +/* TLS Access Macros for HP PARISC Linux */
 +
@@ -2259,7 +2665,7 @@ diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h glibc-2.4/
 +
 diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h
 --- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h	2004-08-23 09:28:44.000000000 +0200
-+++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h	2006-08-06 09:40:21.000000000 +0200
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h	2006-06-09 02:48:17.000000000 +0200
 @@ -23,7 +23,9 @@
  #endif
  
@@ -2513,7 +2919,7 @@ diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/fxstat.c glibc-2.4/ports
 +#include <sysdeps/unix/sysv/linux/i386/fxstat.c>
 diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h
 --- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h	1970-01-01 01:00:00.000000000 +0100
-+++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h	2006-08-06 09:40:20.000000000 +0200
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h	2006-06-09 03:25:30.000000000 +0200
 @@ -0,0 +1,39 @@
 +/* Set flags signalling availability of kernel features based on given
 +   kernel version number.
@@ -3237,6 +3643,1541 @@ diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/lxstat.c glibc-2.4/ports
 +++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/lxstat.c	2006-07-14 15:51:24.000000000 +0200
 @@ -0,0 +1 @@
 +#include <sysdeps/unix/sysv/linux/i386/lxstat.c>
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/bits/pthreadtypes.h glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/bits/pthreadtypes.h
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/bits/pthreadtypes.h	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/bits/pthreadtypes.h	2006-07-25 03:58:10.000000000 +0200
+@@ -0,0 +1,188 @@
++/* Copyright (C) 2005, 2006 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef _BITS_PTHREADTYPES_H
++#define _BITS_PTHREADTYPES_H	1
++
++/* Linuxthread type sizes:
++   sizeof(pthread_attr_t) = 0x24 (36)
++   sizeof(pthread_mutex_t) = 0x30 (48)
++   sizeof(pthread_mutexattr_t) = 0x4 (4)
++   sizeof(pthread_cond_t) = 0x30 (48)
++   	= Grew to 64 bytes in NPTL.
++   No pthread_cond_compat_t ...
++   sizeof(pthread_condattr_t) = 0x4 (4)
++   sizeof(pthread_rwlock_t) = 0x40 (64)
++   sizeof(pthread_rwlockattr_t) = 0x8 (8)
++   sizeof(pthread_barrier_t) = 0x30 (48)
++   sizeof(pthread_barrierattr_t) = 0x4 (4) */
++
++#define __SIZEOF_PTHREAD_ATTR_T 36
++#define __SIZEOF_PTHREAD_MUTEX_T 48 
++#define __SIZEOF_PTHREAD_MUTEXATTR_T 4
++#define __SIZEOF_PTHREAD_COND_T 64
++#define __SIZEOF_PTHREAD_COND_COMPAT_T 12
++#define __SIZEOF_PTHREAD_CONDATTR_T 4
++#define __SIZEOF_PTHREAD_RWLOCK_T 64
++#define __SIZEOF_PTHREAD_RWLOCKATTR_T 8
++#define __SIZEOF_PTHREAD_BARRIER_T 48
++#define __SIZEOF_PTHREAD_BARRIERATTR_T 4
++
++/* Thread identifiers.  The structure of the attribute type is not
++   exposed on purpose.  */
++typedef unsigned long int pthread_t;
++
++/* Our old basic lock type, listed here for posterity.
++   We needed self-aligning locks for linuxthreads LDCW 
++   implementation. For NPTL we use LWS Compare and 
++   Exchange to implement primitives. */
++#if 0
++typedef struct {
++	int lock[4];
++} __atomic_lock_t;
++#endif
++
++typedef union
++{
++  char __size[__SIZEOF_PTHREAD_ATTR_T];
++  long int __align;
++} pthread_attr_t;
++
++
++typedef struct __pthread_internal_slist
++{
++  struct __pthread_internal_slist *__next;
++} __pthread_slist_t;
++
++
++/* Data structures for mutex handling.  The structure of the attribute
++   type is not exposed on purpose.  */
++typedef union
++{
++  struct __pthread_mutex_s
++  {
++    int __lock;
++    unsigned int __count;
++    int __owner;
++    /* KIND must stay at this position in the structure to maintain
++       binary compatibility.  */
++    int __kind;
++    unsigned int __nusers;
++    __extension__ union
++    {
++      int __spins;
++      __pthread_slist_t __list;
++    };
++  } __data;
++  char __size[__SIZEOF_PTHREAD_MUTEX_T];
++  long int __align;
++} pthread_mutex_t;
++
++typedef union
++{
++  char __size[__SIZEOF_PTHREAD_MUTEXATTR_T];
++  long int __align;
++} pthread_mutexattr_t;
++
++
++/* Data structure for conditional variable handling.  The structure of
++   the attribute type is not exposed on purpose.  */
++typedef union
++{
++  struct
++  {
++    int __lock;
++    unsigned int __futex;
++    __extension__ unsigned long long int __total_seq;
++    __extension__ unsigned long long int __wakeup_seq;
++    __extension__ unsigned long long int __woken_seq;
++    void *__mutex;
++    unsigned int __nwaiters;
++    unsigned int __broadcast_seq;
++  } __data;
++  char __size[__SIZEOF_PTHREAD_COND_T];
++  __extension__ long long int __align;
++} pthread_cond_t;
++
++typedef union
++{
++  char __size[__SIZEOF_PTHREAD_CONDATTR_T];
++  long int __align;
++} pthread_condattr_t;
++
++
++/* Keys for thread-specific data */
++typedef unsigned int pthread_key_t;
++
++
++/* Once-only execution */
++typedef int pthread_once_t;
++
++
++#if defined __USE_UNIX98 || defined __USE_XOPEN2K
++/* Data structure for read-write lock variable handling.  The
++   structure of the attribute type is not exposed on purpose.  */
++typedef union
++{
++  struct
++  {
++    int __lock;
++    unsigned int __nr_readers;
++    unsigned int __readers_wakeup;
++    unsigned int __writer_wakeup;
++    unsigned int __nr_readers_queued;
++    unsigned int __nr_writers_queued;
++    /* FLAGS must stay at this position in the structure to maintain
++       binary compatibility.  */
++    unsigned int __flags;
++    int __writer;
++  } __data;
++  char __size[__SIZEOF_PTHREAD_RWLOCK_T];
++  long int __align;
++} pthread_rwlock_t;
++
++typedef union
++{
++  char __size[__SIZEOF_PTHREAD_RWLOCKATTR_T];
++  long int __align;
++} pthread_rwlockattr_t;
++#endif
++
++
++#ifdef __USE_XOPEN2K
++/* POSIX spinlock data type.  */
++typedef volatile int pthread_spinlock_t;
++
++
++/* POSIX barriers data type.  The structure of the type is
++   deliberately not exposed.  */
++typedef union
++{
++  char __size[__SIZEOF_PTHREAD_BARRIER_T];
++  long int __align;
++} pthread_barrier_t;
++
++typedef union
++{
++  char __size[__SIZEOF_PTHREAD_BARRIERATTR_T];
++  int __align;
++} pthread_barrierattr_t;
++#endif
++
++
++#endif	/* bits/pthreadtypes.h */
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/bits/semaphore.h glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/bits/semaphore.h
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/bits/semaphore.h	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/bits/semaphore.h	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,39 @@
++/* Copyright (C) 2002, 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef _SEMAPHORE_H
++# error "Never use <bits/semaphore.h> directly; include <semaphore.h> instead."
++#endif
++
++
++#define __SIZEOF_SEM_T	16
++
++
++/* Value returned if `sem_open' failed.  */
++#define SEM_FAILED      ((sem_t *) 0)
++
++/* Maximum value the semaphore can have.  */
++#define SEM_VALUE_MAX   ((int) ((~0u) >> 1))
++
++
++typedef union
++{
++  char __size[__SIZEOF_SEM_T];
++  long int __align;
++} sem_t;
++
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/createthread.c glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/createthread.c
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/createthread.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/createthread.c	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,23 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++/* Value passed to 'clone' for initialization of the thread register.  */
++#define TLS_VALUE (pd + 1)
++
++/* Get the real implementation.	 */
++#include <nptl/sysdeps/pthread/createthread.c>
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/fork.c glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/fork.c
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/fork.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/fork.c	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,34 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <sched.h>
++#include <signal.h>
++#include <sysdep.h>
++#include <tls.h>
++
++/* Argument 1 - Clone flags.
++            2 - Child stack pointer.
++	    3 - Parent tid pointer.
++	    4 - New TLS area pointer.
++	    5 - Child tid pointer. */
++#define ARCH_FORK() \
++  INLINE_SYSCALL (clone, 5,						\
++		  CLONE_CHILD_SETTID | CLONE_CHILD_CLEARTID | SIGCHLD,	\
++                  NULL, NULL, NULL, &THREAD_SELF->tid)
++
++#include <nptl/sysdeps/unix/sysv/linux/fork.c>
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/internaltypes.h glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/internaltypes.h
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/internaltypes.h	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/internaltypes.h	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,153 @@
++/* Copyright (C) 2002, 2003, 2004 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Ulrich Drepper <drepper@redhat.com>, 2002.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef _INTERNALTYPES_H
++#define _INTERNALTYPES_H	1
++
++#include <stdint.h>
++
++
++struct pthread_attr
++{
++  /* Scheduler parameters and priority.  */
++  struct sched_param schedparam;
++  int schedpolicy;
++  /* Various flags like detachstate, scope, etc.  */
++  int flags;
++  /* Size of guard area.  */
++  size_t guardsize;
++  /* Stack handling.  */
++  void *stackaddr;
++  size_t stacksize;
++  /* Affinity map.  */
++  cpu_set_t *cpuset;
++  size_t cpusetsize;
++};
++
++#define ATTR_FLAG_DETACHSTATE		0x0001
++#define ATTR_FLAG_NOTINHERITSCHED	0x0002
++#define ATTR_FLAG_SCOPEPROCESS		0x0004
++#define ATTR_FLAG_STACKADDR		0x0008
++#define ATTR_FLAG_OLDATTR		0x0010
++#define ATTR_FLAG_SCHED_SET		0x0020
++#define ATTR_FLAG_POLICY_SET		0x0040
++
++
++/* Mutex attribute data structure.  */
++struct pthread_mutexattr
++{
++  /* Identifier for the kind of mutex.
++
++     Bit 31 is set if the mutex is to be shared between processes.
++
++     Bit 0 to 30 contain one of the PTHREAD_MUTEX_ values to identify
++     the type of the mutex.  */
++  int mutexkind;
++};
++
++
++/* Conditional variable attribute data structure.  */
++struct pthread_condattr
++{
++  /* Combination of values:
++
++     Bit 0  : flag whether coditional variable will be shareable between
++	      processes.
++
++     Bit 1-7: clock ID.  */
++  int value;
++};
++
++
++/* The __NWAITERS field is used as a counter and to house the number
++   of bits which represent the clock.  COND_CLOCK_BITS is the number
++   of bits reserved for the clock.  */
++#define COND_CLOCK_BITS	1
++
++
++/* Read-write lock variable attribute data structure.  */
++struct pthread_rwlockattr
++{
++  int lockkind;
++  int pshared;
++};
++
++
++/* Barrier data structure.  */
++struct pthread_barrier
++{
++  unsigned int curr_event;
++  int lock;
++  unsigned int left;
++  unsigned int init_count;
++};
++
++
++/* Barrier variable attribute data structure.  */
++struct pthread_barrierattr
++{
++  int pshared;
++};
++
++
++/* Thread-local data handling.  */
++struct pthread_key_struct
++{
++  /* Sequence numbers.  Even numbers indicated vacant entries.  Note
++     that zero is even.  We use uintptr_t to not require padding on
++     32- and 64-bit machines.  On 64-bit machines it helps to avoid
++     wrapping, too.  */
++  uintptr_t seq;
++
++  /* Destructor for the data.  */
++  void (*destr) (void *);
++};
++
++/* Check whether an entry is unused.  */
++#define KEY_UNUSED(p) (((p) & 1) == 0)
++/* Check whether a key is usable.  We cannot reuse an allocated key if
++   the sequence counter would overflow after the next destroy call.
++   This would mean that we potentially free memory for a key with the
++   same sequence.  This is *very* unlikely to happen, A program would
++   have to create and destroy a key 2^31 times (on 32-bit platforms,
++   on 64-bit platforms that would be 2^63).  If it should happen we
++   simply don't use this specific key anymore.  */
++#define KEY_USABLE(p) (((uintptr_t) (p)) < ((uintptr_t) ((p) + 2)))
++
++
++/* Handling of read-write lock data.  */
++// XXX For now there is only one flag.  Maybe more in future.
++#define RWLOCK_RECURSIVE(rwlock) ((rwlock)->__data.__flags != 0)
++
++
++/* Semaphore variable structure.  */
++struct sem
++{
++  unsigned int count;
++};
++
++
++/* Compatibility type for old conditional variable interfaces.  */
++typedef struct
++{
++  pthread_cond_t *cond;
++} pthread_cond_2_0_t;
++
++#endif	/* internaltypes.h */
++
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/libc-lowlevellock.c glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/libc-lowlevellock.c
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/libc-lowlevellock.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/libc-lowlevellock.c	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,21 @@
++/* low level locking for pthread library.  Generic futex-using version.
++   Copyright (C) 2003 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Paul Mackerras <paulus@au.ibm.com>, 2003.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include "lowlevellock.c"
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/lowlevellock.c glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/lowlevellock.c
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/lowlevellock.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/lowlevellock.c	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,130 @@
++/* low level locking for pthread library.  Generic futex-using version.
++   Copyright (C) 2003 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Paul Mackerras <paulus@au.ibm.com>, 2003.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <errno.h>
++#include <sysdep.h>
++#include <lowlevellock.h>
++#include <sys/time.h>
++
++
++void
++__lll_lock_wait (lll_lock_t *futex)
++{
++  do
++    {
++      int oldval = atomic_compare_and_exchange_val_acq (futex, 2, 1);
++      if (oldval != 0)
++	lll_futex_wait (futex, 2);
++    }
++  while (atomic_compare_and_exchange_bool_acq (futex, 2, 0) != 0);
++}
++
++
++int
++__lll_timedlock_wait (lll_lock_t *futex, const struct timespec *abstime)
++{
++  /* Reject invalid timeouts.  */
++  if (abstime->tv_nsec < 0 || abstime->tv_nsec >= 1000000000)
++    return EINVAL;
++
++  do
++    {
++      struct timeval tv;
++      struct timespec rt;
++
++      /* Get the current time.  */
++      (void) __gettimeofday (&tv, NULL);
++
++      /* Compute relative timeout.  */
++      rt.tv_sec = abstime->tv_sec - tv.tv_sec;
++      rt.tv_nsec = abstime->tv_nsec - tv.tv_usec * 1000;
++      if (rt.tv_nsec < 0)
++	{
++	  rt.tv_nsec += 1000000000;
++	  --rt.tv_sec;
++	}
++
++      /* Already timed out?  */
++      if (rt.tv_sec < 0)
++	return ETIMEDOUT;
++
++      /* Wait.  */
++      int oldval = atomic_compare_and_exchange_val_acq (futex, 2, 1);
++      if (oldval != 0)
++	lll_futex_timed_wait (futex, 2, &rt);
++    }
++  while (atomic_compare_and_exchange_bool_acq (futex, 2, 0) != 0);
++  return 0;
++}
++
++
++/* These don't get included in libc.so  */
++#ifdef IS_IN_libpthread
++int
++lll_unlock_wake_cb (lll_lock_t *futex)
++{
++  int val = atomic_exchange_rel (futex, 0);
++
++  if (__builtin_expect (val > 1, 0))
++    lll_futex_wake (futex, 1);
++  return 0;
++}
++
++
++int
++__lll_timedwait_tid (int *tidp, const struct timespec *abstime)
++{
++  int tid;
++
++  if (abstime->tv_nsec < 0 || abstime->tv_nsec >= 1000000000)
++    return EINVAL;
++
++  /* Repeat until thread terminated.  */
++  while ((tid = *tidp) != 0)
++    {
++      struct timeval tv;
++      struct timespec rt;
++
++      /* Get the current time.  */
++      (void) __gettimeofday (&tv, NULL);
++
++      /* Compute relative timeout.  */
++      rt.tv_sec = abstime->tv_sec - tv.tv_sec;
++      rt.tv_nsec = abstime->tv_nsec - tv.tv_usec * 1000;
++      if (rt.tv_nsec < 0)
++	{
++	  rt.tv_nsec += 1000000000;
++	  --rt.tv_sec;
++	}
++
++      /* Already timed out?  */
++      if (rt.tv_sec < 0)
++	return ETIMEDOUT;
++
++      /* Wait until thread terminates.  */
++      if (lll_futex_timed_wait (tidp, tid, &rt) == -ETIMEDOUT)
++	return ETIMEDOUT;
++    }
++
++  return 0;
++}
++
++#endif
++
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/lowlevellock.h glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/lowlevellock.h
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/lowlevellock.h	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/lowlevellock.h	2006-08-13 20:26:45.000000000 +0200
+@@ -0,0 +1,339 @@
++/* Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef _LOWLEVELLOCK_H
++#define _LOWLEVELLOCK_H	1
++
++#include <time.h>
++#include <sys/param.h>
++#include <bits/pthreadtypes.h>
++#include <sysdep.h>
++#include <atomic.h>
++
++#if 0
++/* The hppa only has one atomic read and modify memory operation,
++   load and clear, so hppa spinlocks must use zero to signify that
++   someone is holding the lock.  The address used for the ldcw
++   semaphore must be 16-byte aligned.  */
++#define __ldcw(a) \
++({ 									\
++  unsigned int __ret;							\
++  __asm__ __volatile__("ldcw 0(%1),%0"					\
++                      : "=r" (__ret) : "r" (a) : "memory");		\
++  __ret;								\
++})
++
++/* Because malloc only guarantees 8-byte alignment for malloc'd data,
++   and GCC only guarantees 8-byte alignment for stack locals, we can't
++   be assured of 16-byte alignment for atomic lock data even if we
++   specify "__attribute ((aligned(16)))" in the type declaration.  So,
++   we use a struct containing an array of four ints for the atomic lock
++   type and dynamically select the 16-byte aligned int from the array
++   for the semaphore.  */
++#define __PA_LDCW_ALIGNMENT 16
++#define __ldcw_align(a) ({ \
++  volatile unsigned int __ret = (unsigned int) a;			\
++  if ((__ret & ~(__PA_LDCW_ALIGNMENT - 1)) < (unsigned int) a)		\
++    __ret = (__ret & ~(__PA_LDCW_ALIGNMENT - 1)) + __PA_LDCW_ALIGNMENT; \
++  (unsigned int *) __ret;						\
++})
++#endif
++
++#define FUTEX_WAIT		0
++#define FUTEX_WAKE		1
++#define FUTEX_REQUEUE		3
++#define FUTEX_CMP_REQUEUE	4
++#define FUTEX_WAKE_OP		5
++#define FUTEX_OP_CLEAR_WAKE_IF_GT_ONE	((4 << 24) | 1)
++#define FUTEX_LOCK_PI		6
++#define FUTEX_UNLOCK_PI		7
++#define FUTEX_TRYLOCK_PI	8
++
++/* Initializer for compatibility lock.	*/
++#if 0
++#define LLL_INITIALIZER_NOT_ZERO
++#define LLL_MUTEX_LOCK_INITIALIZER ((__atomic_lock_t){ { 1, 1, 1, 1 } })
++#endif
++#define LLL_MUTEX_LOCK_INITIALIZER (0)
++
++
++/* Type for lock object.  */
++typedef int lll_lock_t;
++
++
++#define lll_futex_wait(futexp, val) \
++  ({									      \
++    INTERNAL_SYSCALL_DECL (__err);					      \
++    long int __ret;							      \
++    __ret = INTERNAL_SYSCALL (futex, __err, 4,				      \
++			      (futexp), FUTEX_WAIT, (val), 0);		      \
++    INTERNAL_SYSCALL_ERROR_P (__ret, __err) ? -__ret : __ret;		      \
++  })
++
++#define lll_futex_timed_wait(futexp, val, timespec) \
++  ({									      \
++    INTERNAL_SYSCALL_DECL (__err);					      \
++    long int __ret;							      \
++    __ret = INTERNAL_SYSCALL (futex, __err, 4,				      \
++			      (futexp), FUTEX_WAIT, (val), (timespec));	      \
++    INTERNAL_SYSCALL_ERROR_P (__ret, __err) ? -__ret : __ret;		      \
++  })
++
++#define lll_futex_wake(futexp, nr) \
++  ({									      \
++    INTERNAL_SYSCALL_DECL (__err);					      \
++    long int __ret;							      \
++    __ret = INTERNAL_SYSCALL (futex, __err, 4,				      \
++			      (futexp), FUTEX_WAKE, (nr), 0);		      \
++    INTERNAL_SYSCALL_ERROR_P (__ret, __err) ? -__ret : __ret;		      \
++  })
++
++#define lll_robust_mutex_dead(futexv) \
++  do									      \
++    {									      \
++      int *__futexp = &(futexv);					      \
++      atomic_or (__futexp, FUTEX_OWNER_DIED);				      \
++      lll_futex_wake (__futexp, 1);					      \
++    }									      \
++  while (0)
++
++/* Returns non-zero if error happened, zero if success.  */
++#define lll_futex_requeue(futexp, nr_wake, nr_move, mutex, val) \
++  ({									      \
++    INTERNAL_SYSCALL_DECL (__err);					      \
++    long int __ret;							      \
++    __ret = INTERNAL_SYSCALL (futex, __err, 6,				      \
++			      (futexp), FUTEX_CMP_REQUEUE, (nr_wake),	      \
++			      (nr_move), (mutex), (val));		      \
++    INTERNAL_SYSCALL_ERROR_P (__ret, __err);				      \
++  })
++
++/* Returns non-zero if error happened, zero if success.  */
++#define lll_futex_wake_unlock(futexp, nr_wake, nr_wake2, futexp2) \
++  ({									      \
++    INTERNAL_SYSCALL_DECL (__err);					      \
++    long int __ret;							      \
++    __ret = INTERNAL_SYSCALL (futex, __err, 6,				      \
++			      (futexp), FUTEX_WAKE_OP, (nr_wake),	      \
++			      (nr_wake2), (futexp2),			      \
++			      FUTEX_OP_CLEAR_WAKE_IF_GT_ONE);		      \
++    __ret;								      \
++  })
++
++static inline int __attribute__((always_inline))
++__lll_mutex_trylock(lll_lock_t *futex)
++{
++  return atomic_compare_and_exchange_val_acq (futex, 1, 0) != 0;
++}
++#define lll_mutex_trylock(lock)	__lll_mutex_trylock (&(lock))
++
++static inline int __attribute__((always_inline))
++__lll_robust_mutex_trylock(int *futex, int id)
++{
++  return atomic_compare_and_exchange_val_acq (futex, id, 0) != 0;
++}
++#define lll_robust_mutex_trylock(lock, id) \
++  __lll_robust_mutex_trylock (&(lock), id)
++
++
++static inline int __attribute__((always_inline))
++__lll_mutex_cond_trylock(lll_lock_t *futex)
++{
++  return atomic_compare_and_exchange_val_acq (futex, 2, 0) != 0;
++}
++#define lll_mutex_cond_trylock(lock)	__lll_mutex_cond_trylock (&(lock))
++
++
++extern void __lll_lock_wait (lll_lock_t *futex) attribute_hidden;
++
++static inline void __attribute__((always_inline))
++__lll_mutex_lock(lll_lock_t *futex)
++{
++  if (atomic_compare_and_exchange_bool_acq (futex, 1, 0) != 0)
++    __lll_lock_wait (futex);
++}
++#define lll_mutex_lock(futex) __lll_mutex_lock (&(futex))
++
++extern int __lll_robust_lock_wait (int *futex) attribute_hidden;
++
++static inline int __attribute__ ((always_inline))
++__lll_robust_mutex_lock (int *futex, int id)
++{
++  int result = 0;
++  if (atomic_compare_and_exchange_bool_acq (futex, id, 0) != 0)
++    result = __lll_robust_lock_wait (futex);
++  return result;
++}
++#define lll_robust_mutex_lock(futex, id) \
++  __lll_robust_mutex_lock (&(futex), id)
++
++static inline void __attribute__ ((always_inline))
++__lll_mutex_cond_lock (lll_lock_t *futex)
++{
++  if (atomic_compare_and_exchange_bool_acq (futex, 2, 0) != 0)
++    __lll_lock_wait (futex);
++}
++#define lll_mutex_cond_lock(futex) __lll_mutex_cond_lock (&(futex))
++
++
++#define lll_robust_mutex_cond_lock(futex, id) \
++  __lll_robust_mutex_lock (&(futex), (id) | FUTEX_WAITERS)
++
++
++extern int __lll_timedlock_wait (lll_lock_t *futex, const struct timespec *)
++	attribute_hidden;
++extern int __lll_robust_timedlock_wait (int *futex, const struct timespec *)
++	attribute_hidden;
++
++static inline int __attribute__ ((always_inline))
++__lll_mutex_timedlock (lll_lock_t *futex, const struct timespec *abstime)
++{
++  int result = 0;
++  if (atomic_compare_and_exchange_bool_acq (futex, 1, 0) != 0)
++    result = __lll_timedlock_wait (futex, abstime);
++  return result;
++}
++#define lll_mutex_timedlock(futex, abstime) \
++  __lll_mutex_timedlock (&(futex), abstime)
++
++static inline int __attribute__ ((always_inline))
++__lll_robust_mutex_timedlock (int *futex, const struct timespec *abstime,
++			      int id)
++{
++  int result = 0;
++  if (atomic_compare_and_exchange_bool_acq (futex, id, 0) != 0)
++    result = __lll_robust_timedlock_wait (futex, abstime);
++  return result;
++}
++#define lll_robust_mutex_timedlock(futex, abstime, id) \
++  __lll_robust_mutex_timedlock (&(futex), abstime, id)
++
++
++static inline void __attribute__ ((always_inline))
++__lll_mutex_unlock (lll_lock_t *futex)
++{
++  int val = atomic_exchange_rel (futex, 0);
++  if (__builtin_expect (val > 1, 0))
++    lll_futex_wake (futex, 1);
++}
++#define lll_mutex_unlock(futex) __lll_mutex_unlock(&(futex))
++
++
++static inline void __attribute__ ((always_inline))
++__lll_robust_mutex_unlock (int *futex, int mask)
++{
++  int val = atomic_exchange_rel (futex, 0);
++  if (__builtin_expect (val & mask, 0))
++    lll_futex_wake (futex, 1);
++}
++#define lll_robust_mutex_unlock(futex) \
++  __lll_robust_mutex_unlock(&(futex), FUTEX_WAITERS)
++
++
++static inline void __attribute__ ((always_inline))
++__lll_mutex_unlock_force (lll_lock_t *futex)
++{
++  (void) atomic_exchange_rel (futex, 0);
++  lll_futex_wake (futex, 1);
++}
++#define lll_mutex_unlock_force(futex) __lll_mutex_unlock_force(&(futex))
++
++
++static inline int __attribute__ ((always_inline))
++__lll_mutex_islocked (lll_lock_t *futex)
++{
++  return (*futex != 0);
++}
++#define lll_mutex_islocked(futex) __lll_mutex_islocked(&(futex))
++
++
++/* Our internal lock implementation is identical to the binary-compatible
++   mutex implementation. */
++
++/* Initializers for lock.  */
++#if 0
++#define LLL_LOCK_INITIALIZER		((__atomic_lock_t){ { 1, 1, 1, 1 } })
++#define LLL_LOCK_INITIALIZER_CONST	{ { 1, 1, 1, 1 } }
++#define LLL_LOCK_INITIALIZER_LOCKED	((__atomic_lock_t){ { 0, 0, 0, 0 } })
++#endif
++
++#define LLL_LOCK_INITIALIZER (0)
++#define LLL_LOCK_INITIALIZER_CONST (0)
++#define LLL_LOCK_INITIALIZER_LOCKED (1)
++
++
++#define THREAD_INIT_LOCK(PD, LOCK) \
++  (PD)->LOCK = LLL_LOCK_INITIALIZER
++
++extern int lll_unlock_wake_cb (lll_lock_t *__futex) attribute_hidden;
++
++/* The states of a lock are:
++    0  -  untaken
++    1  -  taken by one user
++   >1  -  taken by more users */
++
++#define lll_trylock(lock)	lll_mutex_trylock (lock)
++#define lll_lock(lock)		lll_mutex_lock (lock)
++#define lll_unlock(lock)	lll_mutex_unlock (lock)
++#define lll_islocked(lock)	lll_mutex_islocked (lock)
++
++/* The kernel notifies a process which uses CLONE_CLEARTID via futex
++   wakeup when the clone terminates.  The memory location contains the
++   thread ID while the clone is running and is reset to zero
++   afterwards.	*/
++#define lll_wait_tid(tid) \
++  do {					\
++    __typeof (tid) __tid;		\
++    while ((__tid = (tid)) != 0)	\
++      lll_futex_wait (&(tid), __tid);	\
++  } while (0)
++
++extern int __lll_timedwait_tid (int *, const struct timespec *)
++     attribute_hidden;
++
++#define lll_timedwait_tid(tid, abstime) \
++  ({							\
++    int __res = 0;					\
++    if ((tid) != 0)					\
++      __res = __lll_timedwait_tid (&(tid), (abstime));	\
++    __res;						\
++  })
++
++
++/* Conditional variable handling.  */
++
++extern void __lll_cond_wait (pthread_cond_t *cond)
++     attribute_hidden;
++extern int __lll_cond_timedwait (pthread_cond_t *cond,
++				 const struct timespec *abstime)
++     attribute_hidden;
++extern void __lll_cond_wake (pthread_cond_t *cond)
++     attribute_hidden;
++extern void __lll_cond_broadcast (pthread_cond_t *cond)
++     attribute_hidden;
++
++#define lll_cond_wait(cond) \
++  __lll_cond_wait (cond)
++#define lll_cond_timedwait(cond, abstime) \
++  __lll_cond_timedwait (cond, abstime)
++#define lll_cond_wake(cond) \
++  __lll_cond_wake (cond)
++#define lll_cond_broadcast(cond) \
++  __lll_cond_broadcast (cond)
++
++#endif	/* lowlevellock.h */
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_once.c glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_once.c
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_once.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_once.c	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,94 @@
++/* Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Jakub Jelinek <jakub@redhat.com>, 2003.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include "pthreadP.h"
++#include <lowlevellock.h>
++
++
++unsigned long int __fork_generation attribute_hidden;
++
++
++static void
++clear_once_control (void *arg)
++{
++  pthread_once_t *once_control = (pthread_once_t *) arg;
++
++  *once_control = 0;
++  lll_futex_wake (once_control, INT_MAX);
++}
++
++
++int
++__pthread_once (once_control, init_routine)
++     pthread_once_t *once_control;
++     void (*init_routine) (void);
++{
++  while (1)
++    {
++      int oldval, val, newval;
++
++      val = *once_control;
++      do
++	{
++	  /* Check if the initialized has already been done.  */
++	  if ((val & 2) != 0)
++	    return 0;
++
++	  oldval = val;
++	  newval = (oldval & 3) | __fork_generation | 1;
++	  val = atomic_compare_and_exchange_val_acq (once_control, newval,
++						     oldval);
++	}
++      while (__builtin_expect (val != oldval, 0));
++
++      /* Check if another thread already runs the initializer.	*/
++      if ((oldval & 1) != 0)
++	{
++	  /* Check whether the initializer execution was interrupted
++	     by a fork.	 */
++	  if (((oldval ^ newval) & -4) == 0)
++	    {
++	      /* Same generation, some other thread was faster. Wait.  */
++	      lll_futex_wait (once_control, newval);
++	      continue;
++	    }
++	}
++
++      /* This thread is the first here.  Do the initialization.
++	 Register a cleanup handler so that in case the thread gets
++	 interrupted the initialization can be restarted.  */
++      pthread_cleanup_push (clear_once_control, once_control);
++
++      init_routine ();
++
++      pthread_cleanup_pop (0);
++
++
++      /* Add one to *once_control.  */
++      atomic_increment (once_control);
++
++      /* Wake up all other threads.  */
++      lll_futex_wake (once_control, INT_MAX);
++      break;
++    }
++
++  return 0;
++}
++weak_alias (__pthread_once, pthread_once)
++strong_alias (__pthread_once, __pthread_once_internal)
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pt-initfini.c glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pt-initfini.c
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pt-initfini.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pt-initfini.c	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,109 @@
++/* Special .init and .fini section support for HPPA.  NPTL version.
++   Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it
++   and/or modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   In addition to the permissions in the GNU Lesser General Public
++   License, the Free Software Foundation gives you unlimited
++   permission to link the compiled version of this file with other
++   programs, and to distribute those programs without any restriction
++   coming from the use of this file.  (The Lesser General Public
++   License restrictions do apply in other respects; for example, they
++   cover modification of the file, and distribution when not linked
++   into another program.)
++
++   The GNU C Library is distributed in the hope that it will be
++   useful, but WITHOUT ANY WARRANTY; without even the implied warranty
++   of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++   GNU Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; see the file COPYING.LIB.  If not,
++   write to the Free Software Foundation, 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.  */
++
++/* This file is compiled into assembly code which is then munged by a sed
++   script into two files: crti.s and crtn.s.
++
++   * crti.s puts a function prologue at the beginning of the
++   .init and .fini sections and defines global symbols for
++   those addresses, so they can be called as functions.
++
++   * crtn.s puts the corresponding function epilogues
++   in the .init and .fini sections. */
++
++/* If we use the standard C version, the linkage table pointer won't
++   be properly preserved due to the splitting up of function prologues
++   and epilogues.  Therefore we write these in assembly to make sure
++   they do the right thing.  */
++
++__asm__ (
++"#include \"defs.h\"\n"
++"\n"
++"/*@HEADER_ENDS*/\n"
++"\n"
++"/*@_init_PROLOG_BEGINS*/\n"
++"	.section .init\n"
++"	.align 4\n"
++"	.globl _init\n"
++"	.type _init,@function\n"
++"_init:\n"
++"	stw	%rp,-20(%sp)\n"
++"	stwm	%r4,64(%sp)\n"
++"	stw	%r19,-32(%sp)\n"
++"	bl	__pthread_initialize_minimal_internal,%rp\n"
++"	copy	%r19,%r4	/* delay slot */\n"
++"	copy	%r4,%r19\n"
++"/*@_init_PROLOG_ENDS*/\n"
++"\n"
++"/*@_init_EPILOG_BEGINS*/\n"
++"/* Here is the tail end of _init.  */\n"
++"	.section .init\n"
++"	ldw	-84(%sp),%rp\n"
++"	copy	%r4,%r19\n"
++"	bv	%r0(%rp)\n"
++"_end_init:\n"
++"	ldwm	-64(%sp),%r4\n"
++"\n"
++"/* Our very own unwind info, because the assembler can't handle\n"
++"   functions split into two or more pieces.  */\n"
++"	.section .PARISC.unwind,\"a\",@progbits\n"
++"	.extern _init\n"
++"	.word	_init, _end_init\n"
++"	.byte	0x08, 0x01, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08\n"
++"\n"
++"/*@_init_EPILOG_ENDS*/\n"
++"\n"
++"/*@_fini_PROLOG_BEGINS*/\n"
++"	.section .fini\n"
++"	.align 4\n"
++"	.globl _fini\n"
++"	.type _fini,@function\n"
++"_fini:\n"
++"	stw	%rp,-20(%sp)\n"
++"	stwm	%r4,64(%sp)\n"
++"	stw	%r19,-32(%sp)\n"
++"	copy	%r19,%r4\n"
++"/*@_fini_PROLOG_ENDS*/\n"
++"\n"
++"/*@_fini_EPILOG_BEGINS*/\n"
++"	.section .fini\n"
++"	ldw	-84(%sp),%rp\n"
++"	copy	%r4,%r19\n"
++"	bv	%r0(%rp)\n"
++"_end_fini:\n"
++"	ldwm	-64(%sp),%r4\n"
++"\n"
++"	.section .PARISC.unwind,\"a\",@progbits\n"
++"	.extern _fini\n"
++"	.word	_fini, _end_fini\n"
++"	.byte	0x08, 0x01, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08\n"
++"\n"
++"/*@_fini_EPILOG_ENDS*/\n"
++"\n"
++"/*@TRAILER_BEGINS*/\n"
++);
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pt-vfork.S glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pt-vfork.S
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pt-vfork.S	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/pt-vfork.S	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,90 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <sysdep.h>
++#define _ERRNO_H        1
++#include <bits/errno.h>
++#include <tcb-offsets.h>
++
++/* Clone the calling process, but without copying the whole address space.
++   The calling process is suspended until the new process exits or is
++   replaced by a call to `execve'.  Return -1 for errors, 0 to the new process,
++   and the process ID of the new process to the old process.  */
++
++/* Load the thread register.
++   Load the saved PID value.
++   Negate the value.
++   Store the temporary PID. */
++#define SAVE_PID							\
++	mfctl %cr27, %r26				ASM_LINE_SEP	\
++	ldw PID_THREAD_OFFSET(%r26),%r1			ASM_LINE_SEP    \
++	sub %r0,%r1,%r1					ASM_LINE_SEP    \
++	stw %r1,PID_THREAD_OFFSET(%r26)			ASM_LINE_SEP
++/* If we are the parent...
++   Get the thread pointer.
++   Load the saved PID.
++   Negate the value (got back original)
++   Restore the PID. */
++#define RESTORE_PID							\
++	cmpb,=,n %r0,%ret0,.Lthread_start		ASM_LINE_SEP	\
++	mfctl %cr27, %r26				ASM_LINE_SEP	\
++	ldw PID_THREAD_OFFSET(%r26),%r1			ASM_LINE_SEP	\
++	sub %r0,%r1,%r1					ASM_LINE_SEP	\
++	stw %r1,PID_THREAD_OFFSET(%r26)			ASM_LINE_SEP	\
++.Lthread_start:						ASM_LINE_SEP
++
++	/* r26, r25, r24, r23 are free since vfork has no arguments */
++ENTRY(__vfork)
++
++	/* Save the PIC register. */
++#ifdef PIC
++	copy	%r19, %r25	/* parent */
++#endif
++
++	/* Save the process PID */
++	SAVE_PID
++
++	/* Syscall saves and restores all register states */
++	ble	0x100(%sr2,%r0)
++	ldi	__NR_vfork,%r20
++
++	/* Conditionally restore the PID */
++	RESTORE_PID
++
++	/* Check for error */
++	ldi	-4096,%r1
++	comclr,>>= %r1,%ret0,%r0        /* Note: unsigned compare. */
++	b,n	.Lerror
++
++	/* Return, no need to restore the PIC register. */
++	bv,n	%r0(%rp)
++
++.Lerror:
++	SYSCALL_ERROR_HANDLER
++	/* Restore the PIC register (in delay slot) on error */
++#ifdef PIC
++	copy	%r25, %r19    /* parent */
++#else
++	nop
++#endif
++	sub	%r0,%ret0,%arg0
++	/* Return error */
++PSEUDO_END (__vfork)
++libc_hidden_def (__vfork)
++weak_alias (__vfork, vfork)
++
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,217 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <sysdep.h>
++#include <sysdeps/generic/sysdep.h>
++#include <tls.h>
++#ifndef __ASSEMBLER__
++# include <nptl/pthreadP.h>
++#endif
++
++#if !defined NOT_IN_libc || defined IS_IN_libpthread || defined IS_IN_librt
++
++# ifndef NO_ERROR
++#  define NO_ERROR -0x1000
++# endif
++
++/* The syscall cancellation mechanism requires userspace
++   assistance, the following code does roughly this:
++
++   	do arguments (read arg5 and arg6 to registers)
++	setup frame
++	
++	check if there are threads, yes jump to pseudo_cancel
++	
++	unthreaded:
++		syscall
++		check syscall return (jump to pre_end)
++		set errno
++		set return to -1
++		(jump to pre_end)
++		
++	pseudo_cancel:
++		cenable
++		syscall
++		cdisable
++		check syscall return (jump to pre_end)
++		set errno
++		set return to -1
++		
++	pre_end
++		restore stack
++	
++	It is expected that 'ret' and 'END' macros will
++	append an 'undo arguments' and 'return' to the 
++	this PSEUDO macro. */
++   
++# undef PSEUDO
++# define PSEUDO(name, syscall_name, args)				\
++	ENTRY (name)							\
++	DOARGS_##args					ASM_LINE_SEP	\
++	copy TREG, %r1					ASM_LINE_SEP	\
++	copy %sp, TREG					ASM_LINE_SEP	\
++	stwm %r1, 64(%sp)				ASM_LINE_SEP	\
++	stw %rp, -20(%sp)				ASM_LINE_SEP	\
++	stw TREG, -4(%sp)				ASM_LINE_SEP	\
++	/* Done setting up frame, continue... */	ASM_LINE_SEP	\
++	SINGLE_THREAD_P					ASM_LINE_SEP	\
++	cmpib,<>,n 0,%ret0,L(pseudo_cancel)		ASM_LINE_SEP	\
++L(unthreaded):						ASM_LINE_SEP	\
++	/* Save r19 */					ASM_LINE_SEP	\
++	SAVE_PIC(TREG)					ASM_LINE_SEP	\
++	/* Do syscall, delay loads # */			ASM_LINE_SEP	\
++	ble  0x100(%sr2,%r0)				ASM_LINE_SEP	\
++	ldi SYS_ify (syscall_name), %r20 /* delay */	ASM_LINE_SEP	\
++	ldi NO_ERROR,%r1				ASM_LINE_SEP	\
++	cmpb,>>=,n %r1,%ret0,L(pre_end)			ASM_LINE_SEP	\
++	/* Restore r19 from TREG */			ASM_LINE_SEP	\
++	LOAD_PIC(TREG) /* delay */			ASM_LINE_SEP	\
++	SYSCALL_ERROR_HANDLER				ASM_LINE_SEP	\
++	/* Use TREG for temp storage */			ASM_LINE_SEP	\
++	copy %ret0, TREG /* delay */			ASM_LINE_SEP	\
++	/* OPTIMIZE: Don't reload r19 */		ASM_LINE_SEP	\
++	/* do a -1*syscall_ret0 */			ASM_LINE_SEP	\
++	sub %r0, TREG, TREG				ASM_LINE_SEP	\
++	/* Store into errno location */			ASM_LINE_SEP	\
++	stw TREG, 0(%sr0,%ret0)				ASM_LINE_SEP	\
++	b L(pre_end)					ASM_LINE_SEP	\
++	/* return -1 as error */			ASM_LINE_SEP	\
++	ldo -1(%r0), %ret0 /* delay */			ASM_LINE_SEP	\
++L(pseudo_cancel):					ASM_LINE_SEP	\
++	PUSHARGS_##args /* Save args */			ASM_LINE_SEP	\
++	/* Save r19 into TREG */			ASM_LINE_SEP	\
++	CENABLE /* FUNC CALL */				ASM_LINE_SEP	\
++	SAVE_PIC(TREG) /* delay */			ASM_LINE_SEP	\
++	/* restore syscall args */			ASM_LINE_SEP	\
++	POPARGS_##args					ASM_LINE_SEP	\
++	/* save mask from cenable (use stub rp slot) */	ASM_LINE_SEP	\
++	stw %ret0, -24(%sp)				ASM_LINE_SEP	\
++	/* ... SYSCALL ... */				ASM_LINE_SEP	\
++	ble 0x100(%sr2,%r0)				ASM_LINE_SEP    \
++	ldi SYS_ify (syscall_name), %r20 /* delay */	ASM_LINE_SEP	\
++	/* ............... */				ASM_LINE_SEP	\
++	LOAD_PIC(TREG)					ASM_LINE_SEP	\
++	/* pass mask as arg0 to cdisable */		ASM_LINE_SEP	\
++	ldw -24(%sp), %r26				ASM_LINE_SEP	\
++	CDISABLE					ASM_LINE_SEP	\
++	stw %ret0, -24(%sp) /* delay */			ASM_LINE_SEP	\
++	/* Restore syscall return */			ASM_LINE_SEP	\
++	ldw -24(%sp), %ret0				ASM_LINE_SEP	\
++	/* compare error */				ASM_LINE_SEP	\
++	ldi NO_ERROR,%r1				ASM_LINE_SEP	\
++	/* branch if no error */			ASM_LINE_SEP	\
++	cmpb,>>=,n %r1,%ret0,L(pre_end)			ASM_LINE_SEP	\
++	LOAD_PIC(TREG)	/* cond. nullify */		ASM_LINE_SEP	\
++	copy %ret0, TREG /* save syscall return */	ASM_LINE_SEP	\
++	SYSCALL_ERROR_HANDLER				ASM_LINE_SEP	\
++	/* make syscall res value positive */		ASM_LINE_SEP	\
++	sub %r0, TREG, TREG	/* delay */		ASM_LINE_SEP	\
++	/* No need to LOAD_PIC */			ASM_LINE_SEP	\
++	/* store into errno location */			ASM_LINE_SEP	\
++	stw TREG, 0(%sr0,%ret0)				ASM_LINE_SEP	\
++	/* return -1 */					ASM_LINE_SEP	\
++	ldo -1(%r0), %ret0				ASM_LINE_SEP	\
++L(pre_end):						ASM_LINE_SEP	\
++	/* Restore rp before exit */			ASM_LINE_SEP	\
++	ldw -84(%sr0,%sp), %rp				ASM_LINE_SEP	\
++	/* Undo frame */				ASM_LINE_SEP	\
++	ldwm -64(%sp),TREG				ASM_LINE_SEP	\
++	/* No need to LOAD_PIC */			ASM_LINE_SEP
++
++/* Save arguments into our frame */
++# define PUSHARGS_0	/* nothing to do */
++# define PUSHARGS_1	PUSHARGS_0 stw %r26, -36(%sr0,%sp)	ASM_LINE_SEP
++# define PUSHARGS_2	PUSHARGS_1 stw %r25, -40(%sr0,%sp)	ASM_LINE_SEP
++# define PUSHARGS_3	PUSHARGS_2 stw %r24, -44(%sr0,%sp)	ASM_LINE_SEP
++# define PUSHARGS_4	PUSHARGS_3 stw %r23, -48(%sr0,%sp)	ASM_LINE_SEP
++# define PUSHARGS_5	PUSHARGS_4 stw %r22, -52(%sr0,%sp)	ASM_LINE_SEP 
++# define PUSHARGS_6	PUSHARGS_5 stw %r21, -56(%sr0,%sp)	ASM_LINE_SEP
++
++/* Bring them back from the stack */
++# define POPARGS_0	/* nothing to do */
++# define POPARGS_1	POPARGS_0 ldw -36(%sr0,%sp), %r26	ASM_LINE_SEP
++# define POPARGS_2	POPARGS_1 ldw -40(%sr0,%sp), %r25	ASM_LINE_SEP
++# define POPARGS_3	POPARGS_2 ldw -44(%sr0,%sp), %r24	ASM_LINE_SEP
++# define POPARGS_4	POPARGS_3 ldw -48(%sr0,%sp), %r23	ASM_LINE_SEP
++# define POPARGS_5	POPARGS_4 ldw -52(%sr0,%sp), %r22	ASM_LINE_SEP
++# define POPARGS_6	POPARGS_5 ldw -56(%sr0,%sp), %r21	ASM_LINE_SEP
++
++# ifdef IS_IN_libpthread
++#  ifdef PIC
++#   define CENABLE .import __pthread_enable_asynccancel,code ASM_LINE_SEP \
++			bl __pthread_enable_asynccancel,%r2 ASM_LINE_SEP
++#   define CDISABLE .import __pthread_disable_asynccancel,code ASM_LINE_SEP \
++			bl __pthread_disable_asynccancel,%r2 ASM_LINE_SEP
++#  else
++#   define CENABLE .import __pthread_enable_asynccancel,code ASM_LINE_SEP \
++			bl __pthread_enable_asynccancel,%r2 ASM_LINE_SEP
++#   define CDISABLE .import __pthread_disable_asynccancel,code ASM_LINE_SEP \
++			bl __pthread_disable_asynccancel,%r2 ASM_LINE_SEP
++#  endif
++# elif !defined NOT_IN_libc
++#  ifdef PIC
++#   define CENABLE .import __libc_enable_asynccancel,code ASM_LINE_SEP \
++			bl __libc_enable_asynccancel,%r2 ASM_LINE_SEP
++#   define CDISABLE	.import __libc_disable_asynccancel,code ASM_LINE_SEP \
++			bl __libc_disable_asynccancel,%r2 ASM_LINE_SEP
++#  else
++#   define CENABLE .import __libc_enable_asynccancel,code ASM_LINE_SEP \
++			bl __libc_enable_asynccancel,%r2 ASM_LINE_SEP
++#   define CDISABLE	.import __libc_disable_asynccancel,code ASM_LINE_SEP \
++			bl __libc_disable_asynccancel,%r2 ASM_LINE_SEP
++#  endif
++# else
++#  ifdef PIC
++#   define CENABLE .import __librt_enable_asynccancel,code ASM_LINE_SEP \
++			bl __librt_enable_asynccancel,%r2 ASM_LINE_SEP
++#   define CDISABLE .import __librt_disable_asynccancel,code ASM_LINE_SEP \
++			bl __librt_disable_asynccancel,%r2 ASM_LINE_SEP
++#  else
++#   define CENABLE .import __librt_enable_asynccancel,code ASM_LINE_SEP \
++			bl __librt_enable_asynccancel,%r2 ASM_LINE_SEP
++#   define CDISABLE .import __librt_disable_asynccancel,code ASM_LINE_SEP \
++			bl __librt_disable_asynccancel,%r2 ASM_LINE_SEP
++#  endif
++# endif
++
++# ifdef IS_IN_libpthread
++#  define __local_multiple_threads __pthread_multiple_threads
++# elif !defined NOT_IN_libc
++#  define __local_multiple_threads __libc_multiple_threads
++# else
++#  define __local_multiple_threads __librt_multiple_threads
++# endif
++
++# ifndef __ASSEMBLER__
++#  define SINGLE_THREAD_P \
++  __builtin_expect (THREAD_GETMEM (THREAD_SELF, \
++				   header.multiple_threads) == 0, 1)
++# else
++/* Read the value of header.multiple_threads from the thread pointer */
++#  define SINGLE_THREAD_P 							\
++	mfctl %cr27, %ret0					ASM_LINE_SEP	\
++	ldw MULTIPLE_THREADS_THREAD_OFFSET(%sr0,%ret0),%ret0	ASM_LINE_SEP
++# endif
++#elif !defined __ASSEMBLER__
++
++/* This code should never be used but we define it anyhow.  */
++# define SINGLE_THREAD_P (1)
++# define NO_CANCELLATION 1
++
++#endif
++/* !defined NOT_IN_libc || defined IS_IN_libpthread */
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/unwind-forcedunwind.c glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/unwind-forcedunwind.c
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/unwind-forcedunwind.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/unwind-forcedunwind.c	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,21 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public License as
++   published by the Free Software Foundation; either version 2.1 of the
++   License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; see the file COPYING.LIB.  If not,
++   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.  */
++
++#define LIBGCC_S_SO "libgcc_s.so.2"
++#include <sysdeps/pthread/unwind-forcedunwind.c>
++
+diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/unwind-resume.c glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/unwind-resume.c
+--- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/unwind-resume.c	1970-01-01 01:00:00.000000000 +0100
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/nptl/unwind-resume.c	2006-07-14 15:51:24.000000000 +0200
+@@ -0,0 +1,21 @@
++/* Copyright (C) 2005 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public License as
++   published by the Free Software Foundation; either version 2.1 of the
++   License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; see the file COPYING.LIB.  If not,
++   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.  */
++
++#define LIBGCC_S_SO "libgcc_s.so.2"
++#include <sysdeps/pthread/unwind-resume.c>
++
 diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/sysdep.c glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/sysdep.c
 --- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/sysdep.c	2003-10-15 07:45:16.000000000 +0200
 +++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/sysdep.c	2006-05-15 02:44:14.000000000 +0200
@@ -3785,7 +5726,7 @@ diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/sysdep.h glibc-2.4/ports
  #define ASM_ARGS_0
 diff -Nurd glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/Versions glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/Versions
 --- glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/Versions	2002-08-29 01:55:01.000000000 +0200
-+++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/Versions	2006-08-06 09:40:20.000000000 +0200
++++ glibc-2.4/ports/sysdeps/unix/sysv/linux/hppa/Versions	2006-07-13 18:24:19.000000000 +0200
 @@ -16,6 +16,9 @@
      #errlist-compat	254
      _sys_errlist; sys_errlist; _sys_nerr; sys_nerr;
