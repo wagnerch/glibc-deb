@@ -137,7 +137,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * debian/sysdeps/powerpc.mk: Include biarch headers in libc6-dev-ppc64
 
   * debian/patches/any/local-dynamic-resolvconf.diff: New file to 
-    check for updated resolv.conf before a nameserver call.
+    check for updated resolv.conf before a nameserver call.  (Closes:
+    #272265).
   * debian/patches/series: Use it.
 
  -- Clint Adams <schizo@debian.org>  Sun, 28 May 2006 03:28:14 +0200
