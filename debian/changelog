@@ -85,10 +85,10 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update any/submitted-nis-netgrp.diff.
   * Remove i386/local-i486_ldt_support.diff (merged upstream).
   * Remove ia64/cvs-gcc41-atomic_h.diff (merged upstream).
-  * Add hppa/submitted-tls-relocs.diff to add TLS relocations support on hppa.
   * Remove hppa/cvs-linesep.diff (merged upstream).
   * Remove hppa/cvs-no-ldbl-128 (merged upstream).
-  * Remove merged parts from hppa/cvs-pie-relocs.diff.
+  * Replace hppa/cvs-pie-relocs.diff by submitted-nptl-carlos.diff, see
+    http://lists.parisc-linux.org/pipermail/parisc-linux/2006-July/029549.html.
   * Remove hppa/local-gcc-4-profile.diff (not necessary anymore).
   * Update hppa/local-inlining.diff to reflect the new port add-on.
   * Remove hppa/local-remove-mallocdef.diff (not necessary anymore as
