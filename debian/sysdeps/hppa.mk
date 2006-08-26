@@ -1,3 +1,7 @@
+# To build the NPTL version of the glibc on hppa, uncomment the following line
+# and comment the two next ones. Note that you need TLS support, which means a
+# recent binutils (> 2.17) and a gcc (>= 4.1) built against this binutils.
+#libc_add-ons = ports nptl $(add-ons)
 libc_add-ons = ports linuxthreads $(add-ons)
 libc_extra_config_options = $(extra_config_options) --disable-sanity-checks
 
