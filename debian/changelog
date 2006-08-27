@@ -1,50 +1,51 @@
 glibc (2.4-1) UNRELEASED; urgency=low
 
-  [ Clint Adams ]
   * New upstream version 2.4.
-    - Remove all/cvs-manual-memory.diff (merged upstream).
-    - Remove all/cvs-manual-string.diff (merged upstream).
-    - Remove any/cvs-divdi3-moddi3.diff (merged upstream).
-    - Remove any/cvs-errlist.diff (merged upstream).
-    - Remove any/cvs-siginfo_h.diff (merged upstream).
-    - Remove any/cvs-regcomp_c.diff (merged upstream).
-    - Remove any/cvs-tst-setcontext_c.diff (merged upstream).
-    - Remove any/local-dash.diff (merged upstream).
-    - Remove any/local-gcc4-elf.diff (merged upstream).
-    - Remove powerpc/cvs-executable-got.diff (merged upstream).
-    - Remove sparc/cvs-datastart.diff (merged upstream).
-    - Remove sparc/cvs-gcc4-inline.diff (merged upstream).
-    - Remove sparc/local-gcc4-mv8.diff (merged upstream).
-    - Remove sparc/submitted-socket-weakalias.diff (merged upstream).
-    - Remove everything to do with nscd_nischeck.
-    - Remove any/local-linuxthreads-sizefix.diff (not necessary anymore).
-    - Update hppa/submitted-lt.diff.
-    - debian/shlibver: Bump up to 2.4-1.
-    - Update any/local-bashisms.diff: fix invalid test operator (==)
-      in run-iconv-test.sh
-    - debian/rules.d/build.mk: don't try to build html documentation.
-    - debian/sysdeps/hppa.mk: use ports and linuxthreads add-ons
-    - debian/sysdeps/m68k.mk: use ports and linuxthreads add-ons
-    - debian/sysdeps/m32r.mk: use ports and linuxthreads add-ons
-    - debian/sysdeps/mips.mk: use ports add-on
-    - debian/sysdeps/mipsel.mk: use ports add-on
-    - debian/sysdeps/arm.mk: use ports add-on
-    - Build with gcc 4.1 on all architectures.
-    - debian/debhelper.in/nscd.init: partially sync nscd initscript
-      with upstream.
-    - Remove mips/local-librt.diff.
-    - debian/rules.d/tarball.mk: no longer run tar with -v.
-    - Add hppa/cvs-portshead.patch (update hppa code to ports HEAD)
-    - Add arm/cvs-portshead.patch (update arm code to ports HEAD)
+
+  [ Clint Adams ]
+  * Remove all/cvs-manual-memory.diff (merged upstream).
+  * Remove all/cvs-manual-string.diff (merged upstream).
+  * Remove any/cvs-divdi3-moddi3.diff (merged upstream).
+  * Remove any/cvs-errlist.diff (merged upstream).
+  * Remove any/cvs-siginfo_h.diff (merged upstream).
+  * Remove any/cvs-regcomp_c.diff (merged upstream).
+  * Remove any/cvs-tst-setcontext_c.diff (merged upstream).
+  * Remove any/local-dash.diff (merged upstream).
+  * Remove any/local-gcc4-elf.diff (merged upstream).
+  * Remove powerpc/cvs-executable-got.diff (merged upstream).
+  * Remove sparc/cvs-datastart.diff (merged upstream).
+  * Remove sparc/cvs-gcc4-inline.diff (merged upstream).
+  * Remove sparc/local-gcc4-mv8.diff (merged upstream).
+  * Remove sparc/submitted-socket-weakalias.diff (merged upstream).
+  * Remove everything to do with nscd_nischeck.
+  * Remove any/local-linuxthreads-sizefix.diff (not necessary anymore).
+  * Update hppa/submitted-lt.diff.
+  * debian/shlibver: Bump up to 2.4-1.
+  * Update any/local-bashisms.diff: fix invalid test operator (==)
+    in run-iconv-test.sh
+  * debian/rules.d/build.mk: don't try to build html documentation.
+  * debian/sysdeps/hppa.mk: use ports and linuxthreads add-ons
+  * debian/sysdeps/m68k.mk: use ports and linuxthreads add-ons
+  * debian/sysdeps/m32r.mk: use ports and linuxthreads add-ons
+  * debian/sysdeps/mips.mk: use ports add-on
+  * debian/sysdeps/mipsel.mk: use ports add-on
+  * debian/sysdeps/arm.mk: use ports add-on
+  * Build with gcc 4.1 on all architectures.
+  * debian/debhelper.in/nscd.init: partially sync nscd initscript
+    with upstream.
+  * Remove mips/local-librt.diff.
+  * debian/rules.d/tarball.mk: no longer run tar with -v.
+  * Add hppa/cvs-portshead.patch (update hppa code to ports HEAD)
+  * Add arm/cvs-portshead.patch (update arm code to ports HEAD)
 
   [ Denis Barbier ]
-    - Remove locale/complex-collate.diff (merged upstream).
-    - Remove locale/cvs-{iso4217,iso639}.diff, locale/cvs-localedata.diff
-    - Remove from any/local-forward-backward-collation.diff a chunk merged
-      upstream.
-    - debian/rules.d/tarball.mk: glibc-<foo>-2.4.tar.bz2 add-on unpacks
-      into either <foo> or glibc-<foo>-2.4, in which case it is renamed
-      into <foo>.
+  * Remove locale/complex-collate.diff (merged upstream).
+  * Remove locale/cvs-{iso4217,iso639}.diff, locale/cvs-localedata.diff
+  * Remove from any/local-forward-backward-collation.diff a chunk merged
+    upstream.
+  * debian/rules.d/tarball.mk: glibc-<foo>-2.4.tar.bz2 add-on unpacks
+    into either <foo> or glibc-<foo>-2.4, in which case it is renamed
+    into <foo>.
 
   [ Michael Banck ]
   * debian/sysdeps/hurd.mk: Only use libidn for add-ons.
