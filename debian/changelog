@@ -143,6 +143,12 @@ glibc (2.4-1) UNRELEASED; urgency=low
 
  -- Clint Adams <schizo@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 
+glibc (2.3.6.ds1-5) UNRELEASED; urgency=low
+
+  * debian/local/manpages/ldconfig.8: Update the description. Closes: #325921.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 Aug 2006 21:04:20 +0200
+
 glibc (2.3.6.ds1-4) unstable; urgency=low
 
   * debian/control.in/opt: add a new line at the end of the file.  (Closes:
