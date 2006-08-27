@@ -115,7 +115,9 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * Update mips/submitted-msq.diff to reflect the new port add-on.
   * Remove powerpc/cvs-gcc41-initfini.diff (merged upstream).
   * Update any/local-libgcc-compat-{all,others}.diff and split them into
-    any/local-libgcc-compat-{main,ports}.diff.
+    any/local-libgcc-compat-{main,ports}.diff. Move mips/libgcc-compat.c to
+    mips/mips32/libgcc-compat.c as it is only needed for the o32 ABI, and not
+    needed for n32 and n64 ABIs.
   * Add sparc/local-fork.diff (use fork.c instead of fork.S).
   * Add any/local-__thread.diff (make glibc buildable without __thread support)
     from Michael Banck.  (Closes: #361064)
