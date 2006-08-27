@@ -5,6 +5,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - .eh_frame has been fixed.  Closes: #349688.
     - Fix a memory leak in getprotobyname. Closes: #365233.
     - Support for MALLOC_PERTURB has been added.  Closes: #350579.
+    - Support for 2.4 kernels has been removed.  Closes: #258740.
 
   [ Clint Adams ]
   * Remove all/cvs-manual-memory.diff (merged upstream).
