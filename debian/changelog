@@ -45,11 +45,6 @@ glibc (2.4-1) UNRELEASED; urgency=low
     - debian/rules.d/tarball.mk: glibc-<foo>-2.4.tar.bz2 add-on unpacks
       into either <foo> or glibc-<foo>-2.4, in which case it is renamed
       into <foo>.
-    - Remove the GNU Libc Reference manual from glibc-doc because it is
-      not DFSG-free.  (Closes: #181494)
-      The whole glibc-2.4/manual directory is removed from glibc-2.4.tar.bz2.
-    - debian/control: Drop Build-Depends: texinfo, texi2html.
-    - debian/control: Drop references to the antique libc-doc package.
 
   [ Michael Banck ]
   * debian/sysdeps/hurd.mk: Only use libidn for add-ons.
