@@ -129,6 +129,9 @@ glibc (2.4-1) UNRELEASED; urgency=low
     from Michael Banck.
   * debian/script.in/kernelcheck.sh: set the minimum kernel version to 2.6.0,
     except on m68k where it is set to 2.4.1.
+  * debian/sysdeps/i386.mk: install the xen flavour in /lib/i686/nosegneg and
+    create /etc/ld.so.conf.d/libc6-xen.conf which uses the new hwcap feature.
+    Closes: #363442.
 
   [ Jeff Bailey ]
 
