@@ -78,12 +78,10 @@ m68k/local-mathinline_h.diff -p1
 m68k/local-reloc.diff -p1
 m68k/submitted-gcc34-seccomment.diff -p0
 
-mips/cvs-fork.diff -p1
 mips/cvs-resource.diff -p1
 mips/local-lazy-eval.diff -p2
 mips/submitted-msq.diff -p0
 
-powerpc/cvs-procfs.diff -p1
 powerpc/local-sysconf.diff -p1
 
 sparc/local-fork.diff -p0
@@ -97,9 +95,6 @@ all/submitted-new-brf-encoding.diff -p0
 all/submitted-uninitialized-byte-LC_CTYPE.diff
 
 any/cvs-getcwd_c.diff -p1
-any/cvs-uio_h.diff -p1
-any/cvs-sysctl.diff -p1
-any/cvs-thread_signals.diff -p0
 any/local-__thread.diff -p0
 any/local-asserth-decls.diff -p0
 #any/local-base.diff -p0	# g: suspended
