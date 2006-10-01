@@ -2,6 +2,8 @@ localedata/locale-de_CH.diff -p1
 localedata/locale-eo_EO.diff -p1
 localedata/locale-no_NO.diff -p0
 localedata/locale-eu_FR.diff -p0
+locale/cvs-iso3166.diff -p0
+locale/iso3166-RS.diff
 locale/iso4217-RON.diff -p0
 localedata/locale-ro_RO.diff -p0
 localedata/locale-ku_TR.diff -p0
@@ -36,6 +38,7 @@ localedata/locale-ia.diff
 localedata/locale-zh_TW.diff -p0
 localedata/new-valencian-locale.diff
 localedata/locale-se_NO.diff
+localedata/locales-sr.diff
 localedata/tailor-iso14651_t1.diff -p0
 localedata/fix-lang.diff
 localedata/fix-unknown-symbols.diff
@@ -63,8 +66,10 @@ hppa/submitted-nptl-carlos.diff -p0
 hppa/local-inlining.diff -p0
 
 hurd-i386/cvs-machrules-make.diff -p1
+hurd-i386/cvs-getsid.diff -p1
 hurd-i386/local-enable-ldconfig.diff -p1
 hurd-i386/local-mlock.diff -p1
+hurd-i386/submitted-futimes.diff -p0
 hurd-i386/submitted-ioctl-decode-argument.diff -p0
 hurd-i386/submitted-sysvshm.diff -p1
 

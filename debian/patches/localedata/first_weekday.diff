@@ -1648,12 +1648,11 @@ Index: localedata/locales/pt_BR
 ===================================================================
 --- localedata/locales/pt_BR.orig
 +++ localedata/locales/pt_BR
-@@ -121,6 +121,8 @@
+@@ -121,6 +121,7 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
-+%  FIXME: found in CLDR
-+first_weekday 2
++first_weekday 1
  END LC_TIME
  
  LC_PAPER
@@ -1828,6 +1827,19 @@ Index: localedata/locales/sr_CS
 +++ localedata/locales/sr_CS
 @@ -304,7 +304,7 @@
  date_fmt  "<U0025><U0061><U002C><U0020><U0025><U0065><U002E><U0020>/
+ <U0025><U0062><U0020><U0025><U0059><U002E><U0020><U0020><U0025><U0048>/
+ <U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U005A><U000A>"
+-week    7;19971201;4
++% week    7;19971201;4
+ first_weekday 2
+ first_workday 2
+ END LC_TIME
+Index: localedata/locales/sr_ME
+===================================================================
+--- localedata/locales/sr_ME.orig
++++ localedata/locales/sr_ME
+@@ -110,7 +110,7 @@
+ date_fmt  "<U0025><U0061><U002c><U0020><U0025><U0065><U002E><U0020>/
  <U0025><U0062><U0020><U0025><U0059><U002E><U0020><U0020><U0025><U0048>/
  <U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U005A><U000A>"
 -week    7;19971201;4
