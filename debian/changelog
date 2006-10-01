@@ -1,4 +1,4 @@
-glibc (2.4.999-1) UNRELEASED; urgency=low
+glibc (2.5-0exp1) UNRELEASED; urgency=low
 
   * New upstream version 2.5.
 
@@ -15,9 +15,34 @@ glibc (2.4.999-1) UNRELEASED; urgency=low
   * Remove mips/cvs-resource.diff (merged upstream).
   * Remove powerpc/cvs-procfs.diff (merged upstream).
   * Remove any/cvs-argp_h.diff (merged upstream).
+  * Remove any/cvs-getcwd_c.diff (merged upstream).
   * Remove any/cvs-sysctl.diff (merged upstream).
   * Remove any/cvs-thread_signals.diff (merged upstream).
   * Remove any/cvs-uio_h.diff (merged upstream).
+  * Update arm/local-no-hwcap.diff.
+  * Update any/local-ldso-disable-hwcap.diff.
+  * *Temporarily* disable the following patches, they need to be ported:
+    - locale/iso4217-RON.diff
+    - localedata/locales_CH.diff
+    - localedata/supported.diff
+    - localedata/locale-hy_AM.diff
+    - localedata/new-catalan-locales.diff
+    - localedata/locale-csb_PL.diff
+    - localedata/locale-te_IN.diff
+    - localedata/locale-nr_ZA.diff
+    - localedata/locale-en_NZ.diff
+    - localedata/dz_BT-collation.diff
+    - localedata/update-ZA.diff
+    - localedata/locale-ia.diff
+    - localedata/locales-sr.diff
+    - localedata/tailor-iso14651_t1.diff
+    - localedata/fix-lang.diff
+    - localedata/fix-unknown-symbols.diff
+    - localedata/first_weekday.diff
+    - localedata/sort-UTF8-first.diff
+    - all/submitted-new-brf-encoding.diff
+    - all/submitted-uninitialized-byte-LC_CTYPE.diff
+    - any/submitted-strfmon.diff
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun,  1 Oct 2006 19:50:37 +0200
 

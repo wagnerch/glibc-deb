@@ -3,7 +3,7 @@ localedata/locale-eo_EO.diff -p1
 localedata/locale-no_NO.diff -p0
 localedata/locale-eu_FR.diff -p0
 locale/iso3166-RS.diff
-locale/iso4217-RON.diff -p0
+#locale/iso4217-RON.diff -p0
 localedata/locale-ku_TR.diff -p0
 #localedata/discard-dz_BT.diff	# not needed when complex-collate is applied
 locale/fix-exhausted-memory.diff
@@ -16,32 +16,32 @@ locale/locale-print-LANGUAGE.diff
 locale/fix-C-first_weekday.diff -p0
 localedata/tl_PH-yesexpr.diff
 localedata/fo_FO-date_fmt.diff
-localedata/locales_CH.diff
+#localedata/locales_CH.diff
 localedata/locales-fr.diff
 localedata/locales_GB.diff -p0
-localedata/supported.diff
+#localedata/supported.diff
 localedata/locale-sa_IN.diff -p0
 localedata/locale-en_DK.diff
-localedata/locale-hy_AM.diff
+#localedata/locale-hy_AM.diff
 localedata/locale-pl_PL.diff -p0
 localedata/locale-wo_SN.diff -p0
-localedata/new-catalan-locales.diff
-localedata/locale-csb_PL.diff
-localedata/locale-te_IN.diff
-localedata/locale-nr_ZA.diff
-localedata/locale-en_NZ.diff
-localedata/dz_BT-collation.diff
-localedata/update-ZA.diff
-localedata/locale-ia.diff
+#localedata/new-catalan-locales.diff
+#localedata/locale-csb_PL.diff
+#localedata/locale-te_IN.diff
+#localedata/locale-nr_ZA.diff
+#localedata/locale-en_NZ.diff
+#localedata/dz_BT-collation.diff
+#localedata/update-ZA.diff
+#localedata/locale-ia.diff
 localedata/locale-zh_TW.diff -p0
 localedata/new-valencian-locale.diff
 localedata/locale-se_NO.diff
-localedata/locales-sr.diff
-localedata/tailor-iso14651_t1.diff -p0
-localedata/fix-lang.diff
-localedata/fix-unknown-symbols.diff
-localedata/first_weekday.diff -p0
-localedata/sort-UTF8-first.diff -p0
+#localedata/locales-sr.diff
+#localedata/tailor-iso14651_t1.diff -p0
+#localedata/fix-lang.diff
+#localedata/fix-unknown-symbols.diff
+#localedata/first_weekday.diff -p0
+#localedata/sort-UTF8-first.diff -p0
 localedata/local-all-no-archive.diff
 
 #alpha/submitted-pic.diff -p0	# g: suspended
@@ -91,10 +91,9 @@ sparc/submitted-timing.diff -p1
 all/local-remove-manual.diff
 all/local-ru_RU.diff -p1
 all/local-pt_BR.diff -p1
-all/submitted-new-brf-encoding.diff -p0
-all/submitted-uninitialized-byte-LC_CTYPE.diff
+#all/submitted-new-brf-encoding.diff -p0
+#all/submitted-uninitialized-byte-LC_CTYPE.diff
 
-any/cvs-getcwd_c.diff -p1
 any/local-__thread.diff -p0
 any/local-asserth-decls.diff -p0
 #any/local-base.diff -p0	# g: suspended
@@ -121,4 +120,4 @@ any/local-ttyname-devfs.diff -p0
 any/local-version-sanity.diff -p1
 any/local-dynamic-resolvconf.diff -p1
 any/submitted-nis-netgrp.diff
-any/submitted-strfmon.diff
+#any/submitted-strfmon.diff
