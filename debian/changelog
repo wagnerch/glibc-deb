@@ -23,30 +23,30 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
   * Update any/local-ldso-disable-hwcap.diff.
   * debhelper.in/libc.docs: remove INTERFACE as it has been removed upstream.
   * *Temporarily* disable the following patches, they need to be ported:
-    - locale/iso4217-RON.diff
-    - localedata/locales_CH.diff
-    - localedata/supported.diff
-    - localedata/locale-hy_AM.diff
-    - localedata/new-catalan-locales.diff
-    - localedata/locale-csb_PL.diff
-    - localedata/locale-te_IN.diff
-    - localedata/locale-nr_ZA.diff
-    - localedata/locale-en_NZ.diff
-    - localedata/dz_BT-collation.diff
-    - localedata/update-ZA.diff
-    - localedata/locale-ia.diff
-    - localedata/locales-sr.diff
-    - localedata/tailor-iso14651_t1.diff
-    - localedata/fix-lang.diff
-    - localedata/fix-unknown-symbols.diff
-    - localedata/first_weekday.diff
-    - localedata/sort-UTF8-first.diff
     - all/submitted-new-brf-encoding.diff
     - all/submitted-uninitialized-byte-LC_CTYPE.diff
     - any/submitted-strfmon.diff
     - any/local-ttyname-devfs.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun,  1 Oct 2006 19:50:37 +0200
+  [ Denis Barbier ]
+  * Remove localedata/locale-en_NZ.diff (merged upstream).
+  * Remove localedata/locale-nr_ZA.diff (merged upstream).
+  * Remove localedata/new-catalan-locales.diff (merged upstream).
+  * Remove localedata/update-ZA.diff (merged upstream).
+  * Remove localedata/locale-te_IN.diff (merged upstream).
+  * Remove locale/iso4217-RON.diff (merged upstream).
+  * Update localedata/locales_CH.diff
+  * Update localedata/supported.diff
+  * Update localedata/locale-hy_AM.diff
+  * Update localedata/locale-csb_PL.diff
+  * Update localedata/dz_BT-collation.diff
+  * Update localedata/locale-ia.diff
+  * Update localedata/locales-sr.diff
+  * Update localedata/tailor-iso14651_t1.diff
+  * Update localedata/fix-lang.diff
+  * Update localedata/first_weekday.diff
+
+ -- Denis Barbier <barbier@debian.org>  Mon,  2 Oct 2006 00:24:43 +0200
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
