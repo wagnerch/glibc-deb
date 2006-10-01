@@ -132,6 +132,8 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * debian/sysdeps/i386.mk: install the xen flavour in /lib/i686/nosegneg and
     create /etc/ld.so.conf.d/libc6-xen.conf which uses the new hwcap feature.
     Closes: #363442.
+  * debian/FAQ: Remove LD_ASSUME_KERNEL workaround, as linuxthreads versions
+    of the glibc are not built anymore.
 
   [ Jeff Bailey ]
 
