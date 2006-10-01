@@ -1,3 +1,19 @@
+glibc (2.4.999-1) UNRELEASED; urgency=low
+
+  * New upstream version 2.5.
+
+  [ Aurelien Jarno ]
+  * debian/shlibver: Bump up to 2.5-1.
+  * debian/copyright: update.
+  * Remove locale/iso-3166.def (merged upstream).
+  * Remove localedata/locale-ro_RO.diff (merged upstream).
+  * Remove arm/cvs-portshead.patch (merged upstream).
+  * Remove hppa/cvs-portshead.patch (merged upstream).
+  * Remove hppa/submitted-drop-utimes.diff (merged upstream).
+  * Remove hurd-i386/cvs-machrules-make.diff (merged upstream).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun,  1 Oct 2006 19:50:37 +0200
+
 glibc (2.4-1) UNRELEASED; urgency=low
 
   * New upstream version 2.4:

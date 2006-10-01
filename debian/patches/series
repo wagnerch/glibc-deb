@@ -2,10 +2,8 @@ localedata/locale-de_CH.diff -p1
 localedata/locale-eo_EO.diff -p1
 localedata/locale-no_NO.diff -p0
 localedata/locale-eu_FR.diff -p0
-locale/cvs-iso3166.diff -p0
 locale/iso3166-RS.diff
 locale/iso4217-RON.diff -p0
-localedata/locale-ro_RO.diff -p0
 localedata/locale-ku_TR.diff -p0
 #localedata/discard-dz_BT.diff	# not needed when complex-collate is applied
 locale/fix-exhausted-memory.diff
@@ -52,20 +50,16 @@ alpha/submitted-xstat.diff -p0
 
 amd64/local-biarch.diff -p1
 
-arm/cvs-portshead.patch
 arm/cvs-gcc4-inline.diff -p0
 arm/local-dwarf2-buildfix.diff -p0
 arm/local-ioperm.diff -p0
 arm/local-no-hwcap.diff -p0
 
-hppa/cvs-portshead.patch
 hppa/local-Rminkernel.diff -p0
-hppa/submitted-drop-utimes.diff -p1
 hppa/submitted-lt.diff -p1
 hppa/submitted-nptl-carlos.diff -p0
 hppa/local-inlining.diff -p0
 
-hurd-i386/cvs-machrules-make.diff -p1
 hurd-i386/cvs-getsid.diff -p1
 hurd-i386/local-enable-ldconfig.diff -p1
 hurd-i386/local-mlock.diff -p1
