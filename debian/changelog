@@ -20,12 +20,12 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
   * Remove any/cvs-thread_signals.diff (merged upstream).
   * Remove any/cvs-uio_h.diff (merged upstream).
   * Remove any/submitted-strfmon.diff (merged upstream).
+  * Remove all/submitted-uninitialized-byte-LC_CTYPE.diff (merged upstream).
   * Update arm/local-no-hwcap.diff.
   * Update any/local-ldso-disable-hwcap.diff.
   * debhelper.in/libc.docs: remove INTERFACE as it has been removed upstream.
   * *Temporarily* disable the following patches, they need to be ported:
     - all/submitted-new-brf-encoding.diff
-    - all/submitted-uninitialized-byte-LC_CTYPE.diff
     - any/local-ttyname-devfs.diff
 
   [ Denis Barbier ]
