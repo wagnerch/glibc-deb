@@ -44,6 +44,7 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
     - all/submitted-new-brf-encoding.diff
     - all/submitted-uninitialized-byte-LC_CTYPE.diff
     - any/submitted-strfmon.diff
+    - any/local-ttyname-devfs.diff
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun,  1 Oct 2006 19:50:37 +0200
 
