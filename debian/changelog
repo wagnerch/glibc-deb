@@ -21,6 +21,7 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
   * Remove any/cvs-uio_h.diff (merged upstream).
   * Update arm/local-no-hwcap.diff.
   * Update any/local-ldso-disable-hwcap.diff.
+  * debhelper.in/libc.docs: remove INTERFACE as it has been removed upstream.
   * *Temporarily* disable the following patches, they need to be ported:
     - locale/iso4217-RON.diff
     - localedata/locales_CH.diff
