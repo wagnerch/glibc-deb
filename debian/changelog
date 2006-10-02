@@ -24,8 +24,8 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
   * Remove any/local-ttyname-devfs.diff (devfs is not supported anymore).
   * Update arm/local-no-hwcap.diff.
   * Update any/local-ldso-disable-hwcap.diff.
+  * Update all/submitted-new-brf-encoding.diff.
   * debhelper.in/libc.docs: remove INTERFACE as it has been removed upstream.
-  * *Temporarily* disable all/submitted-new-brf-encoding.diff it needs to be ported.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).

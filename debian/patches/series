@@ -83,7 +83,7 @@ sparc/submitted-timing.diff -p1
 all/local-remove-manual.diff
 all/local-ru_RU.diff -p1
 all/local-pt_BR.diff -p1
-#all/submitted-new-brf-encoding.diff -p0
+all/submitted-new-brf-encoding.diff -p0
 
 any/local-__thread.diff -p0
 any/local-asserth-decls.diff -p0
