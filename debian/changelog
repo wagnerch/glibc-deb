@@ -315,6 +315,8 @@ glibc (2.3.6.ds1-1) unstable; urgency=low
   * New any/cvs-static-getpid.diff patch from upstream to fix getpid() in
     statically linked programs on some architectures.  (Closes: #367656).
 
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 15 Aug 2006 23:01:43 +0200
+
 glibc (2.3.6-19) unstable; urgency=low
 
   [ Michael Banck ]
