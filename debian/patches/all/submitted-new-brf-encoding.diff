@@ -71,10 +71,10 @@ Index: iconvdata/gconv-modules
 ===================================================================
 --- iconvdata/gconv-modules.orig
 +++ iconvdata/gconv-modules
-@@ -1572,3 +1572,7 @@
- alias	STRK1048-2002//		RK1048//
- module	RK1048//		INTERNAL		RK1048		1
- module	INTERNAL		RK1048//		RK1048		1
+@@ -1907,3 +1907,7 @@
+ #	from			to			module		cost
+ module	MIK//			INTERNAL		MIK		1
+ module	INTERNAL		MIK//			MIK		1
 +
 +#	from			to			module		cost
 +module	BRF//			INTERNAL		BRF		1
