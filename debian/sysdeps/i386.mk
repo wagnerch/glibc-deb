@@ -64,7 +64,7 @@ cp debian/tmp-amd64/usr/bin/ldd debian/tmp-libc/usr/bin
 endef
 
 define xen_extra_install
-cp debian/tmp-amd64/sbin/ldconfig debian/tmp-libc/sbin
+cp debian/tmp-xen/sbin/ldconfig debian/tmp-libc/sbin
 endef
 
 define libc6-dev-amd64_extra_pkg_install
