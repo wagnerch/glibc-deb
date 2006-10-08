@@ -28,6 +28,8 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
   * debhelper.in/libc.docs: remove INTERFACE as it has been removed upstream.
   * sysdeps/depflags.pl: don't make libc6 depends on tzdata, as this package
     is of priority required. Should help to debconfize tzdata.
+  * sysdeps/i386.mk: ship the Xen flavour of ldconfig in libc6. It should be
+    a few percent slower on plain i386, but a lot faster on Xen i386.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -47,7 +49,7 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon,  9 Oct 2006 00:29:25 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon,  9 Oct 2006 00:33:08 +0200
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
