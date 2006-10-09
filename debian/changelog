@@ -30,6 +30,9 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
     is of priority required. Should help to debconfize tzdata.
   * sysdeps/i386.mk: ship the Xen flavour of ldconfig in libc6. It should be
     a few percent slower on plain i386, but a lot faster on Xen i386.
+  * sysdeps/powerpc.mk: install 64-bit headers (actually gnu/stubs-64.h) 
+    directly into /usr/include and provide /usr/include/powerpc64-linux-gnu as
+    a symlink to /usr/include for compatibility reasons.  Closes: #391858.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -49,7 +52,7 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon,  9 Oct 2006 00:33:08 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon,  9 Oct 2006 07:24:04 +0200
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
