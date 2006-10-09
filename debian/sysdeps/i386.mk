@@ -67,6 +67,12 @@ define xen_extra_install
 cp debian/tmp-xen/sbin/ldconfig debian/tmp-libc/sbin
 endef
 
+define libc6-dev_extra_pkg_install
+mkdir -p debian/libc6-dev/usr/lib/xen
+cp -af debian/tmp-xen/usr/lib/*.a \
+	debian/libc6-dev/usr/lib/xen
+endef
+
 define libc6-dev-amd64_extra_pkg_install
 mkdir -p debian/libc6-dev-amd64/usr/include
 cp -af debian/tmp-amd64/usr/include/x86_64-linux-gnu \
