@@ -77,6 +77,7 @@ mips/submitted-msq.diff -p0
 
 powerpc/local-sysconf.diff -p1
 
+sparc/cvs-pause-sigprocmask.diff -p1
 sparc/local-fork.diff -p0
 sparc/local-sparcv8-target.diff -p0
 sparc/submitted-timing.diff -p1
