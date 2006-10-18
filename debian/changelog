@@ -37,6 +37,10 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
     a symlink to /usr/include for compatibility reasons.  Closes: #391858.
   * sparc/cvs-pause-sigprocmask.diff: new patch (fix sparc64 build) from 
     upstream CVS.
+  * kfreebsd/local-scripts.diff: update.
+  * kfreebsd/local-sys_queue_h.diff: update.
+  * kfreebsd/local-sysdeps.diff: update to revision 1688 (from glibc-bsd).
+  * kfreebsd/local-sysdeps-2.4.diff: remove.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
