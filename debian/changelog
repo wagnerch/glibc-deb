@@ -41,6 +41,8 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
   * kfreebsd/local-sys_queue_h.diff: update.
   * kfreebsd/local-sysdeps.diff: update to revision 1688 (from glibc-bsd).
   * kfreebsd/local-sysdeps-2.4.diff: remove.
+  * sysdeps/kfreebsd: enable the ports add-on.
+  * sysdeps/kfreebsd-i386.mk: ditto.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
