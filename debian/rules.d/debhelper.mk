@@ -116,9 +116,9 @@ endif
 	# an unescaped regular expression.  ld.so must be executable;
 	# libc.so and NPTL's libpthread.so print useful version
 	# information when executed.
-	find debian/$(curpass) -type f \( -regex '.*lib[0-9]*/ld.*so.*' \
-		-o -regex '.*lib[0-9]*/libpthread.*so.*' \
-		-o -regex '.*lib[0-9]*/libc[.-].*so.*' \) \
+	find debian/$(curpass) -type f \( -regex '.*lib[0-9]*/ld.*so' \
+		-o -regex '.*lib[0-9]*/libpthread-.*so' \
+		-o -regex '.*lib[0-9]*/libc-.*so' \) \
 		-exec chmod a+x '{}' ';'
 	dh_makeshlibs -p$(curpass) -V "$(call xx,shlib_dep)"
 
