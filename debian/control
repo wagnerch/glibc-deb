@@ -71,6 +71,7 @@ Architecture: amd64 arm arm-softfloat armeb i386 m32r m68k mips mipsel powerpc p
 Section: libs
 Priority: required
 Provides: ${locale-compat:Depends}
+Depends: tzdata
 Description: GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -142,6 +143,7 @@ Architecture: alpha ia64
 Section: libs
 Priority: required
 Provides: ${locale-compat:Depends}
+Depends: tzdata
 Description: GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -213,6 +215,7 @@ Architecture: hurd-i386
 Section: libs
 Priority: required
 Provides: ${locale-compat:Depends}
+Depends: tzdata
 Description: GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -284,6 +287,7 @@ Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libs
 Priority: required
 Provides: ${locale-compat:Depends}
+Depends: tzdata
 Description: GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
