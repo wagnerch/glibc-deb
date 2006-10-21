@@ -41,6 +41,8 @@ glibc (2.5-0exp1) UNRELEASED; urgency=low
   * kfreebsd/local-sysdeps-2.4.diff: remove.
   * sysdeps/kfreebsd: enable the ports add-on.
   * sysdeps/kfreebsd-i386.mk: ditto.
+  * any/local-stubs_h.diff: new patch to fix a warning in stubs.h.  Closes:
+    #394128.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).

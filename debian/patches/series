@@ -109,6 +109,7 @@ any/local-no-pagesize.diff -p1
 any/local-nss-upgrade.diff -p1
 any/local-rtld.diff -p1
 any/local-sysctl.diff -p1
+any/local-stubs_h.diff -p1
 any/local-tcsetaddr.diff -p1
 any/local-version-sanity.diff -p1
 any/local-dynamic-resolvconf.diff -p1
