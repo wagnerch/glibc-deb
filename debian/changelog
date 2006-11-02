@@ -56,6 +56,7 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
   * debian/debhelper.in/libc-alt.overrides: new file.
   * debian/debhelper.in/libc-otherbuild.overrides: new file.
   * debian/debhelper.in/libc-dev-otherbuild.overrides: new file.
+  * debian/po/ro.po: new file, thanks to Stan Ioan-Eugen.  Closes: #395348.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -75,7 +76,7 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 30 Oct 2006 21:59:07 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Thu,  2 Nov 2006 19:14:33 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
