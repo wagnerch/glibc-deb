@@ -122,6 +122,18 @@ endif
 		-exec chmod a+x '{}' ';'
 	dh_makeshlibs -p$(curpass) -V "$(call xx,shlib_dep)"
 
+	if [ -f debian/$(curpass).lintian ] ; then \
+		install -d -m 755 -o root -g root debian/$(curpass)/usr/share/lintian/overrides/ ; \
+		install -m 644 -o root -g root debian/$(curpass).lintian \
+			debian/$(curpass)/usr/share/lintian/overrides/$(curpass) ; \
+	fi
+
+	if [ -f debian/$(curpass).linda ] ; then \
+		install -d -m 755 -o root -g root debian/$(curpass)/usr/share/linda/overrides/ ; \
+		install -m 644 -o root -g root debian/$(curpass).linda \
+			debian/$(curpass)/usr/share/linda/overrides/$(curpass) ; \
+	fi
+
 	dh_installdeb -p$(curpass)
 	# dh_shlibdeps -p$(curpass)
 	dh_gencontrol -p$(curpass) -- $($(curpass)_control_flags)
@@ -174,7 +186,6 @@ $(stamp)debhelper:
 	  y=debian/`basename $$x`; \
 	  z=`echo $$y | sed -e 's#/libc#/$(libc)#'`; \
 	  cp $$x $$z; \
-	  sed -e "s#TMPDIR#debian/tmp-libc#" -i $$z; \
 	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#" -i $$z; \
 	  sed -e "s#LIBC#$(libc)#" -i $$z; \
 	  sed -e "s#CURRENT_VER#$(DEB_VERSION)#" -i $$z; \
@@ -208,39 +219,24 @@ $(stamp)debhelper:
 	for x in $(OPT_PASSES); do \
 	  slibdir=$$1; \
 	  shift; \
-	  z=debian/$(libc)-$$x.install; \
 	  case $$slibdir in \
 	  /lib32 | /lib64 | /emul/ia32-linux/lib) \
+	    suffix="alt"; \
 	    libdir=$$1; \
 	    shift; \
-	    cp debian/debhelper.in/libc-alt.install $$z; \
-	    zd=debian/$(libc)-dev-$$x.install; \
-	    cp debian/debhelper.in/libc-alt-dev.install $$zd; \
-	    sed -e "s#TMPDIR#debian/tmp-$$x#g" -i $$zd; \
-	    sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#g" -i $$zd; \
-	    sed -e "s#LIBC#$(libc)#" -i $$z; \
-	    sed -e "s#LIBDIR#$$libdir#g" -i $$zd; \
-	    sed -e "s/^#.*//g" -i $$zd; \
 	    ;; \
 	  *) \
-	    cp debian/debhelper.in/libc-otherbuild.install $$z; \
-	    cp debian/debhelper.in/libc-otherbuild.preinst debian/$(libc)-$$x.preinst ; \
-	    cp debian/debhelper.in/libc-otherbuild.postinst debian/$(libc)-$$x.postinst ; \
-	    cp debian/debhelper.in/libc-otherbuild.postrm debian/$(libc)-$$x.postrm ; \
-	    sed -e "s#OPT#$(libc)-$$x#g" -i debian/$(libc)-$$x.preinst; \
-	    sed -e "s#OPT#$(libc)-$$x#g" -i debian/$(libc)-$$x.postinst; \
-	    sed -e "s#OPT#$(libc)-$$x#g" -i debian/$(libc)-$$x.postrm; \
-	    sed -e "s#CURRENT_VER#$(DEB_VERSION)#g" -i debian/$(libc)-$$x.postinst; \
-	    sed -e "s#CURRENT_VER#$(DEB_VERSION)#g" -i debian/$(libc)-$$x.postrm; \
+	    suffix="otherbuild"; \
 	    ;; \
 	  esac; \
-	  sed -e "s#TMPDIR#debian/tmp-$$x#g" -i $$z; \
-	  sed -e "s#DEB_SRCDIR#$(DEB_SRCDIR)#g" -i $$z; \
-	  sed -e "s#SLIBDIR#$$slibdir#g" -i $$z; \
-	  sed -e "s#LIBDIR#$$libdir#g" -i $$z; \
-	  sed -e "s#FLAVOR#$$x#g" -i $$z; \
-	  sed -e "s#LIBC#$(libc)#g" -i $$z; \
-	  sed -e "s/^#.*//" -i $$z; \
+	  for y in debian/$(libc)*-$$suffix.* ; do \
+	    z=`echo $$y | sed -e "s/$$suffix/$$x/"` ; \
+	    cp $$y $$z ; \
+	    sed -e "s#TMPDIR#debian/tmp-$$x#g" -i $$z; \
+	    sed -e "s#SLIBDIR#$$slibdir#g" -i $$z; \
+	    sed -e "s#LIBDIR#$$libdir#g" -i $$z; \
+	    sed -e "s#FLAVOR#$$x#g" -i $$z; \
+	  done ; \
 	done
 
 	# Substitute __SUPPORTED_LOCALES__.
@@ -277,5 +273,7 @@ debhelper-clean:
 	rm -f debian/*.docs
 	rm -f debian/*.doc-base
 	rm -f debian/*.generated
+	rm -f debian/*.lintian
+	rm -f debian/*.linda
 
 	rm -f $(stamp)binaryinst*

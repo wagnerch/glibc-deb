@@ -33,7 +33,7 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
   * sysdeps/powerpc.mk: install 64-bit headers (actually gnu/stubs-64.h)
     directly into /usr/include and provide /usr/include/powerpc64-linux-gnu as
     a symlink to /usr/include for compatibility reasons.  Closes: #391858.
-  * sparc/cvs-pause-sigprocmask.diff: new patch (fix sparc64 build) from 
+  * sparc/cvs-pause-sigprocmask.diff: new patch (fix sparc64 build) from
     upstream CVS.
   * kfreebsd/local-scripts.diff: update.
   * kfreebsd/local-sys_queue_h.diff: update.
@@ -45,6 +45,17 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
     #394128.
   * alpha/submitted-sigsuspend.diff: new patch (fix the build on alpha) from
     the libc-alpha mailing list.
+  * debian/local/manpages/*: fix typos.  Closes: #395427.
+  * debian/debhelper.in/libc.dirs: don't provide /sys, now provided by
+    initscripts.
+  * debian/debhelper.in/nscd.init: add lsb header.
+  * debian/rules.d/debhelper.mk: add support for installing lintian and linda
+    overrides files.
+  * debian/debhelper.in/libc.overrides: new file.
+  * debian/debhelper.in/libc-dev.overrides: new file.
+  * debian/debhelper.in/libc-alt.overrides: new file.
+  * debian/debhelper.in/libc-otherbuild.overrides: new file.
+  * debian/debhelper.in/libc-dev-otherbuild.overrides: new file.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -64,7 +75,7 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 11 Oct 2006 16:27:42 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 30 Oct 2006 21:59:07 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
