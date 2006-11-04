@@ -56,7 +56,6 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
   * debian/debhelper.in/libc-alt.overrides: new file.
   * debian/debhelper.in/libc-otherbuild.overrides: new file.
   * debian/debhelper.in/libc-dev-otherbuild.overrides: new file.
-  * debian/po/ro.po: new file, thanks to Stan Ioan-Eugen.  Closes: #395348.
   * debian/any/submitted-getcwd-sys_param_h.diff: new patch (fix the build
     with linuxthreads) from the libc-alpha mailing list.
 
@@ -235,6 +234,7 @@ glibc (2.3.6.ds1-8) unstable; urgency=low
 
   * any/local-iconv-fix-trampoline.diff: new patch (fix iconvconfig segfault
     when run under exec-shield, PaX or similar) from hlfs.  Closes: #397020.
+  * debian/po/ro.po: new file, thanks to Stan Ioan-Eugen.  Closes: #395348.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat,  4 Nov 2006 19:00:35 +0100
 
