@@ -57,6 +57,8 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
   * debian/debhelper.in/libc-otherbuild.overrides: new file.
   * debian/debhelper.in/libc-dev-otherbuild.overrides: new file.
   * debian/po/ro.po: new file, thanks to Stan Ioan-Eugen.  Closes: #395348.
+  * debian/any/submitted-getcwd-sys_param_h.diff: new patch (fix the build
+    with linuxthreads) from the libc-alpha mailing list.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
