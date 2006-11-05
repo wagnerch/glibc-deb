@@ -58,6 +58,8 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
   * debian/debhelper.in/libc-dev-otherbuild.overrides: new file.
   * debian/any/submitted-getcwd-sys_param_h.diff: new patch (fix the build
     with linuxthreads) from the libc-alpha mailing list.
+  * debian/powerpc/cvs-tls-debug.diff: new patch (fix for debugging
+    thread-local variables on powerpc) from CVS.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -77,7 +79,7 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu,  2 Nov 2006 19:14:33 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun,  5 Nov 2006 21:50:19 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
