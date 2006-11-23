@@ -234,7 +234,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
 
 glibc (2.3.6.ds1-9) unstable; urgency=low
 
-  * patches/kfreebsd/local-sysdeps.diff: update to revision 1718 (from
+  * patches/kfreebsd/local-sysdeps.diff: update to revision 1745 (from
     glibc-bsd).
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 13 Nov 2006 07:37:02 +0100
