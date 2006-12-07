@@ -54,10 +54,10 @@ hppa/submitted-lt.diff -p1
 hppa/submitted-nptl-carlos.diff -p0
 hppa/local-inlining.diff -p0
 
+hurd-i386/cvs-futimes.diff -p1
 hurd-i386/cvs-getsid.diff -p1
 hurd-i386/local-enable-ldconfig.diff -p1
 hurd-i386/local-mlock.diff -p1
-hurd-i386/submitted-futimes.diff -p0
 hurd-i386/submitted-ioctl-decode-argument.diff -p0
 hurd-i386/submitted-sysvshm.diff -p1
 
