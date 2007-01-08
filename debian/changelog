@@ -8,7 +8,8 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
   * Remove locale/cvs-iso3166.diff (merged upstream).
   * Remove localedata/locale-ro_RO.diff (merged upstream).
   * Remove arm/cvs-portshead.patch (merged upstream).
-  * Remove hppa/cvs-portshead.patch (merged upstream).
+  * Remove hppa/cvs-clone.patch (merged upstream).
+  * Remove hppa/cvs-portshead.diff (merged upstream).
   * Remove hppa/submitted-drop-utimes.diff (merged upstream).
   * Remove hurd-i386/cvs-machrules-make.diff (merged upstream).
   * Remove mips/cvs-fork.diff (merged upstream).
@@ -252,6 +253,9 @@ glibc (2.3.6.ds1-10) UNRELEASED; urgency=low
     glibc-bsd).
   * debian/control.in/libc: downgrade priority of libc-dev to optional 
     from standard to match overrides.
+  * debian/patches/hppa/cvs-clone.diff: new patch by Helge Deller 
+    <deller@gmx.de> inspired from upstream CVS code (fix LTP clone04 and
+    clone06 test).  Closes: #405411.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue,  2 Jan 2007 03:13:54 +0100
 
