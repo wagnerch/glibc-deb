@@ -9,7 +9,7 @@ endef
 # emulate the missing instructions on the i386.
 libc_configure_target=i486-linux
 libc_configure_build=i486-linux
-libc_extra_cflags = -march=i486 -mtune=i686 -g1 -O3
+libc_extra_cflags = -march=i486 -mtune=i686 -g -O3
 
 # We use -march=i686 and glibc's i686 routines use cmov, so require it.
 # A Debian-local glibc patch adds cmov to the search path.
@@ -18,7 +18,7 @@ GLIBC_PASSES += i686
 DEB_ARCH_REGULAR_PACKAGES += libc6-i686
 i686_add-ons = nptl $(add-ons)
 i686_configure_target=i686-linux
-i686_extra_cflags = -march=i686 -mtune=i686 -g1 -O3
+i686_extra_cflags = -march=i686 -mtune=i686 -g -O3
 i686_rtlddir = /lib
 i686_slibdir = /lib/i686/cmov
 i686_extra_config_options = $(extra_config_options) --disable-profile
@@ -29,7 +29,7 @@ GLIBC_PASSES += xen
 DEB_ARCH_REGULAR_PACKAGES += libc6-xen
 xen_add-ons = nptl $(add-ons)
 xen_configure_target=i686-linux
-xen_extra_cflags = -march=i686 -mtune=i686 -g1 -O3 -mno-tls-direct-seg-refs
+xen_extra_cflags = -march=i686 -mtune=i686 -g -O3 -mno-tls-direct-seg-refs
 xen_rtlddir = /lib
 xen_slibdir = /lib/i686/nosegneg
 xen_extra_config_options = $(extra_config_options) --disable-profile
@@ -53,7 +53,7 @@ amd64_configure_target = x86_64-linux
 # __x86_64__ is defined here because Makeconfig uses -undef and the
 # /usr/include/asm wrappers need that symbol.
 amd64_CC = $(CC) -m64 -D__x86_64__
-amd64_extra_cflags = -O3 -g1
+amd64_extra_cflags = -O3 -g
 amd64_extra_config_options = $(extra_config_options) --disable-profile \
 	--includedir=/usr/include/x86_64-linux-gnu
 amd64_slibdir = /lib64

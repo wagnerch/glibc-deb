@@ -1,4 +1,4 @@
-libc_extra_cflags = -O3 -g1
+libc_extra_cflags = -O3 -1
 libc_slibdir = /lib
 libc_libdir = /usr/lib
 libc_rtlddir = /lib64
@@ -16,7 +16,7 @@ libc6-powerpc_shlib_dep = libc6-powerpc (>= $(shlib_dep_ver))
 powerpc_add-ons = nptl $(add-ons)
 powerpc_configure_target = powerpc-linux
 powerpc_CC = $(CC) -m32
-powerpc_extra_cflags = -O3 -g1
+powerpc_extra_cflags = -O3 -g
 powerpc_rtlddir = /lib
 powerpc_slibdir = /lib32
 powerpc_libdir = /usr/lib32
