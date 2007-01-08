@@ -1,4 +1,4 @@
-glibc (2.5-0exp2) UNRELEASED; urgency=low
+glibc (2.5-0exp3) UNRELEASED; urgency=low
 
   * New upstream version 2.5.
 
@@ -60,6 +60,8 @@ glibc (2.5-0exp2) UNRELEASED; urgency=low
     with linuxthreads) from the libc-alpha mailing list.
   * debian/powerpc/cvs-tls-debug.diff: new patch (fix for debugging
     thread-local variables on powerpc) from CVS.
+  * Build depends on binutils (>= 2.17.50) to enable --hash-style linking
+    (closes: bug#405738).
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
