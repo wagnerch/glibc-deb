@@ -1,6 +1,8 @@
 glibc (2.5-0exp3) UNRELEASED; urgency=low
 
   * New upstream version 2.5.
+    - Adds support of POSIX_MADV_* on mips, mipsel, arm and hppa.  Closes: 
+      #381294.
 
   [ Aurelien Jarno ]
   * debian/shlibver: Bump up to 2.5-1.
