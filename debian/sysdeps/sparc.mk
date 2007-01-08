@@ -7,8 +7,16 @@ sparc64_CC = $(BUILD_CC) -m64
 sparc64_extra_cflags = -g1 -O3
 sparc64_extra_config_options = $(extra_config_options) --disable-profile
 libc6-sparc64_shlib_dep = libc6-sparc64 (>= $(shlib_dep_ver))
+	--includedir=/usr/include/sparc64-linux-gnu
 sparc64_slibdir = /lib64
 sparc64_libdir = /usr/lib64
+
+define libc6-dev-sparc64_extra_pkg_install
+mkdir -p debian/libc6-dev-sparc64/usr/include/gnu
+cp -af debian/tmp-sparc64/usr/include/sparc64-linux-gnu/gnu/stubs-64.h \
+        debian/libc6-dev-sparc64/usr/include/gnu
+ln -sf /usr/include/ debian/libc6-dev-sparc64/usr/include/sparc-linux-gnu
+endef
 
 # build a sparcv9 optimized library
 GLIBC_PASSES += sparcv9

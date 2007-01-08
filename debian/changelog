@@ -64,6 +64,9 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
     (closes: bug#405738).
   * debian/any/patches/local-linuxthreads-semaphore_h.diff: new patch (fix
     /usr/include/semaphore.h with linuxthreads).
+  * sysdeps/sparc.mk: install 64-bit headers (actually gnu/stubs-64.h)
+    directly into /usr/include and provide /usr/include/sparc64-linux-gnu as
+    a symlink to /usr/include for compatibility reasons.  Closes: #403980.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
