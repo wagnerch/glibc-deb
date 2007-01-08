@@ -61,7 +61,7 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
   * debian/powerpc/cvs-tls-debug.diff: new patch (fix for debugging
     thread-local variables on powerpc) from CVS.
   * Build depends on binutils (>= 2.17.50) to enable --hash-style linking
-    (closes: bug#405738).
+    (closes: bug#405738). This also enables TLS on hppa.  Closes: #397813.
   * debian/any/patches/local-linuxthreads-semaphore_h.diff: new patch (fix
     /usr/include/semaphore.h with linuxthreads).
   * sysdeps/sparc.mk: install 64-bit headers (actually gnu/stubs-64.h)
