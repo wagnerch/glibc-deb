@@ -68,7 +68,8 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
   * sysdeps/sparc.mk: install 64-bit headers (actually gnu/stubs-64.h)
     directly into /usr/include and provide /usr/include/sparc64-linux-gnu as
     a symlink to /usr/include for compatibility reasons.  Closes: #403980.
-  * sysdeps/*.mk: build with -g instead of -g1.  Closes: bug#403270. 
+  * sysdeps/*.mk: build with -g instead of -g1.  Closes: bug#403270.
+  * debhelper.in/libc.install: install gai.conf in /etc.  Closes: #404379.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -88,7 +89,7 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon,  8 Jan 2007 12:08:02 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Mon,  8 Jan 2007 23:28:03 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
