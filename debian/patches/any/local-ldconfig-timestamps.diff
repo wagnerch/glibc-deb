@@ -1,0 +1,102 @@
+--- elf/ldconfig.c.orig	2007-01-20 00:56:28.104060750 +0100
++++ elf/ldconfig.c	2007-01-20 00:59:09.174127000 +0100
+@@ -77,6 +77,7 @@ struct dir_entry
+   int flag;
+   ino64_t ino;
+   dev_t dev;
++  time_t last_changed;
+   struct dir_entry *next;
+ };
+ 
+@@ -96,6 +97,7 @@ int opt_verbose;
+ int opt_format = 1;
+ 
+ /* Build cache.  */
++/* 0: don't build cache; 1: build if not up-to-date; 2: always build it. */
+ static int opt_build_cache = 1;
+ 
+ /* Generate links.  */
+@@ -133,6 +135,7 @@ static const struct argp_option options[
+   { "print-cache", 'p', NULL, 0, N_("Print cache"), 0},
+   { "verbose", 'v', NULL, 0, N_("Generate verbose messages"), 0},
+   { NULL, 'N', NULL, 0, N_("Don't build cache"), 0},
++  { "force", 'F', NULL, 0, N_("Generate cache even if it looks up-to-date"), 0},
+   { NULL, 'X', NULL, 0, N_("Don't generate links"), 0},
+   { NULL, 'r', N_("ROOT"), 0, N_("Change to and use ROOT as root directory"), 0},
+   { NULL, 'C', N_("CACHE"), 0, N_("Use CACHE as cache file"), 0},
+@@ -143,6 +146,9 @@ static const struct argp_option options[
+   { NULL, 0, NULL, 0, NULL, 0 }
+ };
+ 
++/* Most recent modification time of the configuration files */
++static time_t config_timestamp = 0;
++
+ #define PROCINFO_CLASS static
+ #include <dl-procinfo.c>
+ 
+@@ -246,6 +252,9 @@ parse_opt (int key, char *arg, struct ar
+     case 'N':
+       opt_build_cache = 0;
+       break;
++    case 'F':
++      opt_build_cache = 2;
++      break;
+     case 'n':
+       opt_build_cache = 0;
+       opt_only_cline = 1;
+@@ -378,6 +387,7 @@ add_dir (const char *line)
+     {
+       entry->ino = stat_buf.st_ino;
+       entry->dev = stat_buf.st_dev;
++      entry->last_changed = stat_buf.st_mtime;
+ 
+       add_single_dir (entry, 1);
+     }
+@@ -962,6 +972,26 @@ search_dirs (void)
+     }
+ }
+ 
++/* Tells whether one of the directories is more recent than the cache */
++static bool
++cache_needs_update (void)
++{
++  struct stat64 stat_buf;
++  struct dir_entry *entry;
++
++  if (stat64 (cache_file, &stat_buf))
++    return true;
++  
++  if (config_timestamp >= stat_buf.st_mtime)
++    return true;
++  
++  for (entry = dir_entries; entry != NULL; entry = entry->next)
++    {
++      if (entry->last_changed >= stat_buf.st_mtime)
++        return true;
++    }
++  return false;
++}
+ 
+ static void parse_conf_include (const char *config_file, unsigned int lineno,
+ 				bool do_chroot, const char *pattern);
+@@ -998,6 +1028,10 @@ parse_conf (const char *filename, bool d
+       return;
+     }
+ 
++  struct stat64 stat_buf;
++  if (!fstat64 (fileno(file), &stat_buf) && stat_buf.st_mtime > config_timestamp)
++    config_timestamp = stat_buf.st_mtime;
++
+   /* No threads use this stream.  */
+   __fsetlocking (file, FSETLOCKING_BYCALLER);
+ 
+@@ -1288,6 +1322,9 @@ main (int argc, char **argv)
+ 	add_system_dir (LIBDIR);
+     }
+ 
++  if (opt_build_cache == 1 && !cache_needs_update ())
++    return 0;
++
+   search_dirs ();
+ 
+   if (opt_build_cache)
