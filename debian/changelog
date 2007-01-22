@@ -249,7 +249,14 @@ glibc (2.4-1) UNRELEASED; urgency=low
 
  -- Clint Adams <schizo@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 
-glibc (2.3.6.ds1-10) UNRELEASED; urgency=low
+glibc (2.3.6.ds1-11) unstable; urgency=low
+
+  * patches/kfreebsd/local-sysdeps.diff: update to revision 1886 (from
+    glibc-bsd).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 22 Jan 2007 15:36:14 +0100
+
+glibc (2.3.6.ds1-10) unstable; urgency=low
 
   * sysdeps/kfreebsd.mk: Link all machine*/ directories to support
     new bi-arch headers.
@@ -260,7 +267,7 @@ glibc (2.3.6.ds1-10) UNRELEASED; urgency=low
       libc0.1-i386 packages
   * patches/kfreebsd/local-sysdeps.diff: update to revision 1853 (from
     glibc-bsd).
-  * debian/control.in/libc: downgrade priority of libc-dev to optional 
+  * debian/control.in/libc: downgrade priority of libc-dev to optional
     from standard to match overrides.
   * debian/patches/hppa/cvs-clone.diff: new patch by Helge Deller 
     <deller@gmx.de> inspired from upstream CVS code (fix LTP clone04 and
@@ -271,7 +278,7 @@ glibc (2.3.6.ds1-10) UNRELEASED; urgency=low
   * debian/rules.d/quilt.mk: use debian/quitlrc instead of default ~/.quiltrc.
     Closes: #406136.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue,  2 Jan 2007 03:13:54 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Mon,  8 Jan 2007 22:29:37 +0100
 
 glibc (2.3.6.ds1-9) unstable; urgency=low
 
