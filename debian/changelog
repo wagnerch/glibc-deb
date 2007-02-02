@@ -74,6 +74,8 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
   * debhelper.in/libc.install: install gai.conf in /etc.  Closes: #404379.
   * Add patches/any/local-ldconfig-timestamps.diff (use the timestamps to
     update the cache only when needed) by Josselin Mouette.  Closes: #374945.
+  * Add patches/hppa/submitted-cfi-procend.diff (fix build with binutils cvs)
+    from parisc-linux.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
