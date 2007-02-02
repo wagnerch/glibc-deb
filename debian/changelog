@@ -78,6 +78,7 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
   * Add patches/hppa/submitted-cfi-procend.diff (fix build with binutils cvs)
     from parisc-linux.
   * Add partial support for armel, from http://armel-debs.applieddata.net/diffs/.
+  * debian/debhelper.in/: delete /usr/doc removal from postinst scripts.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
