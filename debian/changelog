@@ -1,7 +1,7 @@
 glibc (2.5-0exp3) UNRELEASED; urgency=low
 
   * New upstream version 2.5.
-    - Adds support of POSIX_MADV_* on mips, mipsel, arm and hppa.  Closes: 
+    - Adds support of POSIX_MADV_* on mips, mipsel, arm and hppa.  Closes:
       #381294.
 
   [ Aurelien Jarno ]
@@ -79,6 +79,9 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
     from parisc-linux.
   * Add partial support for armel, from http://armel-debs.applieddata.net/diffs/.
   * debian/debhelper.in/: delete /usr/doc removal from postinst scripts.
+  * debian/control.in: drop the dependency on tzdata. It is a required package
+    and the glibc from Etch depends on it, ensuring tzdata is always present 
+    post-Etch.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -98,7 +101,7 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon,  8 Jan 2007 23:28:03 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Fri,  2 Feb 2007 22:17:45 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
