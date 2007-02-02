@@ -77,6 +77,7 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
     update the cache only when needed) by Josselin Mouette.  Closes: #374945.
   * Add patches/hppa/submitted-cfi-procend.diff (fix build with binutils cvs)
     from parisc-linux.
+  * Add partial support for armel, from http://armel-debs.applieddata.net/diffs/.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
