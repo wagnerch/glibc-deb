@@ -262,6 +262,8 @@ glibc (2.3.6.ds1-11) unstable; urgency=low
     argument equals to 0).  Closes: bug#292523.
   * patches/all/local-pthread-manpages.diff: fix pthread manpages.  Closes:
     bug#220719. 
+  * debhelper.in/libc-otherbuild.postinst: fix handling of
+    /etc/ld.so.hwcappkgs.  Closes: bug#409374.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 22 Jan 2007 17:47:01 +0100
 
