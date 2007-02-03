@@ -82,6 +82,8 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
   * debian/control.in: drop the dependency on tzdata. It is a required package
     and the glibc from Etch depends on it, ensuring tzdata is always present 
     post-Etch.
+  * debian/script.in/kernelcheck.sh, debian/sysdeps/linux.mk: set the minimum 
+    kernel version to 2.6.1, except on m68k where it is set to 2.4.1.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
