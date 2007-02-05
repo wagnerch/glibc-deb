@@ -88,6 +88,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * patches/any/cvs-2.5-branch-update.diff: new patch (2.5 branch update) from
     upstream CVS.
   * debhelper.in/locales.templates: recommends UTF-8 locales by default.
+  * patches/any/local-linuxthreads-sigprocmask.diff: new patch (fix build of
+    linuxthreads on linux architectures).
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -107,7 +109,7 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon,  5 Feb 2007 06:11:54 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Mon,  5 Feb 2007 07:56:58 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
