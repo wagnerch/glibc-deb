@@ -19,7 +19,7 @@ endef
 
 # TLS is broken currently and results in Mach panicing.
 # ld.so is broken currently if z_relro is used.
-libc_extra_config_options := $(extra_config_options) --without-tls libc_cv_z_relro=no
+libc_extra_config_options := $(extra_config_options) --without-__thread --without-tls libc_cv_z_relro=no
 
 # Only use libidn as add-on.
 standard-add-ons = libidn
