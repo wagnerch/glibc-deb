@@ -84,6 +84,7 @@ glibc (2.5-0exp3) UNRELEASED; urgency=low
     kernel version to 2.6.1, except on m68k where it is set to 2.4.1.
   * patches/any/cvs-2.5-branch-update.diff: new patch (2.5 branch update) from
     upstream CVS.
+  * debhelper.in/locales.templates: recommends UTF-8 locales by default.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
