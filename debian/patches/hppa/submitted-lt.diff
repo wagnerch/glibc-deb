@@ -44,7 +44,7 @@
  #include <pt-machine.h>
 --- libc-orig/linuxthreads/pthread.c	2005-01-28 14:39:43.000000000 -0500
 +++ libc/linuxthreads/pthread.c	2005-01-28 14:15:29.000000000 -0500
-@@ -301,7 +301,7 @@
+@@ -309,7 +309,7 @@
    pthread_descr self;
  
    /* First of all init __pthread_handles[0] and [1] if needed.  */
@@ -53,7 +53,7 @@
    __pthread_handles[0].h_lock = __LOCK_INITIALIZER;
    __pthread_handles[1].h_lock = __LOCK_INITIALIZER;
  # endif
-@@ -371,7 +371,7 @@
+@@ -379,7 +379,7 @@
  # endif
    /* self->p_start_args need not be initialized, it's all zero.  */
    self->p_userstack = 1;
@@ -62,7 +62,7 @@
    self->p_resume_count = (struct pthread_atomic) __ATOMIC_INITIALIZER;
  # endif
    self->p_alloca_cutoff = __MAX_ALLOCA_CUTOFF;
-@@ -385,7 +385,7 @@
+@@ -393,7 +393,7 @@
  #else  /* USE_TLS */
  
    /* First of all init __pthread_handles[0] and [1].  */
@@ -71,15 +71,17 @@
    __pthread_handles[0].h_lock = __LOCK_INITIALIZER;
    __pthread_handles[1].h_lock = __LOCK_INITIALIZER;
  # endif
-@@ -688,7 +688,7 @@
+@@ -696,8 +696,8 @@
  # endif
    mgr->p_start_args = (struct pthread_start_args) PTHREAD_START_ARGS_INITIALIZER(__pthread_manager);
    mgr->p_nr = 1;
 -# if __LT_SPINLOCK_INIT != 0
+-  self->p_resume_count = (struct pthread_atomic) __ATOMIC_INITIALIZER;
 +# ifdef __LT_INITIALIZER_NOT_ZERO
-   self->p_resume_count = (struct pthread_atomic) __ATOMIC_INITIALIZER;
++  mgr->p_resume_count = (struct pthread_atomic) __ATOMIC_INITIALIZER;
  # endif
    mgr->p_alloca_cutoff = PTHREAD_STACK_MIN / 4;
+ #else
 --- libc-orig/linuxthreads/spinlock.c	2004-01-30 14:13:45.000000000 -0500
 +++ libc/linuxthreads/spinlock.c	2004-01-30 10:47:31.000000000 -0500
 @@ -24,9 +24,9 @@
