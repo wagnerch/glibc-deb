@@ -92,7 +92,7 @@ all/submitted-new-brf-encoding.diff -p0
 
 any/cvs-2.5-branch-update.diff -p1
 any/cvs-itoa-c.diff -p1
-cvs-lt-update.diff -p0
+any/cvs-lt-update.diff -p0
 any/cvs-zdump-64-bit.diff -p1
 any/local-__thread.diff -p0
 any/local-asserth-decls.diff -p0
