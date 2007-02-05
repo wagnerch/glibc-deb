@@ -21,11 +21,7 @@ define $(libc)_extra_debhelper_pkg_install
 	install --mode=0644 $(DEB_SRCDIR)/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/changelog
 	install --mode=0644 $(DEB_SRCDIR)/linuxthreads/README debian/$(curpass)/usr/share/doc/$(curpass)/README.linuxthreads
 	install --mode=0644 $(DEB_SRCDIR)/linuxthreads/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/ChangeLog.linuxthreads
-	case " $(GLIBC_PASSES) " in \
-	*" nptl "*) \
-	  install --mode=0644 $(DEB_SRCDIR)/nptl/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/ChangeLog.nptl; \
-	  ;; \
-	esac
+	install --mode=0644 $(DEB_SRCDIR)/nptl/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/ChangeLog.nptl
 	sed -e "/KERNEL_VERSION_CHECK/r debian/script.in/kernelcheck.sh" \
 		debian/local/etc_init.d/glibc.sh | \
 		sed -e "s/EXIT_CHECK/sleep 5/" -e "s/DEB_HOST_ARCH/$(DEB_HOST_ARCH)/" > debian/glibc.sh.generated
@@ -167,17 +163,7 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
 
 	touch $@
 
-#Ugly kludge:
-# I'm running out of time to get this sorted out properly.  Basically
-# the problem is that nptl is like an optimised library, but not quite.
-# So we'll filter it out of the passes list and deal with it specifically.
-#
-# Ideally, there should be some way of having an optimisation pass and
-# say "include this in the main library" by setting a variable.
-# But after 10 hours of staring at this thing, I can't figure it out.
-
-OPT_PASSES = $(filter-out libc nptl, $(GLIBC_PASSES))
-OPT_DIRS = $(foreach pass,$(OPT_PASSES),$($(pass)_slibdir) $($(pass)_libdir))
+OPT_DIRS = $(foreach pass,$(GLIBC_PASSES),$($(pass)_slibdir) $($(pass)_libdir))
 
 debhelper: $(stamp)debhelper
 $(stamp)debhelper:
@@ -216,7 +202,7 @@ $(stamp)debhelper:
 	# libraries.  Also generate a -dev.  Other libraries get scripts
 	# to temporarily disable hwcap.  This needs some cleaning up.
 	set -- $(OPT_DIRS); \
-	for x in $(OPT_PASSES); do \
+	for x in $(GLIBC_PASSES); do \
 	  slibdir=$$1; \
 	  shift; \
 	  case $$slibdir in \
