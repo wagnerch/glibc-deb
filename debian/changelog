@@ -90,6 +90,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * patches/any/cvs-lt-update.diff: new patch (linuxthreads update) from
     upstream CVS.
   * debhelper.in/locales.templates: recommends UTF-8 locales by default.
+  * control.in/main, rules.d/debhelper.mk: use dh_shlibdeps to set the
+    dependencies of nscd.  Closes: #409288.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).

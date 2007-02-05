@@ -131,7 +131,9 @@ endif
 	fi
 
 	dh_installdeb -p$(curpass)
-	# dh_shlibdeps -p$(curpass)
+	if [ $(curpass) = nscd ] ; then \
+		dh_shlibdeps -p$(curpass) ; \
+	fi
 	dh_gencontrol -p$(curpass) -- $($(curpass)_control_flags)
 	dh_md5sums -p$(curpass)
 	dh_builddeb -p$(curpass)
