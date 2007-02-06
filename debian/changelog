@@ -76,8 +76,6 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * debhelper.in/libc.install: install gai.conf in /etc.  Closes: #404379.
   * Add patches/any/local-ldconfig-timestamps.diff (use the timestamps to
     update the cache only when needed) by Josselin Mouette.  Closes: #374945.
-  * Add patches/hppa/submitted-cfi-procend.diff (fix build with binutils cvs)
-    from parisc-linux.
   * Add partial support for armel, from http://armel-debs.applieddata.net/diffs/.
   * debian/debhelper.in/: delete /usr/doc removal from postinst scripts.
   * debian/control.in: drop the dependency on tzdata. It is a required package

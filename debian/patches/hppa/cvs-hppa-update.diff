@@ -1,7 +1,17 @@
-diff -xCVS -Nurd ports/ChangeLog.hppa ports/ChangeLog.hppa
---- ports/ChangeLog.hppa	2006-10-01 19:06:06.000000000 +0200
-+++ ports/ChangeLog.hppa	2007-01-08 03:13:14.000000000 +0100
-@@ -1,3 +1,27 @@
+diff -Nurd ports.orig/ChangeLog.hppa ports/ChangeLog.hppa
+--- ports.orig/ChangeLog.hppa	2006-10-01 19:06:06.000000000 +0200
++++ ports/ChangeLog.hppa	2007-02-06 10:11:40.000000000 +0100
+@@ -1,3 +1,37 @@
++2007-02-02  Carlos O'Donell  <carlos@systemhalted.org>
++
++	* sysdeps/unix/sysv/linux/hppa/sysdep.h (PTR_MANGLE): Define.
++	(PTR_DEMANGLE): Define.
++
++2007-02-02  Guy Martin  <gmsoft@tuxicoman.be>
++
++	* sysdeps/hppa/dl-trampoline.S (_dl_runtime_profile):
++	Add cfi_endproc.
++
 +2006-12-03  Carlos O'Donell  <carlos@systemhalted.org>
 +
 +	* sysdeps/unix/sysv/linux/hppa/bits/atomic.h: Remove non-atomic
@@ -29,9 +39,19 @@ diff -xCVS -Nurd ports/ChangeLog.hppa ports/ChangeLog.hppa
  2006-09-15  Carlos O'Donell  <carlos@systemhalted.org>
  
  	* sysdeps/hppa/nptl/tcb-offsets.sym: Define TID_THREAD_OFFSET.
-diff -xCVS -Nurd ports/sysdeps/hppa/fpu/bits/mathdef.h ports/sysdeps/hppa/fpu/bits/mathdef.h
---- ports/sysdeps/hppa/fpu/bits/mathdef.h	1970-01-01 01:00:00.000000000 +0100
-+++ ports/sysdeps/hppa/fpu/bits/mathdef.h	2006-12-04 00:03:19.000000000 +0100
+diff -Nurd ports.orig/sysdeps/hppa/dl-trampoline.S ports/sysdeps/hppa/dl-trampoline.S
+--- ports.orig/sysdeps/hppa/dl-trampoline.S	2006-10-01 19:06:06.000000000 +0200
++++ ports/sysdeps/hppa/dl-trampoline.S	2007-02-06 10:11:53.000000000 +0100
+@@ -284,5 +284,6 @@
+ 	bv,n	0(%r2)
+         .EXIT
+         .PROCEND
++	cfi_endproc
+ 	.size   _dl_runtime_profile, . - _dl_runtime_profile
+ 
+diff -Nurd ports.orig/sysdeps/hppa/fpu/bits/mathdef.h ports/sysdeps/hppa/fpu/bits/mathdef.h
+--- ports.orig/sysdeps/hppa/fpu/bits/mathdef.h	1970-01-01 01:00:00.000000000 +0100
++++ ports/sysdeps/hppa/fpu/bits/mathdef.h	2007-02-06 10:11:16.000000000 +0100
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -73,9 +93,9 @@ diff -xCVS -Nurd ports/sysdeps/hppa/fpu/bits/mathdef.h ports/sysdeps/hppa/fpu/bi
 +/* On hppa `long double' is 64-bits. */
 +#undef __NO_LONG_DOUBLE_MATH
 +
-diff -xCVS -Nurd ports/sysdeps/hppa/fpu/libm-test-ulps ports/sysdeps/hppa/fpu/libm-test-ulps
---- ports/sysdeps/hppa/fpu/libm-test-ulps	2006-04-21 02:27:20.000000000 +0200
-+++ ports/sysdeps/hppa/fpu/libm-test-ulps	2007-01-08 03:13:14.000000000 +0100
+diff -Nurd ports.orig/sysdeps/hppa/fpu/libm-test-ulps ports/sysdeps/hppa/fpu/libm-test-ulps
+--- ports.orig/sysdeps/hppa/fpu/libm-test-ulps	2006-04-21 02:27:20.000000000 +0200
++++ ports/sysdeps/hppa/fpu/libm-test-ulps	2007-02-06 10:11:16.000000000 +0100
 @@ -1,15 +1,12 @@
  # Begin of automatic generation
  
@@ -1475,10 +1495,10 @@ diff -xCVS -Nurd ports/sysdeps/hppa/fpu/libm-test-ulps ports/sysdeps/hppa/fpu/li
 +ldouble: 3
  
  # end of automatic generation
-diff -xCVS -Nurd ports/sysdeps/hppa/Makefile ports/sysdeps/hppa/Makefile
---- ports/sysdeps/hppa/Makefile	2007-02-02 20:53:52.000000000 +0100
-+++ ports/sysdeps/hppa/Makefile	2007-01-08 03:13:14.000000000 +0100
-@@ -40,3 +39,8 @@
+diff -Nurd ports.orig/sysdeps/hppa/Makefile ports/sysdeps/hppa/Makefile
+--- ports.orig/sysdeps/hppa/Makefile	2003-12-18 04:51:49.000000000 +0100
++++ ports/sysdeps/hppa/Makefile	2007-02-06 10:11:16.000000000 +0100
+@@ -39,3 +39,8 @@
  shared-only-routines += libgcc-compat
  endif
  endif
@@ -1487,9 +1507,9 @@ diff -xCVS -Nurd ports/sysdeps/hppa/Makefile ports/sysdeps/hppa/Makefile
 +# This means our `long double' and `double' are identical.
 +long-double-fcts = no 
 +
-diff -xCVS -Nurd ports/sysdeps/hppa/nptl/pthread_spin_init.c ports/sysdeps/hppa/nptl/pthread_spin_init.c
---- ports/sysdeps/hppa/nptl/pthread_spin_init.c	1970-01-01 01:00:00.000000000 +0100
-+++ ports/sysdeps/hppa/nptl/pthread_spin_init.c	2006-11-11 15:33:27.000000000 +0100
+diff -Nurd ports.orig/sysdeps/hppa/nptl/pthread_spin_init.c ports/sysdeps/hppa/nptl/pthread_spin_init.c
+--- ports.orig/sysdeps/hppa/nptl/pthread_spin_init.c	1970-01-01 01:00:00.000000000 +0100
++++ ports/sysdeps/hppa/nptl/pthread_spin_init.c	2007-02-06 10:11:16.000000000 +0100
 @@ -0,0 +1,29 @@
 +/* Copyright (C) 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1520,9 +1540,9 @@ diff -xCVS -Nurd ports/sysdeps/hppa/nptl/pthread_spin_init.c ports/sysdeps/hppa/
 +                        : : "r" (lock), "r" (tmp) : "memory");           
 +  return 0;
 +}
-diff -xCVS -Nurd ports/sysdeps/hppa/nptl/pthread_spin_unlock.c ports/sysdeps/hppa/nptl/pthread_spin_unlock.c
---- ports/sysdeps/hppa/nptl/pthread_spin_unlock.c	2006-07-14 15:51:24.000000000 +0200
-+++ ports/sysdeps/hppa/nptl/pthread_spin_unlock.c	2007-01-08 03:13:14.000000000 +0100
+diff -Nurd ports.orig/sysdeps/hppa/nptl/pthread_spin_unlock.c ports/sysdeps/hppa/nptl/pthread_spin_unlock.c
+--- ports.orig/sysdeps/hppa/nptl/pthread_spin_unlock.c	2006-07-14 15:51:24.000000000 +0200
++++ ports/sysdeps/hppa/nptl/pthread_spin_unlock.c	2007-02-06 10:11:16.000000000 +0100
 @@ -16,21 +16,14 @@
     Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
     02111-1307 USA.  */
@@ -1545,9 +1565,9 @@ diff -xCVS -Nurd ports/sysdeps/hppa/nptl/pthread_spin_unlock.c ports/sysdeps/hpp
    return 0;
  }
 -strong_alias (pthread_spin_unlock, pthread_spin_init)
-diff -xCVS -Nurd ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h
---- ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h	2006-10-01 19:06:06.000000000 +0200
-+++ ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h	2007-01-08 03:13:17.000000000 +0100
+diff -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/bits/atomic.h ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/bits/atomic.h	2006-10-01 19:06:06.000000000 +0200
++++ ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h	2007-02-06 10:11:16.000000000 +0100
 @@ -22,14 +22,10 @@
  #include <abort-instr.h>
  #include <kernel-features.h>
@@ -1616,9 +1636,9 @@ diff -xCVS -Nurd ports/sysdeps/unix/sysv/linux/hppa/bits/atomic.h ports/sysdeps/
 -#endif	/* bits/atomic.h */
 -
 +/* _BITS_ATOMIC_H */
-diff -xCVS -Nurd ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h
---- ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h	2006-06-09 02:48:17.000000000 +0200
-+++ ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h	2007-01-08 03:13:17.000000000 +0100
+diff -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h	2006-06-09 02:48:17.000000000 +0200
++++ ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h	2007-02-06 10:11:16.000000000 +0100
 @@ -210,7 +210,8 @@
  		     unsigned int __flags);
  
@@ -1629,9 +1649,9 @@ diff -xCVS -Nurd ports/sysdeps/unix/sysv/linux/hppa/bits/fcntl.h ports/sysdeps/u
      __THROW;
  
  /* In-kernel implementation of tee for pipe buffers.  */
-diff -xCVS -Nurd ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h
---- ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h	2006-10-01 19:06:06.000000000 +0200
-+++ ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h	2007-01-08 03:13:17.000000000 +0100
+diff -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h	2006-10-01 19:06:06.000000000 +0200
++++ ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h	2007-02-06 10:11:16.000000000 +0100
 @@ -212,4 +212,11 @@
  # define NO_CANCELLATION 1
  
@@ -1644,4 +1664,16 @@ diff -xCVS -Nurd ports/sysdeps/unix/sysv/linux/hppa/nptl/sysdep-cancel.h ports/s
 +  __builtin_expect (THREAD_GETMEM (THREAD_SELF, \
 +				   header.multiple_threads) == 0, 1)
 +#endif
++
+diff -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/sysdep.h ports/sysdeps/unix/sysv/linux/hppa/sysdep.h
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/sysdep.h	2006-10-01 19:06:06.000000000 +0200
++++ ports/sysdeps/unix/sysv/linux/hppa/sysdep.h	2007-02-06 10:12:04.000000000 +0100
+@@ -479,3 +479,8 @@
+ #define CLOB_ARGS_0 CLOB_ARGS_1, "%r26"
+ 
+ #endif	/* __ASSEMBLER__ */
++
++/* Pointer mangling is not yet supported for HPPA.  */
++#define PTR_MANGLE(var) (void) (var)
++#define PTR_DEMANGLE(var) (void) (var)
 +
