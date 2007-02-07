@@ -100,6 +100,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
     pthread_detach(3).  Closes: #98852.
   * Update any/local-__thread.diff (make glibc buildable without __thread support)
     from Petr Saliner.
+  * hurd-i386/submitted-stdlib-fmtmsg.diff: new patch to make glibc (partly)
+    buildable on Hurd.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
