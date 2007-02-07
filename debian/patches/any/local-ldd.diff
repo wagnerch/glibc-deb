@@ -33,16 +33,15 @@ diff -u -r1.33 ldd.bash.in
      RTLD=
      for rtld in ${RTLDLIST}; do
        if test -x $rtld; then
-@@ -171,7 +175,12 @@
+@@ -171,7 +175,11 @@
        # If the program exits with exit code 5, it means the process has been
        # invoked with __libc_enable_secure.  Fall back to running it through
        # the dynamic linker.
 -      try_trace "$file"
-+      if [ ! -x "$file" ] && eval file -L "$file" 2>/dev/null \
-+      | sed 10q | egrep "$file_magic_regex" > /dev/null; then
-+	try_trace "${RTLD}" "$file"
-+      else
++      if test -x "$file"; then
 +	try_trace "$file"
++      else
++	try_trace "${RTLD}" "$file"
 +      fi
        rc=$?
        if [ $rc = 5 ]; then

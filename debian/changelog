@@ -121,6 +121,10 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
+  [ Pierre Habouzit ]
+  * Rework patches/any/local-ldd.diff so that we don't use file(1) anymore (it
+    wasn't used anyway). Closes: #165417.
+
  -- Aurelien Jarno <aurel32@debian.org>  Wed,  7 Feb 2007 13:56:40 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
