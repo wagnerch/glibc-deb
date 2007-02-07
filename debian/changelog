@@ -98,6 +98,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
     a symlink to /usr/include for compatibility reasons.
   * patches/all/local-pthread-manpages.diff: update to fix a typo in
     pthread_detach(3).  Closes: #98852.
+  * Update any/local-__thread.diff (make glibc buildable without __thread support)
+    from Petr Saliner.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
