@@ -6,7 +6,7 @@ sparc64_configure_target=sparc64-linux
 sparc64_CC = $(BUILD_CC) -m64
 sparc64_extra_cflags = -g -O3
 sparc64_extra_config_options = $(extra_config_options) --disable-profile
-libc6-sparc64_shlib_dep = libc6-sparc64 (>= $(shlib_dep_ver))
+libc6-sparc64_shlib_dep = libc6-sparc64 (>= $(shlib_dep_ver)) \
 	--includedir=/usr/include/sparc64-linux-gnu
 sparc64_slibdir = /lib64
 sparc64_libdir = /usr/lib64
