@@ -96,6 +96,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * sysdeps/s390.mk: install 64-bit headers (actually gnu/stubs-64.h)
     directly into /usr/include and provide /usr/include/s390x-linux-gnu as
     a symlink to /usr/include for compatibility reasons.
+  * patches/all/local-pthread-manpages.diff: update to fix a typo in
+    pthread_detach(3).  Closes: #98852.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -115,7 +117,7 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * Update localedata/fix-lang.diff
   * Update localedata/first_weekday.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon,  5 Feb 2007 07:56:58 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Wed,  7 Feb 2007 13:56:40 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
 

@@ -131,7 +131,7 @@ diff -u glibc.orig/linuxthreads/man/pthread_attr_init.man glibc/linuxthreads/man
  
  A thread created in the joinable state can later be put in the
 -detached thread using !pthread_detach!(3).
-+detached thread using \fBpthread_detach\fP(3).
++detached state using \fBpthread_detach\fP(3).
  
  .SS schedpolicy
  
