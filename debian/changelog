@@ -36,6 +36,9 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * sysdeps/powerpc.mk: install 64-bit headers (actually gnu/stubs-64.h)
     directly into /usr/include and provide /usr/include/powerpc64-linux-gnu as
     a symlink to /usr/include for compatibility reasons.  Closes: #391858.
+  * sysdeps/ppc64.mk: install 32-bit headers (actually gnu/stubs-32.h)
+    directly into /usr/include and provide /usr/include/powerpc-linux-gnu as
+    a symlink to /usr/include for compatibility reasons.
   * kfreebsd/local-scripts.diff: update.
   * kfreebsd/local-sys_queue_h.diff: update.
   * kfreebsd/local-sysdeps.diff: update to revision 1689 (from glibc-bsd).
@@ -90,6 +93,9 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * debhelper.in/locales.templates: recommends UTF-8 locales by default.
   * control.in/main, rules.d/debhelper.mk: use dh_shlibdeps to set the
     dependencies of nscd.  Closes: #409288.
+  * sysdeps/s390.mk: install 64-bit headers (actually gnu/stubs-64.h)
+    directly into /usr/include and provide /usr/include/s390x-linux-gnu as
+    a symlink to /usr/include for compatibility reasons.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
