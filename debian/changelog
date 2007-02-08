@@ -106,6 +106,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
     struct stat on Hurd).
   * hurd-i386/submitted-libc_once.diff: new patch from Thomas Schwinge (add
     __libc_once_else to make glibc buildable on Hurd).
+  * hurd-i386/local-msg-nosignal.diff: new patch from Thomas Schwinge
+    (workaround the missing MSG_NOSIGNAL support).
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
