@@ -129,6 +129,9 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
     wasn't used anyway). Closes: #165417.
   * Rework patch for #340871 (patches/m68k/local-mathinline_h.diff to use
     __NTH rather than __THROW) in function implementations.
+  * patches/any/submitted-argph.h.diff: always have the same __NTH/__THROW
+    definition everywhere in the glibc, and do not depend upon the includes
+    ordering for it to be defined correctly. Closes: #377416.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed,  7 Feb 2007 13:56:40 +0100
 
