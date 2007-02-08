@@ -108,6 +108,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
     __libc_once_else to make glibc buildable on Hurd).
   * hurd-i386/local-msg-nosignal.diff: new patch from Thomas Schwinge
     (workaround the missing MSG_NOSIGNAL support).
+  * kfreebsd/local-amd64-dl-machine.diff: new patch from Petr Salinger (fix
+    ld.so segfault on GNU/kFreeBSD amd64).
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
