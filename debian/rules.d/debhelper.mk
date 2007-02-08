@@ -165,7 +165,8 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
 
 	touch $@
 
-OPT_DIRS = $(foreach pass,$(GLIBC_PASSES),$($(pass)_slibdir) $($(pass)_libdir))
+OPT_PASSES = $(filter-out libc, $(GLIBC_PASSES))
+OPT_DIRS = $(foreach pass,$(OPT_PASSES),$($(pass)_slibdir) $($(pass)_libdir))
 
 debhelper: $(stamp)debhelper
 $(stamp)debhelper:
@@ -204,7 +205,7 @@ $(stamp)debhelper:
 	# libraries.  Also generate a -dev.  Other libraries get scripts
 	# to temporarily disable hwcap.  This needs some cleaning up.
 	set -- $(OPT_DIRS); \
-	for x in $(GLIBC_PASSES); do \
+	for x in $(OPT_PASSES); do \
 	  slibdir=$$1; \
 	  shift; \
 	  case $$slibdir in \
