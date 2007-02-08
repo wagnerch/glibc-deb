@@ -179,7 +179,7 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * debian/sysdeps/mips.mk: use ports add-on
   * debian/sysdeps/mipsel.mk: use ports add-on
   * debian/sysdeps/arm.mk: use ports add-on
-  * Build with gcc 4.1 on all architectures.
+  * Build with gcc 4.1 on all architectures but hurd-i386.
   * debian/debhelper.in/nscd.init: partially sync nscd initscript
     with upstream.
   * Remove mips/local-librt.diff.
