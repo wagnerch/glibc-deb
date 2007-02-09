@@ -4,7 +4,7 @@
 
 2007-02-09  Aurelien Jarno  <aurelien@aurel32.net>
 
-        resolv/gai_sigqueue.c: Include <pthread.h>.
+        resolv/gai_misc.h: Include <pthread.h>.
 
 2007-02-06  Petr Salinger  <petr.salinger@seznam.cz>
 
@@ -135,13 +135,13 @@ diff -u -r1.12 memusage.c
 +
 +#endif
 +
---- resolv/gai_sigqueue.c	2007-02-09 20:15:02.000000000 +0100
-+++ resolv/gai_sigqueue.c	2007-02-09 20:16:02.000000000 +0100
-@@ -19,6 +19,7 @@
- #include <aio.h>
- #include <errno.h>
+--- resolv/gai_misc.h	2007-02-09 22:38:33.000000000 +0100
++++ resolv/gai_misc.h	2007-02-09 22:39:07.000000000 +0100
+@@ -22,6 +22,7 @@
+ 
+ #include <netdb.h>
  #include <signal.h>
 +#include <pthread.h>
  
- #include <gai_misc.h>
  
+ /* Used to synchronize.  */
