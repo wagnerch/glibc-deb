@@ -97,7 +97,7 @@ any/cvs-2.5-branch-update.diff -p1
 any/cvs-itoa-c.diff -p1
 any/cvs-lt-update.diff -p0
 any/cvs-zdump-64-bit.diff -p1
-any/local-__thread.diff -p0
+any/local-notls.diff -p0
 any/local-asserth-decls.diff -p0
 #any/local-base.diff -p0	# g: suspended
 any/local-bashisms.diff

@@ -1,8 +1,10 @@
-# DP: Description: Fix build when __thread is not available.
-# DP: Dpatch author: Michael Banck <mbanck@debian.org>
-# DP: Patch author: Thomas Schwinge
-# DP: Upstream status: Rejected
-# DP: Date: 2005-08-28
+# DP: Description: Fix build when TLS is not available.
+# DP: Upstream status: Submitted parts have been rejected. Parts 
+                       submitted would very probably be rejected.
+
+2007-02-09  Aurelien Jarno  <aurelien@aurel32.net>
+
+        resolv/gai_sigqueue.c: Include <pthread.h>.
 
 2007-02-06  Petr Salinger  <petr.salinger@seznam.cz>
 
@@ -133,3 +135,13 @@ diff -u -r1.12 memusage.c
 +
 +#endif
 +
+--- resolv/gai_sigqueue.c	2007-02-09 20:15:02.000000000 +0100
++++ resolv/gai_sigqueue.c	2007-02-09 20:16:02.000000000 +0100
+@@ -19,6 +19,7 @@
+ #include <aio.h>
+ #include <errno.h>
+ #include <signal.h>
++#include <pthread.h>
+ 
+ #include <gai_misc.h>
+ 

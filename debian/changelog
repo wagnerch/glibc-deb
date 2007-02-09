@@ -98,8 +98,9 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
     a symlink to /usr/include for compatibility reasons.
   * patches/all/local-pthread-manpages.diff: update to fix a typo in
     pthread_detach(3).  Closes: #98852.
-  * Update any/local-__thread.diff (make glibc buildable without __thread support)
-    from Petr Saliner.
+  * Change any/local-__thread.diff into any/local-notls.diff.
+  * Update any/local-notls.diff (make glibc buildable without TLS support)
+    from Petr Salinger and Aurelien Jarno.
   * hurd-i386/submitted-trivia.diff: new patch from Thomas Schwinge (make glibc 
     partly buildable on Hurd).
   * hurd-i386/submitted-stat.diff: new patch from Thomas Schwinge (update
