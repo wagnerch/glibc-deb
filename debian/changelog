@@ -112,6 +112,7 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
     (workaround the missing MSG_NOSIGNAL support).
   * kfreebsd/local-amd64-dl-machine.diff: new patch from Petr Salinger (fix
     ld.so segfault on GNU/kFreeBSD amd64).
+  * m68k/cvs-m68k-update.diff: new patch (bits from CVS).
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
