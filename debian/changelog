@@ -10,6 +10,7 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * Remove locale/cvs-iso3166.diff (merged upstream).
   * Remove localedata/locale-ro_RO.diff (merged upstream).
   * Remove arm/cvs-portshead.patch (merged upstream).
+  * Remove arm/local-dwarf2-buildfix.diff (merged upstream).
   * Remove hppa/cvs-clone.patch (merged upstream).
   * Remove hppa/cvs-portshead.diff (merged upstream).
   * Remove hppa/submitted-drop-utimes.diff (merged upstream).
