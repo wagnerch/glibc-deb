@@ -3,6 +3,7 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * New upstream version 2.5.
     - Adds support of POSIX_MADV_* on mips, mipsel, arm and hppa.  Closes:
       #381294.
+    - Fixes a pointer-to-long overflow in sunrpc code. Closes: #389084.
 
   [ Aurelien Jarno ]
   * debian/shlibver: Bump up to 2.5-1.
