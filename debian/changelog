@@ -114,6 +114,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * kfreebsd/local-amd64-dl-machine.diff: new patch from Petr Salinger (fix
     ld.so segfault on GNU/kFreeBSD amd64).
   * m68k/cvs-m68k-update.diff: new patch (bits from CVS).
+  * any/submitted-clock-settime.diff: new patch (include <time.h> to get
+    clockid_t).
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
