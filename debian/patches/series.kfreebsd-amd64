@@ -1,4 +1,3 @@
-kfreebsd/local-amd64-dl-machine.diff -p0
 kfreebsd/local-ftw.diff -p0
 kfreebsd/local-memusage_no_mremap.diff -p0
 kfreebsd/local-pthread_at_fork.diff -p0
