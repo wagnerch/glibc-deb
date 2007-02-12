@@ -148,6 +148,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
     ordering for it to be defined correctly. Closes: #377416.
   * Fix rpcgen(1) manpage, to match rpcgen(1) behaviour more closely.
     Closes: #46175.
+  * patches/any/submitted-date-and-unknown-tz.diff: fix date output in case of
+    an unknown timezone in $TZ, submitted upstream as #4028. Closes: #55648.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed,  7 Feb 2007 13:56:40 +0100
 
