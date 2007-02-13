@@ -147,6 +147,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * patches/any/submitted-date-and-unknown-tz.diff: fix date output in case of
     an unknown timezone in $TZ, submitted upstream as #4028.
     Closes: #55648, #119540, #269238.
+  * patches/any/local-sysctl.diff: sysctl is back for good it seems, remove
+    the link warning from the patch. Closes: #410816.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed,  7 Feb 2007 13:56:40 +0100
 
