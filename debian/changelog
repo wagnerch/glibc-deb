@@ -7,7 +7,7 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
     - Fixes getent wrt ipv4 hosts lookups. Closes: #347358.
 
   [ Aurelien Jarno ]
-  * debian/shlibver: Bump up to 2.5-1.
+  * debian/shlibver: Bump up to 2.5.
   * debian/copyright: update.
   * Remove locale/cvs-iso3166.diff (merged upstream).
   * Remove localedata/locale-ro_RO.diff (merged upstream).
