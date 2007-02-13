@@ -1,4 +1,4 @@
-glibc (2.5-0exp4) UNRELEASED; urgency=low
+glibc (2.5-0exp5) UNRELEASED; urgency=low
 
   * New upstream version 2.5.
     - Adds support of POSIX_MADV_* on mips, mipsel, arm and hppa.  Closes:
@@ -25,6 +25,8 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * Remove any/cvs-sysctl.diff (merged upstream).
   * Remove any/cvs-thread_signals.diff (merged upstream).
   * Remove any/cvs-uio_h.diff (merged upstream).
+  * Remove any/cvs-sunrpc-xdrmem_setpos.diff (merged upstream).
+  * Remove any/cvs-getent-wrong-struct-size.diff (merged upstream).
   * Remove any/submitted-strfmon.diff (merged upstream).
   * Remove all/submitted-uninitialized-byte-LC_CTYPE.diff (merged upstream).
   * Remove any/local-ttyname-devfs.diff (devfs is not supported anymore).
@@ -147,8 +149,6 @@ glibc (2.5-0exp4) UNRELEASED; urgency=low
   * patches/any/submitted-date-and-unknown-tz.diff: fix date output in case of
     an unknown timezone in $TZ, submitted upstream as #4028.
     Closes: #55648, #119540, #269238.
-  * patches/any/local-sysctl.diff: sysctl is back for good it seems, remove
-    the link warning from the patch. Closes: #410816.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed,  7 Feb 2007 13:56:40 +0100
 
@@ -305,6 +305,18 @@ glibc (2.4-1) UNRELEASED; urgency=low
   * debian/patches/series: Use it.
 
  -- Clint Adams <schizo@debian.org>  Sun, 28 May 2006 03:28:14 +0200
+
+glibc (2.3.6.ds1-12) UNRELEASED; urgency=low
+
+  [ Pierre Habouzit ]
+  * patches/any/cvs-sunrpc-xdrmem_setpos.diff: fix a pointer-to-cast problem
+    in sunrpc, backport from glibc-2.5. Closes: #389084.
+  * patches/any/cvs-getent-wrong-struct-size.diff: fix a bad struct size in
+    nss/getent.c, backport from glibc-2.5. Closes: #347358.
+  * patches/any/local-sysctl.diff: sysctl is back for good it seems, remove
+    the link warning from the patch. Closes: #410816.
+
+ -- Pierre Habouzit <madcoder@debian.org>  Mon, 12 Feb 2007 00:23:01 +0100
 
 glibc (2.3.6.ds1-11) unstable; urgency=low
 
