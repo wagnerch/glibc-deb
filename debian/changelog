@@ -119,6 +119,9 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     clockid_t).
   * hurd-i386/local-sigsuspend-nocancel.diff: new patch (workaround missing
     sigsuspend_not_cancel() on Hurd).
+  * debhelper.in/glibc-doc.links: add symlinks from pthread_setcanceltype(3),
+    pthread_setcancelstate(3) and pthread_testcancel(3) to pthread_cancel(3).
+    Closes: #411132.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
