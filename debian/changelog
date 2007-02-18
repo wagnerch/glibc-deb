@@ -125,6 +125,8 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     Closes: #411132.
   * debian/control.in/i386: Changed the conflicts on ia32-libs-dev to a
     versioned conflict.  Closes: #407540.
+  * any/local-mktemp.diff: new patch (also propose mkdtemp as an alternative
+    to mktemp).  Closes: #377310.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).

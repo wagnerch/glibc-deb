@@ -119,6 +119,7 @@ any/local-linuxthreads-semaphore_h.diff -p1
 any/local-linuxthreads-tst-sighandler.diff -p1
 any/local-localedef-fix-trampoline.diff -p0
 any/local-makeconfig.diff -p0
+any/local-mktemp.diff -p0
 any/local-no-pagesize.diff -p1
 any/local-nss-upgrade.diff -p0
 any/local-rtld.diff -p0
