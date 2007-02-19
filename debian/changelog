@@ -5,6 +5,7 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
       #381294.
     - Fixes a pointer-to-long overflow in sunrpc code. Closes: #389084.
     - Fixes getent wrt ipv4 hosts lookups. Closes: #347358.
+    - Fixes strtod wrt hex floats with negative exponent. Closes: #172562.
 
   [ Aurelien Jarno ]
   * debian/shlibver: Bump up to 2.5.
