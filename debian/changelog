@@ -98,6 +98,7 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
   * patches/any/cvs-lt-update.diff: new patch (linuxthreads update) from
     upstream CVS.
   * debhelper.in/locales.templates: recommends UTF-8 locales by default.
+    Closes: #312927.
   * control.in/main, rules.d/debhelper.mk: use dh_shlibdeps to set the
     dependencies of nscd.  Closes: #409288.
   * sysdeps/s390.mk: install 64-bit headers (actually gnu/stubs-64.h)
