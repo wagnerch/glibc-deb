@@ -133,6 +133,8 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     Closes: #367522.
   * any/cvs-printf_fp-c.diff: new patch (fix printf %#.0g) from CVS. 
     Closes: #209136.
+  * any/local-iconv-char.diff: new patch (fix iconv with character set "char").
+    Closes: #220889.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).

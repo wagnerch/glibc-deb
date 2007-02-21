@@ -1,0 +1,10 @@
+--- iconv/gconv_builtin.h.orig	2007-02-21 00:30:03.000000000 +0100
++++ iconv/gconv_builtin.h	2007-02-21 00:29:54.000000000 +0100
+@@ -79,6 +79,7 @@
+ BUILTIN_ALIAS ("CP367//", "ANSI_X3.4-1968//")
+ BUILTIN_ALIAS ("CSASCII//", "ANSI_X3.4-1968//")
+ BUILTIN_ALIAS ("OSF00010020//", "ANSI_X3.4-1968//")
++BUILTIN_ALIAS ("CHAR//", "ANSI_X3.4-1968//")
+ 
+ BUILTIN_TRANSFORMATION ("ANSI_X3.4-1968//", "INTERNAL", 1, "=ascii->INTERNAL",
+ 			__gconv_transform_ascii_internal, __gconv_btwoc_ascii,
