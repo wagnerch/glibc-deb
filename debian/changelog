@@ -70,7 +70,7 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     with linuxthreads) from the libc-alpha mailing list.
   * debian/powerpc/cvs-tls-debug.diff: new patch (fix for debugging
     thread-local variables on powerpc) from CVS.
-  * Build depends on binutils (>= 2.17.50) to enable --hash-style=both 
+  * Build depends on binutils (>= 2.17.50) to enable --hash-style=both
     linking. Depends on a binutils version that supports DT_GNU_HASH.
     Closes: #405738.
   * Build depends on gcc-4.2 on hppa to enable TLS on hppa.  Closes: #397813.
@@ -109,7 +109,7 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
   * Change any/local-__thread.diff into any/local-notls.diff.
   * Update any/local-notls.diff (make glibc buildable without TLS support)
     from Petr Salinger and Aurelien Jarno.
-  * hurd-i386/submitted-trivia.diff: new patch from Thomas Schwinge (make glibc 
+  * hurd-i386/submitted-trivia.diff: new patch from Thomas Schwinge (make glibc
     partly buildable on Hurd).
   * hurd-i386/submitted-stat.diff: new patch from Thomas Schwinge (update
     struct stat on Hurd).
@@ -129,8 +129,10 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     versioned conflict.  Closes: #407540.
   * any/local-mktemp.diff: new patch (also propose mkdtemp as an alternative
     to mktemp).  Closes: #377310.
-  * any/cvs-ftw-c.diff: new patch (fix nftw() with FTW_CHDIR in /) from CVS.  
+  * any/cvs-ftw-c.diff: new patch (fix nftw() with FTW_CHDIR in /) from CVS.
     Closes: #367522.
+  * any/cvs-printf_fp-c.diff: new patch (fix printf %#.0g) from CVS. 
+    Closes: #209136.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
@@ -162,7 +164,7 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     an unknown timezone in $TZ, submitted upstream as #4028.
     Closes: #55648, #119540, #269238.
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed,  7 Feb 2007 13:56:40 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 21 Feb 2007 12:09:32 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
