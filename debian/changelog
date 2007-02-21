@@ -322,7 +322,16 @@ glibc (2.4-1) UNRELEASED; urgency=low
 
  -- Clint Adams <schizo@debian.org>  Sun, 28 May 2006 03:28:14 +0200
 
-glibc (2.3.6.ds1-12) UNRELEASED; urgency=low
+glibc (2.3.6.ds1-13) unstable; urgency=low
+
+  * debhelper.in/libc.postinst: try to add /etc/ld.so.conf.d support for
+    versions lower then 2.3.6.ds1-11 instead of 2.3.6-16, because new 
+    installations done with version from 2.3.6-16 to 2.3.6.ds1-10 are
+    broken.  Closes: #411542.
+    
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 21 Feb 2007 11:07:13 +0100
+
+glibc (2.3.6.ds1-12) unstable; urgency=low
 
   [ Pierre Habouzit ]
   * patches/any/cvs-sunrpc-xdrmem_setpos.diff: fix a pointer-to-cast problem
@@ -335,7 +344,7 @@ glibc (2.3.6.ds1-12) UNRELEASED; urgency=low
   [ Aurelien Jarno ]
   * debian/control.in/opt: fix a typo: Ezla -> Ezra.  Closes: #410839.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 13 Feb 2007 23:43:39 +0100
+ -- Pierre Habouzit <madcoder@debian.org>  Thu, 15 Feb 2007 18:41:06 +0100
 
 glibc (2.3.6.ds1-11) unstable; urgency=low
 
