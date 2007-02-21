@@ -129,6 +129,8 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     versioned conflict.  Closes: #407540.
   * any/local-mktemp.diff: new patch (also propose mkdtemp as an alternative
     to mktemp).  Closes: #377310.
+  * any/cvs-ftw-c.diff: new patch (fix nftw() with FTW_CHDIR in /) from CVS.  
+    Closes: #367522.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
