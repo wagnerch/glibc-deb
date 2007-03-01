@@ -135,11 +135,13 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     Closes: #367522.
   * any/cvs-printf_fp-c.diff: new patch (fix printf %#.0g) from CVS. 
     Closes: #209136.
-  * New Norwegian bokmål debconf translation, by Bjørn Steensrud.  (Closes: 
-    #412559)
+  * New Norwegian bokmål debconf translation, by Bjørn Steensrud.  Closes: 
+    #412559.
   * Remove patches/arm/local-softfloat.diff and patches/series.arm-softfloat.
     Remove arm-softfloat from debian/rules.d/control.mk. armel (ARM EABI)
     replaces the softfloat architecture.
+  * patches/any/cvs-pow.diff: new patch (fix pow(-inf, nan)) from upstream.
+    Closes: #226291.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
