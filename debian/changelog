@@ -164,7 +164,7 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
   [ Pierre Habouzit ]
   * Adding myself to Uploaders.
   * Rework patches/any/local-ldd.diff so that we don't use file(1) anymore (it
-    wasn't used anyway). Closes: #165417.
+    wasn't used anyway). Closes: #165417, #413095.
   * Rework patch for #340871 (patches/m68k/local-mathinline_h.diff to use
     __NTH rather than __THROW) in function implementations.
   * Fix rpcgen(1) manpage, to match rpcgen(1) behaviour more closely.
