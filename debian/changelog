@@ -142,6 +142,7 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     replaces the softfloat architecture.
   * patches/any/cvs-pow.diff: new patch (fix pow(-inf, nan)) from upstream.
     Closes: #226291.
+  * Update Catalan debconf translation, by Jordà Polo.  Closes: #413259.
 
   [ Denis Barbier ]
   * Remove localedata/locale-en_NZ.diff (merged upstream).
