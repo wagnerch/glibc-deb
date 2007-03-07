@@ -175,6 +175,10 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     an unknown timezone in $TZ, submitted upstream as #4028.
     Closes: #55648, #119540, #269238.
 
+  [ Michael Banck ]
+  * patches/hurd-i386/local-tls.diff: New patch (fixes building with TLS) by
+    Samuel Thibault and Barry deFreese.  Closes: #413787.
+
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 21 Feb 2007 12:09:32 +0100
 
 glibc (2.4-1) UNRELEASED; urgency=low
