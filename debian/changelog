@@ -9,6 +9,7 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     - Fixes nice() errno when called without appropriate privileges.  Closes:
       #286825.
     - Provides sys/inotify.h. Closes: #369402.
+    - Fixes strtod("INF") with some locales. Closes: #415417.
 
   [ Aurelien Jarno ]
   * debian/shlibver: Bump up to 2.5.
