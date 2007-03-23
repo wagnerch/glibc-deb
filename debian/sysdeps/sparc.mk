@@ -15,7 +15,7 @@ define libc6-dev-sparc64_extra_pkg_install
 mkdir -p debian/libc6-dev-sparc64/usr/include/gnu
 cp -af debian/tmp-sparc64/usr/include/sparc64-linux-gnu/gnu/stubs-64.h \
         debian/libc6-dev-sparc64/usr/include/gnu
-ln -sf . debian/libc6-dev-sparc64/usr/include/sparc-linux-gnu
+ln -sf . debian/libc6-dev-sparc64/usr/include/sparc64-linux-gnu
 endef
 
 # build a sparcv9 optimized library
