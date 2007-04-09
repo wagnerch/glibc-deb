@@ -183,6 +183,7 @@ glibc (2.5-1) UNRELEASED; urgency=low
   [ Clint Adams ]
   * debian/control.in/main, debian/sysdeps/depflags.pl, debian/control: change
     dependencies on linux-kernel-headers to linux-libc-dev.
+  * debian/watch: add watch file.
 
  -- Clint Adams <schizo@debian.org>  Mon, 09 Apr 2007 16:17:20 -0400
 
