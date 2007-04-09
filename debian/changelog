@@ -1,4 +1,4 @@
-glibc (2.5-0exp5) UNRELEASED; urgency=low
+glibc (2.5-1) UNRELEASED; urgency=low
 
   * New upstream version 2.5.
     - Adds support of POSIX_MADV_* on mips, mipsel, arm and hppa.  Closes:
@@ -135,9 +135,9 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
     to mktemp).  Closes: #377310.
   * any/cvs-ftw-c.diff: new patch (fix nftw() with FTW_CHDIR in /) from CVS.
     Closes: #367522.
-  * any/cvs-printf_fp-c.diff: new patch (fix printf %#.0g) from CVS. 
+  * any/cvs-printf_fp-c.diff: new patch (fix printf %#.0g) from CVS.
     Closes: #209136.
-  * New Norwegian bokmål debconf translation, by Bjørn Steensrud.  Closes: 
+  * New Norwegian bokmål debconf translation, by Bjørn Steensrud.  Closes:
     #412559.
   * Remove patches/arm/local-softfloat.diff and patches/series.arm-softfloat.
     Remove arm-softfloat from debian/rules.d/control.mk. armel (ARM EABI)
@@ -180,7 +180,11 @@ glibc (2.5-0exp5) UNRELEASED; urgency=low
   * patches/hurd-i386/local-tls.diff: New patch (fixes building with TLS) by
     Samuel Thibault and Barry deFreese.  Closes: #413787.
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 21 Feb 2007 12:09:32 +0100
+  [ Clint Adams ]
+  * debian/control.in/main, debian/sysdeps/depflags.pl, debian/control: change
+    dependencies on linux-kernel-headers to linux-libc-headers.
+
+ -- Clint Adams <schizo@debian.org>  Mon, 09 Apr 2007 16:17:20 -0400
 
 glibc (2.4-1) UNRELEASED; urgency=low
 
