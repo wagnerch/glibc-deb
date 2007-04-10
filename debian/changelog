@@ -74,9 +74,6 @@ glibc (2.5-1) UNRELEASED; urgency=low
     with linuxthreads) from the libc-alpha mailing list.
   * debian/powerpc/cvs-tls-debug.diff: new patch (fix for debugging
     thread-local variables on powerpc) from CVS.
-  * Build depends on binutils (>= 2.17.50) to enable --hash-style=both
-    linking. Depends on a binutils version that supports DT_GNU_HASH.
-    Closes: #405738.
   * Build depends on gcc-4.2 on hppa to enable TLS on hppa.  Closes: #397813.
   * debian/patches/hppa/cvs-hppa-update.diff: new patch (CVS update).
   * debian/sysdeps/hppa.mk, debian/script.in/kernelcheck.sh: bump minimum
