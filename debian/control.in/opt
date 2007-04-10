@@ -52,7 +52,7 @@ Description: GNU C Library: Shared libraries [Xen version]
  the system. This package includes shared versions of the standard C
  library and the standard math library, as well as many others.
  .
- This set of libraries are optimized for the Xen hypervisor, and will be
+ This set of libraries is optimized for the Xen hypervisor, and will be
  selected instead when running under Xen.
 
 Package: libc0.1-i686

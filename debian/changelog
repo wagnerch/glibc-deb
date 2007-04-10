@@ -184,6 +184,11 @@ glibc (2.5-1) UNRELEASED; urgency=low
   * debian/control.in/main, debian/sysdeps/depflags.pl, debian/control: change
     dependencies on linux-kernel-headers to linux-libc-dev.
   * debian/watch: add watch file.
+  * debian/control, debian/control.in/opt, debian/control.in/main,
+    debian/control.in/libc0.1, debian/control.in/libc,
+    debian/debhelper.in/locales.templates: English corrections from
+    Christian Perrier for Debconf templates and package descriptions.
+    Closes: #418006.
 
  -- Clint Adams <schizo@debian.org>  Mon, 09 Apr 2007 16:17:20 -0400
 
