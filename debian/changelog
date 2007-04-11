@@ -1,4 +1,4 @@
-glibc (2.5-1) UNRELEASED; urgency=low
+glibc (2.5-1) unstable; urgency=low
 
   * New upstream version 2.5.
     - Adds support of POSIX_MADV_* on mips, mipsel, arm and hppa.  Closes:
@@ -178,8 +178,6 @@ glibc (2.5-1) UNRELEASED; urgency=low
     Samuel Thibault and Barry deFreese.  Closes: #413787.
 
   [ Clint Adams ]
-  * debian/control.in/main, debian/sysdeps/depflags.pl, debian/control: change
-    dependencies on linux-kernel-headers to linux-libc-dev.
   * debian/watch: add watch file.
   * debian/control, debian/control.in/opt, debian/control.in/main,
     debian/control.in/libc0.1, debian/control.in/libc,
