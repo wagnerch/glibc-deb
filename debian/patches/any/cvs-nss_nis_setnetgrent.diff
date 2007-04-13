@@ -1,0 +1,16 @@
+Index: nis/nss_nis/nis-netgrp.c
+===================================================================
+RCS file: /cvs/glibc/libc/nis/nss_nis/nis-netgrp.c,v
+retrieving revision 1.12
+diff -u -p -r1.12 nis-netgrp.c
+--- nis/nss_nis/nis-netgrp.c	14 Aug 2004 04:20:34 -0000	1.12
++++ nis/nss_nis/nis-netgrp.c	7 Aug 2005 04:15:29 -0000
+@@ -75,7 +75,7 @@ _nss_nis_setnetgrent (const char *group,
+ 	 which is one byte larger than the value in LEN specifies
+ 	 and the last byte is filled with NUL.  So we can simply
+ 	 use that buffer.  */
+-      assert (len > 0);
++      assert (len >= 0);
+       assert (malloc_usable_size (netgrp->data) >= len + 1);
+       assert (netgrp->data[len] == '\0');
+ 

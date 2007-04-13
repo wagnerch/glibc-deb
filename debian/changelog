@@ -7,7 +7,11 @@ glibc (2.3.6.ds1-13etch1) stable; urgency=low
     glibc-2.5 branch: use dh_shlibdeps to set the dependencies of nscd.
     Closes: #409288, #412562.
 
- -- Pierre Habouzit <madcoder@debian.org>  Mon,  5 Mar 2007 10:32:34 +0100
+  [ Aurelien Jarno ]
+  * patches/any/cvs-nss_nis_setnetgrent.diff: new patch from upstream (fix
+    a wrong assertion in nss_nis_setnetgrent.  Closes: #369536.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 13 Apr 2007 11:21:22 +0200
 
 glibc (2.3.6.ds1-13) unstable; urgency=low
 
