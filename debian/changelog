@@ -1,4 +1,4 @@
-glibc (2.3.6.ds1-14) UNRELEASED; urgency=low
+glibc (2.3.6.ds1-13etch1) stable; urgency=low
 
   [ Pierre Habouzit ]
   * any/cvs-sunrpc-64bits-svc_getreqset.diff: fix 64bits issue for 64bits
