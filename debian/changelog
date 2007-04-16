@@ -10,8 +10,10 @@ glibc (2.3.6.ds1-13etch1) stable; urgency=low
   [ Aurelien Jarno ]
   * patches/any/cvs-nss_nis_setnetgrent.diff: new patch from upstream (fix
     a wrong assertion in nss_nis_setnetgrent.  Closes: #369536.
+  * patches/any/submitted-gethostbyname_r.diff: new patch to fix unaligned
+    memory access in gethostbyname_r.diff().  Closes: #419459.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 13 Apr 2007 11:21:22 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 16 Apr 2007 22:51:12 +0200
 
 glibc (2.3.6.ds1-13) unstable; urgency=low
 

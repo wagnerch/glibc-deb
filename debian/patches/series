@@ -183,6 +183,7 @@ any/local-tcsetaddr.diff -p1
 any/local-ttyname-devfs.diff -p0
 any/local-version-sanity.diff -p1
 any/submitted-eh-frame-terminator.diff -p1
+any/submitted-gethostbyname_r.diff -p0
 any/submitted-nis-netgrp.diff 
 any/submitted-strfmon.diff
 any/cvs-sunrpc-xdrmem_setpos.diff
