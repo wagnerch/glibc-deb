@@ -1,0 +1,17 @@
+diff -ur sysdeps/unix/sysv/linux/not-cancel.h sysdeps/unix/sysv/linux/not-cancel.h
+--- sysdeps/unix/sysv/linux/not-cancel.h	2003-09-04 16:05:12.000000000 +0200
++++ sysdeps/unix/sysv/linux/not-cancel.h	2007-04-19 13:46:59.000000000 +0200
+@@ -55,6 +55,11 @@
+ # define waitpid_not_cancel(pid, stat_loc, options) \
+   INLINE_SYSCALL (waitpid, 3, pid, stat_loc, options)
+ #else
+-# define waitpid_not_cancel(pid, stat_loc, options) \
+-  INLINE_SYSCALL (wait4, 4, pid, stat_loc, options, NULL)
++# if defined(__alpha__) 
++#  define waitpid_not_cancel(pid, stat_loc, options) \
++   wait4(pid, stat_loc, options, NULL)
++# else
++#  define waitpid_not_cancel(pid, stat_loc, options) \
++   INLINE_SYSCALL (wait4, 4, pid, stat_loc, options, NULL)
++# endif
+ #endif
