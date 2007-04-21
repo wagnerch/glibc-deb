@@ -16,7 +16,7 @@ Index: glibc-2.3.5/nis/nss_nis/nis-netgrp.c
 @@ -76,7 +76,10 @@
  	 and the last byte is filled with NUL.  So we can simply
  	 use that buffer.  */
-       assert (len > 0);
+       assert (len >= 0);
 -      assert (malloc_usable_size (netgrp->data) >= len + 1);
 +      /* Call to malloc_usable_size disabled, this breaks if applications
 +	 redefine malloc/free with a different implementation.
