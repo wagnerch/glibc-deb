@@ -24,7 +24,7 @@
    int32_t ttl = 0;
  
 +  /* Align the buffer. */
-+  host_data = (struct host_data *) __PTR_ALIGN(0, buffer, sizeof(char*) - 1);
++  host_data = (struct host_data *) (((intptr_t) buffer + (sizeof(char*) - 1)) & ~(sizeof(char*) - 1));
 +  linebuflen = buflen - sizeof (struct host_data) - ((char *)host_data - buffer);
 +
    if (__builtin_expect (linebuflen, 0) < 0)
