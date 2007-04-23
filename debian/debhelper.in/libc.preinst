@@ -184,8 +184,8 @@ then
       exit 1
     fi
   fi
-  for i in libc.so.0.1 libc.so.6 libc.so.6.1 libdl.so.2 ; do
-    if [ -e /lib/tls/$i ] && ! grep -q /lib/tls/$i /var/lib/dpkg/info/LIBC.list ; then
+  for i in ld-2.3.2.so libc-2.3.2.so ld-2.3.6.so libc-2.3.6.so ; do
+    if [ -e /lib/tls/$i ] && ! dpkg-query -L LIBC 2>/dev/null | grep -q /lib/tls/$i ; then
       echo
       echo "A non-dpkg owned copy of the C library was found in /lib/tls."
       echo "It is not safe to upgrade the C library in this situation;"
