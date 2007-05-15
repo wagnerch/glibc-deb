@@ -1,3 +1,10 @@
+glibc (2.3.6.ds1-13etch2) UNRELEASED; urgency=low
+
+  * patches/any/cvs-vfprintf-stack-smashing.diff: fix issue with 8bits locales
+    and printf exploding the stack with large width specifiers.
+
+ -- Pierre Habouzit <madcoder@debian.org>  Tue, 15 May 2007 13:58:50 +0200
+
 glibc (2.3.6.ds1-13etch1) stable; urgency=low
 
   [ Pierre Habouzit ]

@@ -190,3 +190,4 @@ any/submitted-strfmon.diff
 any/cvs-sunrpc-xdrmem_setpos.diff
 any/cvs-getent-wrong-struct-size.diff -p0
 any/cvs-sunrpc-64bits-svc_getreqset.diff -p0
+any/cvs-vfprintf-stack-smashing.diff
