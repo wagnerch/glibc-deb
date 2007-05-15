@@ -1,0 +1,37 @@
+#2005-09-24  Jakub Jelinek  <jakub@redhat.com>
+#
+#       * inet/getnetgrent_r.c (innetgr): Call endfct even if result != 0.
+#       Return 1 only if result == 1.  Patch by Benoit Capelle.
+#
+Index: glibc-2.3.6/inet/getnetgrent_r.c
+===================================================================
+--- glibc-2.3.6.orig/inet/getnetgrent_r.c	2007-05-15 14:34:38.302725105 +0200
++++ glibc-2.3.6/inet/getnetgrent_r.c	2007-05-15 14:34:51.427473042 +0200
+@@ -405,9 +405,6 @@
+ 		    }
+ 		}
+ 
+-	      if (result != 0)
+-		break;
+-
+ 	      /* If we found one service which does know the given
+ 		 netgroup we don't try further.  */
+ 	      status = NSS_STATUS_RETURN;
+@@ -417,6 +414,9 @@
+ 	  if (__nss_lookup (&entry.nip, "endnetgrent", &endfct.ptr) == 0)
+ 	    (*endfct.f) (&entry);
+ 
++	  if (result != 0)
++	    break;
++
+ 	  /* Look for the next service.  */
+ 	  no_more = __nss_next (&entry.nip, "setnetgrent",
+ 				&setfct.ptr, status, 0);
+@@ -439,6 +439,6 @@
+   /* Free the memory.  */
+   free_memory (&entry);
+ 
+-  return result;
++  return result == 1;
+ }
+ libc_hidden_def (innetgr)
