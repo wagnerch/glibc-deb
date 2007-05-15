@@ -1,9 +1,11 @@
-glibc (2.3.6.ds1-13etch2) UNRELEASED; urgency=low
+glibc (2.3.6.ds1-13etch2) stable; urgency=low
 
   * patches/any/cvs-vfprintf-stack-smashing.diff: fix issue with 8bits locales
     and printf exploding the stack with large width specifiers.
+  * patches/any/cvs-getnetgrent_r-memory-leak.diff: fix memory leak in
+    getnetgrent_r. Closes: #423369.
 
- -- Pierre Habouzit <madcoder@debian.org>  Tue, 15 May 2007 13:58:50 +0200
+ -- Pierre Habouzit <madcoder@debian.org>  Tue, 15 May 2007 14:07:40 +0200
 
 glibc (2.3.6.ds1-13etch1) stable; urgency=low
 
