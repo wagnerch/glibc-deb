@@ -1,19 +1,63 @@
-glibc (2.5-8) UNRELEASED; urgency=low
+glibc (2.6~20070518-1) experimental; urgency=low
 
-  [ Aurelien Jarno ]
-  * debian/sysdeps/depflags.pl: Add a conflicts on binutils
-    (<< 2.17cvs20070426-1) for libc-dev.  Closes: #422625.
-
-  [ Clint Adams ]
+  [ Clint Adams]
+  * New upstream version.
+   - Remove locale/iso3166-RS.diff (obsolete).
+   - Remove locale/fix-exhausted-memory.diff (merged upstream).
+   - Disable locale/LC_COLLATE-keywords-ordering.diff (broken).
+   - Remove localedata/locale-pl_PL.diff (merged upstream).
+   - Disable localedata/locales-sr.diff (broken).
+   - Disable localedata/tailor-iso14651_t1.diff (broken).
+   - Disable localedata/first_weekday.diff (broken).
+   - Remove alpha/cvs-cfi.diff (merged upstream).
+   - Remove arm/cvs-check_pf.c (merged upstream).
+   - Remove hppa/cvs-hppa-update.diff (obsolete).
+   - Disable hppa/submitted-lt.diff (broken).
+   - Disable hppa/submitted-nptl-carlos2.diff (broken).
+   - Remove hppa/local-r19use.diff (merged upstream).
+   - Remove hurd-i386/cvs-futimes.diff (merged upstream).
+   - Disable hurd-i386/submitted-libc_once.diff (broken).
+   - Remove m68k/cvs-m68k-update.diff (obsolete).
+   - Disable m68k/local-mathinline_h.diff (broken).
+   - Disable m68k/local-pthread_lock.diff (broken).
+   - Disable mips/cvs-ldsodefs_h.diff (broken).
+   - Remove mips/submitted-msq.diff (merged upstream).
+   - Remove all/cvs-iconv-E13B.diff (obsolete).
+   - Disable all/local-pthread-manpages.diff (broken).
+   - Disable all/submitted-new-brf-encoding.diff (broken).
+   - Remove any/cvs-2.5-branch-update.diff (obsolete).
+   - Remove any/cvs-pow.diff (obsolete).
+   - Disable any/cvs-printf_fp-c.diff (broken).
+   - Remove any/cvs-ftw-c.diff (obsolete).
+   - Remove any/cvs-bits_in_h-ipv6.diff (obsolete).
+   - Disable any/cvs-itoa-c.diff (broken).
+   - Disable any/cvs-lt-update.diff (broken).
+   - Remove any/cvs-realpath.diff (obsolete).
+   - Remove any/cvs-vfprintf-stack-smashing.diff (obsolete).
+   - Disable any/cvs-zdump-64-bit.diff (broken).
+   - Disable any/local-notls.diff (broken).
+   - Disable any/local-bashisms.diff (broken).
+   - Disable any/local-ldso-disable-hwcap.diff (broken).
+   - Disable any/local-linuxthreads-semaphore_h.diff (broken).
+   - Disable any/local-linuxthreads-tst-sighandler.diff (broken).
+   - Disable any/local-sysctl.diff (broken).
+   - Disable any/submitted-gethostbyname_r.diff (broken).
+   - Disable any/submitted-iconv-colon.diff (broken).
+   - Disable any/submitted-strfry.diff (broken).
+   - Disable any/submitted-unistd_XOPEN_VERSION.diff (broken).
+   - Remove any/cvs-glob-c.diff (obsolete).
+   - Disable any/cvs-scanf_hexfloat.diff (broken).
   * debian/sysdeps/depflags.pl: Clean out relationships for packages
     that do not exist in sarge or later.
   * debian/debhelper.in/libc.install: do not hardcode the glibc
     version number in the path to gai.conf.
-
+ 
   [ Aurelien Jarno ]
+  * debian/sysdeps/depflags.pl: Add a conflicts on binutils
+    (<< 2.17cvs20070426-1) for libc-dev.  Closes: #422625.
   * debian/local/etc_init.d/glibc.sh: fix a typo.  Closes: #423870. 
-
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 15 May 2007 14:27:59 +0200
+ 
+ -- Clint Adams <schizo@debian.org>  Fri, 18 May 2007 11:21:07 -0400
 
 glibc (2.5-7) unstable; urgency=low
 
