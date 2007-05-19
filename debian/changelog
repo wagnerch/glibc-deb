@@ -6,7 +6,7 @@ glibc (2.6~20070518-2) experimental; urgency=low
    - Remove locale/fix-exhausted-memory.diff (merged upstream).
    - Disable locale/LC_COLLATE-keywords-ordering.diff (broken).
    - Remove localedata/locale-pl_PL.diff (merged upstream).
-   - Disable localedata/locales-sr.diff (broken).
+   - Remove localedata/locales-sr.diff (obsolete).
    - Disable localedata/tailor-iso14651_t1.diff (broken).
    - Disable localedata/first_weekday.diff (broken).
    - Remove alpha/cvs-cfi.diff (merged upstream).
