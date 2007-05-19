@@ -1,4 +1,4 @@
-glibc (2.6~20070518-1) experimental; urgency=low
+glibc (2.6~20070518-2) experimental; urgency=low
 
   [ Clint Adams]
   * New upstream version.
@@ -12,18 +12,14 @@ glibc (2.6~20070518-1) experimental; urgency=low
    - Remove alpha/cvs-cfi.diff (merged upstream).
    - Remove arm/cvs-check_pf.c (merged upstream).
    - Remove hppa/cvs-hppa-update.diff (obsolete).
-   - Disable hppa/submitted-lt.diff (broken).
    - Disable hppa/submitted-nptl-carlos2.diff (broken).
    - Remove hppa/local-r19use.diff (merged upstream).
    - Remove hurd-i386/cvs-futimes.diff (merged upstream).
-   - Disable hurd-i386/submitted-libc_once.diff (broken).
    - Remove m68k/cvs-m68k-update.diff (obsolete).
    - Disable m68k/local-mathinline_h.diff (broken).
-   - Disable m68k/local-pthread_lock.diff (broken).
    - Disable mips/cvs-ldsodefs_h.diff (broken).
    - Remove mips/submitted-msq.diff (merged upstream).
    - Remove all/cvs-iconv-E13B.diff (obsolete).
-   - Disable all/local-pthread-manpages.diff (broken).
    - Disable all/submitted-new-brf-encoding.diff (broken).
    - Remove any/cvs-2.5-branch-update.diff (obsolete).
    - Remove any/cvs-pow.diff (obsolete).
@@ -35,11 +31,7 @@ glibc (2.6~20070518-1) experimental; urgency=low
    - Remove any/cvs-realpath.diff (obsolete).
    - Remove any/cvs-vfprintf-stack-smashing.diff (obsolete).
    - Disable any/cvs-zdump-64-bit.diff (broken).
-   - Disable any/local-notls.diff (broken).
    - Disable any/local-ldso-disable-hwcap.diff (broken).
-   - Disable any/local-linuxthreads-semaphore_h.diff (broken).
-   - Disable any/local-linuxthreads-tst-sighandler.diff (broken).
-   - Disable any/local-sysctl.diff (broken).
    - Disable any/submitted-gethostbyname_r.diff (broken).
    - Disable any/submitted-iconv-colon.diff (broken).
    - Disable any/submitted-strfry.diff (broken).
