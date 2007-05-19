@@ -50,7 +50,10 @@ glibc (2.6~20070518-1) experimental; urgency=low
     that do not exist in sarge or later.
   * debian/debhelper.in/libc.install: do not hardcode the glibc
     version number in the path to gai.conf.
- 
+  * debian/control.in/main, debian/sysdeps/depflags.pl:
+    use linux-libc-dev on all linux architectures, and
+    remove all references to linux-kernel-headers.
+
   [ Aurelien Jarno ]
   * debian/sysdeps/depflags.pl: Add a conflicts on binutils
     (<< 2.17cvs20070426-1) for libc-dev.  Closes: #422625.
