@@ -36,7 +36,6 @@ glibc (2.6~20070518-1) experimental; urgency=low
    - Remove any/cvs-vfprintf-stack-smashing.diff (obsolete).
    - Disable any/cvs-zdump-64-bit.diff (broken).
    - Disable any/local-notls.diff (broken).
-   - Disable any/local-bashisms.diff (broken).
    - Disable any/local-ldso-disable-hwcap.diff (broken).
    - Disable any/local-linuxthreads-semaphore_h.diff (broken).
    - Disable any/local-linuxthreads-tst-sighandler.diff (broken).
