@@ -10,12 +10,11 @@
 # DP: Dpatch author: Denis Barbier <barbier@debian.org>
 # DP: Patch author: Denis Barbier
 # DP: Upstream status: not submitted
-# DP: Date: 2006-01-10
 
 Index: localedata/locales/aa_DJ
 ===================================================================
---- localedata/locales/aa_DJ.orig
-+++ localedata/locales/aa_DJ
+--- localedata/locales/aa_DJ.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/aa_DJ	2007-05-19 20:40:51.000000000 -0400
 @@ -273,5 +273,7 @@
  date_fmt    "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -26,8 +25,8 @@ Index: localedata/locales/aa_DJ
  %
 Index: localedata/locales/aa_ER
 ===================================================================
---- localedata/locales/aa_ER.orig
-+++ localedata/locales/aa_ER
+--- localedata/locales/aa_ER.orig	2003-11-03 23:52:34.000000000 -0500
++++ localedata/locales/aa_ER	2007-05-19 20:40:51.000000000 -0400
 @@ -223,5 +223,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -38,8 +37,8 @@ Index: localedata/locales/aa_ER
  %
 Index: localedata/locales/aa_ER@saaho
 ===================================================================
---- localedata/locales/aa_ER@saaho.orig
-+++ localedata/locales/aa_ER@saaho
+--- localedata/locales/aa_ER@saaho.orig	2003-11-03 23:53:01.000000000 -0500
++++ localedata/locales/aa_ER@saaho	2007-05-19 20:40:51.000000000 -0400
 @@ -207,5 +207,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -50,8 +49,8 @@ Index: localedata/locales/aa_ER@saaho
  %
 Index: localedata/locales/aa_ET
 ===================================================================
---- localedata/locales/aa_ET.orig
-+++ localedata/locales/aa_ET
+--- localedata/locales/aa_ET.orig	2003-11-03 23:53:19.000000000 -0500
++++ localedata/locales/aa_ET	2007-05-19 20:40:51.000000000 -0400
 @@ -226,5 +226,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -62,8 +61,8 @@ Index: localedata/locales/aa_ET
  %
 Index: localedata/locales/af_ZA
 ===================================================================
---- localedata/locales/af_ZA.orig
-+++ localedata/locales/af_ZA
+--- localedata/locales/af_ZA.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/af_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -164,6 +164,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -75,8 +74,8 @@ Index: localedata/locales/af_ZA
  LC_MESSAGES
 Index: localedata/locales/am_ET
 ===================================================================
---- localedata/locales/am_ET.orig
-+++ localedata/locales/am_ET
+--- localedata/locales/am_ET.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/am_ET	2007-05-19 20:40:51.000000000 -0400
 @@ -1564,5 +1564,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12D3><U002F><U121D>"
@@ -87,8 +86,8 @@ Index: localedata/locales/am_ET
  %
 Index: localedata/locales/ar_AE
 ===================================================================
---- localedata/locales/ar_AE.orig
-+++ localedata/locales/ar_AE
+--- localedata/locales/ar_AE.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_AE	2007-05-19 20:40:51.000000000 -0400
 @@ -141,6 +141,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -100,8 +99,8 @@ Index: localedata/locales/ar_AE
  
 Index: localedata/locales/ar_BH
 ===================================================================
---- localedata/locales/ar_BH.orig
-+++ localedata/locales/ar_BH
+--- localedata/locales/ar_BH.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_BH	2007-05-19 20:40:51.000000000 -0400
 @@ -145,6 +145,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -113,8 +112,8 @@ Index: localedata/locales/ar_BH
  
 Index: localedata/locales/ar_DZ
 ===================================================================
---- localedata/locales/ar_DZ.orig
-+++ localedata/locales/ar_DZ
+--- localedata/locales/ar_DZ.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_DZ	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -126,8 +125,8 @@ Index: localedata/locales/ar_DZ
  
 Index: localedata/locales/ar_EG
 ===================================================================
---- localedata/locales/ar_EG.orig
-+++ localedata/locales/ar_EG
+--- localedata/locales/ar_EG.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_EG	2007-05-19 20:40:51.000000000 -0400
 @@ -148,6 +148,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -139,8 +138,8 @@ Index: localedata/locales/ar_EG
  
 Index: localedata/locales/ar_IN
 ===================================================================
---- localedata/locales/ar_IN.orig
-+++ localedata/locales/ar_IN
+--- localedata/locales/ar_IN.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -127,6 +127,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -152,8 +151,8 @@ Index: localedata/locales/ar_IN
  
 Index: localedata/locales/ar_IQ
 ===================================================================
---- localedata/locales/ar_IQ.orig
-+++ localedata/locales/ar_IQ
+--- localedata/locales/ar_IQ.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_IQ	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -165,8 +164,8 @@ Index: localedata/locales/ar_IQ
  
 Index: localedata/locales/ar_JO
 ===================================================================
---- localedata/locales/ar_JO.orig
-+++ localedata/locales/ar_JO
+--- localedata/locales/ar_JO.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_JO	2007-05-19 20:40:51.000000000 -0400
 @@ -162,6 +162,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -178,8 +177,8 @@ Index: localedata/locales/ar_JO
  
 Index: localedata/locales/ar_KW
 ===================================================================
---- localedata/locales/ar_KW.orig
-+++ localedata/locales/ar_KW
+--- localedata/locales/ar_KW.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_KW	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -191,8 +190,8 @@ Index: localedata/locales/ar_KW
  
 Index: localedata/locales/ar_LB
 ===================================================================
---- localedata/locales/ar_LB.orig
-+++ localedata/locales/ar_LB
+--- localedata/locales/ar_LB.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_LB	2007-05-19 20:40:51.000000000 -0400
 @@ -161,6 +161,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -204,8 +203,8 @@ Index: localedata/locales/ar_LB
  
 Index: localedata/locales/ar_LY
 ===================================================================
---- localedata/locales/ar_LY.orig
-+++ localedata/locales/ar_LY
+--- localedata/locales/ar_LY.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_LY	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -217,8 +216,8 @@ Index: localedata/locales/ar_LY
  
 Index: localedata/locales/ar_MA
 ===================================================================
---- localedata/locales/ar_MA.orig
-+++ localedata/locales/ar_MA
+--- localedata/locales/ar_MA.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_MA	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -230,8 +229,8 @@ Index: localedata/locales/ar_MA
  
 Index: localedata/locales/ar_OM
 ===================================================================
---- localedata/locales/ar_OM.orig
-+++ localedata/locales/ar_OM
+--- localedata/locales/ar_OM.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_OM	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -243,8 +242,8 @@ Index: localedata/locales/ar_OM
  
 Index: localedata/locales/ar_QA
 ===================================================================
---- localedata/locales/ar_QA.orig
-+++ localedata/locales/ar_QA
+--- localedata/locales/ar_QA.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_QA	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -256,9 +255,9 @@ Index: localedata/locales/ar_QA
  
 Index: localedata/locales/ar_SA
 ===================================================================
---- localedata/locales/ar_SA.orig
-+++ localedata/locales/ar_SA
-@@ -132,6 +132,8 @@
+--- localedata/locales/ar_SA.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_SA	2007-05-19 20:40:51.000000000 -0400
+@@ -347,6 +347,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -269,8 +268,8 @@ Index: localedata/locales/ar_SA
  
 Index: localedata/locales/ar_SD
 ===================================================================
---- localedata/locales/ar_SD.orig
-+++ localedata/locales/ar_SD
+--- localedata/locales/ar_SD.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_SD	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -282,8 +281,8 @@ Index: localedata/locales/ar_SD
  
 Index: localedata/locales/ar_SY
 ===================================================================
---- localedata/locales/ar_SY.orig
-+++ localedata/locales/ar_SY
+--- localedata/locales/ar_SY.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_SY	2007-05-19 20:40:51.000000000 -0400
 @@ -161,6 +161,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -295,8 +294,8 @@ Index: localedata/locales/ar_SY
  
 Index: localedata/locales/ar_TN
 ===================================================================
---- localedata/locales/ar_TN.orig
-+++ localedata/locales/ar_TN
+--- localedata/locales/ar_TN.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_TN	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -308,8 +307,8 @@ Index: localedata/locales/ar_TN
  
 Index: localedata/locales/ar_YE
 ===================================================================
---- localedata/locales/ar_YE.orig
-+++ localedata/locales/ar_YE
+--- localedata/locales/ar_YE.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ar_YE	2007-05-19 20:40:51.000000000 -0400
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -321,8 +320,8 @@ Index: localedata/locales/ar_YE
  
 Index: localedata/locales/az_AZ
 ===================================================================
---- localedata/locales/az_AZ.orig
-+++ localedata/locales/az_AZ
+--- localedata/locales/az_AZ.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/az_AZ	2007-05-19 20:40:51.000000000 -0400
 @@ -274,6 +274,8 @@
  t_fmt     "<U0025><U0054>"
  am_pm     "";""
@@ -334,8 +333,8 @@ Index: localedata/locales/az_AZ
  LC_PAPER
 Index: localedata/locales/be_BY
 ===================================================================
---- localedata/locales/be_BY.orig
-+++ localedata/locales/be_BY
+--- localedata/locales/be_BY.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/be_BY	2007-05-19 20:40:51.000000000 -0400
 @@ -145,6 +145,9 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -348,8 +347,8 @@ Index: localedata/locales/be_BY
  LC_PAPER
 Index: localedata/locales/be_BY@latin
 ===================================================================
---- localedata/locales/be_BY@latin.orig
-+++ localedata/locales/be_BY@latin
+--- localedata/locales/be_BY@latin.orig	2005-09-24 11:00:56.000000000 -0400
++++ localedata/locales/be_BY@latin	2007-05-19 20:40:51.000000000 -0400
 @@ -102,6 +102,9 @@
  date_fmt        "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -362,8 +361,8 @@ Index: localedata/locales/be_BY@latin
  LC_COLLATE
 Index: localedata/locales/bn_IN
 ===================================================================
---- localedata/locales/bn_IN.orig
-+++ localedata/locales/bn_IN
+--- localedata/locales/bn_IN.orig	2006-08-19 11:45:14.000000000 -0400
++++ localedata/locales/bn_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -145,6 +145,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -375,8 +374,8 @@ Index: localedata/locales/bn_IN
  
 Index: localedata/locales/br_FR
 ===================================================================
---- localedata/locales/br_FR.orig
-+++ localedata/locales/br_FR
+--- localedata/locales/br_FR.orig	2004-03-23 02:36:58.000000000 -0500
++++ localedata/locales/br_FR	2007-05-19 20:40:51.000000000 -0400
 @@ -141,6 +141,8 @@
  t_fmt   "<U0025><U0054>"
  am_pm   "<U0020>";"<U0020>"
@@ -388,8 +387,8 @@ Index: localedata/locales/br_FR
  LC_PAPER
 Index: localedata/locales/bs_BA
 ===================================================================
---- localedata/locales/bs_BA.orig
-+++ localedata/locales/bs_BA
+--- localedata/locales/bs_BA.orig	2006-04-26 03:20:23.000000000 -0400
++++ localedata/locales/bs_BA	2007-05-19 20:40:51.000000000 -0400
 @@ -208,6 +208,8 @@
  t_fmt   "<U0025><U0054>"
  am_pm   "";""
@@ -401,8 +400,8 @@ Index: localedata/locales/bs_BA
  LC_PAPER
 Index: localedata/locales/byn_ER
 ===================================================================
---- localedata/locales/byn_ER.orig
-+++ localedata/locales/byn_ER
+--- localedata/locales/byn_ER.orig	2003-11-04 01:43:55.000000000 -0500
++++ localedata/locales/byn_ER	2007-05-19 20:40:51.000000000 -0400
 @@ -218,5 +218,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12A3><U12F5>"
@@ -413,8 +412,8 @@ Index: localedata/locales/byn_ER
  %
 Index: localedata/locales/ca_ES
 ===================================================================
---- localedata/locales/ca_ES.orig
-+++ localedata/locales/ca_ES
+--- localedata/locales/ca_ES.orig	2007-02-17 23:34:22.000000000 -0500
++++ localedata/locales/ca_ES	2007-05-19 20:40:51.000000000 -0400
 @@ -138,6 +138,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -426,18 +425,18 @@ Index: localedata/locales/ca_ES
  LC_PAPER
 Index: localedata/locales/cs_CZ
 ===================================================================
---- localedata/locales/cs_CZ.orig
-+++ localedata/locales/cs_CZ
-@@ -361,7 +361,7 @@
+--- localedata/locales/cs_CZ.orig	2006-12-05 16:28:07.000000000 -0500
++++ localedata/locales/cs_CZ	2007-05-19 20:40:51.000000000 -0400
+@@ -2438,7 +2438,7 @@
  %		"<U004E><U006F><U0076>";/
  %		"<U0044><U0065><U0063>"
  
 -week		7;19971201;4
 +% week		7;19971201;4
  
- d_t_fmt		"<U0025><U0061><U00A0><U0025><U0065><U002E><U00A0><U0025><U0042><U00A0><U0025><U0059><U002C><U00A0><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U00A0><U0025><U005A>"
+ d_t_fmt		"<U0025><U0061><U00A0><U0025><U002D><U0064><U002E><U00A0><U0025><U0042><U00A0><U0025><U0059><U002C><U00A0><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U00A0><U0025><U005A>"
  
-@@ -376,6 +376,8 @@
+@@ -2453,6 +2453,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -448,8 +447,8 @@ Index: localedata/locales/cs_CZ
  
 Index: localedata/locales/csb_PL
 ===================================================================
---- localedata/locales/csb_PL.orig
-+++ localedata/locales/csb_PL
+--- localedata/locales/csb_PL.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/csb_PL	2007-05-19 20:40:51.000000000 -0400
 @@ -191,7 +191,7 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -461,8 +460,8 @@ Index: localedata/locales/csb_PL
  END LC_TIME
 Index: localedata/locales/cy_GB
 ===================================================================
---- localedata/locales/cy_GB.orig
-+++ localedata/locales/cy_GB
+--- localedata/locales/cy_GB.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/cy_GB	2007-05-19 20:40:51.000000000 -0400
 @@ -253,6 +253,8 @@
  date_fmt    "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -474,9 +473,9 @@ Index: localedata/locales/cy_GB
  LC_MESSAGES
 Index: localedata/locales/da_DK
 ===================================================================
---- localedata/locales/da_DK.orig
-+++ localedata/locales/da_DK
-@@ -214,6 +214,9 @@
+--- localedata/locales/da_DK.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/da_DK	2007-05-19 20:40:51.000000000 -0400
+@@ -209,6 +209,9 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -488,8 +487,8 @@ Index: localedata/locales/da_DK
  LC_MESSAGES
 Index: localedata/locales/de_AT
 ===================================================================
---- localedata/locales/de_AT.orig
-+++ localedata/locales/de_AT
+--- localedata/locales/de_AT.orig	2004-10-31 18:42:26.000000000 -0500
++++ localedata/locales/de_AT	2007-05-19 20:40:51.000000000 -0400
 @@ -121,6 +121,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -501,8 +500,8 @@ Index: localedata/locales/de_AT
  LC_PAPER
 Index: localedata/locales/de_BE
 ===================================================================
---- localedata/locales/de_BE.orig
-+++ localedata/locales/de_BE
+--- localedata/locales/de_BE.orig	2004-10-31 18:42:26.000000000 -0500
++++ localedata/locales/de_BE	2007-05-19 20:40:51.000000000 -0400
 @@ -119,6 +119,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -514,8 +513,8 @@ Index: localedata/locales/de_BE
  LC_PAPER
 Index: localedata/locales/de_CH
 ===================================================================
---- localedata/locales/de_CH.orig
-+++ localedata/locales/de_CH
+--- localedata/locales/de_CH.orig	2007-05-19 20:40:50.000000000 -0400
++++ localedata/locales/de_CH	2007-05-19 20:40:51.000000000 -0400
 @@ -121,6 +121,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -527,8 +526,8 @@ Index: localedata/locales/de_CH
  LC_PAPER
 Index: localedata/locales/de_DE
 ===================================================================
---- localedata/locales/de_DE.orig
-+++ localedata/locales/de_DE
+--- localedata/locales/de_DE.orig	2006-05-02 17:52:52.000000000 -0400
++++ localedata/locales/de_DE	2007-05-19 20:40:51.000000000 -0400
 @@ -118,7 +118,7 @@
  	"<U0044><U006F><U006E><U006E><U0065><U0072><U0073><U0074><U0061><U0067>";/
  	"<U0046><U0072><U0065><U0069><U0074><U0061><U0067>";/
@@ -549,8 +548,8 @@ Index: localedata/locales/de_DE
  LC_MESSAGES
 Index: localedata/locales/de_LU
 ===================================================================
---- localedata/locales/de_LU.orig
-+++ localedata/locales/de_LU
+--- localedata/locales/de_LU.orig	2004-10-31 18:42:26.000000000 -0500
++++ localedata/locales/de_LU	2007-05-19 20:40:51.000000000 -0400
 @@ -119,6 +119,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -562,8 +561,8 @@ Index: localedata/locales/de_LU
  LC_PAPER
 Index: localedata/locales/dz_BT
 ===================================================================
---- localedata/locales/dz_BT.orig
-+++ localedata/locales/dz_BT
+--- localedata/locales/dz_BT.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/dz_BT	2007-05-19 20:40:51.000000000 -0400
 @@ -1544,7 +1544,8 @@
  %I<U0F40><U0F66><U0F62><U0F0B><U0F58>/
  %M<U0F40><U0F66><U0F62><U0F0B><U0F46>%S %p"
@@ -576,8 +575,8 @@ Index: localedata/locales/dz_BT
  LC_MESSAGES
 Index: localedata/locales/el_GR
 ===================================================================
---- localedata/locales/el_GR.orig
-+++ localedata/locales/el_GR
+--- localedata/locales/el_GR.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/el_GR	2007-05-19 20:40:51.000000000 -0400
 @@ -139,6 +139,8 @@
  %
  % Appropriate date representation (date(1))   "%a %d %b %Y %r %Z"
@@ -589,8 +588,8 @@ Index: localedata/locales/el_GR
  LC_PAPER
 Index: localedata/locales/en_AU
 ===================================================================
---- localedata/locales/en_AU.orig
-+++ localedata/locales/en_AU
+--- localedata/locales/en_AU.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/en_AU	2007-05-19 20:40:51.000000000 -0400
 @@ -117,6 +117,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -602,8 +601,8 @@ Index: localedata/locales/en_AU
  LC_MESSAGES
 Index: localedata/locales/en_CA
 ===================================================================
---- localedata/locales/en_CA.orig
-+++ localedata/locales/en_CA
+--- localedata/locales/en_CA.orig	2007-02-17 23:34:22.000000000 -0500
++++ localedata/locales/en_CA	2007-05-19 20:40:51.000000000 -0400
 @@ -132,6 +132,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -615,8 +614,8 @@ Index: localedata/locales/en_CA
  LC_MESSAGES
 Index: localedata/locales/en_DK
 ===================================================================
---- localedata/locales/en_DK.orig
-+++ localedata/locales/en_DK
+--- localedata/locales/en_DK.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/en_DK	2007-05-19 20:40:51.000000000 -0400
 @@ -106,6 +106,9 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -629,8 +628,8 @@ Index: localedata/locales/en_DK
  LC_MESSAGES
 Index: localedata/locales/en_GB
 ===================================================================
---- localedata/locales/en_GB.orig
-+++ localedata/locales/en_GB
+--- localedata/locales/en_GB.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/en_GB	2007-05-19 20:40:51.000000000 -0400
 @@ -121,6 +121,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -642,8 +641,8 @@ Index: localedata/locales/en_GB
  LC_MESSAGES
 Index: localedata/locales/en_HK
 ===================================================================
---- localedata/locales/en_HK.orig
-+++ localedata/locales/en_HK
+--- localedata/locales/en_HK.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/en_HK	2007-05-19 20:40:51.000000000 -0400
 @@ -133,6 +133,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0070><U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U005A>"
@@ -655,8 +654,8 @@ Index: localedata/locales/en_HK
  
 Index: localedata/locales/en_IE
 ===================================================================
---- localedata/locales/en_IE.orig
-+++ localedata/locales/en_IE
+--- localedata/locales/en_IE.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/en_IE	2007-05-19 20:40:51.000000000 -0400
 @@ -115,6 +115,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -668,8 +667,8 @@ Index: localedata/locales/en_IE
  LC_MESSAGES
 Index: localedata/locales/en_IN
 ===================================================================
---- localedata/locales/en_IN.orig
-+++ localedata/locales/en_IN
+--- localedata/locales/en_IN.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/en_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -132,6 +132,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -681,8 +680,8 @@ Index: localedata/locales/en_IN
  
 Index: localedata/locales/en_NZ
 ===================================================================
---- localedata/locales/en_NZ.orig
-+++ localedata/locales/en_NZ
+--- localedata/locales/en_NZ.orig	2006-08-24 02:33:25.000000000 -0400
++++ localedata/locales/en_NZ	2007-05-19 20:40:51.000000000 -0400
 @@ -117,6 +117,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -694,8 +693,8 @@ Index: localedata/locales/en_NZ
  LC_MESSAGES
 Index: localedata/locales/en_PH
 ===================================================================
---- localedata/locales/en_PH.orig
-+++ localedata/locales/en_PH
+--- localedata/locales/en_PH.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/en_PH	2007-05-19 20:40:51.000000000 -0400
 @@ -133,6 +133,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -707,8 +706,8 @@ Index: localedata/locales/en_PH
  
 Index: localedata/locales/en_SG
 ===================================================================
---- localedata/locales/en_SG.orig
-+++ localedata/locales/en_SG
+--- localedata/locales/en_SG.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/en_SG	2007-05-19 20:40:51.000000000 -0400
 @@ -131,6 +131,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -720,8 +719,8 @@ Index: localedata/locales/en_SG
  
 Index: localedata/locales/en_US
 ===================================================================
---- localedata/locales/en_US.orig
-+++ localedata/locales/en_US
+--- localedata/locales/en_US.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/en_US	2007-05-19 20:40:51.000000000 -0400
 @@ -81,7 +81,7 @@
  	"<U0046><U0072><U0069><U0064><U0061><U0079>";/
  	"<U0053><U0061><U0074><U0075><U0072><U0064><U0061><U0079>"
@@ -742,9 +741,9 @@ Index: localedata/locales/en_US
  LC_MESSAGES
 Index: localedata/locales/en_ZA
 ===================================================================
---- localedata/locales/en_ZA.orig
-+++ localedata/locales/en_ZA
-@@ -202,6 +202,8 @@
+--- localedata/locales/en_ZA.orig	2007-04-24 15:04:21.000000000 -0400
++++ localedata/locales/en_ZA	2007-05-19 20:40:51.000000000 -0400
+@@ -205,6 +205,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -755,8 +754,8 @@ Index: localedata/locales/en_ZA
  LC_MESSAGES
 Index: localedata/locales/es_AR
 ===================================================================
---- localedata/locales/es_AR.orig
-+++ localedata/locales/es_AR
+--- localedata/locales/es_AR.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_AR	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -768,8 +767,8 @@ Index: localedata/locales/es_AR
  LC_PAPER
 Index: localedata/locales/es_BO
 ===================================================================
---- localedata/locales/es_BO.orig
-+++ localedata/locales/es_BO
+--- localedata/locales/es_BO.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_BO	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -781,8 +780,8 @@ Index: localedata/locales/es_BO
  LC_PAPER
 Index: localedata/locales/es_CL
 ===================================================================
---- localedata/locales/es_CL.orig
-+++ localedata/locales/es_CL
+--- localedata/locales/es_CL.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_CL	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -794,8 +793,8 @@ Index: localedata/locales/es_CL
  LC_PAPER
 Index: localedata/locales/es_CO
 ===================================================================
---- localedata/locales/es_CO.orig
-+++ localedata/locales/es_CO
+--- localedata/locales/es_CO.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_CO	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -807,8 +806,8 @@ Index: localedata/locales/es_CO
  LC_PAPER
 Index: localedata/locales/es_CR
 ===================================================================
---- localedata/locales/es_CR.orig
-+++ localedata/locales/es_CR
+--- localedata/locales/es_CR.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_CR	2007-05-19 20:40:51.000000000 -0400
 @@ -113,6 +113,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -820,8 +819,8 @@ Index: localedata/locales/es_CR
  LC_PAPER
 Index: localedata/locales/es_DO
 ===================================================================
---- localedata/locales/es_DO.orig
-+++ localedata/locales/es_DO
+--- localedata/locales/es_DO.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_DO	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -833,8 +832,8 @@ Index: localedata/locales/es_DO
  LC_PAPER
 Index: localedata/locales/es_EC
 ===================================================================
---- localedata/locales/es_EC.orig
-+++ localedata/locales/es_EC
+--- localedata/locales/es_EC.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_EC	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -846,8 +845,8 @@ Index: localedata/locales/es_EC
  LC_PAPER
 Index: localedata/locales/es_GT
 ===================================================================
---- localedata/locales/es_GT.orig
-+++ localedata/locales/es_GT
+--- localedata/locales/es_GT.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_GT	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -859,8 +858,8 @@ Index: localedata/locales/es_GT
  LC_PAPER
 Index: localedata/locales/es_HN
 ===================================================================
---- localedata/locales/es_HN.orig
-+++ localedata/locales/es_HN
+--- localedata/locales/es_HN.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_HN	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -872,8 +871,8 @@ Index: localedata/locales/es_HN
  LC_PAPER
 Index: localedata/locales/es_MX
 ===================================================================
---- localedata/locales/es_MX.orig
-+++ localedata/locales/es_MX
+--- localedata/locales/es_MX.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_MX	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -885,8 +884,8 @@ Index: localedata/locales/es_MX
  LC_PAPER
 Index: localedata/locales/es_NI
 ===================================================================
---- localedata/locales/es_NI.orig
-+++ localedata/locales/es_NI
+--- localedata/locales/es_NI.orig	2006-08-01 22:18:23.000000000 -0400
++++ localedata/locales/es_NI	2007-05-19 20:40:51.000000000 -0400
 @@ -114,6 +114,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -898,8 +897,8 @@ Index: localedata/locales/es_NI
  LC_PAPER
 Index: localedata/locales/es_PA
 ===================================================================
---- localedata/locales/es_PA.orig
-+++ localedata/locales/es_PA
+--- localedata/locales/es_PA.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_PA	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -911,8 +910,8 @@ Index: localedata/locales/es_PA
  LC_PAPER
 Index: localedata/locales/es_PE
 ===================================================================
---- localedata/locales/es_PE.orig
-+++ localedata/locales/es_PE
+--- localedata/locales/es_PE.orig	2006-08-01 22:18:23.000000000 -0400
++++ localedata/locales/es_PE	2007-05-19 20:40:51.000000000 -0400
 @@ -123,6 +123,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -924,8 +923,8 @@ Index: localedata/locales/es_PE
  LC_PAPER
 Index: localedata/locales/es_PR
 ===================================================================
---- localedata/locales/es_PR.orig
-+++ localedata/locales/es_PR
+--- localedata/locales/es_PR.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_PR	2007-05-19 20:40:51.000000000 -0400
 @@ -113,6 +113,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -937,8 +936,8 @@ Index: localedata/locales/es_PR
  LC_PAPER
 Index: localedata/locales/es_PY
 ===================================================================
---- localedata/locales/es_PY.orig
-+++ localedata/locales/es_PY
+--- localedata/locales/es_PY.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_PY	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -950,8 +949,8 @@ Index: localedata/locales/es_PY
  LC_PAPER
 Index: localedata/locales/es_SV
 ===================================================================
---- localedata/locales/es_SV.orig
-+++ localedata/locales/es_SV
+--- localedata/locales/es_SV.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_SV	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -963,8 +962,8 @@ Index: localedata/locales/es_SV
  LC_PAPER
 Index: localedata/locales/es_US
 ===================================================================
---- localedata/locales/es_US.orig
-+++ localedata/locales/es_US
+--- localedata/locales/es_US.orig	2007-02-17 23:34:22.000000000 -0500
++++ localedata/locales/es_US	2007-05-19 20:40:51.000000000 -0400
 @@ -174,6 +174,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -976,8 +975,8 @@ Index: localedata/locales/es_US
  LC_PAPER
 Index: localedata/locales/es_UY
 ===================================================================
---- localedata/locales/es_UY.orig
-+++ localedata/locales/es_UY
+--- localedata/locales/es_UY.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/es_UY	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -989,9 +988,9 @@ Index: localedata/locales/es_UY
  LC_PAPER
 Index: localedata/locales/es_VE
 ===================================================================
---- localedata/locales/es_VE.orig
-+++ localedata/locales/es_VE
-@@ -122,6 +122,8 @@
+--- localedata/locales/es_VE.orig	2007-02-17 14:08:28.000000000 -0500
++++ localedata/locales/es_VE	2007-05-19 20:40:51.000000000 -0400
+@@ -123,6 +123,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1002,9 +1001,9 @@ Index: localedata/locales/es_VE
  LC_PAPER
 Index: localedata/locales/et_EE
 ===================================================================
---- localedata/locales/et_EE.orig
-+++ localedata/locales/et_EE
-@@ -177,6 +177,8 @@
+--- localedata/locales/et_EE.orig	2006-08-24 03:09:01.000000000 -0400
++++ localedata/locales/et_EE	2007-05-19 20:40:51.000000000 -0400
+@@ -2196,6 +2196,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1015,8 +1014,8 @@ Index: localedata/locales/et_EE
  LC_MESSAGES
 Index: localedata/locales/eu_ES
 ===================================================================
---- localedata/locales/eu_ES.orig
-+++ localedata/locales/eu_ES
+--- localedata/locales/eu_ES.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/eu_ES	2007-05-19 20:40:51.000000000 -0400
 @@ -131,6 +131,7 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1027,8 +1026,8 @@ Index: localedata/locales/eu_ES
  LC_PAPER
 Index: localedata/locales/fr_BE
 ===================================================================
---- localedata/locales/fr_BE.orig
-+++ localedata/locales/fr_BE
+--- localedata/locales/fr_BE.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/fr_BE	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,7 @@
  <U0025><U0042><U0020><U0025><U0059><U002C><U0020>/
  <U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1039,8 +1038,8 @@ Index: localedata/locales/fr_BE
  LC_PAPER
 Index: localedata/locales/fr_CA
 ===================================================================
---- localedata/locales/fr_CA.orig
-+++ localedata/locales/fr_CA
+--- localedata/locales/fr_CA.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/fr_CA	2007-05-19 20:40:51.000000000 -0400
 @@ -123,6 +123,7 @@
  <U0025><U0042><U0020><U0025><U0059><U002C><U0020>/
  <U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1051,8 +1050,8 @@ Index: localedata/locales/fr_CA
  LC_PAPER
 Index: localedata/locales/fr_CH
 ===================================================================
---- localedata/locales/fr_CH.orig
-+++ localedata/locales/fr_CH
+--- localedata/locales/fr_CH.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/fr_CH	2007-05-19 20:40:51.000000000 -0400
 @@ -107,6 +107,7 @@
  <U0025><U0042><U0020><U0025><U0059><U002C><U0020>/
  <U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1063,8 +1062,8 @@ Index: localedata/locales/fr_CH
  LC_PAPER
 Index: localedata/locales/fr_FR
 ===================================================================
---- localedata/locales/fr_FR.orig
-+++ localedata/locales/fr_FR
+--- localedata/locales/fr_FR.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/fr_FR	2007-05-19 20:40:51.000000000 -0400
 @@ -131,6 +131,7 @@
  <U0025><U0042><U0020><U0025><U0059><U002C><U0020>/
  <U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1075,8 +1074,8 @@ Index: localedata/locales/fr_FR
  LC_PAPER
 Index: localedata/locales/fr_LU
 ===================================================================
---- localedata/locales/fr_LU.orig
-+++ localedata/locales/fr_LU
+--- localedata/locales/fr_LU.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/fr_LU	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,7 @@
  <U0025><U0042><U0020><U0025><U0059><U002C><U0020>/
  <U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1087,8 +1086,8 @@ Index: localedata/locales/fr_LU
  LC_PAPER
 Index: localedata/locales/ga_IE
 ===================================================================
---- localedata/locales/ga_IE.orig
-+++ localedata/locales/ga_IE
+--- localedata/locales/ga_IE.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/ga_IE	2007-05-19 20:40:51.000000000 -0400
 @@ -117,6 +117,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1100,8 +1099,8 @@ Index: localedata/locales/ga_IE
  LC_MESSAGES
 Index: localedata/locales/gd_GB
 ===================================================================
---- localedata/locales/gd_GB.orig
-+++ localedata/locales/gd_GB
+--- localedata/locales/gd_GB.orig	2004-03-23 02:36:58.000000000 -0500
++++ localedata/locales/gd_GB	2007-05-19 20:40:51.000000000 -0400
 @@ -122,6 +122,8 @@
  t_fmt       "<U0025><U0054>"
  am_pm       "";""
@@ -1113,8 +1112,8 @@ Index: localedata/locales/gd_GB
  LC_MESSAGES
 Index: localedata/locales/gez_ER
 ===================================================================
---- localedata/locales/gez_ER.orig
-+++ localedata/locales/gez_ER
+--- localedata/locales/gez_ER.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/gez_ER	2007-05-19 20:40:51.000000000 -0400
 @@ -215,5 +215,7 @@
  <U1361><U0025><U0072><U1361><U0025><U005A><U1361><U0025><U0059>/
  <U1361><U12D3><U002F><U121D>"
@@ -1125,8 +1124,8 @@ Index: localedata/locales/gez_ER
  %
 Index: localedata/locales/gez_ET
 ===================================================================
---- localedata/locales/gez_ET.orig
-+++ localedata/locales/gez_ET
+--- localedata/locales/gez_ET.orig	2006-07-30 18:19:44.000000000 -0400
++++ localedata/locales/gez_ET	2007-05-19 20:40:51.000000000 -0400
 @@ -216,5 +216,7 @@
  <U1361><U0025><U0072><U1361><U0025><U005A><U1361><U0025><U0059>/
  <U1361><U12D3><U002F><U121D>"
@@ -1137,8 +1136,8 @@ Index: localedata/locales/gez_ET
  %
 Index: localedata/locales/gl_ES
 ===================================================================
---- localedata/locales/gl_ES.orig
-+++ localedata/locales/gl_ES
+--- localedata/locales/gl_ES.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/gl_ES	2007-05-19 20:40:51.000000000 -0400
 @@ -121,6 +121,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1150,8 +1149,8 @@ Index: localedata/locales/gl_ES
  LC_PAPER
 Index: localedata/locales/gu_IN
 ===================================================================
---- localedata/locales/gu_IN.orig
-+++ localedata/locales/gu_IN
+--- localedata/locales/gu_IN.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/gu_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -161,6 +161,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1163,8 +1162,8 @@ Index: localedata/locales/gu_IN
  LC_MESSAGES
 Index: localedata/locales/gv_GB
 ===================================================================
---- localedata/locales/gv_GB.orig
-+++ localedata/locales/gv_GB
+--- localedata/locales/gv_GB.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/gv_GB	2007-05-19 20:40:51.000000000 -0400
 @@ -131,6 +131,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1176,8 +1175,8 @@ Index: localedata/locales/gv_GB
  LC_MESSAGES
 Index: localedata/locales/he_IL
 ===================================================================
---- localedata/locales/he_IL.orig
-+++ localedata/locales/he_IL
+--- localedata/locales/he_IL.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/he_IL	2007-05-19 20:40:51.000000000 -0400
 @@ -123,6 +123,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1189,8 +1188,8 @@ Index: localedata/locales/he_IL
  LC_MESSAGES
 Index: localedata/locales/hi_IN
 ===================================================================
---- localedata/locales/hi_IN.orig
-+++ localedata/locales/hi_IN
+--- localedata/locales/hi_IN.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/hi_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -156,6 +156,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1202,9 +1201,9 @@ Index: localedata/locales/hi_IN
  
 Index: localedata/locales/hr_HR
 ===================================================================
---- localedata/locales/hr_HR.orig
-+++ localedata/locales/hr_HR
-@@ -220,6 +220,8 @@
+--- localedata/locales/hr_HR.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/hr_HR	2007-05-19 20:40:51.000000000 -0400
+@@ -2212,6 +2212,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1215,9 +1214,9 @@ Index: localedata/locales/hr_HR
  LC_PAPER
 Index: localedata/locales/hsb_DE
 ===================================================================
---- localedata/locales/hsb_DE.orig
-+++ localedata/locales/hsb_DE
-@@ -220,6 +220,8 @@
+--- localedata/locales/hsb_DE.orig	2005-09-24 13:36:39.000000000 -0400
++++ localedata/locales/hsb_DE	2007-05-19 20:40:51.000000000 -0400
+@@ -2172,6 +2172,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1228,9 +1227,9 @@ Index: localedata/locales/hsb_DE
  LC_PAPER
 Index: localedata/locales/hu_HU
 ===================================================================
---- localedata/locales/hu_HU.orig
-+++ localedata/locales/hu_HU
-@@ -553,7 +553,9 @@
+--- localedata/locales/hu_HU.orig	2007-02-17 23:43:12.000000000 -0500
++++ localedata/locales/hu_HU	2007-05-19 20:40:51.000000000 -0400
+@@ -520,7 +520,9 @@
  t_fmt_ampm "<U0025><U0048><U002E><U0025><U004D><U002E><U0025><U0053>"
  date_fmt "<U0025><U0059><U002E><U0020><U0025><U0062><U002E><U0020><U0025><U0065><U002E><U002C>/
  <U0020><U0025><U0041><U002C><U0020><U0025><U0048><U002E><U0025><U004D><U002E><U0025><U0053><U0020><U0025><U005A>"
@@ -1243,8 +1242,8 @@ Index: localedata/locales/hu_HU
  LC_PAPER
 Index: localedata/locales/hy_AM
 ===================================================================
---- localedata/locales/hy_AM.orig
-+++ localedata/locales/hy_AM
+--- localedata/locales/hy_AM.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/hy_AM	2007-05-19 20:40:51.000000000 -0400
 @@ -317,6 +317,8 @@
  t_fmt       "<U0025><U0072>"
  am_pm       "";""
@@ -1256,8 +1255,8 @@ Index: localedata/locales/hy_AM
  LC_MESSAGES
 Index: localedata/locales/id_ID
 ===================================================================
---- localedata/locales/id_ID.orig
-+++ localedata/locales/id_ID
+--- localedata/locales/id_ID.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/id_ID	2007-05-19 20:40:51.000000000 -0400
 @@ -120,6 +120,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1269,8 +1268,8 @@ Index: localedata/locales/id_ID
  LC_MESSAGES
 Index: localedata/locales/is_IS
 ===================================================================
---- localedata/locales/is_IS.orig
-+++ localedata/locales/is_IS
+--- localedata/locales/is_IS.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/is_IS	2007-05-19 20:40:51.000000000 -0400
 @@ -2223,6 +2223,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1282,8 +1281,8 @@ Index: localedata/locales/is_IS
  LC_MESSAGES
 Index: localedata/locales/it_CH
 ===================================================================
---- localedata/locales/it_CH.orig
-+++ localedata/locales/it_CH
+--- localedata/locales/it_CH.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/it_CH	2007-05-19 20:40:51.000000000 -0400
 @@ -98,6 +98,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1295,8 +1294,8 @@ Index: localedata/locales/it_CH
  LC_PAPER
 Index: localedata/locales/it_IT
 ===================================================================
---- localedata/locales/it_IT.orig
-+++ localedata/locales/it_IT
+--- localedata/locales/it_IT.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/it_IT	2007-05-19 20:40:51.000000000 -0400
 @@ -124,6 +124,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1308,8 +1307,8 @@ Index: localedata/locales/it_IT
  LC_PAPER
 Index: localedata/locales/ja_JP
 ===================================================================
---- localedata/locales/ja_JP.orig
-+++ localedata/locales/ja_JP
+--- localedata/locales/ja_JP.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/ja_JP	2007-05-19 20:40:51.000000000 -0400
 @@ -15006,6 +15006,8 @@
  		"<U4E5D><U5341><U56DB>";"<U4E5D><U5341><U4E94>";/
  		"<U4E5D><U5341><U516D>";"<U4E5D><U5341><U4E03>";/
@@ -1321,8 +1320,8 @@ Index: localedata/locales/ja_JP
  
 Index: localedata/locales/kk_KZ
 ===================================================================
---- localedata/locales/kk_KZ.orig
-+++ localedata/locales/kk_KZ
+--- localedata/locales/kk_KZ.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/kk_KZ	2007-05-19 20:40:51.000000000 -0400
 @@ -232,6 +232,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1334,8 +1333,8 @@ Index: localedata/locales/kk_KZ
  LC_PAPER
 Index: localedata/locales/km_KH
 ===================================================================
---- localedata/locales/km_KH.orig
-+++ localedata/locales/km_KH
+--- localedata/locales/km_KH.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/km_KH	2007-05-19 20:40:51.000000000 -0400
 @@ -1841,6 +1841,8 @@
  % ICT-7ICT-7
  %timezone	"<U0049><U0043><U0054><U002D><U0037><U0049><U0043><U0054><U002d><U0037>"
@@ -1347,8 +1346,8 @@ Index: localedata/locales/km_KH
  LC_MESSAGES
 Index: localedata/locales/kn_IN
 ===================================================================
---- localedata/locales/kn_IN.orig
-+++ localedata/locales/kn_IN
+--- localedata/locales/kn_IN.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/kn_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -165,6 +165,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1360,8 +1359,8 @@ Index: localedata/locales/kn_IN
  
 Index: localedata/locales/ko_KR
 ===================================================================
---- localedata/locales/ko_KR.orig
-+++ localedata/locales/ko_KR
+--- localedata/locales/ko_KR.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/ko_KR	2007-05-19 20:40:51.000000000 -0400
 @@ -6189,6 +6189,8 @@
  <U0020><U0028><U0025><U0061><U0029>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053>/
@@ -1373,8 +1372,8 @@ Index: localedata/locales/ko_KR
  
 Index: localedata/locales/ku_TR
 ===================================================================
---- localedata/locales/ku_TR.orig
-+++ localedata/locales/ku_TR
+--- localedata/locales/ku_TR.orig	2007-05-19 20:40:50.000000000 -0400
++++ localedata/locales/ku_TR	2007-05-19 20:40:51.000000000 -0400
 @@ -149,6 +149,8 @@
  t_fmt_ampm  ""
  % format: %A %d %B %Y
@@ -1386,8 +1385,8 @@ Index: localedata/locales/ku_TR
  LC_MESSAGES
 Index: localedata/locales/kw_GB
 ===================================================================
---- localedata/locales/kw_GB.orig
-+++ localedata/locales/kw_GB
+--- localedata/locales/kw_GB.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/kw_GB	2007-05-19 20:40:51.000000000 -0400
 @@ -123,6 +123,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1399,8 +1398,8 @@ Index: localedata/locales/kw_GB
  LC_MESSAGES
 Index: localedata/locales/lo_LA
 ===================================================================
---- localedata/locales/lo_LA.orig
-+++ localedata/locales/lo_LA
+--- localedata/locales/lo_LA.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/lo_LA	2007-05-19 20:40:51.000000000 -0400
 @@ -718,6 +718,8 @@
  <U003A><U0025><U0053><U0020><U0025><U005A>"
  % ICT-7ICT-7
@@ -1412,9 +1411,9 @@ Index: localedata/locales/lo_LA
  LC_MESSAGES
 Index: localedata/locales/lt_LT
 ===================================================================
---- localedata/locales/lt_LT.orig
-+++ localedata/locales/lt_LT
-@@ -137,6 +137,8 @@
+--- localedata/locales/lt_LT.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/lt_LT	2007-05-19 20:40:51.000000000 -0400
+@@ -2191,6 +2191,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1425,8 +1424,8 @@ Index: localedata/locales/lt_LT
  LC_MESSAGES
 Index: localedata/locales/lv_LV
 ===================================================================
---- localedata/locales/lv_LV.orig
-+++ localedata/locales/lv_LV
+--- localedata/locales/lv_LV.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/lv_LV	2007-05-19 20:40:51.000000000 -0400
 @@ -2183,6 +2183,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1438,8 +1437,8 @@ Index: localedata/locales/lv_LV
  LC_MESSAGES
 Index: localedata/locales/mk_MK
 ===================================================================
---- localedata/locales/mk_MK.orig
-+++ localedata/locales/mk_MK
+--- localedata/locales/mk_MK.orig	2006-09-20 13:27:26.000000000 -0400
++++ localedata/locales/mk_MK	2007-05-19 20:40:51.000000000 -0400
 @@ -85,9 +85,9 @@
  date_fmt "<U0025><U0061><U002C><U0020><U0025><U0064><U0020><U0025><U0062>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1455,8 +1454,8 @@ Index: localedata/locales/mk_MK
  LC_MONETARY
 Index: localedata/locales/ml_IN
 ===================================================================
---- localedata/locales/ml_IN.orig
-+++ localedata/locales/ml_IN
+--- localedata/locales/ml_IN.orig	2006-08-19 11:40:45.000000000 -0400
++++ localedata/locales/ml_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -145,6 +145,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm     "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -1468,8 +1467,8 @@ Index: localedata/locales/ml_IN
  LC_MESSAGES
 Index: localedata/locales/mn_MN
 ===================================================================
---- localedata/locales/mn_MN.orig
-+++ localedata/locales/mn_MN
+--- localedata/locales/mn_MN.orig	2006-01-02 15:03:28.000000000 -0500
++++ localedata/locales/mn_MN	2007-05-19 20:40:51.000000000 -0400
 @@ -220,6 +220,8 @@
  % "%Z %Y ony %B %e, %a %H:%M:%S"
  date_fmt  "<U0025><U005A><U0020><U0025><U0059><U0020><U043E><U043D><U044B><U0020><U0025><U0042><U0020>/
@@ -1481,8 +1480,8 @@ Index: localedata/locales/mn_MN
  LC_MESSAGES
 Index: localedata/locales/mr_IN
 ===================================================================
---- localedata/locales/mr_IN.orig
-+++ localedata/locales/mr_IN
+--- localedata/locales/mr_IN.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/mr_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -153,6 +153,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1494,8 +1493,8 @@ Index: localedata/locales/mr_IN
  
 Index: localedata/locales/ms_MY
 ===================================================================
---- localedata/locales/ms_MY.orig
-+++ localedata/locales/ms_MY
+--- localedata/locales/ms_MY.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/ms_MY	2007-05-19 20:40:51.000000000 -0400
 @@ -139,6 +139,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -1507,9 +1506,9 @@ Index: localedata/locales/ms_MY
  
 Index: localedata/locales/nb_NO
 ===================================================================
---- localedata/locales/nb_NO.orig
-+++ localedata/locales/nb_NO
-@@ -195,6 +195,9 @@
+--- localedata/locales/nb_NO.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/nb_NO	2007-05-19 20:40:51.000000000 -0400
+@@ -191,6 +191,9 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1521,8 +1520,8 @@ Index: localedata/locales/nb_NO
  LC_MESSAGES
 Index: localedata/locales/ne_NP
 ===================================================================
---- localedata/locales/ne_NP.orig
-+++ localedata/locales/ne_NP
+--- localedata/locales/ne_NP.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/ne_NP	2007-05-19 20:40:51.000000000 -0400
 @@ -153,6 +153,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1534,8 +1533,8 @@ Index: localedata/locales/ne_NP
  
 Index: localedata/locales/nl_BE
 ===================================================================
---- localedata/locales/nl_BE.orig
-+++ localedata/locales/nl_BE
+--- localedata/locales/nl_BE.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/nl_BE	2007-05-19 20:40:51.000000000 -0400
 @@ -104,6 +104,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1547,8 +1546,8 @@ Index: localedata/locales/nl_BE
  LC_PAPER
 Index: localedata/locales/nl_NL
 ===================================================================
---- localedata/locales/nl_NL.orig
-+++ localedata/locales/nl_NL
+--- localedata/locales/nl_NL.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/nl_NL	2007-05-19 20:40:51.000000000 -0400
 @@ -123,6 +123,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1560,8 +1559,8 @@ Index: localedata/locales/nl_NL
  LC_PAPER
 Index: localedata/locales/nn_NO
 ===================================================================
---- localedata/locales/nn_NO.orig
-+++ localedata/locales/nn_NO
+--- localedata/locales/nn_NO.orig	2006-08-22 13:05:13.000000000 -0400
++++ localedata/locales/nn_NO	2007-05-19 20:40:51.000000000 -0400
 @@ -136,6 +136,9 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1574,8 +1573,8 @@ Index: localedata/locales/nn_NO
  
 Index: localedata/locales/nr_ZA
 ===================================================================
---- localedata/locales/nr_ZA.orig
-+++ localedata/locales/nr_ZA
+--- localedata/locales/nr_ZA.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/nr_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -162,6 +162,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1587,8 +1586,8 @@ Index: localedata/locales/nr_ZA
  LC_MESSAGES
 Index: localedata/locales/nso_ZA
 ===================================================================
---- localedata/locales/nso_ZA.orig
-+++ localedata/locales/nso_ZA
+--- localedata/locales/nso_ZA.orig	2005-10-13 12:14:35.000000000 -0400
++++ localedata/locales/nso_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -157,6 +157,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1600,8 +1599,8 @@ Index: localedata/locales/nso_ZA
  LC_MESSAGES
 Index: localedata/locales/oc_FR
 ===================================================================
---- localedata/locales/oc_FR.orig
-+++ localedata/locales/oc_FR
+--- localedata/locales/oc_FR.orig	2005-10-14 21:22:31.000000000 -0400
++++ localedata/locales/oc_FR	2007-05-19 20:40:51.000000000 -0400
 @@ -123,6 +123,8 @@
  t_fmt   "<U0025><U0054>"
  am_pm   "";""
@@ -1613,8 +1612,8 @@ Index: localedata/locales/oc_FR
  LC_NAME
 Index: localedata/locales/om_ET
 ===================================================================
---- localedata/locales/om_ET.orig
-+++ localedata/locales/om_ET
+--- localedata/locales/om_ET.orig	2003-11-03 23:56:06.000000000 -0500
++++ localedata/locales/om_ET	2007-05-19 20:40:51.000000000 -0400
 @@ -233,5 +233,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1625,8 +1624,8 @@ Index: localedata/locales/om_ET
  %
 Index: localedata/locales/pa_IN
 ===================================================================
---- localedata/locales/pa_IN.orig
-+++ localedata/locales/pa_IN
+--- localedata/locales/pa_IN.orig	2006-10-05 12:54:26.000000000 -0400
++++ localedata/locales/pa_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -149,6 +149,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1636,25 +1635,10 @@ Index: localedata/locales/pa_IN
  END LC_TIME
  
  
-Index: localedata/locales/pl_PL
-===================================================================
---- localedata/locales/pl_PL.orig
-+++ localedata/locales/pl_PL
-@@ -208,7 +208,9 @@
- date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
- <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
- <U0025><U005A><U0020><U0025><U0059>"
--week	7;19971201;4
-+% week	7;19971201;4
-+%  FIXME: found in CLDR
-+first_weekday 2
- END LC_TIME
- 
- LC_PAPER
 Index: localedata/locales/pt_BR
 ===================================================================
---- localedata/locales/pt_BR.orig
-+++ localedata/locales/pt_BR
+--- localedata/locales/pt_BR.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/pt_BR	2007-05-19 20:40:51.000000000 -0400
 @@ -121,6 +121,7 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1665,22 +1649,9 @@ Index: localedata/locales/pt_BR
  LC_PAPER
 Index: localedata/locales/pt_PT
 ===================================================================
---- localedata/locales/pt_PT.orig
-+++ localedata/locales/pt_PT
+--- localedata/locales/pt_PT.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/pt_PT	2007-05-19 20:40:51.000000000 -0400
 @@ -124,6 +124,8 @@
- date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
- <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
- <U0025><U005A><U0020><U0025><U0059>"
-+%  FIXME: found in CLDR
-+first_weekday 2
- END LC_TIME
- 
- LC_PAPER
-Index: localedata/locales/ru_RU
-===================================================================
---- localedata/locales/ru_RU.orig
-+++ localedata/locales/ru_RU
-@@ -149,6 +149,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1691,8 +1662,8 @@ Index: localedata/locales/ru_RU
  LC_PAPER
 Index: localedata/locales/rw_RW
 ===================================================================
---- localedata/locales/rw_RW.orig
-+++ localedata/locales/rw_RW
+--- localedata/locales/rw_RW.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/rw_RW	2007-05-19 20:40:51.000000000 -0400
 @@ -109,6 +109,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1704,8 +1675,8 @@ Index: localedata/locales/rw_RW
  LC_MESSAGES
 Index: localedata/locales/sa_IN
 ===================================================================
---- localedata/locales/sa_IN.orig
-+++ localedata/locales/sa_IN
+--- localedata/locales/sa_IN.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/sa_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -178,6 +178,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1717,8 +1688,8 @@ Index: localedata/locales/sa_IN
  
 Index: localedata/locales/se_NO
 ===================================================================
---- localedata/locales/se_NO.orig
-+++ localedata/locales/se_NO
+--- localedata/locales/se_NO.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/se_NO	2007-05-19 20:40:51.000000000 -0400
 @@ -277,6 +277,9 @@
  <U0020><U0025><U005A>"
  
@@ -1731,8 +1702,8 @@ Index: localedata/locales/se_NO
  LC_MESSAGES
 Index: localedata/locales/sid_ET
 ===================================================================
---- localedata/locales/sid_ET.orig
-+++ localedata/locales/sid_ET
+--- localedata/locales/sid_ET.orig	2005-09-24 12:36:20.000000000 -0400
++++ localedata/locales/sid_ET	2007-05-19 20:40:51.000000000 -0400
 @@ -222,5 +222,7 @@
  %
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
@@ -1743,8 +1714,8 @@ Index: localedata/locales/sid_ET
  %
 Index: localedata/locales/sk_SK
 ===================================================================
---- localedata/locales/sk_SK.orig
-+++ localedata/locales/sk_SK
+--- localedata/locales/sk_SK.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/sk_SK	2007-05-19 20:40:51.000000000 -0400
 @@ -183,7 +183,10 @@
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1759,9 +1730,9 @@ Index: localedata/locales/sk_SK
  
 Index: localedata/locales/sl_SI
 ===================================================================
---- localedata/locales/sl_SI.orig
-+++ localedata/locales/sl_SI
-@@ -157,6 +157,8 @@
+--- localedata/locales/sl_SI.orig	2007-02-17 01:51:51.000000000 -0500
++++ localedata/locales/sl_SI	2007-05-19 20:40:51.000000000 -0400
+@@ -2187,6 +2187,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1772,8 +1743,8 @@ Index: localedata/locales/sl_SI
  LC_PAPER
 Index: localedata/locales/so_DJ
 ===================================================================
---- localedata/locales/so_DJ.orig
-+++ localedata/locales/so_DJ
+--- localedata/locales/so_DJ.orig	2003-11-03 23:56:56.000000000 -0500
++++ localedata/locales/so_DJ	2007-05-19 20:40:51.000000000 -0400
 @@ -222,5 +222,7 @@
  date_fmt    "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1784,8 +1755,8 @@ Index: localedata/locales/so_DJ
  %
 Index: localedata/locales/so_ET
 ===================================================================
---- localedata/locales/so_ET.orig
-+++ localedata/locales/so_ET
+--- localedata/locales/so_ET.orig	2003-11-03 23:57:09.000000000 -0500
++++ localedata/locales/so_ET	2007-05-19 20:40:51.000000000 -0400
 @@ -219,5 +219,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1796,8 +1767,8 @@ Index: localedata/locales/so_ET
  %
 Index: localedata/locales/so_KE
 ===================================================================
---- localedata/locales/so_KE.orig
-+++ localedata/locales/so_KE
+--- localedata/locales/so_KE.orig	2003-11-03 23:57:22.000000000 -0500
++++ localedata/locales/so_KE	2007-05-19 20:40:51.000000000 -0400
 @@ -218,5 +218,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1808,8 +1779,8 @@ Index: localedata/locales/so_KE
  %
 Index: localedata/locales/so_SO
 ===================================================================
---- localedata/locales/so_SO.orig
-+++ localedata/locales/so_SO
+--- localedata/locales/so_SO.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/so_SO	2007-05-19 20:40:51.000000000 -0400
 @@ -278,5 +278,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1820,8 +1791,8 @@ Index: localedata/locales/so_SO
  %
 Index: localedata/locales/sq_AL
 ===================================================================
---- localedata/locales/sq_AL.orig
-+++ localedata/locales/sq_AL
+--- localedata/locales/sq_AL.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/sq_AL	2007-05-19 20:40:51.000000000 -0400
 @@ -290,6 +290,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1833,8 +1804,8 @@ Index: localedata/locales/sq_AL
  
 Index: localedata/locales/sr_CS
 ===================================================================
---- localedata/locales/sr_CS.orig
-+++ localedata/locales/sr_CS
+--- localedata/locales/sr_CS.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/sr_CS	2007-05-19 20:40:51.000000000 -0400
 @@ -304,7 +304,7 @@
  date_fmt  "<U0025><U0061><U002C><U0020><U0025><U0065><U002E><U0020>/
  <U0025><U0062><U0020><U0025><U0059><U002E><U0020><U0020><U0025><U0048>/
@@ -1844,23 +1815,10 @@ Index: localedata/locales/sr_CS
  first_weekday 2
  first_workday 2
  END LC_TIME
-Index: localedata/locales/sr_ME
-===================================================================
---- localedata/locales/sr_ME.orig
-+++ localedata/locales/sr_ME
-@@ -110,7 +110,7 @@
- date_fmt  "<U0025><U0061><U002c><U0020><U0025><U0065><U002E><U0020>/
- <U0025><U0062><U0020><U0025><U0059><U002E><U0020><U0020><U0025><U0048>/
- <U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U005A><U000A>"
--week    7;19971201;4
-+% week    7;19971201;4
- first_weekday 2
- first_workday 2
- END LC_TIME
 Index: localedata/locales/ss_ZA
 ===================================================================
---- localedata/locales/ss_ZA.orig
-+++ localedata/locales/ss_ZA
+--- localedata/locales/ss_ZA.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/ss_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -167,6 +167,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1872,8 +1830,8 @@ Index: localedata/locales/ss_ZA
  LC_MESSAGES
 Index: localedata/locales/st_ZA
 ===================================================================
---- localedata/locales/st_ZA.orig
-+++ localedata/locales/st_ZA
+--- localedata/locales/st_ZA.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/st_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -164,6 +164,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1885,8 +1843,8 @@ Index: localedata/locales/st_ZA
  LC_MESSAGES
 Index: localedata/locales/sv_FI
 ===================================================================
---- localedata/locales/sv_FI.orig
-+++ localedata/locales/sv_FI
+--- localedata/locales/sv_FI.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/sv_FI	2007-05-19 20:40:51.000000000 -0400
 @@ -105,6 +105,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1898,8 +1856,8 @@ Index: localedata/locales/sv_FI
  LC_PAPER
 Index: localedata/locales/ta_IN
 ===================================================================
---- localedata/locales/ta_IN.orig
-+++ localedata/locales/ta_IN
+--- localedata/locales/ta_IN.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/ta_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -230,6 +230,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -1911,8 +1869,8 @@ Index: localedata/locales/ta_IN
  
 Index: localedata/locales/te_IN
 ===================================================================
---- localedata/locales/te_IN.orig
-+++ localedata/locales/te_IN
+--- localedata/locales/te_IN.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/te_IN	2007-05-19 20:40:51.000000000 -0400
 @@ -139,6 +139,8 @@
  % %p%I.%M.%S %Z
  t_fmt_ampm  "<U0025><U0070><U0025><U0049><U002E><U0025><U004D><U002E><U0025><U0053><U0020><U0025><U005A>"
@@ -1924,8 +1882,8 @@ Index: localedata/locales/te_IN
  
 Index: localedata/locales/th_TH
 ===================================================================
---- localedata/locales/th_TH.orig
-+++ localedata/locales/th_TH
+--- localedata/locales/th_TH.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/th_TH	2007-05-19 20:40:51.000000000 -0400
 @@ -913,6 +913,8 @@
  <U003A><U0025><U0053><U0020><U0025><U005A>"
  % ICT-7ICT-7
@@ -1937,8 +1895,8 @@ Index: localedata/locales/th_TH
  LC_MESSAGES
 Index: localedata/locales/ti_ER
 ===================================================================
---- localedata/locales/ti_ER.orig
-+++ localedata/locales/ti_ER
+--- localedata/locales/ti_ER.orig	2003-12-06 02:40:37.000000000 -0500
++++ localedata/locales/ti_ER	2007-05-19 20:40:51.000000000 -0400
 @@ -270,5 +270,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12D3><U002F><U121D>"
@@ -1949,8 +1907,8 @@ Index: localedata/locales/ti_ER
  %
 Index: localedata/locales/ti_ET
 ===================================================================
---- localedata/locales/ti_ET.orig
-+++ localedata/locales/ti_ET
+--- localedata/locales/ti_ET.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/ti_ET	2007-05-19 20:40:51.000000000 -0400
 @@ -1072,5 +1072,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12D3><U002F><U121D>"
@@ -1961,8 +1919,8 @@ Index: localedata/locales/ti_ET
  %
 Index: localedata/locales/tig_ER
 ===================================================================
---- localedata/locales/tig_ER.orig
-+++ localedata/locales/tig_ER
+--- localedata/locales/tig_ER.orig	2003-11-04 02:02:35.000000000 -0500
++++ localedata/locales/tig_ER	2007-05-19 20:40:51.000000000 -0400
 @@ -218,5 +218,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12D3><U002F><U121D>"
@@ -1973,8 +1931,8 @@ Index: localedata/locales/tig_ER
  %
 Index: localedata/locales/tn_ZA
 ===================================================================
---- localedata/locales/tn_ZA.orig
-+++ localedata/locales/tn_ZA
+--- localedata/locales/tn_ZA.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/tn_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -169,6 +169,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1986,9 +1944,9 @@ Index: localedata/locales/tn_ZA
  LC_MESSAGES
 Index: localedata/locales/tr_TR
 ===================================================================
---- localedata/locales/tr_TR.orig
-+++ localedata/locales/tr_TR
-@@ -1540,6 +1540,8 @@
+--- localedata/locales/tr_TR.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/tr_TR	2007-05-19 20:40:51.000000000 -0400
+@@ -3540,6 +3540,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1999,8 +1957,8 @@ Index: localedata/locales/tr_TR
  LC_PAPER
 Index: localedata/locales/ts_ZA
 ===================================================================
---- localedata/locales/ts_ZA.orig
-+++ localedata/locales/ts_ZA
+--- localedata/locales/ts_ZA.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/ts_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -164,6 +164,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -2012,8 +1970,8 @@ Index: localedata/locales/ts_ZA
  LC_MESSAGES
 Index: localedata/locales/tt_RU
 ===================================================================
---- localedata/locales/tt_RU.orig
-+++ localedata/locales/tt_RU
+--- localedata/locales/tt_RU.orig	2006-10-06 11:34:42.000000000 -0400
++++ localedata/locales/tt_RU	2007-05-19 20:40:51.000000000 -0400
 @@ -297,6 +297,8 @@
  t_fmt     "<U0025><U0054>"
  am_pm     "";""
@@ -2023,23 +1981,10 @@ Index: localedata/locales/tt_RU
  END LC_TIME
  
  LC_PAPER
-Index: localedata/locales/uk_UA
-===================================================================
---- localedata/locales/uk_UA.orig
-+++ localedata/locales/uk_UA
-@@ -158,6 +158,8 @@
- date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
- <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
- <U0025><U005A><U0020><U0025><U0059>"
-+%  FIXME: found in CLDR
-+first_weekday 2
- END LC_TIME
- 
- LC_PAPER
 Index: localedata/locales/uz_UZ
 ===================================================================
---- localedata/locales/uz_UZ.orig
-+++ localedata/locales/uz_UZ
+--- localedata/locales/uz_UZ.orig	2003-10-01 03:18:18.000000000 -0400
++++ localedata/locales/uz_UZ	2007-05-19 20:40:51.000000000 -0400
 @@ -260,6 +260,8 @@
  am_pm       "";""
  t_fmt_ampm  ""
@@ -2051,8 +1996,8 @@ Index: localedata/locales/uz_UZ
  LC_MESSAGES
 Index: localedata/locales/uz_UZ@cyrillic
 ===================================================================
---- localedata/locales/uz_UZ@cyrillic.orig
-+++ localedata/locales/uz_UZ@cyrillic
+--- localedata/locales/uz_UZ@cyrillic.orig	2003-12-03 23:49:56.000000000 -0500
++++ localedata/locales/uz_UZ@cyrillic	2007-05-19 20:40:51.000000000 -0400
 @@ -263,6 +263,8 @@
  am_pm       "";""
  t_fmt_ampm  ""
@@ -2064,8 +2009,8 @@ Index: localedata/locales/uz_UZ@cyrillic
  LC_MESSAGES
 Index: localedata/locales/ve_ZA
 ===================================================================
---- localedata/locales/ve_ZA.orig
-+++ localedata/locales/ve_ZA
+--- localedata/locales/ve_ZA.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/ve_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -166,6 +166,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -2077,9 +2022,9 @@ Index: localedata/locales/ve_ZA
  LC_MESSAGES
 Index: localedata/locales/vi_VN
 ===================================================================
---- localedata/locales/vi_VN.orig
-+++ localedata/locales/vi_VN
-@@ -296,6 +296,8 @@
+--- localedata/locales/vi_VN.orig	2007-02-18 04:21:17.000000000 -0500
++++ localedata/locales/vi_VN	2007-05-19 20:40:51.000000000 -0400
+@@ -294,6 +294,8 @@
  am_pm    "<U0041><U004D>";"<U0050><U004D>"
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U0020><U0025><U0070>"
  date_fmt  "<U0025><U0041><U002C><U0020><U0025><U0064><U0020><U0025><U0042><U0020><U006E><U0103><U006D><U0020><U0025><U0059><U0020><U0025><U0054><U0020><U0025><U005A>"
@@ -2090,8 +2035,8 @@ Index: localedata/locales/vi_VN
  % yes: Va^ng / Da.
 Index: localedata/locales/wa_BE
 ===================================================================
---- localedata/locales/wa_BE.orig
-+++ localedata/locales/wa_BE
+--- localedata/locales/wa_BE.orig	2005-09-24 14:58:18.000000000 -0400
++++ localedata/locales/wa_BE	2007-05-19 20:40:51.000000000 -0400
 @@ -163,7 +163,8 @@
  am_pm   "<U0041><U004D>";"<U0050><U004D>"
  t_fmt_ampm "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070>"
@@ -2104,8 +2049,8 @@ Index: localedata/locales/wa_BE
  LC_NAME
 Index: localedata/locales/wal_ET
 ===================================================================
---- localedata/locales/wal_ET.orig
-+++ localedata/locales/wal_ET
+--- localedata/locales/wal_ET.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/wal_ET	2007-05-19 20:40:51.000000000 -0400
 @@ -232,5 +232,7 @@
  <U0020><U130B><U120B><U1233>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
@@ -2116,8 +2061,8 @@ Index: localedata/locales/wal_ET
  %
 Index: localedata/locales/xh_ZA
 ===================================================================
---- localedata/locales/xh_ZA.orig
-+++ localedata/locales/xh_ZA
+--- localedata/locales/xh_ZA.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/xh_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -164,6 +164,8 @@
  % time-zone name,
  % year with century as a decimal number,e.g. 2001.
@@ -2129,8 +2074,8 @@ Index: localedata/locales/xh_ZA
  LC_MESSAGES
 Index: localedata/locales/yi_US
 ===================================================================
---- localedata/locales/yi_US.orig
-+++ localedata/locales/yi_US
+--- localedata/locales/yi_US.orig	2005-10-14 13:45:16.000000000 -0400
++++ localedata/locales/yi_US	2007-05-19 20:40:51.000000000 -0400
 @@ -186,6 +186,8 @@
  am_pm   "<U0041><U004D>";"<U0050><U004D>"
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0050>"
@@ -2142,8 +2087,8 @@ Index: localedata/locales/yi_US
  LC_MESSAGES
 Index: localedata/locales/zh_CN
 ===================================================================
---- localedata/locales/zh_CN.orig
-+++ localedata/locales/zh_CN
+--- localedata/locales/zh_CN.orig	2007-04-28 02:50:49.000000000 -0400
++++ localedata/locales/zh_CN	2007-05-19 20:40:51.000000000 -0400
 @@ -135,6 +135,8 @@
  date_fmt       "<U0025><U0059><U5E74><U0020><U0025><U006D><U6708><U0020>/
  <U0025><U0064><U65E5><U0020><U0025><U0041><U0020><U0025><U0048><U003A>/
@@ -2155,8 +2100,8 @@ Index: localedata/locales/zh_CN
  LC_MESSAGES
 Index: localedata/locales/zh_HK
 ===================================================================
---- localedata/locales/zh_HK.orig
-+++ localedata/locales/zh_HK
+--- localedata/locales/zh_HK.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/zh_HK	2007-05-19 20:40:51.000000000 -0400
 @@ -141,6 +141,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -2168,8 +2113,8 @@ Index: localedata/locales/zh_HK
  
 Index: localedata/locales/zh_SG
 ===================================================================
---- localedata/locales/zh_SG.orig
-+++ localedata/locales/zh_SG
+--- localedata/locales/zh_SG.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/zh_SG	2007-05-19 20:40:51.000000000 -0400
 @@ -130,6 +130,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  ""
@@ -2181,8 +2126,8 @@ Index: localedata/locales/zh_SG
  
 Index: localedata/locales/zh_TW
 ===================================================================
---- localedata/locales/zh_TW.orig
-+++ localedata/locales/zh_TW
+--- localedata/locales/zh_TW.orig	2007-05-19 20:40:51.000000000 -0400
++++ localedata/locales/zh_TW	2007-05-19 20:40:51.000000000 -0400
 @@ -128,6 +128,9 @@
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -2195,8 +2140,8 @@ Index: localedata/locales/zh_TW
  LC_MESSAGES
 Index: localedata/locales/zu_ZA
 ===================================================================
---- localedata/locales/zu_ZA.orig
-+++ localedata/locales/zu_ZA
+--- localedata/locales/zu_ZA.orig	2006-07-30 18:19:43.000000000 -0400
++++ localedata/locales/zu_ZA	2007-05-19 20:40:51.000000000 -0400
 @@ -170,6 +170,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -2206,3 +2151,31 @@ Index: localedata/locales/zu_ZA
  END LC_TIME
  
  LC_MESSAGES
+Index: localedata/locales/pl_PL
+===================================================================
+--- localedata/locales/pl_PL.orig	2007-05-19 20:42:17.000000000 -0400
++++ localedata/locales/pl_PL	2007-05-19 20:42:46.000000000 -0400
+@@ -2198,7 +2198,9 @@
+ date_fmt "<U0025><U0061><U002C><U0020>/
+ <U0025><U002D><U0064><U0020><U0025><U0062><U0020><U0025><U0059><U002C><U0020>/
+ <U0025><U0054><U0020><U0025><U005A>"
+-week	7;19971201;4
++%week	7;19971201;4
++%  FIXME: found in CLDR
++first_weekday 2
+ END LC_TIME
+ 
+ LC_PAPER
+Index: localedata/locales/uk_UA
+===================================================================
+--- localedata/locales/uk_UA.orig	2007-05-19 20:43:49.000000000 -0400
++++ localedata/locales/uk_UA	2007-05-19 20:44:30.000000000 -0400
+@@ -1015,7 +1015,7 @@
+ 
+ % Define the first day of the week to be displayed in a calendar.
+ % This weekday is relative to the date defined in the <week> keyword.
+-first_weekday 1
++first_weekday 2
+ 
+ % Define the first workday relative to the <week> keyword
+ first_workday 1

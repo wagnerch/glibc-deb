@@ -8,7 +8,7 @@ glibc (2.6~20070518-2) experimental; urgency=low
    - Remove localedata/locale-pl_PL.diff (merged upstream).
    - Remove localedata/locales-sr.diff (obsolete).
    - Disable localedata/tailor-iso14651_t1.diff (broken).
-   - Disable localedata/first_weekday.diff (broken).
+   - Update localedata/first_weekday.diff.
    - Remove alpha/cvs-cfi.diff (merged upstream).
    - Remove arm/cvs-check_pf.c (merged upstream).
    - Remove hppa/cvs-hppa-update.diff (obsolete).
