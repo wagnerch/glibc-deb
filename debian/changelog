@@ -27,7 +27,7 @@ glibc (2.6~20070518-2) experimental; urgency=low
    - Remove any/cvs-ftw-c.diff (obsolete).
    - Remove any/cvs-bits_in_h-ipv6.diff (obsolete).
    - Disable any/cvs-itoa-c.diff (broken).
-   - Disable any/cvs-lt-update.diff (broken).
+   - Remove any/cvs-lt-update.diff (obsolete).
    - Remove any/cvs-realpath.diff (obsolete).
    - Remove any/cvs-vfprintf-stack-smashing.diff (obsolete).
    - Remove any/cvs-zdump-64-bit.diff (obsolete).
