@@ -33,7 +33,7 @@ glibc (2.6~20070518-2) experimental; urgency=low
    - Disable any/cvs-zdump-64-bit.diff (broken).
    - Disable any/local-ldso-disable-hwcap.diff (broken).
    - Disable any/submitted-gethostbyname_r.diff (broken).
-   - Disable any/submitted-iconv-colon.diff (broken).
+   - Remove any/submitted-iconv-colon.diff (merged upstream).
    - Disable any/submitted-strfry.diff (broken).
    - Disable any/submitted-unistd_XOPEN_VERSION.diff (broken).
    - Remove any/cvs-glob-c.diff (obsolete).
