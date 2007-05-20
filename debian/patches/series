@@ -3,11 +3,11 @@ localedata/locale-eo_EO.diff -p0
 localedata/locale-no_NO.diff -p0
 localedata/locale-eu_FR.diff -p0
 localedata/locale-ku_TR.diff -p0
-#locale/check-unknown-symbols.diff	# locales have to be fixed first
+# locale/check-unknown-symbols.diff	#  locales have to be fixed first
 locale/fix-LC_COLLATE-rules.diff -p0
 locale/preprocessor-collate.diff -p0
 locale/LC_IDENTIFICATION-optional-fields.diff -p0
-#locale/LC_COLLATE-keywords-ordering.diff -p0
+# locale/LC_COLLATE-keywords-ordering.diff -p0
 locale/locale-print-LANGUAGE.diff -p0
 locale/fix-C-first_weekday.diff -p0
 localedata/tl_PH-yesexpr.diff
@@ -26,14 +26,14 @@ localedata/locale-ia.diff -p0
 localedata/locale-zh_TW.diff -p0
 localedata/new-valencian-locale.diff -p0
 localedata/locale-se_NO.diff -p0
-#localedata/tailor-iso14651_t1.diff -p0
+# localedata/tailor-iso14651_t1.diff -p0
 localedata/fix-lang.diff -p0
 localedata/fix-unknown-symbols.diff -p0
 localedata/first_weekday.diff -p0
 localedata/sort-UTF8-first.diff -p0
 localedata/local-all-no-archive.diff -p0
 
-#alpha/submitted-pic.diff -p0	# g: suspended
+# alpha/submitted-pic.diff -p0	#  g: suspended
 alpha/local-gcc4.1.diff -p0
 alpha/submitted-xstat.diff -p0
 
@@ -45,7 +45,7 @@ arm/local-no-hwcap.diff -p0
 
 hppa/submitted-lt.diff -p0
 hppa/submitted-nptl-carlos.diff -p0
-#hppa/submitted-nptl-carlos2.diff -p0
+# hppa/submitted-nptl-carlos2.diff -p0
 hppa/submitted-ustat.diff -p0
 hppa/local-inlining.diff -p0
 
@@ -69,7 +69,7 @@ i386/submitted-i686-timing.diff -p0
 m68k/local-compat.diff -p0
 m68k/local-dwarf2-buildfix.diff -p0
 m68k/local-fpic.diff -p0
-#m68k/local-mathinline_h.diff -p1
+m68k/local-mathinline_h.diff -p1
 m68k/local-reloc.diff -p0
 m68k/local-pthread_lock.diff -p1
 m68k/submitted-gcc34-seccomment.diff -p0
@@ -86,18 +86,18 @@ all/local-pthread-manpages.diff -p1
 all/local-remove-manual.diff
 all/local-ru_RU.diff -p1
 all/local-pt_BR.diff -p1
-#all/submitted-new-brf-encoding.diff -p0
+# all/submitted-new-brf-encoding.diff -p0
 
-#any/cvs-printf_fp-c.diff -p1
+# any/cvs-printf_fp-c.diff -p1
 any/local-notls.diff -p0
 any/local-asserth-decls.diff -p0
-#any/local-base.diff -p0	# g: suspended
+# any/local-base.diff -p0	#  g: suspended
 any/local-bashisms.diff -p0
 any/local-dl-execstack.diff -p0
 any/local-fhs-linux-paths.diff -p0
 any/local-forward-backward-collation.diff
 any/local-gcc4-wcstol_l.diff -p1
-#any/local-globfree-clear.diff -p1	# g: suspended
+# any/local-globfree-clear.diff -p1	#  g: suspended
 any/local-iconv-fix-trampoline.diff -p1
 any/local-ld-multiarch.diff -p0
 any/local-ldd.diff -p0
@@ -124,6 +124,6 @@ any/submitted-nis-netgrp.diff -p0
 any/submitted-getcwd-sys_param_h.diff -p0
 any/submitted-clock-settime.diff -p0
 any/submitted-date-and-unknown-tz.diff -p0
-#any/submitted-strfry.diff -p0
-#any/submitted-unistd_XOPEN_VERSION.diff
+# any/submitted-strfry.diff -p0
+# any/submitted-unistd_XOPEN_VERSION.diff
 any/local-disable-nscd-host-caching.diff
