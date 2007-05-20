@@ -35,7 +35,7 @@ glibc (2.6~20070518-3) UNRELEASED; urgency=low
    - Remove any/submitted-gethostbyname_r.diff (obsolete).
    - Remove any/submitted-iconv-colon.diff (merged upstream).
    - Disable any/submitted-strfry.diff (broken).
-   - Disable any/submitted-unistd_XOPEN_VERSION.diff (broken).
+   - Remove any/submitted-unistd_XOPEN_VERSION.diff (obsolete).
    - Remove any/cvs-glob-c.diff (obsolete).
    - Remove any/cvs-scanf_hexfloat.diff (obsolete).
    - Remove alpha/submitted-sigsuspend.diff (merged upstream).
