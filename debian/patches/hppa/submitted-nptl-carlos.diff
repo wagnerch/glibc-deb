@@ -2,7 +2,7 @@ Index: elf/elf.h
 ===================================================================
 --- elf/elf.h.orig
 +++ elf/elf.h
-@@ -1708,6 +1708,8 @@
+@@ -1710,6 +1710,8 @@
  #define R_PARISC_LTOFF_FPTR14R	62	/* LT-rel. fct ptr, right 14 bits. */
  #define R_PARISC_FPTR64		64	/* 64 bits function address.  */
  #define R_PARISC_PLABEL32	65	/* 32 bits function address.  */
@@ -11,7 +11,7 @@ Index: elf/elf.h
  #define R_PARISC_PCREL64	72	/* 64 bits PC-rel. address.  */
  #define R_PARISC_PCREL22F	74	/* 22 bits PC-rel. address.  */
  #define R_PARISC_PCREL14WR	75	/* PC-rel. address, right 14 bits.  */
-@@ -1768,6 +1770,29 @@
+@@ -1770,6 +1772,29 @@
  #define R_PARISC_LTOFF_TP16F	229	/* 16 bits LT-TP-rel. address.  */
  #define R_PARISC_LTOFF_TP16WF	230	/* 16 bits LT-TP-rel. address.  */
  #define R_PARISC_LTOFF_TP16DF	231	/* 16 bits LT-TP-rel. address.  */

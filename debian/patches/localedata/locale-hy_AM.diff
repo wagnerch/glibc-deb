@@ -10,10 +10,10 @@
 # DP: Upstream status: BZ68
 # DP: Date: 2006-10-02
 
-Index: glibc-2.5/localedata/locales/hy_AM
+Index: glibc-2.6/localedata/locales/hy_AM
 ===================================================================
---- glibc-2.5.orig/localedata/locales/hy_AM
-+++ glibc-2.5/localedata/locales/hy_AM
+--- glibc-2.6.orig/localedata/locales/hy_AM
++++ glibc-2.6/localedata/locales/hy_AM
 @@ -68,6 +68,176 @@
  
  LC_COLLATE

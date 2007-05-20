@@ -52,7 +52,7 @@ Index: locale/programs/ld-collate.c
    /* Known collating elements.  */
    hash_table elem_table;
  
-@@ -1454,6 +1478,56 @@
+@@ -1455,6 +1479,56 @@
  }
  
  
@@ -109,7 +109,7 @@ Index: locale/programs/ld-collate.c
  static void
  collate_startup (struct linereader *ldfile, struct localedef_t *locale,
  		 struct localedef_t *copy_locale, int ignore_content)
-@@ -3783,6 +3857,205 @@
+@@ -3784,6 +3858,205 @@
  			  repertoire, result, nowtok);
  	  break;
  
@@ -315,7 +315,7 @@ Index: locale/programs/ld-collate.c
  	case tok_end:
  	  /* Next we assume `LC_COLLATE'.  */
  	  if (!ignore_content)
-@@ -3812,6 +4085,13 @@
+@@ -3813,6 +4086,13 @@
  	      else if (state == 5)
  		WITH_CUR_LOCALE (error (0, 0, _("\
  %s: missing `reorder-sections-end' keyword"), "LC_COLLATE"));

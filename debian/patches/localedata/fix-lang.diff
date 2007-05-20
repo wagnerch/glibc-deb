@@ -11,7 +11,7 @@ Index: localedata/locales/tr_TR
 ===================================================================
 --- localedata/locales/tr_TR.orig
 +++ localedata/locales/tr_TR
-@@ -1591,10 +1591,10 @@
+@@ -3591,10 +3591,10 @@
  country_ab3	"<U0054><U0055><U0052>"
  % Turkish
  lang_name	"<U0054><U0075><U0072><U006B><U0069><U0073><U0068>"
