@@ -30,7 +30,7 @@ glibc (2.6~20070518-2) experimental; urgency=low
    - Disable any/cvs-lt-update.diff (broken).
    - Remove any/cvs-realpath.diff (obsolete).
    - Remove any/cvs-vfprintf-stack-smashing.diff (obsolete).
-   - Disable any/cvs-zdump-64-bit.diff (broken).
+   - Remove any/cvs-zdump-64-bit.diff (obsolete).
    - Disable any/local-ldso-disable-hwcap.diff (broken).
    - Disable any/submitted-gethostbyname_r.diff (broken).
    - Remove any/submitted-iconv-colon.diff (merged upstream).
