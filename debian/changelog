@@ -17,7 +17,7 @@ glibc (2.6~20070518-2) experimental; urgency=low
    - Remove hurd-i386/cvs-futimes.diff (merged upstream).
    - Remove m68k/cvs-m68k-update.diff (obsolete).
    - Disable m68k/local-mathinline_h.diff (broken).
-   - Disable mips/cvs-ldsodefs_h.diff (broken).
+   - Remove mips/cvs-ldsodefs_h.diff (merged upstream).
    - Remove mips/submitted-msq.diff (merged upstream).
    - Remove all/cvs-iconv-E13B.diff (obsolete).
    - Disable all/submitted-new-brf-encoding.diff (broken).
