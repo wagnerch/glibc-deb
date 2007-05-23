@@ -51,12 +51,46 @@ glibc (2.6~20070518-3) UNRELEASED; urgency=low
     epoll_pwait symbols.
   * debian/rules.d/build.mk: pass --enable-profile to configure.
 
+ -- Pierre Habouzit <madcoder@debian.org>  Sun, 20 May 2007 17:47:53 +0200
+
+glibc (2.5-10) UNRELEASED; urgency=low
+
+  * kfreebsd/local-sysdeps.diff: update to revision 1942 (from glibc-bsd).
+    Thanks to Petr Salinger.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 23 May 2007 06:17:32 +0200
+
+glibc (2.5-9) unstable; urgency=low
+
+  * debian/patches/arm/local-ioperm.diff: Remove the check
+    involving LINUX_VERSION_CODE.
+  * debian/patches/hppa/submitted-atomic_h.diff: update to loop again 
+    when the kernel returns -EDEADLOCK.  Workaround: #425567.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 22 May 2007 17:03:23 +0200
+
+glibc (2.5-8) unstable; urgency=low
+
   [ Aurelien Jarno ]
   * debian/sysdeps/depflags.pl: Add a conflicts on binutils
     (<< 2.17cvs20070426-1) for libc-dev.  Closes: #422625.
-  * debian/local/etc_init.d/glibc.sh: fix a typo.  Closes: #423870.
 
- -- Pierre Habouzit <madcoder@debian.org>  Sun, 20 May 2007 17:47:53 +0200
+  [ Clint Adams ]
+  * debian/sysdeps/depflags.pl: Clean out relationships for packages
+    that do not exist in sarge or later.
+  * debian/debhelper.in/libc.install: do not hardcode the glibc
+    version number in the path to gai.conf.
+  * debian/control.in/main, debian/sysdeps/depflags.pl:
+    use linux-libc-dev to build on all linux architectures.
+    (retain Depends alternative on linux-kernel-headers)
+
+  [ Aurelien Jarno ]
+  * debian/local/etc_init.d/glibc.sh: fix a typo.  Closes: #423870.
+  * debian/patches/hppa/submitted-atomic_h.diff: new patch to fix the
+    atomic CAS function on hppa.  Closes: #424057.
+  * debian/control.in/main: unify the gcc-4.1 depends to (>= 4.1.2-6).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 20 May 2007 03:43:09 +0200
 
 glibc (2.5-7) unstable; urgency=low
 
