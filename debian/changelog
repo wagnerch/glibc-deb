@@ -1,5 +1,6 @@
 glibc (2.6~20070518-3) UNRELEASED; urgency=low
 
+  [ Pierre Habouzit ]
   [ Clint Adams]
   * New upstream version.
    - Remove locale/iso3166-RS.diff (obsolete).
@@ -12,7 +13,8 @@ glibc (2.6~20070518-3) UNRELEASED; urgency=low
    - Remove alpha/cvs-cfi.diff (merged upstream).
    - Remove arm/cvs-check_pf.c (merged upstream).
    - Remove hppa/cvs-hppa-update.diff (obsolete).
-   - Disable hppa/submitted-nptl-carlos2.diff (broken).
+   - Update hppa/submitted-nptl-carlos.diff from "upstream".
+   - Remove hppa/submitted-nptl-carlos2.diff (merged upstream).
    - Remove hppa/local-r19use.diff (merged upstream).
    - Remove hurd-i386/cvs-futimes.diff (merged upstream).
    - Remove m68k/cvs-m68k-update.diff (obsolete).
@@ -51,7 +53,7 @@ glibc (2.6~20070518-3) UNRELEASED; urgency=low
     epoll_pwait symbols.
   * debian/rules.d/build.mk: pass --enable-profile to configure.
 
- -- Pierre Habouzit <madcoder@debian.org>  Sun, 20 May 2007 17:47:53 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 23 May 2007 14:49:40 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 
