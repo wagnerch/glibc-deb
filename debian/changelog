@@ -56,8 +56,12 @@ glibc (2.6-0exp1) UNRELEASED; urgency=low
   [ Aurelien Jarno ]
   * patches/sparc/local-undefined-registers.diff: new file to ignore
     global registers while looking for undefined symbols.
+  * debian/script.in/kernelcheck.sh: add a warning for FreeBSD kernels 
+    5.X.
+  * local/etc_init.d/glibc.sh, debhelper.in/libc.preinst: don't check for
+    linux kernel, it is now done in script.in/kernelcheck.sh.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 May 2007 14:36:19 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 May 2007 14:48:49 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 
