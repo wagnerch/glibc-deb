@@ -53,7 +53,11 @@ glibc (2.6~20070518-3) UNRELEASED; urgency=low
     epoll_pwait symbols.
   * debian/rules.d/build.mk: pass --enable-profile to configure.
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 23 May 2007 14:49:40 +0200
+  [ Aurelien Jarno ]
+  * patches/sparc/local-undefined-registers.diff: new file to ignore 
+    global registers while looking for undefined symbols.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 May 2007 09:51:50 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 

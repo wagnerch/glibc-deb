@@ -80,6 +80,7 @@ powerpc/local-sysconf.diff
 
 sparc/local-fork.diff -p0
 sparc/local-sparcv8-target.diff -p0
+sparc/local-undefined-registers.diff -p0
 sparc/submitted-timing.diff 
 
 all/local-pthread-manpages.diff 
