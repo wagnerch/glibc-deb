@@ -1,4 +1,4 @@
-glibc (2.6-0exp1) UNRELEASED; urgency=low
+glibc (2.6-0exp2) UNRELEASED; urgency=low
 
   [ Pierre Habouzit ]
   [ Clint Adams]
@@ -66,8 +66,10 @@ glibc (2.6-0exp1) UNRELEASED; urgency=low
   * patches/any/local-linuxthreads-fatalprepare.diff: new patch to support
     FATAL_PREPARE on linuxthreads, by not using __libc_pthread_functions_init
     and PTHFCT_CALL.
+  * patches/hppa/local-linuxthreads.diff: new patch to get glibc buildable on
+    hppa with linuxthreads.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 May 2007 22:44:40 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 May 2007 22:51:29 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 

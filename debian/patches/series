@@ -48,6 +48,7 @@ hppa/submitted-lt.diff -p0
 hppa/submitted-nptl-carlos.diff -p0
 hppa/submitted-ustat.diff -p0
 hppa/local-inlining.diff -p0
+hppa/local-linuxthreads.diff -p0
 
 hurd-i386/cvs-getsid.diff -p0
 hurd-i386/local-dl-dynamic-weak.diff 
