@@ -88,6 +88,7 @@ all/local-remove-manual.diff
 all/local-ru_RU.diff 
 all/local-pt_BR.diff 
 
+any/cvs-malloc.diff -p0
 any/local-notls.diff -p0
 any/local-asserth-decls.diff -p0
 # any/local-base.diff -p0	#  g: suspended
