@@ -107,6 +107,8 @@ any/local-ldconfig-fsync.diff
 any/local-ldconfig-timestamps.diff -p0
 any/local-libgcc-compat-main.diff -p0
 any/local-libgcc-compat-ports.diff -p0
+any/local-linuxthreads-lowlevellock.diff -p0
+any/local-linuxthreads-fatalprepare.diff -p0
 any/local-linuxthreads-semaphore_h.diff 
 any/local-linuxthreads-tst-sighandler.diff 
 any/local-localedef-fix-trampoline.diff -p0

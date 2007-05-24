@@ -18,7 +18,7 @@ glibc (2.6-0exp1) UNRELEASED; urgency=low
    - Remove hppa/local-r19use.diff (merged upstream).
    - Remove hurd-i386/cvs-futimes.diff (merged upstream).
    - Remove m68k/cvs-m68k-update.diff (obsolete).
-   - Update  m68k/local-mathinline_h.diff.
+   - Update m68k/local-mathinline_h.diff.
    - Remove mips/cvs-ldsodefs_h.diff (merged upstream).
    - Remove mips/submitted-msq.diff (merged upstream).
    - Remove all/cvs-iconv-E13B.diff (obsolete).
@@ -61,6 +61,11 @@ glibc (2.6-0exp1) UNRELEASED; urgency=low
   * local/etc_init.d/glibc.sh, debhelper.in/libc.preinst: don't check for
     linux kernel, it is now done in script.in/kernelcheck.sh.
   * patches/any/cvs-malloc.diff: new patch from upstream to fix malloc ABI.
+  * patches/any/local-linuxthreads-lowlevellock.diff: new patch to support
+    low level locking on linuxthreads.
+  * patches/any/local-linuxthreads-fatalprepare.diff: new patch to support
+    FATAL_PREPARE on linuxthreads, by not using __libc_pthread_functions_init
+    and PTHFCT_CALL.
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 May 2007 22:44:40 +0200
 
