@@ -1,4 +1,4 @@
-glibc (2.6~20070518-3) UNRELEASED; urgency=low
+glibc (2.6-0exp1) UNRELEASED; urgency=low
 
   [ Pierre Habouzit ]
   [ Clint Adams]
@@ -54,10 +54,10 @@ glibc (2.6~20070518-3) UNRELEASED; urgency=low
   * debian/rules.d/build.mk: pass --enable-profile to configure.
 
   [ Aurelien Jarno ]
-  * patches/sparc/local-undefined-registers.diff: new file to ignore 
+  * patches/sparc/local-undefined-registers.diff: new file to ignore
     global registers while looking for undefined symbols.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 May 2007 09:51:50 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 May 2007 14:36:19 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 
