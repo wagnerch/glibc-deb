@@ -68,8 +68,10 @@ glibc (2.6-0exp2) UNRELEASED; urgency=low
     and PTHFCT_CALL.
   * patches/hppa/local-linuxthreads.diff: new patch to get glibc buildable on
     hppa with linuxthreads.
+  * patches/arm/submitted-RTLD_SINGLE_THREAD_P.diff: fix a missing #defined
+    on arm.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 May 2007 22:51:29 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 25 May 2007 10:26:22 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 

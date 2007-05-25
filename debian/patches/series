@@ -42,6 +42,7 @@ amd64/local-biarch.diff
 arm/cvs-gcc4-inline.diff -p0
 arm/local-ioperm.diff -p0
 arm/local-no-hwcap.diff -p0
+arm/submitted-RTLD_SINGLE_THREAD_P.diff -p0
 
 hppa/submitted-atomic_h.diff -p0
 hppa/submitted-lt.diff -p0
