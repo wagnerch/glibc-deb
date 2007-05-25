@@ -8,7 +8,7 @@ glibc (2.6-0exp2) UNRELEASED; urgency=low
    - Update locale/LC_COLLATE-keywords-ordering.diff.
    - Remove localedata/locale-pl_PL.diff (merged upstream).
    - Remove localedata/locales-sr.diff (obsolete).
-   - Disable localedata/tailor-iso14651_t1.diff (broken).
+   - Update localedata/tailor-iso14651_t1.diff.
    - Update localedata/first_weekday.diff.
    - Remove alpha/cvs-cfi.diff (merged upstream).
    - Remove arm/cvs-check_pf.c (merged upstream).

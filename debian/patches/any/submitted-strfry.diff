@@ -3,8 +3,10 @@ n! paths for a string with N characters, and since there are n! possible
 permutations, we get a one-to-one mapping, and all possibilities are 
 equally likely.
 
---- string/strfry.c	2007-04-21 23:12:47.000000000 +0200
-+++ string/strfry.c	2007-04-21 23:22:46.000000000 +0200
+Index: string/strfry.c
+===================================================================
+--- string/strfry.c.orig
++++ string/strfry.c
 @@ -37,16 +37,16 @@
        init = 1;
      }

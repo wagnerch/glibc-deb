@@ -127,7 +127,7 @@ Index: locale/programs/ld-collate.c
  	  state = 5;
  
  	  /* Get the name of the sections we are adding after.  */
-@@ -4061,7 +4068,7 @@
+@@ -4073,7 +4080,7 @@
  	  /* Next we assume `LC_COLLATE'.  */
  	  if (!ignore_content)
  	    {

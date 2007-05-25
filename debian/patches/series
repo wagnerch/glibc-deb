@@ -26,7 +26,7 @@ localedata/locale-ia.diff -p0
 localedata/locale-zh_TW.diff -p0
 localedata/new-valencian-locale.diff -p0
 localedata/locale-se_NO.diff -p0
-# localedata/tailor-iso14651_t1.diff -p0
+localedata/tailor-iso14651_t1.diff -p0
 localedata/fix-lang.diff -p0
 localedata/fix-unknown-symbols.diff -p0
 localedata/first_weekday.diff -p0
