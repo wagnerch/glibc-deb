@@ -11365,19 +11365,18 @@ Index: localedata/locales/iso14651_t1_common
  #
  #minuscules spéciales après majuscules
  # <ARABINT>/<ARABFOR>
-@@ -788,7 +799,11 @@
- <ARM-O>
- <ARM-FE>
+@@ -1036,7 +1047,11 @@
+ <U009E> IGNORE;IGNORE;IGNORE;<U009E>
+ <U009F> IGNORE;IGNORE;IGNORE;<U009F>
  
--order_start <SPECIAL>;forward;backward;forward;forward,position
 +ifdef LATIN_FORWARD
 +order_start <LATIN>;forward;forward;forward;forward,position
 +else
-+order_start <LATIN>;forward;backward;forward;forward,position
+ order_start <LATIN>;forward;backward;forward;forward,position
 +endif
  #
- # Tout caractère non précisément défini sera considéré comme caractère spécial
- # et considéré uniquement au dernier niveau.
+ <U00A0> <U0020>;<BAS>;<MIN>;IGNORE # 170<NBSP>
+ #
 Index: localedata/locales/lt_LT
 ===================================================================
 --- localedata/locales/lt_LT.orig
