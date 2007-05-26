@@ -70,8 +70,10 @@ glibc (2.6-0exp2) UNRELEASED; urgency=low
     hppa with linuxthreads.
   * patches/arm/submitted-RTLD_SINGLE_THREAD_P.diff: fix a missing #defined
     on arm.
+  * kfreebsd/local-sysdeps.diff: update to revision 1949 (from glibc-bsd).
+    Thanks to Petr Salinger.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 25 May 2007 10:26:22 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 May 2007 13:20:59 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 
