@@ -72,8 +72,11 @@ glibc (2.6-0exp2) UNRELEASED; urgency=low
     on arm.
   * kfreebsd/local-sysdeps.diff: update to revision 1949 (from glibc-bsd).
     Thanks to Petr Salinger.
+  * any/local-linuxthreads-defines.diff: new patch to restore a few defines
+    in config.make.in still needed by linuxthreads. Thanks to Petr Salinger
+    for the patch.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 May 2007 13:20:59 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 May 2007 13:40:00 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 
