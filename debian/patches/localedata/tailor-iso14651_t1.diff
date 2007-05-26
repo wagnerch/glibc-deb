@@ -11374,7 +11374,7 @@ Index: localedata/locales/iso14651_t1_common
 +order_start <LATIN>;forward;forward;forward;forward,position
 +else
 +order_start <LATIN>;forward;backward;forward;forward,position
-+endof
++endif
  #
  # Tout caractère non précisément défini sera considéré comme caractère spécial
  # et considéré uniquement au dernier niveau.
