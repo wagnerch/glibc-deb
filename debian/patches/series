@@ -31,6 +31,7 @@ localedata/fix-unknown-symbols.diff -p0
 localedata/first_weekday.diff -p0
 localedata/sort-UTF8-first.diff -p0
 localedata/local-all-no-archive.diff -p0
+localedata/submitted-as_IN.diff -p0
 
 # alpha/submitted-pic.diff -p0	#  g: suspended
 alpha/local-gcc4.1.diff -p0
