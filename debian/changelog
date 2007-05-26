@@ -6,6 +6,7 @@ glibc (2.6-0exp2) UNRELEASED; urgency=low
    - Remove locale/iso3166-RS.diff (obsolete).
    - Remove locale/fix-exhausted-memory.diff (merged upstream).
    - Update locale/LC_COLLATE-keywords-ordering.diff.
+   - Remove localedata/locale-hy_AM.diff (obsolete).
    - Remove localedata/locale-pl_PL.diff (merged upstream).
    - Remove localedata/locales-sr.diff (obsolete).
    - Update localedata/tailor-iso14651_t1.diff.
@@ -77,7 +78,7 @@ glibc (2.6-0exp2) UNRELEASED; urgency=low
     in config.make.in still needed by linuxthreads.
   * patches/local-tst-mktime2.diff: fix time/tst-mktime2.c.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 May 2007 13:53:09 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 May 2007 21:02:22 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 

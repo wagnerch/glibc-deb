@@ -18,7 +18,6 @@ localedata/locales_GB.diff -p0
 localedata/supported.diff -p0
 localedata/locale-sa_IN.diff -p0
 localedata/locale-en_DK.diff -p0
-localedata/locale-hy_AM.diff
 localedata/locale-wo_SN.diff -p0
 localedata/locale-csb_PL.diff
 localedata/dz_BT-collation.diff -p0
