@@ -80,7 +80,11 @@ glibc (2.6-0exp2) UNRELEASED; urgency=low
     in config.make.in still needed by linuxthreads.
   * patches/local-tst-mktime2.diff: fix time/tst-mktime2.c.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 May 2007 21:02:22 +0200
+  [ Pierre Habouzit ]
+  * pass -X/usr/lib/debug to dh_makeshlibs so that libc6-dbg gets no useless
+    shlibs. Closes: 427637.
+
+ -- Pierre Habouzit <madcoder@debian.org>  Tue, 05 Jun 2007 20:16:20 +0200
 
 glibc (2.5-10) UNRELEASED; urgency=low
 
