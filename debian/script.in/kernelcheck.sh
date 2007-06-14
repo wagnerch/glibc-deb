@@ -1,15 +1,24 @@
 linux_compare_versions () {
     verA=$(($(echo "$1" | sed 's/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 10000 + \2 \* 100 + \3/')))
     verB=$(($(echo "$3" | sed 's/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 10000 + \2 \* 100 + \3/')))
-    
+
     test $verA -$2 $verB
 }
 
 kfreebsd_compare_versions () {
     verA=$(($(echo "$1" | sed 's/\([0-9]*\)\.\([0-9]*\).*/\1 \* 100 + \2/')))
     verB=$(($(echo "$3" | sed 's/\([0-9]*\)\.\([0-9]*\).*/\1 \* 100 + \2/')))
-    
+
     test $verA -$2 $verB
+}
+
+kernel26_help() {
+    echo ""
+    echo "The installation of a 2.6 kernel _could_ ask you to install a new libc"
+    echo "first, this is NOT a bug, and should *NOT* be reported. In that case,"
+    echo "please add etch sources to your /etc/apt/sources.list and run:"
+    echo "  apt-get install -t etch linux-image-2.6"
+    echo "Then reboot into this new kernel, and proceed with your upgrade"
 }
 
 exit_check () {
@@ -26,38 +35,38 @@ exit_check () {
         kernel_rev=$(uname -r | sed 's/\([0-9]*\.[0-9]*\.\)\([0-9]*\)\(.*\)/\2/')
         if [ "$kernel_rev" -ge 255 ]
         then
-            echo WARNING: Your kernel version indicates a revision number
-            echo of 255 or greater.  Glibc has a number of built in
-            echo assumptions that this revision number is less than 255.
-            echo If you\'ve built your own kernel, please make sure that any 
-            echo custom version numbers are appended to the upstream
-            echo kernel number with a dash or some other delimiter.
-    
+            echo "WARNING: Your kernel version indicates a revision number"
+            echo "of 255 or greater.  Glibc has a number of built in"
+            echo "assumptions that this revision number is less than 255."
+            echo "If you\'ve built your own kernel, please make sure that any"
+            echo "custom version numbers are appended to the upstream"
+            echo "kernel number with a dash or some other delimiter."
+
             exit_check
         fi
-    
+
         # sanity checking for the appropriate kernel on each architecture.
         realarch=`uname -m`
         kernel_ver=`uname -r`
-    
+
         # convert "armv4l" and similar to just "arm", and "mips64" and similar
         # to just "mips"
         case $realarch in
           arm*) realarch="arm";;
           mips*) realarch="mips";;
         esac
-        
-    
+
+
         # From glibc 2.3.5-7 real-i386 is dropped.
         if [ "$realarch" = i386 ]
         then
-            echo WARNING: This machine has real i386 class processor.
-            echo Debian etch and later does not support such old hardware
-            echo any longer.
-            echo The reason is that \"bswap\" instruction is not supported
-            echo on i386 class processors, and some core libraries have 
-            echo such instruction.  You\'ll see illegal instruction error
-            echo when you upgrade your Debian system.
+            echo "WARNING: This machine has real i386 class processor."
+            echo "Debian etch and later does not support such old hardware"
+            echo "any longer."
+            echo "The reason is that \"bswap\" instruction is not supported"
+            echo "on i386 class processors, and some core libraries have"
+            echo "such instruction.  You\'ll see illegal instruction error"
+            echo "when you upgrade your Debian system."
             exit_check
         fi
 
@@ -70,11 +79,12 @@ exit_check () {
                 echo kernel version 2.6.12 or later.  Earlier kernels contained
                 echo bugs that may render the system unusable if a modern version
                 echo of glibc is installed.
+                kernel26_help
                 exit_check
             fi	
         fi
- 
-        # The GNU libc requires 2.6 kernel (except on m68k) because we drop to 
+
+        # The GNU libc requires 2.6 kernel (except on m68k) because we drop to
         # support linuxthreads
         if [ "$realarch" != m68k ]
         then
@@ -83,10 +93,11 @@ exit_check () {
                 echo WARNING: POSIX threads library NPTL requires kernel version
                 echo 2.6.1 or later.  If you use a kernel 2.4, please upgrade it
                 echo before installing glibc.
+                kernel26_help
                 exit_check
             fi
         fi
-    
+
         # HPPA boxes require latest fixes in the kernel to function properly.
         if [ "$realarch" = parisc ]
         then
@@ -96,10 +107,11 @@ exit_check () {
                 echo kernel version 2.6.9 or later.  Earlier kernels contained
                 echo bugs that may render the system unusable if a modern version
                 echo of glibc is installed.
+                kernel26_help
                 exit_check
             fi
         fi
-    
+
         # The GNU libc is now built with --with-kernel= >= 2.4.1 on m68k
         if [ "$realarch" = m68k ]
         then
@@ -109,6 +121,7 @@ exit_check () {
                 echo kernel version 2.4.1 or later.  Earlier kernels contained
                 echo bugs that may render the system unusable if a modern version
                 echo of glibc is installed.
+                kernel26_help
                 exit_check
             fi
         fi
