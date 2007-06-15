@@ -85,8 +85,10 @@ glibc (2.6-0exp2) UNRELEASED; urgency=low
     people can deal with it without adding yet-another critical bug on the
     glibc.
   * kernelchecks.sh: add some quotes to unconfuse syntax hilighting a bit.
+  * nscd.init: ksh is confused if you call functions start or stop.
+    Closes: 428884.
 
- -- Pierre Habouzit <madcoder@debian.org>  Thu, 14 Jun 2007 23:05:36 +0200
+ -- Pierre Habouzit <madcoder@debian.org>  Fri, 15 Jun 2007 12:11:27 +0200
 
 glibc (2.5-11) UNRELEASED; urgency=low
 
