@@ -1,4 +1,4 @@
-glibc (2.6-0exp3) experimental; urgency=low
+glibc (2.6-0exp4) UNRELEASED; urgency=low
 
   [ Pierre Habouzit ]
   [ Clint Adams]
@@ -89,6 +89,7 @@ glibc (2.6-0exp3) experimental; urgency=low
     Closes: 428884.
   * patches/locale/preprocessor-collate.diff: update it to work (with
     restrictions) with depth >= 2 copies.
+  * debian/control: ${Source-Version} -> ${binary:Version}.
 
  -- Pierre Habouzit <madcoder@debian.org>  Sun, 17 Jun 2007 17:18:49 +0100
 
