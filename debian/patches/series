@@ -8,7 +8,6 @@ locale/fix-LC_COLLATE-rules.diff -p0
 locale/preprocessor-collate.diff -p0
 locale/LC_IDENTIFICATION-optional-fields.diff -p0
 locale/LC_COLLATE-keywords-ordering.diff -p0
-locale/LC_COLLATE-fix_tok_copy.diff
 locale/locale-print-LANGUAGE.diff -p0
 locale/fix-C-first_weekday.diff -p0
 localedata/tl_PH-yesexpr.diff

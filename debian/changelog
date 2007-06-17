@@ -87,8 +87,6 @@ glibc (2.6-0exp2) experimental; urgency=low
   * kernelchecks.sh: add some quotes to unconfuse syntax hilighting a bit.
   * nscd.init: ksh is confused if you call functions start or stop.
     Closes: 428884.
-  * patches/locale/LC_COLLATE-fix_tok_copy.diff: fix an issue with the "copy"
-    token when it isn't the first rule in a LC_COLLATION block (sigh).
 
  -- Pierre Habouzit <madcoder@debian.org>  Sun, 17 Jun 2007 14:15:39 +0100
 
