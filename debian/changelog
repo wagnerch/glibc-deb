@@ -73,6 +73,7 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
     on arm.
   * patches/localedata/submitted-as_IN.diff: new patch to fix a not anymore
     unassigned unicode code.
+  * locales-depver: tighten locales dependencies.
 
   [ Petr Salinger]
   * kfreebsd/local-sysdeps.diff: update to revision 1949 (from glibc-bsd).
@@ -95,7 +96,7 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
     operations in presence of recoverable errors.
     Closes: 429021.
 
- -- Pierre Habouzit <madcoder@debian.org>  Mon, 18 Jun 2007 10:56:35 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 18 Jun 2007 21:02:22 +0200
 
 glibc (2.5-11) UNRELEASED; urgency=low
 
