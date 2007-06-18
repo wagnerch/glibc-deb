@@ -24,7 +24,7 @@ for i in debs/*.deb; do
 
     dpkg -x "$i" here
     for log in $(ls here/usr/share/doc/libc6*/log-test-`to_gnu "$arch"`-libc.gz 2>/dev/null); do
-        zgrep -e '\(Error\|Erreur\)' "$log" | sed -e '{
+        zgrep -e '(Error|Erreur)' "$log" | sed -e '{
             s/^make[^:]*: \** *//g;
             s~^\[.*libc/~~g;
             s~\].*~~g;
