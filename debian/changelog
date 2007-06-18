@@ -90,6 +90,7 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
   * patches/locale/preprocessor-collate.diff: update it to work (with
     restrictions) with depth >= 2 copies.
   * debian/control: ${Source-Version} -> ${binary:Version}.
+  * debian/debhelper.in/nscd.lintian: yes, /var/db for lintian is ok.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 18 Jun 2007 10:47:18 +0200
 
