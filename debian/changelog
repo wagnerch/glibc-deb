@@ -91,8 +91,11 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
     restrictions) with depth >= 2 copies.
   * debian/control: ${Source-Version} -> ${binary:Version}.
   * debian/debhelper.in/nscd.lintian: yes, /var/db for lintian is ok.
+  * patches/any/submitted-fileops-and-signals.diff: fixes libio file
+    operations in presence of recoverable errors.
+    Closes: 429021.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 18 Jun 2007 10:47:18 +0200
+ -- Pierre Habouzit <madcoder@debian.org>  Mon, 18 Jun 2007 10:56:35 +0100
 
 glibc (2.5-11) UNRELEASED; urgency=low
 
