@@ -49,7 +49,7 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
   * debian/control.in/main, debian/sysdeps/depflags.pl:
     use linux-libc-dev on all linux architectures, and
     remove all references to linux-kernel-headers.
-  * Bump shlibdeps version to 2.6-1 due to sync_file_range, futimens,
+  * Bump shlibdeps version to 2.6-0exp1 due to sync_file_range, futimens,
     utimensat, __sched_cpucount, sched_getcpu, strerror_l, and
     epoll_pwait symbols.
   * debian/rules.d/build.mk: pass --enable-profile to configure.
@@ -91,7 +91,7 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
     restrictions) with depth >= 2 copies.
   * debian/control: ${Source-Version} -> ${binary:Version}.
 
- -- Pierre Habouzit <madcoder@debian.org>  Sun, 17 Jun 2007 17:18:49 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 18 Jun 2007 10:47:18 +0200
 
 glibc (2.5-11) UNRELEASED; urgency=low
 
