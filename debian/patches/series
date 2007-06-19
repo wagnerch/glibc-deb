@@ -34,6 +34,7 @@ localedata/local-all-no-archive.diff -p0
 localedata/submitted-as_IN.diff -p0
 
 # alpha/submitted-pic.diff -p0	#  g: suspended
+localedata/fix-am_ET.diff
 alpha/local-gcc4.1.diff -p0
 alpha/submitted-xstat.diff -p0
 
@@ -47,7 +48,7 @@ arm/submitted-RTLD_SINGLE_THREAD_P.diff -p0
 hppa/submitted-atomic_h.diff -p0
 hppa/submitted-lt.diff -p0
 hppa/submitted-nptl-carlos.diff -p0
-hppa/submitted-pie.diff -p1
+hppa/submitted-pie.diff 
 hppa/submitted-ustat.diff -p0
 hppa/local-inlining.diff -p0
 hppa/local-linuxthreads.diff -p0
@@ -91,8 +92,8 @@ all/local-remove-manual.diff
 all/local-ru_RU.diff 
 all/local-pt_BR.diff 
 
-any/cvs-malloc.diff -p1
-any/cvs-nscd-short-replies.diff -p1
+any/cvs-malloc.diff 
+any/cvs-nscd-short-replies.diff 
 any/local-notls.diff -p0
 any/local-asserth-decls.diff -p0
 # any/local-base.diff -p0	#  g: suspended

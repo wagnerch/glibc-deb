@@ -89,12 +89,15 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
   * nscd.init: ksh is confused if you call functions start or stop.
     Closes: 428884.
   * patches/locale/preprocessor-collate.diff: update it to work (with
-    restrictions) with depth >= 2 copies.
+    restrictions) with depth >= 2 copies. The patch is scurvy and make locale
+    parsing completely non reentrant.
   * debian/control: ${Source-Version} -> ${binary:Version}.
   * debian/debhelper.in/nscd.lintian: yes, /var/db for lintian is ok.
   * patches/any/submitted-fileops-and-signals.diff: fixes libio file
     operations in presence of recoverable errors.
     Closes: 429021.
+  * patches/localedata/fix-am_ET.diff: fix am_ET using our preprocessor
+    extensions.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 18 Jun 2007 21:02:22 +0200
 
