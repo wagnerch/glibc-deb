@@ -88,7 +88,7 @@ exit_check () {
         # support linuxthreads
         if [ "$realarch" != m68k ]
         then
-            if linux_compare_versions "$kernel_ver" lt 2.6.1
+            if linux_compare_versions "$kernel_ver" lt 2.6.8
             then
                 echo WARNING: POSIX threads library NPTL requires kernel version
                 echo 2.6.1 or later.  If you use a kernel 2.4, please upgrade it
