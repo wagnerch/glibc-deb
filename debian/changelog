@@ -76,6 +76,8 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
   * locales-depver: tighten locales dependencies.
   * debian/sysdeps/linux.mk, debian/script.in/kernelcheck.sh: bump minimum
     kernel requirement to 2.6.8.
+  * debian/rules, debian/rules.d/build.mk, debian/sysdeps/*.mk: also defines
+    CXX as g++ is used in the testsuite.
 
   [ Petr Salinger]
   * kfreebsd/local-sysdeps.diff: update to revision 1949 (from glibc-bsd).
@@ -101,7 +103,7 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
   * patches/localedata/fix-am_ET.diff: fix am_ET using our preprocessor
     extensions.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 22 Jun 2007 20:36:17 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 22 Jun 2007 21:20:23 +0200
 
 glibc (2.5-11) UNRELEASED; urgency=low
 
