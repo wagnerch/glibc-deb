@@ -189,7 +189,7 @@ any/submitted-nis-netgrp.diff
 any/submitted-strfmon.diff
 any/cvs-sunrpc-xdrmem_setpos.diff
 any/cvs-getent-wrong-struct-size.diff -p0
-any/cvs-nscd-free.diff -p0
+any/cvs-nscd-free.diff -p1
 any/cvs-sunrpc-64bits-svc_getreqset.diff -p0
 any/cvs-vfprintf-stack-smashing.diff
 any/cvs-getnetgrent_r-memory-leak.diff
