@@ -1,0 +1,22 @@
+2005-09-22  Ulrich Drepper  <drepper@redhat.com>
+
+	[BZ #1363]
+	* nscd/nscd_getpw_r.c (nscd_getpw_r): Remove incorrectly C&Ped
+	free call in code handling detection of GC runs.
+
+===================================================================
+RCS file: /cvs/glibc/libc/nscd/nscd_getpw_r.c,v
+retrieving revision 1.30
+retrieving revision 1.31
+diff -u -r1.30 -r1.31
+--- libc/nscd/nscd_getpw_r.c	2005/02/22 22:47:45	1.30
++++ libc/nscd/nscd_getpw_r.c	2005/09/22 14:35:11	1.31
+@@ -227,8 +227,6 @@
+ 	  mapped = NO_MAPPING;
+ 	}
+ 
+-      free (resultbuf);
+-
+       goto retry;
+     }
+ 

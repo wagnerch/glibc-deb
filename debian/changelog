@@ -1,3 +1,9 @@
+glibc (2.3.6.ds1-13etch3) stable; urgency=low
+
+  * patches/any/cvs-nscd-free.diff: fix nscd crash. Closes: #425404.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 02 Jul 2007 00:59:13 +0200
+
 glibc (2.3.6.ds1-13etch2) stable; urgency=low
 
   * patches/any/cvs-vfprintf-stack-smashing.diff: fix issue with 8bits locales
