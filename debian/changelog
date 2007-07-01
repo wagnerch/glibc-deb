@@ -103,6 +103,9 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
   * patches/localedata/fix-am_ET.diff: fix am_ET using our preprocessor
     extensions.
 
+  [ Samuel Thibault ]
+  * Remove patches/hurd-i386/cvs-getsid.diff (merged upstream).
+
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 22 Jun 2007 21:20:23 +0200
 
 glibc (2.5-11) UNRELEASED; urgency=low
