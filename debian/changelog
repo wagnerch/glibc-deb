@@ -105,6 +105,9 @@ glibc (2.6-0exp4) UNRELEASED; urgency=low
 
   [ Samuel Thibault ]
   * Remove patches/hurd-i386/cvs-getsid.diff (merged upstream).
+  * patches/hurd-i386/submitted-ioctl-unsigned-size_t.diff: new patch to fix
+    some packages that use unsigned or size_t in ioctls.
+    Closes: 431365.
 
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 22 Jun 2007 21:20:23 +0200
 
