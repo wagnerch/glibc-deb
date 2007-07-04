@@ -53,7 +53,6 @@ hppa/submitted-ustat.diff -p0
 hppa/local-inlining.diff -p0
 hppa/local-linuxthreads.diff -p0
 
-hurd-i386/cvs-getsid.diff -p0
 hurd-i386/local-dl-dynamic-weak.diff 
 hurd-i386/local-enable-ldconfig.diff -p0
 hurd-i386/local-mlock.diff 
@@ -65,6 +64,7 @@ hurd-i386/submitted-libc_once.diff -p0
 hurd-i386/submitted-stat.diff -p0
 hurd-i386/submitted-sysvshm.diff 
 hurd-i386/submitted-trivial.diff -p0
+hurd-i386/submitted-ioctl-unsigned-size_t.diff -p0
 
 i386/local-biarch.diff 
 i386/local-cmov.diff -p0
