@@ -5,6 +5,13 @@ glibc (2.5-12) UNRELEASED; urgency=low
     some packages that use unsigned or size_t in ioctls.
     Closes: 431365.  
 
+  [ Michael Banck ]
+  * patches/hurd-i386/local-gcc-4.1-init-first.diff: New patch by Thomas
+    Schwinge to fix building with gcc-4.1.
+  * patches/hurd-i386/local-argp-fno-strict-aliasing.diff: New patch by Thomas
+    Schwinge to fix run-time errors with gcc-4.1 built glibc.
+  * debian/sysdeps/hurd.mk (CC, BUILD_CC): Removed.
+
  -- Michael Banck <mbanck@debian.org>  Wed,  4 Jul 2007 18:21:11 +0200
 
 glibc (2.5-11) unstable; urgency=low

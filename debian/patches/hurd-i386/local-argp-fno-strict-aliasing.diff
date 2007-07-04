@@ -1,0 +1,13 @@
+--- argp/Makefile~	2004-03-28 16:15:30.000000000 +0200
++++ argp/Makefile	2007-01-29 21:54:59.000000000 +0100
+@@ -30,6 +30,7 @@
+ 
+ CFLAGS-argp-help.c = $(uses-callbacks) -fexceptions
+ CFLAGS-argp-parse.c = $(uses-callbacks)
+-CFLAGS-argp-fmtstream.c = -fexceptions
++# The following `-fno-strict-aliasing' is of course not a proper fix.
++CFLAGS-argp-fmtstream.c = -fexceptions -fno-strict-aliasing
+ 
+ include ../Rules
+
+
