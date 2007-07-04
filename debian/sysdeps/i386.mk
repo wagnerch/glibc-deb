@@ -1,14 +1,3 @@
-define libc6_extra_pkg_install
-mkdir -p debian/$(curpass)/usr/lib
-ln -sf i486-linux-gnu debian/$(curpass)/lib/i386-linux-gnu
-ln -sf i486-linux-gnu debian/$(curpass)/usr/lib/i386-linux-gnu
-endef
-
-# NPTL requires at least i486 assembly.  We don't need to take
-# special measures for i386 systems, since Debian kernel images now
-# emulate the missing instructions on the i386.
-libc_configure_target=i486-linux
-libc_configure_build=i486-linux
 libc_extra_cflags = -march=i486 -mtune=i686 -g -O3
 
 # We use -march=i686 and glibc's i686 routines use cmov, so require it.
@@ -54,8 +43,8 @@ amd64_configure_target = x86_64-linux
 # /usr/include/asm wrappers need that symbol.
 amd64_CC = $(CC) -m64 -D__x86_64__
 amd64_extra_cflags = -O3 -g
-amd64_extra_config_options = $(extra_config_options) --disable-profile \
-	--includedir=/usr/include/x86_64-linux-gnu
+amd64_extra_config_options = $(extra_config_options) --disable-profile
+amd64_includedir = /usr/include/x86_64-linux-gnu
 amd64_slibdir = /lib64
 amd64_libdir = /usr/lib64
 

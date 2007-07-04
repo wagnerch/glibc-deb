@@ -57,9 +57,9 @@ exit_check () {
     then
 	if kernel_compare_versions "$kernel_ver" lt 2.6.1
 	then
-	    echo WARNING: POSIX threads library NPTL requires 2.6.1 and
-	    echo later kernel.  If you use 2.4 kernel, please upgrade your
-	    echo kernel before installing glibc.
+	    echo WARNING: POSIX threads library NPTL requires kernel version
+	    echo 2.6.1 or later.  If you use a kernel 2.4, please upgrade it
+	    echo before installing glibc.
 	    exit_check
 	fi
     fi
@@ -71,6 +71,19 @@ exit_check () {
 	then
 	    echo WARNING: This version of glibc requires that you be running
 	    echo kernel version 2.6.9 or later.  Earlier kernels contained
+	    echo bugs that may render the system unusable if a modern version
+	    echo of glibc is installed.
+	    exit_check
+	fi	
+    fi
+
+    # arm boxes require __ARM_NR_set_tls in the kernel to function properly.
+    if [ "$realarch" = arm ]
+    then
+	if kernel_compare_versions "$kernel_ver" lt 2.6.12
+	then
+	    echo WARNING: This version of glibc requires that you be running
+	    echo kernel version 2.6.12 or later.  Earlier kernels contained
 	    echo bugs that may render the system unusable if a modern version
 	    echo of glibc is installed.
 	    exit_check

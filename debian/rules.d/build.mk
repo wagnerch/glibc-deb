@@ -23,19 +23,23 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 
 	@echo Configuring $(curpass)
 	rm -f $(DEB_BUILDDIR)/configparms
-	echo "CC = $(call xx,CC)"	>> $(DEB_BUILDDIR)/configparms
-	echo "BUILD_CC = $(BUILD_CC)"	>> $(DEB_BUILDDIR)/configparms
-	echo "CFLAGS = $(HOST_CFLAGS)"	>> $(DEB_BUILDDIR)/configparms
-	echo "BUILD_CFLAGS = $(BUILD_CFLAGS)" >> $(DEB_BUILDDIR)/configparms
-	echo "BASH := /bin/bash"	>> $(DEB_BUILDDIR)/configparms
-	echo "KSH := /bin/bash"		>> $(DEB_BUILDDIR)/configparms
-	echo "mandir = $(mandir)"	>> $(DEB_BUILDDIR)/configparms
-	echo "infodir = $(infodir)"	>> $(DEB_BUILDDIR)/configparms
-	echo "libexecdir = $(libexecdir)" >> $(DEB_BUILDDIR)/configparms
-	echo "LIBGD = no"		>> $(DEB_BUILDDIR)/configparms
-	echo "sysconfdir = /etc"	>> $(DEB_BUILDDIR)/configparms
-	echo "rootsbindir = /sbin"	>> $(DEB_BUILDDIR)/configparms
-	echo "localedir = /usr/lib/locale" >> $(DEB_BUILDDIR)/configparms
+	echo "CC = $(call xx,CC)"		>> $(DEB_BUILDDIR)/configparms
+	echo "BUILD_CC = $(BUILD_CC)"		>> $(DEB_BUILDDIR)/configparms
+	echo "CFLAGS = $(HOST_CFLAGS)"		>> $(DEB_BUILDDIR)/configparms
+	echo "BUILD_CFLAGS = $(BUILD_CFLAGS)" 	>> $(DEB_BUILDDIR)/configparms
+	echo "BASH := /bin/bash"		>> $(DEB_BUILDDIR)/configparms
+	echo "KSH := /bin/bash"			>> $(DEB_BUILDDIR)/configparms
+	echo "LIBGD = no"			>> $(DEB_BUILDDIR)/configparms
+	echo "bindir = $(bindir)"		>> $(DEB_BUILDDIR)/configparms
+	echo "datadir = $(datadir)"		>> $(DEB_BUILDDIR)/configparms
+	echo "localedir = $(localedir)" 	>> $(DEB_BUILDDIR)/configparms
+	echo "sysconfdir = $(sysconfdir)" 	>> $(DEB_BUILDDIR)/configparms
+	echo "libexecdir = $(libexecdir)" 	>> $(DEB_BUILDDIR)/configparms
+	echo "rootsbindir = $(rootsbindir)" 	>> $(DEB_BUILDDIR)/configparms
+	echo "includedir = $(call xx,includedir)" >> $(DEB_BUILDDIR)/configparms
+	echo "docdir = $(docdir)"		>> $(DEB_BUILDDIR)/configparms
+	echo "mandir = $(mandir)"		>> $(DEB_BUILDDIR)/configparms
+	echo "sbindir = $(sbindir)"		>> $(DEB_BUILDDIR)/configparms
 	libdir="$(call xx,libdir)" ; if test -n "$$libdir" ; then \
 		echo "libdir = $$libdir" >> $(DEB_BUILDDIR)/configparms ; \
 	fi
@@ -91,6 +95,9 @@ $(stamp)check_%: $(stamp)build_%
 	elif ! $(call kernel_check,$(call xx,MIN_KERNEL_SUPPORTED)); then \
 	  echo "Kernel too old, skipping tests."; \
 	  echo "Kernel too old, tests have been skipped." > $(log_test) ; \
+	elif grep -q "cpu model.*SiByte SB1" /proc/cpuinfo ; then \
+	  echo "MIPS SB1 platform detected, skipping tests."; \
+	  echo "MIPS SB1 platform detected, skipping tests." > $(log_test) ; \
 	elif [ $(call xx,RUN_TESTSUITE) != "yes" ]; then \
 	  echo "Testsuite disabled for $(curpass), skipping tests."; \
 	  echo "Tests have been disabled." > $(log_test) ; \
@@ -121,14 +128,9 @@ $(stamp)install_%: $(stamp)check_%
 	    localedata/install-locales; \
 	  rm -rf $(CURDIR)/debian/locales-all/usr/lib; \
 	  install -d $(CURDIR)/debian/locales-all/usr/lib/locales-all; \
-	  tar zcf $(CURDIR)/debian/locales-all/usr/lib/locales-all/supported.tar.gz -C $(CURDIR)/debian/tmp-libc/usr/lib/locale .; \
+	  tar --use-compress-program /usr/bin/lzma -cf $(CURDIR)/debian/locales-all/usr/lib/locales-all/supported.tar.lzma -C $(CURDIR)/debian/tmp-libc/usr/lib/locale .; \
 	fi
 
-	# Remove ld.so from optimized libraries
-	if echo $(call xx,slibdir) | grep -q "/lib/.\+" ; then \
-		rm -f debian/tmp-$(curpass)/$(call xx,slibdir)/ld*.so* ; \
-	fi
-	
 	# Create the multidir directories, and the configuration file in /etc/ld.so.conf.d
 	if [ $(curpass) = libc ]; then \
 	  mkdir -p debian/tmp-$(curpass)/etc/ld.so.conf.d; \
