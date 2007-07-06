@@ -12,6 +12,8 @@ glibc (2.5-12) UNRELEASED; urgency=low
   * patches/hurd-i386/local-argp-fno-strict-aliasing.diff: New patch by Thomas
     Schwinge to fix run-time errors with gcc-4.1 built glibc.
   * debian/sysdeps/hurd.mk (CC, BUILD_CC): Removed.
+  * debian/sysdeps/hurd.mk (libc_extra_config_options): Removed
+    libc_cv_z_relro=no.
 
  -- Michael Banck <mbanck@debian.org>  Wed,  4 Jul 2007 18:21:11 +0200
 
