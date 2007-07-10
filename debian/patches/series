@@ -47,6 +47,7 @@ arm/submitted-RTLD_SINGLE_THREAD_P.diff -p0
 
 hppa/submitted-atomic_h.diff -p0
 hppa/submitted-lt.diff -p0
+hppa/submitted-multiple-threads.diff -p0
 hppa/submitted-nptl-carlos.diff -p0
 hppa/submitted-pie.diff 
 hppa/submitted-ustat.diff -p0
@@ -92,6 +93,7 @@ all/local-remove-manual.diff
 all/local-ru_RU.diff 
 all/local-pt_BR.diff 
 
+any/cvs-ld-integer-overflow.diff -p1
 any/cvs-malloc.diff 
 any/cvs-nscd-short-replies.diff 
 any/cvs-nis-nss-default.diff
