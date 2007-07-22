@@ -5,6 +5,8 @@ glibc (2.5-12) UNRELEASED; urgency=low
   * patches/hurd-i386/submitted-ioctl-unsigned-size_t.diff: new patch to fix
     some packages that use unsigned or size_t in ioctls.
     Closes: 431365.  
+  * hurd-i386/submitted-ECANCELED.diff: new patch to fix ECANCELED value.
+    Closes: #396135.
 
   [ Michael Banck ]
   * patches/hurd-i386/local-gcc-4.1-init-first.diff: New patch by Thomas

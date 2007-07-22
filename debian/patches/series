@@ -76,6 +76,7 @@ hurd-i386/submitted-libc_once.diff -p0
 hurd-i386/submitted-stat.diff -p0
 hurd-i386/submitted-sysvshm.diff -p1
 hurd-i386/submitted-trivial.diff -p0
+hurd-i386/submitted-ECANCELED.diff
 
 i386/local-biarch.diff -p1
 i386/local-cmov.diff -p0
