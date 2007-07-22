@@ -16,6 +16,7 @@ glibc (2.5-12) UNRELEASED; urgency=low
   * debian/sysdeps/hurd.mk (CC, BUILD_CC): Removed.
   * debian/sysdeps/hurd.mk (libc_extra_config_options): Removed
     libc_cv_z_relro=no.
+  * debian/patches/series: Disable local-argp-fno-strict-aliasing.diff.
 
  -- Michael Banck <mbanck@debian.org>  Wed,  4 Jul 2007 18:21:11 +0200
 
