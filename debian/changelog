@@ -1,4 +1,4 @@
-glibc (2.6-3) UNRELEASED; urgency=low
+glibc (2.6-3) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * script.in/kernelcheck.sh: s/kernel_compare_version/linux_compare_versions/
@@ -10,19 +10,16 @@ glibc (2.6-3) UNRELEASED; urgency=low
   * Drop SPARC V8 support:
     - control.in/opt: drop libc6-sparcv9.
     - sysdeps/sparc.mk: drop libc6-sparcv9.
-    - sysdeps/depflags.pl: make libc6 provide libc6-sparcv9 on sparc.
     - script.in/kernelcheck.sh: add check for SPARC V8 or earlier CPU.
     - patches/series: disable sparc/submitted-timing.diff.
     - patches/sparc/local-sparcv8-target.diff: rename to
       local-sparcv9-target.diff and default to v9.
-  * Build with gcc-4.2 except on:
-    - alpha (untested)
-    - ia64 (untested)
-    - *i386 (floating point regressions).
+  * Build with gcc-4.2 except on alpha (untested).
   * patches/any/cvs-ld_library_path.diff: new patch from CVS to fix segfaults
     with empty LD_LIBRARY_PATH variable.
-  * rules.d/build.mk: create /etc/ld.so.conf.d/libc.conf to add 
+  * rules.d/build.mk: create /etc/ld.so.conf.d/libc.conf to add
     /usr/local/lib as a default search path.  Closes: #395177.
+  * Honor parallel= option in DEB_BUILD_OPTIONS.  Closes: #413744.
 
   [ Pierre Habouzit ]
   * rules.d/debhelper.mk: add some magic to copy debian/bug/$pkg/ files into
@@ -50,8 +47,12 @@ glibc (2.6-3) UNRELEASED; urgency=low
     submitted-sigsuspend-nocancel.diff.
   * hurd-i386/submitted-ECANCELED.diff: new patch to fix ECANCELED value.
     Closes: #396135.
+  * hurd-i386/local-gcc-4.1-init-first.diff: New patch by Thomas
+    Schwinge to fix building with gcc-4.1.
+  * sysdeps/hurd.mk (CC, BUILD_CC): Change to gcc-4.1.
+  * control: Depend on gcc-4.1 on hurd-i386.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 22 Jul 2007 01:21:40 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 23 Jul 2007 08:01:26 +0200
 
 glibc (2.6-2) unstable; urgency=low
 
