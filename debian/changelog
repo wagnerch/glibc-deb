@@ -1,8 +1,42 @@
-glibc (2.6-4) UNRELEASED; urgency=low
+glibc (2.6-5) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * mips/cvs-gscope_flag.diff: new patch to fix build on mips/mipsel.
+  * arm/cvs-gscope_flag.diff: new patch to fix build on arm/armel.
+  * any/cvs-initfini.diff: new patch from upstream to fix crti.o on
+    ppc64.  Closes: #434626.
+  * debian/sysdeps/powerpc.mk: build libc6-ppc64 with gcc-4.2.
+  * debian/sysdeps/alpha.mk: build with gcc-4.2.
+  * debian/control: Remove build-depend on gcc-4.1 on powerpc and alpha.
+  * sparc/submitted-gscope_flag.diff: update from upstream.
+  * hppa/submitted-gscope_flag.diff : new patch to fix build on hppa
+    with NPTL.
+  * any/local-linuxthreads-gscope.diff: new patch to add gscope support
+    to linuxthreads.
+  * hppa/local-linuxthreads-gscope.diff: new patch to fix build on hppa
+    with linuxthreads.  Closes: #434799.
+  * cvs-printf_fp.c.diff: new patch to  print the wrong number of digits
+    with %#g.
+  * amd64/local-linuxthreads-gscope.diff: new patch to fix build on *i386
+    with linuxthreads.
+  * i386/local-linuxthreads-gscope.diff: new patch to fix build on *amd64
+    with linuxthreads.
+  * kfreebsd/local-sysdeps.diff: update to revision 1989 (from glibc-bsd).
+  * any/submitted-longdouble.diff: patch from Carlos O'Donell to fix long
+    double tests.
+  * any/submitted-libgcc_s.so.diff: patch from Carlos O'Donell to allow
+    differents libgcc_s.so SONAME on architecture basis.
+  * hppa/submitted-fadvise64_64.diff: patch from Carlos O'Donell to add
+    support for fadvise64_64 syscall.
+  * debian/control: Simplify build-dependencies.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 29 Jul 2007 17:25:52 +0200
+
+glibc (2.6-4) unstable; urgency=low
 
   [ Samuel Thibault ]
   * sysdeps/hurd.mk (CC, BUILD_CC): Remove.
-  * control: Depend on gcc-4.2 on hurd-i386.
+  * control: Build-depend on gcc-4.2 on hurd-i386.
 
   [ Pierre Habouzit ]
   * any/cvs-glibc-2_6-branch.diff: upstream branch pull, includes:
@@ -12,7 +46,17 @@ glibc (2.6-4) UNRELEASED; urgency=low
     + any/cvs-nscd-short-replies.diff
     + any/cvs-vfscanf.diff
 
- -- Pierre Habouzit <madcoder@debian.org>  Tue, 24 Jul 2007 10:45:28 +0200
+  [ Aurelien Jarno ]
+  * debian/sysdeps/powerpc.mk: build libc6-ppc64 with gcc-4.1 as gcc-4.2
+    produces broken binaries.
+  * debian/control: Build-depend on gcc-4.1 on powerpc
+  * debian/control: Build-depend on g++-4.1/g++-4.2 and
+    g++-4.1-multilib/g++-4.2-multilib.
+  * debian/*.NEWS: move to debian/debhelper.in/*.NEWS.
+  * rules.d/debhelper.mk: remove debian/*.NEWS on clean.
+  * sparc/submitted-gscope_flag.diff: new patch to fix build on sparc.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 26 Jul 2007 08:57:48 +0200
 
 glibc (2.6-3) unstable; urgency=low
 
