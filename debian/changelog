@@ -8,16 +8,24 @@ glibc (2.6.1-1) unstable; urgency=low
   * Remove any/cvs-glibc-2_6-branch.diff (merged upstream).
   * Remove any/cvs-printf_fp.c.diff (merged upstream).
   * Remove sparc/submitted-gscope_flag.diff (merged upstream).
+  * Remove arm/cvs-gscope_flag.diff (merged upstream).
+  * Remove hppa/submitted-gscope_flag.diff (merged upstream).
+  * Remove mips/cvs-gscope_flag.diff (merged upstream).
   * any/local-bindresvport_blacklist.diff: patch from openSUSE to
     add support for /etc/bindresvport.blacklist.
-  * debian/local/etc/bindresvport.blacklist: new default configuration 
+  * debian/local/etc/bindresvport.blacklist: new default configuration
     file.
   * debian/debhelper.in/libc.install: install it!
+  * debian/rules.d/debhelper.mk: fix arguments order when calling find.
+  * kfreebsd/local-sysdeps.diff: update to revision 1992 (from glibc-bsd).
+  * any/local-linuxthreads-gscope.diff: update for kfreebsd futexes.
+  * i386/local-linuxthreads-gscope.diff: update for kfreebsd futexes.
+  * amd64/local-linuxthreads-gscope.diff update for kfreebsd futexes.
 
   [ Samuel Thibault ]
   * hurd-i386/local-gscope.diff: resync, mostly merged upstream.
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 01 Aug 2007 16:40:01 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 07 Aug 2007 13:34:26 +0200
 
 glibc (2.6-5) unstable; urgency=low
 
