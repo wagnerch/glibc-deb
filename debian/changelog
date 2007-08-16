@@ -1,3 +1,11 @@
+glibc (2.3.6.ds1-13etch4) stable; urgency=low
+
+  * patches/any/cvs-vfscanf.diff: add additional test for EOF
+    in loop to look for conversion specifier to avoid testing of
+    wrong errno value.  Closes: #426000.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 17 Aug 2007 00:24:28 +0200
+
 glibc (2.3.6.ds1-13etch3) stable; urgency=low
 
   * patches/any/cvs-nscd-free.diff: fix nscd crash. Closes: #425404.
