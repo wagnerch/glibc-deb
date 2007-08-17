@@ -1,18 +1,13 @@
-===================================================================
-RCS file: /cvs/glibc/libc/stdio-common/vfscanf.c,v
-retrieving revision 1.110.2.6
-retrieving revision 1.110.2.7
-diff -u -r1.110.2.6 -r1.110.2.7
---- libc/stdio-common/vfscanf.c	2007/05/04 10:05:57	1.110.2.6
-+++ libc/stdio-common/vfscanf.c	2007/07/08 10:08:25	1.110.2.7
-@@ -530,12 +530,17 @@
+--- libc.orig/stdio-common/vfscanf.c	2005-07-18 06:10:03.000000000 +0200
++++ libc/stdio-common/vfscanf.c	2007-08-17 00:38:50.000000000 +0200
+@@ -547,12 +547,17 @@
  	{
  	  /* Eat whitespace.  */
  	  int save_errno = errno;
 -	  errno = 0;
 +	  __set_errno (0);
  	  do
--	    if (__builtin_expect (inchar () == EOF && errno == EINTR, 0))
+-	    if (inchar () == EOF && errno == EINTR)
 +	    /* We add the additional test for EOF here since otherwise
 +	       inchar will restore the old errno value which might be
 +	       EINTR but does not indicate an interrupt since nothing
