@@ -29,8 +29,16 @@ glibc (2.6.1-2) unstable; urgency=low
     (<< 2.6-1).
   * debian/debhelper.in/libc.preinst: add proftpd to the list of services to
     restart.  Closes: bug#435640.
+  * Bump shlibdeps version to 2.6.1-1 due to SPARC v9 transition.
+  * New Slovak debconf translation, by Ivan Masár.  Closes: bug#438576.
+  * any/local-ipv6-lookup.diff: new patch to do IPv6 lookups only when an 
+    IPv6 address is configured. Patch by Tollef Fog Heen and Andrew McMillan.
+    Closes: #435646.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 16 Aug 2007 23:59:56 +0200
+  [ Pierre Habouzit ]
+  * Document new libc.conf in ld.so.conf.d that puts /usr/local/lib front.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon,  3 Sep 2007 18:15:37 +0200
 
 glibc (2.6.1-1) unstable; urgency=low
 
