@@ -1,4 +1,3 @@
-#localedata/locale-de_CH.diff 
 localedata/locale-eo_EO.diff -p0
 localedata/locale-no_NO.diff -p0
 localedata/locale-eu_FR.diff -p0
@@ -9,7 +8,7 @@ locale/check-unknown-symbols.diff
 locale/LC_IDENTIFICATION-optional-fields.diff -p0
 #locale/LC_COLLATE-keywords-ordering.diff -p0
 locale/locale-print-LANGUAGE.diff -p0
-#locale/fix-C-first_weekday.diff -p0
+locale/fix-C-first_weekday.diff -p0
 localedata/tl_PH-yesexpr.diff
 localedata/fo_FO-date_fmt.diff
 localedata/locales_CH.diff
@@ -27,7 +26,23 @@ localedata/locale-se_NO.diff -p0
 #localedata/tailor-iso14651_t1.diff -p0
 localedata/fix-lang.diff -p0
 #localedata/fix-unknown-symbols.diff -p0
-#localedata/first_weekday.diff -p0
+localedata/cs_CZ-first_weekday.diff
+localedata/da_DK-first_weekday.diff
+localedata/pl_PL-first_weekday.diff
+localedata/de_DE-first_weekday.diff
+localedata/en_GB-first_weekday.diff
+localedata/en_US-first_weekday.diff
+localedata/et_EE-first_weekday.diff
+localedata/fr_BE-first_weekday.diff
+localedata/fr_CA-first_weekday.diff
+localedata/fr_CH-first_weekday.diff
+localedata/fr_FR-first_weekday.diff
+localedata/fr_LU-first_weekday.diff
+localedata/hu_HU-first_weekday.diff
+localedata/nb_NO-first_weekday.diff
+localedata/nn_NO-first_weekday.diff
+localedata/sk_SK-first_weekday.diff
+localedata/first_weekday.diff -p0
 #localedata/sort-UTF8-first.diff -p0
 localedata/local-all-no-archive.diff -p0
 

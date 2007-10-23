@@ -1,16 +1,32 @@
-glibc (2.7~0exp0-0exp1) experimental; urgency=low
+glibc (2.7~0exp0-0exp2) experimental; urgency=low
 
   * New upstream release with ports snapshot. 
-    - Disable localedata/locale-de_CH.diff.
+    - Remove localedata/locale-de_CH.diff (merged).
     - Disable locale/fix-LC_COLLATE-rules.diff.
     - Disable locale/LC_COLLATE-keywords-ordering.diff.
-    - Disable locale/fix-C-first_weekday.diff.
+    - Update locale/fix-C-first_weekday.diff.
     - Disable localedata/locales-fr.diff.
     - Disable localedata/locale-sa_IN.diff.
     - Remove localedata/locale-wo_SN.diff (merged).
     - Disable localedata/tailor-iso14651_t1.diff.
     - Disable localedata/fix-unknown-symbols.diff.
-    - Disable localedata/first_weekday.diff
+    - Update localedata/first_weekday.diff.
+    - Add localedata/cs_CZ-first_weekday.diff.
+    - Add localedata/da_DK-first_weekday.diff.
+    - Add localedata/pl_PL-first_weekday.diff.
+    - Add localedata/de_DE-first_weekday.diff.
+    - Add localedata/en_GB-first_weekday.diff.
+    - Add localedata/en_US-first_weekday.diff.
+    - Add localedata/et_EE-first_weekday.diff.
+    - Add localedata/fr_BE-first_weekday.diff.
+    - Add localedata/fr_CA-first_weekday.diff.
+    - Add localedata/fr_CH-first_weekday.diff.
+    - Add localedata/fr_FR-first_weekday.diff.
+    - Add localedata/fr_LU-first_weekday.diff.
+    - Add localedata/hu_HU-first_weekday.diff.
+    - Add localedata/nb_NO-first_weekday.diff.
+    - Add localedata/nn_NO-first_weekday.diff.
+    - Add localedata/sk_SK-first_weekday.diff.
     - Disable localedata/sort-UTF8-first.diff.
     - Remove localedata/submitted-as_IN.diff (merged).
     - Disable amd64/local-linuxthreads-gscope.diff.
@@ -49,6 +65,7 @@ glibc (2.7~0exp0-0exp1) experimental; urgency=low
     - Remove any/submitted-strtok.diff (merged).
     - Remove any/submitted-regex-collate.diff (merged).
     - Disable debian/patches/locale/preprocessor-collate.diff.
+  * Bump shlib version to 2.7-1.
 
  -- Clint Adams <schizo@debian.org>  Sun, 21 Oct 2007 18:51:47 -0400
 
