@@ -1,15 +1,16 @@
-glibc (2.7~0exp0-0exp2) experimental; urgency=low
+glibc (2.7~0exp0-0exp3) experimental; urgency=low
 
   * New upstream release with ports snapshot. 
     - Remove localedata/locale-de_CH.diff (merged).
-    - Disable locale/fix-LC_COLLATE-rules.diff.
-    - Disable locale/LC_COLLATE-keywords-ordering.diff.
+    - Update locale/fix-LC_COLLATE-rules.diff.
+    - Update locale/LC_COLLATE-keywords-ordering.diff.
     - Update locale/fix-C-first_weekday.diff.
-    - Disable localedata/locales-fr.diff.
-    - Disable localedata/locale-sa_IN.diff.
+    - Update localedata/locales-fr.diff.
+    - Remove localedata/locale-sa_IN.diff (merged).
     - Remove localedata/locale-wo_SN.diff (merged).
-    - Disable localedata/tailor-iso14651_t1.diff.
-    - Disable localedata/fix-unknown-symbols.diff.
+    - Update localedata/tailor-iso14651_t1.diff.
+    - Add localedata/tailor-iso14651_t1-common.diff.
+    - Remove localedata/fix-unknown-symbols.diff (merged).
     - Update localedata/first_weekday.diff.
     - Add localedata/cs_CZ-first_weekday.diff.
     - Add localedata/da_DK-first_weekday.diff.
@@ -64,7 +65,7 @@ glibc (2.7~0exp0-0exp2) experimental; urgency=low
     - Disable any/submitted-strfry.diff.
     - Remove any/submitted-strtok.diff (merged).
     - Remove any/submitted-regex-collate.diff (merged).
-    - Disable debian/patches/locale/preprocessor-collate.diff.
+    - Disable locale/preprocessor-collate.diff.
   * Bump shlib version to 2.7-1.
 
  -- Clint Adams <schizo@debian.org>  Sun, 21 Oct 2007 18:51:47 -0400

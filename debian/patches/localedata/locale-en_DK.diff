@@ -7,9 +7,11 @@
 # DP: Upstream status: not submitted
 # DP: Date: 2006-01-16
 
---- localedata/SUPPORTED.orig
-+++ localedata/SUPPORTED
-@@ -107,6 +107,7 @@
+Index: localedata/SUPPORTED
+===================================================================
+--- localedata/SUPPORTED.orig	2007-10-23 08:47:58.000000000 -0400
++++ localedata/SUPPORTED	2007-10-23 08:48:02.000000000 -0400
+@@ -109,6 +109,7 @@
  en_CA.UTF-8/UTF-8 \
  en_CA/ISO-8859-1 \
  en_DK.UTF-8/UTF-8 \
@@ -17,8 +19,10 @@
  en_DK/ISO-8859-1 \
  en_GB.UTF-8/UTF-8 \
  en_GB/ISO-8859-1 \
---- localedata/locales/en_DK.orig
-+++ localedata/locales/en_DK
+Index: localedata/locales/en_DK
+===================================================================
+--- localedata/locales/en_DK.orig	2007-10-23 08:46:19.000000000 -0400
++++ localedata/locales/en_DK	2007-10-23 08:48:02.000000000 -0400
 @@ -60,27 +60,11 @@
  END LC_CTYPE
  

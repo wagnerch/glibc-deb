@@ -10,9 +10,11 @@ This patch is harmless, it only adds new keywords.
 # DP: Upstream status: BZ686
 # DP: Date: 2006-01-08
 
---- locale/programs/ld-collate.c.orig
-+++ locale/programs/ld-collate.c
-@@ -159,6 +159,24 @@
+Index: locale/programs/ld-collate.c
+===================================================================
+--- locale/programs/ld-collate.c.orig	2007-10-23 08:46:55.000000000 -0400
++++ locale/programs/ld-collate.c	2007-10-23 08:46:59.000000000 -0400
+@@ -160,6 +160,24 @@
    size_t line;
  };
  
@@ -37,7 +39,7 @@ This patch is harmless, it only adds new keywords.
  /* Sparse table of struct element_t *.  */
  #define TABLE wchead_table
  #define ELEMENT struct element_t *
-@@ -212,6 +230,9 @@
+@@ -221,6 +239,9 @@
    /* This value is used when handling ellipsis.  */
    struct element_t ellipsis_weight;
  
@@ -47,7 +49,7 @@ This patch is harmless, it only adds new keywords.
    /* Known collating elements.  */
    hash_table elem_table;
  
-@@ -1455,6 +1476,56 @@
+@@ -1478,6 +1499,56 @@
  }
  
  
@@ -104,7 +106,7 @@ This patch is harmless, it only adds new keywords.
  static void
  collate_startup (struct linereader *ldfile, struct localedef_t *locale,
  		 struct localedef_t *copy_locale, int ignore_content)
-@@ -2630,6 +2701,8 @@
+@@ -2717,6 +2788,8 @@
    */
    int state = 0;
  
@@ -113,9 +115,9 @@ This patch is harmless, it only adds new keywords.
    /* Get the repertoire we have to use.  */
    if (repertoire_name != NULL)
      repertoire = repertoire_read (repertoire_name);
-@@ -2644,6 +2717,82 @@
+@@ -2758,6 +2831,82 @@
+ 	}
      }
-   while (nowtok == tok_eol);
  
 +  while (nowtok == tok_define || nowtok == tok_undef)
 +    {
@@ -195,8 +197,8 @@ This patch is harmless, it only adds new keywords.
 +
    if (nowtok == tok_copy)
      {
-       state = 2;
-@@ -3796,6 +3945,125 @@
+       now = lr_token (ldfile, charmap, result, NULL, verbose);
+@@ -3911,6 +4060,125 @@
  			  repertoire, result, nowtok);
  	  break;
  
@@ -320,9 +322,9 @@ This patch is harmless, it only adds new keywords.
 +	  break;
 +
  	case tok_end:
+ 	seen_end:
  	  /* Next we assume `LC_COLLATE'.  */
- 	  if (!ignore_content)
-@@ -3825,6 +4093,13 @@
+@@ -3941,6 +4209,13 @@
  	      else if (state == 5)
  		WITH_CUR_LOCALE (error (0, 0, _("\
  %s: missing `reorder-sections-end' keyword"), "LC_COLLATE"));
