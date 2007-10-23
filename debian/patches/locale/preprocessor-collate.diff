@@ -12,8 +12,8 @@ This patch is harmless, it only adds new keywords.
 
 Index: locale/programs/ld-collate.c
 ===================================================================
---- locale/programs/ld-collate.c.orig	2007-10-23 08:46:55.000000000 -0400
-+++ locale/programs/ld-collate.c	2007-10-23 08:46:59.000000000 -0400
+--- locale/programs/ld-collate.c.orig	2007-10-23 12:03:48.000000000 -0400
++++ locale/programs/ld-collate.c	2007-10-23 12:03:49.000000000 -0400
 @@ -160,6 +160,24 @@
    size_t line;
  };
@@ -198,133 +198,7 @@ Index: locale/programs/ld-collate.c
    if (nowtok == tok_copy)
      {
        now = lr_token (ldfile, charmap, result, NULL, verbose);
-@@ -3911,6 +4060,125 @@
- 			  repertoire, result, nowtok);
- 	  break;
- 
-+	case tok_ifdef:
-+	  /* Ignore the rest of the line if we don't need the input of
-+	     this line.  */
-+	  if (ignore_content)
-+	    {
-+	      lr_ignore_rest (ldfile, 0);
-+	      break;
-+	    }
-+
-+	  arg = lr_token (ldfile, charmap, result, NULL, verbose);
-+	  if (arg->tok != tok_ident)
-+	    goto err_label;
-+	  else
-+	    {
-+	      struct toggle_list_t *runp = defined_keywords;
-+	      struct toggle_list_t *flow = (struct toggle_list_t *) xcalloc (1, sizeof (*runp));
-+	      flow->name = "ifdef";
-+	      flow->file = ldfile->fname;
-+	      flow->line = ldfile->lineno;
-+	      flow->last = collate->flow_control;
-+	      collate->flow_control = flow;
-+
-+	      while (runp != NULL)
-+		if (strncmp (runp->name, arg->val.str.startmb,
-+			     arg->val.str.lenmb) == 0
-+		    && runp->name[arg->val.str.lenmb] == '\0')
-+		  break;
-+		else
-+		  runp = runp->last;
-+
-+	      if (runp == NULL)
-+		{
-+		  now = flow_skip(ldfile, charmap, collate);
-+		  if (now->tok == tok_eof)
-+		    WITH_CUR_LOCALE (error (0, 0, _("\
-+%s: unterminated `%s' flow control"), "LC_COLLATE", collate->flow_control->name));
-+		}
-+	    }
-+	  lr_ignore_rest (ldfile, 1);
-+	  break;
-+
-+	case tok_ifndef:
-+	  /* Ignore the rest of the line if we don't need the input of
-+	     this line.  */
-+	  if (ignore_content)
-+	    {
-+	      lr_ignore_rest (ldfile, 0);
-+	      break;
-+	    }
-+
-+	  arg = lr_token (ldfile, charmap, result, NULL, verbose);
-+	  if (arg->tok != tok_ident)
-+	    goto err_label;
-+	  else
-+	    {
-+	      struct toggle_list_t *runp = defined_keywords;
-+	      struct toggle_list_t *flow = (struct toggle_list_t *) xcalloc (1, sizeof (*runp));
-+	      flow->name = "ifndef";
-+	      flow->file = ldfile->fname;
-+	      flow->line = ldfile->lineno;
-+	      flow->last = collate->flow_control;
-+	      collate->flow_control = flow;
-+
-+	      while (runp != NULL)
-+		if (strncmp (runp->name, arg->val.str.startmb,
-+			     arg->val.str.lenmb) == 0
-+		    && runp->name[arg->val.str.lenmb] == '\0')
-+		  break;
-+		else
-+		  runp = runp->last;
-+
-+	      if (runp != NULL)
-+		{
-+		  now = flow_skip(ldfile, charmap, collate);
-+		  if (now->tok == tok_eof)
-+		    WITH_CUR_LOCALE (error (0, 0, _("\
-+%s: unterminated `%s' flow control"), "LC_COLLATE", collate->flow_control->name));
-+		}
-+	    }
-+	  lr_ignore_rest (ldfile, 1);
-+	  break;
-+
-+	case tok_else:
-+	  /* Ignore the rest of the line if we don't need the input of
-+	     this line.  */
-+	  if (ignore_content)
-+	    {
-+	      lr_ignore_rest (ldfile, 0);
-+	      break;
-+	    }
-+
-+	  if (strcmp (collate->flow_control->name, "else") == 0)
-+	    lr_error (ldfile,
-+		      _("%s: `else' statement at `%s:%Zu' cannot be followed by another `else' statement"),
-+		      "LC_COLLATE", collate->flow_control->name, collate->flow_control->line);
-+	  collate->flow_control->name = "else";
-+	  collate->flow_control->file = ldfile->fname;
-+	  collate->flow_control->line = ldfile->lineno;
-+	  now = flow_skip(ldfile, charmap, collate);
-+	  if (now->tok == tok_eof)
-+	    WITH_CUR_LOCALE (error (0, 0, _("\
-+%s: unterminated `%s' flow control"), "LC_COLLATE", collate->flow_control->name));
-+	  break;
-+
-+	case tok_endif:
-+	  /* Ignore the rest of the line if we don't need the input of
-+	     this line.  */
-+	  if (ignore_content)
-+	    {
-+	      lr_ignore_rest (ldfile, 0);
-+	      break;
-+	    }
-+
-+	  if (collate->flow_control == NULL)
-+	    goto err_label;
-+	  else
-+	    collate->flow_control = collate->flow_control->last;
-+	  break;
-+
- 	case tok_end:
- 	seen_end:
- 	  /* Next we assume `LC_COLLATE'.  */
-@@ -3941,6 +4209,13 @@
+@@ -3941,6 +4090,13 @@
  	      else if (state == 5)
  		WITH_CUR_LOCALE (error (0, 0, _("\
  %s: missing `reorder-sections-end' keyword"), "LC_COLLATE"));
