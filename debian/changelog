@@ -1,6 +1,6 @@
-glibc (2.7~0exp0-0exp4) experimental; urgency=low
+glibc (2.7~0exp1-0exp1) experimental; urgency=low
 
-  * New upstream release with ports snapshot. 
+  * New upstream release with ports snapshot and linuxthreads snapshot. 
     - Remove localedata/locale-de_CH.diff (merged).
     - Update locale/fix-LC_COLLATE-rules.diff.
     - Update locale/LC_COLLATE-keywords-ordering.diff.
@@ -31,8 +31,6 @@ glibc (2.7~0exp0-0exp4) experimental; urgency=low
     - Add localedata/sk_SK-first_weekday.diff.
     - Update localedata/sort-UTF8-first.diff.
     - Remove localedata/submitted-as_IN.diff (merged).
-    - Disable amd64/local-linuxthreads-gscope.diff.
-    - Disable hppa/submitted-lt.diff.
     - Remove hppa/submitted-multiple-threads.diff (merged).
     - Disable hppa/submitted-nptl-carlos.diff.
     - Disable hppa/submitted-threaddb.diff.
@@ -43,27 +41,14 @@ glibc (2.7~0exp0-0exp4) experimental; urgency=low
     - Disable hurd-i386/submitted-trivial.diff.
     - Remove hurd-i386/cvs-lock-intern.diff (merged).
     - Disable hurd-i386/cvs-ioctl-delay.diff.
-    - Disable i386/local-linuxthreads-gscope.diff.
-    - Disable m68k/local-pthread_lock.diff.
-    - Disable sparc/local-undefined-registers.diff.
-    - Disable all/local-pthread-manpages.diff.
+    - Remove sparc/local-undefined-registers.diff (obsolete).
     - Remove all/local-pt_BR.diff (merged).
     - Remove any/cvs-ld_library_path.diff (merged).
     - Remove any/cvs-initfini.diff (merged).
     - Remove any/cvs-posix-glob.diff (merged).
-    - Disable any/local-notls.diff.
     - Update any/local-bashisms.diff.
     - Remove any/local-forward-backward-collation.diff (merged).
-    - Disable any/local-iconv-fix-trampoline.diff.
-    - Disable any/local-ldconfig-fsync.diff.
-    - Disable any/local-linuxthreads-gscope.diff.
-    - Disable any/local-linuxthreads-semaphore_h.diff.
-    - Disable any/local-linuxthreads-tst-sighandler.diff.
-    - Disable any/local-sysctl.diff.
     - Remove any/local-version-sanity.diff (merged).
-    - Disable any/submitted-longdouble.diff.
-    - Disable any/submitted-rfc3484-sortv4.diff.
-    - Disable any/submitted-strfry.diff.
     - Remove any/submitted-strtok.diff (merged).
     - Remove any/submitted-regex-collate.diff (merged).
   * Bump shlib version to 2.7-1.
