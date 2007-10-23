@@ -1,3 +1,57 @@
+glibc (2.7~0exp0-0exp1) experimental; urgency=low
+
+  * New upstream release with ports snapshot. 
+    - Disable localedata/locale-de_CH.diff.
+    - Disable locale/fix-LC_COLLATE-rules.diff.
+    - Disable locale/LC_COLLATE-keywords-ordering.diff.
+    - Disable locale/fix-C-first_weekday.diff.
+    - Disable localedata/locales-fr.diff.
+    - Disable localedata/locale-sa_IN.diff.
+    - Remove localedata/locale-wo_SN.diff (merged).
+    - Disable localedata/tailor-iso14651_t1.diff.
+    - Disable localedata/fix-unknown-symbols.diff.
+    - Disable localedata/first_weekday.diff
+    - Disable localedata/sort-UTF8-first.diff.
+    - Remove localedata/submitted-as_IN.diff (merged).
+    - Disable amd64/local-linuxthreads-gscope.diff.
+    - Disable hppa/submitted-lt.diff.
+    - Remove hppa/submitted-multiple-threads.diff (merged).
+    - Disable hppa/submitted-nptl-carlos.diff.
+    - Disable hppa/submitted-threaddb.diff.
+    - Remove hppa/submitted-ustat.diff (merged).
+    - Disable hurd-i386/local-tls-support.diff.
+    - Remove hurd-i386/cvs-sigsuspend-nocancel.diff (merged).
+    - Disable hurd-i386/submitted-libc_once.diff.
+    - Disable hurd-i386/submitted-trivial.diff.
+    - Remove hurd-i386/cvs-lock-intern.diff (merged).
+    - Disable hurd-i386/cvs-ioctl-delay.diff.
+    - Disable i386/local-linuxthreads-gscope.diff.
+    - Disable m68k/local-pthread_lock.diff.
+    - Disable sparc/local-undefined-registers.diff.
+    - Disable all/local-pthread-manpages.diff.
+    - Remove all/local-pt_BR.diff (merged).
+    - Remove any/cvs-ld_library_path.diff (merged).
+    - Remove any/cvs-initfini.diff (merged).
+    - Remove any/cvs-posix-glob.diff (merged).
+    - Disable any/local-notls.diff.
+    - Update any/local-bashisms.diff.
+    - Remove any/local-forward-backward-collation.diff (merged).
+    - Disable any/local-iconv-fix-trampoline.diff.
+    - Disable any/local-ldconfig-fsync.diff.
+    - Disable any/local-linuxthreads-gscope.diff.
+    - Disable any/local-linuxthreads-semaphore_h.diff.
+    - Disable any/local-linuxthreads-tst-sighandler.diff.
+    - Disable any/local-sysctl.diff.
+    - Remove any/local-version-sanity.diff (merged).
+    - Disable any/submitted-longdouble.diff.
+    - Disable any/submitted-rfc3484-sortv4.diff.
+    - Disable any/submitted-strfry.diff.
+    - Remove any/submitted-strtok.diff (merged).
+    - Remove any/submitted-regex-collate.diff (merged).
+    - Disable debian/patches/locale/preprocessor-collate.diff.
+
+ -- Clint Adams <schizo@debian.org>  Sun, 21 Oct 2007 18:51:47 -0400
+
 glibc (2.6.1-6) unstable; urgency=low
 
   [ Aurelien Jarno ]
