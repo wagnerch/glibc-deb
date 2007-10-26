@@ -1,4 +1,4 @@
-glibc (2.7~0exp2-0exp2) experimental; urgency=low
+glibc (2.7~0exp2-0exp3) experimental; urgency=low
 
   [ Clint Adams ]
   * New upstream release with linuxthreads snapshot.
@@ -54,6 +54,7 @@ glibc (2.7~0exp2-0exp2) experimental; urgency=low
     - Remove any/submitted-strtok.diff (merged).
     - Remove any/submitted-regex-collate.diff (merged).
     - Remove localedata/locale-no_NO.diff (obsolete).
+    - Update localedata/supported.diff.
   * Bump shlib version to 2.7-1.
 
   [ Aurelien Jarno ]
@@ -66,7 +67,7 @@ glibc (2.7~0exp2-0exp2) experimental; urgency=low
   * any/local-stdio-lock.diff: make _IO_*_lock linuxthreads compliant.
   * any/local-o_cloexec.diff: don't assume O_CLOEXEC is always defined.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 26 Oct 2007 05:44:36 +0200
+ -- Clint Adams <schizo@debian.org>  Sun, 21 Oct 2007 18:51:47 -0400
 
 glibc (2.6.1-6) unstable; urgency=low
 
