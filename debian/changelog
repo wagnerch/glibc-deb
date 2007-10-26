@@ -58,6 +58,7 @@ glibc (2.7~0exp2-0exp2) experimental; urgency=low
 
   [ Aurelien Jarno ]
   * kfreebsd/local-sysdeps.diff: update to revision 2006 (from glibc-bsd).
+  * any/submitted-longdouble.diff: update.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
