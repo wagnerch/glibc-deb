@@ -132,14 +132,17 @@ any/local-linuxthreads-lowlevellock.diff -p0
 any/local-linuxthreads-fatalprepare.diff -p0
 any/local-linuxthreads-semaphore_h.diff 
 any/local-linuxthreads-tst-sighandler.diff 
+any/local-linuxthreads-unwind.diff -p0
 any/local-localedef-fix-trampoline.diff -p0
 any/local-makeconfig.diff -p0
 any/local-mktemp.diff -p0
 any/local-no-pagesize.diff 
 any/local-nss-upgrade.diff -p0
+any/local-o_cloexec.diff -p0
 any/local-rtld.diff -p0
 #any/local-sysctl.diff -p0
 any/local-stubs_h.diff 
+any/local-stdio-lock.diff -p0
 any/local-tcsetaddr.diff -p0
 any/local-tst-mktime2.diff -p0
 any/local-dynamic-resolvconf.diff -p0

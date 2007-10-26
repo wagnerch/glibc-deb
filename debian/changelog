@@ -59,6 +59,12 @@ glibc (2.7~0exp2-0exp2) experimental; urgency=low
   [ Aurelien Jarno ]
   * kfreebsd/local-sysdeps.diff: update to revision 2006 (from glibc-bsd).
 
+  [ Petr Salinger]
+  * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
+    linuxthreads.
+  * any/local-stdio-lock.diff: make _IO_*_lock linuxthreads compliant.
+  * any/local-o_cloexec.diff: don't assume O_CLOEXEC is always defined.
+
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 26 Oct 2007 05:44:36 +0200
 
 glibc (2.6.1-6) unstable; urgency=low
