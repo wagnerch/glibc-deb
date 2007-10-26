@@ -49,7 +49,7 @@ alpha/local-gcc4.1.diff -p0
 alpha/submitted-xstat.diff -p0
 
 amd64/local-biarch.diff 
-#amd64/local-linuxthreads-gscope.diff -p0
+amd64/local-linuxthreads-gscope.diff -p0
 amd64/local-x86_64_bits_sigcontext.diff
 
 arm/cvs-gcc4-inline.diff -p0
@@ -127,11 +127,11 @@ any/local-ldconfig.diff -p0
 any/local-libgcc-compat-main.diff -p0
 any/local-libgcc-compat-ports.diff -p0
 any/local-linuxthreads-defines.diff -p0
-#any/local-linuxthreads-gscope.diff -p0
+any/local-linuxthreads-gscope.diff -p0
 any/local-linuxthreads-lowlevellock.diff -p0
 any/local-linuxthreads-fatalprepare.diff -p0
-#any/local-linuxthreads-semaphore_h.diff 
-#any/local-linuxthreads-tst-sighandler.diff 
+any/local-linuxthreads-semaphore_h.diff 
+any/local-linuxthreads-tst-sighandler.diff 
 any/local-localedef-fix-trampoline.diff -p0
 any/local-makeconfig.diff -p0
 any/local-mktemp.diff -p0

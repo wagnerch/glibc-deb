@@ -1,6 +1,7 @@
 glibc (2.7~0exp2-0exp2) experimental; urgency=low
 
-  * New upstream release with linuxthreads snapshot. 
+  [ Clint Adams ]
+  * New upstream release with linuxthreads snapshot.
     | *** Disable most locale/ and localedata/ patches *** |
     - Remove localedata/locale-de_CH.diff (merged).
     - Update locale/fix-LC_COLLATE-rules.diff.
@@ -55,7 +56,10 @@ glibc (2.7~0exp2-0exp2) experimental; urgency=low
     - Remove localedata/locale-no_NO.diff (obsolete).
   * Bump shlib version to 2.7-1.
 
- -- Clint Adams <schizo@debian.org>  Sun, 21 Oct 2007 18:51:47 -0400
+  [ Aurelien Jarno ]
+  * kfreebsd/local-sysdeps.diff: update to revision 2006 (from glibc-bsd).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 26 Oct 2007 05:44:36 +0200
 
 glibc (2.6.1-6) unstable; urgency=low
 
