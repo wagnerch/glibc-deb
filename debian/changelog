@@ -1,4 +1,4 @@
-glibc (2.7~0exp2-0exp1) experimental; urgency=low
+glibc (2.7~0exp2-0exp2) experimental; urgency=low
 
   * New upstream release with linuxthreads snapshot. 
     | *** Disable most locale/ and localedata/ patches *** |
