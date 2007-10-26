@@ -1,6 +1,7 @@
-glibc (2.7~0exp1-0exp1) experimental; urgency=low
+glibc (2.7~0exp2-0exp1) experimental; urgency=low
 
-  * New upstream release with ports snapshot and linuxthreads snapshot. 
+  * New upstream release with linuxthreads snapshot. 
+    | *** Disable most locale/ and localedata/ patches *** |
     - Remove localedata/locale-de_CH.diff (merged).
     - Update locale/fix-LC_COLLATE-rules.diff.
     - Update locale/LC_COLLATE-keywords-ordering.diff.
@@ -51,6 +52,7 @@ glibc (2.7~0exp1-0exp1) experimental; urgency=low
     - Remove any/local-version-sanity.diff (merged).
     - Remove any/submitted-strtok.diff (merged).
     - Remove any/submitted-regex-collate.diff (merged).
+    - Remove localedata/locale-no_NO.diff (obsolete).
   * Bump shlib version to 2.7-1.
 
  -- Clint Adams <schizo@debian.org>  Sun, 21 Oct 2007 18:51:47 -0400
