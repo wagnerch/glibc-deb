@@ -1,11 +1,16 @@
 glibc (2.7-0exp2) UNRELEASED; urgency=low
 
+  [ Pierre Habouzit ]
   * Remove any/local-iconv-fix-trampoline.diff (obsolete).
   * Remove any/submitted-strfry.diff (merged).
   * Update any/submitted-rfc3484-sortv4.diff.
   * Update localedata/*first_weekday.diff.
 
- -- Pierre Habouzit <madcoder@debian.org>  Sat, 27 Oct 2007 10:46:55 +0200
+  [ Aurelien Jarno ]
+  * Improve any/submitted-rfc3484-sortv4.diff.
+  * Update hurd-i386/submitted-trivial.diff.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 27 Oct 2007 13:14:49 +0200
 
 glibc (2.7-0exp1) experimental; urgency=low
 
