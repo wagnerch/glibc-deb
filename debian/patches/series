@@ -62,7 +62,6 @@ hppa/submitted-fadvise64_64.diff -p0
 hppa/submitted-lt.diff -p0
 # hppa/submitted-nptl-carlos.diff -p0
 hppa/submitted-pie.diff 
-# hppa/submitted-threaddb.diff -p0
 hppa/local-inlining.diff -p0
 hppa/local-linuxthreads.diff -p0
 hppa/local-linuxthreads-gscope.diff -p0
