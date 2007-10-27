@@ -22,7 +22,7 @@ glibc (2.7-0exp2) UNRELEASED; urgency=low
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 27 Oct 2007 15:44:29 +0200
 
-glibc (2.7-0exp1) experimental; urgency=low
+glibc (2.7-0exp2) experimental; urgency=low
 
   [ Clint Adams ]
   * New upstream release with linuxthreads snapshot.
@@ -55,6 +55,7 @@ glibc (2.7-0exp1) experimental; urgency=low
     - Add localedata/nb_NO-first_weekday.diff.
     - Add localedata/nn_NO-first_weekday.diff.
     - Add localedata/sk_SK-first_weekday.diff.
+    - Add localedata/cy_GB-first_weekday.diff.
     - Update localedata/sort-UTF8-first.diff.
     - Remove localedata/submitted-as_IN.diff (merged).
     - Remove hppa/submitted-multiple-threads.diff (merged).

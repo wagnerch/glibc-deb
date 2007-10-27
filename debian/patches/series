@@ -43,6 +43,7 @@ localedata/hu_HU-first_weekday.diff
 localedata/nb_NO-first_weekday.diff
 localedata/nn_NO-first_weekday.diff
 localedata/sk_SK-first_weekday.diff
+localedata/cy_GB-first_weekday.diff
 localedata/first_weekday.diff -p0
 
 alpha/local-gcc4.1.diff -p0
