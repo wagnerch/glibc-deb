@@ -217,7 +217,7 @@
  
 --- localedata/locales/ar_SA.orig
 +++ localedata/locales/ar_SA
-@@ -347,6 +347,8 @@
+@@ -132,6 +132,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -361,7 +361,7 @@
  LC_PAPER
 --- localedata/locales/csb_PL.orig
 +++ localedata/locales/csb_PL
-@@ -184,7 +184,7 @@
+@@ -191,7 +191,7 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -372,10 +372,10 @@
  END LC_TIME
 --- localedata/locales/cy_GB.orig
 +++ localedata/locales/cy_GB
-@@ -250,6 +250,8 @@
- t_fmt       "<U0025><U0054>"
- am_pm       "";""
- t_fmt_ampm  ""
+@@ -253,6 +253,8 @@
+ date_fmt    "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
+ <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
+ <U0025><U005A><U0020><U0025><U0059>"
 +%  FIXME: found in CLDR
 +first_weekday 2
  END LC_TIME
@@ -427,7 +427,7 @@
  LC_PAPER
 --- localedata/locales/dz_BT.orig
 +++ localedata/locales/dz_BT
-@@ -1304,7 +1304,8 @@
+@@ -1544,7 +1544,8 @@
  %I<U0F40><U0F66><U0F62><U0F0B><U0F58>/
  %M<U0F40><U0F66><U0F62><U0F0B><U0F46>%S %p"
  
@@ -472,7 +472,7 @@
  LC_MESSAGES
 --- localedata/locales/en_DK.orig
 +++ localedata/locales/en_DK
-@@ -122,6 +122,9 @@
+@@ -106,6 +106,9 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -877,7 +877,7 @@
  
 --- localedata/locales/hr_HR.orig
 +++ localedata/locales/hr_HR
-@@ -2212,6 +2212,8 @@
+@@ -220,6 +220,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -888,7 +888,7 @@
  LC_PAPER
 --- localedata/locales/hsb_DE.orig
 +++ localedata/locales/hsb_DE
-@@ -2172,6 +2172,8 @@
+@@ -220,6 +220,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -932,7 +932,7 @@
  LC_MESSAGES
 --- localedata/locales/it_CH.orig
 +++ localedata/locales/it_CH
-@@ -100,6 +100,8 @@
+@@ -98,6 +98,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1042,7 +1042,7 @@
  LC_MESSAGES
 --- localedata/locales/lt_LT.orig
 +++ localedata/locales/lt_LT
-@@ -2191,6 +2191,8 @@
+@@ -137,6 +137,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1253,7 +1253,7 @@
  
 --- localedata/locales/se_NO.orig
 +++ localedata/locales/se_NO
-@@ -276,6 +276,9 @@
+@@ -277,6 +277,9 @@
  <U0020><U0025><U005A>"
  
  % %a %b-%e %H:%M:%S %Z %Y søn jan-31 21:15:11 CET 2001
@@ -1275,7 +1275,7 @@
  %
 --- localedata/locales/sl_SI.orig
 +++ localedata/locales/sl_SI
-@@ -2187,6 +2187,8 @@
+@@ -157,6 +157,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1444,7 +1444,7 @@
  LC_MESSAGES
 --- localedata/locales/tr_TR.orig
 +++ localedata/locales/tr_TR
-@@ -3540,6 +3540,8 @@
+@@ -1540,6 +1540,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1533,7 +1533,7 @@
  LC_NAME
 --- localedata/locales/wal_ET.orig
 +++ localedata/locales/wal_ET
-@@ -233,5 +233,7 @@
+@@ -232,5 +232,7 @@
  <U0020><U130B><U120B><U1233>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U130D><U002F><U120B>"
