@@ -1,8 +1,9 @@
 glibc (2.7-0exp2) UNRELEASED; urgency=low
 
   * Remove any/local-iconv-fix-trampoline.diff (obsolete).
+  * Remove any/submitted-strfry.diff (merged).
 
- -- Pierre Habouzit <madcoder@debian.org>  Sat, 27 Oct 2007 10:29:01 +0200
+ -- Pierre Habouzit <madcoder@debian.org>  Sat, 27 Oct 2007 10:32:57 +0200
 
 glibc (2.7-0exp1) experimental; urgency=low
 
