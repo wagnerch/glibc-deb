@@ -49,7 +49,7 @@
        int bit2 = 0;
  
 -      if (a1->dest_addr->ai_family == PF_INET)
-+      if (a1->dest_addr->ai_family == PF_INET && gaiconf_sortv4_flag)
++      if (gaiconf_sortv4_flag && a1->dest_addr->ai_family == PF_INET)
  	{
  	  assert (a1->source_addr.ss_family == PF_INET);
  	  assert (a2->source_addr.ss_family == PF_INET);
