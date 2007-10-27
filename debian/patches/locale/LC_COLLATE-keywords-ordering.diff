@@ -8,11 +8,9 @@ Submitted upstream: BZ690
 # DP: Upstream status: BZ690
 # DP: Date: 2006-01-08
 
-Index: locale/programs/ld-collate.c
-===================================================================
---- locale/programs/ld-collate.c.orig	2007-10-23 08:52:02.000000000 -0400
-+++ locale/programs/ld-collate.c	2007-10-23 08:55:07.000000000 -0400
-@@ -2982,14 +2982,23 @@
+--- locale/programs/ld-collate.c.orig
++++ locale/programs/ld-collate.c
+@@ -2832,14 +2832,23 @@
        switch (nowtok)
  	{
  	case tok_copy:
@@ -40,7 +38,7 @@ Index: locale/programs/ld-collate.c
  
  	  lr_ignore_rest (ldfile, 1);
  	  break;
-@@ -3003,9 +3012,6 @@
+@@ -2853,9 +2862,6 @@
  	      break;
  	    }
  
@@ -50,7 +48,7 @@ Index: locale/programs/ld-collate.c
  	  arg = lr_token (ldfile, charmap, result, NULL, verbose);
  	  if (arg->tok != tok_number)
  	    goto err_label;
-@@ -3026,7 +3032,7 @@
+@@ -2876,7 +2882,7 @@
  	      break;
  	    }
  
@@ -59,7 +57,7 @@ Index: locale/programs/ld-collate.c
  	    goto err_label;
  
  	  arg = lr_token (ldfile, charmap, result, repertoire, verbose);
-@@ -3073,7 +3079,7 @@
+@@ -2923,7 +2929,7 @@
  	      break;
  	    }
  
@@ -68,7 +66,7 @@ Index: locale/programs/ld-collate.c
  	    goto err_label;
  
  	  arg = lr_token (ldfile, charmap, result, repertoire, verbose);
-@@ -3142,7 +3148,7 @@
+@@ -2992,7 +2998,7 @@
  	      break;
  	    }
  
@@ -77,7 +75,7 @@ Index: locale/programs/ld-collate.c
  	    goto err_label;
  
  	  arg = lr_token (ldfile, charmap, result, repertoire, verbose);
-@@ -3290,7 +3296,7 @@
+@@ -3140,7 +3146,7 @@
  	      break;
  	    }
  
@@ -86,7 +84,7 @@ Index: locale/programs/ld-collate.c
  	    goto err_label;
  
  	  arg = lr_token (ldfile, charmap, result, repertoire, verbose);
-@@ -3406,7 +3412,7 @@
+@@ -3256,7 +3262,7 @@
  	      break;
  	    }
  
@@ -95,7 +93,7 @@ Index: locale/programs/ld-collate.c
  	    goto err_label;
  	  state = 1;
  
-@@ -3716,8 +3722,6 @@
+@@ -3566,8 +3572,6 @@
  %s: missing `reorder-end' keyword"), "LC_COLLATE"));
  	      state = 4;
  	    }
