@@ -17,8 +17,9 @@ glibc (2.7-0exp2) UNRELEASED; urgency=low
   * Remove hppa/submitted-threaddb.diff (merged).
   * Update hppa/submitted-nptl-carlos.diff.
   * Update hurd-i386/submitted-libc_once.diff.
+  * Remove hurd-i386/cvs-ioctl-delay.diff (merged).
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 27 Oct 2007 15:36:20 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 27 Oct 2007 15:39:26 +0200
 
 glibc (2.7-0exp1) experimental; urgency=low
 
@@ -60,7 +61,6 @@ glibc (2.7-0exp1) experimental; urgency=low
     - Disable hurd-i386/local-tls-support.diff.
     - Remove hurd-i386/cvs-sigsuspend-nocancel.diff (merged).
     - Remove hurd-i386/cvs-lock-intern.diff (merged).
-    - Disable hurd-i386/cvs-ioctl-delay.diff.
     - Remove sparc/local-undefined-registers.diff (obsolete).
     - Remove all/local-pt_BR.diff (merged).
     - Remove any/cvs-ld_library_path.diff (merged).
