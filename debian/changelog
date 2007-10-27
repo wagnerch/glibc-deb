@@ -12,8 +12,10 @@ glibc (2.7-0exp2) UNRELEASED; urgency=low
   [ Aurelien Jarno ]
   * Improve any/submitted-rfc3484-sortv4.diff.
   * Update hurd-i386/submitted-trivial.diff.
+  * any/local-strfry.diff: new patch to fix strfry(), as Ulrich Drepper 
+    has still not managed to commit a correct version.
 
- -- Pierre Habouzit <madcoder@debian.org>  Sat, 27 Oct 2007 13:29:45 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 27 Oct 2007 13:30:26 +0200
 
 glibc (2.7-0exp1) experimental; urgency=low
 

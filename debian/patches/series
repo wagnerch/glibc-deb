@@ -140,6 +140,7 @@ any/local-nss-upgrade.diff -p0
 any/local-o_cloexec.diff -p0
 any/local-rtld.diff -p0
 any/local-sysctl.diff -p0
+any/local-strfry.diff -p0
 any/local-stubs_h.diff 
 any/local-stdio-lock.diff -p0
 any/local-tcsetaddr.diff -p0
