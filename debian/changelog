@@ -1,4 +1,4 @@
-glibc (2.7~0exp2-0exp3) experimental; urgency=low
+glibc (2.7~0exp2-0exp4) experimental; urgency=low
 
   [ Clint Adams ]
   * New upstream release with linuxthreads snapshot.
