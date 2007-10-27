@@ -1,32 +1,7 @@
-glibc (2.7-0exp2) UNRELEASED; urgency=low
-
-  [ Pierre Habouzit ]
-  * Remove any/local-iconv-fix-trampoline.diff (obsolete).
-  * Remove any/submitted-strfry.diff (merged).
-  * Update any/submitted-rfc3484-sortv4.diff.
-  * Update localedata/*first_weekday.diff.
-  * Remove localedata/fix-am_ET.diff (obsolete).
-  * Add locale/preprocessor-collate-uli-sucks.diff to fix endless loop when
-    ifdef is used.
-
-  [ Aurelien Jarno ]
-  * Improve any/submitted-rfc3484-sortv4.diff.
-  * Update hurd-i386/submitted-trivial.diff.
-  * any/local-strfry.diff: new patch to fix strfry(), as Ulrich Drepper
-    has still not managed to commit a correct version.
-  * Remove hppa/submitted-threaddb.diff (merged).
-  * Update hppa/submitted-nptl-carlos.diff.
-  * Update hurd-i386/submitted-libc_once.diff.
-  * Remove hurd-i386/cvs-ioctl-delay.diff (merged).
-  * Update hurd-i386/local-tls-support.diff.
-
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 27 Oct 2007 15:44:29 +0200
-
-glibc (2.7-0exp2) experimental; urgency=low
+glibc (2.7-0exp3) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream release with linuxthreads snapshot.
-    | *** Disable most locale/ and localedata/ patches *** |
     - Remove localedata/locale-de_CH.diff (merged).
     - Update locale/fix-LC_COLLATE-rules.diff.
     - Update locale/LC_COLLATE-keywords-ordering.diff.
@@ -79,12 +54,30 @@ glibc (2.7-0exp2) experimental; urgency=low
   [ Aurelien Jarno ]
   * kfreebsd/local-sysdeps.diff: update to revision 2006 (from glibc-bsd).
   * any/submitted-longdouble.diff: update.
+  * Improve any/submitted-rfc3484-sortv4.diff.
+  * Update hurd-i386/submitted-trivial.diff.
+  * any/local-strfry.diff: new patch to fix strfry(), as Ulrich Drepper
+    has still not managed to commit a correct version.
+  * Remove hppa/submitted-threaddb.diff (merged).
+  * Update hppa/submitted-nptl-carlos.diff.
+  * Update hurd-i386/submitted-libc_once.diff.
+  * Remove hurd-i386/cvs-ioctl-delay.diff (merged).
+  * Update hurd-i386/local-tls-support.diff.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
     linuxthreads.
   * any/local-stdio-lock.diff: make _IO_*_lock linuxthreads compliant.
   * any/local-o_cloexec.diff: don't assume O_CLOEXEC is always defined.
+
+  [ Pierre Habouzit ]
+  * Remove any/local-iconv-fix-trampoline.diff (obsolete).
+  * Remove any/submitted-strfry.diff (merged).
+  * Update any/submitted-rfc3484-sortv4.diff.
+  * Update localedata/*first_weekday.diff.
+  * Remove localedata/fix-am_ET.diff (obsolete).
+  * Add locale/preprocessor-collate-uli-sucks.diff to fix endless loop when
+    ifdef is used.
 
  -- Clint Adams <schizo@debian.org>  Sun, 21 Oct 2007 18:51:47 -0400
 
