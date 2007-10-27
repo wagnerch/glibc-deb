@@ -60,7 +60,7 @@ arm/submitted-RTLD_SINGLE_THREAD_P.diff -p0
 hppa/submitted-atomic_h.diff -p0
 hppa/submitted-fadvise64_64.diff -p0
 hppa/submitted-lt.diff -p0
-# hppa/submitted-nptl-carlos.diff -p0
+hppa/submitted-nptl-carlos.diff -p0
 hppa/submitted-pie.diff 
 hppa/local-inlining.diff -p0
 hppa/local-linuxthreads.diff -p0
