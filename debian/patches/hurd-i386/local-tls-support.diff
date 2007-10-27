@@ -1,6 +1,6 @@
---- csu/libc-start.c.orig
-+++ csu/libc-start.c
-@@ -134,11 +134,13 @@
+--- csu/libc-start.c.orig	
++++ csu/libc-start.c	2007-10-27 15:42:32.000000000 +0200
+@@ -134,10 +134,12 @@
      }
  # endif
  
@@ -9,11 +9,296 @@
       functions are using thread functions if these are available and
       we need to setup errno.  */
    __pthread_initialize_minimal ();
- #endif
 +#endif
  
- # ifndef SHARED
    /* Set up the stack checker's canary.  */
+   uintptr_t stack_chk_guard = _dl_setup_stack_chk_guard ();
+--- csu/libc-start.c.orig.orig
++++ csu/libc-start.c.orig
+@@ -0,0 +1,253 @@
++/* Copyright (C) 1998-2006, 2007 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <stdlib.h>
++#include <stdio.h>
++#include <unistd.h>
++#include <ldsodefs.h>
++#include <bp-start.h>
++#include <bp-sym.h>
++
++extern void __libc_init_first (int argc, char **argv, char **envp);
++
++extern int __libc_multiple_libcs;
++
++#include <tls.h>
++#ifndef SHARED
++# include <dl-osinfo.h>
++extern void __pthread_initialize_minimal (void);
++# ifndef THREAD_SET_STACK_GUARD
++/* Only exported for architectures that don't store the stack guard canary
++   in thread local area.  */
++uintptr_t __stack_chk_guard attribute_relro;
++# endif
++#endif
++
++#ifdef HAVE_PTR_NTHREADS
++/* We need atomic operations.  */
++# include <atomic.h>
++#endif
++
++
++#ifdef LIBC_START_MAIN
++# ifdef LIBC_START_DISABLE_INLINE
++#  define STATIC static
++# else
++#  define STATIC static inline __attribute__ ((always_inline))
++# endif
++#else
++# define STATIC
++# define LIBC_START_MAIN BP_SYM (__libc_start_main)
++#endif
++
++#ifdef MAIN_AUXVEC_ARG
++/* main gets passed a pointer to the auxiliary.  */
++# define MAIN_AUXVEC_DECL	, void *
++# define MAIN_AUXVEC_PARAM	, auxvec
++#else
++# define MAIN_AUXVEC_DECL
++# define MAIN_AUXVEC_PARAM
++#endif
++
++STATIC int LIBC_START_MAIN (int (*main) (int, char **, char **
++					 MAIN_AUXVEC_DECL),
++			    int argc,
++			    char *__unbounded *__unbounded ubp_av,
++#ifdef LIBC_START_MAIN_AUXVEC_ARG
++			    ElfW(auxv_t) *__unbounded auxvec,
++#endif
++			    __typeof (main) init,
++			    void (*fini) (void),
++			    void (*rtld_fini) (void),
++			    void *__unbounded stack_end)
++     __attribute__ ((noreturn));
++
++
++/* Note: the fini parameter is ignored here for shared library.  It
++   is registered with __cxa_atexit.  This had the disadvantage that
++   finalizers were called in more than one place.  */
++STATIC int
++LIBC_START_MAIN (int (*main) (int, char **, char ** MAIN_AUXVEC_DECL),
++		 int argc, char *__unbounded *__unbounded ubp_av,
++#ifdef LIBC_START_MAIN_AUXVEC_ARG
++		 ElfW(auxv_t) *__unbounded auxvec,
++#endif
++		 __typeof (main) init,
++		 void (*fini) (void),
++		 void (*rtld_fini) (void), void *__unbounded stack_end)
++{
++#if __BOUNDED_POINTERS__
++  char **argv;
++#else
++# define argv ubp_av
++#endif
++
++  /* Result of the 'main' function.  */
++  int result;
++
++  __libc_multiple_libcs = &_dl_starting_up && !_dl_starting_up;
++
++#ifndef SHARED
++  char *__unbounded *__unbounded ubp_ev = &ubp_av[argc + 1];
++
++  INIT_ARGV_and_ENVIRON;
++
++  /* Store the lowest stack address.  This is done in ld.so if this is
++     the code for the DSO.  */
++  __libc_stack_end = stack_end;
++
++# ifdef HAVE_AUX_VECTOR
++  /* First process the auxiliary vector since we need to find the
++     program header to locate an eventually present PT_TLS entry.  */
++#  ifndef LIBC_START_MAIN_AUXVEC_ARG
++  ElfW(auxv_t) *__unbounded auxvec;
++  {
++    char *__unbounded *__unbounded evp = ubp_ev;
++    while (*evp++ != NULL)
++      ;
++    auxvec = (ElfW(auxv_t) *__unbounded) evp;
++  }
++#  endif
++  _dl_aux_init (auxvec);
++# endif
++# ifdef DL_SYSDEP_OSCHECK
++  if (!__libc_multiple_libcs)
++    {
++      /* This needs to run to initiliaze _dl_osversion before TLS
++	 setup might check it.  */
++      DL_SYSDEP_OSCHECK (__libc_fatal);
++    }
++# endif
++
++  /* Initialize the thread library at least a bit since the libgcc
++     functions are using thread functions if these are available and
++     we need to setup errno.  */
++  __pthread_initialize_minimal ();
++
++  /* Set up the stack checker's canary.  */
++  uintptr_t stack_chk_guard = _dl_setup_stack_chk_guard ();
++# ifdef THREAD_SET_STACK_GUARD
++  THREAD_SET_STACK_GUARD (stack_chk_guard);
++# else
++  __stack_chk_guard = stack_chk_guard;
++# endif
++#endif
++
++  /* Register the destructor of the dynamic linker if there is any.  */
++  if (__builtin_expect (rtld_fini != NULL, 1))
++    __cxa_atexit ((void (*) (void *)) rtld_fini, NULL, NULL);
++
++#ifndef SHARED
++  /* Call the initializer of the libc.  This is only needed here if we
++     are compiling for the static library in which case we haven't
++     run the constructors in `_dl_start_user'.  */
++  __libc_init_first (argc, argv, __environ);
++
++  /* Register the destructor of the program, if any.  */
++  if (fini)
++    __cxa_atexit ((void (*) (void *)) fini, NULL, NULL);
++
++  /* Some security at this point.  Prevent starting a SUID binary where
++     the standard file descriptors are not opened.  We have to do this
++     only for statically linked applications since otherwise the dynamic
++     loader did the work already.  */
++  if (__builtin_expect (__libc_enable_secure, 0))
++    __libc_check_standard_fds ();
++#endif
++
++  /* Call the initializer of the program, if any.  */
++#ifdef SHARED
++  if (__builtin_expect (GLRO(dl_debug_mask) & DL_DEBUG_IMPCALLS, 0))
++    GLRO(dl_debug_printf) ("\ninitialize program: %s\n\n", argv[0]);
++#endif
++  if (init)
++    (*init) (argc, argv, __environ MAIN_AUXVEC_PARAM);
++
++#ifdef SHARED
++  /* Auditing checkpoint: we have a new object.  */
++  if (__builtin_expect (GLRO(dl_naudit) > 0, 0))
++    {
++      struct audit_ifaces *afct = GLRO(dl_audit);
++      struct link_map *head = GL(dl_ns)[LM_ID_BASE]._ns_loaded;
++      for (unsigned int cnt = 0; cnt < GLRO(dl_naudit); ++cnt)
++	{
++	  if (afct->preinit != NULL)
++	    afct->preinit (&head->l_audit[cnt].cookie);
++
++	  afct = afct->next;
++	}
++    }
++#endif
++
++#ifdef SHARED
++  if (__builtin_expect (GLRO(dl_debug_mask) & DL_DEBUG_IMPCALLS, 0))
++    GLRO(dl_debug_printf) ("\ntransferring control: %s\n\n", argv[0]);
++#endif
++
++#ifdef HAVE_CLEANUP_JMP_BUF
++  /* Memory for the cancellation buffer.  */
++  struct pthread_unwind_buf unwind_buf;
++
++  int not_first_call;
++  not_first_call = setjmp ((struct __jmp_buf_tag *) unwind_buf.cancel_jmp_buf);
++  if (__builtin_expect (! not_first_call, 1))
++    {
++      struct pthread *self = THREAD_SELF;
++
++      /* Store old info.  */
++      unwind_buf.priv.data.prev = THREAD_GETMEM (self, cleanup_jmp_buf);
++      unwind_buf.priv.data.cleanup = THREAD_GETMEM (self, cleanup);
++
++      /* Store the new cleanup handler info.  */
++      THREAD_SETMEM (self, cleanup_jmp_buf, &unwind_buf);
++
++      /* Run the program.  */
++      result = main (argc, argv, __environ MAIN_AUXVEC_PARAM);
++    }
++  else
++    {
++      /* Remove the thread-local data.  */
++# ifdef SHARED
++      PTHFCT_CALL (ptr__nptl_deallocate_tsd, ());
++# else
++      extern void __nptl_deallocate_tsd (void) __attribute ((weak));
++      __nptl_deallocate_tsd ();
++# endif
++
++      /* One less thread.  Decrement the counter.  If it is zero we
++	 terminate the entire process.  */
++      result = 0;
++# ifdef SHARED
++      unsigned int *ptr = __libc_pthread_functions.ptr_nthreads;
++      PTR_DEMANGLE (ptr);
++# else
++      extern unsigned int __nptl_nthreads __attribute ((weak));
++      unsigned int *const ptr = &__nptl_nthreads;
++# endif
++
++      if (! atomic_decrement_and_test (ptr))
++	/* Not much left to do but to exit the thread, not the process.  */
++	__exit_thread (0);
++    }
++#else
++  /* Nothing fancy, just call the function.  */
++  result = main (argc, argv, __environ MAIN_AUXVEC_PARAM);
++#endif
++
++  exit (result);
++}
+--- csu/libc-start.c.rej.orig
++++ csu/libc-start.c.rej
+@@ -0,0 +1,27 @@
++***************
++*** 134,144 ****
++      }
++  # endif
++  
++    /* Initialize the thread library at least a bit since the libgcc
++       functions are using thread functions if these are available and
++       we need to setup errno.  */
++    __pthread_initialize_minimal ();
++  #endif
++  
++  # ifndef SHARED
++    /* Set up the stack checker's canary.  */
++--- 134,146 ----
++      }
++  # endif
++  
+++ #ifndef __GNU__
++    /* Initialize the thread library at least a bit since the libgcc
++       functions are using thread functions if these are available and
++       we need to setup errno.  */
++    __pthread_initialize_minimal ();
++  #endif
+++ #endif
++  
++  # ifndef SHARED
++    /* Set up the stack checker's canary.  */
 --- hurd/hurdfault.c.orig
 +++ hurd/hurdfault.c
 @@ -206,6 +206,8 @@
@@ -25,10 +310,9 @@
    MACHINE_THREAD_STATE_SET_PC (&state, faulted);
    MACHINE_THREAD_STATE_SET_SP (&state, faultstack, sizeof faultstack);
  
-diff -u -p -r1.159 hurdsig.c
---- hurd/hurdsig.c	21 Dec 2005 22:16:20 -0000	1.159
-+++ hurd/hurdsig.c	9 Aug 2007 19:17:33 -0000
-@@ -1260,6 +1260,8 @@ _hurdsig_init (const int *intarray, size
+--- hurd/hurdsig.c.orig
++++ hurd/hurdsig.c
+@@ -1260,6 +1260,8 @@
  				 (vm_address_t *) &__hurd_sigthread_stack_base,
  				 &stacksize);
        assert_perror (err);
@@ -37,7 +321,7 @@ diff -u -p -r1.159 hurdsig.c
  
        __hurd_sigthread_stack_end = __hurd_sigthread_stack_base + stacksize;
        __hurd_sigthread_variables =
-@@ -1268,8 +1270,6 @@ _hurdsig_init (const int *intarray, size
+@@ -1268,8 +1270,6 @@
  	__libc_fatal ("hurd: Can't allocate threadvars for signal thread\n");
        memset (__hurd_sigthread_variables, 0,
  	      __hurd_threadvar_max * sizeof (unsigned long int));
@@ -46,10 +330,9 @@ diff -u -p -r1.159 hurdsig.c
  
        /* Reinitialize the MiG support routines so they will use a per-thread
  	 variable for the cached reply port.  */
-diff -u -p -r1.13 mach.h
---- mach/mach.h	30 Aug 2002 01:30:53 -0000	1.13
-+++ mach/mach.h	9 Aug 2007 19:17:33 -0000
-@@ -101,5 +101,8 @@ kern_return_t mach_setup_thread (task_t 
+--- mach/mach.h.orig
++++ mach/mach.h
+@@ -101,5 +101,8 @@
  				 vm_address_t *stack_base,
  				 vm_size_t *stack_size);
  
@@ -57,7 +340,115 @@ diff -u -p -r1.13 mach.h
 +kern_return_t __mach_setup_tls (thread_t thread);
 +kern_return_t mach_setup_tls (thread_t thread);
  
- #endif /* mach.h */
+ #endif	/* mach.h */
+--- mach/mach.h.orig.orig
++++ mach/mach.h.orig
+@@ -0,0 +1,105 @@
++/* Standard header for all Mach programs.
++   Copyright (C) 1993,94,96,97,2002 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef	_MACH_H
++
++#define	_MACH_H	1
++
++/* We must include this before using __need_FILE with <stdio.h> below.  */
++#include <features.h>
++
++
++/* Get the basic types used by Mach.  */
++#include <mach/mach_types.h>
++
++/* This declares the basic variables and macros everything needs.  */
++#include <mach_init.h>
++
++/* This declares all the real system call functions.  */
++#include <mach/mach_traps.h>
++
++/* These are MiG-generated headers for the kernel interfaces commonly used.  */
++#include <mach/mach_interface.h> /* From <mach/mach.defs>.  */
++#include <mach/mach_port.h>
++#include <mach/mach_host.h>
++
++/* For the kernel RPCs which have system call shortcut versions,
++   the MiG-generated header in fact declares `CALL_rpc' rather than `CALL'.
++   This file declares the simple `CALL' functions.  */
++#include <mach-shortcuts.h>
++
++
++/* Receive RPC request messages on RCV_NAME and pass them to DEMUX, which
++   decodes them and produces reply messages.  MAX_SIZE is the maximum size
++   (in bytes) of the request and reply buffers.  */
++extern mach_msg_return_t
++__mach_msg_server (boolean_t (*__demux) (mach_msg_header_t *__request,
++					 mach_msg_header_t *__reply),
++		   mach_msg_size_t __max_size,
++		   mach_port_t __rcv_name),
++mach_msg_server (boolean_t (*__demux) (mach_msg_header_t *__request,
++				       mach_msg_header_t *__reply),
++		 mach_msg_size_t __max_size,
++		 mach_port_t __rcv_name);
++
++/* Just like `mach_msg_server', but the OPTION and TIMEOUT parameters are
++   passed on to `mach_msg'.  */
++extern mach_msg_return_t
++__mach_msg_server_timeout (boolean_t (*__demux) (mach_msg_header_t *__request,
++						 mach_msg_header_t *__reply),
++			   mach_msg_size_t __max_size,
++			   mach_port_t __rcv_name,
++			   mach_msg_option_t __option,
++			   mach_msg_timeout_t __timeout),
++mach_msg_server_timeout (boolean_t (*__demux) (mach_msg_header_t *__request,
++					       mach_msg_header_t *__reply),
++			 mach_msg_size_t __max_size,
++			 mach_port_t __rcv_name,
++			 mach_msg_option_t __option,
++			 mach_msg_timeout_t __timeout);
++
++
++/* Deallocate all port rights and out-of-line memory in MSG. */
++extern void
++__mach_msg_destroy (mach_msg_header_t *msg),
++mach_msg_destroy (mach_msg_header_t *msg);
++
++
++#define __need_FILE
++#include <stdio.h>
++
++/* Open a stream on a Mach device.  */
++extern FILE *mach_open_devstream (mach_port_t device_port, const char *mode);
++
++/* Give THREAD a stack and set it to run at PC when resumed.
++   If *STACK_SIZE is nonzero, that size of stack is allocated.
++   If *STACK_BASE is nonzero, that stack location is used.
++   If STACK_BASE is not null it is filled in with the chosen stack base.
++   If STACK_SIZE is not null it is filled in with the chosen stack size.
++   Regardless, an extra page of red zone is allocated off the end; this
++   is not included in *STACK_SIZE.  */
++kern_return_t __mach_setup_thread (task_t task, thread_t thread, void *pc,
++				   vm_address_t *stack_base,
++				   vm_size_t *stack_size);
++kern_return_t mach_setup_thread (task_t task, thread_t thread, void *pc,
++				 vm_address_t *stack_base,
++				 vm_size_t *stack_size);
++
++
++#endif	/* mach.h */
 --- mach/setup-thread.c.orig
 +++ mach/setup-thread.c
 @@ -20,6 +20,7 @@
@@ -68,7 +459,7 @@ diff -u -p -r1.13 mach.h
  #include "sysdep.h"		/* Defines stack direction.  */
  
  #define	STACK_SIZE	(16 * 1024 * 1024) /* 16MB, arbitrary.  */
-@@ -73,8 +74,35 @@ __mach_setup_thread (task_t task, thread
+@@ -73,8 +74,35 @@
    if (error = __vm_protect (task, stack, __vm_page_size, 0, VM_PROT_NONE))
      return error;
  
@@ -115,18 +506,6 @@ diff -u -p -r1.13 mach.h
  #define MACHINE_THREAD_STATE_FLAVOR	<machine>_THREAD_STATE
  #define MACHINE_THREAD_STATE_COUNT	<machine>_THREAD_STATE_COUNT
  
---- sysdeps/mach/thread_state.h.orig
-+++ sysdeps/mach/thread_state.h
-@@ -38,6 +38,9 @@
-   ((ts)->SP = (unsigned long int) (stack) + (size))
- #endif
- #endif
-+#ifndef MACHINE_THREAD_STATE_FIX_NEW
-+#define MACHINE_THREAD_STATE_FIX_NEW(ts)
-+#endif
- 
- /* These functions are of use in machine-dependent signal trampoline
-    implementations.  */
 --- sysdeps/mach/alpha/thread_state.h.orig
 +++ sysdeps/mach/alpha/thread_state.h
 @@ -19,6 +19,7 @@
@@ -137,58 +516,8 @@ diff -u -p -r1.13 mach.h
  #define MACHINE_THREAD_STATE_FLAVOR	ALPHA_THREAD_STATE
  #define MACHINE_THREAD_STATE_COUNT	ALPHA_THREAD_STATE_COUNT
  
---- sysdeps/mach/hurd/fork.c.orig
-+++ sysdeps/mach/hurd/fork.c
-@@ -523,6 +523,11 @@
- #endif
-       MACHINE_THREAD_STATE_SET_PC (&state,
- 				   (unsigned long int) _hurd_msgport_receive);
-+
-+      /* Do special thread setup for TLS if needed.  */
-+      if (err = _hurd_tls_fork (sigthread, _hurd_msgport_thread, &state))
-+	LOSE;
-+
-       if (err = __thread_set_state (sigthread, MACHINE_THREAD_STATE_FLAVOR,
- 				    (natural_t *) &state, statecount))
- 	LOSE;
-@@ -533,7 +538,7 @@
-       _hurd_longjmp_thread_state (&state, env, 1);
- 
-       /* Do special thread setup for TLS if needed.  */
--      if (err = _hurd_tls_fork (thread, &state))
-+      if (err = _hurd_tls_fork (thread, __mach_thread_self (), &state))
- 	LOSE;
- 
-       if (err = __thread_set_state (thread, MACHINE_THREAD_STATE_FLAVOR,
---- sysdeps/mach/hurd/profil.c	16 Oct 2005 10:32:15 -0000	1.11
-+++ sysdeps/mach/hurd/profil.c	9 Aug 2007 19:17:34 -0000
-@@ -69,6 +69,8 @@ update_waiter (u_short *sample_buffer, s
-       if (! err)
- 	err = __mach_setup_thread (__mach_task_self (), profile_thread,
- 				   &profile_waiter, NULL, NULL);
-+      if (! err)
-+	err = __mach_setup_tls(profile_thread);
-     }
-   else
-     err = 0;
---- sysdeps/mach/hurd/setitimer.c	16 Oct 2005 10:32:15 -0000	1.23
-+++ sysdeps/mach/hurd/setitimer.c	9 Aug 2007 21:03:24 -0000
-@@ -223,11 +223,12 @@ setitimer_locked (const struct itimerval
- 	    return __hurd_fail (err);
- 	  _hurd_itimer_thread_stack_base = 0; /* Anywhere.  */
- 	  _hurd_itimer_thread_stack_size = __vm_page_size; /* Small stack.  */
--	  if (err = __mach_setup_thread (__mach_task_self (),
-+	  if ((err = __mach_setup_thread (__mach_task_self (),
- 					 _hurd_itimer_thread,
- 					 &timer_thread,
- 					 &_hurd_itimer_thread_stack_base,
- 					 &_hurd_itimer_thread_stack_size))
-+	      || (err = __mach_setup_tls(_hurd_itimer_thread)))
- 	    {
- 	      __thread_terminate (_hurd_itimer_thread);
- 	      _hurd_itimer_thread = MACH_PORT_NULL;
---- sysdeps/mach/hurd/bits/libc-tsd.h
-+++ /dev/null
+--- sysdeps/mach/hurd/bits/libc-tsd.h.orig
++++ sysdeps/mach/hurd/bits/libc-tsd.h
 @@ -1,34 +0,0 @@
 -/* libc-internal interface for thread-specific data.  Hurd version.
 -   Copyright (C) 1998,2002 Free Software Foundation, Inc.
@@ -224,6 +553,29 @@ diff -u -p -r1.13 mach.h
 -
 -
 -#endif	/* bits/libc-tsd.h */
+--- sysdeps/mach/hurd/fork.c.orig
++++ sysdeps/mach/hurd/fork.c
+@@ -523,6 +523,11 @@
+ #endif
+       MACHINE_THREAD_STATE_SET_PC (&state,
+ 				   (unsigned long int) _hurd_msgport_receive);
++
++      /* Do special thread setup for TLS if needed.  */
++      if (err = _hurd_tls_fork (sigthread, _hurd_msgport_thread, &state))
++	LOSE;
++
+       if (err = __thread_set_state (sigthread, MACHINE_THREAD_STATE_FLAVOR,
+ 				    (natural_t *) &state, statecount))
+ 	LOSE;
+@@ -533,7 +538,7 @@
+       _hurd_longjmp_thread_state (&state, env, 1);
+ 
+       /* Do special thread setup for TLS if needed.  */
+-      if (err = _hurd_tls_fork (thread, &state))
++      if (err = _hurd_tls_fork (thread, __mach_thread_self (), &state))
+ 	LOSE;
+ 
+       if (err = __thread_set_state (thread, MACHINE_THREAD_STATE_FLAVOR,
 --- sysdeps/mach/hurd/i386/init-first.c.orig
 +++ sysdeps/mach/hurd/i386/init-first.c
 @@ -104,10 +104,6 @@
@@ -265,7 +617,7 @@ diff -u -p -r1.13 mach.h
    _hurd_init_dtable = d->dtable;
    _hurd_init_dtablesize = d->dtablesize;
  
-@@ -172,13 +150,16 @@ init (int *data)
+@@ -172,13 +150,16 @@
    char **envp = &argv[argc + 1];
    struct hurd_startup_data *d;
    unsigned long int threadvars[_HURD_THREADVAR_MAX];
@@ -283,7 +635,7 @@ diff -u -p -r1.13 mach.h
    __hurd_threadvar_stack_offset = (unsigned long int) threadvars;
  
    /* Since the cthreads initialization code uses malloc, and the
-@@ -192,6 +173,39 @@ init (int *data)
+@@ -192,6 +173,39 @@
      ++envp;
    d = (void *) ++envp;
  
@@ -404,6 +756,33 @@ diff -u -p -r1.13 mach.h
  	}
      }
  
+--- sysdeps/mach/hurd/profil.c.orig
++++ sysdeps/mach/hurd/profil.c
+@@ -69,6 +69,8 @@
+       if (! err)
+ 	err = __mach_setup_thread (__mach_task_self (), profile_thread,
+ 				   &profile_waiter, NULL, NULL);
++      if (! err)
++	err = __mach_setup_tls(profile_thread);
+     }
+   else
+     err = 0;
+--- sysdeps/mach/hurd/setitimer.c.orig
++++ sysdeps/mach/hurd/setitimer.c
+@@ -223,11 +223,12 @@
+ 	    return __hurd_fail (err);
+ 	  _hurd_itimer_thread_stack_base = 0; /* Anywhere.  */
+ 	  _hurd_itimer_thread_stack_size = __vm_page_size; /* Small stack.  */
+-	  if (err = __mach_setup_thread (__mach_task_self (),
++	  if ((err = __mach_setup_thread (__mach_task_self (),
+ 					 _hurd_itimer_thread,
+ 					 &timer_thread,
+ 					 &_hurd_itimer_thread_stack_base,
+ 					 &_hurd_itimer_thread_stack_size))
++	      || (err = __mach_setup_tls(_hurd_itimer_thread)))
+ 	    {
+ 	      __thread_terminate (_hurd_itimer_thread);
+ 	      _hurd_itimer_thread = MACH_PORT_NULL;
 --- sysdeps/mach/i386/thread_state.h.orig
 +++ sysdeps/mach/i386/thread_state.h
 @@ -19,7 +19,8 @@
@@ -441,3 +820,15 @@ diff -u -p -r1.13 mach.h
  #define MACHINE_THREAD_STATE_FLAVOR	PPC_THREAD_STATE
  #define MACHINE_THREAD_STATE_COUNT	PPC_THREAD_STATE_COUNT
  
+--- sysdeps/mach/thread_state.h.orig
++++ sysdeps/mach/thread_state.h
+@@ -38,6 +38,9 @@
+   ((ts)->SP = (unsigned long int) (stack) + (size))
+ #endif
+ #endif
++#ifndef MACHINE_THREAD_STATE_FIX_NEW
++#define MACHINE_THREAD_STATE_FIX_NEW(ts)
++#endif
+ 
+ /* These functions are of use in machine-dependent signal trampoline
+    implementations.  */
