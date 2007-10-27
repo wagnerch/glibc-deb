@@ -6,12 +6,14 @@ glibc (2.7-0exp2) UNRELEASED; urgency=low
   * Update any/submitted-rfc3484-sortv4.diff.
   * Update localedata/*first_weekday.diff.
   * Remove localedata/fix-am_ET.diff (obsolete).
+  * Add locale/preprocessor-collate-uli-sucks.diff to fix endless loop when
+    ifdef is used.
 
   [ Aurelien Jarno ]
   * Improve any/submitted-rfc3484-sortv4.diff.
   * Update hurd-i386/submitted-trivial.diff.
 
- -- Pierre Habouzit <madcoder@debian.org>  Sat, 27 Oct 2007 10:49:49 +0200
+ -- Pierre Habouzit <madcoder@debian.org>  Sat, 27 Oct 2007 13:29:45 +0200
 
 glibc (2.7-0exp1) experimental; urgency=low
 
