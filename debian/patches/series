@@ -116,8 +116,7 @@ any/local-bindresvport_blacklist.diff -p0
 any/local-dl-execstack.diff -p0
 any/local-fhs-linux-paths.diff -p0
 any/local-gcc4-wcstol_l.diff 
-#any/local-iconv-fix-trampoline.diff 
-#any/local-ipv6-lookup.diff -p1
+# any/local-ipv6-lookup.diff -p1      # has issues
 any/local-ld-multiarch.diff -p0
 any/local-ldd.diff -p0
 any/local-ldso-disable-hwcap.diff -p0
