@@ -1,10 +1,10 @@
 locale/check-unknown-symbols.diff
 locale/fix-LC_COLLATE-rules.diff -p0
-#locale/preprocessor-collate.diff -p0
+# locale/preprocessor-collate.diff -p0
 locale/locale-print-LANGUAGE.diff -p0
 locale/LC_IDENTIFICATION-optional-fields.diff -p0
 locale/fix-C-first_weekday.diff -p0
-#locale/LC_COLLATE-keywords-ordering.diff -p0
+# locale/LC_COLLATE-keywords-ordering.diff -p0
 localedata/local-all-no-archive.diff -p0
 localedata/sort-UTF8-first.diff -p0
 localedata/supported.diff -p0
@@ -13,37 +13,37 @@ localedata/locale-eu_FR.diff -p0
 localedata/new-valencian-locale.diff -p0
 localedata/locale-ku_TR.diff -p0
 localedata/tl_PH-yesexpr.diff
-#localedata/fo_FO-date_fmt.diff
-#localedata/locales_CH.diff
-#localedata/locales-fr.diff
-#localedata/locales_GB.diff -p0
-#localedata/locale-en_DK.diff -p0
-#localedata/locale-csb_PL.diff
-#localedata/dz_BT-collation.diff -p0
-#localedata/locale-ia.diff -p0
-#localedata/locale-zh_TW.diff -p0
-#localedata/locale-se_NO.diff -p0
-#localedata/tailor-iso14651_t1.diff -p0
-#localedata/tailor-iso14651_t1-common.diff 
-#localedata/fix-lang.diff -p0
-#localedata/cs_CZ-first_weekday.diff
-#localedata/da_DK-first_weekday.diff
-#localedata/pl_PL-first_weekday.diff
-#localedata/de_DE-first_weekday.diff
-#localedata/en_GB-first_weekday.diff
-#localedata/en_US-first_weekday.diff
-#localedata/et_EE-first_weekday.diff
-#localedata/fr_BE-first_weekday.diff
-#localedata/fr_CA-first_weekday.diff
-#localedata/fr_CH-first_weekday.diff
-#localedata/fr_FR-first_weekday.diff
-#localedata/fr_LU-first_weekday.diff
-#localedata/hu_HU-first_weekday.diff
-#localedata/nb_NO-first_weekday.diff
-#localedata/nn_NO-first_weekday.diff
-#localedata/sk_SK-first_weekday.diff
-#localedata/first_weekday.diff -p0
-#localedata/fix-am_ET.diff
+# localedata/fo_FO-date_fmt.diff
+# localedata/locales_CH.diff
+# localedata/locales-fr.diff
+# localedata/locales_GB.diff -p0
+# localedata/locale-en_DK.diff -p0
+# localedata/locale-csb_PL.diff
+# localedata/dz_BT-collation.diff -p0
+# localedata/locale-ia.diff -p0
+# localedata/locale-zh_TW.diff -p0
+# localedata/locale-se_NO.diff -p0
+# localedata/tailor-iso14651_t1.diff -p0
+# localedata/tailor-iso14651_t1-common.diff 
+# localedata/fix-lang.diff -p0
+# localedata/cs_CZ-first_weekday.diff
+# localedata/da_DK-first_weekday.diff
+# localedata/pl_PL-first_weekday.diff
+# localedata/de_DE-first_weekday.diff
+# localedata/en_GB-first_weekday.diff
+# localedata/en_US-first_weekday.diff
+# localedata/et_EE-first_weekday.diff
+# localedata/fr_BE-first_weekday.diff
+# localedata/fr_CA-first_weekday.diff
+# localedata/fr_CH-first_weekday.diff
+# localedata/fr_FR-first_weekday.diff
+# localedata/fr_LU-first_weekday.diff
+# localedata/hu_HU-first_weekday.diff
+# localedata/nb_NO-first_weekday.diff
+# localedata/nn_NO-first_weekday.diff
+# localedata/sk_SK-first_weekday.diff
+# localedata/first_weekday.diff -p0
+# localedata/fix-am_ET.diff
 
 alpha/local-gcc4.1.diff -p0
 alpha/submitted-xstat.diff -p0
@@ -60,9 +60,9 @@ arm/submitted-RTLD_SINGLE_THREAD_P.diff -p0
 hppa/submitted-atomic_h.diff -p0
 hppa/submitted-fadvise64_64.diff -p0
 hppa/submitted-lt.diff -p0
-#hppa/submitted-nptl-carlos.diff -p0
+# hppa/submitted-nptl-carlos.diff -p0
 hppa/submitted-pie.diff 
-#hppa/submitted-threaddb.diff -p0
+# hppa/submitted-threaddb.diff -p0
 hppa/local-inlining.diff -p0
 hppa/local-linuxthreads.diff -p0
 hppa/local-linuxthreads-gscope.diff -p0
@@ -72,15 +72,15 @@ hurd-i386/local-enable-ldconfig.diff -p0
 hurd-i386/local-mlock.diff 
 hurd-i386/local-msg-nosignal.diff -p0
 hurd-i386/local-tls.diff 
-#hurd-i386/local-tls-support.diff -p0
+# hurd-i386/local-tls-support.diff -p0
 hurd-i386/submitted-ioctl-decode-argument.diff -p0
-#hurd-i386/submitted-libc_once.diff -p0
+# hurd-i386/submitted-libc_once.diff -p0
 hurd-i386/submitted-stat.diff -p0
 hurd-i386/submitted-sysvshm.diff 
-#hurd-i386/submitted-trivial.diff -p0
+# hurd-i386/submitted-trivial.diff -p0
 hurd-i386/submitted-ioctl-unsigned-size_t.diff -p0
 hurd-i386/cvs-ECANCELED.diff
-#hurd-i386/cvs-ioctl-delay.diff -p0
+# hurd-i386/cvs-ioctl-delay.diff -p0
 hurd-i386/submitted-IPV6_PKTINFO.diff 
 
 i386/local-biarch.diff 
@@ -151,8 +151,8 @@ any/submitted-clock-settime.diff -p0
 any/submitted-date-and-unknown-tz.diff -p0
 any/submitted-libgcc_s.so.diff -p0
 any/submitted-longdouble.diff -p0
-#any/submitted-rfc3484-sortv4.diff -p0
-#any/submitted-strfry.diff -p0
+# any/submitted-rfc3484-sortv4.diff -p0
+# any/submitted-strfry.diff -p0
 any/local-disable-nscd-host-caching.diff
 any/submitted-fileops-and-signals.diff
 any/local-missing-linux_types.h.diff
