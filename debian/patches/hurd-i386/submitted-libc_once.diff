@@ -18,24 +18,22 @@ http://sourceware.org/bugzilla/show_bug.cgi?id=3748
 
 --- sysdeps/posix/getaddrinfo.c.orig
 +++ sysdeps/posix/getaddrinfo.c
-@@ -1927,11 +1927,13 @@
+@@ -1950,9 +1950,13 @@
    if (naddrs > 1)
      {
        /* Read the config file.  */
-+      void _gaiconf_reload (void)
-+	{
-+	  if (gaiconf_reload_flag)
-+	    gaiconf_reload ();
-+	}
++      void _gaiconf_reload (void) 
++      {
++        if (gaiconf_reload_flag)
++          gaiconf_reload ();
++      }
        __libc_once_define (static, once);
 -      __typeof (once) old_once = once;
 -      __libc_once (once, gaiconf_init);
--      if (old_once && gaiconf_reload_flag)
--	gaiconf_reload ();
 +      __libc_once_else (once, gaiconf_init, _gaiconf_reload);
- 
        /* Sort results according to RFC 3484.  */
        struct sort_result results[nresults];
+       struct addrinfo *q;
 --- bits/libc-lock.h.orig
 +++ bits/libc-lock.h
 @@ -89,7 +89,7 @@

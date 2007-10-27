@@ -12,12 +12,13 @@ glibc (2.7-0exp2) UNRELEASED; urgency=low
   [ Aurelien Jarno ]
   * Improve any/submitted-rfc3484-sortv4.diff.
   * Update hurd-i386/submitted-trivial.diff.
-  * any/local-strfry.diff: new patch to fix strfry(), as Ulrich Drepper 
+  * any/local-strfry.diff: new patch to fix strfry(), as Ulrich Drepper
     has still not managed to commit a correct version.
   * Remove hppa/submitted-threaddb.diff (merged).
   * Update hppa/submitted-nptl-carlos.diff.
+  * Update hurd-i386/submitted-libc_once.diff.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 27 Oct 2007 13:30:26 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 27 Oct 2007 15:36:20 +0200
 
 glibc (2.7-0exp1) experimental; urgency=low
 
@@ -58,7 +59,6 @@ glibc (2.7-0exp1) experimental; urgency=low
     - Remove hppa/submitted-ustat.diff (merged).
     - Disable hurd-i386/local-tls-support.diff.
     - Remove hurd-i386/cvs-sigsuspend-nocancel.diff (merged).
-    - Disable hurd-i386/submitted-libc_once.diff.
     - Remove hurd-i386/cvs-lock-intern.diff (merged).
     - Disable hurd-i386/cvs-ioctl-delay.diff.
     - Remove sparc/local-undefined-registers.diff (obsolete).
