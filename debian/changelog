@@ -1,4 +1,4 @@
-glibc (2.7-0exp4) UNRELEASED; urgency=low
+glibc (2.7-0exp5) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream release with linuxthreads snapshot.
