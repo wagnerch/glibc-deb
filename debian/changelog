@@ -67,6 +67,8 @@ glibc (2.7-0exp4) UNRELEASED; urgency=low
   * Update hurd-i386/local-tls-support.diff.
   * Add hurd-i386/local-kernel-features.diff: provide almost empty 
     kernel-features.h for files that include it.
+  * Add arm/local-args6.diff: provide DOCARGS_6 and UNDOCARGS_5 for
+    arm old-abi.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
