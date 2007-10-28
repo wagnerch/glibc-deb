@@ -70,6 +70,7 @@ hppa/local-linuxthreads-gscope.diff -p0
 
 hurd-i386/local-dl-dynamic-weak.diff 
 hurd-i386/local-enable-ldconfig.diff -p0
+hurd-i386/local-kernel-features.diff -p0
 hurd-i386/local-mlock.diff 
 hurd-i386/local-msg-nosignal.diff -p0
 hurd-i386/local-tls.diff 

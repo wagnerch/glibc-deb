@@ -65,6 +65,8 @@ glibc (2.7-0exp4) UNRELEASED; urgency=low
   * Update hurd-i386/submitted-libc_once.diff.
   * Remove hurd-i386/cvs-ioctl-delay.diff (merged).
   * Update hurd-i386/local-tls-support.diff.
+  * Add hurd-i386/local-kernel-features.diff: provide almost empty 
+    kernel-features.h for files that include it.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
