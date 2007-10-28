@@ -1,4 +1,4 @@
-glibc (2.7-0exp3) UNRELEASED; urgency=low
+glibc (2.7-0exp4) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream release with linuxthreads snapshot.
@@ -50,6 +50,8 @@ glibc (2.7-0exp3) UNRELEASED; urgency=low
     - Remove localedata/locale-no_NO.diff (obsolete).
     - Update localedata/supported.diff.
   * Bump shlib version to 2.7-1.
+  * Add localedata/cvs-locale-ig_NG.diff BZ#5224, missing collation symbols
+    for ig_NG.
 
   [ Aurelien Jarno ]
   * kfreebsd/local-sysdeps.diff: update to revision 2006 (from glibc-bsd).
