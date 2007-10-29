@@ -65,10 +65,11 @@ glibc (2.7-0exp5) UNRELEASED; urgency=low
   * Update hurd-i386/submitted-libc_once.diff.
   * Remove hurd-i386/cvs-ioctl-delay.diff (merged).
   * Update hurd-i386/local-tls-support.diff.
-  * Add hurd-i386/local-kernel-features.diff: provide almost empty 
+  * Add hurd-i386/local-kernel-features.diff: provide almost empty
     kernel-features.h for files that include it.
   * Add arm/local-args6.diff: provide DOCARGS_6 and UNDOCARGS_5 for
     arm old-abi.
+  * Add arm/local-lowlevellock.diff: new patch to fix build on arm.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
@@ -85,7 +86,7 @@ glibc (2.7-0exp5) UNRELEASED; urgency=low
   * Add locale/preprocessor-collate-uli-sucks.diff to fix endless loop when
     ifdef is used.
 
- -- Clint Adams <schizo@debian.org>  Sun, 21 Oct 2007 18:51:47 -0400
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 29 Oct 2007 10:54:31 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
