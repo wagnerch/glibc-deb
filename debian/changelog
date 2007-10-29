@@ -83,8 +83,9 @@ glibc (2.7-0exp5) UNRELEASED; urgency=low
   * Update any/submitted-rfc3484-sortv4.diff.
   * Update localedata/*first_weekday.diff.
   * Remove localedata/fix-am_ET.diff (obsolete).
-  * Add locale/preprocessor-collate-uli-sucks.diff to fix endless loop when
-    ifdef is used.
+  * Add locale/preprocessor-collate-uli-sucks.diff to revert Ulrich's
+    preprocessor that isn't enough for Debian.
+  * Update patches/locale/preprocessor-collate.diff.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 29 Oct 2007 10:54:31 +0100
 
