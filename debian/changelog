@@ -86,8 +86,9 @@ glibc (2.7-0exp5) UNRELEASED; urgency=low
   * Add locale/preprocessor-collate-uli-sucks.diff to revert Ulrich's
     preprocessor that isn't enough for Debian.
   * Update patches/locale/preprocessor-collate.diff.
+  * Add alpha/submitted-PTR_MANGLE.diff (Closes: #448508).
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 29 Oct 2007 10:54:31 +0100
+ -- Pierre Habouzit <madcoder@debian.org>  Thu, 01 Nov 2007 14:38:51 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
