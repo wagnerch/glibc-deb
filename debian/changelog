@@ -74,6 +74,7 @@ glibc (2.7-0exp5) UNRELEASED; urgency=low
     TIMEOUTFACTOR.
   * sysdeps/arm.mk, sysdeps/armel.mk, sysdeps/hppa.mk: define 
     TIMEOUTFACTOR.
+  * locales-depver: tighten locales dependencies.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
