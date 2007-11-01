@@ -45,14 +45,12 @@
  #endif /* ASSEMBLER */
 --- glibc-2.7.orig/sysdeps/unix/sysv/linux/alpha/sysdep.h
 +++ glibc-2.7/sysdeps/unix/sysv/linux/alpha/sysdep.h
-@@ -98,4 +98,42 @@
+@@ -98,4 +98,40 @@
  	INTERNAL_SYSCALL1(name, err_out, nr, args);			\
  })
  
 +/* Pointer mangling support.  Note that tls access is slow enough that
 +   we don't deoptimize things by placing the pointer check value there.  */
-+
-+#include <stdint.h>
 +
 +#if defined NOT_IN_libc && defined IS_IN_rtld
 +# ifdef __ASSEMBLER__
