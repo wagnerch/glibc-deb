@@ -95,6 +95,8 @@ CXX = g++-4.2
 
 RUN_TESTSUITE = yes
 
+TIMEOUT_FACTOR = 1
+
 # Set CC for cross-compiling
 ifneq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
 CC     = $(DEB_HOST_GNU_TYPE)-gcc
