@@ -81,6 +81,7 @@ hurd-i386/local-tls-support.diff -p0
 hurd-i386/submitted-ioctl-decode-argument.diff -p0
 hurd-i386/submitted-libc_once.diff -p0
 hurd-i386/submitted-stat.diff -p0
+hurd-i386/submitted-strtoul.diff -p0
 hurd-i386/submitted-sysvshm.diff 
 hurd-i386/submitted-trivial.diff -p0
 hurd-i386/submitted-ioctl-unsigned-size_t.diff -p0

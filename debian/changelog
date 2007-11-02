@@ -78,6 +78,8 @@ glibc (2.7-0exp7) UNRELEASED; urgency=low
   * locales-depver: tighten locales dependencies.
   * any/local-disable-test-tgmath2.diff: new patch to disable test-tgmath2,
     which take too much resources during compilation.
+  * Add hurd-i386/submitted-strtoul.diff: new patch to use
+    __strtoul_internal() instead of strtoul() in internal functions.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
@@ -96,7 +98,10 @@ glibc (2.7-0exp7) UNRELEASED; urgency=low
   * Update patches/locale/preprocessor-collate.diff.
   * Add alpha/submitted-PTR_MANGLE.diff (Closes: #448508).
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 01 Nov 2007 17:20:03 +0100
+  [ Aurelien Jarno ]
+  * 
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 02 Nov 2007 09:58:50 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
