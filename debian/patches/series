@@ -105,6 +105,8 @@ mips/local-lazy-eval.diff -p0
 
 powerpc/local-sysconf.diff 
 
+sh4/local-fpscr_values.diff -p0
+
 sparc/local-fork.diff -p0
 sparc/local-sparcv9-target.diff -p0
 sparc/submitted-timing.diff 
@@ -118,6 +120,7 @@ any/local-notls.diff -p0
 any/local-asserth-decls.diff -p0
 any/local-bashisms.diff -p0
 any/local-bindresvport_blacklist.diff -p0
+any/local-allocalim-header.diff -p0
 any/local-dl-execstack.diff -p0
 any/local-fhs-linux-paths.diff -p0
 any/local-gcc4-wcstol_l.diff 
