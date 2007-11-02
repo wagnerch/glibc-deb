@@ -72,9 +72,8 @@ glibc (2.7-0exp7) UNRELEASED; urgency=low
   * Add arm/local-lowlevellock.diff: new patch to fix build on arm.
   * debian/rules, debian/rules.d/build.mk: allow per architecture
     TIMEOUTFACTOR.
-  * sysdeps/arm.mk, sysdeps/armel.mk, sysdeps/hppa.mk, sysdeps/s390.mk:
-    define.
-    TIMEOUTFACTOR.
+  * sysdeps/arm.mk, sysdeps/armel.mk, sysdeps/hppa.mk, sysdeps/s390.mk,
+    sysdeps/sh4.mk: define TIMEOUTFACTOR.
   * locales-depver: tighten locales dependencies.
   * any/local-disable-test-tgmath2.diff: new patch to disable test-tgmath2,
     which take too much resources during compilation.
