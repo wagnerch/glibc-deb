@@ -1,0 +1,17 @@
+2007-11-02  Aurelien Jarno  <aurelien@aurel32.net>
+
+	* sysdeps/mach/i386/sysdep.h (PTR_MANGLE, PTR_DEMANGLE): Define.
+
+--- sysdeps/mach/i386/sysdep.h.orig	2007-11-02 08:59:28.560000000 +0100
++++ sysdeps/mach/i386/sysdep.h	2007-11-02 09:22:12.240000000 +0100
+@@ -58,6 +58,10 @@
+ 
+ #define STACK_GROWTH_DOWN
+ 
++/* Pointer mangling is not yet supported for Hurd.  */
++#define PTR_MANGLE(var) (void) (var)
++#define PTR_DEMANGLE(var) (void) (var)
++
+ /* Get the machine-independent Mach definitions.  */
+ #include <sysdeps/mach/sysdep.h>
+ 

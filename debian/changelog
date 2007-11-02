@@ -79,6 +79,8 @@ glibc (2.7-0exp7) UNRELEASED; urgency=low
     which take too much resources during compilation.
   * Add hurd-i386/submitted-strtoul.diff: new patch to use
     __strtoul_internal() instead of strtoul() in internal functions.
+  * Add hurd-i386/submitted-ptr-mangle.diff: new patch to define PTR_MANGLE
+    and PTR_DEMANGLE.
   * Update Galician debconf translation, by Jacobo Tarrio.  Closes: #447928.
   * Update Dutch debconf translation, by Bart Cornelis.  Closes: #448928.
   * Add sh4/local-fpscr_values.diff and any/local-allocalim-header.diff
@@ -100,8 +102,8 @@ glibc (2.7-0exp7) UNRELEASED; urgency=low
     preprocessor that isn't enough for Debian.
   * Update patches/locale/preprocessor-collate.diff.
   * Add alpha/submitted-PTR_MANGLE.diff (Closes: #448508).
-  
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 02 Nov 2007 10:43:56 +0100
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 02 Nov 2007 11:19:50 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
