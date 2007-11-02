@@ -45,7 +45,7 @@
  #endif /* ASSEMBLER */
 --- glibc-2.7.orig/sysdeps/unix/sysv/linux/alpha/sysdep.h
 +++ glibc-2.7/sysdeps/unix/sysv/linux/alpha/sysdep.h
-@@ -98,4 +98,44 @@
+@@ -98,4 +98,46 @@
  	INTERNAL_SYSCALL1(name, err_out, nr, args);			\
  })
  
@@ -85,8 +85,10 @@
 +# endif
 +#else
 +/* Pointer mangling is not yet supported for static libc on alpha.  */
-+# define PTR_MANGLE(var)   (void) (var)
-+# define PTR_DEMANGLE(var) (void) (var)
++# ifndef __ASSEMBLER__
++#  define PTR_MANGLE(var)   (void) (var)
++#  define PTR_DEMANGLE(var) (void) (var)
++# endif
 +#endif
 +
  #endif /* _LINUX_ALPHA_SYSDEP_H */
