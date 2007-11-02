@@ -87,6 +87,7 @@ glibc (2.7-0exp7) UNRELEASED; urgency=low
     from Arthur Loiret.  Closes: #448248.
   * Fix encoding of Japanese translation.  Closes: #447221.
   * Add any/submitted-sched_h.diff: new patch to define `__CPU_ALLOC_SIZE.
+  * Add mips/local-setjmp.diff: new patch to fix g++ tests on mips/mipsel.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
@@ -105,7 +106,7 @@ glibc (2.7-0exp7) UNRELEASED; urgency=low
   * Update patches/locale/preprocessor-collate.diff.
   * Add alpha/submitted-PTR_MANGLE.diff (Closes: #448508).
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 02 Nov 2007 11:38:20 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 02 Nov 2007 12:09:49 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
