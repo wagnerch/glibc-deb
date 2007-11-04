@@ -1,4 +1,4 @@
-glibc (2.7-0exp7) UNRELEASED; urgency=low
+glibc (2.7-0exp9) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream release with linuxthreads snapshot.
@@ -88,6 +88,10 @@ glibc (2.7-0exp7) UNRELEASED; urgency=low
   * Fix encoding of Japanese translation.  Closes: #447221.
   * Add any/submitted-sched_h.diff: new patch to define `__CPU_ALLOC_SIZE.
   * Add mips/local-setjmp.diff: new patch to fix g++ tests on mips/mipsel.
+  * Add any/local-fhs-nscd.diff: move nscd directory to /var/cache/nscd from
+    /var/db/nscd.  Closes: #449198.
+  * debhelper.in/nscd.postrm: remove /var/cache/nscd on purge.  Closes:
+    #449198.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
@@ -106,7 +110,7 @@ glibc (2.7-0exp7) UNRELEASED; urgency=low
   * Update patches/locale/preprocessor-collate.diff.
   * Add alpha/submitted-PTR_MANGLE.diff (Closes: #448508).
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 02 Nov 2007 12:09:49 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 04 Nov 2007 10:22:52 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
