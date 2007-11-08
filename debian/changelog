@@ -52,6 +52,8 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   * Bump shlib version to 2.7-1.
   * Add localedata/cvs-locale-ig_NG.diff BZ#5224, missing collation symbols
     for ig_NG.
+  * Add localedata/cvs-locale-lo_LA.diff BZ#5237, missing collation symbols
+    for lo_LA.
 
   [ Aurelien Jarno ]
   * kfreebsd/local-sysdeps.diff: update to revision 2006 (from glibc-bsd).

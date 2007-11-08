@@ -46,6 +46,7 @@ localedata/sk_SK-first_weekday.diff
 localedata/cy_GB-first_weekday.diff
 localedata/first_weekday.diff -p0
 localedata/cvs-locale-ig_NG.diff
+localedata/cvs-locale-lo_LA.diff
 
 alpha/local-gcc4.1.diff -p0
 alpha/submitted-xstat.diff -p0
