@@ -54,6 +54,8 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     for ig_NG.
   * Add localedata/cvs-locale-lo_LA.diff BZ#5237, missing collation symbols
     for lo_LA.
+  * Add localedata/cvs-locale-ug_CN.diff BZ#5238, missing collation symbols
+    for ug_CN.
 
   [ Aurelien Jarno ]
   * kfreebsd/local-sysdeps.diff: update to revision 2006 (from glibc-bsd).
