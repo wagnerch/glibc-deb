@@ -58,7 +58,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     for ug_CN.
 
   [ Aurelien Jarno ]
-  * kfreebsd/local-sysdeps.diff: update to revision 2006 (from glibc-bsd).
+  * kfreebsd/local-sysdeps.diff: update to revision 2025 (from glibc-bsd).
   * any/submitted-longdouble.diff: update.
   * Improve any/submitted-rfc3484-sortv4.diff.
   * Update hurd-i386/submitted-trivial.diff.
@@ -114,7 +114,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   * Update patches/locale/preprocessor-collate.diff.
   * Add alpha/submitted-PTR_MANGLE.diff (Closes: #448508).
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 04 Nov 2007 10:22:52 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 15 Nov 2007 15:47:41 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
