@@ -1,15 +1,19 @@
-2007-11-02  Aurelien Jarno  <aurelien@aurel32.net>
+2007-11-12  Aurelien Jarno  <aurelien@aurel32.net>
+	    Thomas Schwinge  <tschwinge@gnu.org>
 
 	* sysdeps/mach/i386/sysdep.h (PTR_MANGLE, PTR_DEMANGLE): Define.
 
---- sysdeps/mach/i386/sysdep.h.orig	2007-11-02 08:59:28.560000000 +0100
-+++ sysdeps/mach/i386/sysdep.h	2007-11-02 09:22:12.240000000 +0100
-@@ -58,6 +58,12 @@
+--- sysdeps/mach/i386/sysdep.h.orig
++++ sysdeps/mach/i386/sysdep.h
+@@ -58,6 +58,15 @@
  
  #define STACK_GROWTH_DOWN
  
-+#ifndef __ASSEMBLER__
 +/* Pointer mangling is not yet supported for Hurd.  */
++#ifdef __ASSEMBLER__
++#define PTR_MANGLE(var)
++#define PTR_DEMANGLE(var)
++#else
 +#define PTR_MANGLE(var) (void) (var)
 +#define PTR_DEMANGLE(var) (void) (var)
 +#endif
