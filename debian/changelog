@@ -2,6 +2,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream release with linuxthreads snapshot.
+    - Fixes an ABBA deadlock in ld.so.  Closes: #443460.
     - Remove localedata/locale-de_CH.diff (merged).
     - Update locale/fix-LC_COLLATE-rules.diff.
     - Update locale/LC_COLLATE-keywords-ordering.diff.
