@@ -96,6 +96,10 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     /var/db/nscd.  Closes: #449198.
   * debhelper.in/nscd.postrm: remove /var/cache/nscd on purge.  Closes:
     #449198.
+  * script.in/kernelcheck.sh, sysdeps/alpha.mk: bump minimum kernel version to
+    2.6.9 for alpha.
+  * script.in/kernelcheck.sh, sysdeps/sh4.mk: bump minimum kernel version to
+    2.6.11 for sh4.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
@@ -119,7 +123,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * hurd-i386/submitted-ptr-mangle.diff: Define PTR_MANGLE for assembly.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 15 Nov 2007 15:47:41 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 16 Nov 2007 14:41:41 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
