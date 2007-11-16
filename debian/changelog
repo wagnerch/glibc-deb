@@ -104,6 +104,8 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   * debian/patches/arm/local-eabi-wchar.diff: new patch from Riku Voipio to
     fiw WCHAR_MIN and WCHAR_MAX definitions on armel.  Closes: #444580.
   * debian/po/zh_CN.po: update from LI Daobing. Closes: #447866.
+  * debhelper.in/locales-all.postinst: trap exit signal and remove temporary
+    directory.  Closes: #447328.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
@@ -127,7 +129,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * hurd-i386/submitted-ptr-mangle.diff: Define PTR_MANGLE for assembly.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 16 Nov 2007 15:22:55 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 16 Nov 2007 15:31:22 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
