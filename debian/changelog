@@ -95,7 +95,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   * Add any/local-fhs-nscd.diff: move nscd directory to /var/cache/nscd from
     /var/db/nscd.  Closes: #449198.
   * debhelper.in/nscd.postrm: remove /var/cache/nscd on purge.  Closes:
-    #449198.
+    #449193.
   * script.in/kernelcheck.sh, sysdeps/alpha.mk: bump minimum kernel version to
     2.6.9 for alpha.
   * script.in/kernelcheck.sh, sysdeps/sh4.mk: bump minimum kernel version to
