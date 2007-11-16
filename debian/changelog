@@ -4,7 +4,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   * New upstream release with linuxthreads snapshot.
     - Fixes an ABBA deadlock in ld.so.  Closes: #443460.
     - Render dgettext" thread safe.  Closes: #443660.
-    - Fixes CVE-2007-4840 (multiple errors in iconv 
+    - Fixes CVE-2007-4840 (multiple errors in iconv
       function).  Closes: #442250.
     - Remove localedata/locale-de_CH.diff (merged).
     - Update locale/fix-LC_COLLATE-rules.diff.
@@ -111,6 +111,8 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     directory.  Closes: #447328.
   * debhelper.in/libc.NEWS: mention that the tzconfig script has been replaced
     by the maintainer scripts of tzdata.  Closes: bug#448796.
+  * patches/all/local-alias-et_EE.diff: switch estonian locales alias to
+    ISO-8859-15.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
@@ -134,7 +136,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * hurd-i386/submitted-ptr-mangle.diff: Define PTR_MANGLE for assembly.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 16 Nov 2007 15:49:39 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 16 Nov 2007 16:13:37 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
