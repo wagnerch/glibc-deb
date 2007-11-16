@@ -102,6 +102,8 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     linuxthreads.
   * any/local-stdio-lock.diff: make _IO_*_lock linuxthreads compliant.
   * any/local-o_cloexec.diff: don't assume O_CLOEXEC is always defined.
+  * any/local-linuxthreads-signals.diff: always use non-RT signal handler
+    on GNU/kFreeBSD.
 
   [ Pierre Habouzit ]
   * Remove any/local-iconv-fix-trampoline.diff (obsolete).
