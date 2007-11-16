@@ -58,7 +58,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     for ug_CN.
 
   [ Aurelien Jarno ]
-  * kfreebsd/local-sysdeps.diff: update to revision 2025 (from glibc-bsd).
+  * kfreebsd/local-sysdeps.diff: update to revision 2029 (from glibc-bsd).
   * any/submitted-longdouble.diff: update.
   * Improve any/submitted-rfc3484-sortv4.diff.
   * Update hurd-i386/submitted-trivial.diff.
