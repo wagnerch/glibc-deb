@@ -77,7 +77,6 @@ hppa/local-linuxthreads-gscope.diff -p0
 
 hurd-i386/local-dl-dynamic-weak.diff 
 hurd-i386/local-enable-ldconfig.diff -p0
-hurd-i386/local-kernel-features.diff -p0
 hurd-i386/local-mlock.diff 
 hurd-i386/local-msg-nosignal.diff -p0
 hurd-i386/local-tls.diff 
@@ -91,6 +90,7 @@ hurd-i386/submitted-sysvshm.diff
 hurd-i386/submitted-trivial.diff -p0
 hurd-i386/submitted-ioctl-unsigned-size_t.diff -p0
 hurd-i386/cvs-ECANCELED.diff
+hurd-i386/cvs-kernel-features.diff -p1
 hurd-i386/submitted-IPV6_PKTINFO.diff 
 
 i386/local-biarch.diff 

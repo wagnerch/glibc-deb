@@ -1,8 +1,7 @@
 --- /dev/null
-+++ sysdeps/mach/hurd/kernel-features.h	
-@@ -0,0 +1,23 @@
-+/* Set flags signalling availability of kernel features based on given
-+   kernel version number.
++++ libc/sysdeps/mach/hurd/kernel-features.h
+@@ -0,0 +1,31 @@
++/* Set flags signalling availability of certain operating system features.
 +   Copyright (C) 2007 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -21,6 +20,15 @@
 +   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
 +   02111-1307 USA.  */
 +
-+/* This file must not contain any C code.  At least it must be protected
-+   to allow using the file also in assembler files.  */
++/* This file can define __ASSUME_* macros checked by certain source files.
++   Almost none of these are used outside of sysdeps/unix/sysv/linux code.
++   But those referring to POSIX-level features like O_* flags can be.  */
 +
++#include <fcntl.h>
++
++/* If a system defines the O_CLOEXEC constant but it is sometimes ignored,
++   it must override this file to define __ASSUME_O_CLOEXEC conditionally
++   (or not at all) to indicate when O_CLOEXEC actually works.  */
++#ifdef O_CLOEXEC
++# define __ASSUME_O_CLOEXEC	1
++#endif

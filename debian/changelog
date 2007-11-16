@@ -73,7 +73,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   * Update hurd-i386/submitted-libc_once.diff.
   * Remove hurd-i386/cvs-ioctl-delay.diff (merged).
   * Update hurd-i386/local-tls-support.diff.
-  * Add hurd-i386/local-kernel-features.diff: provide almost empty
+  * Add hurd-i386/cvs-kernel-features.diff: provide almost empty
     kernel-features.h for files that include it.
   * Add arm/local-args6.diff: provide DOCARGS_6 and UNDOCARGS_5 for
     arm old-abi.
@@ -138,7 +138,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * hurd-i386/submitted-ptr-mangle.diff: Define PTR_MANGLE for assembly.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 16 Nov 2007 23:03:56 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 16 Nov 2007 23:55:00 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
