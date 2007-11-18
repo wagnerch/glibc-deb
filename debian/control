@@ -615,7 +615,7 @@ Description: GNU C Library: Shared libraries [i686 optimized]
  (including clones such as AMD Athlon/Opteron, VIA C3 Nehemiah, but not VIA 
  C3 Ezla).  
 
-Package: libc6.1-ev67
+Package: libc6.1-alphaev67
 Architecture: alpha
 Section: libs
 Priority: extra

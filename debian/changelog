@@ -117,8 +117,8 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     ceil/floor/rint functions.  Closes: #442568.
   * patches/alpha/local-dl-procinfo.diff: new patch to add platform
     capabilities support on alpha.
-  * Add an ev67 flavour on alpha, but keep it disabled for now:
-    - control.in/opt: add libc6-ev67 packages.
+  * Add an ev67 flavour on alpha:  Closes: #229251
+    - control.in/opt: add libc6-alphaev67 packages.
     - sysdeps/alpha.mk: add a new pass for ev67 flavour.
 
   [ Petr Salinger]
@@ -143,7 +143,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * hurd-i386/submitted-ptr-mangle.diff: Define PTR_MANGLE for assembly.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 18 Nov 2007 13:23:01 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 18 Nov 2007 17:40:29 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
