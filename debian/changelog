@@ -120,8 +120,10 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   * Add an ev67 flavour on alpha:  Closes: #229251
     - control.in/opt: add libc6-alphaev67 packages.
     - sysdeps/alpha.mk: add a new pass for ev67 flavour.
-  * debian/local/manpages/iconv.1: document //translit and //ignore 
+  * debian/local/manpages/iconv.1: document //translit and //ignore
     options.  Closes: #451304.
+  * debian/local/manpages/getent.1: documents exit codes.  Closes: 
+    #445631.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
@@ -145,7 +147,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * hurd-i386/submitted-ptr-mangle.diff: Define PTR_MANGLE for assembly.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 18 Nov 2007 19:43:54 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 18 Nov 2007 20:08:27 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
