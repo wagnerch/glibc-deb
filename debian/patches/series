@@ -50,6 +50,7 @@ localedata/cvs-locale-lo_LA.diff
 localedata/cvs-locale-ug_CN.diff
 
 alpha/local-gcc4.1.diff -p0
+alpha/local-dl-procinfo.diff -p0
 alpha/submitted-fpu-round.diff -p0
 alpha/submitted-xstat.diff -p0
 alpha/submitted-PTR_MANGLE.diff
