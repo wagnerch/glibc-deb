@@ -6,6 +6,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     - Render dgettext" thread safe.  Closes: #443660.
     - Fixes CVE-2007-4840 (multiple errors in iconv
       function).  Closes: #442250.
+    - Fixes strtod("-0", 0).  Closes: #448723.
     - Remove localedata/locale-de_CH.diff (merged).
     - Update locale/fix-LC_COLLATE-rules.diff.
     - Update locale/LC_COLLATE-keywords-ordering.diff.
