@@ -63,7 +63,6 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     for ug_CN.
 
   [ Aurelien Jarno ]
-  * kfreebsd/local-sysdeps.diff: update to revision 2029 (from glibc-bsd).
   * any/submitted-longdouble.diff: update.
   * Improve any/submitted-rfc3484-sortv4.diff.
   * Update hurd-i386/submitted-trivial.diff.
@@ -131,8 +130,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     to be consistent with the binary.  Closes: #451958.
 
   [ Petr Salinger]
-  * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
-    linuxthreads.
+  * kfreebsd/local-sysdeps.diff: update to revision 2040 (from glibc-bsd).
   * any/local-stdio-lock.diff: make _IO_*_lock linuxthreads compliant.
   * any/local-o_cloexec.diff: don't assume O_CLOEXEC is always defined.
   * any/local-linuxthreads-signals.diff: always use non-RT signal handler
