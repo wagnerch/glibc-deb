@@ -127,6 +127,8 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     #445631.
   * debian/local/manpages/ld.so.8: document $ORIGIN, $PLATFORM and $LIB
     features.  Closes: #444145.
+  * local/manpages/ldconfig.8: remove --force option from the manpage
+    to be consistent with the binary.  Closes: #451958.
 
   [ Petr Salinger]
   * any/local-linuxthreads-unwind.diff: provide unwind-resume routine for
@@ -152,7 +154,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   * hurd-i386/cvs-O_CLOEXEC_fix.diff: New patch to fix conflicting O_CLOEXEC
   value.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 18 Nov 2007 22:11:35 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 19 Nov 2007 17:24:46 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
