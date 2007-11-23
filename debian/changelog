@@ -128,9 +128,9 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
     features.  Closes: #444145.
   * local/manpages/ldconfig.8: remove --force option from the manpage
     to be consistent with the binary.  Closes: #451958.
+  * kfreebsd/local-sysdeps.diff: update to revision 2046 (from glibc-bsd).
 
   [ Petr Salinger]
-  * kfreebsd/local-sysdeps.diff: update to revision 2040 (from glibc-bsd).
   * any/local-stdio-lock.diff: make _IO_*_lock linuxthreads compliant.
   * any/local-o_cloexec.diff: don't assume O_CLOEXEC is always defined.
   * any/local-linuxthreads-signals.diff: always use non-RT signal handler
@@ -152,7 +152,7 @@ glibc (2.7-0exp9) UNRELEASED; urgency=low
   * hurd-i386/cvs-O_CLOEXEC_fix.diff: New patch to fix conflicting O_CLOEXEC
   value.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 19 Nov 2007 17:24:46 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 23 Nov 2007 07:01:33 +0100
 
 glibc (2.6.1-6) unstable; urgency=low
 
