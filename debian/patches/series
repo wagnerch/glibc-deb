@@ -36,6 +36,7 @@ localedata/first_weekday.diff -p0
 localedata/cvs-locale-ig_NG.diff
 localedata/cvs-locale-lo_LA.diff
 localedata/cvs-locale-ug_CN.diff
+localedata/locale-de_LI.diff -p0
 
 alpha/local-gcc4.1.diff -p0
 alpha/local-dl-procinfo.diff -p0
@@ -45,8 +46,9 @@ alpha/submitted-xstat.diff -p0
 alpha/submitted-PTR_MANGLE.diff
 
 amd64/local-biarch.diff 
+amd64/local-clone.diff -p0
 amd64/local-linuxthreads-gscope.diff -p0
-amd64/local-x86_64_bits_sigcontext.diff
+#amd64/local-x86_64_bits_sigcontext.diff
 
 arm/cvs-gcc4-inline.diff -p0
 arm/local-args6.diff -p0
@@ -85,6 +87,7 @@ hurd-i386/submitted-IPV6_PKTINFO.diff
 hurd-i386/cvs-O_CLOEXEC_fix.diff
 
 i386/local-biarch.diff 
+i386/local-clone.diff -p0
 i386/local-cmov.diff -p0
 i386/local-linuxthreads-gscope.diff -p0
 i386/submitted-i686-timing.diff -p0
@@ -161,6 +164,7 @@ any/submitted-clock-settime.diff -p0
 any/submitted-date-and-unknown-tz.diff -p0
 any/submitted-libgcc_s.so.diff -p0
 any/submitted-longdouble.diff -p0
+any/submitted-malloc_h.diff -p0
 any/submitted-sched_h.diff -p0
 any/submitted-rfc3484-sortv4.diff -p0
 any/local-disable-nscd-host-caching.diff

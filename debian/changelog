@@ -1,7 +1,29 @@
+glibc (2.7-4) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * patches/localedata/locale-de_LI.diff: fix locale.  Closes: bug#453860.
+  * debian/debhelper.in/locales.NEWS: fix location of the README file.
+    Closes: bug#453515.
+  * debian/debhelper.in/locales.README: rename into locales.README.Debian.
+  * debian/debhelper/in/locales.NEWS: fix a typo.  Closes: bug#453613.
+  * debian/patches/any/submitted-rfc3484-sortv4.diff: default to NOT
+    sorting IPv4 addresses.  Closes: bug#438179.
+  * Update any/submitted-sched_h.diff: allow compilation of <sched.h> with
+    -pedantic.  Closes: bug#453687.
+  * Fix a typo in debian/sysdeps/alpha.mk.  Closes: bug#452890.
+  * Disable amd64/local-x86_64_bits_sigcontext.diff.  Closes: #454598.
+  * debhelper.in/libc.preinst: check for non-dpkg owned versions of
+    libc6-i686 before upgrade.  Closes: #454557.
+  * Load debconf frontend after the optimized libraries have been
+    re-enabled.  Closes: #453480.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 07 Dec 2007 00:49:02 +0100
+
 glibc (2.7-3) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * Remove cs_CZ-first_weekday.diff: merged upstream in a different way.
+    Closes: bug#344470.
   * Remove da_DK-first_weekday.diff: likewise.
   * Remove de_DE-first_weekday.diff: likewise.
   * Remove en_GB-first_weekday.diff: likewise.
@@ -13,8 +35,17 @@ glibc (2.7-3) unstable; urgency=low
   * Remove nn_NO-first_weekday.diff: likewise.
   * Remove pl_PL-first_weekday.diff: likewise.
   * Remove sk_SK-first_weekday.diff: likewise.
+  * amd64, i386/local-clone.diff: restore patch to fix gij running out of
+    memory, as it has been lost upstream.
+  * debian/sysdeps/alpha.mk: fix alphaev67_rltddir.  Closes: #452890.
+  * patches/localedata/locale-de_LI.diff: new locale contributed by Giacomo
+    Catenazzi.  Closes: #453041.
+  * debian/debhelper.in/locales-all.postinst: honor TMPDIR.  Closes: #453326.
+  * patches/any/submitted-malloc_h.diff: defines __need_ptrdiff_t,
+    __need_size_t and __need_NULL in malloc.h.  Closes: #453264.
+  * support user defined locales in /usr/local/share/i18n.  Closes: #453131. 
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 27 Nov 2007 00:43:06 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 29 Nov 2007 18:01:03 +0100
 
 glibc (2.7-2) unstable; urgency=low
 
