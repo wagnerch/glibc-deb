@@ -1,3 +1,10 @@
+glibc (2.3.6.ds1-13etch5) stable; urgency=low
+
+  * patches/any/cvs-sunrpc_rpc_thread.diff: patch by André Cruz to fix
+    sunrpc memory leak.  closes: #460226.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 12 Jan 2008 16:06:00 +0100
+
 glibc (2.3.6.ds1-13etch4) stable; urgency=low
 
   * patches/any/cvs-vfscanf.diff: add additional test for EOF

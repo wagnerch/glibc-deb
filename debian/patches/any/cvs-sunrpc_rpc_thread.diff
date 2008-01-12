@@ -1,0 +1,11 @@
+--- sunrpc/rpc_thread.c.orig	2003-02-22 02:57:51.000000000 +0100
++++ sunrpc/rpc_thread.c	2008-01-12 15:44:01.000000000 +0100
+@@ -29,6 +29,8 @@
+ 		free (tvp->svcraw_private_s);
+ 		free (tvp->authdes_cache_s);
+ 		free (tvp->authdes_lru_s);
++		free (tvp->svc_xports_s);
++		free (tvp->svc_pollfd_s);
+ 		free (tvp);
+ 		__libc_tsd_set (RPC_VARS, NULL);
+ 	}
