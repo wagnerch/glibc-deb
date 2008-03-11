@@ -1,0 +1,59 @@
+2007-08-21  Ulrich Drepper  <drepper@redhat.com>
+
+	[BZ #4905]
+	* nscd/hstcache.c (cache_addhst): When reloading an entry which
+	suddenly has two or more addresses, ignore it and remove the old
+	entry.
+
+===================================================================
+RCS file: /cvs/glibc/libc/nscd/hstcache.c,v
+retrieving revision 1.43
+retrieving revision 1.44
+diff -u -r1.43 -r1.44
+--- libc/nscd/hstcache.c	2007/08/22 03:11:23	1.43
++++ libc/nscd/hstcache.c	2007/08/22 03:29:46	1.44
+@@ -295,25 +295,30 @@
+ 	      /* The data has not changed.  We will just bump the
+ 		 timeout value.  Note that the new record has been
+ 		 allocated on the stack and need not be freed.  */
++	      assert (h_addr_list_cnt == 1);
+ 	      dh->timeout = dataset->head.timeout;
+ 	      ++dh->nreloads;
+ 	    }
+ 	  else
+ 	    {
+-	      /* We have to create a new record.  Just allocate
+-		 appropriate memory and copy it.  */
+-	      struct dataset *newp
+-		= (struct dataset *) mempool_alloc (db, total + req->key_len);
+-	      if (newp != NULL)
+-		{
+-		  /* Adjust pointers into the memory block.  */
+-		  addresses = (char *) newp + (addresses - (char *) dataset);
+-		  aliases = (char *) newp + (aliases - (char *) dataset);
+-		  if (key_copy != NULL)
+-		    key_copy = (char *) newp + (key_copy - (char *) dataset);
+-
+-		  dataset = memcpy (newp, dataset, total + req->key_len);
+-		  alloca_used = false;
++	      if (h_addr_list_cnt == 1)
++	        {
++		/* We have to create a new record.  Just allocate
++		   appropriate memory and copy it.  */
++		  struct dataset *newp
++		    = (struct dataset *) mempool_alloc (db,
++				  			total + req->key_len);
++		  if (newp != NULL)
++		    {
++		      /* Adjust pointers into the memory block.  */
++		      addresses = (char *) newp + (addresses - (char *) dataset);
++		      aliases = (char *) newp + (aliases - (char *) dataset);
++		      if (key_copy != NULL)
++		        key_copy = (char *) newp + (key_copy - (char *) dataset);
++
++		      dataset = memcpy (newp, dataset, total + req->key_len);
++		      alloca_used = false;
++		    }
+ 		}
+ 
+ 	      /* Mark the old record as obsolete.  */
