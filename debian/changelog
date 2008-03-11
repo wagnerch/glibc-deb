@@ -1,6 +1,7 @@
 glibc (2.3.6.ds1-13etch6) stable; urgency=low
 
-  * patches/any/cvs-nscd-hstcache.diff: first attempt to fix bug#467609.
+  * patches/any/cvs-nscd-hstcache.diff: fix nscd host caching.  Closes: 
+    #467609.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 11 Mar 2008 21:16:02 +0100
 
