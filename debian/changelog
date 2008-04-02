@@ -20,7 +20,7 @@ glibc (2.7-10) unstable; urgency=low
 
   * Update Chinese debconf translation, by LI Daobing.
   * Update Dutch debconf translation, by Bart Cornelis.  Closes: #468300.
-  * Update Polish debcon translation, by Emilian Nowak.
+  * Update Polish debconf translation, by Emilian Nowak.
   * Update Vietnamese debconf translation, by Clytie Siddall.  Closes: #468453.
   * Update Basque debconf translation, by Piarres Beobide.  Closes: #468463.
   * Update Romanian debconf translation, by Stan Ioan-Eugen.  Closes: #468671.
