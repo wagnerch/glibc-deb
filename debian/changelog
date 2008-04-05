@@ -12,6 +12,7 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * patches/hppa/cvs-atomic.diff: new patch from upstream to fix atomic
     locks witch gcc-4.3.
   * patches/any/cvs-rfc3484.diff: update tests from CVS.  Closes: #474226.
+  * patches/localedata/locale-shs_CA.diff: add Secwepemctsín from CVS.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
