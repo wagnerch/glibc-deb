@@ -15,12 +15,14 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * patches/localedata/locale-shs_CA.diff: add Secwepemctsín from CVS.
   * debhelper.in/libc-prof.README.Debian: new file to explain how to use
     libc-prof.  Closes: #442858.
+  * patches/any/submitted-ethertype.diff: new patch to define 
+    ETHERTYPE_VLAN and ETHERTYPE_IPV6.  Closes: #474171.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
     Closes: #456531.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 06 Apr 2008 11:26:50 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 06 Apr 2008 18:28:10 +0200
 
 glibc (2.7-10) unstable; urgency=low
 
