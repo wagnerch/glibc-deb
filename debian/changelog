@@ -17,12 +17,13 @@ glibc (2.7-11) UNRELEASED; urgency=low
     libc-prof.  Closes: #442858.
   * patches/any/cvs-ethertype.diff: new patch to add new ETHERTYPE_*
     definitions.  Closes: #474171.
+  * sysdeps/arm.mk, control.in/main: use gcc-4.3 on arm.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
     Closes: #456531.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 06 Apr 2008 18:28:10 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 08 Apr 2008 14:30:01 +0200
 
 glibc (2.7-10) unstable; urgency=low
 
