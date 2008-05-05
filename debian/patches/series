@@ -120,6 +120,8 @@ mips/local-setjmp.diff -p0
 
 powerpc/local-sysconf.diff 
 
+s390/submitted-nexttowardf.diff -p1
+
 sh4/local-fpscr_values.diff -p0
 sh4/cvs-nptl-private-futexes.diff -p0
 

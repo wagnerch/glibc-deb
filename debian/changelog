@@ -20,12 +20,14 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * sysdeps/arm.mk, control.in/main: use gcc-4.3 on arm.
   * sysdeps/depflags.pl: conflicts with tzdata-etch.
   * kfreebsd/local-sysdeps.diff: update to revision 2163 (from glibc-bsd).
+  * patches/s390/submitted-nexttowardf.diff: fix IEEE exceptions raising in
+    nexttowardf() on s390 with gcc-4.3.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
     Closes: #456531.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 12 Apr 2008 22:52:44 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 05 May 2008 22:24:48 +0200
 
 glibc (2.7-10) unstable; urgency=low
 
