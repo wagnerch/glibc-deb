@@ -17,11 +17,12 @@ glibc (2.7-11) UNRELEASED; urgency=low
     libc-prof.  Closes: #442858.
   * patches/any/cvs-ethertype.diff: new patch to add new ETHERTYPE_*
     definitions.  Closes: #474171.
-  * sysdeps/arm.mk, control.in/main: use gcc-4.3 on arm.
   * sysdeps/depflags.pl: conflicts with tzdata-etch.
   * kfreebsd/local-sysdeps.diff: update to revision 2163 (from glibc-bsd).
   * patches/s390/submitted-nexttowardf.diff: fix IEEE exceptions raising in
     nexttowardf() on s390 with gcc-4.3.
+  * sysdeps/arm.mk, sysdeps/s390.mk, control.in/main: use gcc-4.3 on arm
+    and s390.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
