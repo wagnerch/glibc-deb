@@ -19,6 +19,7 @@ glibc (2.7-11) UNRELEASED; urgency=low
     definitions.  Closes: #474171.
   * sysdeps/arm.mk, control.in/main: use gcc-4.3 on arm.
   * sysdeps/depflags.pl: conflicts with tzdata-etch.
+  * kfreebsd/local-sysdeps.diff: update to revision 2163 (from glibc-bsd).
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
