@@ -28,6 +28,10 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
     Closes: #456531.
 
+  [ Samuel Thibault ]
+  * patches/hurd-i386/cvs-termios.diff: new patch to revamp ioctls/termios
+  bits.
+
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 05 May 2008 22:24:48 +0200
 
 glibc (2.7-10) unstable; urgency=low

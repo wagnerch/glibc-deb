@@ -96,6 +96,7 @@ hurd-i386/submitted-extern_inline.diff -p0
 hurd-i386/cvs-epfnosupport.diff -p0
 hurd-i386/cvs-df.diff
 hurd-i386/cvs-blocked-exceptions.diff
+hurd-i386/cvs-termios.diff
 
 i386/local-biarch.diff 
 i386/local-clone.diff -p0
