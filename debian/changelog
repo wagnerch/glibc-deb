@@ -27,6 +27,8 @@ glibc (2.7-11) UNRELEASED; urgency=low
     with latest binutils.
   * patches/any/local-no-pagesize.diff: don't include asm/page.h on alpha.
     Closes: #480295.
+  * patches/any/submitted-user_h.diff: don't include linux/user.h. Closes: 
+    #480093.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
@@ -36,7 +38,7 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * patches/hurd-i386/cvs-termios.diff: new patch to revamp ioctls/termios
   bits.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 10 May 2008 17:57:29 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 10 May 2008 18:30:09 +0200
 
 glibc (2.7-10) unstable; urgency=low
 
