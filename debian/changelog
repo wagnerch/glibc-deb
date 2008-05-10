@@ -23,10 +23,10 @@ glibc (2.7-11) UNRELEASED; urgency=low
     nexttowardf() on s390 with gcc-4.3.
   * patches/i386/cvs-short-for-fnstsw.diff: patch for upstream to fix build
     with latest binutils.
-  * patches/any/local-no-pagesize.diff: don't include asm/page.h on alpha.
-    Closes: #480295.
-  * patches/any/submitted-user_h.diff: don't include linux/user.h. Closes: 
-    #480093.
+  * patches/any/local-no-pagesize.diff: don't include asm/page.h from 
+    sys/user.h on alpha.  Closes: #480295.
+  * patches/any/submitted-user_h.diff: don't include linux/user.h from 
+    sys/user.h.  Closes: #480093.
   * patches/hppa/submitted-fesetenv.diff: fix fesetenv() on hppa with 
     gcc-4.3.
   * sysdeps/arm.mk, sysdeps/hppa.mk, sysdeps/s390.mk, control.in/main: use
