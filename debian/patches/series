@@ -98,6 +98,7 @@ hurd-i386/cvs-df.diff
 hurd-i386/cvs-blocked-exceptions.diff
 hurd-i386/cvs-termios.diff
 
+i386/cvs-short-for-fnstsw.diff -p1
 i386/local-biarch.diff 
 i386/local-clone.diff -p0
 i386/local-cmov.diff -p0

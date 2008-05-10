@@ -23,6 +23,8 @@ glibc (2.7-11) UNRELEASED; urgency=low
     nexttowardf() on s390 with gcc-4.3.
   * sysdeps/arm.mk, sysdeps/s390.mk, control.in/main: use gcc-4.3 on arm
     and s390.
+  * i386/cvs-short-for-fnstsw.diff: patch for upstream to fix build with
+    latest binutils.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
@@ -32,7 +34,7 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * patches/hurd-i386/cvs-termios.diff: new patch to revamp ioctls/termios
   bits.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 05 May 2008 22:24:48 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 10 May 2008 17:23:04 +0200
 
 glibc (2.7-10) unstable; urgency=low
 
