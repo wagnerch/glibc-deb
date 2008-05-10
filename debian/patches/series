@@ -65,6 +65,7 @@ arm/submitted-RTLD_SINGLE_THREAD_P.diff -p0
 hppa/cvs-atomic.diff -p0
 hppa/submitted-atomic_h.diff -p0
 hppa/submitted-fadvise64_64.diff -p0
+hppa/submitted-fesetenv.diff -p0
 hppa/submitted-lt.diff -p0
 hppa/submitted-nptl-carlos.diff -p0
 hppa/submitted-pie.diff 

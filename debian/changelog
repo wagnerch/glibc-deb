@@ -29,6 +29,8 @@ glibc (2.7-11) UNRELEASED; urgency=low
     Closes: #480295.
   * patches/any/submitted-user_h.diff: don't include linux/user.h. Closes: 
     #480093.
+  * patches/hppa/submitted-fesetenv.diff: fix fesetenv() on hppa with 
+    gcc-4.3.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
@@ -38,7 +40,7 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * patches/hurd-i386/cvs-termios.diff: new patch to revamp ioctls/termios
   bits.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 10 May 2008 18:30:09 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 10 May 2008 20:16:39 +0200
 
 glibc (2.7-10) unstable; urgency=low
 
