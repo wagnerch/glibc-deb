@@ -76,15 +76,7 @@ ifeq ($(filter nostrip,$(DEB_BUILD_OPTIONS)),)
 	if test "$(NOSTRIP_$(curpass))" != 1; then			\
 	  chmod a+x debian/wrapper/objcopy;				\
 	  export PATH=$(shell pwd)/debian/wrapper:$$PATH;		\
-	  dh_strip -p$(curpass) -Xlibpthread --keep-debug;		\
-	  mkdir -p debian/$(libc)-dbg/usr/lib/debug;			\
-	  if test -d debian/$(curpass)/usr/lib/debug; then		\
-	    cd debian/$(curpass)/usr/lib/debug;				\
-	    find . -type f -name \*.so\*				\
-	      | cpio -pd $(shell pwd)/debian/$(libc)-dbg/usr/lib/debug;	\
-	    cd ../../../../..;						\
-	    rm -rf debian/$(curpass)/usr/lib/debug;			\
-	  fi;								\
+	  dh_strip -p$(curpass) -Xlibpthread --dbg-package=$(libc)-dbg; \
 	  (cd debian/$(curpass);					\
 	   find . -name libpthread-\*.so -exec				\
 	     ../../debian/wrapper/objcopy --only-keep-debug '{}'	\

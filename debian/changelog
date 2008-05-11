@@ -1,4 +1,4 @@
-glibc (2.7-11) UNRELEASED; urgency=low
+glibc (2.7-11) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * Reenable testsuite on MIPS SB1 platforms.
@@ -36,6 +36,8 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * rules.d/debhelper.mk: remove linda overrides installation.
   * debhelper.in/*lintian: update.
   * control.in/main: relax a few dependencies.
+  * rules.d/debhelper.mk: avoid creating empty directories when building
+    libc6-dbg.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
@@ -45,7 +47,7 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * patches/hurd-i386/cvs-termios.diff: new patch to revamp ioctls/termios
   bits.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 11 May 2008 00:29:48 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 11 May 2008 12:13:59 +0200
 
 glibc (2.7-10) unstable; urgency=low
 
