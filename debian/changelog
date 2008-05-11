@@ -33,6 +33,7 @@ glibc (2.7-11) UNRELEASED; urgency=low
     gcc-4.3 on arm, hppa and s390.
   * debian/shlibs-add-udebs: new script from Frans Pop to correctly compute
     the udev dependencies.  Closes: #474293.
+  * rules.d/debhelper.mk: remove linda overrides installation.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.

@@ -119,12 +119,6 @@ endif
 			debian/$(curpass)/usr/share/lintian/overrides/$(curpass) ; \
 	fi
 
-	if [ -f debian/$(curpass).linda ] ; then \
-		install -d -m 755 -o root -g root debian/$(curpass)/usr/share/linda/overrides/ ; \
-		install -m 644 -o root -g root debian/$(curpass).linda \
-			debian/$(curpass)/usr/share/linda/overrides/$(curpass) ; \
-	fi
-
 	dh_installdeb -p$(curpass)
 	if [ $(curpass) = nscd ] ; then \
 		dh_shlibdeps -p$(curpass) ; \
