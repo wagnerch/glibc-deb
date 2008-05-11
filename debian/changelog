@@ -1,4 +1,4 @@
-glibc (2.7-11) UNRELEASED; urgency=low
+glibc (2.7-11) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * Reenable testsuite on MIPS SB1 platforms.
@@ -21,8 +21,23 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * kfreebsd/local-sysdeps.diff: update to revision 2163 (from glibc-bsd).
   * patches/s390/submitted-nexttowardf.diff: fix IEEE exceptions raising in
     nexttowardf() on s390 with gcc-4.3.
-  * sysdeps/arm.mk, sysdeps/s390.mk, control.in/main: use gcc-4.3 on arm
-    and s390.
+  * patches/i386/cvs-short-for-fnstsw.diff: patch for upstream to fix build
+    with latest binutils.
+  * patches/any/local-no-pagesize.diff: don't include asm/page.h from 
+    sys/user.h on alpha.  Closes: #480295.
+  * patches/any/submitted-user_h.diff: don't include linux/user.h from 
+    sys/user.h.  Closes: #480093.
+  * patches/hppa/submitted-fesetenv.diff: fix fesetenv() on hppa with 
+    gcc-4.3.
+  * sysdeps/arm.mk, sysdeps/hppa.mk, sysdeps/s390.mk, control.in/main: use
+    gcc-4.3 on arm, hppa and s390.
+  * debian/shlibs-add-udebs: new script from Frans Pop to correctly compute
+    the udev dependencies.  Closes: #474293.
+  * rules.d/debhelper.mk: remove linda overrides installation.
+  * debhelper.in/*lintian: update.
+  * control.in/main: relax a few dependencies.
+  * rules.d/debhelper.mk: avoid creating empty directories when building
+    libc6-dbg.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
@@ -32,7 +47,7 @@ glibc (2.7-11) UNRELEASED; urgency=low
   * patches/hurd-i386/cvs-termios.diff: new patch to revamp ioctls/termios
   bits.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 05 May 2008 22:24:48 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 11 May 2008 12:13:59 +0200
 
 glibc (2.7-10) unstable; urgency=low
 
