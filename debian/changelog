@@ -35,6 +35,7 @@ glibc (2.7-11) UNRELEASED; urgency=low
     the udev dependencies.  Closes: #474293.
   * rules.d/debhelper.mk: remove linda overrides installation.
   * debhelper.in/*lintian: update.
+  * control.in/main: relax a few dependencies.
 
   [ Pierre Habouzit ]
   * Add any/cvs-strerror_r.diff to make strerror_r actually thread safe.
