@@ -1,6 +1,7 @@
 glibc (2.7-12) UNRELEASED; urgency=low
 
-  * 
+  * patches/alpha/submitted-procfs_h.diff: don't include elf/asm.h on alpha,
+    as it has been removed from linux-libc-dev.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 11 May 2008 14:04:13 +0200
 
