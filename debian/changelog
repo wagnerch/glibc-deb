@@ -2,8 +2,10 @@ glibc (2.7-12) UNRELEASED; urgency=low
 
   * patches/alpha/submitted-procfs_h.diff: don't include elf/asm.h on alpha,
     as it has been removed from linux-libc-dev.
+  * patch/arm/cvs-ioperm.diff: don't include asm/page.h as it has been removed
+    from linux-libc-dev.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 11 May 2008 14:04:13 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 12 May 2008 04:20:29 +0200
 
 glibc (2.7-11) unstable; urgency=low
 
