@@ -1,11 +1,16 @@
 glibc (2.7-12) UNRELEASED; urgency=low
 
+  [ Aurelien Jarno ]
   * patches/alpha/submitted-procfs_h.diff: don't include elf/asm.h on alpha,
     as it has been removed from linux-libc-dev.
   * patch/arm/cvs-ioperm.diff: don't include asm/page.h as it has been removed
     from linux-libc-dev.  Closes: #480892.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 12 May 2008 04:20:29 +0200
+  [ Clint Adams ]
+  * Add any/cvs-regex_anchor.diff to fix performance anomaly with ^$.
+    closes: #475474.
+
+ -- Clint Adams <schizo@debian.org>  Sun, 18 May 2008 07:42:57 -0400
 
 glibc (2.7-11) unstable; urgency=low
 
