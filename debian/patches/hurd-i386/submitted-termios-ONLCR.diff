@@ -1,0 +1,23 @@
+2008-05-21  Samuel Thibault  <samuel.thibault@ens-lyon.org>
+
+	* bits/termios.h (ONLCR): Define on __USE_XOPEN too.
+
+Index: bits/termios.h
+===================================================================
+RCS file: /cvs/glibc/libc/bits/termios.h,v
+retrieving revision 1.8
+diff -u -p -r1.8 termios.h
+--- bits/termios.h	5 May 2008 23:06:01 -0000	1.8
++++ bits/termios.h	21 May 2008 10:35:51 -0000
+@@ -135,8 +135,10 @@ struct termios
+   /* Output modes.  */
+   tcflag_t c_oflag;
+ #define	OPOST	(1 << 0)	/* Perform output processing.  */
+-#ifdef	__USE_BSD
++#if defined __USE_BSD || defined __USE_XOPEN
+ # define ONLCR	(1 << 1)	/* Map NL to CR-NL on output.  */
++#endif
++#ifdef	__USE_BSD
+ # define OXTABS	TAB3		/* Expand tabs to spaces.  */
+ # define ONOEOT	(1 << 3)	/* Discard EOT (^D) on output.  */
+ #endif

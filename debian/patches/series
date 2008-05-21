@@ -100,6 +100,7 @@ hurd-i386/cvs-epfnosupport.diff -p0
 hurd-i386/cvs-df.diff
 hurd-i386/cvs-blocked-exceptions.diff
 hurd-i386/cvs-termios.diff
+hurd-i386/submitted-termios-ONLCR.diff -p0
 
 i386/cvs-short-for-fnstsw.diff -p1
 i386/local-biarch.diff 
