@@ -11,8 +11,7 @@ glibc (2.7-12) UNRELEASED; urgency=low
     closes: #475474.
 
   [ Samuel Thibault ]
-  * patches/hurd-i386/submitted-termios-ONLCR.diff: new patch to fix
-    compilation of jove.
+  * patches/hurd-i386/cvs-termios.diff: update patch, fixes compilation of jove.
 
  -- Clint Adams <schizo@debian.org>  Sun, 18 May 2008 07:42:57 -0400
 
