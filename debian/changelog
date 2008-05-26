@@ -12,6 +12,9 @@ glibc (2.7-12) UNRELEASED; urgency=low
 
   [ Samuel Thibault ]
   * patches/hurd-i386/cvs-termios.diff: update patch, fixes compilation of jove.
+  * patches/hurd-i386/local-pthread-unsupported-stubs.diff: new patch to
+    declare the unsupported function stubs, fixes compilation of pike.  Also
+    bump the dependency on hurd-dev to get <gnu/stubs-pthread.h>.
 
  -- Clint Adams <schizo@debian.org>  Sun, 18 May 2008 07:42:57 -0400
 
