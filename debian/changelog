@@ -5,6 +5,8 @@ glibc (2.7-12) UNRELEASED; urgency=low
     as it has been removed from linux-libc-dev.
   * patch/arm/cvs-ioperm.diff: don't include asm/page.h as it has been removed
     from linux-libc-dev.  Closes: #480892.
+  * patches/hppa/cvs-atomic.diff: don't remove "memory" asm constraint. Fixes
+    FTBFS on hppa.
 
   [ Clint Adams ]
   * Add any/cvs-regex_anchor.diff to fix performance anomaly with ^$.
