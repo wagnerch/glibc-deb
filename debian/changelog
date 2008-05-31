@@ -7,6 +7,7 @@ glibc (2.7-12) UNRELEASED; urgency=low
     from linux-libc-dev.  Closes: #480892.
   * patches/hppa/cvs-atomic.diff: don't remove "memory" asm constraint. Fixes
     FTBFS on hppa.
+  * Update Swedish debconf translation, by Martin Bagge.  Closes: #482467.
 
   [ Clint Adams ]
   * Add any/cvs-regex_anchor.diff to fix performance anomaly with ^$.
@@ -20,7 +21,7 @@ glibc (2.7-12) UNRELEASED; urgency=low
   * patches/hurd-i386/local-unlockpt-chroot.diff: new patch to fix ptys in
     chroots.
 
- -- Clint Adams <schizo@debian.org>  Sun, 18 May 2008 07:42:57 -0400
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 31 May 2008 09:48:22 +0200
 
 glibc (2.7-11) unstable; urgency=low
 
