@@ -1,3 +1,10 @@
+glibc (2.3.6.ds1-13etch7) stable; urgency=low
+
+  * patches/any/cvs-tls-link.diff: fix linker script for libraries using
+    TLS.  Closes: #478542.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 31 May 2008 10:28:39 +0200
+
 glibc (2.3.6.ds1-13etch6) stable; urgency=low
 
   * patches/any/cvs-nscd-hstcache.diff: fix nscd host caching.  Closes: 

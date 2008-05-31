@@ -1,0 +1,19 @@
+commit 6503d724f3f43dc3805b6f46f4ebf12512b97ec0
+Author: Ulrich Drepper <drepper@redhat.com>
+Date:   Thu Feb 24 02:09:38 2005 +0000
+
+    (libc.so): Add AS_NEEDED line for dynamic linker.
+
+diff --git a/Makerules b/Makerules
+index 887d727..5c8185f 100644
+--- a/Makerules
++++ b/Makerules
+@@ -972,7 +972,7 @@ $(inst_libdir)/libc.so: $(common-objpfx)format.lds \
+ 	 cat $<; \
+ 	 echo 'GROUP ( $(slibdir)/libc.so$(libc.so-version)' \
+ 	      '$(libdir)/$(patsubst %,$(libtype.oS),$(libprefix)$(libc-name))'\
+-	      ')' \
++	      'AS_NEEDED (' $(inst_slibdir)/$(rtld-installed-name) ') )' \
+ 	) > $@.new
+ 	mv -f $@.new $@
+ 
