@@ -17,3 +17,46 @@ index 887d727..5c8185f 100644
  	) > $@.new
  	mv -f $@.new $@
  
+
+commit 4ba6166c2e6f2231c0dde95d1029f444373d9ac7
+Author: Ulrich Drepper <drepper@redhat.com>
+Date:   Thu Feb 24 02:10:30 2005 +0000
+
+    Add a whitespace to be sure.
+
+diff --git a/Makerules b/Makerules
+index 5c8185f..57268a6 100644
+--- a/Makerules
++++ b/Makerules
+@@ -972,7 +972,7 @@ $(inst_libdir)/libc.so: $(common-objpfx)format.lds \
+ 	 cat $<; \
+ 	 echo 'GROUP ( $(slibdir)/libc.so$(libc.so-version)' \
+ 	      '$(libdir)/$(patsubst %,$(libtype.oS),$(libprefix)$(libc-name))'\
+-	      'AS_NEEDED (' $(inst_slibdir)/$(rtld-installed-name) ') )' \
++	      ' AS_NEEDED (' $(inst_slibdir)/$(rtld-installed-name) ') )' \
+ 	) > $@.new
+ 	mv -f $@.new $@
+ 
+
+commit 100d5f025d731839495023e51a69af2e34907436
+Author: Roland McGrath <roland@gnu.org>
+Date:   Sat Mar 5 19:24:32 2005 +0000
+
+    2005-03-05  Jakub Jelinek  <jakub@redhat.com>
+    
+    	* Makerules ($(inst_libdir)/libc.so): Use $(slibdir) instead of
+    	$(inst_slibdir) in AS_NEEDED directive.
+
+diff --git a/Makerules b/Makerules
+index 57268a6..63b07a2 100644
+--- a/Makerules
++++ b/Makerules
+@@ -972,7 +972,7 @@ $(inst_libdir)/libc.so: $(common-objpfx)format.lds \
+ 	 cat $<; \
+ 	 echo 'GROUP ( $(slibdir)/libc.so$(libc.so-version)' \
+ 	      '$(libdir)/$(patsubst %,$(libtype.oS),$(libprefix)$(libc-name))'\
+-	      ' AS_NEEDED (' $(inst_slibdir)/$(rtld-installed-name) ') )' \
++	      ' AS_NEEDED (' $(slibdir)/$(rtld-installed-name) ') )' \
+ 	) > $@.new
+ 	mv -f $@.new $@
+ 
