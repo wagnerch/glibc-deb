@@ -13,6 +13,7 @@ glibc (2.7-12) UNRELEASED; urgency=low
     and i386.
   * patches/any/cvs-iconv-braces.diff: new patch from upstream to fix various
     iconv bugs.
+  * local/manpages/nscd.conf.5: update nscd.conf manpage.  Closes: #482505.
 
   [ Clint Adams ]
   * Add any/cvs-regex_anchor.diff to fix performance anomaly with ^$.
@@ -26,7 +27,7 @@ glibc (2.7-12) UNRELEASED; urgency=low
   * patches/hurd-i386/local-unlockpt-chroot.diff: new patch to fix ptys in
     chroots.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 02 Jun 2008 16:17:23 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 02 Jun 2008 19:14:35 +0200
 
 glibc (2.7-11) unstable; urgency=low
 
