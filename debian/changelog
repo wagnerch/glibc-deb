@@ -1,4 +1,4 @@
-glibc (2.7-12) UNRELEASED; urgency=low
+glibc (2.7-12) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * patches/alpha/submitted-procfs_h.diff: don't include elf/asm.h on alpha,
