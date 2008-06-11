@@ -5228,8 +5228,8 @@ diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/sigset.h ports/sys
 +#endif /* ! _SIGSET_H_fns.  */
 diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/socket.h ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/socket.h
 --- null/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/socket.h	1970-01-01 01:00:00.000000000 +0100
-+++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/socket.h	2008-05-04 16:12:27.000000000 +0200
-@@ -0,0 +1,381 @@
++++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/socket.h	2008-06-09 11:53:13.000000000 +0200
+@@ -0,0 +1,386 @@
 +/* System-specific socket constants and types.  FreeBSD version.
 +   Copyright (C) 1991-1992,1994-1999,2000-2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -5586,6 +5586,11 @@ diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/socket.h ports/sys
 +    SO_TYPE = SO_STYLE		/* Compatible name for SO_STYLE.  */
 +#define SO_TYPE SO_TYPE
 +  };
++
++/* Socket options. */
++#define LOCAL_PEERCRED          0x001   /* retrieve peer credentials */
++#define LOCAL_CREDS             0x002   /* pass credentials to receiver */
++#define LOCAL_CONNWAIT          0x004   /* connects block until accepted */
 +
 +/* Structure used to manipulate the SO_LINGER option.  */
 +struct linger
@@ -12764,6 +12769,7 @@ diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/ldsodefs.h ports/sysdep
 +extern void _dl_non_dynamic_init (void) internal_function;
 +
 +#endif /* ldsodefs.h */
+Binary files null/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/.allocrtsig.c.swp and ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/.allocrtsig.c.swp differ
 diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/Implies ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/Implies
 --- null/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/Implies	1970-01-01 01:00:00.000000000 +0100
 +++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/Implies	2008-02-27 20:50:30.000000000 +0100
@@ -12787,12 +12793,22 @@ diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/Versions p
 +}
 diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/allocrtsig.c ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/allocrtsig.c
 --- null/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/allocrtsig.c	1970-01-01 01:00:00.000000000 +0100
-+++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/allocrtsig.c	2008-02-27 20:50:30.000000000 +0100
-@@ -0,0 +1,4 @@
++++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/allocrtsig.c	2008-06-11 11:28:40.000000000 +0200
+@@ -0,0 +1,14 @@
++#if 1
++
++#define __SIGRTMIN 65
++#define __SIGRTMAX 126
++#include <linuxthreads/sysdeps/unix/sysv/linux/allocrtsig.c>
++
++#else
++
 +#include <signal/allocrtsig.c>
 +strong_alias (__libc_current_sigrtmin, __libc_current_sigrtmin_private);
 +strong_alias (__libc_current_sigrtmax, __libc_current_sigrtmax_private);
 +strong_alias (__libc_allocate_rtsig, __libc_allocate_rtsig_private);
++
++#endif
 diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/bits/local_lim.h ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/bits/local_lim.h
 --- null/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/bits/local_lim.h	1970-01-01 01:00:00.000000000 +0100
 +++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/bits/local_lim.h	2008-02-27 20:50:29.000000000 +0100
@@ -19110,6 +19126,54 @@ diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/telldir.c ports/sysdeps
 @@ -0,0 +1,2 @@
 +/* Avoid <sysdeps/unix/bsd/telldir.c>, which doesn't pass the testsuite.  */
 +#include <sysdeps/unix/telldir.c>
+diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/testrtsig.h ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/testrtsig.h
+--- null/sysdeps/unix/bsd/bsd4.4/kfreebsd/testrtsig.h	1970-01-01 01:00:00.000000000 +0100
++++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/testrtsig.h	2008-06-11 11:28:40.000000000 +0200
+@@ -0,0 +1,44 @@
++/* Test whether RT signals are really available.
++   Copyright (C) 2008 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <sys/sysctl.h>
++#include <errno.h>
++#include <string.h>
++
++#include <kernel-features.h>
++
++static int
++kernel_has_rtsig (void)
++{
++#if __ASSUME_REALTIME_SIGNALS
++  return 1;
++#else
++
++  int request[2] = { CTL_KERN, KERN_OSRELDATE};
++  size_t len;
++  int val;
++
++  len = sizeof (val);
++  if (__sysctl (request, 2, &val, &len, NULL, 0) < 0)
++      return 0;
++  if ( val < 700050) /* FreeBSD 7.0 is 700055 */
++      return 0;
++  return 1;    
++#endif
++}
 diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/truncate.c ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/truncate.c
 --- null/sysdeps/unix/bsd/bsd4.4/kfreebsd/truncate.c	1970-01-01 01:00:00.000000000 +0100
 +++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/truncate.c	2008-02-27 20:50:37.000000000 +0100
