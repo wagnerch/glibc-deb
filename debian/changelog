@@ -7,7 +7,7 @@ glibc (2.7-13) UNRELEASED; urgency=low
   [ Petr Salinger]
   * debian/sysdeps/kfreebsd.mk: also use the bsm/ directory from kernel
     headers.
-  * kfreebsd/local-sysdeps.diff: update to revision 2195 (from glibc-bsd).
+  * kfreebsd/local-sysdeps.diff: update to revision 2201 (from glibc-bsd).
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 24 Jun 2008 11:36:17 +0200
 
