@@ -16,6 +16,7 @@ glibc (2.7-13) UNRELEASED; urgency=low
     MSG_NOSIGNAL.
   * patches/hurd-i386/local-msg-nosignal.diff: Forcibly set MSG_NOSIGNAL to 0
     until pfinet gets recompiled.  Only apply on hurd-i386.
+  * Use gcc-4.3 on hurd-i386.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 24 Jun 2008 11:36:17 +0200
 
