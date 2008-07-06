@@ -7,7 +7,7 @@ glibc (2.7-13) UNRELEASED; urgency=low
   [ Petr Salinger]
   * debian/sysdeps/kfreebsd.mk: also use the bsm/ directory from kernel
     headers.
-  * kfreebsd/local-sysdeps.diff: update to revision 2201 (from glibc-bsd).
+  * kfreebsd/local-sysdeps.diff: update to revision 2209 (from glibc-bsd).
   * Disable call to "GL(dl_wait_lookup_done)" in linuxthreads builds. Proper 
     solution still have to be created. Stop crashes in mean time. See #489066.
 
