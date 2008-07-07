@@ -22,7 +22,7 @@ glibc (2.7-13) UNRELEASED; urgency=low
     until pfinet gets recompiled.  Only apply on hurd-i386.
   * Use gcc-4.3 on hurd-i386.
   * patches/hurd-i386/cvs-open_2.diff: New patch to implement __open_2
-    and __openat_2.
+    and __openat_2. Together with kfreebsd update closes: #489357.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 07 Jul 2008 06:52:43 +0200
 
