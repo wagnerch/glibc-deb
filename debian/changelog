@@ -6,6 +6,7 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * patches/any/cvs-getaddrinfo.diff: new patch from CVS to correctly 
     initialize internal resolver structures in getaddrinfo().  Closes:
     #489586.
+  * Update Romanian debconf translation, by Eddy Petrişor.  Closes: #488734.
 
   [ Petr Salinger]
   * debian/sysdeps/kfreebsd.mk: also use the bsm/ directory from kernel
