@@ -7,6 +7,8 @@ glibc (2.7-13) UNRELEASED; urgency=low
     initialize internal resolver structures in getaddrinfo().  Closes:
     #489586.
   * Update Romanian debconf translation, by Eddy Petrişor.  Closes: #488734.
+  * any/cvs-tst-regex.diff: new patch from CVS to add a timeout to tst-regex.
+    Closes: #489856.
 
   [ Petr Salinger]
   * debian/sysdeps/kfreebsd.mk: also use the bsm/ directory from kernel
@@ -24,7 +26,7 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * patches/hurd-i386/cvs-open_2.diff: New patch to implement __open_2
     and __openat_2. Together with kfreebsd update closes: #489357.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 07 Jul 2008 06:52:43 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 08 Jul 2008 18:26:28 +0200
 
 glibc (2.7-12) unstable; urgency=low
 
