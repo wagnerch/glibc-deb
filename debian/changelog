@@ -25,6 +25,9 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * Use gcc-4.3 on hurd-i386.
   * patches/hurd-i386/cvs-open_2.diff: New patch to implement __open_2
     and __openat_2. Together with kfreebsd update closes: #489357.
+  * patches/hurd-i386/local-pthread_types.diff: New patch to drag pthread
+    types from hurd headers.  Bump the hurd-dev dependency version
+    accordingly.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 08 Jul 2008 18:26:28 +0200
 
