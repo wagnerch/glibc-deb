@@ -101,6 +101,7 @@ hurd-i386/cvs-df.diff
 hurd-i386/cvs-blocked-exceptions.diff
 hurd-i386/cvs-termios.diff
 hurd-i386/cvs-open_2.diff -p0
+hurd-i386/submitted-fcntl-types.diff
 
 i386/cvs-short-for-fnstsw.diff -p1
 i386/local-biarch.diff 
@@ -141,7 +142,6 @@ all/local-alias-et_EE.diff
 all/local-pthread-manpages.diff 
 all/local-remove-manual.diff
 all/local-ru_RU.diff 
-all/submitted-fcntl-types.diff
 
 any/cvs-epoll_h.diff -p0
 any/cvs-ether_line.diff -p0

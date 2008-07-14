@@ -28,8 +28,8 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * patches/hurd-i386/local-pthread_types.diff: New patch to drag pthread
     types from hurd headers.  Bump the hurd-dev dependency version
     accordingly.
-  * patches/all/submitted-fcntl-types.diff: New patch to add mode_t, off_t and
-    pid_t definitions to <fcntl.h>.  Fixes a lot of FTBFS on hurd and freebsd.
+  * patches/all/submitted-fcntl-types.diff: New patch to include <sys/type.h>
+    from <bits/fcntl.h> like on Linux.  Fixes a lot of FTBFS on hurd.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 08 Jul 2008 18:26:28 +0200
 
