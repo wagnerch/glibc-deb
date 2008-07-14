@@ -283,7 +283,15 @@
       properly before before cthreads initialization, so cthreads can know
 --- sysdeps/mach/hurd/i386/tls.h.orig
 +++ sysdeps/mach/hurd/i386/tls.h
-@@ -96,7 +96,7 @@
+@@ -23,6 +23,7 @@
+ #if defined HAVE_TLS_SUPPORT && !defined __ASSEMBLER__
+ 
+ # include <stddef.h>
++# include <stdint.h>
+ # include <stdbool.h>
+ # include <mach/mig_errors.h>
+ # include <mach.h>
+@@ -97,7 +97,7 @@
        /* Fetch the selector set by the first call.  */
        int sel;
        asm ("mov %%gs, %w0" : "=q" (sel) : "0" (0));
@@ -292,7 +300,7 @@
  	{
  	  error_t err = __i386_set_ldt (tcb->self, sel, &desc, 1);
  	  assert_perror (err);
-@@ -142,9 +142,40 @@
+@@ -143,9 +143,40 @@
  
  #include <mach/machine/thread_status.h>
  
@@ -335,7 +343,7 @@
  {
    /* Fetch the selector set by _hurd_tls_init.  */
    int sel;
-@@ -152,11 +183,13 @@
+@@ -153,11 +184,13 @@
    if (sel == state->ds)		/* _hurd_tls_init was never called.  */
      return 0;
  
@@ -438,3 +446,13 @@
  
  /* These functions are of use in machine-dependent signal trampoline
     implementations.  */
+--- sysdeps/mach/hurd/bits/libc-lock.h	29 Sep 2003 21:55:41 -0000	1.4
++++ sysdeps/mach/hurd/bits/libc-lock.h	14 Jul 2008 02:11:48 -0000
+@@ -21,6 +21,7 @@
+ #define _BITS_LIBC_LOCK_H 1
+ 
+ #if (_LIBC - 0) || (_CTHREADS_ - 0)
++#include <tls.h>
+ #include <cthreads.h>
+ #include <hurd/threadvar.h>
+ 

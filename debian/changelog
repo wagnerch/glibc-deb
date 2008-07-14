@@ -28,10 +28,13 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * patches/hurd-i386/local-pthread_types.diff: New patch to drag pthread
     types from hurd headers.  Bump the hurd-dev dependency version
     accordingly.
-  * patches/hurd-i386/submitted-fcntl-types.diff: New patch to include
+  * patches/hurd-i386/cvs-fcntl-types.diff: New patch to include
     <sys/type.h> from <bits/fcntl.h> like on Linux.  Fixes a lot of FTBFS on
     hurd.
   * patches/hurd-i386/local-tls.diff: Resync with upstream.
+  * patches/hurd-i386/local-tls-support.diff: Make tls.h also include
+    <stdint.h> and <bits/libc-lock.h> include <tls.h>, like on Linux.
+  * patches/hurd-i386/submitted-trivial.diff: Remove, thanks to updated tls.h.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 08 Jul 2008 18:26:28 +0200
 

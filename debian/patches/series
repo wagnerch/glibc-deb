@@ -87,7 +87,6 @@ hurd-i386/submitted-ptr-mangle.diff -p0
 hurd-i386/submitted-stat.diff -p0
 hurd-i386/submitted-strtoul.diff -p0
 hurd-i386/submitted-sysvshm.diff 
-hurd-i386/submitted-trivial.diff -p0
 hurd-i386/submitted-ioctl-unsigned-size_t.diff -p0
 hurd-i386/cvs-mig-init.diff
 hurd-i386/cvs-ECANCELED.diff
@@ -101,7 +100,7 @@ hurd-i386/cvs-df.diff
 hurd-i386/cvs-blocked-exceptions.diff
 hurd-i386/cvs-termios.diff
 hurd-i386/cvs-open_2.diff -p0
-hurd-i386/submitted-fcntl-types.diff
+hurd-i386/cvs-fcntl-types.diff
 
 i386/cvs-short-for-fnstsw.diff -p1
 i386/local-biarch.diff 
