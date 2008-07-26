@@ -9,6 +9,8 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * Update Romanian debconf translation, by Eddy Petrişor.  Closes: #488734.
   * any/cvs-tst-regex.diff: new patch from CVS to add a timeout to tst-regex.
     Closes: #489856.
+  * control.in/main: build depends on gcc-4.3 (>= 4.3.0-7), remove
+    mips/local-gcc-ice.diff.
 
   [ Petr Salinger]
   * debian/sysdeps/kfreebsd.mk: also use the bsm/ directory from kernel
@@ -36,7 +38,7 @@ glibc (2.7-13) UNRELEASED; urgency=low
     <stdint.h> and <bits/libc-lock.h> include <tls.h>, like on Linux.
   * patches/hurd-i386/submitted-trivial.diff: Remove, thanks to updated tls.h.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 08 Jul 2008 18:26:28 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 Jul 2008 20:54:33 +0200
 
 glibc (2.7-12) unstable; urgency=low
 
