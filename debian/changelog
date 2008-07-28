@@ -12,6 +12,8 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * control.in/main: build depends on gcc-4.3 (>= 4.3.0-7), remove
     mips/local-gcc-ice.diff.
   * Update Swedish debconf translation, by Martin Bagge.  Closes: #492191.
+  * Revert the changes to patches/hppa/cvs-atomic.diff, it was not the cause
+    of the "tst-regex problem".
 
   [ Petr Salinger]
   * debian/sysdeps/kfreebsd.mk: also use the bsm/ directory from kernel
