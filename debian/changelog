@@ -1,4 +1,4 @@
-glibc (2.7-13) UNRELEASED; urgency=low
+glibc (2.7-13) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * Update Brazilian Portuguese debconf translation, by Felipe Augusto van de
@@ -47,7 +47,7 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * Cherry-pick upstream fixes with respect to locale rwlocks, merge them into
     patches/any/cvs-strerror_r.diff. Closes: #489906.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 29 Jul 2008 00:50:02 +0200
+ -- Pierre Habouzit <madcoder@debian.org>  Tue, 29 Jul 2008 01:19:32 +0200
 
 glibc (2.7-12) unstable; urgency=low
 
