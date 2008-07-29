@@ -1,4 +1,4 @@
-glibc (2.7-13) UNRELEASED; urgency=low
+glibc (2.7-13) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * Update Brazilian Portuguese debconf translation, by Felipe Augusto van de
@@ -12,6 +12,10 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * control.in/main: build depends on gcc-4.3 (>= 4.3.0-7), remove
     mips/local-gcc-ice.diff.
   * Update Swedish debconf translation, by Martin Bagge.  Closes: #492191.
+  * Revert the changes to patches/hppa/cvs-atomic.diff, it was not the cause
+    of the "tst-regex problem".
+  * hppa/cvs-lowlevellock.diff: new patch from upstream to fix build of NPTL
+    glibc on hppa.  Closes: #486589.
 
   [ Petr Salinger]
   * debian/sysdeps/kfreebsd.mk: also use the bsm/ directory from kernel
@@ -43,7 +47,7 @@ glibc (2.7-13) UNRELEASED; urgency=low
   * Cherry-pick upstream fixes with respect to locale rwlocks, merge them into
     patches/any/cvs-strerror_r.diff. Closes: #489906.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 Jul 2008 20:54:33 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 29 Jul 2008 03:09:20 +0200
 
 glibc (2.7-12) unstable; urgency=low
 
