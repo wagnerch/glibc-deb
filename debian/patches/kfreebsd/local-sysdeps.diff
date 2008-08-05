@@ -4780,8 +4780,8 @@ diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/sigaction.h ports/
 +#define	SIG_SETMASK	3	/* Set the set of blocked signals.  */
 diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/siginfo.h ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/siginfo.h
 --- null/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/siginfo.h	1970-01-01 01:00:00.000000000 +0100
-+++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/siginfo.h	2008-07-28 23:45:42.000000000 +0200
-@@ -0,0 +1,213 @@
++++ ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/siginfo.h	2008-07-31 10:44:34.000000000 +0200
+@@ -0,0 +1,214 @@
 +/* siginfo_t, sigevent and constants.  FreeBSD version.
 +   Copyright (C) 1997-1998, 2000-2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -4957,9 +4957,10 @@ diff -x .svn -Nurd null/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/siginfo.h ports/sy
 +# define POLL_MSG	POLL_MSG
 +  POLL_ERR,			/* I/O error.  */
 +# define POLL_ERR	POLL_ERR
-+# define POLL_HUP	POLL_ERR /* Device disconnected.  */
-+  POLL_PRI			/* High priority input available.  */
++  POLL_PRI,			/* High priority input available.  */
 +# define POLL_PRI	POLL_PRI
++  POLL_HUP			/* Device disconnected.  */
++# define POLL_HUP	POLL_HUP
 +};
 +
 +# undef __need_siginfo_t
