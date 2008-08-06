@@ -1,9 +1,13 @@
-glibc (2.7-14) UNSTABLE; urgency=low
+glibc (2.7-14) unstable; urgency=low
 
-  [ Petr Salinger]
+  [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2280 (from glibc-bsd).
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 29 Jul 2008 03:09:20 +0200
+  [ Aurelien Jarno ]
+  * patches/mips/cvs-mknod.diff: new patch from upstream to allow > 255 minors
+    on mips.  Closes: #493751.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 06 Aug 2008 17:00:36 +0200
 
 glibc (2.7-13) unstable; urgency=low
 
