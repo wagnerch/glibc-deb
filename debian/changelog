@@ -6,6 +6,10 @@ glibc (2.7-14) unstable; urgency=low
   [ Aurelien Jarno ]
   * patches/mips/cvs-mknod.diff: new patch from upstream to allow > 255 minors
     on mips.  Closes: #493751.
+  * patches/sparc/cvs-context.diff: new patch from upstream to add
+    getcontext(), setcontext(), makecontext() on Sparc.  Closes: #295173.
+  * patches/hppa/local-context.diff: new patch from Helge Deller to add
+    getcontext(), setcontext(), makecontext() on PARISC.  Closes: #492778.
 
   [ Samuel Thibault ]
   * patches/hurd-i386/cvs-lock-memory-clobber.diff: new patch from upstream

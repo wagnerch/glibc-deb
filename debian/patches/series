@@ -75,6 +75,7 @@ hppa/submitted-pie.diff
 hppa/local-inlining.diff -p0
 hppa/local-linuxthreads.diff -p0
 hppa/local-linuxthreads-gscope.diff -p0
+patches/hppa/local-context.diff -p0
 
 hurd-i386/local-dl-dynamic-weak.diff 
 hurd-i386/local-enable-ldconfig.diff -p0
@@ -135,6 +136,7 @@ s390/submitted-nexttowardf.diff -p1
 sh4/local-fpscr_values.diff -p0
 sh4/cvs-nptl-private-futexes.diff -p0
 
+sparc/cvs-context.diff -p1
 sparc/local-fork.diff -p0
 sparc/local-sparcv9-target.diff -p0
 sparc/submitted-timing.diff 
