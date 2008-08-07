@@ -7,6 +7,12 @@ glibc (2.7-14) unstable; urgency=low
   * patches/mips/cvs-mknod.diff: new patch from upstream to allow > 255 minors
     on mips.  Closes: #493751.
 
+  [ Samuel Thibault ]
+  * patches/hurd-i386/cvs-lock-memory-clobber.diff: new patch from upstream
+    to fix safety of locks.
+  * patches/hurd-i386/local-pthread_posix-option.diff: new patch to advertise
+    the libpthread from the hurd packages.
+
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 06 Aug 2008 17:00:36 +0200
 
 glibc (2.7-13) unstable; urgency=low

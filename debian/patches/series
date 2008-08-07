@@ -102,6 +102,8 @@ hurd-i386/cvs-blocked-exceptions.diff
 hurd-i386/cvs-termios.diff
 hurd-i386/cvs-open_2.diff -p0
 hurd-i386/cvs-fcntl-types.diff
+hurd-i386/cvs-lock-memory-clobber.diff -p0
+hurd-i386/local-pthread_posix-option.diff -p0
 
 i386/cvs-short-for-fnstsw.diff -p1
 i386/local-biarch.diff 
