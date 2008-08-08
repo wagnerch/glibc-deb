@@ -260,8 +260,10 @@ diff -xCVS -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/makecontext.c ports/sys
 diff -xCVS -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/Makefile ports/sysdeps/unix/sysv/linux/hppa/Makefile
 --- ports.orig/sysdeps/unix/sysv/linux/hppa/Makefile	1970-01-01 01:00:00.000000000 +0100
 +++ ports/sysdeps/unix/sysv/linux/hppa/Makefile	2008-08-08 01:52:34.000000000 +0200
-@@ -0,0 +1,5 @@
-+# Used by *context() functions
+@@ -1,2 +1,7 @@
+ # linux/hppa does not use -lmilli anymore
+ gnulib := -lgcc
++
 +ifeq ($(subdir),stdlib)
 +gen-as-const-headers += ucontext_i.sym
 +endif
