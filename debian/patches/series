@@ -75,7 +75,7 @@ hppa/submitted-pie.diff
 hppa/local-inlining.diff -p0
 hppa/local-linuxthreads.diff -p0
 hppa/local-linuxthreads-gscope.diff -p0
-patches/hppa/local-context.diff -p0
+patches/hppa/cvs-context.diff -p0
 
 hurd-i386/local-dl-dynamic-weak.diff 
 hurd-i386/local-enable-ldconfig.diff -p0

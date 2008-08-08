@@ -1,18 +1,16 @@
-diff -up ports/sysdeps/unix/sysv/linux/hppa/Makefile.org ports/sysdeps/unix/sysv/linux/hppa/Makefile
---- ports/sysdeps/unix/sysv/linux/hppa/Makefile.org	2008-07-16 19:41:29.000000000 +0200
-+++ ports/sysdeps/unix/sysv/linux/hppa/Makefile	2008-07-16 19:41:37.000000000 +0200
-@@ -1,2 +1,7 @@
- # linux/hppa does not use -lmilli anymore
- gnulib := -lgcc
-+
-+ifeq ($(subdir),stdlib)
-+gen-as-const-headers += ucontext_i.sym
-+endif
-+
-diff -up ports/sysdeps/unix/sysv/linux/hppa/getcontext.S.org ports/sysdeps/unix/sysv/linux/hppa/getcontext.S
---- ports/sysdeps/unix/sysv/linux/hppa/getcontext.S.org	2008-07-16 19:52:11.000000000 +0200
-+++ ports/sysdeps/unix/sysv/linux/hppa/getcontext.S	2008-07-18 23:34:32.000000000 +0200
-@@ -0,0 +1,101 @@
+2008-08-07  Helge Deller  <deller@gmx.de>
+
+	* sysdeps/unix/sysv/linux/hppa/ucontext_i.sym: New file.
+	* sysdeps/unix/sysv/linux/hppa/Makefile: New file.
+	* sysdeps/unix/sysv/linux/hppa/getcontext.S: New file.
+	* sysdeps/unix/sysv/linux/hppa/makecontext.c: New file.
+	* sysdeps/unix/sysv/linux/hppa/setcontext.S: New file.
+	* sysdeps/unix/sysv/linux/hppa/swapcontext.c: New file.
+ 
+diff -xCVS -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/getcontext.S ports/sysdeps/unix/sysv/linux/hppa/getcontext.S
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/getcontext.S	1970-01-01 01:00:00.000000000 +0100
++++ ports/sysdeps/unix/sysv/linux/hppa/getcontext.S	2008-08-08 01:52:34.000000000 +0200
+@@ -0,0 +1,163 @@
 +/* Get current user context.
 +   Copyright (C) 2008 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -37,11 +35,29 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/getcontext.S.org ports/sysdeps/unix/
 +
 +#include "ucontext_i.h"
 +
++
++	/* Trampoline function.  */
++	/* Can not use ENTRY(__getcontext_ret) here.  */
++	.type	__getcontext_ret, @function
++	.hidden	__getcontext_ret
++__getcontext_ret:
++	.proc
++	.callinfo FRAME=0,NO_CALLS
++	copy	%r23, %r3
++	copy	%r24, %r4
++	copy	%r25, %r5
++	copy	%r26, %r6
++	bv	0(%r20)
++	copy	%r0, %ret0
++	.procend
++	.size	__getcontext_ret, .-__getcontext_ret
++
++
 +ENTRY(__getcontext)
-+	/* Save the register.  */
++	/* Save the registers.  */
 +	stw	%r0, oR0(%r26)
 +	stw	%r1, oR1(%r26)
-+	stw	%r2, oR2(%r26)
++	/* stw	%r2, oR2(%r26) - used for trampoline.  */
 +	stw	%r3, oR3(%r26)
 +	stw	%r4, oR4(%r26)
 +	stw	%r5, oR5(%r26)
@@ -59,13 +75,13 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/getcontext.S.org ports/sysdeps/unix/
 +	stw	%r17, oR17(%r26)
 +	stw	%r18, oR18(%r26)
 +	stw	%r19, oR19(%r26)
-+	stw	%r20, oR20(%r26)
++	/* stw	%r20, oR20(%r26) - used for trampoline.  */
 +	stw	%r21, oR21(%r26)
 +	stw	%r22, oR22(%r26)
-+	stw	%r23, oR23(%r26)
-+	stw	%r24, oR24(%r26)
-+	stw	%r25, oR25(%r26)
-+	stw	%r26, oR26(%r26)
++	/* stw	%r23, oR23(%r26) - used for trampoline.  */
++	/* stw	%r24, oR24(%r26) - used for trampoline.  */
++	/* stw	%r25, oR25(%r26) - used for trampoline.  */
++	/* stw	%r26, oR26(%r26) - used for trampoline.  */
 +	stw	%r27, oR27(%r26)
 +	stw	%r28, oR28(%r26)
 +	stw	%r29, oR29(%r26)
@@ -74,8 +90,8 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/getcontext.S.org ports/sysdeps/unix/
 +	stw	%r31, oR31(%r26)
 +
 +	stw	%r0, oUC_FLAGS(%r26)
-+	stw	%r0, oUC_LINK(%r26)
-+	stw	%r1, oSS_SP(%r26)  /* New %sp.  */
++	/* stw	%r0, oUC_LINK(%r26) - Do not overwrite.  */
++	stw	%r1, oSS_SP(%r26)
 +	stw	%r0, oSS_FLAGS(%r26)
 +	stw	%r0, oSS_SIZE(%r26)
 +
@@ -85,17 +101,61 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/getcontext.S.org ports/sysdeps/unix/
 +	stw	%r0, oIASQ1(%r26)
 +	stw	%r0, oIAOQ0(%r26)
 +	stw	%r0, oIAOQ1(%r26)
-+	stw	%r0, oSAR(%r26)
++	stw	%r0, oSAR(%r26) /* used as flag in swapcontext().  */
++
 +
 +	/* Store floating-point regs.  */
-+	/* fstd	%fr0, oFP0(%r26)  */
-+
++	ldo	oFPREGS0(%r26),%r1
++	fstds,ma %fr0, 8(%r1)
++	fstds,ma %fr1, 8(%r1)
++	fstds,ma %fr2, 8(%r1)
++	fstds,ma %fr3, 8(%r1)
++	fstds,ma %fr4, 8(%r1)
++	fstds,ma %fr5, 8(%r1)
++	fstds,ma %fr6, 8(%r1)
++	fstds,ma %fr7, 8(%r1)
++	fstds,ma %fr8, 8(%r1)
++	fstds,ma %fr9, 8(%r1)
++	fstds,ma %fr10, 8(%r1)
++	fstds,ma %fr11, 8(%r1)
++	fstds,ma %fr12, 8(%r1)
++	fstds,ma %fr13, 8(%r1)
++	fstds,ma %fr14, 8(%r1)
++	fstds,ma %fr15, 8(%r1)
++	fstds,ma %fr16, 8(%r1)
++	fstds,ma %fr17, 8(%r1)
++	fstds,ma %fr18, 8(%r1)
++	fstds,ma %fr19, 8(%r1)
++	fstds,ma %fr20, 8(%r1)
++	fstds,ma %fr21, 8(%r1)
++	fstds,ma %fr22, 8(%r1)
++	fstds,ma %fr23, 8(%r1)
++	fstds,ma %fr24, 8(%r1)
++	fstds,ma %fr25, 8(%r1)
++	fstds,ma %fr26, 8(%r1)
++	fstds,ma %fr27, 8(%r1)
++	fstds,ma %fr28, 8(%r1)
++	fstds,ma %fr29, 8(%r1)
++	fstds,ma %fr30, 8(%r1)
++	fstds	 %fr31, 0(%r1)
 +
 +	/* Prologue */
 +	stwm	%r4, 64(%r30)
 +#ifdef PIC
 +	stw	%r19, -32(%r30)
 +#endif
++
++	/* Set up the trampoline registers.
++	   r20, r23, r24, r25, r26 and r2 are clobbered
++	   by call to getcontext() anyway. Reuse them.  */
++	stw	%r2, oR20(%r26)
++	stw	%r3, oR23(%r26)
++	stw	%r4, oR24(%r26)
++	stw	%r5, oR25(%r26)
++	stw	%r6, oR26(%r26)
++	ldil	L%__getcontext_ret, %r1
++	ldo     R%__getcontext_ret(%r1), %r1
++	stw	%r1, oR2(%r26)
 +
 +	/* Save the current signal mask.  */
 +	/* sigprocmask(SIG_BLOCK, NULL, &ucp->uc_sigmask);  */
@@ -114,9 +174,9 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/getcontext.S.org ports/sysdeps/unix/
 +END(__getcontext)
 +
 +weak_alias (__getcontext, getcontext)
-diff -up ports/sysdeps/unix/sysv/linux/hppa/makecontext.c.org ports/sysdeps/unix/sysv/linux/hppa/makecontext.c
---- ports/sysdeps/unix/sysv/linux/hppa/makecontext.c.org	2008-07-16 21:41:02.000000000 +0200
-+++ ports/sysdeps/unix/sysv/linux/hppa/makecontext.c	2008-07-16 22:16:29.000000000 +0200
+diff -xCVS -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/makecontext.c ports/sysdeps/unix/sysv/linux/hppa/makecontext.c
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/makecontext.c	1970-01-01 01:00:00.000000000 +0100
++++ ports/sysdeps/unix/sysv/linux/hppa/makecontext.c	2008-08-08 01:52:34.000000000 +0200
 @@ -0,0 +1,79 @@
 +/* Create new context.
 +   Copyright (C) 2008 Free Software Foundation, Inc.
@@ -161,10 +221,10 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/makecontext.c.org ports/sysdeps/unix
 +      exit (-1);
 +    }
 +
-+  /* Generate room on stack for parameter if needed and uc_link.  */
++  /* Get stack pointer.  */
 +  sp = (unsigned int *) ucp->uc_stack.ss_sp;
 +
-+  /* Address to jump to.  */
++  /* Store address to jump to.  */
 +  ucp->uc_mcontext.sc_gr[2] = (unsigned long) func;
 +
 +  va_start (ap, argc);
@@ -197,10 +257,19 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/makecontext.c.org ports/sysdeps/unix
 +
 +
 +weak_alias(__makecontext, makecontext)
-diff -up ports/sysdeps/unix/sysv/linux/hppa/setcontext.S.org ports/sysdeps/unix/sysv/linux/hppa/setcontext.S
---- ports/sysdeps/unix/sysv/linux/hppa/setcontext.S.org	2008-07-16 22:29:10.000000000 +0200
-+++ ports/sysdeps/unix/sysv/linux/hppa/setcontext.S	2008-07-18 23:34:23.000000000 +0200
-@@ -0,0 +1,124 @@
+diff -xCVS -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/Makefile ports/sysdeps/unix/sysv/linux/hppa/Makefile
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ ports/sysdeps/unix/sysv/linux/hppa/Makefile	2008-08-08 01:52:34.000000000 +0200
+@@ -0,0 +1,5 @@
++# Used by *context() functions
++ifeq ($(subdir),stdlib)
++gen-as-const-headers += ucontext_i.sym
++endif
++
+diff -xCVS -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/setcontext.S ports/sysdeps/unix/sysv/linux/hppa/setcontext.S
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/setcontext.S	1970-01-01 01:00:00.000000000 +0100
++++ ports/sysdeps/unix/sysv/linux/hppa/setcontext.S	2008-08-08 01:52:34.000000000 +0200
+@@ -0,0 +1,154 @@
 +/* Install given context.
 +   Copyright (C) 2008 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -236,7 +305,7 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/setcontext.S.org ports/sysdeps/unix/
 +	/* Save ucp.  */
 +	copy	%r26, %r3
 +
-+L(_again):
++.Lagain:
 +	/* Set the current signal mask.  */
 +	/* sigprocmask(SIG_BLOCK, &ucp->uc_sigmask, NULL);  */
 +	copy	%r0, %r24
@@ -244,8 +313,7 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/setcontext.S.org ports/sysdeps/unix/
 +	bl	sigprocmask, %r2
 +	ldi	SIG_SETMASK, %r26
 +
-+	comib,<> 0,%ret0,L(_error)
-+	nop
++	comib,<>,n 0,%ret0,.Lerror
 +
 +	/* Save %sp, %dp.  */
 +	copy	%sp, %r4
@@ -283,17 +351,48 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/setcontext.S.org ports/sysdeps/unix/
 +	ldw	oR28(%r3), %r28
 +	ldw	oR29(%r3), %r29
 +	ldw	oR30(%r3), %r30
-+	ldw	oR31(%r3), %r31
++	/* ldw	oR31(%r3), %r31 - dyncall scratch register */
 +
 +	/* Restore floating-point registers.  */
-+	/* fldd	oFP0(%r3),%fr0  */
-+
++	ldo	 oFPREGS31(%r3), %r22
++	fldds	  0(%r22), %fr31
++	fldds,mb -8(%r22), %fr30
++	fldds,mb -8(%r22), %fr29
++	fldds,mb -8(%r22), %fr28
++	fldds,mb -8(%r22), %fr27
++	fldds,mb -8(%r22), %fr26
++	fldds,mb -8(%r22), %fr25
++	fldds,mb -8(%r22), %fr24
++	fldds,mb -8(%r22), %fr23
++	fldds,mb -8(%r22), %fr22
++	fldds,mb -8(%r22), %fr21
++	fldds,mb -8(%r22), %fr20
++	fldds,mb -8(%r22), %fr19
++	fldds,mb -8(%r22), %fr18
++	fldds,mb -8(%r22), %fr17
++	fldds,mb -8(%r22), %fr16
++	fldds,mb -8(%r22), %fr15
++	fldds,mb -8(%r22), %fr14
++	fldds,mb -8(%r22), %fr13
++	fldds,mb -8(%r22), %fr12
++	fldds,mb -8(%r22), %fr11
++	fldds,mb -8(%r22), %fr10
++	fldds,mb -8(%r22), %fr9
++	fldds,mb -8(%r22), %fr8
++	fldds,mb -8(%r22), %fr7
++	fldds,mb -8(%r22), %fr6
++	fldds,mb -8(%r22), %fr5
++	fldds,mb -8(%r22), %fr4
++	fldds,mb -8(%r22), %fr3
++	fldds,mb -8(%r22), %fr2
++	fldds,mb -8(%r22), %fr1
++	fldds,mb -8(%r22), %fr0
 +
 +	/* Calculate new stack pointer.  */
 +	ldw	oSS_SP(%r3), %sp
 +	ldo	64(%sp), %sp
 +
-+	/* Call function.  */
++	/* Call external function.  */
 +	copy	%r2, %r22
 +	bl	$$dyncall, %r31
 +	copy	%r31, %r2
@@ -304,16 +403,16 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/setcontext.S.org ports/sysdeps/unix/
 +	copy	%r5, %dp
 +	copy	%r6, %r19
 +
-+	/* If ucp == NULL then exit().  */
-+	comib,<> 0,%r3,L(_again)
++	/* Continue until ucp == NULL.  */
++	comib,<> 0,%r3,.Lagain
 +	nop
 +
-+	/* If we looped through all uc_link contexts, exit now.  */
++	/* No further context available. Exit now.  */
 +	bl	_exit, %r2
 +	ldi	-1, %r26
 +	
 +
-+L(_error):
++.Lerror:
 +	/* Epilogue */
 +	ldw	-84(%r30), %r2
 +#ifdef PIC
@@ -325,11 +424,11 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/setcontext.S.org ports/sysdeps/unix/
 +PSEUDO_END(__setcontext)
 +
 +weak_alias(__setcontext, setcontext)
-diff -up ports/sysdeps/unix/sysv/linux/hppa/swapcontext.c.org ports/sysdeps/unix/sysv/linux/hppa/swapcontext.c
---- ports/sysdeps/unix/sysv/linux/hppa/swapcontext.c.org	2008-07-17 00:37:11.000000000 +0200
-+++ ports/sysdeps/unix/sysv/linux/hppa/swapcontext.c	2008-07-18 23:07:15.000000000 +0200
-@@ -0,0 +1,66 @@
-+/* swap to new context.
+diff -xCVS -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/swapcontext.c ports/sysdeps/unix/sysv/linux/hppa/swapcontext.c
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/swapcontext.c	1970-01-01 01:00:00.000000000 +0100
++++ ports/sysdeps/unix/sysv/linux/hppa/swapcontext.c	2008-08-08 01:52:34.000000000 +0200
+@@ -0,0 +1,43 @@
++/* Swap to new context.
 +   Copyright (C) 2008 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +   Contributed by Helge Deller <deller@gmx.de>, 2008.
@@ -357,48 +456,25 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/swapcontext.c.org ports/sysdeps/unix
 +int
 +__swapcontext (ucontext_t *oucp, const ucontext_t *ucp)
 +{
-+  extern void __swapcontext_ret (void);
-+
 +  /* Save the current machine context to oucp.  */
 +  __getcontext (oucp);
 +
-+  /* uc_flags helps to skip the __setcontext call on reactivation.  */
-+  if (++oucp->uc_flags == 1) {
-+  	/* Temporarily save a few registers in r23-r26 which would be
-+	 * overwritten by setcontext(). Set up the jump to __swapcontext_ret,
-+	 * where the registers will be restored and then returned to the
-+	 * above uc_flags == 1 test.  */
-+  	oucp->uc_mcontext.sc_gr[20] = oucp->uc_mcontext.sc_gr[2];
-+  	oucp->uc_mcontext.sc_gr[2] = (unsigned long) __swapcontext_ret;
-+  	oucp->uc_mcontext.sc_gr[23] = oucp->uc_mcontext.sc_gr[3];
-+  	oucp->uc_mcontext.sc_gr[24] = oucp->uc_mcontext.sc_gr[4];
-+  	oucp->uc_mcontext.sc_gr[25] = oucp->uc_mcontext.sc_gr[5];
-+  	oucp->uc_mcontext.sc_gr[26] = oucp->uc_mcontext.sc_gr[6];
++  /* mark sc_sar flag to skip the setcontext call on reactivation.  */
++  if (oucp->uc_mcontext.sc_sar == 0) {
++  	oucp->uc_mcontext.sc_sar++;
 +
 +	/* Restore the machine context in ucp.  */
 +  	__setcontext (ucp);
 +  }
++
 +  return 0;
 +}
 +
-+asm ("							\n\
-+	.text						\n\
-+	.type	__swapcontext_ret, #function		\n\
-+__swapcontext_ret:					\n\
-+	copy	%r23, %r3				\n\
-+	copy	%r24, %r4				\n\
-+	copy	%r25, %r5				\n\
-+	copy	%r26, %r6				\n\
-+	bv	0(%r20)					\n\
-+	copy	%r0, %ret0				\n\
-+	.size	__swapcontext_ret, .-__swapcontext_ret	\n\
-+     ");
-+
 +weak_alias (__swapcontext, swapcontext)
-diff -up ports/sysdeps/unix/sysv/linux/hppa/ucontext_i.sym.org ports/sysdeps/unix/sysv/linux/hppa/ucontext_i.sym
---- ports/sysdeps/unix/sysv/linux/hppa/ucontext_i.sym.org	2008-07-16 19:27:46.000000000 +0200
-+++ ports/sysdeps/unix/sysv/linux/hppa/ucontext_i.sym	2008-07-18 23:17:07.000000000 +0200
-@@ -0,0 +1,90 @@
+diff -xCVS -Nurd ports.orig/sysdeps/unix/sysv/linux/hppa/ucontext_i.sym ports/sysdeps/unix/sysv/linux/hppa/ucontext_i.sym
+--- ports.orig/sysdeps/unix/sysv/linux/hppa/ucontext_i.sym	1970-01-01 01:00:00.000000000 +0100
++++ ports/sysdeps/unix/sysv/linux/hppa/ucontext_i.sym	2008-08-08 01:52:34.000000000 +0200
+@@ -0,0 +1,59 @@
 +#include <stddef.h>
 +#include <signal.h>
 +#include <sys/ucontext.h>
@@ -450,39 +526,8 @@ diff -up ports/sysdeps/unix/sysv/linux/hppa/ucontext_i.sym.org ports/sysdeps/uni
 +oR29		mreg (29)
 +oR30		mreg (30)
 +oR31		mreg (31)
-+oFPREGS		mcontext (sc_fr)
-+oFP0		mcontext (sc_fr[0])
-+oFP1		mcontext (sc_fr[1])
-+oFP2		mcontext (sc_fr[2])
-+oFP3		mcontext (sc_fr[3])
-+oFP4		mcontext (sc_fr[4])
-+oFP5		mcontext (sc_fr[5])
-+oFP6		mcontext (sc_fr[6])
-+oFP7		mcontext (sc_fr[7])
-+oFP8		mcontext (sc_fr[8])
-+oFP9		mcontext (sc_fr[9])
-+oFP10		mcontext (sc_fr[10])
-+oFP11		mcontext (sc_fr[11])
-+oFP12		mcontext (sc_fr[12])
-+oFP13		mcontext (sc_fr[13])
-+oFP14		mcontext (sc_fr[14])
-+oFP15		mcontext (sc_fr[15])
-+oFP16		mcontext (sc_fr[16])
-+oFP17		mcontext (sc_fr[17])
-+oFP18		mcontext (sc_fr[18])
-+oFP19		mcontext (sc_fr[19])
-+oFP20		mcontext (sc_fr[20])
-+oFP21		mcontext (sc_fr[21])
-+oFP22		mcontext (sc_fr[22])
-+oFP23		mcontext (sc_fr[23])
-+oFP24		mcontext (sc_fr[24])
-+oFP25		mcontext (sc_fr[25])
-+oFP26		mcontext (sc_fr[26])
-+oFP27		mcontext (sc_fr[27])
-+oFP28		mcontext (sc_fr[28])
-+oFP29		mcontext (sc_fr[29])
-+oFP30		mcontext (sc_fr[30])
-+oFP31		mcontext (sc_fr[31])
++oFPREGS0	mcontext (sc_fr[0])
++oFPREGS31	mcontext (sc_fr[31])
 +oIASQ0		mcontext (sc_iasq[0])
 +oIASQ1		mcontext (sc_iasq[1])
 +oIAOQ0		mcontext (sc_iaoq[0])

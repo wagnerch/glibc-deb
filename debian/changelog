@@ -8,7 +8,7 @@ glibc (2.7-14) unstable; urgency=low
     on mips.  Closes: #493751.
   * patches/sparc/cvs-context.diff: new patch from upstream to add
     getcontext(), setcontext(), makecontext() on Sparc.  Closes: #295173.
-  * patches/hppa/local-context.diff: new patch from Helge Deller to add
+  * patches/hppa/cvs-context.diff: new patch from upstream to add
     getcontext(), setcontext(), makecontext() on PARISC.  Closes: #492778.
 
   [ Samuel Thibault ]
