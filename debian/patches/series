@@ -175,6 +175,7 @@ any/local-fhs-linux-paths.diff -p0
 any/local-fhs-nscd.diff -p0
 any/local-gcc4-wcstol_l.diff 
 # any/local-ipv6-lookup.diff -p1               # has issues
+any/local-ip6-localhost.diff
 any/local-ld-multiarch.diff -p0
 any/local-ldd.diff -p0
 any/local-ldso-disable-hwcap.diff -p0
