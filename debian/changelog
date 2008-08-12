@@ -18,6 +18,8 @@ glibc (2.7-14) unstable; urgency=low
     to fix safety of locks.
   * patches/hurd-i386/local-pthread_posix-option.diff: new patch to advertise
     the libpthread from the hurd packages.
+  * patches/hurd-i386/submitted-signal-werror.diff: new patch to fix gdb
+    compilation.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 06 Aug 2008 17:00:36 +0200
 
