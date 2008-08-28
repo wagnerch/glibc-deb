@@ -2,6 +2,8 @@ glibc (2.7-14) unstable; urgency=low
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2310 (from glibc-bsd).
+  * extend kfreebsd/local-ftw.diff: do not use *at functions also in glob.c,
+    this patch is applied only on kfreebsd, fixes globtest.out failure.
   * any/local-linuxthreads-weak.diff: new patch to pass 
     stdio-common/scanf15.out test on linuxthreads platforms, 
     although it seems to be rather gcc 4.x bug, see GCC Bugzilla Bug 37266.
