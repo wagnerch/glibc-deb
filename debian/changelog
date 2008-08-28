@@ -1,7 +1,9 @@
 glibc (2.7-14) unstable; urgency=low
 
   [ Petr Salinger ]
-  * kfreebsd/local-sysdeps.diff: update to revision 2280 (from glibc-bsd).
+  * kfreebsd/local-sysdeps.diff: update to revision 2310 (from glibc-bsd).
+  * add any/local-linuxthreads-weak.diff to pass stdio-common/scanf15.out test
+    on linuxthreads platforms, although it seems to be rather gcc 4.x bug.
 
   [ Aurelien Jarno ]
   * patches/mips/cvs-mknod.diff: new patch from upstream to allow > 255 minors

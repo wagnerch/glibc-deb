@@ -193,6 +193,7 @@ any/local-linuxthreads-fatalprepare.diff -p0
 any/local-linuxthreads-semaphore_h.diff 
 any/local-linuxthreads-signals.diff -p0
 any/local-linuxthreads-tst-sighandler.diff 
+any/local-linuxthreads-weak.diff
 any/local-localedef-fix-trampoline.diff -p0
 any/local-makeconfig.diff -p0
 any/local-mktemp.diff -p0
