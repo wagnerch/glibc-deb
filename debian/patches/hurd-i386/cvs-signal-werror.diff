@@ -30,7 +30,7 @@ diff -u -p -r1.49 -r1.50
  	  break;							      \
  	/* Get the reference port.  */					      \
 -	if (__err = (fetch_refport_expr))				      \
-+	_err = (fetch_refport_expr);					      \
++	__err = (fetch_refport_expr);					      \
 +	if (__err)							      \
  	  {								      \
  	    /* Couldn't get it; deallocate MSGPORT and fail.  */	      \
