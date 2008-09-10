@@ -19,8 +19,6 @@ glibc (2.7-14) unstable; urgency=low
     ::1 -> 127.0.0.1 mapping.
   * any/cvs-isoc99_vscanf.diff: new patch from upstream to fix vscanf on
     non-GNU compilers.
-  * any/cvs-timer_delete.diff: new patch from upstream to fix a thread race
-    in glibc timer_delete.
 
   [ Samuel Thibault ]
   * patches/hurd-i386/cvs-lock-memory-clobber.diff: new patch from upstream

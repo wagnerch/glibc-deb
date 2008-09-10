@@ -160,7 +160,6 @@ any/cvs-isoc99_vscanf.diff
 any/cvs-rfc3484.diff -p1
 any/cvs-sched_h.diff -p0
 any/cvs-strtod.diff -p1
-any/cvs-timer_delete.diff
 any/cvs-tst-regex.diff -p1
 any/cvs-tzfile.diff -p1
 any/cvs-vfscanf.diff -p0
