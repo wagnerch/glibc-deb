@@ -37,7 +37,7 @@ EOF
         fi
 
         # Comment previous defined locales
-        sed -i -e 's/^[a-zA-Z]/#&/' $LG
+        sed -i -e 's/^[a-zA-Z]/# &/' $LG
 
         # Make sure all locales exists in locales.gen
         echo "$SUPPORTED_LOCALES" | while read locale ; do
