@@ -1,7 +1,7 @@
 glibc (2.7-15) unstable; urgency=low
 
   * debhelper.in/locales.config, debhelper.in/locales.postinst: modify
-    /etc/locale.gen instead of regenerating it.
+    /etc/locale.gen instead of regenerating it.  Closes: bug#494468.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 12 Oct 2008 18:00:22 +0200
 
