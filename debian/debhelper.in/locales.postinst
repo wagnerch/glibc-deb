@@ -14,7 +14,7 @@ if [ "$1" = configure ]; then
     . /usr/share/debconf/confmodule
     db_version 2.0
 
-    SUPPORTED_LOCALES="$(sed -e '/^[a-zA-Z]/!d' -e 's/ *$//g' /usr/share/i18n/SUPPORTED /usr/local/share/i18n/SUPPORTED | sort -u)"
+    SUPPORTED_LOCALES="$(sed -e '/^[a-zA-Z]/!d' -e 's/ *$//g' /usr/share/i18n/SUPPORTED /usr/local/share/i18n/SUPPORTED 2>/dev/null | sort -u)"
 
     db_get locales/default_environment_locale && DEFAULT_ENVIRONMENT="$RET"
     db_get locales/locales_to_be_generated && SELECTED_LOCALES=$RET
@@ -39,7 +39,7 @@ EOF
         # Comment previous defined locales
         sed -i -e 's/^[a-zA-Z]/# &/' $LG
 
-        # Make sure all locales exists in locales.gen
+        # Make sure all locales exist in locales.gen
         echo "$SUPPORTED_LOCALES" | while read locale ; do
            if ! grep -q "^# *$locale *\$" $LG; then 
              echo "# $locale" >> $LG
