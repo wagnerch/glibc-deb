@@ -1,3 +1,10 @@
+glibc (2.3.6.ds1-13etch8) stable; urgency=low
+
+  * Backport from unstable: keep ld.so in optimized libraries.  Closes:
+    #501433.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 13 Oct 2008 09:05:59 +0200
+
 glibc (2.3.6.ds1-13etch7) stable; urgency=low
 
   * patches/any/cvs-tls-link.diff: fix linker script for libraries using

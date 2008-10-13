@@ -124,11 +124,6 @@ $(stamp)install_%: $(stamp)check_%
 	  tar zcf $(CURDIR)/debian/locales-all/usr/lib/locales-all/supported.tar.gz -C $(CURDIR)/debian/tmp-libc/usr/lib/locale .; \
 	fi
 
-	# Remove ld.so from optimized libraries
-	if [ $(curpass) != libc ] && [ $(call xx,configure_build) = $(call xx,configure_target) ]; then \
-		rm -f debian/tmp-$(curpass)/$(call xx,slibdir)/ld*.so* ; \
-	fi
-	
 	# /usr/include/nptl and /usr/lib/nptl.  It assumes tmp-libc is already installed.
 	if [ $(curpass) = nptl ]; then \
 	  for file in `find debian/tmp-$(curpass)/usr/include -type f | sed 's/^debian\/tmp-nptl\///'`; do \
