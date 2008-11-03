@@ -170,6 +170,7 @@ any/cvs-regex_anchor.diff
 any/cvs-sunrpc_rpc_thread.diff
 any/cvs-strerror_r.diff 
 any/cvs-rpcgen-makefile.diff
+any/cvs-gai-stacksize.diff
 any/local-notls.diff -p0
 any/local-asserth-decls.diff -p0
 any/local-bashisms.diff -p0
