@@ -132,6 +132,7 @@ mips/local-setjmp.diff -p0
 
 powerpc/local-sysconf.diff 
 
+s390/local-atomic.diff -p1
 s390/submitted-nexttowardf.diff -p1
 
 sh4/local-fpscr_values.diff -p0
