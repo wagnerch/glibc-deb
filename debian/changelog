@@ -6,8 +6,10 @@ glibc (2.7-16) unstable; urgency=low
     atomic lock on s390.  Closes: bug#468793, bug#479952.
   * patches/any/cvs-gai-stacksize.diff new patch from upstream to fix
     getaddrinfo_a segfaults.  Closes: bug#495007.
+  * debhelper.in/locales.config: use previous debconf settings if 
+    /etc/locales does not exists.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 04 Nov 2008 00:43:00 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 04 Nov 2008 16:31:04 +0100
 
 glibc (2.7-15) unstable; urgency=low
 
