@@ -8,8 +8,6 @@ glibc (2.7-16) unstable; urgency=low
     getaddrinfo_a segfaults.  Closes: bug#495007.
   * debhelper.in/locales.config: use previous debconf settings if 
     /etc/locales does not exists.
-  * patches/any/cvs-eventfd.diff: new patch from upstream to fix 
-    eventfd2 syscall calling convention.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 04 Nov 2008 16:31:04 +0100
 
