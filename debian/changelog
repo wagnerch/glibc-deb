@@ -140,6 +140,9 @@ glibc (2.8+20080809-3) UNRELEASED; urgency=low
   * add any/local-linuxthreads-ptw.diff. Closes: #494908.
   * add kfreebsd/local-sysdeps28.diff, glibc 2.8 specific kfreebsd sysdeps.
 
+  [ Samuel Thibault ]
+  * Add hurd-i386/submitted-report-wait.diff.
+
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 13 Oct 2008 18:28:11 +0200
 
 glibc (2.7-16) unstable; urgency=low
