@@ -1,3 +1,11 @@
+glibc (2.3.6.ds1-13etch9) stable; urgency=low
+
+  * Backport from unstable: patches/localedata/sk_SK_euro.diff,
+    patches/localedata/sl_SI_euro.diff. Slovenia and Slovakia are now
+    part of the Eurozone.  Closes: #510423.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 04 Jan 2009 00:08:27 +0100
+
 glibc (2.3.6.ds1-13etch8) stable; urgency=low
 
   * Backport from unstable: keep ld.so in optimized libraries.  Closes:

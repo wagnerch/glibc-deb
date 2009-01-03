@@ -1,0 +1,17 @@
+Slovenia joined the Euro zone.
+
+diff --git a/localedata/locales/sl_SI b/localedata/locales/sl_SI
+index 8f7230d..b7e1194 100644
+--- a/localedata/locales/sl_SI
++++ b/localedata/locales/sl_SI
+@@ -2126,8 +2126,8 @@ noexpr  "<U005E><U005B><U004E><U006E><U005D><U002E><U002A>"
+ END LC_MESSAGES
+ 
+ LC_MONETARY
+-int_curr_symbol           "<U0053><U0049><U0054><U0020>"
+-currency_symbol           "<U0053><U0049><U0054>"
++int_curr_symbol           "<U0045><U0055><U0052><U0020>"
++currency_symbol           "<U20AC>"
+ mon_decimal_point         "<U002C>"
+ mon_thousands_sep         "<U0020>"
+ mon_grouping              3;3
