@@ -1,8 +1,10 @@
 glibc (2.9-5) unstable; urgency=low
 
-  * 
+  [ Clint Adams ]
+  * Change first day of the week in ru_UA locale to Monday.  closes:
+    #517386.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 27 Feb 2009 20:18:01 +0100
+ -- Clint Adams <schizo@debian.org>  Fri, 27 Feb 2009 14:52:11 -0500
 
 glibc (2.9-4) unstable; urgency=low
 
