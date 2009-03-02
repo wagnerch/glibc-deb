@@ -10,7 +10,7 @@ glibc (2.9-5) unstable; urgency=low
     testgrp.out from the ignore list, it was due to a misconfiguration
     of the build daemon.
   * debhelper.in/libc.{preinst,postint}: bump the version triggering the
-    restart of NSS related services to 2.9-4.
+    restart of NSS related services to 2.9-5.
   * debhelper.in/libc.postint: change cupsys into cups.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 02 Mar 2009 10:02:14 +0100
