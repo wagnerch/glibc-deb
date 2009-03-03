@@ -21,6 +21,9 @@ glibc (2.9-5) unstable; urgency=low
     submitted-ECANCELED.diff
   * debian/patches/hurd-i386/local-net-headers.diff: rename into
     cvs-net-headers.diff
+  * debian/patches/hurd-i386/local-pthread_types.diff: make it create a new
+    sysdep/mach/hurd/bits/pthreadtypes.h instead of modifying
+    bits/pthreadtypes.h.  Move from series.hurd-i386 to series.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 03 Mar 2009 00:54:27 +0100
 
