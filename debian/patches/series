@@ -84,7 +84,7 @@ hurd-i386/submitted-stat.diff
 hurd-i386/submitted-strtoul.diff
 hurd-i386/submitted-sysvshm.diff
 hurd-i386/submitted-ioctl-unsigned-size_t.diff
-hurd-i386/cvs-ECANCELED.diff
+hurd-i386/submitted-ECANCELED.diff
 hurd-i386/submitted-IPV6_PKTINFO.diff
 hurd-i386/submitted-extern_inline.diff
 hurd-i386/cvs-resource-prio.diff

@@ -16,6 +16,10 @@ glibc (2.9-5) unstable; urgency=low
     - debhelper.in/locales.config: use previous debconf settings if 
       /etc/locales does not exists. Closes: bug#517884.
 
+  [ Samuel Thibault ]
+  * debian/patches/hurd-i386/cvs-ECANCELED.diff: rename into
+    submitted-ECANCELED.diff
+
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 03 Mar 2009 00:54:27 +0100
 
 glibc (2.9-4) unstable; urgency=low
