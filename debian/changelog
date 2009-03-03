@@ -26,6 +26,10 @@ glibc (2.9-5) unstable; urgency=low
     bits/pthreadtypes.h.  Move from series.hurd-i386 to series.
   * debian/patches/hurd-i386/local-tls-dtv-offset.diff: remove patch, make
     local-tls-support.diff create tlsdesc.sym instead.
+  * debian/patches/hurd-i386/local-no-strerror_l.diff: remove patch, replaced
+    by...
+  * debian/patches/hurd-i386/cvs-strerror_l.diff: new patch from Thomas
+    Schwinge.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 03 Mar 2009 00:54:27 +0100
 
