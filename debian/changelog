@@ -19,6 +19,8 @@ glibc (2.9-5) unstable; urgency=low
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/cvs-ECANCELED.diff: rename into
     submitted-ECANCELED.diff
+  * debian/patches/hurd-i386/local-net-headers.diff: rename into
+    cvs-net-headers.diff
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 03 Mar 2009 00:54:27 +0100
 
