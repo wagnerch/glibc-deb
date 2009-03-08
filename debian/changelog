@@ -15,6 +15,7 @@ glibc (2.9-5) unstable; urgency=low
   * merge lost patch from lenny:
     - debhelper.in/locales.config: use previous debconf settings if 
       /etc/locales does not exists. Closes: bug#517884.
+  * debian/local/manpages/ld.so.8: fix a typo.  Closes: bug#518394.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/cvs-ECANCELED.diff: rename into
@@ -31,7 +32,7 @@ glibc (2.9-5) unstable; urgency=low
   * debian/patches/hurd-i386/cvs-strerror_l.diff: new patch from Thomas
     Schwinge.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 03 Mar 2009 00:54:27 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 08 Mar 2009 14:49:50 +0100
 
 glibc (2.9-4) unstable; urgency=low
 
