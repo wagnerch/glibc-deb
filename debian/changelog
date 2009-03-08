@@ -16,6 +16,9 @@ glibc (2.9-5) unstable; urgency=low
     - debhelper.in/locales.config: use previous debconf settings if 
       /etc/locales does not exists. Closes: bug#517884.
   * debian/local/manpages/ld.so.8: fix a typo.  Closes: bug#518394.
+  * debhelper.in/libc.preinst, debhelper.in/libc.templates: warn users 
+    about the need to disable xscreensaver and xlockmore before libc6 
+    is unpacked.  Closes: bug#517795.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/cvs-ECANCELED.diff: rename into
@@ -32,7 +35,7 @@ glibc (2.9-5) unstable; urgency=low
   * debian/patches/hurd-i386/cvs-strerror_l.diff: new patch from Thomas
     Schwinge.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 08 Mar 2009 14:49:50 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 08 Mar 2009 18:58:04 +0100
 
 glibc (2.9-4) unstable; urgency=low
 
