@@ -12,6 +12,8 @@ glibc (2.9-5) unstable; urgency=low
   * debhelper.in/libc.{preinst,postint}: bump the version triggering the
     restart of NSS related services to 2.9-5.
   * debhelper.in/libc.postint: change cupsys into cups.
+  * script.in/nsscheck.sh: convert mysql-server into mysql. Closes:
+    bug#172123.
   * merge lost patch from lenny:
     - debhelper.in/locales.config: use previous debconf settings if 
       /etc/locales does not exists. Closes: bug#517884.
@@ -35,7 +37,7 @@ glibc (2.9-5) unstable; urgency=low
   * debian/patches/hurd-i386/cvs-strerror_l.diff: new patch from Thomas
     Schwinge.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 08 Mar 2009 18:58:04 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 12 Mar 2009 00:13:02 +0100
 
 glibc (2.9-4) unstable; urgency=low
 
