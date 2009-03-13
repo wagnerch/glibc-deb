@@ -2,6 +2,9 @@ glibc (2.9-6) unstable; urgency=low
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/local-tls-support.diff: fix typo in tlsdesc.sym.
+  
+  [ Aurelien Jarno ]
+  * debian/po/de.po: fix German translation.  Closes: bug#519612.
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 12 Mar 2009 09:52:07 +0100
 
