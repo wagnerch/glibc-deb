@@ -5,6 +5,7 @@ glibc (2.9-6) unstable; urgency=low
   
   [ Aurelien Jarno ]
   * debian/po/de.po: fix German translation.  Closes: bug#519612.
+  * Update French debconf translation, by Christian Perrier.  Closes: #519662.
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 12 Mar 2009 09:52:07 +0100
 
