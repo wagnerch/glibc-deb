@@ -98,7 +98,7 @@ Description: GNU C Library: Development Libraries and Header Files
 
 Package: libc6-dbg
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
-Section: libdevel
+Section: debug
 Priority: extra
 Provides: libc-dbg
 Depends: libc6 (= ${binary:Version})
@@ -166,7 +166,7 @@ Description: GNU C Library: Development Libraries and Header Files
 
 Package: libc6.1-dbg
 Architecture: alpha ia64
-Section: libdevel
+Section: debug
 Priority: extra
 Provides: libc-dbg
 Depends: libc6.1 (= ${binary:Version})
@@ -234,7 +234,7 @@ Description: GNU C Library: Development Libraries and Header Files
 
 Package: libc0.3-dbg
 Architecture: hurd-i386
-Section: libdevel
+Section: debug
 Priority: extra
 Provides: libc-dbg
 Depends: libc0.3 (= ${binary:Version})
@@ -302,7 +302,7 @@ Description: GNU C Library: Development Libraries and Header Files
 
 Package: libc0.1-dbg
 Architecture: kfreebsd-i386 kfreebsd-amd64
-Section: libdevel
+Section: debug
 Priority: extra
 Provides: libc-dbg
 Depends: libc0.1 (= ${binary:Version})

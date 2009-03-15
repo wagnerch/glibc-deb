@@ -15,8 +15,9 @@ glibc (2.9-6) unstable; urgency=low
   * any/submitted-getaddrinfo-lo.diff: correctly handle the lo interface and
     associated addresses when checking for native connection.  Closes: 
     bug#519545.
+  * debian/control.in/libc: change -dbg packages to section debug. 
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 15 Mar 2009 10:29:05 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 15 Mar 2009 19:45:14 +0100
 
 glibc (2.9-5) unstable; urgency=low
 
