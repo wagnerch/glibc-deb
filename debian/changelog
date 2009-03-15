@@ -18,8 +18,8 @@ glibc (2.9-6) unstable; urgency=low
   * debian/control.in/libc: change -dbg packages to section debug. 
   * debian/control.in/main: update Standards-Version to 3.8.1:
     - debian/local/etc_init.d/glibc.sh: move set -e out from the shebang line.
-    - debian/debhelper.in/nscd.init: exit succesfully if the daemon was already
-      running.
+    - debian/debhelper.in/nscd.init: exit successfully if the daemon was 
+      already running.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 15 Mar 2009 19:49:38 +0100
 
