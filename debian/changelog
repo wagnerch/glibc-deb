@@ -20,8 +20,9 @@ glibc (2.9-6) unstable; urgency=low
     - debian/local/etc_init.d/glibc.sh: move set -e out from the shebang line.
     - debian/debhelper.in/nscd.init: exit successfully if the daemon was 
       already running.
+  * debian/debhelper.in/nscd.dirs: remove /var/run/nscd directory.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 15 Mar 2009 19:49:38 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 15 Mar 2009 21:22:48 +0100
 
 glibc (2.9-5) unstable; urgency=low
 
