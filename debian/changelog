@@ -12,6 +12,9 @@ glibc (2.9-6) unstable; urgency=low
     only returning a broken AAAA answer. As it seems the second type of broken
     DNS concerns more users, let's revert to the old behaviour.  Closes: 
     #516218.
+  * any/submitted-getaddrinfo-lo.diff: correctly handle the lo interface and
+    associated addresses when checking for native connection.  Closes: 
+    bug#519545.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 15 Mar 2009 10:29:05 +0100
 
