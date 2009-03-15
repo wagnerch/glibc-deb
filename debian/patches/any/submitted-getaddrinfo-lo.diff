@@ -1,28 +1,10 @@
 2009-03-15  Aurelien Jarno  <aurelien@aurel32.net>
 
-	* sysdeps/posix/getaddrinfo.c (rfc3484_sort): don't assigned native
-	result if the result has no associated interface.
 	* sysdeps/posix/getaddrinfo.c (getaddrinfo): correctly detect 
 	interface for all 127.X.Y.Z addresses.
 
 --- a/sysdeps/posix/getaddrinfo.c
 +++ b/sysdeps/posix/getaddrinfo.c
-@@ -1455,13 +1455,13 @@ rfc3484_sort (const void *p1, const void *p2, void *arg)
- 
- 	      /* Fill in the results in all the records.  */
- 	      for (int i = 0; i < src->nresults; ++i)
--		if (src->results[i].index == a1_index)
-+		if (a1_index != -1 && src->results[i].index == a1_index)
- 		  {
- 		    assert (src->results[i].native == -1
- 			    || src->results[i].native == a1_native);
- 		    src->results[i].native = a1_native;
- 		  }
--		else if (src->results[i].index == a2_index)
-+		else if (a2_index != -1 && src->results[i].index == a2_index)
- 		  {
- 		    assert (src->results[i].native == -1
- 			    || src->results[i].native == a2_native);
 @@ -2264,7 +2264,14 @@ getaddrinfo (const char *name, const char *service,
  			  tmp.addr[0] = 0;
  			  tmp.addr[1] = 0;
