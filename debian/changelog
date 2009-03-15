@@ -6,8 +6,14 @@ glibc (2.9-6) unstable; urgency=low
   [ Aurelien Jarno ]
   * debian/po/de.po: fix German translation.  Closes: bug#519612.
   * Update French debconf translation, by Christian Perrier.  Closes: #519662.
+  * any/local-disable-gethostbyname4.diff: disable unified lookup for 
+    getaddrinfo(). While unified lookup fix the problem of DNS servers simply 
+    dropping AAAA requests, it breaks lookup with even more broken DNS servers
+    only returning a broken AAAA answer. As it seems the second type of broken
+    DNS concerns more users, let's revert to the old behaviour.  Closes: 
+    #516218.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 12 Mar 2009 09:52:07 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 15 Mar 2009 10:29:05 +0100
 
 glibc (2.9-5) unstable; urgency=low
 
