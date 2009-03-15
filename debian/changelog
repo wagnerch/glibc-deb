@@ -16,8 +16,12 @@ glibc (2.9-6) unstable; urgency=low
     associated addresses when checking for native connection.  Closes: 
     bug#519545.
   * debian/control.in/libc: change -dbg packages to section debug. 
+  * debian/control.in/main: update Standards-Version to 3.8.1:
+    - debian/local/etc_init.d/glibc.sh: move set -e out from the shebang line.
+    - debian/debhelper.in/nscd.init: exit succesfully if the daemon was already
+      running.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 15 Mar 2009 19:45:14 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 15 Mar 2009 19:49:38 +0100
 
 glibc (2.9-5) unstable; urgency=low
 
