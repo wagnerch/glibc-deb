@@ -1,3 +1,9 @@
+glibc (2.9-7) unstable; urgency=low
+
+  * Update German debconf translation, by Helge Kreutzman.  Closes: #519992.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 18 Mar 2009 11:51:16 +0100
+
 glibc (2.9-6) unstable; urgency=low
 
   [ Samuel Thibault ]
