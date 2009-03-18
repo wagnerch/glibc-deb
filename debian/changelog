@@ -4,6 +4,8 @@ glibc (2.9-7) unstable; urgency=low
   * Update testsuite results on alpha, tst-timer.out exits with SIGILL on
     some machines, it was already the case with glibc 2.7 on the same 
     machines.
+  * Update testsuite results on hppa, tst-posix_fallocate.out and 
+    tst-makecontext.out are known to fail with a 32-bit kernel.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 18 Mar 2009 11:51:16 +0100
 
