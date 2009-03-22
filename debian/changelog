@@ -7,6 +7,7 @@ glibc (2.9-7) unstable; urgency=low
   * Update testsuite results on hppa, tst-posix_fallocate.out and 
     tst-makecontext.out are known to fail with a 32-bit kernel.
   * debian/script.in/nsscheck.sh: fix a typo.  Closes: #520455.
+  * kfreebsd/local-sysdeps.diff: update to revision 2379 (from glibc-bsd).
 
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 20 Mar 2009 12:28:48 +0100
 
