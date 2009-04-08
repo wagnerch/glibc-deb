@@ -1,3 +1,11 @@
+glibc (2.9-8) unstable; urgency=low
+
+  * patches/any/local-csu-init.diff, patches/hppa/local-nptl-compat.diff:
+    new patches from Carlos O'Donell to add a compatibility layer for 
+    binaries built against linuxthreads.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 08 Apr 2009 10:42:05 +0200
+
 glibc (2.9-7) unstable; urgency=low
 
   [ Aurelien Jarno ]

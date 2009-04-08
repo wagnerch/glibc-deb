@@ -70,6 +70,7 @@ hppa/submitted-lt.diff
 hppa/submitted-nptl-carlos.diff
 hppa/submitted-pie.diff
 hppa/cvs-tsd.diff
+hppa/local-nptl-compat.diff
 
 hurd-i386/local-dl-dynamic-weak.diff
 hurd-i386/local-enable-ldconfig.diff
@@ -193,3 +194,4 @@ any/submitted-futex_robust_pi.diff
 any/cvs-bz7058-nss_nss-nis.diff
 any/local-disable-gethostbyname4.diff
 any/submitted-getaddrinfo-lo.diff
+any/local-csu-init.diff
