@@ -1,9 +1,14 @@
 glibc (2.9-8) unstable; urgency=low
 
+  [ Aurelien Jarno ]
   * patches/any/local-csu-init.diff, patches/hppa/local-nptl-compat.diff:
     new patches from Carlos O'Donell to add a compatibility layer for 
     binaries built against linuxthreads.
   * Update Swedish debconf translation, by Martin Bagger.  Closes: #522982.
+
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: update to revision 2449 (from glibc-bsd).
+    Closes: #522686. Thanks to Jan Christoph Nordholz.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 08 Apr 2009 10:42:05 +0200
 
