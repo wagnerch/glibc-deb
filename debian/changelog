@@ -10,6 +10,10 @@ glibc (2.9-8) unstable; urgency=low
   * kfreebsd/local-sysdeps.diff: update to revision 2450 (from glibc-bsd).
     Closes: #522686. Thanks to Jan Christoph Nordholz.
 
+  [ Samuel Thibault ]
+  * hurd-i386/cvs-rtld.diff: new patch, fixes boot of glibc built with
+    binutils >= 2.19.
+
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 08 Apr 2009 10:42:05 +0200
 
 glibc (2.9-7) unstable; urgency=low
