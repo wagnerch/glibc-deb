@@ -4,6 +4,8 @@ glibc (2.9-8) unstable; urgency=low
   * Update Swedish debconf translation, by Martin Bagger.  Closes: #522982.
   * mips/cvs-context.diff: new patch from upstream to add getcontext, 
     setcontext, makecontext, swapcontext.
+  * any/submitted-mount_h.diff: new patch to add MNT_DETACH and MNT_EXPIRE to
+    sys/mount.h.  Closes: #523952.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2450 (from glibc-bsd).
