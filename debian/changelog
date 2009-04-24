@@ -8,6 +8,8 @@ glibc (2.9-8) unstable; urgency=low
     sys/mount.h.  Closes: #523952.
   * arm/submitted-fpu_control_h.diff: new patch to disable macros from 
     <fpu_control.h> on EABI.  Closes: #525261.
+  * any/cvs-iconv-utf16.diff: new patch from upstream to reject UTF-8-encoded 
+    UTF-16 surrogates in iconv.  Closes: #525299.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2450 (from glibc-bsd).
