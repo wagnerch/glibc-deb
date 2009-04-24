@@ -7,7 +7,7 @@ glibc (2.9-8) unstable; urgency=low
   * any/submitted-mount_h.diff: new patch to add MNT_DETACH and MNT_EXPIRE to
     sys/mount.h.  Closes: #523952.
   * arm/submitted-fpu_control_h.diff: new patch to disable macros from 
-    <fpu_control.h> on EABI.
+    <fpu_control.h> on EABI.  Closes: #525261.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2450 (from glibc-bsd).
