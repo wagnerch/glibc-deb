@@ -11,7 +11,7 @@ index 55d7764..30f0f68 100644
  #ifndef _FPU_CONTROL_H
  #define _FPU_CONTROL_H
  
-+#ifdef __SOFTFP__
++#if !defined(_LIBC) && defined(__SOFTFP__)
 +
 +#define _FPU_RESERVED 0xffffffff
 +#define _FPU_DEFAULT  0x00000000
