@@ -9,7 +9,7 @@ $(stamp)mkincludedir-mips:
 	ln -s $(LINUX_HEADERS)/linux debian/include
 	ln -s $(LINUX_HEADERS)/asm-generic debian/include
 	cp -a $(LINUX_HEADERS)/asm debian/include
-	cp -f debian/mips_asm_unistd.h $(LINUX_HEADERS)/asm
+	cp -f debian/mips_asm_unistd.h debian/include/asm/unistd.h
 
 	# To make configure happy if libc6-dev is not installed.
 	touch debian/include/assert.h
