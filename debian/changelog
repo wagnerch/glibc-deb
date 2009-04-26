@@ -10,6 +10,8 @@ glibc (2.9-8) unstable; urgency=low
     <fpu_control.h> on EABI.  Closes: #525261.
   * any/cvs-iconv-utf16.diff: new patch from upstream to reject UTF-8-encoded 
     UTF-16 surrogates in iconv.  Closes: #525299.
+  * any/local-getaddrinfo-interface.diff: ignore addresses with no interface
+    assigned while sorting with rule 7. Closes: #521439.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2450 (from glibc-bsd).

@@ -199,3 +199,4 @@ any/local-disable-gethostbyname4.diff
 any/submitted-getaddrinfo-lo.diff
 any/submitted-mount_h.diff
 any/cvs-iconv-utf16.diff
+any/local-getaddrinfo-interface.diff
