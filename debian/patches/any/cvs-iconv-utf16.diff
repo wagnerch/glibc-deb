@@ -1,3 +1,7 @@
+2009-04-25  Ulrich Drepper  <drepper@redhat.com>
+
+	* libio/tst-widetext.input: Remove surrog
+
 2009-04-24  Ulrich Drepper  <drepper@redhat.com>
 
 	[BZ #10093]
@@ -19,3 +23,55 @@ index 5cf3237..e34f377 100644
  	  {								      \
  	    /* This is an illegal encoding.  */				      \
  	    goto errout;						      \
+diff --git a/libio/tst-widetext.input b/libio/tst-widetext.input
+index f9694dc..bef07ce 100644
+--- a/libio/tst-widetext.input
++++ b/libio/tst-widetext.input
+@@ -1807,47 +1807,6 @@ Free block (U+D7A4-U+D7FF):
+ íž¤íž¥íž¦íž§íž¨íž©ížªíž«íž¬íž­íž®íž¯íž°íž±íž²íž³íž´ížµíž¶íž·íž¸íž¹ížºíž»íž¼íž½íž¾íž¿íŸ€íŸíŸ‚íŸƒíŸ„íŸ…íŸ†íŸ‡íŸˆíŸ‰íŸŠíŸ‹íŸŒíŸíŸŽíŸíŸíŸ‘íŸ’íŸ“íŸ”íŸ•íŸ–íŸ—íŸ˜íŸ™íŸšíŸ›íŸœíŸíŸžíŸŸíŸ íŸ¡íŸ¢íŸ£
+ íŸ¤íŸ¥íŸ¦íŸ§íŸ¨íŸ©íŸªíŸ«íŸ¬íŸ­íŸ®íŸ¯íŸ°íŸ±íŸ²íŸ³íŸ´íŸµíŸ¶íŸ·íŸ¸íŸ¹íŸºíŸ»íŸ¼íŸ½íŸ¾íŸ¿
+ 
+-High Surrogates (U+D800-U+DB7F):
+-
+-í €í í ‚í ƒí „í …í †í ‡í ˆí ‰í Ší ‹í Œí í Ží í í ‘í ’í “í ”í •í –í —í ˜í ™í ší ›í œí í ží Ÿí  í ¡í ¢í £í ¤í ¥í ¦í §í ¨í ©í ªí «í ¬í ­í ®í ¯í °í ±í ²í ³í ´í µí ¶í ·í ¸í ¹í ºí »í ¼í ½í ¾í ¿
+-í¡€í¡í¡‚í¡ƒí¡„í¡…í¡†í¡‡í¡ˆí¡‰í¡Ší¡‹í¡Œí¡í¡Ží¡í¡í¡‘í¡’í¡“í¡”í¡•í¡–í¡—í¡˜í¡™í¡ší¡›í¡œí¡í¡ží¡Ÿí¡ í¡¡í¡¢í¡£í¡¤í¡¥í¡¦í¡§í¡¨í¡©í¡ªí¡«í¡¬í¡­í¡®í¡¯í¡°í¡±í¡²í¡³í¡´í¡µí¡¶í¡·í¡¸í¡¹í¡ºí¡»í¡¼í¡½í¡¾í¡¿
+-í¢€í¢í¢‚í¢ƒí¢„í¢…í¢†í¢‡í¢ˆí¢‰í¢Ší¢‹í¢Œí¢í¢Ží¢í¢í¢‘í¢’í¢“í¢”í¢•í¢–í¢—í¢˜í¢™í¢ší¢›í¢œí¢í¢ží¢Ÿí¢ í¢¡í¢¢í¢£í¢¤í¢¥í¢¦í¢§í¢¨í¢©í¢ªí¢«í¢¬í¢­í¢®í¢¯í¢°í¢±í¢²í¢³í¢´í¢µí¢¶í¢·í¢¸í¢¹í¢ºí¢»í¢¼í¢½í¢¾í¢¿
+-í£€í£í£‚í£ƒí£„í£…í£†í£‡í£ˆí£‰í£Ší£‹í£Œí£í£Ží£í£í£‘í£’í£“í£”í£•í£–í£—í£˜í£™í£ší£›í£œí£í£ží£Ÿí£ í£¡í£¢í££í£¤í£¥í£¦í£§í£¨í£©í£ªí£«í£¬í£­í£®í£¯í£°í£±í£²í£³í£´í£µí£¶í£·í£¸í£¹í£ºí£»í£¼í£½í£¾í£¿
+-í¤€í¤í¤‚í¤ƒí¤„í¤…í¤†í¤‡í¤ˆí¤‰í¤Ší¤‹í¤Œí¤í¤Ží¤í¤í¤‘í¤’í¤“í¤”í¤•í¤–í¤—í¤˜í¤™í¤ší¤›í¤œí¤í¤ží¤Ÿí¤ í¤¡í¤¢í¤£í¤¤í¤¥í¤¦í¤§í¤¨í¤©í¤ªí¤«í¤¬í¤­í¤®í¤¯í¤°í¤±í¤²í¤³í¤´í¤µí¤¶í¤·í¤¸í¤¹í¤ºí¤»í¤¼í¤½í¤¾í¤¿
+-í¥€í¥í¥‚í¥ƒí¥„í¥…í¥†í¥‡í¥ˆí¥‰í¥Ší¥‹í¥Œí¥í¥Ží¥í¥í¥‘í¥’í¥“í¥”í¥•í¥–í¥—í¥˜í¥™í¥ší¥›í¥œí¥í¥ží¥Ÿí¥ í¥¡í¥¢í¥£í¥¤í¥¥í¥¦í¥§í¥¨í¥©í¥ªí¥«í¥¬í¥­í¥®í¥¯í¥°í¥±í¥²í¥³í¥´í¥µí¥¶í¥·í¥¸í¥¹í¥ºí¥»í¥¼í¥½í¥¾í¥¿
+-í¦€í¦í¦‚í¦ƒí¦„í¦…í¦†í¦‡í¦ˆí¦‰í¦Ší¦‹í¦Œí¦í¦Ží¦í¦í¦‘í¦’í¦“í¦”í¦•í¦–í¦—í¦˜í¦™í¦ší¦›í¦œí¦í¦ží¦Ÿí¦ í¦¡í¦¢í¦£í¦¤í¦¥í¦¦í¦§í¦¨í¦©í¦ªí¦«í¦¬í¦­í¦®í¦¯í¦°í¦±í¦²í¦³í¦´í¦µí¦¶í¦·í¦¸í¦¹í¦ºí¦»í¦¼í¦½í¦¾í¦¿
+-í§€í§í§‚í§ƒí§„í§…í§†í§‡í§ˆí§‰í§Ší§‹í§Œí§í§Ží§í§í§‘í§’í§“í§”í§•í§–í§—í§˜í§™í§ší§›í§œí§í§ží§Ÿí§ í§¡í§¢í§£í§¤í§¥í§¦í§§í§¨í§©í§ªí§«í§¬í§­í§®í§¯í§°í§±í§²í§³í§´í§µí§¶í§·í§¸í§¹í§ºí§»í§¼í§½í§¾í§¿
+-í¨€í¨í¨‚í¨ƒí¨„í¨…í¨†í¨‡í¨ˆí¨‰í¨Ší¨‹í¨Œí¨í¨Ží¨í¨í¨‘í¨’í¨“í¨”í¨•í¨–í¨—í¨˜í¨™í¨ší¨›í¨œí¨í¨ží¨Ÿí¨ í¨¡í¨¢í¨£í¨¤í¨¥í¨¦í¨§í¨¨í¨©í¨ªí¨«í¨¬í¨­í¨®í¨¯í¨°í¨±í¨²í¨³í¨´í¨µí¨¶í¨·í¨¸í¨¹í¨ºí¨»í¨¼í¨½í¨¾í¨¿
+-í©€í©í©‚í©ƒí©„í©…í©†í©‡í©ˆí©‰í©Ší©‹í©Œí©í©Ží©í©í©‘í©’í©“í©”í©•í©–í©—í©˜í©™í©ší©›í©œí©í©ží©Ÿí© í©¡í©¢í©£í©¤í©¥í©¦í©§í©¨í©©í©ªí©«í©¬í©­í©®í©¯í©°í©±í©²í©³í©´í©µí©¶í©·í©¸í©¹í©ºí©»í©¼í©½í©¾í©¿
+-íª€íªíª‚íªƒíª„íª…íª†íª‡íªˆíª‰íªŠíª‹íªŒíªíªŽíªíªíª‘íª’íª“íª”íª•íª–íª—íª˜íª™íªšíª›íªœíªíªžíªŸíª íª¡íª¢íª£íª¤íª¥íª¦íª§íª¨íª©íªªíª«íª¬íª­íª®íª¯íª°íª±íª²íª³íª´íªµíª¶íª·íª¸íª¹íªºíª»íª¼íª½íª¾íª¿
+-í«€í«í«‚í«ƒí«„í«…í«†í«‡í«ˆí«‰í«Ší«‹í«Œí«í«Ží«í«í«‘í«’í«“í«”í«•í«–í«—í«˜í«™í«ší«›í«œí«í«ží«Ÿí« í«¡í«¢í«£í«¤í«¥í«¦í«§í«¨í«©í«ªí««í«¬í«­í«®í«¯í«°í«±í«²í«³í«´í«µí«¶í«·í«¸í«¹í«ºí«»í«¼í«½í«¾í«¿
+-í¬€í¬í¬‚í¬ƒí¬„í¬…í¬†í¬‡í¬ˆí¬‰í¬Ší¬‹í¬Œí¬í¬Ží¬í¬í¬‘í¬’í¬“í¬”í¬•í¬–í¬—í¬˜í¬™í¬ší¬›í¬œí¬í¬ží¬Ÿí¬ í¬¡í¬¢í¬£í¬¤í¬¥í¬¦í¬§í¬¨í¬©í¬ªí¬«í¬¬í¬­í¬®í¬¯í¬°í¬±í¬²í¬³í¬´í¬µí¬¶í¬·í¬¸í¬¹í¬ºí¬»í¬¼í¬½í¬¾í¬¿
+-í­€í­í­‚í­ƒí­„í­…í­†í­‡í­ˆí­‰í­Ší­‹í­Œí­í­Ží­í­í­‘í­’í­“í­”í­•í­–í­—í­˜í­™í­ší­›í­œí­í­ží­Ÿí­ í­¡í­¢í­£í­¤í­¥í­¦í­§í­¨í­©í­ªí­«í­¬í­­í­®í­¯í­°í­±í­²í­³í­´í­µí­¶í­·í­¸í­¹í­ºí­»í­¼í­½í­¾í­¿
+-
+-High Private Use Surrogates (U+DB80-U+DBFF):
+-
+-í®€í®í®‚í®ƒí®„í®…í®†í®‡í®ˆí®‰í®Ší®‹í®Œí®í®Ží®í®í®‘í®’í®“í®”í®•í®–í®—í®˜í®™í®ší®›í®œí®í®ží®Ÿí® í®¡í®¢í®£í®¤í®¥í®¦í®§í®¨í®©í®ªí®«í®¬í®­í®®í®¯í®°í®±í®²í®³í®´í®µí®¶í®·í®¸í®¹í®ºí®»í®¼í®½í®¾í®¿
+-í¯€í¯í¯‚í¯ƒí¯„í¯…í¯†í¯‡í¯ˆí¯‰í¯Ší¯‹í¯Œí¯í¯Ží¯í¯í¯‘í¯’í¯“í¯”í¯•í¯–í¯—í¯˜í¯™í¯ší¯›í¯œí¯í¯ží¯Ÿí¯ í¯¡í¯¢í¯£í¯¤í¯¥í¯¦í¯§í¯¨í¯©í¯ªí¯«í¯¬í¯­í¯®í¯¯í¯°í¯±í¯²í¯³í¯´í¯µí¯¶í¯·í¯¸í¯¹í¯ºí¯»í¯¼í¯½í¯¾í¯¿
+-
+-Low Surrogates (U+DC00-U+DFFF):
+-
+-í°€í°í°‚í°ƒí°„í°…í°†í°‡í°ˆí°‰í°Ší°‹í°Œí°í°Ží°í°í°‘í°’í°“í°”í°•í°–í°—í°˜í°™í°ší°›í°œí°í°ží°Ÿí° í°¡í°¢í°£í°¤í°¥í°¦í°§í°¨í°©í°ªí°«í°¬í°­í°®í°¯í°°í°±í°²í°³í°´í°µí°¶í°·í°¸í°¹í°ºí°»í°¼í°½í°¾í°¿
+-í±€í±í±‚í±ƒí±„í±…í±†í±‡í±ˆí±‰í±Ší±‹í±Œí±í±Ží±í±í±‘í±’í±“í±”í±•í±–í±—í±˜í±™í±ší±›í±œí±í±ží±Ÿí± í±¡í±¢í±£í±¤í±¥í±¦í±§í±¨í±©í±ªí±«í±¬í±­í±®í±¯í±°í±±í±²í±³í±´í±µí±¶í±·í±¸í±¹í±ºí±»í±¼í±½í±¾í±¿
+-í²€í²í²‚í²ƒí²„í²…í²†í²‡í²ˆí²‰í²Ší²‹í²Œí²í²Ží²í²í²‘í²’í²“í²”í²•í²–í²—í²˜í²™í²ší²›í²œí²í²ží²Ÿí² í²¡í²¢í²£í²¤í²¥í²¦í²§í²¨í²©í²ªí²«í²¬í²­í²®í²¯í²°í²±í²²í²³í²´í²µí²¶í²·í²¸í²¹í²ºí²»í²¼í²½í²¾í²¿
+-í³€í³í³‚í³ƒí³„í³…í³†í³‡í³ˆí³‰í³Ší³‹í³Œí³í³Ží³í³í³‘í³’í³“í³”í³•í³–í³—í³˜í³™í³ší³›í³œí³í³ží³Ÿí³ í³¡í³¢í³£í³¤í³¥í³¦í³§í³¨í³©í³ªí³«í³¬í³­í³®í³¯í³°í³±í³²í³³í³´í³µí³¶í³·í³¸í³¹í³ºí³»í³¼í³½í³¾í³¿
+-í´€í´í´‚í´ƒí´„í´…í´†í´‡í´ˆí´‰í´Ší´‹í´Œí´í´Ží´í´í´‘í´’í´“í´”í´•í´–í´—í´˜í´™í´ší´›í´œí´í´ží´Ÿí´ í´¡í´¢í´£í´¤í´¥í´¦í´§í´¨í´©í´ªí´«í´¬í´­í´®í´¯í´°í´±í´²í´³í´´í´µí´¶í´·í´¸í´¹í´ºí´»í´¼í´½í´¾í´¿
+-íµ€íµíµ‚íµƒíµ„íµ…íµ†íµ‡íµˆíµ‰íµŠíµ‹íµŒíµíµŽíµíµíµ‘íµ’íµ“íµ”íµ•íµ–íµ—íµ˜íµ™íµšíµ›íµœíµíµžíµŸíµ íµ¡íµ¢íµ£íµ¤íµ¥íµ¦íµ§íµ¨íµ©íµªíµ«íµ¬íµ­íµ®íµ¯íµ°íµ±íµ²íµ³íµ´íµµíµ¶íµ·íµ¸íµ¹íµºíµ»íµ¼íµ½íµ¾íµ¿
+-í¶€í¶í¶‚í¶ƒí¶„í¶…í¶†í¶‡í¶ˆí¶‰í¶Ší¶‹í¶Œí¶í¶Ží¶í¶í¶‘í¶’í¶“í¶”í¶•í¶–í¶—í¶˜í¶™í¶ší¶›í¶œí¶í¶ží¶Ÿí¶ í¶¡í¶¢í¶£í¶¤í¶¥í¶¦í¶§í¶¨í¶©í¶ªí¶«í¶¬í¶­í¶®í¶¯í¶°í¶±í¶²í¶³í¶´í¶µí¶¶í¶·í¶¸í¶¹í¶ºí¶»í¶¼í¶½í¶¾í¶¿
+-í·€í·í·‚í·ƒí·„í·…í·†í·‡í·ˆí·‰í·Ší·‹í·Œí·í·Ží·í·í·‘í·’í·“í·”í·•í·–í·—í·˜í·™í·ší·›í·œí·í·ží·Ÿí· í·¡í·¢í·£í·¤í·¥í·¦í·§í·¨í·©í·ªí·«í·¬í·­í·®í·¯í·°í·±í·²í·³í·´í·µí·¶í··í·¸í·¹í·ºí·»í·¼í·½í·¾í·¿
+-í¸€í¸í¸‚í¸ƒí¸„í¸…í¸†í¸‡í¸ˆí¸‰í¸Ší¸‹í¸Œí¸í¸Ží¸í¸í¸‘í¸’í¸“í¸”í¸•í¸–í¸—í¸˜í¸™í¸ší¸›í¸œí¸í¸ží¸Ÿí¸ í¸¡í¸¢í¸£í¸¤í¸¥í¸¦í¸§í¸¨í¸©í¸ªí¸«í¸¬í¸­í¸®í¸¯í¸°í¸±í¸²í¸³í¸´í¸µí¸¶í¸·í¸¸í¸¹í¸ºí¸»í¸¼í¸½í¸¾í¸¿
+-í¹€í¹í¹‚í¹ƒí¹„í¹…í¹†í¹‡í¹ˆí¹‰í¹Ší¹‹í¹Œí¹í¹Ží¹í¹í¹‘í¹’í¹“í¹”í¹•í¹–í¹—í¹˜í¹™í¹ší¹›í¹œí¹í¹ží¹Ÿí¹ í¹¡í¹¢í¹£í¹¤í¹¥í¹¦í¹§í¹¨í¹©í¹ªí¹«í¹¬í¹­í¹®í¹¯í¹°í¹±í¹²í¹³í¹´í¹µí¹¶í¹·í¹¸í¹¹í¹ºí¹»í¹¼í¹½í¹¾í¹¿
+-íº€íºíº‚íºƒíº„íº…íº†íº‡íºˆíº‰íºŠíº‹íºŒíºíºŽíºíºíº‘íº’íº“íº”íº•íº–íº—íº˜íº™íºšíº›íºœíºíºžíºŸíº íº¡íº¢íº£íº¤íº¥íº¦íº§íº¨íº©íºªíº«íº¬íº­íº®íº¯íº°íº±íº²íº³íº´íºµíº¶íº·íº¸íº¹íººíº»íº¼íº½íº¾íº¿
+-í»€í»í»‚í»ƒí»„í»…í»†í»‡í»ˆí»‰í»Ší»‹í»Œí»í»Ží»í»í»‘í»’í»“í»”í»•í»–í»—í»˜í»™í»ší»›í»œí»í»ží»Ÿí» í»¡í»¢í»£í»¤í»¥í»¦í»§í»¨í»©í»ªí»«í»¬í»­í»®í»¯í»°í»±í»²í»³í»´í»µí»¶í»·í»¸í»¹í»ºí»»í»¼í»½í»¾í»¿
+-í¼€í¼í¼‚í¼ƒí¼„í¼…í¼†í¼‡í¼ˆí¼‰í¼Ší¼‹í¼Œí¼í¼Ží¼í¼í¼‘í¼’í¼“í¼”í¼•í¼–í¼—í¼˜í¼™í¼ší¼›í¼œí¼í¼ží¼Ÿí¼ í¼¡í¼¢í¼£í¼¤í¼¥í¼¦í¼§í¼¨í¼©í¼ªí¼«í¼¬í¼­í¼®í¼¯í¼°í¼±í¼²í¼³í¼´í¼µí¼¶í¼·í¼¸í¼¹í¼ºí¼»í¼¼í¼½í¼¾í¼¿
+-í½€í½í½‚í½ƒí½„í½…í½†í½‡í½ˆí½‰í½Ší½‹í½Œí½í½Ží½í½í½‘í½’í½“í½”í½•í½–í½—í½˜í½™í½ší½›í½œí½í½ží½Ÿí½ í½¡í½¢í½£í½¤í½¥í½¦í½§í½¨í½©í½ªí½«í½¬í½­í½®í½¯í½°í½±í½²í½³í½´í½µí½¶í½·í½¸í½¹í½ºí½»í½¼í½½í½¾í½¿
+-í¾€í¾í¾‚í¾ƒí¾„í¾…í¾†í¾‡í¾ˆí¾‰í¾Ší¾‹í¾Œí¾í¾Ží¾í¾í¾‘í¾’í¾“í¾”í¾•í¾–í¾—í¾˜í¾™í¾ší¾›í¾œí¾í¾ží¾Ÿí¾ í¾¡í¾¢í¾£í¾¤í¾¥í¾¦í¾§í¾¨í¾©í¾ªí¾«í¾¬í¾­í¾®í¾¯í¾°í¾±í¾²í¾³í¾´í¾µí¾¶í¾·í¾¸í¾¹í¾ºí¾»í¾¼í¾½í¾¾í¾¿
+-í¿€í¿í¿‚í¿ƒí¿„í¿…í¿†í¿‡í¿ˆí¿‰í¿Ší¿‹í¿Œí¿í¿Ží¿í¿í¿‘í¿’í¿“í¿”í¿•í¿–í¿—í¿˜í¿™í¿ší¿›í¿œí¿í¿ží¿Ÿí¿ í¿¡í¿¢í¿£í¿¤í¿¥í¿¦í¿§í¿¨í¿©í¿ªí¿«í¿¬í¿­í¿®í¿¯í¿°í¿±í¿²í¿³í¿´í¿µí¿¶í¿·í¿¸í¿¹í¿ºí¿»í¿¼í¿½í¿¾í¿¿
+-
+ Private Use (U+E000-U+F8FF):
+ 
+ î€€î€î€‚î€ƒî€„î€…î€†î€‡î€ˆî€‰î€Šî€‹î€Œî€î€Žî€î€î€‘î€’î€“î€”î€•î€–î€—î€˜î€™î€šî€›î€œî€î€žî€Ÿî€ î€¡î€¢î€£î€¤î€¥î€¦î€§î€¨î€©î€ªî€«î€¬î€­î€®î€¯î€°î€±î€²î€³î€´î€µî€¶î€·î€¸î€¹î€ºî€»î€¼î€½î€¾î€¿
