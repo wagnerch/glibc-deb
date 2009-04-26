@@ -24,6 +24,9 @@ glibc (2.9-8) unstable; urgency=low
   * localedata/cvs-el_CY-el_GR-frac_digits.diff: new patch from CVS to fix 
     frac_digits and int_frac_digits on el_CY ad el_GR locales.  Closes: 
     bug#511621.
+  * mips_asm_unistd.h, sysdeps/mipsel.mk, sysdeps/mips.mk: use our own version
+    of unistd.h corresponding to the one of a 2.6.24 kernel to workaround kernel
+    bugs on the build daemons.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2450 (from glibc-bsd).
@@ -33,7 +36,7 @@ glibc (2.9-8) unstable; urgency=low
   * hurd-i386/cvs-rtld.diff: new patch, fixes boot of glibc built with
     binutils >= 2.19.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 23 Apr 2009 21:14:32 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 26 Apr 2009 19:43:13 +0200
 
 glibc (2.9-7) unstable; urgency=low
 
