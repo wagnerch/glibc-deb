@@ -11,7 +11,16 @@ glibc (2.9-8) unstable; urgency=low
   * any/cvs-iconv-utf16.diff: new patch from upstream to reject UTF-8-encoded 
     UTF-16 surrogates in iconv.  Closes: #525299.
   * any/local-getaddrinfo-interface.diff: ignore addresses with no interface
-    assigned while sorting with rule 7. Closes: #521439.
+    assigned while sorting with rule 7.  Closes: #521439.
+  * any/cvs-broken_dns.diff: new patch from CVS to provide a fallback for 
+    broken DNS server while doing unified IPv4/IPv6 requests. The first lookup
+    will be slow, but subsequent requests will fallback to the previous 
+    behaviour. This can be enabled by default by setting 'single-request' in 
+    /etc/resolv.conf.
+  * debhelper.in/libc.NEWS: add entry explaining the new behaviour and the new
+    option.
+  * any/local-disable-gethostbyname4.diff: disabled this patch to re-enable
+    unified IPv4/IPv6 requests.  Closes: bug#343140, bug#435646.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2450 (from glibc-bsd).
