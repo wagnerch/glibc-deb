@@ -27,6 +27,8 @@ glibc (2.9-8) unstable; urgency=low
   * mips_asm_unistd.h, sysdeps/mipsel.mk, sysdeps/mips.mk: use our own version
     of unistd.h corresponding to the one of a 2.6.24 kernel to workaround kernel
     bugs on the build daemons.
+  * any/cvs-binutils_2.20.diff: new patch from upstream to fix build failure
+    with binutils 2.20.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2450 (from glibc-bsd).

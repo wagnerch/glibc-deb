@@ -202,3 +202,4 @@ any/submitted-mount_h.diff
 any/cvs-iconv-utf16.diff
 any/local-getaddrinfo-interface.diff
 any/cvs-broken-dns.diff
+any/cvs-binutils_2.20.diff
