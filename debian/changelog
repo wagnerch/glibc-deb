@@ -1,3 +1,10 @@
+eglibc (2.10-0exp1) experimental; urgency=low
+
+  [ Aurelien Jarno ]
+  * New upstream release.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 05 May 2009 09:57:43 +0200
+
 eglibc (2.9-11) unstable; urgency=low
 
   * Switch to Embedded GLIBC (EGLIBC), sources taken from the 2.9
