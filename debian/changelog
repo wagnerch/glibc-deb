@@ -6,6 +6,8 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Add Handling for group shadow files.  Closes: # 519479.
     - debian/copyright, debian/*symbols*, debian/shlibver, 
       debian/locales-depver: upgrade to 2.10.
+    - alpha has been moved to ports, update debian/patches/alpha/*
+      accordingly.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 05 May 2009 09:57:43 +0200
 
