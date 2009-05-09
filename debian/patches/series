@@ -172,25 +172,11 @@ any/submitted-sched_h.diff
 any/local-disable-nscd-host-caching.diff
 #any/submitted-fileops-and-signals.diff		# has issues
 any/local-missing-linux_types.h.diff
-any/cvs-bz697-posix-regexec.diff
-any/cvs-bz9697-posix-regcomp.diff
-any/cvs-bz9706-nss_nss-files_files-parse.diff
 any/local-nss-overflow.diff
 any/submitted-popen.diff
 any/local-linuxthreads-thread_self.diff
-any/cvs-pthread_h.diff
-any/local-bashisms.diff
 any/submitted-futex_robust_pi.diff
-any/cvs-bz7058-nss_nss-nis.diff
 #any/local-disable-gethostbyname4.diff
 any/submitted-getaddrinfo-lo.diff
-any/submitted-mount_h.diff
-any/cvs-iconv-utf16.diff
 any/local-getaddrinfo-interface.diff
-any/cvs-broken-dns.diff
-any/cvs-binutils_2.20.diff
-any/submitted-cross-zic.diff
-any/submitted-nss-nsswitch.diff
-any/submitted-install-map-files.diff
-any/submitted-broken-dns.diff
 any/local-revert-3270.diff

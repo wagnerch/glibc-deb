@@ -20,6 +20,20 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Remove debian/patches/hurd-i386/cvs-rtld.diff (merged).
     - Remove debian/patches/mips/cvs-context.diff (merged).
     - Remove debian/patches/all/submitted-readme-version.diff (merged).
+    - Remove debian/patches/any/submitted-install-map-files.diff (merged).
+    - Remove debian/patches/any/cvs-pthread_h.diff (merged).
+    - Remove debian/patches/any/local-bashisms.diff (merged).
+    - Remove debian/patches/any/cvs-bz7058-nss_nss-nis.diff (merged).
+    - Remove debian/patches/any/cvs-iconv-utf16.diff (merged).
+    - Remove debian/patches/any/submitted-cross-zic.diff (merged).
+    - Remove debian/patches/any/cvs-binutils_2.20.diff (merged).
+    - Remove debian/patches/any/submitted-nss-nsswitch.diff (merged).
+    - Remove debian/patches/any/cvs-bz9706-nss_nss-files_files-parse.diff (merged).
+    - Remove debian/patches/any/cvs-broken-dns.diff (merged).
+    - Remove debian/patches/any/cvs-bz9697-posix-regcomp.diff (merged).
+    - Remove debian/patches/any/cvs-bz697-posix-regexec.diff (merged).
+    - Remove debian/patches/any/submitted-broken-dns.diff (merged).
+    - Remove debian/patches/any/submitted-mount_h.diff (merged).
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 05 May 2009 09:57:43 +0200
 
