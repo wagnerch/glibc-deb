@@ -34,6 +34,12 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Remove debian/patches/any/cvs-bz697-posix-regexec.diff (merged).
     - Remove debian/patches/any/submitted-broken-dns.diff (merged).
     - Remove debian/patches/any/submitted-mount_h.diff (merged).
+    - Remove localedata/mt_MT_euro.diff (merged).
+    - Remove localedata/submitted-bz9731-el_CY_euro.diff (merged).
+    - Remove localedata/sk_SK_euro.diff (merged).
+    - Remove localedata/submitted-bz9730-locale-sv_FI.diff (merged).
+    - Remove localedata/cvs-el_CY-el_GR-frac_digits.diff (merged).
+  * Remove localedata/locale-fr_FR.diff as coreutils has been fixed.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 05 May 2009 09:57:43 +0200
 
