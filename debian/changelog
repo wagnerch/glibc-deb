@@ -17,7 +17,7 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Remove debian/patches/hurd-i386/cvs-get_pc_thunk.diff (merged).
     - Remove debian/patches/hurd-i386/cvs-strerror_l.diff (merged).
     - Remove debian/patches/hurd-i386/cvs-rtld.diff (merged).
-
+    - Remove debian/patches/mips/cvs-context.diff (merged).
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 05 May 2009 09:57:43 +0200
 

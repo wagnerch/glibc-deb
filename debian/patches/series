@@ -112,7 +112,6 @@ m68k/submitted-gcc34-seccomment.diff
 
 mips/local-lazy-eval.diff
 mips/local-r10k.diff
-mips/cvs-context.diff
 
 powerpc/local-sysconf.diff
 
