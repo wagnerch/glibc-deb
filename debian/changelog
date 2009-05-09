@@ -13,6 +13,7 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Remove debian/patches/hppa/cvs-tsd.diff (merged).
     - Remove debian/patches/hurd-i386/cvs-resource-prio.diff (merged).
     - Remove debian/patches/hurd-i386/cvs-hurdsig-fix.diff (merged).
+    - Remove debian/patches/hurd-i386/cvs-net-headers.diff (merged).
     - Remove debian/patches/hurd-i386/cvs-report-wait-fix.diff (merged).
     - Remove debian/patches/hurd-i386/cvs-get_pc_thunk.diff (merged).
     - Remove debian/patches/hurd-i386/cvs-strerror_l.diff (merged).
