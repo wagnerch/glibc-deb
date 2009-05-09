@@ -33,16 +33,11 @@ localedata/fr_CH-first_weekday.diff
 localedata/fr_LU-first_weekday.diff
 localedata/cy_GB-first_weekday.diff
 localedata/locale-de_LI.diff
-localedata/mt_MT_euro.diff
-localedata/submitted-bz9731-el_CY_euro.diff
-localedata/sk_SK_euro.diff
 localedata/submitted-bz9725-locale-sv_SE.diff
-localedata/submitted-bz9730-locale-sv_FI.diff
 localedata/first_weekday.diff
 localedata/submitted-bz9835-en_GB-first_day.diff
 localedata/locale-fr_FR.diff
 localedata/submitted-bz9912-locale-ru_UA.diff
-localedata/cvs-el_CY-el_GR-frac_digits.diff
 
 alpha/local-gcc4.1.diff
 alpha/submitted-creat64.diff
