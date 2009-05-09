@@ -10,7 +10,7 @@ eglibc (2.10-0exp1) experimental; urgency=low
       accordingly.
     - Remove debian/patches/arm/submitted-setjmp.diff (merged).
     - Remove debian/patches/arm/submitted-fpu_control_h.diff (merged).
-
+    - Remove debian/patches/hppa/cvs-tsd.diff (merged).
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 05 May 2009 09:57:43 +0200
 
