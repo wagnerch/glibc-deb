@@ -7,8 +7,8 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - debian/copyright, debian/*symbols*, debian/shlibver, 
       debian/locales-depver, debian/debhelper.in/*.lintian: upgrade
       to 2.10.
-    - alpha has been moved to ports, update debian/patches/alpha/*
-      accordingly.
+    - alpha has been moved to ports, update debian/sysdeps/alpha.mk and
+      debian/patches/alpha/* accordingly.
     - Remove debian/patches/arm/submitted-setjmp.diff (merged).
     - Remove debian/patches/arm/submitted-fpu_control_h.diff (merged).
     - Remove debian/patches/hppa/cvs-tsd.diff (merged).
