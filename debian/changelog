@@ -49,8 +49,10 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Remove localedata/submitted-bz9730-locale-sv_FI.diff (merged).
     - Remove localedata/cvs-el_CY-el_GR-frac_digits.diff (merged).
   * Remove localedata/locale-fr_FR.diff as coreutils has been fixed.
+  * Add debian/patches/any/submitted-autotools.diff to update config.guess
+    and config.sub.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 10:34:18 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 14:27:42 +0200
 
 eglibc (2.9-13) unstable; urgency=low
 
