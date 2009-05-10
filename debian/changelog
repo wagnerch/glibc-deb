@@ -52,11 +52,19 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Remove debian/patches/localedata/cvs-el_CY-el_GR-frac_digits.diff
       (merged).
     - Update debian/patches/localedata/sort-UTF8-first.diff.
+    - Update debian/patches/localedata/fr_CA-first_weekday.diff
+    - Update debian/patches/localedata/fr_BE-first_weekday.diff
+    - Update debian/patches/localedata/cy_GB-first_weekday.diff
+    - Remove debian/patches/localedata/submitted-bz9835-en_GB-first_day.diff
+      (merged).
+    - Update debian/patches/localedata/first_weekday.diff
+    - Update debian/patches/localedata/fr_LU-first_weekday.diff
+    - Update debian/patches/localedata/fr_CH-first_weekday.diff
   * Remove localedata/locale-fr_FR.diff as coreutils has been fixed.
   * Add debian/patches/any/submitted-autotools.diff to update config.guess
     and config.sub.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 14:27:42 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 15:03:39 +0200
 
 eglibc (2.9-13) unstable; urgency=low
 

@@ -507,17 +507,6 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/csb_PL
-+++ b/localedata/locales/csb_PL
-@@ -191,7 +191,7 @@
- date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
- <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
- <U0025><U005A><U0020><U0025><U0059>"
--week    7;19971201;4
-+% week    7;19971201;4
- first_weekday 2
- first_workday 2
- END LC_TIME
 --- a/localedata/locales/de_AT
 +++ b/localedata/locales/de_AT
 @@ -121,6 +121,8 @@
@@ -1188,21 +1177,6 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/mk_MK
-+++ b/localedata/locales/mk_MK
-@@ -85,9 +85,9 @@
- date_fmt "<U0025><U0061><U002C><U0020><U0025><U0064><U0020><U0025><U0062>/
- <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
- <U0025><U005A><U0020><U0025><U0059>"
--week    7;19971201;4
--first_weekday 1 % Monday
--first_workday 1 % Monday
-+% week    7;19971201;4
-+%  FIXME: found in CLDR
-+first_weekday 2
- END LC_TIME
- 
- LC_MONETARY
 --- a/localedata/locales/ml_IN
 +++ b/localedata/locales/ml_IN
 @@ -145,6 +145,8 @@
