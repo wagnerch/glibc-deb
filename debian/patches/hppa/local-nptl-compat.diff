@@ -53,14 +53,62 @@
 	* pthread_rwlock_unlock.c: New file.
 	* pthread_rwlock_wrlock.c: New file.
 
-Index: sysdeps/hppa/nptl/Makefile
-===================================================================
-RCS file: /cvs/glibc/ports/sysdeps/hppa/nptl/Makefile,v
-retrieving revision 1.2
-diff -u -p -r1.2 Makefile
---- a/ports/sysdeps/hppa/nptl/Makefile	23 Feb 2008 01:18:17 -0000	1.2
-+++ b/ports/sysdeps/hppa/nptl/Makefile	2 Apr 2009 02:34:02 -0000
-@@ -25,3 +25,28 @@ endif
+---
+ ports/sysdeps/hppa/nptl/Makefile                                              |   25 
+ ports/sysdeps/unix/sysv/linux/hppa/internaltypes.h                            |  184 ++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/Versions                              |   65 +
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/forward.c                             |  275 ++++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/init.c                                |  460 +++++++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_broadcast.c     |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_destroy.c       |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_init.c          |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_signal.c        |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_timedwait.c     |   44 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_wait.c          |   41 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_destroy.c      |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_init.c         |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_lock.c         |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_timedlock.c    |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_trylock.c      |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_unlock.c       |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_destroy.c     |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_init.c        |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_rdlock.c      |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedrdlock.c |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedwrlock.c |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_tryrdlock.c   |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_trywrlock.c   |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_unlock.c      |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_wrlock.c      |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread-functions.h                   |  133 ++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthreadP.h                            |  621 ++++++++++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_broadcast.c              |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_destroy.c                |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_init.c                   |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_signal.c                 |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_timedwait.c              |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_wait.c                   |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_cond_lock.c             |   14 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_destroy.c               |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_init.c                  |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_lock.c                  |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_timedlock.c             |   38 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_trylock.c               |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_unlock.c                |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_destroy.c              |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_init.c                 |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_rdlock.c               |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedrdlock.c          |   38 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedwrlock.c          |   38 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_tryrdlock.c            |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_trywrlock.c            |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_unlock.c               |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_wrlock.c               |   40 
+ 50 files changed, 3312 insertions(+)
+
+--- a/ports/sysdeps/hppa/nptl/Makefile
++++ b/ports/sysdeps/hppa/nptl/Makefile
+@@ -25,3 +25,28 @@
  # this because the default is too small to run with. 
  tst-oddstacklimit-ENV = ; ulimit -s 8193;
  
@@ -89,12 +137,8 @@ diff -u -p -r1.2 Makefile
 +	old_hppa_pthread_rwlock_unlock \
 +	old_hppa_pthread_rwlock_wrlock
 +endif
-Index: sysdeps/unix/sysv/linux/hppa/internaltypes.h
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/internaltypes.h
-diff -N sysdeps/unix/sysv/linux/hppa/internaltypes.h
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/internaltypes.h	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/internaltypes.h
 @@ -0,0 +1,184 @@
 +#include_next <internaltypes.h>
 +#ifndef _INTERNAL_TYPES_H_HPPA_ 
@@ -280,12 +324,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/internaltypes.h
 +
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/Versions
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/Versions
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/Versions
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/Versions	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/Versions
 @@ -0,0 +1,65 @@
 +libc {
 +  GLIBC_2.9 {
@@ -352,12 +392,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/Versions
 +    __pthread_mutex_unlock;
 +  }
 +}
-Index: sysdeps/unix/sysv/linux/hppa/nptl/forward.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/forward.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/forward.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/forward.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/forward.c
 @@ -0,0 +1,275 @@
 +/* Copyright (C) 2002, 2003, 2004, 2007, 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -634,12 +670,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/forward.c
 +		       INTERNAL_SYSCALL (kill, err, 1, SIGKILL);
 +		     })
 +#undef return
-Index: sysdeps/unix/sysv/linux/hppa/nptl/init.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/init.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/init.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/init.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/init.c
 @@ -0,0 +1,460 @@
 +/* Copyright (C) 2002-2007, 2008, 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1101,12 +1133,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/init.c
 +}
 +strong_alias (__pthread_initialize_minimal_internal,
 +	      __pthread_initialize_minimal)
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_broadcast.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_broadcast.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_broadcast.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_broadcast.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_broadcast.c
 @@ -0,0 +1,36 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1144,12 +1172,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_broadcast.c
 +	       pthread_cond_broadcast, GLIBC_2_3_2);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_destroy.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_destroy.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_destroy.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_destroy.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_destroy.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1191,12 +1215,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_destroy.c
 +	       pthread_cond_destroy, GLIBC_2_3_2);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_init.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_init.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_init.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_init.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_init.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1235,12 +1255,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_init.c
 +	       GLIBC_2_3_2);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_signal.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_signal.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_signal.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_signal.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_signal.c
 @@ -0,0 +1,36 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1278,12 +1294,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_signal.c
 +	       pthread_cond_signal, GLIBC_2_3_2);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_timedwait.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_timedwait.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_timedwait.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_timedwait.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_timedwait.c
 @@ -0,0 +1,44 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1329,12 +1341,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_timedwait.c
 +	       pthread_cond_timedwait, GLIBC_2_3_2);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_wait.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_wait.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_wait.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_wait.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_wait.c
 @@ -0,0 +1,41 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1377,12 +1385,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_wait.c
 +	       pthread_cond_wait, GLIBC_2_3_2);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_destroy.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_destroy.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_destroy.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_destroy.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_destroy.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1424,12 +1428,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_destroy.c
 +	       pthread_mutex_destroy, GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_init.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_init.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_init.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_init.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_init.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1468,12 +1468,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_init.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_lock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_lock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_lock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_lock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_lock.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1512,12 +1508,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_lock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_timedlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_timedlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_timedlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_timedlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_timedlock.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1559,12 +1551,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_timedlock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_trylock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_trylock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_trylock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_trylock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_trylock.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1603,12 +1591,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_trylock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_unlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_unlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_unlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_unlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_unlock.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1647,12 +1631,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_unlock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_destroy.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_destroy.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_destroy.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_destroy.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_destroy.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1694,12 +1674,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_destroy.c
 +	       pthread_rwlock_destroy, GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_init.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_init.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_init.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_init.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_init.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1738,12 +1714,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_init.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_rdlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_rdlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_rdlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_rdlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_rdlock.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1782,12 +1754,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_rdlock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedrdlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedrdlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedrdlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedrdlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedrdlock.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1829,12 +1797,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedrdlock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedwrlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedwrlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedwrlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedwrlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedwrlock.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1876,12 +1840,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedwrlock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_tryrdlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_tryrdlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_tryrdlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_tryrdlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_tryrdlock.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1920,12 +1880,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_tryrdlock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_trywrlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_trywrlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_trywrlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_trywrlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_trywrlock.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1964,12 +1920,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_trywrlock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_unlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_unlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_unlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_unlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_unlock.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -2008,12 +1960,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_unlock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_wrlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_wrlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_wrlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_wrlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_wrlock.c
 @@ -0,0 +1,37 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -2052,12 +2000,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_wrlock.c
 +	       GLIBC_2_0);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread-functions.h
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread-functions.h
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread-functions.h
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread-functions.h	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread-functions.h
 @@ -0,0 +1,133 @@
 +/* Copyright (C) 2003, 2004, 2005, 2006, 2007, 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -2192,12 +2136,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread-functions.h
 +#endif
 +
 +#endif	/* pthread-functions.h */
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthreadP.h
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthreadP.h
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthreadP.h
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthreadP.h	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthreadP.h
 @@ -0,0 +1,621 @@
 +/* Copyright (C) 2002-2007, 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -2820,12 +2760,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthreadP.h
 +#endif
 +
 +#endif	/* pthreadP.h */
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_broadcast.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_broadcast.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_broadcast.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_broadcast.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_broadcast.c
 @@ -0,0 +1,29 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -2856,12 +2792,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_broadcast.c
 +# include_next <pthread_cond_broadcast.c>
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_destroy.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_destroy.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_destroy.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_destroy.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_destroy.c
 @@ -0,0 +1,29 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -2892,12 +2824,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_destroy.c
 +# include_next <pthread_cond_destroy.c>
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_init.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_init.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_init.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_init.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_init.c
 @@ -0,0 +1,29 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -2928,12 +2856,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_init.c
 +# include_next <pthread_cond_init.c>
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_signal.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_signal.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_signal.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_signal.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_signal.c
 @@ -0,0 +1,29 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -2964,12 +2888,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_signal.c
 +# include_next <pthread_cond_signal.c>
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_timedwait.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_timedwait.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_timedwait.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_timedwait.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_timedwait.c
 @@ -0,0 +1,29 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3000,12 +2920,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_timedwait.c
 +# include_next <pthread_cond_timedwait.c>
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_wait.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_wait.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_wait.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_wait.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_wait.c
 @@ -0,0 +1,29 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3036,12 +2952,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_wait.c
 +# include_next <pthread_cond_wait.c>
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_cond_lock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_cond_lock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_cond_lock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_cond_lock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_cond_lock.c
 @@ -0,0 +1,14 @@
 +#include <pthreadP.h>
 +
@@ -3057,12 +2969,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_cond_lock.c
 +#define NO_INCR
 +
 +#include <nptl/pthread_mutex_lock.c>
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_destroy.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_destroy.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_destroy.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_destroy.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_destroy.c
 @@ -0,0 +1,36 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3100,12 +3008,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_destroy.c
 +INTDEF(__pthread_mutex_destroy)
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_init.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_init.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_init.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_init.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_init.c
 @@ -0,0 +1,36 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3143,12 +3047,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_init.c
 +INTDEF(__pthread_mutex_init)
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_lock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_lock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_lock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_lock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_lock.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3190,12 +3090,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_lock.c
 +# endif
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_timedlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_timedlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_timedlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_timedlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_timedlock.c
 @@ -0,0 +1,38 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3235,12 +3131,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_timedlock.c
 +		  pthread_mutex_timedlock, GLIBC_2_9);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_trylock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_trylock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_trylock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_trylock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_trylock.c
 @@ -0,0 +1,35 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3277,12 +3169,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_trylock.c
 +		  pthread_mutex_trylock, GLIBC_2_9);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_unlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_unlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_unlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_unlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_unlock.c
 @@ -0,0 +1,36 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3320,12 +3208,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_unlock.c
 +strong_alias (__pthread_mutex_unlock, __pthread_mutex_unlock_internal)
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_destroy.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_destroy.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_destroy.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_destroy.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_destroy.c
 @@ -0,0 +1,35 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3362,12 +3246,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_destroy.c
 +		  pthread_rwlock_destroy, GLIBC_2_9);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_init.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_init.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_init.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_init.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_init.c
 @@ -0,0 +1,35 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3404,12 +3284,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_init.c
 +		  pthread_rwlock_init, GLIBC_2_9);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_rdlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_rdlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_rdlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_rdlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_rdlock.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3451,12 +3327,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_rdlock.c
 +strong_alias (__pthread_rwlock_rdlock, __pthread_rwlock_rdlock_internal)
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedrdlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedrdlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedrdlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedrdlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedrdlock.c
 @@ -0,0 +1,38 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3496,12 +3368,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedrdlock.c
 +		  pthread_rwlock_timedrdlock, GLIBC_2_9);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedwrlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedwrlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedwrlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedwrlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedwrlock.c
 @@ -0,0 +1,38 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3541,12 +3409,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedwrlock.c
 +		  pthread_rwlock_timedwrlock, GLIBC_2_9);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_tryrdlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_tryrdlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_tryrdlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_tryrdlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_tryrdlock.c
 @@ -0,0 +1,35 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3583,12 +3447,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_tryrdlock.c
 +		  pthread_rwlock_tryrdlock, GLIBC_2_9);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_trywrlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_trywrlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_trywrlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_trywrlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_trywrlock.c
 @@ -0,0 +1,35 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3625,12 +3485,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_trywrlock.c
 +		  pthread_rwlock_trywrlock, GLIBC_2_9);
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_unlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_unlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_unlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_unlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_unlock.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3672,12 +3528,8 @@ diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_unlock.c
 +strong_alias (__pthread_rwlock_unlock, __pthread_rwlock_unlock_internal)
 +#endif
 +
-Index: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_wrlock.c
-===================================================================
-RCS file: sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_wrlock.c
-diff -N sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_wrlock.c
---- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_wrlock.c	2 Apr 2009 02:34:03 -0000
+--- /dev/null
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_wrlock.c
 @@ -0,0 +1,40 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.

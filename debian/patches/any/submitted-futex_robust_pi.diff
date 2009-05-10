@@ -4,8 +4,13 @@
 	(__ASSUME_SET_ROBUST_LIST): Update per-arch conditions when
 	each feature was introduced. (__ASSUME_FUTEX_LOCK_PI): Ditto.
 
-diff --git a/sysdeps/unix/sysv/linux/kernel-features.h b/sysdeps/unix/sysv/linux/kernel-features.h
-index 29afe27..edbe250 100644
+---
+ ports/sysdeps/unix/sysv/linux/arm/kernel-features.h  |   10 +++++++
+ ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h |   10 +++++++
+ ports/sysdeps/unix/sysv/linux/mips/kernel-features.h |   11 ++++++++
+ sysdeps/unix/sysv/linux/kernel-features.h            |   26 +++++++++++++------
+ 4 files changed, 50 insertions(+), 7 deletions(-)
+
 --- a/sysdeps/unix/sysv/linux/kernel-features.h
 +++ b/sysdeps/unix/sysv/linux/kernel-features.h
 @@ -454,11 +454,16 @@
@@ -48,15 +53,6 @@ index 29afe27..edbe250 100644
  # define __ASSUME_FUTEX_LOCK_PI	1
  #endif
  
-
-2009-09-27  Aurelien Jarno  <aurelien@aurel32.net>
-
-	* sysdeps/unix/sysv/linux/arm/kernel-features.h
-	(__ASSUME_SET_ROBUST_LIST): Define for 2.6.28 and later.
-	(__ASSUME_FUTEX_LOCK_PI): Ditto.
-
-diff --git a/ports/sysdeps/unix/sysv/linux/arm/kernel-features.h b/ports/sysdeps/unix/sysv/linux/arm/kernel-features.h
-index ea439d5..d4f447b 100644
 --- a/ports/sysdeps/unix/sysv/linux/arm/kernel-features.h
 +++ b/ports/sysdeps/unix/sysv/linux/arm/kernel-features.h
 @@ -51,6 +51,16 @@
@@ -76,16 +72,6 @@ index ea439d5..d4f447b 100644
  #include_next <kernel-features.h>
  
  /* These syscalls are not implemented yet for ARM.  */
-
-
-2009-09-27  Aurelien Jarno  <aurelien@aurel32.net>
-
-	* sysdeps/unix/sysv/linux/hppa/kernel-features.h
-	(__ASSUME_SET_ROBUST_LIST): Define for 2.6.19 and later.
-	(__ASSUME_FUTEX_LOCK_PI): Ditto.
-
-diff --git a/ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h b/ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h
-index e29f6e0..31daca6 100644
 --- a/ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h
 +++ b/ports/sysdeps/unix/sysv/linux/hppa/kernel-features.h
 @@ -36,4 +36,14 @@
@@ -103,16 +89,6 @@ index e29f6e0..31daca6 100644
 +#endif
 +
  #include_next <kernel-features.h>
-
-
-2009-09-27  Aurelien Jarno  <aurelien@aurel32.net>
-
-	* sysdeps/unix/sysv/linux/mips/kernel-features.h
-	(__ASSUME_SET_ROBUST_LIST): Define for 2.6.18 and later.
-	(__ASSUME_FUTEX_LOCK_PI): Ditto.
-
-diff --git a/ports/sysdeps/unix/sysv/linux/mips/kernel-features.h b/ports/sysdeps/unix/sysv/linux/mips/kernel-features.h
-index f479b60..39e609e 100644
 --- a/ports/sysdeps/unix/sysv/linux/mips/kernel-features.h
 +++ b/ports/sysdeps/unix/sysv/linux/mips/kernel-features.h
 @@ -31,4 +31,15 @@

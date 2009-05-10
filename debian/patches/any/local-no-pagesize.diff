@@ -1,8 +1,8 @@
 ---
- ports/sysdeps/unix/sysv/linux/mips/sys/user.h |    4 ++--
- sysdeps/unix/sysv/linux/alpha/sys/user.h      |    4 ++--
- sysdeps/unix/sysv/linux/ia64/sys/user.h       |    3 ++-
- sysdeps/unix/sysv/linux/x86_64/sys/user.h     |    4 ++--
+ ports/sysdeps/unix/sysv/linux/alpha/sys/user.h |    4 ++--
+ ports/sysdeps/unix/sysv/linux/mips/sys/user.h  |    4 ++--
+ sysdeps/unix/sysv/linux/ia64/sys/user.h        |    3 ++-
+ sysdeps/unix/sysv/linux/x86_64/sys/user.h      |    4 ++--
  4 files changed, 8 insertions(+), 7 deletions(-)
 
 --- a/ports/sysdeps/unix/sysv/linux/alpha/sys/user.h

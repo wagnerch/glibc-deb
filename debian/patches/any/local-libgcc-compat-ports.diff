@@ -4,6 +4,9 @@
 # DP: Date: 2002-10-13, updated 2006-08-27
 
 ---
+ ports/sysdeps/alpha/Makefile              |    8 ++
+ ports/sysdeps/alpha/Versions              |    2 
+ ports/sysdeps/alpha/libgcc-compat.c       |   35 +++++++++
  ports/sysdeps/arm/Makefile                |    7 +
  ports/sysdeps/arm/Versions                |   16 ++++
  ports/sysdeps/arm/libgcc-compat.c         |  111 ++++++++++++++++++++++++++++++
@@ -14,7 +17,7 @@
  ports/sysdeps/mips/mips32/Makefile        |    8 ++
  ports/sysdeps/mips/mips32/Versions        |    8 ++
  ports/sysdeps/mips/mips32/libgcc-compat.c |   66 +++++++++++++++++
- 10 files changed, 316 insertions(+)
+ 13 files changed, 361 insertions(+)
 
 --- /dev/null
 +++ b/ports/sysdeps/mips/mips32/libgcc-compat.c

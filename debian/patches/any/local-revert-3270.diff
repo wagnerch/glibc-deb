@@ -1,8 +1,13 @@
 Revert PR ntpl/3270
 
---- a/nptl/init.c	(revision 5285)
-+++ b/nptl/init.c	(revision 5284)
-@@ -221,21 +221,12 @@
+---
+ nptl/allocatestack.c |  123 +++++++--------------------------------------------
+ nptl/init.c          |   13 -----
+ 2 files changed, 21 insertions(+), 115 deletions(-)
+
+--- a/nptl/init.c
++++ b/nptl/init.c
+@@ -245,21 +245,12 @@
  
    /* Reset the SETXID flag.  */
    struct pthread *self = THREAD_SELF;
@@ -26,9 +31,9 @@ Revert PR ntpl/3270
  }
  
  
---- a/nptl/allocatestack.c	(revision 5285)
-+++ b/nptl/allocatestack.c	(revision 5284)
-@@ -904,54 +904,23 @@
+--- a/nptl/allocatestack.c
++++ b/nptl/allocatestack.c
+@@ -965,53 +965,22 @@
  
  static void
  internal_function
@@ -44,13 +49,30 @@ Revert PR ntpl/3270
 +  if (! IS_DETACHED (t))
      {
 -      ch = t->cancelhandling;
+-
+-      /* If the thread is exiting right now, ignore it.  */
+-      if ((ch & EXITING_BITMASK) != 0)
+-	return;
+-    }
+-  while (atomic_compare_and_exchange_bool_acq (&t->cancelhandling,
+-					       ch | SETXID_BITMASK, ch));
+-}
+-
+-
+-static void
+-internal_function
+-setxid_unmark_thread (struct xid_command *cmdp, struct pthread *t)
+-{
+-  int ch;
 +      int ch;
 +      do
 +	{
 +	  ch = t->cancelhandling;
  
--      /* If the thread is exiting right now, ignore it.  */
--      if ((ch & EXITING_BITMASK) != 0)
+-  do
+-    {
+-      ch = t->cancelhandling;
+-      if ((ch & SETXID_BITMASK) == 0)
 -	return;
 +	  /* If the thread is exiting right now, ignore it.  */
 +	  if ((ch & EXITING_BITMASK) != 0)
@@ -59,23 +81,6 @@ Revert PR ntpl/3270
 +      while (atomic_compare_and_exchange_bool_acq (&t->cancelhandling,
 +						   ch | SETXID_BITMASK, ch));
      }
--  while (atomic_compare_and_exchange_bool_acq (&t->cancelhandling,
--					       ch | SETXID_BITMASK, ch));
--}
- 
--
--static void
--internal_function
--setxid_unmark_thread (struct xid_command *cmdp, struct pthread *t)
--{
--  int ch;
--
--  do
--    {
--      ch = t->cancelhandling;
--      if ((ch & SETXID_BITMASK) == 0)
--	return;
--    }
 -  while (atomic_compare_and_exchange_bool_acq (&t->cancelhandling,
 -					       ch & ~SETXID_BITMASK, ch));
 -
@@ -91,11 +96,10 @@ Revert PR ntpl/3270
 -{
 -  if ((t->cancelhandling & SETXID_BITMASK) == 0)
 -    return 0;
--
+ 
    int val;
    INTERNAL_SYSCALL_DECL (err);
- #if __ASSUME_TGKILL
-@@ -967,14 +936,8 @@
+@@ -1028,14 +997,8 @@
      val = INTERNAL_SYSCALL (tkill, err, 2, t->tid, SIGSETXID);
  #endif
  
@@ -111,7 +115,7 @@ Revert PR ntpl/3270
  }
  
  
-@@ -982,7 +945,6 @@
+@@ -1043,7 +1006,6 @@
  attribute_hidden
  __nptl_setxid (struct xid_command *cmdp)
  {
@@ -119,7 +123,7 @@ Revert PR ntpl/3270
    int result;
    lll_lock (stack_cache_lock, LLL_PRIVATE);
  
-@@ -999,7 +961,7 @@
+@@ -1060,7 +1022,7 @@
        if (t == self)
  	continue;
  
@@ -128,7 +132,7 @@ Revert PR ntpl/3270
      }
  
    /* Now the list with threads using user-allocated stacks.  */
-@@ -1009,63 +971,16 @@
+@@ -1070,61 +1032,14 @@
        if (t == self)
  	continue;
  
@@ -169,11 +173,9 @@ Revert PR ntpl/3270
 -	  lll_futex_wait (&cmdp->cntr, cur, LLL_PRIVATE);
 -	  cur = cmdp->cntr;
 -	}
-+      lll_futex_wait (&cmdp->cntr, cur, LLL_PRIVATE);
-+      cur = cmdp->cntr;
-     }
+-    }
 -  while (signalled != 0);
- 
+-
 -  /* Clean up flags, so that no thread blocks during exit waiting
 -     for a signal which will never come.  */
 -  list_for_each (runp, &stack_used)
@@ -192,8 +194,8 @@ Revert PR ntpl/3270
 -	continue;
 -
 -      setxid_unmark_thread (cmdp, t);
--    }
--
++      lll_futex_wait (&cmdp->cntr, cur, LLL_PRIVATE);
++      cur = cmdp->cntr;
+     }
+ 
    /* This must be last, otherwise the current thread might not have
-      permissions to send SIGSETXID syscall to the other threads.  */
-   INTERNAL_SYSCALL_DECL (err);

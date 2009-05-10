@@ -1,7 +1,7 @@
 ---
- ports/sysdeps/alpha/dl-machine.h  |   12 +++++++
- ports/sysdeps/alpha/dl-procinfo.c |   64 +++++++++++++++++++++++++++++++++++++++++
- ports/sysdeps/alpha/dl-procinfo.h |   68 ++++++++++++++++++++++++++++++++++++++++++++
+ ports/sysdeps/alpha/dl-machine.h  |   12 ++++++
+ ports/sysdeps/alpha/dl-procinfo.c |   64 +++++++++++++++++++++++++++++++++++
+ ports/sysdeps/alpha/dl-procinfo.h |   68 ++++++++++++++++++++++++++++++++++++++
  3 files changed, 144 insertions(+)
 
 --- /dev/null

@@ -7,8 +7,8 @@
 # DP: Date: 2006-01-13 08:14:21 UTC
 
 ---
- resolv/res_libc.c |   15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ resolv/res_libc.c |   11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
 --- a/resolv/res_libc.c
 +++ b/resolv/res_libc.c
@@ -21,7 +21,7 @@
  
  /* The following bit is copied from res_data.c (where it is #ifdef'ed
     out) since res_init() should go into libc.so but the rest of that
-@@ -94,8 +94,15 @@ res_init(void) {
+@@ -94,8 +94,15 @@
  int
  __res_maybe_init (res_state resp, int preinit)
  {

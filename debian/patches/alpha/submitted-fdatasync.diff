@@ -13,7 +13,7 @@
 
 --- a/sysdeps/unix/sysv/linux/kernel-features.h
 +++ b/sysdeps/unix/sysv/linux/kernel-features.h
-@@ -467,6 +467,12 @@
+@@ -474,6 +474,12 @@
  # define __ASSUME_FUTEX_LOCK_PI	1
  #endif
  
