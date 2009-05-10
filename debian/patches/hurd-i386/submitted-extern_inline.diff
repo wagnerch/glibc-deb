@@ -534,8 +534,8 @@
 +#endif
  
  #endif	/* machine-sp.h */
---- a/sysdeps/mach/alpha/machine-lock.h
-+++ b/sysdeps/mach/alpha/machine-lock.h
+--- a/ports/sysdeps/mach/alpha/machine-lock.h
++++ b/ports/sysdeps/mach/alpha/machine-lock.h
 @@ -35,15 +35,22 @@
  
  /* Unlock LOCK.  */
@@ -579,8 +579,8 @@
  
  
  #endif /* machine-lock.h */
---- a/sysdeps/mach/alpha/machine-sp.h
-+++ b/sysdeps/mach/alpha/machine-sp.h
+--- a/ports/sysdeps/mach/alpha/machine-sp.h
++++ b/ports/sysdeps/mach/alpha/machine-sp.h
 @@ -26,11 +26,15 @@
  #define _EXTERN_INLINE __extern_inline
  #endif

@@ -135,8 +135,8 @@
  #define MACHINE_THREAD_STATE_FLAVOR	<machine>_THREAD_STATE
  #define MACHINE_THREAD_STATE_COUNT	<machine>_THREAD_STATE_COUNT
  
---- a/sysdeps/mach/alpha/thread_state.h
-+++ b/sysdeps/mach/alpha/thread_state.h
+--- a/ports/sysdeps/mach/alpha/thread_state.h
++++ b/ports/sysdeps/mach/alpha/thread_state.h
 @@ -19,6 +19,7 @@
  
  #include <mach/machine/thread_status.h>
