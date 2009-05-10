@@ -5,7 +5,8 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Fix C++ declaration of string functions.  Closes: #496763.
     - Add Handling for group shadow files.  Closes: # 519479.
     - debian/copyright, debian/*symbols*, debian/shlibver, 
-      debian/locales-depver: upgrade to 2.10.
+      debian/locales-depver, debian/debhelper.in/*.lintian: upgrade
+      to 2.10.
     - alpha has been moved to ports, update debian/patches/alpha/*
       accordingly.
     - Remove debian/patches/arm/submitted-setjmp.diff (merged).
@@ -41,7 +42,7 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Remove localedata/cvs-el_CY-el_GR-frac_digits.diff (merged).
   * Remove localedata/locale-fr_FR.diff as coreutils has been fixed.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 05 May 2009 09:57:43 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 10:34:18 +0200
 
 eglibc (2.9-13) unstable; urgency=low
 
