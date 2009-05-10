@@ -158,7 +158,6 @@ any/local-tst-mktime2.diff
 any/local-dynamic-resolvconf.diff
 any/submitted-nis-netgrp.diff
 any/submitted-clock-settime.diff
-any/submitted-date-and-unknown-tz.diff
 any/submitted-libgcc_s.so.diff
 any/submitted-longdouble.diff
 any/submitted-sched_h.diff

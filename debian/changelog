@@ -43,6 +43,7 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Update debian/patches/any/local-libgcc-compat-main.diff.
     - Update debian/patches/any/local-libgcc-compat-ports.diff.
     - Update debian/patches/any/local-no-pagesize.diff.
+    - Remove debian/patches/any/submitted-date-and-unknown-tz.diff (merged).
     - Remove debian/patches/localedata/mt_MT_euro.diff (merged).
     - Remove debian/patches/localedata/submitted-bz9731-el_CY_euro.diff
       (merged).
