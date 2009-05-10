@@ -37,6 +37,11 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Remove debian/patches/any/cvs-bz697-posix-regexec.diff (merged).
     - Remove debian/patches/any/submitted-broken-dns.diff (merged).
     - Remove debian/patches/any/submitted-mount_h.diff (merged).
+    - Update debian/patches/any/submitted-futex_robust_pi.diff.
+    - Update debian/patches/any/local-dynamic-resolvconf.diff.
+    - Update debian/patches/any/local-libgcc-compat-main.diff.
+    - Update debian/patches/any/local-libgcc-compat-ports.diff.
+    - Update debian/patches/any/local-no-pagesize.diff.
     - Remove localedata/mt_MT_euro.diff (merged).
     - Remove localedata/submitted-bz9731-el_CY_euro.diff (merged).
     - Remove localedata/sk_SK_euro.diff (merged).

@@ -8,7 +8,7 @@ diff --git a/sysdeps/unix/sysv/linux/kernel-features.h b/sysdeps/unix/sysv/linux
 index 29afe27..edbe250 100644
 --- a/sysdeps/unix/sysv/linux/kernel-features.h
 +++ b/sysdeps/unix/sysv/linux/kernel-features.h
-@@ -454,16 +454,28 @@
+@@ -454,11 +454,16 @@
  # define __ASSUME_ATFCTS	1
  #endif
  
@@ -30,6 +30,10 @@ index 29afe27..edbe250 100644
  # define __ASSUME_SET_ROBUST_LIST	1
  #endif
  
+@@ -469,8 +474,15 @@
+ # define __ASSUME_COMPLETE_READV_WRITEV	1
+ #endif
+ 
 -/* Support for PI futexes was added in 2.6.18.  */
 -#if __LINUX_KERNEL_VERSION >= 0x020612
 +/* Support for PI futexes was added in 2.6.18 on i386, powerpc, s390, sparc64
@@ -43,7 +47,7 @@ index 29afe27..edbe250 100644
 +     || (__LINUX_KERNEL_VERSION >= 0x020617 && defined __sh__)
  # define __ASSUME_FUTEX_LOCK_PI	1
  #endif
-
+ 
 
 2009-09-27  Aurelien Jarno  <aurelien@aurel32.net>
 
