@@ -43,11 +43,15 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Update debian/patches/any/local-libgcc-compat-main.diff.
     - Update debian/patches/any/local-libgcc-compat-ports.diff.
     - Update debian/patches/any/local-no-pagesize.diff.
-    - Remove localedata/mt_MT_euro.diff (merged).
-    - Remove localedata/submitted-bz9731-el_CY_euro.diff (merged).
-    - Remove localedata/sk_SK_euro.diff (merged).
-    - Remove localedata/submitted-bz9730-locale-sv_FI.diff (merged).
-    - Remove localedata/cvs-el_CY-el_GR-frac_digits.diff (merged).
+    - Remove debian/patches/localedata/mt_MT_euro.diff (merged).
+    - Remove debian/patches/localedata/submitted-bz9731-el_CY_euro.diff
+      (merged).
+    - Remove debian/patches/localedata/sk_SK_euro.diff (merged).
+    - Remove debian/patches/localedata/submitted-bz9730-locale-sv_FI.diff
+      (merged).
+    - Remove debian/patches/localedata/cvs-el_CY-el_GR-frac_digits.diff
+      (merged).
+    - Update debian/patches/localedata/sort-UTF8-first.diff.
   * Remove localedata/locale-fr_FR.diff as coreutils has been fixed.
   * Add debian/patches/any/submitted-autotools.diff to update config.guess
     and config.sub.
