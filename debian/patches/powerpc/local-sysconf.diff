@@ -36,7 +36,8 @@
 +	 "cpu model".  We don't have to fear extremely long lines since	  \
 +	 the kernel will not generate them.  8192 bytes are really	  \
 +	 enough.  */							  \
-+      while (fgets_unlocked (BUFFER, sizeof (BUFFER), FP) != NULL)	  \
++      char *l;								  \
++      while ((l = next_line (FD, BUFFER, &CP, &RE, BUFFER_END)) != NULL)  \
 +	if (strncmp (BUFFER, "cpu\t\t:", 6) == 0)			  \
 +	  ++(RESULT);							  \
 +    }									  \

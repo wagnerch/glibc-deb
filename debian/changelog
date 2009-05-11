@@ -23,6 +23,7 @@ eglibc (2.10-0exp1) experimental; urgency=low
     - Update patches/hurd-i386/local-tls-support.diff.
     - Update patches/hurd-i386/submitted-extern_inline.diff.
     - Remove debian/patches/mips/cvs-context.diff (merged).
+    - Update debian/patches/powerpc/local-sysconf.diff.
     - Remove debian/patches/all/submitted-readme-version.diff (merged).
     - Remove debian/patches/any/submitted-install-map-files.diff (merged).
     - Remove debian/patches/any/cvs-pthread_h.diff (merged).
