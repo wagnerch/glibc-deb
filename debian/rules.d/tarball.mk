@@ -1,5 +1,5 @@
 EGLIBC_SVN = svn://svn.eglibc.org
-EGLIBC_BRANCH = branches/eglibc-$(subst .,_,$(EGLIBC_VERSION))
+EGLIBC_BRANCH = branches/eglibc-$(shell echo $(EGLIBC_VERSION) | sed -e 's/\([0-9]\+\)\.\([0-9]\+\).*/\1_\2/')
 EGLIBC_CHECKOUT = eglibc-checkout
 EGLIBC_DIR = eglibc-$(EGLIBC_VERSION)
 DEB_ORIG = ../eglibc_$(EGLIBC_VERSION).orig.tar.gz
