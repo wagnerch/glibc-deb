@@ -23,7 +23,6 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     - Update patches/hurd-i386/local-tls-support.diff.
     - Update patches/hurd-i386/submitted-extern_inline.diff.
     - Remove debian/patches/mips/cvs-context.diff (merged).
-    - Update debian/patches/powerpc/local-sysconf.diff.
     - Remove debian/patches/all/submitted-readme-version.diff (merged).
     - Remove debian/patches/any/submitted-install-map-files.diff (merged).
     - Remove debian/patches/any/cvs-pthread_h.diff (merged).
@@ -66,6 +65,8 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   * Remove localedata/locale-fr_FR.diff as coreutils has been fixed.
   * Add debian/patches/any/submitted-autotools.diff to update config.guess
     and config.sub.
+  * Remove debian/patches/powerpc/local-sysconf.diff, as it only concerns
+    kernel that are not supported anymore.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 15:03:39 +0200
 
