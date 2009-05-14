@@ -76,8 +76,14 @@ eglibc (2.9-13) unstable; urgency=low
     and nscd is not running to comply with LSB.  Closes: #527883.
   * debian/debhelper.in/locales.config: don't use "echo -e".  Closes: 
     #527945.
+  * debian/patches/localedata/supported.diff: add kk_KZ.RK1048 locale.
+    Closes: #528177.
+  * debian/debhelper.in/locales.config: use previous debconf settings if
+    /etc/environment and /etc/default/locale do not exist.
+  * debian/bug/locales/presubj: fix a typo.  Closes: #528353.
+  * debian/local/manpages/validlocale.8: fix a typo.  Closes #528658. 
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 09 May 2009 20:56:18 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 14 May 2009 21:25:26 +0200
 
 eglibc (2.9-12) unstable; urgency=low
 
