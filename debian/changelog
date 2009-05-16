@@ -67,6 +67,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     and config.sub.
   * Remove debian/patches/powerpc/local-sysconf.diff, as it only concerns
     kernel that are not supported anymore.
+  * Add debian/patches/ia64/submitted-sysconf.diff to fix sysconf() on ia64.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 15:03:39 +0200
 

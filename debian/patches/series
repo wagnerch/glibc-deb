@@ -88,6 +88,8 @@ hurd-i386/submitted-dl-sysdep.diff
 hurd-i386/submitted-itimer-lock.diff
 hurd-i386/local-pthread_types.diff
 
+ia64/submitted-sysconf.diff
+
 i386/local-biarch.diff
 i386/local-clone.diff
 i386/local-cmov.diff
