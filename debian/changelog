@@ -68,7 +68,8 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   * Remove debian/patches/powerpc/local-sysconf.diff, as it only concerns
     kernel that are not supported anymore.
   * Add debian/patches/ia64/submitted-sysconf.diff to fix sysconf() on ia64.
-  * Add debian/patches/alpha/submitted-getsysstats.diff and 
+  * Add debian/patches/alpha/submitted-getsysstats.diff,
+    debian/patches/alpha/submitted-includes.diff and 
     debian/patches/alpha/submitted-lowlevellock.diff to partially fix FTBFS
     on alpha.
 

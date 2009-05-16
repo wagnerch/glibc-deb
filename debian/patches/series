@@ -44,6 +44,7 @@ alpha/submitted-dl-support.diff
 alpha/submitted-fdatasync.diff
 alpha/submitted-fpu-round.diff
 alpha/submitted-getsysstats.diff
+alpha/submitted-includes.diff
 alpha/submitted-lowlevellock.diff
 alpha/submitted-PTR_MANGLE.diff
 alpha/submitted-procfs_h.diff
