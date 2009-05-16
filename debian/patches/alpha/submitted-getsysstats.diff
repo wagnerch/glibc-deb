@@ -3,8 +3,8 @@
         * sysdeps/unix/sysv/linux/alpha/getsysstats.c (GET_NPROCS_PARSER):
         Change parameters and use next_line.
 
---- a/sysdeps/unix/sysv/linux/alpha/getsysstats.c
-+++ b/sysdeps/unix/sysv/linux/alpha/getsysstats.c
+--- a/ports/sysdeps/unix/sysv/linux/alpha/getsysstats.c
++++ b/ports/sysdeps/unix/sysv/linux/alpha/getsysstats.c
 @@ -20,15 +20,16 @@
  
  
