@@ -80,13 +80,19 @@ eglibc (2.9-13) unstable; urgency=low
   * debian/debhelper.in/nscd.init: fix return code when querying status
     and nscd is not running to comply with LSB.  Closes: #527883.
   * debian/debhelper.in/locales.config: don't use "echo -e".  Closes: 
-    #527945.
+    #527945, #529173.
   * debian/patches/localedata/supported.diff: add kk_KZ.RK1048 locale.
     Closes: #528177.
   * debian/debhelper.in/locales.config: use previous debconf settings if
     /etc/environment and /etc/default/locale do not exist.
   * debian/bug/locales/presubj: fix a typo.  Closes: #528353.
   * debian/local/manpages/validlocale.8: fix a typo.  Closes #528658. 
+  * debian/patches/any/cvs-sunrpc-license.diff: new patch from upstream
+    to change the SUNRPC license into BSD one. Update debian/copyright
+    accordingly.  Closes: #382175.
+  * debian/patches/any/submitted-tst-cpucount.diff: new patch to fix 
+    tst-cpucount test on non Linux kernels.
+  * kfreebsd/local-sysdeps.diff: update to revision 2520 (from glibc-bsd).
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 14 May 2009 21:25:26 +0200
 

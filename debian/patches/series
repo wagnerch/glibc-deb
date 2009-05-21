@@ -176,3 +176,5 @@ any/submitted-getaddrinfo-lo.diff
 any/local-getaddrinfo-interface.diff
 any/local-revert-3270.diff
 any/submitted-autotools.diff
+any/cvs-sunrpc-license.diff
+any/submitted-tst-cpucount.diff
