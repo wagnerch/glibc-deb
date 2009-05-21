@@ -91,6 +91,7 @@ hurd-i386/submitted-dl-sysdep.diff
 hurd-i386/submitted-itimer-lock.diff
 hurd-i386/local-pthread_types.diff
 
+ia64/submitted-memchr.diff
 ia64/submitted-sysconf.diff
 
 i386/local-biarch.diff
@@ -178,3 +179,4 @@ any/local-revert-3270.diff
 any/submitted-autotools.diff
 any/cvs-sunrpc-license.diff
 any/submitted-tst-cpucount.diff
+any/submitted-accept4.diff
