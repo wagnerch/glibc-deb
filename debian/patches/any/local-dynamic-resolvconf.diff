@@ -33,7 +33,7 @@
 -		if (__res_initstamp != resp->_u._ext.initstamp) {
 +		ret = stat (_PATH_RESCONF, &statbuf);
 +		if ((__res_initstamp != resp->_u._ext.initstamp)
-+		    || (ret == 0) && (last_mtime != statbuf.st_mtime)) {
++		    || ((ret == 0) && (last_mtime != statbuf.st_mtime))) {
 +			last_mtime = statbuf.st_mtime;
  			if (resp->nscount > 0)
  				__res_iclose (resp, true);
