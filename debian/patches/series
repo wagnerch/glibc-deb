@@ -184,3 +184,4 @@ any/submitted-tst-cpucount.diff
 any/submitted-accept4.diff
 any/cvs-nptl-init.diff
 any/local-revert-3270.diff
+any/submitted-accept4-hidden.diff
