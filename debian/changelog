@@ -76,6 +76,10 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     crossing page boundaries on ia64.
   * Add debian/patches/any/submitted-accept4.diff to fix nscd on non-amd64
     architectures.
+  * Add debian/patches/any/local-linuxthreads-unwind.diff to fix exception
+    handling with linuxthreads.
+  * Add debian/patches/powerpc/cvs-long-double-errno.diff to fix errno for
+    IBM long double.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 15:03:39 +0200
 

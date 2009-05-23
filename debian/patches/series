@@ -111,6 +111,8 @@ m68k/submitted-gcc34-seccomment.diff
 mips/local-lazy-eval.diff
 mips/local-r10k.diff
 
+powerpc/cvs-long-double-errno.diff
+
 s390/submitted-nexttowardf.diff
 
 sh4/local-fpscr_values.diff
