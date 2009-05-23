@@ -55,7 +55,7 @@
 +++ b/ports/sysdeps/unix/sysv/linux/alpha/nptl/timer_settime.c
 @@ -1 +1 @@
 -#include "../x86_64/timer_settime.c"
-+#include <nptl/sysdeps/unix/sysv/linux/x86_64/timer_gettime.c>
++#include <nptl/sysdeps/unix/sysv/linux/x86_64/timer_settime.c>
 --- a/ports/sysdeps/unix/sysv/linux/alpha/sysconf.c
 +++ b/ports/sysdeps/unix/sysv/linux/alpha/sysconf.c
 @@ -149,4 +149,4 @@ __sysconf (int name)
