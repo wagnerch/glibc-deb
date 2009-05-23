@@ -5,10 +5,6 @@
 	* sysdeps/ieee754/ldbl-128ibm/s_tanl.c: Likewise.
 	* sysdeps/ieee754/ldbl-128ibm/s_expm1l.c: Set errno for overflow.
 
- 	* sysdeps/powerpc/powerpc32/____longjmp_chk.S: New file.
- 	* sysdeps/powerpc/powerpc64/____longjmp_chk.S: New file.
- 	* sysdeps/powerpc/powerpc32/__longjmp-common.S: Use CHECK_SP if
-
 --- a/sysdeps/ieee754/ldbl-128ibm/s_cosl.c
 +++ b/sysdeps/ieee754/ldbl-128ibm/s_cosl.c
 @@ -44,6 +44,7 @@

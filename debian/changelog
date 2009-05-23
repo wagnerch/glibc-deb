@@ -80,6 +80,8 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     handling with linuxthreads.
   * Add debian/patches/powerpc/cvs-long-double-errno.diff to fix errno for
     IBM long double.
+  * Add debian/patches/any/cvs-nptl-init.diff to allow overwriting 
+    architectures init.c in csu and nptl individually.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 15:03:39 +0200
 

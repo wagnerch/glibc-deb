@@ -5,8 +5,8 @@ Revert PR ntpl/3270
  nptl/init.c          |   13 -----
  2 files changed, 21 insertions(+), 115 deletions(-)
 
---- a/nptl/init.c
-+++ b/nptl/init.c
+--- a/nptl/nptl-init.c
++++ b/nptl/nptl-init.c
 @@ -245,21 +245,12 @@
  
    /* Reset the SETXID flag.  */

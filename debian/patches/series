@@ -178,8 +178,9 @@ any/submitted-futex_robust_pi.diff
 #any/local-disable-gethostbyname4.diff
 any/submitted-getaddrinfo-lo.diff
 any/local-getaddrinfo-interface.diff
-any/local-revert-3270.diff
 any/submitted-autotools.diff
 any/cvs-sunrpc-license.diff
 any/submitted-tst-cpucount.diff
 any/submitted-accept4.diff
+any/cvs-nptl-init.diff
+any/local-revert-3270.diff
