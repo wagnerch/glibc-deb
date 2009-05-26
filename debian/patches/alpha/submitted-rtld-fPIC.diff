@@ -2,8 +2,8 @@
 
 	* sysdeps/alpha/Makefile (CFLAGS-rtld.c): add $(PIC-ccflag).
 
---- a/sysdeps/alpha/Makefile
-+++ b/sysdeps/alpha/Makefile
+--- a/ports/sysdeps/alpha/Makefile
++++ b/ports/sysdeps/alpha/Makefile
 @@ -35,7 +35,8 @@ endif
  
  ifeq ($(subdir),elf)
