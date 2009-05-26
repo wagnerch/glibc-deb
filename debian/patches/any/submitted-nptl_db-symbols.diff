@@ -1,0 +1,16 @@
+2009-05-25  Aurelien Jarno <aurelien@aurel32.n>
+
+	* db-symbols.awk: use the last field for the symbol name instead
+	of the 8th one.
+
+--- a/nptl_db/db-symbols.awk
++++ b/nptl_db/db-symbols.awk
+@@ -14,7 +14,7 @@ NF == 0 { in_symtab=0; next }
+ 
+ !in_symtab { next }
+ 
+-NF >= 8 && $7 != "UND" { seen[$8] = 1 }
++NF >= 8 && $7 != "UND" { seen[$NF] = 1 }
+ 
+ END {
+   status = 0;

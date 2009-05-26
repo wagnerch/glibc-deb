@@ -85,10 +85,13 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     architectures init.c in csu and nptl individually.
   * Add debian/patches/any/submitted-accept4-hidden.diff to fix build
     on non Linux architectures.
-  * add debian/patches/any/submitted-rtld-not-cancel.diff to fix build
+  * Add debian/patches/any/submitted-rtld-not-cancel.diff to fix build
     on architecture without inline syscalls.
+  * Add debian/patches/any/submitted-nptl_db-symbols.diff to fix testsuite
+    on alpha.
+  * Add debian/patches/alpha/submitted-rtld-fPIC.diff to fix build on alpha.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 10 May 2009 15:03:39 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 26 May 2009 09:27:14 +0200
 
 eglibc (2.9-13) unstable; urgency=low
 

@@ -48,6 +48,7 @@ alpha/submitted-includes.diff
 alpha/submitted-lowlevellock.diff
 alpha/submitted-PTR_MANGLE.diff
 alpha/submitted-procfs_h.diff
+alpha/submitted-rtld-fPIC.diff
 
 amd64/local-biarch.diff
 amd64/local-clone.diff
@@ -186,3 +187,4 @@ any/cvs-nptl-init.diff
 any/local-revert-3270.diff
 any/submitted-accept4-hidden.diff
 any/submitted-rtld-not-cancel.diff
+any/submitted-nptl_db-symbols.diff
