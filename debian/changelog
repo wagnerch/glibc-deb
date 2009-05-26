@@ -20,8 +20,9 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     - Remove debian/patches/hurd-i386/cvs-get_pc_thunk.diff (merged).
     - Remove debian/patches/hurd-i386/cvs-strerror_l.diff (merged).
     - Remove debian/patches/hurd-i386/cvs-rtld.diff (merged).
-    - Update patches/hurd-i386/local-tls-support.diff.
-    - Update patches/hurd-i386/submitted-extern_inline.diff.
+    - Update debian/patches/hurd-i386/local-tls-support.diff.
+    - Update debian/patches/hurd-i386/submitted-extern_inline.diff.
+    - Update debian/patches/hurd-i386/local-atomic-no-multiple_threads.diff.
     - Remove debian/patches/mips/cvs-context.diff (merged).
     - Remove debian/patches/all/submitted-readme-version.diff (merged).
     - Remove debian/patches/any/submitted-install-map-files.diff (merged).
