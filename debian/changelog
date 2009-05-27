@@ -90,6 +90,8 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   * Add debian/patches/any/submitted-nptl_db-symbols.diff to fix testsuite
     on alpha.
   * Add debian/patches/alpha/submitted-rtld-fPIC.diff to fix build on alpha.
+  * Add debian/patches/any/submitted-getent-gshadow.diff to add gshadow 
+    support to getent.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 26 May 2009 09:27:14 +0200
 
