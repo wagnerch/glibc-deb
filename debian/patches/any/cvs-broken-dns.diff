@@ -1,0 +1,26 @@
+2009-06-11  Ulrich Drepper  <drepper@redhat.com>
+
+	* resolv/res_send.c (send_dg): Remember we switched to
+	single-request mode.
+
+diff --git a/resolv/res_send.c b/resolv/res_send.c
+index 25a854f..39c69da 100644
+--- a/resolv/res_send.c
++++ b/resolv/res_send.c
+@@ -1008,7 +1008,7 @@ send_dg(res_state statp,
+ 		seconds /= statp->nscount;
+ 	if (seconds <= 0)
+ 		seconds = 1;
+-	bool single_request = ((statp->options) & RES_SNGLKUP) != 0;// XXX
++	bool single_request = (statp->options & RES_SNGLKUP) != 0;// XXX
+ 	int save_gotsomewhere = *gotsomewhere;
+  retry:
+ 	evNowTime(&now);
+@@ -1059,6 +1059,7 @@ send_dg(res_state statp,
+ 		       have received the first answer.  */
+ 		    if (!single_request)
+ 		      {
++			statp->options |= RES_SNGLKUP;
+ 			single_request = true;
+ 			*gotsomewhere = save_gotsomewhere;
+ 			goto retry;
