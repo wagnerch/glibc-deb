@@ -3,7 +3,9 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   [ Aurelien Jarno ]
   * New upstream release.
     - Fix C++ declaration of string functions.  Closes: #496763.
-    - Add Handling for group shadow files.  Closes: # 519479.
+    - Add Handling for group shadow files.  Closes: #519479.
+    - Use AT_RANDOM for randomized stack protector value.  Closes: 
+      #533077.
     - debian/copyright, debian/*symbols*, debian/shlibver, 
       debian/locales-depver, debian/debhelper.in/*.lintian: upgrade
       to 2.10.
