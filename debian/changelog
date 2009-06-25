@@ -88,13 +88,17 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     architectures init.c in csu and nptl individually.
   * Add debian/patches/any/submitted-accept4-hidden.diff to fix build
     on non Linux architectures.
-  * Add debian/patches/any/submitted-rtld-not-cancel.diff to fix build
-    on architecture without inline syscalls.
+  * Add debian/patches/kfreebsd/local-sysdeps-2.10.diff to update sysdeps
+    for glibc 2.10 on GNU/kFreeBSD.
   * Add debian/patches/any/submitted-nptl_db-symbols.diff to fix testsuite
     on alpha.
   * Add debian/patches/alpha/submitted-rtld-fPIC.diff to fix build on alpha.
   * Add debian/patches/any/submitted-getent-gshadow.diff to add gshadow 
     support to getent.
+
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: update to revision 2600 (from glibc-bsd).
+  * Add kfreebsd/local-no-SOCK_NONBLOCK.diff to fix build on GNU/kFreeBSD.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 26 May 2009 09:27:14 +0200
 

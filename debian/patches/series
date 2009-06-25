@@ -187,6 +187,5 @@ any/submitted-accept4.diff
 any/cvs-nptl-init.diff
 any/local-revert-3270.diff
 any/submitted-accept4-hidden.diff
-any/submitted-rtld-not-cancel.diff
 any/submitted-nptl_db-symbols.diff
 any/submitted-getent-gshadow.diff
