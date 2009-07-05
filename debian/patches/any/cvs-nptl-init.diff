@@ -28,7 +28,7 @@
  CFLAGS-unwind-forcedunwind.c = -fexceptions -fasynchronous-unwind-tables
 --- a/nptl/init.c
 +++ /dev/null
-@@ -1,455 +0,0 @@
+@@ -1,452 +0,0 @@
 -/* Copyright (C) 2002-2007, 2008, 2009 Free Software Foundation, Inc.
 -   This file is part of the GNU C Library.
 -   Contributed by Ulrich Drepper <drepper@redhat.com>, 2002.
@@ -271,9 +271,6 @@
 -  INTERNAL_SYSCALL_NCS (__xidcmd->syscall_no, err, 3, __xidcmd->id[0],
 -			__xidcmd->id[1], __xidcmd->id[2]);
 -
--  if (atomic_decrement_val (&__xidcmd->cntr) == 0)
--    lll_futex_wake (&__xidcmd->cntr, 1, LLL_PRIVATE);
--
 -  /* Reset the SETXID flag.  */
 -  struct pthread *self = THREAD_SELF;
 -  int flags, newval;
@@ -485,8 +482,8 @@
 -strong_alias (__pthread_initialize_minimal_internal,
 -	      __pthread_initialize_minimal)
 --- /dev/null
-+++ b/nptl/nptl-init.c
-@@ -0,0 +1,455 @@
++++ b/nptl/init.c
+@@ -0,0 +1,452 @@
 +/* Copyright (C) 2002-2007, 2008, 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +   Contributed by Ulrich Drepper <drepper@redhat.com>, 2002.
@@ -728,9 +725,6 @@
 +  INTERNAL_SYSCALL_DECL (err);
 +  INTERNAL_SYSCALL_NCS (__xidcmd->syscall_no, err, 3, __xidcmd->id[0],
 +			__xidcmd->id[1], __xidcmd->id[2]);
-+
-+  if (atomic_decrement_val (&__xidcmd->cntr) == 0)
-+    lll_futex_wake (&__xidcmd->cntr, 1, LLL_PRIVATE);
 +
 +  /* Reset the SETXID flag.  */
 +  struct pthread *self = THREAD_SELF;
