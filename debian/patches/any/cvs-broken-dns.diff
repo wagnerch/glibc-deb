@@ -14,46 +14,15 @@
 	* resolv/res_send.c (send_dg): Remember we switched to
 	single-request mode.
 
-diff --git a/resolv/res_send.c b/resolv/res_send.c
-index 25a854f..39c69da 100644
+---
+ resolv/res_init.c |    3 ++
+ resolv/res_send.c |   69 +++++++++++++++++++++++++++++++++++++++---------------
+ resolv/resolv.h   |    2 +
+ 3 files changed, 55 insertions(+), 19 deletions(-)
+
 --- a/resolv/res_send.c
 +++ b/resolv/res_send.c
-@@ -1008,7 +1008,7 @@ send_dg(res_state statp,
- 		seconds /= statp->nscount;
- 	if (seconds <= 0)
- 		seconds = 1;
--	bool single_request = ((statp->options) & RES_SNGLKUP) != 0;// XXX
-+	bool single_request = (statp->options & RES_SNGLKUP) != 0;// XXX
- 	int save_gotsomewhere = *gotsomewhere;
-  retry:
- 	evNowTime(&now);
-@@ -1059,6 +1059,7 @@ send_dg(res_state statp,
- 		       have received the first answer.  */
- 		    if (!single_request)
- 		      {
-+			statp->options |= RES_SNGLKUP;
- 			single_request = true;
- 			*gotsomewhere = save_gotsomewhere;
- 			goto retry;
-diff --git a/resolv/res_init.c b/resolv/res_init.c
-index 8841fe9..40dbe7d 100644
---- a/resolv/res_init.c
-+++ b/resolv/res_init.c
-@@ -540,6 +540,9 @@ res_setoptions(res_state statp, const char *options, const char *source) {
- 			statp->options |= RES_NOCHECKNAME;
-                 } else if (!strncmp(cp, "edns0", sizeof("edns0") - 1)) {
- 			statp->options |= RES_USE_EDNS0;
-+                } else if (!strncmp(cp, "single-request-reopen",
-+				    sizeof("single-request-reopen") - 1)) {
-+			statp->options |= RES_SNGLKUPREOP;
-                 } else if (!strncmp(cp, "single-request",
- 				    sizeof("single-request") - 1)) {
- 			statp->options |= RES_SNGLKUP;
-diff --git a/resolv/res_send.c b/resolv/res_send.c
-index 39c69da..971a4af 100644
---- a/resolv/res_send.c
-+++ b/resolv/res_send.c
-@@ -908,24 +908,11 @@ send_vc(res_state statp,
+@@ -908,24 +908,11 @@
  }
  
  static int
@@ -81,7 +50,7 @@ index 39c69da..971a4af 100644
  		/* only try IPv6 if IPv6 NS and if not failed before */
  		if ((EXT(statp).nscount6 > 0) && !statp->ipv6_unavail) {
  			if (__builtin_expect (__have_o_nonblock >= 0, 1)) {
-@@ -1000,6 +987,26 @@ send_dg(res_state statp,
+@@ -1000,6 +987,26 @@
  		}
  	}
  
@@ -108,11 +77,11 @@ index 39c69da..971a4af 100644
  	/*
  	 * Compute time for the total operation.
  	 */
-@@ -1008,8 +1015,15 @@ send_dg(res_state statp,
+@@ -1008,8 +1015,15 @@
  		seconds /= statp->nscount;
  	if (seconds <= 0)
  		seconds = 1;
--	bool single_request = (statp->options & RES_SNGLKUP) != 0;// XXX
+-	bool single_request = ((statp->options) & RES_SNGLKUP) != 0;// XXX
 +	bool single_request = (statp->options & RES_SNGLKUP) != 0;
 +	bool single_request_reopen = (statp->options & RES_SNGLKUPREOP) != 0;
  	int save_gotsomewhere = *gotsomewhere;
@@ -125,7 +94,12 @@ index 39c69da..971a4af 100644
   retry:
  	evNowTime(&now);
  	evConsTime(&timeout, seconds, 0);
-@@ -1064,6 +1078,14 @@ send_dg(res_state statp,
+@@ -1059,10 +1073,19 @@
+ 		       have received the first answer.  */
+ 		    if (!single_request)
+ 		      {
++			statp->options |= RES_SNGLKUP;
+ 			single_request = true;
  			*gotsomewhere = save_gotsomewhere;
  			goto retry;
  		      }
@@ -140,7 +114,7 @@ index 39c69da..971a4af 100644
  
  		    *resplen2 = 1;
  		    return resplen;
-@@ -1092,7 +1114,8 @@ send_dg(res_state statp,
+@@ -1091,7 +1114,8 @@
  			Perror(statp, stderr, "send", errno);
  			goto err_out;
  		}
@@ -150,7 +124,7 @@ index 39c69da..971a4af 100644
  		  pfd[0].events = POLLIN;
  		else
  		  pfd[0].events = POLLIN | POLLOUT;
-@@ -1306,8 +1329,15 @@ send_dg(res_state statp,
+@@ -1305,8 +1329,15 @@
  			recvresp2 = 1;
  		/* Repeat waiting if we have a second answer to arrive.  */
  		if ((recvresp1 & recvresp2) == 0) {
@@ -167,11 +141,21 @@ index 39c69da..971a4af 100644
  			goto wait;
  		}
  		/*
-diff --git a/resolv/resolv.h b/resolv/resolv.h
-index c6e695d..3ef714f 100644
+--- a/resolv/res_init.c
++++ b/resolv/res_init.c
+@@ -540,6 +540,9 @@
+ 			statp->options |= RES_NOCHECKNAME;
+                 } else if (!strncmp(cp, "edns0", sizeof("edns0") - 1)) {
+ 			statp->options |= RES_USE_EDNS0;
++                } else if (!strncmp(cp, "single-request-reopen",
++				    sizeof("single-request-reopen") - 1)) {
++			statp->options |= RES_SNGLKUPREOP;
+                 } else if (!strncmp(cp, "single-request",
+ 				    sizeof("single-request") - 1)) {
+ 			statp->options |= RES_SNGLKUP;
 --- a/resolv/resolv.h
 +++ b/resolv/resolv.h
-@@ -216,6 +216,8 @@ struct res_sym {
+@@ -216,6 +216,8 @@
  					   reverse lookup */
  #define RES_USE_EDNS0	0x00100000	/* Use EDNS0.  */
  #define RES_SNGLKUP	0x00200000	/* one outstanding request at a time */

@@ -3,6 +3,10 @@
         * sysdeps/unix/sysv/linux/alpha/getsysstats.c (GET_NPROCS_PARSER):
         Change parameters and use next_line.
 
+---
+ ports/sysdeps/unix/sysv/linux/alpha/getsysstats.c |    5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
 --- a/ports/sysdeps/unix/sysv/linux/alpha/getsysstats.c
 +++ b/ports/sysdeps/unix/sysv/linux/alpha/getsysstats.c
 @@ -20,15 +20,16 @@
@@ -24,4 +28,3 @@
  	if ((sscanf (BUFFER, "cpus active : %d", &(RESULT)) == 1)	   \
  	    || (sscanf (BUFFER, "CPUs probed %*d active %d",		   \
  			&(RESULT)) == 1))  				   \
-

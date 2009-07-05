@@ -4,6 +4,10 @@
 	FUTEX_WAIT_BITSET, FUTEX_WAKE_BITSET, FUTEX_CLOCK_REALTIME and
 	FUTEX_BITSET_MATCH_ANY.
 
+---
+ ports/sysdeps/unix/sysv/linux/alpha/nptl/lowlevellock.h |    5 +++++
+ 1 file changed, 5 insertions(+)
+
 --- a/ports/sysdeps/unix/sysv/linux/alpha/nptl/lowlevellock.h
 +++ b/ports/sysdeps/unix/sysv/linux/alpha/nptl/lowlevellock.h
 @@ -37,7 +37,12 @@

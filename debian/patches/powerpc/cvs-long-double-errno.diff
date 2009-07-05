@@ -5,6 +5,13 @@
 	* sysdeps/ieee754/ldbl-128ibm/s_tanl.c: Likewise.
 	* sysdeps/ieee754/ldbl-128ibm/s_expm1l.c: Set errno for overflow.
 
+---
+ sysdeps/ieee754/ldbl-128ibm/s_cosl.c   |    7 +++++--
+ sysdeps/ieee754/ldbl-128ibm/s_expm1l.c |    6 +++++-
+ sysdeps/ieee754/ldbl-128ibm/s_sinl.c   |    8 ++++++--
+ sysdeps/ieee754/ldbl-128ibm/s_tanl.c   |    8 ++++++--
+ 4 files changed, 22 insertions(+), 7 deletions(-)
+
 --- a/sysdeps/ieee754/ldbl-128ibm/s_cosl.c
 +++ b/sysdeps/ieee754/ldbl-128ibm/s_cosl.c
 @@ -44,6 +44,7 @@
@@ -39,7 +46,7 @@
  #include "math.h"
  #include "math_private.h"
  #include <math_ldbl_opt.h>
-@@ -120,7 +121,10 @@ __expm1l (long double x)
+@@ -120,7 +121,10 @@
  
    /* Overflow.  */
    if (x > maxlog)

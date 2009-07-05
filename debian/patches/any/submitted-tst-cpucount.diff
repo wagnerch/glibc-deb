@@ -3,9 +3,13 @@
 	* posix/tst-cpucount.c (do_test): use CPU_SETSIZE instead of an
 	hardcoded value.
 
+---
+ posix/tst-cpucount.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 --- a/posix/tst-cpucount.c
 +++ b/posix/tst-cpucount.c
-@@ -8,7 +8,7 @@ do_test (void)
+@@ -8,7 +8,7 @@
  
    CPU_ZERO (&c);
  

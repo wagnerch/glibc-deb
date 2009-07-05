@@ -4,6 +4,12 @@
 	* nptl-init.c: Renamed from init.c.
 	* Makefile: Change all occurences of init.c to nptl-init.c.
 
+---
+ nptl/Makefile    |    6 
+ nptl/init.c      |  452 -------------------------------------------------------
+ nptl/nptl-init.c |  452 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 455 insertions(+), 455 deletions(-)
+
 --- a/nptl/Makefile
 +++ b/nptl/Makefile
 @@ -33,7 +33,7 @@

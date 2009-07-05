@@ -3,9 +3,13 @@
 	* sysdeps/unix/sysv/linux/ia64/sysconf.c (__sysconf): use
 	_POSIX_VERSION instead of 200112L.
 
+---
+ sysdeps/unix/sysv/linux/ia64/sysconf.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 --- a/sysdeps/unix/sysv/linux/ia64/sysconf.c
 +++ b/sysdeps/unix/sysv/linux/ia64/sysconf.c
-@@ -33,7 +33,7 @@ long int
+@@ -33,7 +33,7 @@
  __sysconf (int name)
  {
    if (name == _SC_CPUTIME || name == _SC_THREAD_CPUTIME)

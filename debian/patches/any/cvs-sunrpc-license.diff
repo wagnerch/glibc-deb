@@ -93,8 +93,100 @@
 	* sunrpc/xdr_sizeof.c: Likewise.
 	* sunrpc/xdr_stdio.c: Likewise.
 
-diff --git a/sunrpc/auth_des.c b/sunrpc/auth_des.c
-index a76f027..acd8eb4 100644
+---
+ sunrpc/auth_des.c              |   51 +++++++-------
+ sunrpc/auth_none.c             |   51 +++++++-------
+ sunrpc/auth_unix.c             |   51 +++++++-------
+ sunrpc/authdes_prot.c          |   51 +++++++-------
+ sunrpc/authuxprot.c            |   51 +++++++-------
+ sunrpc/bindrsvprt.c            |   51 +++++++-------
+ sunrpc/clnt_gen.c              |   51 +++++++-------
+ sunrpc/clnt_perr.c             |   59 +++++++---------
+ sunrpc/clnt_raw.c              |   58 +++++++---------
+ sunrpc/clnt_simp.c             |   60 +++++++----------
+ sunrpc/clnt_tcp.c              |   58 +++++++---------
+ sunrpc/clnt_udp.c              |   58 +++++++---------
+ sunrpc/clnt_unix.c             |   54 +++++++--------
+ sunrpc/des_crypt.c             |   60 ++++++++---------
+ sunrpc/des_soft.c              |   48 ++++++-------
+ sunrpc/get_myaddr.c            |   60 +++++++----------
+ sunrpc/getrpcport.c            |   56 +++++++---------
+ sunrpc/key_call.c              |   51 +++++++-------
+ sunrpc/key_prot.c              |   54 +++++++--------
+ sunrpc/openchild.c             |   52 +++++++-------
+ sunrpc/pm_getmaps.c            |   60 +++++++----------
+ sunrpc/pm_getport.c            |   60 +++++++----------
+ sunrpc/pmap_clnt.c             |   51 +++++++-------
+ sunrpc/pmap_prot.c             |   60 +++++++----------
+ sunrpc/pmap_prot2.c            |   60 +++++++----------
+ sunrpc/pmap_rmt.c              |   60 +++++++----------
+ sunrpc/rpc/auth.h              |   57 +++++++---------
+ sunrpc/rpc/auth_unix.h         |   58 +++++++---------
+ sunrpc/rpc/clnt.h              |   55 +++++++--------
+ sunrpc/rpc/des_crypt.h         |   53 +++++++--------
+ sunrpc/rpc/key_prot.h          |  143 ++++++++++++++++++++---------------------
+ sunrpc/rpc/netdb.h             |   48 ++++++-------
+ sunrpc/rpc/pmap_clnt.h         |   57 +++++++---------
+ sunrpc/rpc/pmap_prot.h         |   57 +++++++---------
+ sunrpc/rpc/pmap_rmt.h          |   57 +++++++---------
+ sunrpc/rpc/rpc.h               |   57 +++++++---------
+ sunrpc/rpc/rpc_des.h           |   55 +++++++--------
+ sunrpc/rpc/rpc_msg.h           |   62 ++++++++---------
+ sunrpc/rpc/svc.h               |   56 +++++++---------
+ sunrpc/rpc/svc_auth.h          |   58 +++++++---------
+ sunrpc/rpc/types.h             |   48 ++++++-------
+ sunrpc/rpc/xdr.h               |   56 +++++++---------
+ sunrpc/rpc_clntout.c           |   59 +++++++---------
+ sunrpc/rpc_cmsg.c              |   59 +++++++---------
+ sunrpc/rpc_common.c            |   48 ++++++-------
+ sunrpc/rpc_cout.c              |   53 +++++++--------
+ sunrpc/rpc_dtable.c            |   51 ++++++--------
+ sunrpc/rpc_hout.c              |   53 +++++++--------
+ sunrpc/rpc_main.c              |   53 +++++++--------
+ sunrpc/rpc_parse.c             |   53 +++++++--------
+ sunrpc/rpc_parse.h             |   55 +++++++--------
+ sunrpc/rpc_prot.c              |   58 +++++++---------
+ sunrpc/rpc_sample.c            |   53 +++++++--------
+ sunrpc/rpc_scan.c              |   53 +++++++--------
+ sunrpc/rpc_scan.h              |   64 ++++++++----------
+ sunrpc/rpc_svcout.c            |   53 +++++++--------
+ sunrpc/rpc_tblout.c            |   53 +++++++--------
+ sunrpc/rpc_util.c              |   53 +++++++--------
+ sunrpc/rpc_util.h              |   55 +++++++--------
+ sunrpc/rpcinfo.c               |   62 +++++++----------
+ sunrpc/rpcsvc/bootparam_prot.x |   54 +++++++--------
+ sunrpc/rpcsvc/key_prot.x       |  115 ++++++++++++++++----------------
+ sunrpc/rpcsvc/klm_prot.x       |   57 +++++++---------
+ sunrpc/rpcsvc/mount.x          |   48 ++++++-------
+ sunrpc/rpcsvc/nfs_prot.x       |   54 +++++++--------
+ sunrpc/rpcsvc/rex.x            |   48 ++++++-------
+ sunrpc/rpcsvc/rstat.x          |   52 +++++++-------
+ sunrpc/rpcsvc/rusers.x         |   49 ++++++--------
+ sunrpc/rpcsvc/sm_inter.x       |   58 +++++++---------
+ sunrpc/rpcsvc/spray.x          |   56 ++++++++--------
+ sunrpc/rpcsvc/yppasswd.x       |   56 +++++++---------
+ sunrpc/rtime.c                 |   59 +++++++---------
+ sunrpc/svc.c                   |   55 +++++++--------
+ sunrpc/svc_auth.c              |   60 +++++++----------
+ sunrpc/svc_authux.c            |   56 +++++++---------
+ sunrpc/svc_raw.c               |   60 +++++++----------
+ sunrpc/svc_run.c               |   49 ++++++--------
+ sunrpc/svc_simple.c            |   60 +++++++----------
+ sunrpc/svc_tcp.c               |   58 +++++++---------
+ sunrpc/svc_udp.c               |   60 +++++++----------
+ sunrpc/svc_unix.c              |   54 +++++++--------
+ sunrpc/svcauth_des.c           |   52 +++++++-------
+ sunrpc/xcrypt.c                |   52 +++++++-------
+ sunrpc/xdr.c                   |   58 +++++++---------
+ sunrpc/xdr_array.c             |   64 ++++++++----------
+ sunrpc/xdr_float.c             |   58 +++++++---------
+ sunrpc/xdr_mem.c               |   57 +++++++---------
+ sunrpc/xdr_rec.c               |   56 +++++++---------
+ sunrpc/xdr_ref.c               |   64 ++++++++----------
+ sunrpc/xdr_sizeof.c            |   55 +++++++--------
+ sunrpc/xdr_stdio.c             |   56 +++++++---------
+ 91 files changed, 2448 insertions(+), 2743 deletions(-)
+
 --- a/sunrpc/auth_des.c
 +++ b/sunrpc/auth_des.c
 @@ -1,33 +1,32 @@
@@ -156,8 +248,6 @@ index a76f027..acd8eb4 100644
   */
  /*
   * auth_des.c, client-side implementation of DES authentication
-diff --git a/sunrpc/auth_none.c b/sunrpc/auth_none.c
-index f459520..b78f1e1 100644
 --- a/sunrpc/auth_none.c
 +++ b/sunrpc/auth_none.c
 @@ -1,33 +1,32 @@
@@ -219,8 +309,6 @@ index f459520..b78f1e1 100644
   */
  /*
   * auth_none.c
-diff --git a/sunrpc/auth_unix.c b/sunrpc/auth_unix.c
-index 734eb08..3a371c7 100644
 --- a/sunrpc/auth_unix.c
 +++ b/sunrpc/auth_unix.c
 @@ -1,33 +1,32 @@
@@ -282,8 +370,6 @@ index 734eb08..3a371c7 100644
   */
  /*
   * auth_unix.c, Implements UNIX style authentication parameters.
-diff --git a/sunrpc/authdes_prot.c b/sunrpc/authdes_prot.c
-index a889108..392e0ff 100644
 --- a/sunrpc/authdes_prot.c
 +++ b/sunrpc/authdes_prot.c
 @@ -1,33 +1,32 @@
@@ -345,8 +431,6 @@ index a889108..392e0ff 100644
   */
  /*
   * authdes_prot.c, XDR routines for DES authentication
-diff --git a/sunrpc/authuxprot.c b/sunrpc/authuxprot.c
-index 60d3ddb..979cd68 100644
 --- a/sunrpc/authuxprot.c
 +++ b/sunrpc/authuxprot.c
 @@ -1,33 +1,32 @@
@@ -408,8 +492,6 @@ index 60d3ddb..979cd68 100644
   */
  /*
   * authunix_prot.c
-diff --git a/sunrpc/bindrsvprt.c b/sunrpc/bindrsvprt.c
-index 003c3df..22aaecd 100644
 --- a/sunrpc/bindrsvprt.c
 +++ b/sunrpc/bindrsvprt.c
 @@ -1,33 +1,32 @@
@@ -470,9 +552,7 @@ index 003c3df..22aaecd 100644
 + *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   */
  
- #include <errno.h>
-diff --git a/sunrpc/clnt_gen.c b/sunrpc/clnt_gen.c
-index c7468f4..cbb4dd7 100644
+ #include <stdio.h>
 --- a/sunrpc/clnt_gen.c
 +++ b/sunrpc/clnt_gen.c
 @@ -1,33 +1,32 @@
@@ -534,8 +614,6 @@ index c7468f4..cbb4dd7 100644
   */
  
  #include <alloca.h>
-diff --git a/sunrpc/clnt_perr.c b/sunrpc/clnt_perr.c
-index c15796f..7c860a3 100644
 --- a/sunrpc/clnt_perr.c
 +++ b/sunrpc/clnt_perr.c
 @@ -1,41 +1,34 @@
@@ -606,8 +684,6 @@ index c15796f..7c860a3 100644
   */
  #include <stdio.h>
  #include <string.h>
-diff --git a/sunrpc/clnt_raw.c b/sunrpc/clnt_raw.c
-index 74d90c8..d94032d 100644
 --- a/sunrpc/clnt_raw.c
 +++ b/sunrpc/clnt_raw.c
 @@ -1,40 +1,34 @@
@@ -677,8 +753,6 @@ index 74d90c8..d94032d 100644
   *
   * Memory based rpc for simple testing and timing.
   * Interface to create an rpc client and server in the same process.
-diff --git a/sunrpc/clnt_simp.c b/sunrpc/clnt_simp.c
-index 631ec8a..11cdf8d 100644
 --- a/sunrpc/clnt_simp.c
 +++ b/sunrpc/clnt_simp.c
 @@ -1,41 +1,35 @@
@@ -750,8 +824,6 @@ index 631ec8a..11cdf8d 100644
   */
  
  #include <alloca.h>
-diff --git a/sunrpc/clnt_tcp.c b/sunrpc/clnt_tcp.c
-index 6825ca5..1552be8 100644
 --- a/sunrpc/clnt_tcp.c
 +++ b/sunrpc/clnt_tcp.c
 @@ -1,40 +1,34 @@
@@ -821,8 +893,6 @@ index 6825ca5..1552be8 100644
   *
   * TCP based RPC supports 'batched calls'.
   * A sequence of calls may be batched-up in a send buffer.  The rpc call
-diff --git a/sunrpc/clnt_udp.c b/sunrpc/clnt_udp.c
-index 548c987..62ee3a1 100644
 --- a/sunrpc/clnt_udp.c
 +++ b/sunrpc/clnt_udp.c
 @@ -1,40 +1,34 @@
@@ -892,8 +962,6 @@ index 548c987..62ee3a1 100644
   */
  
  #include <stdio.h>
-diff --git a/sunrpc/clnt_unix.c b/sunrpc/clnt_unix.c
-index 4107c62..db3ea31 100644
 --- a/sunrpc/clnt_unix.c
 +++ b/sunrpc/clnt_unix.c
 @@ -1,36 +1,34 @@
@@ -959,8 +1027,6 @@ index 4107c62..db3ea31 100644
   *
   * TCP based RPC supports 'batched calls'.
   * A sequence of calls may be batched-up in a send buffer.  The rpc call
-diff --git a/sunrpc/des_crypt.c b/sunrpc/des_crypt.c
-index 87389b4..b66589b 100644
 --- a/sunrpc/des_crypt.c
 +++ b/sunrpc/des_crypt.c
 @@ -1,37 +1,33 @@
@@ -1028,7 +1094,7 @@ index 87389b4..b66589b 100644
   */
  
  #include <sys/types.h>
-@@ -80,7 +76,7 @@ common_crypt (char *key, char *buf, register unsigned len,
+@@ -80,7 +76,7 @@
  
    desdev = mode & DES_DEVMASK;
    COPY8 (key, desp->des_key);
@@ -1037,8 +1103,6 @@ index 87389b4..b66589b 100644
     * software
     */
    if (!_des_crypt (buf, len, desp))
-diff --git a/sunrpc/des_soft.c b/sunrpc/des_soft.c
-index 521d97c..4573d9d 100644
 --- a/sunrpc/des_soft.c
 +++ b/sunrpc/des_soft.c
 @@ -2,32 +2,32 @@
@@ -1098,8 +1162,6 @@ index 521d97c..4573d9d 100644
   */
  
  #include <rpc/des_crypt.h>
-diff --git a/sunrpc/get_myaddr.c b/sunrpc/get_myaddr.c
-index 4449c53..7f20005 100644
 --- a/sunrpc/get_myaddr.c
 +++ b/sunrpc/get_myaddr.c
 @@ -1,41 +1,35 @@
@@ -1171,8 +1233,6 @@ index 4449c53..7f20005 100644
   */
  
  #include <rpc/types.h>
-diff --git a/sunrpc/getrpcport.c b/sunrpc/getrpcport.c
-index a8f1326..7786701 100644
 --- a/sunrpc/getrpcport.c
 +++ b/sunrpc/getrpcport.c
 @@ -1,38 +1,32 @@
@@ -1239,8 +1299,6 @@ index a8f1326..7786701 100644
   */
  
  #include <alloca.h>
-diff --git a/sunrpc/key_call.c b/sunrpc/key_call.c
-index 319d801..3ad066a 100644
 --- a/sunrpc/key_call.c
 +++ b/sunrpc/key_call.c
 @@ -1,33 +1,32 @@
@@ -1302,8 +1360,6 @@ index 319d801..3ad066a 100644
   */
  /*
   * The original source is from the RPCSRC 4.0 package from Sun Microsystems.
-diff --git a/sunrpc/key_prot.c b/sunrpc/key_prot.c
-index 63d2538..b2eb233 100644
 --- a/sunrpc/key_prot.c
 +++ b/sunrpc/key_prot.c
 @@ -1,36 +1,32 @@
@@ -1368,8 +1424,6 @@ index 63d2538..b2eb233 100644
  
  #include "rpc/key_prot.h"
  
-diff --git a/sunrpc/openchild.c b/sunrpc/openchild.c
-index 29ddfa6..defd93a 100644
 --- a/sunrpc/openchild.c
 +++ b/sunrpc/openchild.c
 @@ -1,34 +1,32 @@
@@ -1432,8 +1486,6 @@ index 29ddfa6..defd93a 100644
   */
  
  /*
-diff --git a/sunrpc/pm_getmaps.c b/sunrpc/pm_getmaps.c
-index b21e7ea..983b2ba 100644
 --- a/sunrpc/pm_getmaps.c
 +++ b/sunrpc/pm_getmaps.c
 @@ -1,42 +1,36 @@
@@ -1506,8 +1558,6 @@ index b21e7ea..983b2ba 100644
   */
  
  #include <rpc/rpc.h>
-diff --git a/sunrpc/pm_getport.c b/sunrpc/pm_getport.c
-index 2d30984..e37f6e7 100644
 --- a/sunrpc/pm_getport.c
 +++ b/sunrpc/pm_getport.c
 @@ -1,41 +1,35 @@
@@ -1579,8 +1629,6 @@ index 2d30984..e37f6e7 100644
   */
  
  #include <stdbool.h>
-diff --git a/sunrpc/pmap_clnt.c b/sunrpc/pmap_clnt.c
-index 3e42960..64a53b6 100644
 --- a/sunrpc/pmap_clnt.c
 +++ b/sunrpc/pmap_clnt.c
 @@ -1,33 +1,32 @@
@@ -1642,8 +1690,6 @@ index 3e42960..64a53b6 100644
   */
  /*
   * pmap_clnt.c
-diff --git a/sunrpc/pmap_prot.c b/sunrpc/pmap_prot.c
-index 3db27a9..cc57456 100644
 --- a/sunrpc/pmap_prot.c
 +++ b/sunrpc/pmap_prot.c
 @@ -1,41 +1,35 @@
@@ -1715,8 +1761,6 @@ index 3db27a9..cc57456 100644
   */
  
  #include <rpc/types.h>
-diff --git a/sunrpc/pmap_prot2.c b/sunrpc/pmap_prot2.c
-index 9dd4925..43e62e3 100644
 --- a/sunrpc/pmap_prot2.c
 +++ b/sunrpc/pmap_prot2.c
 @@ -1,41 +1,35 @@
@@ -1788,8 +1832,6 @@ index 9dd4925..43e62e3 100644
   */
  
  #include <rpc/types.h>
-diff --git a/sunrpc/pmap_rmt.c b/sunrpc/pmap_rmt.c
-index e068848..15a9591 100644
 --- a/sunrpc/pmap_rmt.c
 +++ b/sunrpc/pmap_rmt.c
 @@ -1,42 +1,36 @@
@@ -1862,13 +1904,11 @@ index e068848..15a9591 100644
   */
  
  #include <unistd.h>
-diff --git a/sunrpc/rpc/auth.h b/sunrpc/rpc/auth.h
-index 7c931d8..0c26639 100644
 --- a/sunrpc/rpc/auth.h
 +++ b/sunrpc/rpc/auth.h
-@@ -1,37 +1,34 @@
+@@ -1,38 +1,35 @@
 -/* @(#)auth.h	2.3 88/08/07 4.0 RPCSRC; from 1.17 88/02/08 SMI */
- /*
+-/*
 - * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
 - * unrestricted use provided that this legend is included on all tape
 - * media and as a part of the software program in whole or part.  Users
@@ -1879,23 +1919,33 @@ index 7c931d8..0c26639 100644
 - * SUN RPC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
 - * WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
 - * PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
-+ * auth.h, Authentication interface.
-  *
+- *
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
+- *
+- * Sun Microsystems, Inc.
+- * 2550 Garcia Avenue
+- * Mountain View, California  94043
+- */
+-
+ /*
+  * auth.h, Authentication interface.
+  *
+  * Copyright (C) 1984, Sun Microsystems, Inc.
+  *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -1905,16 +1955,7 @@ index 7c931d8..0c26639 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Sun Microsystems, Inc.
-- * 2550 Garcia Avenue
-- * Mountain View, California  94043
-- */
--
--/*
-- * auth.h, Authentication interface.
-- *
-- * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -1927,16 +1968,15 @@ index 7c931d8..0c26639 100644
 + *   WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 + *   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 + *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
++ *
   * The data structures are completely opaque to the client.  The client
   * is required to pass a AUTH * to routines that create rpc
-diff --git a/sunrpc/rpc/auth_unix.h b/sunrpc/rpc/auth_unix.h
-index 424661d..268c2b5 100644
+  * "sessions".
 --- a/sunrpc/rpc/auth_unix.h
 +++ b/sunrpc/rpc/auth_unix.h
 @@ -1,38 +1,34 @@
 -/* @(#)auth_unix.h	2.2 88/07/29 4.0 RPCSRC; from 1.8 88/02/08 SMI */
- /*
+-/*
 - * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
 - * unrestricted use provided that this legend is included on all tape
 - * media and as a part of the software program in whole or part.  Users
@@ -1947,23 +1987,34 @@ index 424661d..268c2b5 100644
 - * SUN RPC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
 - * WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
 - * PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
-+ * auth_unix.h, Protocol for UNIX style authentication parameters for RPC
-  *
+- *
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
+- *
+- * Sun Microsystems, Inc.
+- * 2550 Garcia Avenue
+- * Mountain View, California  94043
+- */
+-/*      @(#)auth_unix.h 1.5 86/07/16 SMI      */
+-
+ /*
+  * auth_unix.h, Protocol for UNIX style authentication parameters for RPC
+  *
+  * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -1973,17 +2024,7 @@ index 424661d..268c2b5 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Sun Microsystems, Inc.
-- * 2550 Garcia Avenue
-- * Mountain View, California  94043
-- */
--/*      @(#)auth_unix.h 1.5 86/07/16 SMI      */
--
--/*
-- * auth_unix.h, Protocol for UNIX style authentication parameters for RPC
-- *
-- * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -1999,8 +2040,6 @@ index 424661d..268c2b5 100644
   */
  
  /*
-diff --git a/sunrpc/rpc/clnt.h b/sunrpc/rpc/clnt.h
-index 265bbe2..5b03b86 100644
 --- a/sunrpc/rpc/clnt.h
 +++ b/sunrpc/rpc/clnt.h
 @@ -1,37 +1,34 @@
@@ -2067,8 +2106,6 @@ index 265bbe2..5b03b86 100644
   */
  
  #ifndef _RPC_CLNT_H
-diff --git a/sunrpc/rpc/des_crypt.h b/sunrpc/rpc/des_crypt.h
-index 6a65887..6e84398 100644
 --- a/sunrpc/rpc/des_crypt.h
 +++ b/sunrpc/rpc/des_crypt.h
 @@ -3,34 +3,33 @@
@@ -2091,17 +2128,22 @@ index 6a65887..6e84398 100644
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
+  *
+- * Sun Microsystems, Inc.
+- * 2550 Garcia Avenue
+- * Mountain View, California  94043
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -2111,10 +2153,7 @@ index 6a65887..6e84398 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Sun Microsystems, Inc.
-- * 2550 Garcia Avenue
-- * Mountain View, California  94043
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -2130,8 +2169,6 @@ index 6a65887..6e84398 100644
   */
  
  #ifndef __DES_CRYPT_H__
-diff --git a/sunrpc/rpc/key_prot.h b/sunrpc/rpc/key_prot.h
-index 3e2eb72..16f03ff 100644
 --- a/sunrpc/rpc/key_prot.h
 +++ b/sunrpc/rpc/key_prot.h
 @@ -8,40 +8,37 @@
@@ -2201,7 +2238,7 @@ index 3e2eb72..16f03ff 100644
   * Compiled from key_prot.x using rpcgen.
   * DO NOT EDIT THIS FILE!
   * This is NOT source code!
-@@ -60,33 +57,33 @@ enum keystatus {
+@@ -60,33 +57,33 @@
  	KEY_SYSTEMERR = 3,
  };
  typedef enum keystatus keystatus;
@@ -2247,7 +2284,7 @@ index 3e2eb72..16f03ff 100644
  
  
  struct cryptkeyarg {
-@@ -94,13 +91,13 @@ struct cryptkeyarg {
+@@ -94,13 +91,13 @@
  	des_block deskey;
  };
  typedef struct cryptkeyarg cryptkeyarg;
@@ -2265,7 +2302,7 @@ index 3e2eb72..16f03ff 100644
  
  
  struct cryptkeyarg2 {
-@@ -109,13 +106,13 @@ struct cryptkeyarg2 {
+@@ -109,13 +106,13 @@
  	des_block deskey;
  };
  typedef struct cryptkeyarg2 cryptkeyarg2;
@@ -2283,7 +2320,7 @@ index 3e2eb72..16f03ff 100644
  
  
  struct cryptkeyres {
-@@ -125,13 +122,13 @@ struct cryptkeyres {
+@@ -125,13 +122,13 @@
  	} cryptkeyres_u;
  };
  typedef struct cryptkeyres cryptkeyres;
@@ -2301,7 +2338,7 @@ index 3e2eb72..16f03ff 100644
  
  #define MAXGIDS 16
  
-@@ -144,13 +141,13 @@ struct unixcred {
+@@ -144,13 +141,13 @@
  	} gids;
  };
  typedef struct unixcred unixcred;
@@ -2319,7 +2356,7 @@ index 3e2eb72..16f03ff 100644
  
  
  struct getcredres {
-@@ -160,13 +157,13 @@ struct getcredres {
+@@ -160,13 +157,13 @@
  	} getcredres_u;
  };
  typedef struct getcredres getcredres;
@@ -2337,7 +2374,7 @@ index 3e2eb72..16f03ff 100644
  
  
  struct key_netstarg {
-@@ -175,13 +172,13 @@ struct key_netstarg {
+@@ -175,13 +172,13 @@
  	netnamestr st_netname;
  };
  typedef struct key_netstarg key_netstarg;
@@ -2355,7 +2392,7 @@ index 3e2eb72..16f03ff 100644
  
  
  struct key_netstres {
-@@ -191,13 +188,13 @@ struct key_netstres {
+@@ -191,13 +188,13 @@
  	} key_netstres_u;
  };
  typedef struct key_netstres key_netstres;
@@ -2373,7 +2410,7 @@ index 3e2eb72..16f03ff 100644
  
  
  #ifndef opaque
-@@ -242,7 +239,7 @@ extern  des_block * key_gen_1_svc(void *, struct svc_req *);
+@@ -242,7 +239,7 @@
  extern  getcredres * key_getcred_1(netnamestr *, CLIENT *);
  extern  getcredres * key_getcred_1_svc(netnamestr *, struct svc_req *);
  
@@ -2382,7 +2419,7 @@ index 3e2eb72..16f03ff 100644
  #define KEY_SET ((u_long)1)
  extern  keystatus * key_set_1();
  extern  keystatus * key_set_1_svc();
-@@ -258,7 +255,7 @@ extern  des_block * key_gen_1_svc();
+@@ -258,7 +255,7 @@
  #define KEY_GETCRED ((u_long)5)
  extern  getcredres * key_getcred_1();
  extern  getcredres * key_getcred_1_svc();
@@ -2391,7 +2428,7 @@ index 3e2eb72..16f03ff 100644
  #define KEY_VERS2 ((u_long)2)
  
  #ifdef __cplusplus
-@@ -315,7 +312,7 @@ extern  key_netstres * key_net_get_2_svc(void *, struct svc_req *);
+@@ -315,7 +312,7 @@
  extern  cryptkeyres * key_get_conv_2(opaque *, CLIENT *);
  extern  cryptkeyres * key_get_conv_2_svc(opaque *, struct svc_req *);
  
@@ -2400,7 +2437,7 @@ index 3e2eb72..16f03ff 100644
  extern  keystatus * key_set_2();
  extern  keystatus * key_set_2_svc();
  extern  cryptkeyres * key_encrypt_2();
-@@ -341,6 +338,6 @@ extern  key_netstres * key_net_get_2_svc();
+@@ -341,6 +338,6 @@
  #define KEY_GET_CONV ((u_long)10)
  extern  cryptkeyres * key_get_conv_2();
  extern  cryptkeyres * key_get_conv_2_svc();
@@ -2408,8 +2445,6 @@ index 3e2eb72..16f03ff 100644
 +#endif /* Old Style C */
  
  #endif /* !_KEY_PROT_H_RPCGEN */
-diff --git a/sunrpc/rpc/netdb.h b/sunrpc/rpc/netdb.h
-index 539d8c3..bcb0de2 100644
 --- a/sunrpc/rpc/netdb.h
 +++ b/sunrpc/rpc/netdb.h
 @@ -1,31 +1,31 @@
@@ -2468,8 +2503,6 @@ index 539d8c3..bcb0de2 100644
   */
  /*	@(#)rpc.h 1.8 87/07/24 SMI	*/
  
-diff --git a/sunrpc/rpc/pmap_clnt.h b/sunrpc/rpc/pmap_clnt.h
-index 997dddb..7564f99 100644
 --- a/sunrpc/rpc/pmap_clnt.h
 +++ b/sunrpc/rpc/pmap_clnt.h
 @@ -1,38 +1,35 @@
@@ -2538,8 +2571,6 @@ index 997dddb..7564f99 100644
   */
  
  #ifndef _RPC_PMAP_CLNT_H
-diff --git a/sunrpc/rpc/pmap_prot.h b/sunrpc/rpc/pmap_prot.h
-index cd64e36..39d6176 100644
 --- a/sunrpc/rpc/pmap_prot.h
 +++ b/sunrpc/rpc/pmap_prot.h
 @@ -1,38 +1,35 @@
@@ -2608,8 +2639,6 @@ index cd64e36..39d6176 100644
   */
  
  #ifndef _RPC_PMAP_PROT_H
-diff --git a/sunrpc/rpc/pmap_rmt.h b/sunrpc/rpc/pmap_rmt.h
-index 7a38b5f..4ecb206 100644
 --- a/sunrpc/rpc/pmap_rmt.h
 +++ b/sunrpc/rpc/pmap_rmt.h
 @@ -1,38 +1,35 @@
@@ -2678,8 +2707,6 @@ index 7a38b5f..4ecb206 100644
   */
  
  #ifndef _RPC_PMAP_RMT_H
-diff --git a/sunrpc/rpc/rpc.h b/sunrpc/rpc/rpc.h
-index 38e4385..4c16c39 100644
 --- a/sunrpc/rpc/rpc.h
 +++ b/sunrpc/rpc/rpc.h
 @@ -1,38 +1,35 @@
@@ -2748,8 +2775,6 @@ index 38e4385..4c16c39 100644
   */
  
  #ifndef _RPC_RPC_H
-diff --git a/sunrpc/rpc/rpc_des.h b/sunrpc/rpc/rpc_des.h
-index 0f36d16..f70db03 100644
 --- a/sunrpc/rpc/rpc_des.h
 +++ b/sunrpc/rpc/rpc_des.h
 @@ -1,35 +1,34 @@
@@ -2815,8 +2840,6 @@ index 0f36d16..f70db03 100644
   */
  
  #ifndef _DES_H
-diff --git a/sunrpc/rpc/rpc_msg.h b/sunrpc/rpc/rpc_msg.h
-index 636d60e..292cf90 100644
 --- a/sunrpc/rpc/rpc_msg.h
 +++ b/sunrpc/rpc/rpc_msg.h
 @@ -1,33 +1,36 @@
@@ -2832,24 +2855,29 @@ index 636d60e..292cf90 100644
 - * SUN RPC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
 - * WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
 - * PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
-+ * rpc_msg.h
-+ * rpc message definition
-  *
+- *
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
++ * rpc_msg.h
++ * rpc message definition
   *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
++ * Copyright (C) 1984, Sun Microsystems, Inc.
+  *
+- * Sun Microsystems, Inc.
+- * 2550 Garcia Avenue
+- * Mountain View, California  94043
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -2859,10 +2887,7 @@ index 636d60e..292cf90 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Sun Microsystems, Inc.
-- * 2550 Garcia Avenue
-- * Mountain View, California  94043
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -2894,8 +2919,6 @@ index 636d60e..292cf90 100644
  #define RPC_MSG_VERSION		((u_long) 2)
  #define RPC_SERVICE_PORT	((u_short) 2048)
  
-diff --git a/sunrpc/rpc/svc.h b/sunrpc/rpc/svc.h
-index f29615d..e7b126c 100644
 --- a/sunrpc/rpc/svc.h
 +++ b/sunrpc/rpc/svc.h
 @@ -1,36 +1,34 @@
@@ -2910,23 +2933,33 @@ index f29615d..e7b126c 100644
 - * SUN RPC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
 - * WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
 - * PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
-+ * svc.h, Server-side remote procedure call interface.
-  *
+- *
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
+- *
+- * Sun Microsystems, Inc.
+- * 2550 Garcia Avenue
+- * Mountain View, California  94043
+- */
+-
+-/*
+  * svc.h, Server-side remote procedure call interface.
+  *
+  * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -2936,16 +2969,7 @@ index f29615d..e7b126c 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Sun Microsystems, Inc.
-- * 2550 Garcia Avenue
-- * Mountain View, California  94043
-- */
--
--/*
-- * svc.h, Server-side remote procedure call interface.
-- *
-- * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -2961,13 +2985,11 @@ index f29615d..e7b126c 100644
   */
  
  #ifndef _RPC_SVC_H
-diff --git a/sunrpc/rpc/svc_auth.h b/sunrpc/rpc/svc_auth.h
-index 1c1a715..f72f4f1 100644
 --- a/sunrpc/rpc/svc_auth.h
 +++ b/sunrpc/rpc/svc_auth.h
 @@ -1,38 +1,34 @@
 -/* @(#)svc_auth.h	2.1 88/07/29 4.0 RPCSRC */
- /*
+-/*
 - * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
 - * unrestricted use provided that this legend is included on all tape
 - * media and as a part of the software program in whole or part.  Users
@@ -2978,23 +3000,34 @@ index 1c1a715..f72f4f1 100644
 - * SUN RPC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
 - * WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
 - * PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
-+ * svc_auth.h, Service side of rpc authentication.
-  *
+- *
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
+- *
+- * Sun Microsystems, Inc.
+- * 2550 Garcia Avenue
+- * Mountain View, California  94043
+- */
+-/*      @(#)svc_auth.h 1.6 86/07/16 SMI      */
+-
+ /*
+  * svc_auth.h, Service side of rpc authentication.
+  *
+  * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -3004,17 +3037,7 @@ index 1c1a715..f72f4f1 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Sun Microsystems, Inc.
-- * 2550 Garcia Avenue
-- * Mountain View, California  94043
-- */
--/*      @(#)svc_auth.h 1.6 86/07/16 SMI      */
--
--/*
-- * svc_auth.h, Service side of rpc authentication.
-- *
-- * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -3030,8 +3053,6 @@ index 1c1a715..f72f4f1 100644
   */
  
  #ifndef _RPC_SVC_AUTH_H
-diff --git a/sunrpc/rpc/types.h b/sunrpc/rpc/types.h
-index 871f3fd..5744e5a 100644
 --- a/sunrpc/rpc/types.h
 +++ b/sunrpc/rpc/types.h
 @@ -1,30 +1,30 @@
@@ -3089,8 +3110,6 @@ index 871f3fd..5744e5a 100644
   */
  /* fixincludes should not add extern "C" to this file */
  /*
-diff --git a/sunrpc/rpc/xdr.h b/sunrpc/rpc/xdr.h
-index 75bc302..f5ba7b3 100644
 --- a/sunrpc/rpc/xdr.h
 +++ b/sunrpc/rpc/xdr.h
 @@ -1,36 +1,34 @@
@@ -3105,23 +3124,33 @@ index 75bc302..f5ba7b3 100644
 - * SUN RPC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
 - * WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
 - * PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
-+ * xdr.h, External Data Representation Serialization Routines.
-  *
+- *
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
+- *
+- * Sun Microsystems, Inc.
+- * 2550 Garcia Avenue
+- * Mountain View, California  94043
+- */
+-
+-/*
+  * xdr.h, External Data Representation Serialization Routines.
+  *
+  * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -3131,16 +3160,7 @@ index 75bc302..f5ba7b3 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Sun Microsystems, Inc.
-- * 2550 Garcia Avenue
-- * Mountain View, California  94043
-- */
--
--/*
-- * xdr.h, External Data Representation Serialization Routines.
-- *
-- * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -3156,8 +3176,6 @@ index 75bc302..f5ba7b3 100644
   */
  
  #ifndef _RPC_XDR_H
-diff --git a/sunrpc/rpc_clntout.c b/sunrpc/rpc_clntout.c
-index 08d9601..8c0f9cc 100644
 --- a/sunrpc/rpc_clntout.c
 +++ b/sunrpc/rpc_clntout.c
 @@ -1,40 +1,33 @@
@@ -3227,8 +3245,6 @@ index 08d9601..8c0f9cc 100644
   */
  #include <stdio.h>
  #include <string.h>
-diff --git a/sunrpc/rpc_cmsg.c b/sunrpc/rpc_cmsg.c
-index 9a7568b..0974903 100644
 --- a/sunrpc/rpc_cmsg.c
 +++ b/sunrpc/rpc_cmsg.c
 @@ -1,41 +1,34 @@
@@ -3299,8 +3315,6 @@ index 9a7568b..0974903 100644
   */
  
  #include <string.h>
-diff --git a/sunrpc/rpc_common.c b/sunrpc/rpc_common.c
-index 3fb0bda..ba89953 100644
 --- a/sunrpc/rpc_common.c
 +++ b/sunrpc/rpc_common.c
 @@ -1,30 +1,30 @@
@@ -3358,8 +3372,6 @@ index 3fb0bda..ba89953 100644
   */
  #include <rpc/rpc.h>
  
-diff --git a/sunrpc/rpc_cout.c b/sunrpc/rpc_cout.c
-index 21056e8..e0e6535 100644
 --- a/sunrpc/rpc_cout.c
 +++ b/sunrpc/rpc_cout.c
 @@ -1,35 +1,32 @@
@@ -3423,8 +3435,6 @@ index 21056e8..e0e6535 100644
   */
  
  /*
-diff --git a/sunrpc/rpc_dtable.c b/sunrpc/rpc_dtable.c
-index fbbb3c1..9aff675 100644
 --- a/sunrpc/rpc_dtable.c
 +++ b/sunrpc/rpc_dtable.c
 @@ -1,35 +1,32 @@
@@ -3487,8 +3497,6 @@ index fbbb3c1..9aff675 100644
  
  #include <unistd.h>
  #include <rpc/clnt.h>
-diff --git a/sunrpc/rpc_hout.c b/sunrpc/rpc_hout.c
-index 270d149..346e154 100644
 --- a/sunrpc/rpc_hout.c
 +++ b/sunrpc/rpc_hout.c
 @@ -1,35 +1,32 @@
@@ -3552,8 +3560,6 @@ index 270d149..346e154 100644
   */
  
  /*
-diff --git a/sunrpc/rpc_main.c b/sunrpc/rpc_main.c
-index 8a7d369..fcb094d 100644
 --- a/sunrpc/rpc_main.c
 +++ b/sunrpc/rpc_main.c
 @@ -1,35 +1,32 @@
@@ -3617,8 +3623,6 @@ index 8a7d369..fcb094d 100644
   */
  
  /*
-diff --git a/sunrpc/rpc_parse.c b/sunrpc/rpc_parse.c
-index f665387..56ec1a4 100644
 --- a/sunrpc/rpc_parse.c
 +++ b/sunrpc/rpc_parse.c
 @@ -1,35 +1,32 @@
@@ -3682,8 +3686,6 @@ index f665387..56ec1a4 100644
   */
  
  /*
-diff --git a/sunrpc/rpc_parse.h b/sunrpc/rpc_parse.h
-index 8d48c85..815c780 100644
 --- a/sunrpc/rpc_parse.h
 +++ b/sunrpc/rpc_parse.h
 @@ -1,36 +1,33 @@
@@ -3749,8 +3751,6 @@ index 8d48c85..815c780 100644
   * rpc_parse.h, Definitions for the RPCL parser
   */
  
-diff --git a/sunrpc/rpc_prot.c b/sunrpc/rpc_prot.c
-index 69b0b6c..d926083 100644
 --- a/sunrpc/rpc_prot.c
 +++ b/sunrpc/rpc_prot.c
 @@ -1,40 +1,34 @@
@@ -3820,8 +3820,6 @@ index 69b0b6c..d926083 100644
   *
   * This set of routines implements the rpc message definition,
   * its serializer and some common rpc utility routines.
-diff --git a/sunrpc/rpc_sample.c b/sunrpc/rpc_sample.c
-index 00b58d5..1f3bfd0 100644
 --- a/sunrpc/rpc_sample.c
 +++ b/sunrpc/rpc_sample.c
 @@ -1,35 +1,32 @@
@@ -3885,8 +3883,6 @@ index 00b58d5..1f3bfd0 100644
   */
  
  /*
-diff --git a/sunrpc/rpc_scan.c b/sunrpc/rpc_scan.c
-index af90ef6..d4f518f 100644
 --- a/sunrpc/rpc_scan.c
 +++ b/sunrpc/rpc_scan.c
 @@ -1,35 +1,32 @@
@@ -3950,8 +3946,6 @@ index af90ef6..d4f518f 100644
   */
  
  /*
-diff --git a/sunrpc/rpc_scan.h b/sunrpc/rpc_scan.h
-index 74d77b0..384f807 100644
 --- a/sunrpc/rpc_scan.h
 +++ b/sunrpc/rpc_scan.h
 @@ -1,41 +1,38 @@
@@ -4024,7 +4018,7 @@ index 74d77b0..384f807 100644
   */
  enum tok_kind {
  	TOK_IDENT,
-@@ -81,7 +78,7 @@ enum tok_kind {
+@@ -81,7 +78,7 @@
  typedef enum tok_kind tok_kind;
  
  /*
@@ -4033,7 +4027,7 @@ index 74d77b0..384f807 100644
   */
  struct token {
  	tok_kind kind;
-@@ -91,7 +88,7 @@ typedef struct token token;
+@@ -91,7 +88,7 @@
  
  
  /*
@@ -4042,13 +4036,11 @@ index 74d77b0..384f807 100644
   */
  void scan(tok_kind expect, token *tokp);
  void scan2(tok_kind expect1, tok_kind expect2, token *tokp);
-@@ -104,4 +101,3 @@ void expected1(tok_kind exp1) __attribute__ ((noreturn));
+@@ -104,4 +101,3 @@
  void expected2(tok_kind exp1, tok_kind exp2)  __attribute__ ((noreturn));
  void expected3(tok_kind exp1, tok_kind exp2, tok_kind exp3)
       __attribute__ ((noreturn));
 -
-diff --git a/sunrpc/rpc_svcout.c b/sunrpc/rpc_svcout.c
-index 6774cc8..1887b75 100644
 --- a/sunrpc/rpc_svcout.c
 +++ b/sunrpc/rpc_svcout.c
 @@ -1,35 +1,32 @@
@@ -4112,8 +4104,6 @@ index 6774cc8..1887b75 100644
   */
  
  /*
-diff --git a/sunrpc/rpc_tblout.c b/sunrpc/rpc_tblout.c
-index 8fd2b12..2d77c60 100644
 --- a/sunrpc/rpc_tblout.c
 +++ b/sunrpc/rpc_tblout.c
 @@ -1,35 +1,32 @@
@@ -4177,8 +4167,6 @@ index 8fd2b12..2d77c60 100644
   */
  
  /*
-diff --git a/sunrpc/rpc_util.c b/sunrpc/rpc_util.c
-index b910401..6a6c0e4 100644
 --- a/sunrpc/rpc_util.c
 +++ b/sunrpc/rpc_util.c
 @@ -1,35 +1,32 @@
@@ -4242,8 +4230,6 @@ index b910401..6a6c0e4 100644
   */
  
  /*
-diff --git a/sunrpc/rpc_util.h b/sunrpc/rpc_util.h
-index cb1ceb9..72f08eb 100644
 --- a/sunrpc/rpc_util.h
 +++ b/sunrpc/rpc_util.h
 @@ -1,36 +1,33 @@
@@ -4309,8 +4295,6 @@ index cb1ceb9..72f08eb 100644
   * rpc_util.h, Useful definitions for the RPC protocol compiler
   */
  
-diff --git a/sunrpc/rpcinfo.c b/sunrpc/rpcinfo.c
-index 91f360c..5e00be9 100644
 --- a/sunrpc/rpcinfo.c
 +++ b/sunrpc/rpcinfo.c
 @@ -1,11 +1,32 @@
@@ -4352,7 +4336,7 @@ index 91f360c..5e00be9 100644
   */
  
  /*
-@@ -13,35 +34,6 @@ static char sccsid[] = "@(#)rpcinfo.c 1.22 87/08/12 SMI";
+@@ -13,35 +34,6 @@
   *     or dump the portmapper
   */
  
@@ -4388,8 +4372,6 @@ index 91f360c..5e00be9 100644
  #include <getopt.h>
  #include <string.h>
  #include <unistd.h>
-diff --git a/sunrpc/rpcsvc/bootparam_prot.x b/sunrpc/rpcsvc/bootparam_prot.x
-index 65bc0dc..f272d52 100644
 --- a/sunrpc/rpcsvc/bootparam_prot.x
 +++ b/sunrpc/rpcsvc/bootparam_prot.x
 @@ -2,32 +2,32 @@
@@ -4451,7 +4433,7 @@ index 65bc0dc..f272d52 100644
   */
  
  /*
-@@ -82,7 +82,7 @@ struct bp_getfile_arg {
+@@ -82,7 +82,7 @@
  	bp_machine_name_t	client_name;
  	bp_fileid_t		file_id;
  };
@@ -4460,8 +4442,6 @@ index 65bc0dc..f272d52 100644
  struct bp_getfile_res {
  	bp_machine_name_t	server_name;
  	bp_address		server_address;
-diff --git a/sunrpc/rpcsvc/key_prot.x b/sunrpc/rpcsvc/key_prot.x
-index d9272cb..0350250 100644
 --- a/sunrpc/rpcsvc/key_prot.x
 +++ b/sunrpc/rpcsvc/key_prot.x
 @@ -1,35 +1,34 @@
@@ -4536,7 +4516,7 @@ index d9272cb..0350250 100644
  % * Compiled from key_prot.x using rpcgen.
  % * DO NOT EDIT THIS FILE!
  % * This is NOT source code!
-@@ -95,7 +94,7 @@ typedef opaque keybuf[HEXKEYBYTES];	/* store key in hex */
+@@ -95,7 +94,7 @@
  typedef string netnamestr<MAXNETNAMELEN>;
  
  /*
@@ -4545,7 +4525,7 @@ index d9272cb..0350250 100644
   */
  struct cryptkeyarg {
  	netnamestr remotename;
-@@ -125,12 +124,12 @@ default:
+@@ -125,12 +124,12 @@
  const MAXGIDS  = 16;	/* max number of gids in gid list */
  
  /*
@@ -4561,7 +4541,7 @@ index d9272cb..0350250 100644
  };
  
  /*
-@@ -157,7 +156,7 @@ case KEY_SUCCESS:
+@@ -157,7 +156,7 @@
  	key_netstarg knet;
  default:
  	void;
@@ -4570,7 +4550,7 @@ index d9272cb..0350250 100644
  
  #ifdef RPC_HDR
  %
-@@ -173,15 +172,15 @@ program KEY_PROG {
+@@ -173,15 +172,15 @@
  		 * This is my secret key.
  	 	 * Store it for me.
  		 */
@@ -4590,7 +4570,7 @@ index d9272cb..0350250 100644
  
  		/*
  		 * X just sent me a message.
-@@ -193,7 +192,7 @@ program KEY_PROG {
+@@ -193,7 +192,7 @@
  		/*
  		 * Generate a secure conversation key for me
  		 */
@@ -4599,7 +4579,7 @@ index d9272cb..0350250 100644
  		KEY_GEN(void) = 4;
  
  		/*
-@@ -215,15 +214,15 @@ program KEY_PROG {
+@@ -215,15 +214,15 @@
  		 * This is my secret key.
  	 	 * Store it for me.
  		 */
@@ -4619,7 +4599,7 @@ index d9272cb..0350250 100644
  
  		/*
  		 * X just sent me a message.
-@@ -235,7 +234,7 @@ program KEY_PROG {
+@@ -235,7 +234,7 @@
  		/*
  		 * Generate a secure conversation key for me
  		 */
@@ -4628,7 +4608,7 @@ index d9272cb..0350250 100644
  		KEY_GEN(void) = 4;
  
  		/*
-@@ -244,13 +243,13 @@ program KEY_PROG {
+@@ -244,13 +243,13 @@
  		 */
  		getcredres
  		KEY_GETCRED(netnamestr) = 5;
@@ -4644,7 +4624,7 @@ index d9272cb..0350250 100644
  
  		/*
  		 * X just sent me a message. and I know X's public key
-@@ -258,29 +257,27 @@ program KEY_PROG {
+@@ -258,29 +257,27 @@
  		 */
  		cryptkeyres
  		KEY_DECRYPT_PK(cryptkeyarg2) = 7;
@@ -4685,8 +4665,6 @@ index d9272cb..0350250 100644
  } = 100029;
 -
 -
-diff --git a/sunrpc/rpcsvc/klm_prot.x b/sunrpc/rpcsvc/klm_prot.x
-index 5f3e12e..7b4c152 100644
 --- a/sunrpc/rpcsvc/klm_prot.x
 +++ b/sunrpc/rpcsvc/klm_prot.x
 @@ -2,38 +2,36 @@
@@ -4755,13 +4733,11 @@ index 5f3e12e..7b4c152 100644
   * protocol used between the UNIX kernel (the "client") and the
   * local lock manager.  The local lock manager is a deamon running
   * above the kernel.
-@@ -131,4 +129,3 @@ lock request  */
+@@ -131,4 +129,3 @@
  		klm_stat	KLM_UNLOCK (struct klm_unlockargs) =	4;
  	} = 1;
  } = 100020;
 -
-diff --git a/sunrpc/rpcsvc/mount.x b/sunrpc/rpcsvc/mount.x
-index 310b4ca..da61c4e 100644
 --- a/sunrpc/rpcsvc/mount.x
 +++ b/sunrpc/rpcsvc/mount.x
 @@ -2,32 +2,32 @@
@@ -4821,8 +4797,6 @@ index 310b4ca..da61c4e 100644
   */
  
  /*
-diff --git a/sunrpc/rpcsvc/nfs_prot.x b/sunrpc/rpcsvc/nfs_prot.x
-index 630dab2..2a68540 100644
 --- a/sunrpc/rpcsvc/nfs_prot.x
 +++ b/sunrpc/rpcsvc/nfs_prot.x
 @@ -1,37 +1,35 @@
@@ -4889,8 +4863,6 @@ index 630dab2..2a68540 100644
   */
  const NFS_PORT          = 2049;
  const NFS_MAXDATA       = 8192;
-diff --git a/sunrpc/rpcsvc/rex.x b/sunrpc/rpcsvc/rex.x
-index 949d9f0..253b8a7 100644
 --- a/sunrpc/rpcsvc/rex.x
 +++ b/sunrpc/rpcsvc/rex.x
 @@ -2,32 +2,32 @@
@@ -4950,8 +4922,6 @@ index 949d9f0..253b8a7 100644
   */
  
  /*
-diff --git a/sunrpc/rpcsvc/rstat.x b/sunrpc/rpcsvc/rstat.x
-index 6367c43..b2c6b6e 100644
 --- a/sunrpc/rpcsvc/rstat.x
 +++ b/sunrpc/rpcsvc/rstat.x
 @@ -2,32 +2,32 @@
@@ -5013,8 +4983,6 @@ index 6367c43..b2c6b6e 100644
   */
  
  /*
-diff --git a/sunrpc/rpcsvc/rusers.x b/sunrpc/rpcsvc/rusers.x
-index b72c293..bcf5fd2 100644
 --- a/sunrpc/rpcsvc/rusers.x
 +++ b/sunrpc/rpcsvc/rusers.x
 @@ -1,32 +1,31 @@
@@ -5074,8 +5042,6 @@ index b72c293..bcf5fd2 100644
  %/*
  % * Find out about remote users
  % */
-diff --git a/sunrpc/rpcsvc/sm_inter.x b/sunrpc/rpcsvc/sm_inter.x
-index 9cbb701..9c20383 100644
 --- a/sunrpc/rpcsvc/sm_inter.x
 +++ b/sunrpc/rpcsvc/sm_inter.x
 @@ -1,39 +1,33 @@
@@ -5144,8 +5110,6 @@ index 9cbb701..9c20383 100644
   */
  
  
-diff --git a/sunrpc/rpcsvc/spray.x b/sunrpc/rpcsvc/spray.x
-index b242f0a..2830722 100644
 --- a/sunrpc/rpcsvc/spray.x
 +++ b/sunrpc/rpcsvc/spray.x
 @@ -2,32 +2,32 @@
@@ -5207,7 +5171,7 @@ index b242f0a..2830722 100644
   */
  
  /*
-@@ -62,7 +62,7 @@ program SPRAYPROG {
+@@ -62,7 +62,7 @@
  	version SPRAYVERS {
  		/*
  		 * Just throw away the data and increment the counter
@@ -5216,7 +5180,7 @@ index b242f0a..2830722 100644
  		 * time it out.
  		 */
  		void
-@@ -72,7 +72,7 @@ program SPRAYPROG {
+@@ -72,7 +72,7 @@
  		 * Get the value of the counter and elapsed time  since
  		 * last CLEAR.
  		 */
@@ -5225,8 +5189,6 @@ index b242f0a..2830722 100644
  		SPRAYPROC_GET(void) = 2;
  
  		/*
-diff --git a/sunrpc/rpcsvc/yppasswd.x b/sunrpc/rpcsvc/yppasswd.x
-index ad349ad..b8ff7c2 100644
 --- a/sunrpc/rpcsvc/yppasswd.x
 +++ b/sunrpc/rpcsvc/yppasswd.x
 @@ -2,32 +2,32 @@
@@ -5297,21 +5259,19 @@ index ad349ad..b8ff7c2 100644
  		 */
  		int
  		YPPASSWDPROC_UPDATE(yppasswd) = 1;
-@@ -59,5 +59,3 @@ struct yppasswd {
+@@ -59,5 +59,3 @@
  	string oldpass<>;	/* unencrypted old password */
  	passwd newpw;		/* new passwd entry */
  };
 -
 -
-diff --git a/sunrpc/rtime.c b/sunrpc/rtime.c
-index ff71a55..790bf4b 100644
 --- a/sunrpc/rtime.c
 +++ b/sunrpc/rtime.c
 @@ -1,37 +1,32 @@
 -#if defined(LIBC_SCCS) && !defined(lint)
 -static char sccsid[] = "@(#)rtime.c	2.2 88/08/10 4.0 RPCSRC; from 1.8 88/02/08 SMI";
 -#endif
- /*
+-/*
 - * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
 - * unrestricted use provided that this legend is included on all tape
 - * media and as a part of the software program in whole or part.  Users
@@ -5326,18 +5286,27 @@ index ff71a55..790bf4b 100644
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * Copyright (c) 1988 by Sun Microsystems, Inc.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
+- *
+- * Sun Microsystems, Inc.
+- * 2550 Garcia Avenue
+- * Mountain View, California  94043
+- */
+-
+ /*
+  * Copyright (c) 1988 by Sun Microsystems, Inc.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -5347,14 +5316,7 @@ index ff71a55..790bf4b 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Sun Microsystems, Inc.
-- * 2550 Garcia Avenue
-- * Mountain View, California  94043
-- */
--
--/*
-- * Copyright (c) 1988 by Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -5370,8 +5332,6 @@ index ff71a55..790bf4b 100644
   */
  /*
   * rtime - get time from remote machine
-diff --git a/sunrpc/svc.c b/sunrpc/svc.c
-index 60f6fcd..d389a52 100644
 --- a/sunrpc/svc.c
 +++ b/sunrpc/svc.c
 @@ -1,32 +1,4 @@
@@ -5441,13 +5401,11 @@ index 60f6fcd..d389a52 100644
   */
  
  #include <errno.h>
-diff --git a/sunrpc/svc_auth.c b/sunrpc/svc_auth.c
-index 68ed4f1..11555c5 100644
 --- a/sunrpc/svc_auth.c
 +++ b/sunrpc/svc_auth.c
 @@ -1,40 +1,34 @@
 -/* @(#)svc_auth.c       2.4 88/08/15 4.0 RPCSRC */
- /*
+-/*
 - * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
 - * unrestricted use provided that this legend is included on all tape
 - * media and as a part of the software program in whole or part.  Users
@@ -5458,23 +5416,36 @@ index 68ed4f1..11555c5 100644
 - * SUN RPC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
 - * WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
 - * PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
-+ * svc_auth.c, Server-side rpc authenticator interface.
-  *
+- *
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
+- *
+- * Sun Microsystems, Inc.
+- * 2550 Garcia Avenue
+- * Mountain View, California  94043
+- */
+-#if !defined(lint) && defined(SCCSIDS)
+-static char sccsid[] = "@(#)svc_auth.c 1.19 87/08/11 Copyr 1984 Sun Micro";
+-#endif
+-
+ /*
+  * svc_auth.c, Server-side rpc authenticator interface.
+  *
+  * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -5484,19 +5455,7 @@ index 68ed4f1..11555c5 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Sun Microsystems, Inc.
-- * 2550 Garcia Avenue
-- * Mountain View, California  94043
-- */
--#if !defined(lint) && defined(SCCSIDS)
--static char sccsid[] = "@(#)svc_auth.c 1.19 87/08/11 Copyr 1984 Sun Micro";
--#endif
--
--/*
-- * svc_auth.c, Server-side rpc authenticator interface.
-- *
-- * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -5512,8 +5471,6 @@ index 68ed4f1..11555c5 100644
   */
  
  #include <rpc/rpc.h>
-diff --git a/sunrpc/svc_authux.c b/sunrpc/svc_authux.c
-index 5b64c3d..477ff25 100644
 --- a/sunrpc/svc_authux.c
 +++ b/sunrpc/svc_authux.c
 @@ -1,33 +1,4 @@
@@ -5584,8 +5541,6 @@ index 5b64c3d..477ff25 100644
   */
  
  #include <stdio.h>
-diff --git a/sunrpc/svc_raw.c b/sunrpc/svc_raw.c
-index ff8fa7c..924135b 100644
 --- a/sunrpc/svc_raw.c
 +++ b/sunrpc/svc_raw.c
 @@ -1,36 +1,3 @@
@@ -5625,7 +5580,7 @@ index ff8fa7c..924135b 100644
  /*
   * svc_raw.c,   This a toy for simple testing and timing.
   * Interface to create an rpc client and server in the same UNIX process.
-@@ -38,6 +5,33 @@ static char sccsid[] = "@(#)svc_raw.c 1.15 87/08/11 Copyr 1984 Sun Micro";
+@@ -38,6 +5,33 @@
   * any interference from the kernel.
   *
   * Copyright (C) 1984, Sun Microsystems, Inc.
@@ -5659,8 +5614,6 @@ index ff8fa7c..924135b 100644
   */
  
  #include <rpc/rpc.h>
-diff --git a/sunrpc/svc_run.c b/sunrpc/svc_run.c
-index f1f47fb..1bb8c87 100644
 --- a/sunrpc/svc_run.c
 +++ b/sunrpc/svc_run.c
 @@ -1,32 +1,31 @@
@@ -5720,8 +5673,6 @@ index f1f47fb..1bb8c87 100644
   * This is the rpc server side idle loop
   * Wait for input, call server program.
   */
-diff --git a/sunrpc/svc_simple.c b/sunrpc/svc_simple.c
-index 6c1c9c9..1d6f515 100644
 --- a/sunrpc/svc_simple.c
 +++ b/sunrpc/svc_simple.c
 @@ -1,41 +1,35 @@
@@ -5793,8 +5744,6 @@ index 6c1c9c9..1d6f515 100644
   */
  
  #include <stdio.h>
-diff --git a/sunrpc/svc_tcp.c b/sunrpc/svc_tcp.c
-index beeb106..2048fdf 100644
 --- a/sunrpc/svc_tcp.c
 +++ b/sunrpc/svc_tcp.c
 @@ -1,40 +1,34 @@
@@ -5864,8 +5813,6 @@ index beeb106..2048fdf 100644
   *
   * Actually implements two flavors of transporter -
   * a tcp rendezvouser (a listener and connection establisher)
-diff --git a/sunrpc/svc_udp.c b/sunrpc/svc_udp.c
-index 496d6d9..b9fccab 100644
 --- a/sunrpc/svc_udp.c
 +++ b/sunrpc/svc_udp.c
 @@ -1,42 +1,36 @@
@@ -5938,8 +5885,6 @@ index 496d6d9..b9fccab 100644
   */
  
  #include <stdio.h>
-diff --git a/sunrpc/svc_unix.c b/sunrpc/svc_unix.c
-index f103ed9..f22a23a 100644
 --- a/sunrpc/svc_unix.c
 +++ b/sunrpc/svc_unix.c
 @@ -1,36 +1,34 @@
@@ -6005,8 +5950,6 @@ index f103ed9..f22a23a 100644
   *
   * Actually implements two flavors of transporter -
   * a unix rendezvouser (a listener and connection establisher)
-diff --git a/sunrpc/svcauth_des.c b/sunrpc/svcauth_des.c
-index 933d001..573891e 100644
 --- a/sunrpc/svcauth_des.c
 +++ b/sunrpc/svcauth_des.c
 @@ -1,35 +1,33 @@
@@ -6070,8 +6013,6 @@ index 933d001..573891e 100644
   * svcauth_des.c, server-side des authentication
   *
   * We insure for the service the following:
-diff --git a/sunrpc/xcrypt.c b/sunrpc/xcrypt.c
-index ea8ff45..f430a1d 100644
 --- a/sunrpc/xcrypt.c
 +++ b/sunrpc/xcrypt.c
 @@ -1,34 +1,32 @@
@@ -6134,8 +6075,6 @@ index ea8ff45..f430a1d 100644
   */
  
  #if 0
-diff --git a/sunrpc/xdr.c b/sunrpc/xdr.c
-index 8a70d2e..c5e961f 100644
 --- a/sunrpc/xdr.c
 +++ b/sunrpc/xdr.c
 @@ -1,40 +1,34 @@
@@ -6205,13 +6144,11 @@ index 8a70d2e..c5e961f 100644
   *
   * These are the "generic" xdr routines used to serialize and de-serialize
   * most common data items.  See xdr.h for more info on the interface to
-diff --git a/sunrpc/xdr_array.c b/sunrpc/xdr_array.c
-index e7c8925..02728b0 100644
 --- a/sunrpc/xdr_array.c
 +++ b/sunrpc/xdr_array.c
 @@ -1,43 +1,37 @@
 -/* @(#)xdr_array.c	2.1 88/07/29 4.0 RPCSRC */
- /*
+-/*
 - * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
 - * unrestricted use provided that this legend is included on all tape
 - * media and as a part of the software program in whole or part.  Users
@@ -6226,20 +6163,15 @@ index e7c8925..02728b0 100644
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * xdr_array.c, Generic XDR routines implementation.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * Sun Microsystems, Inc.
 - * 2550 Garcia Avenue
 - * Mountain View, California  94043
@@ -6248,8 +6180,17 @@ index e7c8925..02728b0 100644
 -static char sccsid[] = "@(#)xdr_array.c 1.10 87/08/11 Copyr 1984 Sun Micro";
 -#endif
 -
--/*
-- * xdr_array.c, Generic XDR routines implementation.
+ /*
+  * xdr_array.c, Generic XDR routines implementation.
+  *
+  * Copyright (C) 1984, Sun Microsystems, Inc.
+  *
+- * These are the "non-trivial" xdr primitives used to serialize and de-serialize
+- * arrays.  See xdr.h for more info on the interface to xdr.
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -6259,8 +6200,7 @@ index e7c8925..02728b0 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -6273,16 +6213,12 @@ index e7c8925..02728b0 100644
 + *   WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 + *   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 + *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-- * These are the "non-trivial" xdr primitives used to serialize and de-serialize
-- * arrays.  See xdr.h for more info on the interface to xdr.
++ *
 + * These are the "non-trivial" xdr primitives used to serialize and
 + * de-serialize arrays.  See xdr.h for more info on the interface to xdr.
   */
  
  #include <stdio.h>
-diff --git a/sunrpc/xdr_float.c b/sunrpc/xdr_float.c
-index 0a7d970..75dc70c 100644
 --- a/sunrpc/xdr_float.c
 +++ b/sunrpc/xdr_float.c
 @@ -1,40 +1,34 @@
@@ -6352,8 +6288,6 @@ index 0a7d970..75dc70c 100644
   *
   * These are the "floating point" xdr routines used to (de)serialize
   * most common data items.  See xdr.h for more info on the interface to
-diff --git a/sunrpc/xdr_mem.c b/sunrpc/xdr_mem.c
-index 7b1261b..f9a0b14 100644
 --- a/sunrpc/xdr_mem.c
 +++ b/sunrpc/xdr_mem.c
 @@ -1,41 +1,38 @@
@@ -6372,27 +6306,29 @@ index 7b1261b..f9a0b14 100644
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * xdr_mem.h, XDR implementation using memory buffers.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * Sun Microsystems, Inc.
 - * 2550 Garcia Avenue
 - * Mountain View, California  94043
 - */
 -
 -/*
-- * xdr_mem.h, XDR implementation using memory buffers.
+  * xdr_mem.h, XDR implementation using memory buffers.
+  *
+  * Copyright (C) 1984, Sun Microsystems, Inc.
+  *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -6402,8 +6338,7 @@ index 7b1261b..f9a0b14 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Copyright (C) 1984, Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -6416,7 +6351,7 @@ index 7b1261b..f9a0b14 100644
 + *   WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 + *   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 + *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
++ *
   * If you have some data to be interpreted as external data representation
   * or to be converted to external data representation in a memory buffer,
   * then this is the package for you.
@@ -6424,8 +6359,6 @@ index 7b1261b..f9a0b14 100644
   */
  
  #include <string.h>
-diff --git a/sunrpc/xdr_rec.c b/sunrpc/xdr_rec.c
-index 6854034..a66462c 100644
 --- a/sunrpc/xdr_rec.c
 +++ b/sunrpc/xdr_rec.c
 @@ -1,38 +1,36 @@
@@ -6494,13 +6427,11 @@ index 6854034..a66462c 100644
   * These routines interface XDRSTREAMS to a tcp/ip connection.
   * There is a record marking layer between the xdr stream
   * and the tcp transport level.  A record is composed on one or more
-diff --git a/sunrpc/xdr_ref.c b/sunrpc/xdr_ref.c
-index 532804f..e2acb84 100644
 --- a/sunrpc/xdr_ref.c
 +++ b/sunrpc/xdr_ref.c
 @@ -1,43 +1,37 @@
 -/* @(#)xdr_reference.c	2.1 88/07/29 4.0 RPCSRC */
- /*
+-/*
 - * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
 - * unrestricted use provided that this legend is included on all tape
 - * media and as a part of the software program in whole or part.  Users
@@ -6515,20 +6446,15 @@ index 532804f..e2acb84 100644
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * xdr_reference.c, Generic XDR routines implementation.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Copyright (C) 1987, Sun Microsystems, Inc.
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * Sun Microsystems, Inc.
 - * 2550 Garcia Avenue
 - * Mountain View, California  94043
@@ -6537,8 +6463,17 @@ index 532804f..e2acb84 100644
 -static char sccsid[] = "@(#)xdr_reference.c 1.11 87/08/11 SMI";
 -#endif
 -
--/*
-- * xdr_reference.c, Generic XDR routines implementation.
+ /*
+  * xdr_reference.c, Generic XDR routines implementation.
+  *
+  * Copyright (C) 1987, Sun Microsystems, Inc.
+  *
+- * These are the "non-trivial" xdr primitives used to serialize and de-serialize
+- * "pointers".  See xdr.h for more info on the interface to xdr.
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -6548,8 +6483,7 @@ index 532804f..e2acb84 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Copyright (C) 1987, Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -6562,19 +6496,15 @@ index 532804f..e2acb84 100644
 + *   WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 + *   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 + *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-- * These are the "non-trivial" xdr primitives used to serialize and de-serialize
-- * "pointers".  See xdr.h for more info on the interface to xdr.
++ *
 + * These are the "non-trivial" xdr primitives used to serialize and
 + * de-serialize "pointers".  See xdr.h for more info on the interface to xdr.
   */
  
  #include <stdio.h>
-diff --git a/sunrpc/xdr_sizeof.c b/sunrpc/xdr_sizeof.c
-index dc3e19e..d4bada3 100644
 --- a/sunrpc/xdr_sizeof.c
 +++ b/sunrpc/xdr_sizeof.c
-@@ -1,35 +1,34 @@
+@@ -1,36 +1,35 @@
  /*
 - * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
 - * unrestricted use provided that this legend is included on all tape
@@ -6590,26 +6520,28 @@ index dc3e19e..d4bada3 100644
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * xdr_sizeof.c
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Copyright 1990 Sun Microsystems, Inc.
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * Sun Microsystems, Inc.
 - * 2550 Garcia Avenue
 - * Mountain View, California  94043
 - */
 -/*
-- * xdr_sizeof.c
+  * xdr_sizeof.c
+  *
+  * Copyright 1990 Sun Microsystems, Inc.
+  *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
 + *     * Redistributions of source code must retain the above copyright
 + *       notice, this list of conditions and the following disclaimer.
 + *     * Redistributions in binary form must reproduce the above
@@ -6619,8 +6551,7 @@ index dc3e19e..d4bada3 100644
 + *     * Neither the name of Sun Microsystems, Inc. nor the names of its
 + *       contributors may be used to endorse or promote products derived
 + *       from this software without specific prior written permission.
-  *
-- * Copyright 1990 Sun Microsystems, Inc.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -6633,14 +6564,13 @@ index dc3e19e..d4bada3 100644
 + *   WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 + *   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 + *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
++ *
   * General purpose routine to see how much space something will use
   * when serialized using XDR.
-diff --git a/sunrpc/xdr_stdio.c b/sunrpc/xdr_stdio.c
-index e73c5a5..f58465a 100644
+  */
 --- a/sunrpc/xdr_stdio.c
 +++ b/sunrpc/xdr_stdio.c
-@@ -1,36 +1,34 @@
+@@ -1,37 +1,35 @@
  /*
 - * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
 - * unrestricted use provided that this legend is included on all tape
@@ -6652,42 +6582,43 @@ index e73c5a5..f58465a 100644
 - * SUN RPC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE
 - * WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
 - * PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE.
-+ * xdr_stdio.c, XDR implementation on standard i/o file.
-  *
+- *
 - * Sun RPC is provided with no support and without any obligation on the
 - * part of Sun Microsystems, Inc. to assist in its use, correction,
 - * modification or enhancement.
-+ * Copyright (C) 1984, Sun Microsystems, Inc.
-  *
+- *
 - * SUN MICROSYSTEMS, INC. SHALL HAVE NO LIABILITY WITH RESPECT TO THE
 - * INFRINGEMENT OF COPYRIGHTS, TRADE SECRETS OR ANY PATENTS BY SUN RPC
 - * OR ANY PART THEREOF.
-+ * Redistribution and use in source and binary forms, with or without
-+ * modification, are permitted provided that the following conditions are
-+ * met:
-  *
+- *
 - * In no event will Sun Microsystems, Inc. be liable for any lost revenue
 - * or profits or other special, indirect and consequential damages, even if
 - * Sun has been advised of the possibility of such damages.
-+ *     * Redistributions of source code must retain the above copyright
-+ *       notice, this list of conditions and the following disclaimer.
-+ *     * Redistributions in binary form must reproduce the above
-+ *       copyright notice, this list of conditions and the following
-+ *       disclaimer in the documentation and/or other materials
-+ *       provided with the distribution.
-+ *     * Neither the name of Sun Microsystems, Inc. nor the names of its
-+ *       contributors may be used to endorse or promote products derived
-+ *       from this software without specific prior written permission.
-  *
+- *
 - * Sun Microsystems, Inc.
 - * 2550 Garcia Avenue
 - * Mountain View, California  94043
 - */
 -
 -/*
-- * xdr_stdio.c, XDR implementation on standard i/o file.
-- *
-- * Copyright (C) 1984, Sun Microsystems, Inc.
+  * xdr_stdio.c, XDR implementation on standard i/o file.
+  *
+  * Copyright (C) 1984, Sun Microsystems, Inc.
+  *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
++ *     * Redistributions of source code must retain the above copyright
++ *       notice, this list of conditions and the following disclaimer.
++ *     * Redistributions in binary form must reproduce the above
++ *       copyright notice, this list of conditions and the following
++ *       disclaimer in the documentation and/or other materials
++ *       provided with the distribution.
++ *     * Neither the name of Sun Microsystems, Inc. nor the names of its
++ *       contributors may be used to endorse or promote products derived
++ *       from this software without specific prior written permission.
++ *
 + *   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 + *   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 + *   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -6700,6 +6631,7 @@ index e73c5a5..f58465a 100644
 + *   WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 + *   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 + *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
++ *
   * This set of routines implements a XDR on a stdio stream.
   * XDR_ENCODE serializes onto the stream, XDR_DECODE de-serializes
+  * from the stream.

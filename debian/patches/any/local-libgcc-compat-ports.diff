@@ -428,7 +428,7 @@
  libm {
 --- a/ports/sysdeps/alpha/Makefile
 +++ b/ports/sysdeps/alpha/Makefile
-@@ -46,3 +46,11 @@
+@@ -47,3 +47,11 @@
  # libc.so requires about 16k for the small data area, which is well
  # below the 64k maximum.
  pic-ccflag = -fpic

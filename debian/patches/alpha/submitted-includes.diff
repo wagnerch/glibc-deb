@@ -10,6 +10,18 @@
 	* sysdeps/unix/sysv/linux/alpha/nptl/timer_settime.c: Likewise.
 	* sysdeps/unix/sysv/linux/alpha/sysconf.c: Likewise.
 
+---
+ ports/sysdeps/unix/sysv/linux/alpha/getdents64.c          |    2 +-
+ ports/sysdeps/unix/sysv/linux/alpha/nptl/fork.c           |    2 +-
+ ports/sysdeps/unix/sysv/linux/alpha/nptl/sem_post.c       |    2 +-
+ ports/sysdeps/unix/sysv/linux/alpha/nptl/timer_create.c   |    2 +-
+ ports/sysdeps/unix/sysv/linux/alpha/nptl/timer_delete.c   |    2 +-
+ ports/sysdeps/unix/sysv/linux/alpha/nptl/timer_getoverr.c |    2 +-
+ ports/sysdeps/unix/sysv/linux/alpha/nptl/timer_gettime.c  |    2 +-
+ ports/sysdeps/unix/sysv/linux/alpha/nptl/timer_settime.c  |    2 +-
+ ports/sysdeps/unix/sysv/linux/alpha/sysconf.c             |    2 +-
+ 9 files changed, 9 insertions(+), 9 deletions(-)
+
 --- a/ports/sysdeps/unix/sysv/linux/alpha/getdents64.c
 +++ b/ports/sysdeps/unix/sysv/linux/alpha/getdents64.c
 @@ -1 +1 @@
@@ -58,7 +70,7 @@
 +#include <nptl/sysdeps/unix/sysv/linux/x86_64/timer_settime.c>
 --- a/ports/sysdeps/unix/sysv/linux/alpha/sysconf.c
 +++ b/ports/sysdeps/unix/sysv/linux/alpha/sysconf.c
-@@ -149,4 +149,4 @@ __sysconf (int name)
+@@ -149,4 +149,4 @@
  /* Now the generic Linux version.  */
  #undef __sysconf
  #define __sysconf static linux_sysconf

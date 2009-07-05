@@ -3,9 +3,13 @@
 	PR libc/10162
 	* sysdeps/ia64/memchr.S: Use speculative load.
 
+---
+ sysdeps/ia64/memchr.S |   17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
 --- a/sysdeps/ia64/memchr.S
 +++ b/sysdeps/ia64/memchr.S
-@@ -96,7 +96,8 @@ ENTRY(__memchr)
+@@ -96,7 +96,8 @@
  	mov	pr.rot = 1 << 16 ;;
  .l2:
  (p[0])		mov	addr[0] = ret0
@@ -15,7 +19,7 @@
  (p[MEMLAT])	xor	aux[0] = value[MEMLAT], chrx8
  (p[MEMLAT+1])	czx1.r	poschr[0] = aux[1]
  (p[MEMLAT+2])	cmp.ne	p7, p0 = 8, poschr[1]
-@@ -124,6 +125,20 @@ ENTRY(__memchr)
+@@ -124,6 +125,20 @@
  	mov	ar.lc = saved_lc
  	br.ret.sptk.many b0
  

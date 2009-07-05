@@ -9,8 +9,10 @@ will return -EFAULT with the arguments nscd calls it.
 
 	* sysdeps/unix/sysv/linux/accept4.c (__NR_accept4): Don't define.
 
-diff --git a/sysdeps/unix/sysv/linux/accept4.c b/sysdeps/unix/sysv/linux/accept4.c
-index 97f7b8c..4be710f 100644
+---
+ sysdeps/unix/sysv/linux/accept4.c |    4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
 --- a/sysdeps/unix/sysv/linux/accept4.c
 +++ b/sysdeps/unix/sysv/linux/accept4.c
 @@ -1,4 +1,4 @@
@@ -28,6 +30,3 @@ index 97f7b8c..4be710f 100644
  
  #ifdef __NR_accept4
  int
-
-	Jakub
-

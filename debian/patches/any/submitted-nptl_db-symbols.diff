@@ -3,9 +3,13 @@
 	* db-symbols.awk: use the last field for the symbol name instead
 	of the 8th one.
 
+---
+ nptl_db/db-symbols.awk |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 --- a/nptl_db/db-symbols.awk
 +++ b/nptl_db/db-symbols.awk
-@@ -14,7 +14,7 @@ NF == 0 { in_symtab=0; next }
+@@ -14,7 +14,7 @@
  
  !in_symtab { next }
  
