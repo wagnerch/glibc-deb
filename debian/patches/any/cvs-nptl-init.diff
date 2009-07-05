@@ -482,7 +482,7 @@
 -strong_alias (__pthread_initialize_minimal_internal,
 -	      __pthread_initialize_minimal)
 --- /dev/null
-+++ b/nptl/init.c
++++ b/nptl/nptl-init.c
 @@ -0,0 +1,452 @@
 +/* Copyright (C) 2002-2007, 2008, 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
