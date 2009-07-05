@@ -66,6 +66,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     - Update debian/patches/localedata/fr_LU-first_weekday.diff
     - Update debian/patches/localedata/fr_CH-first_weekday.diff
     - Remove debian/patches/sh4/cvs-headers-update.diff (merged).
+    - Remove debian/patches/any/local-revert-3270.diff (fixed upstream).
   * Remove localedata/locale-fr_FR.diff as coreutils has been fixed.
   * Add debian/patches/any/submitted-autotools.diff to update config.guess
     and config.sub.
