@@ -7960,7 +7960,7 @@
 +#include_next <dl-machine.h>
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/dl-osinfo.h
-@@ -0,0 +1,98 @@
+@@ -0,0 +1,83 @@
 +/* Operating system specific code  for generic dynamic loader functions.
 +   Copyright (C) 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -8025,7 +8025,7 @@
 +  } while (0)
 +
 +static inline uintptr_t __attribute__ ((always_inline))
-+_dl_setup_stack_chk_guard (void *dl_random)
++_dl_setup_stack_chk_guard (void)
 +{
 +  uintptr_t ret;
 +#ifdef ENABLE_STACKGUARD_RANDOMIZE
@@ -8044,21 +8044,6 @@
 +  p[sizeof (ret) - 2] = '\n';
 +  return ret;
 +}
-+
-+static inline uintptr_t __attribute__ ((always_inline))
-+_dl_setup_pointer_guard (void *dl_random, uintptr_t stack_chk_guard)
-+{
-+  uintptr_t ret;
-+
-+  ret = stack_chk_guard;
-+# ifndef HP_TIMING_NONAVAIL
-+  hp_timing_t now;
-+  HP_TIMING_NOW (now);
-+  ret ^= now;
-+# endif
-+  return ret;
-+}
-+
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/dl-sysdep.c
 @@ -0,0 +1,56 @@
