@@ -96,11 +96,12 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   * Add debian/patches/alpha/submitted-rtld-fPIC.diff to fix build on alpha.
   * Add debian/patches/any/submitted-getent-gshadow.diff to add gshadow 
     support to getent.
+  * Add debian/patches/any/cvs-ldbl-128-errno.diff from upstream.
 
   [ Petr Salinger ]
   * Add kfreebsd/local-no-SOCK_NONBLOCK.diff to fix build on GNU/kFreeBSD.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 26 May 2009 09:27:14 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jul 2009 15:21:56 +0200
 
 eglibc (2.9-20) UNSTABLE; urgency=low
 

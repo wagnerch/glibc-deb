@@ -189,3 +189,4 @@ any/cvs-nptl-init.diff
 any/submitted-accept4-hidden.diff
 any/submitted-nptl_db-symbols.diff
 any/submitted-getent-gshadow.diff
+any/cvs-ldbl-128-errno.diff
