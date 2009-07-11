@@ -97,11 +97,12 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   * Add debian/patches/any/submitted-getent-gshadow.diff to add gshadow 
     support to getent.
   * Add debian/patches/any/cvs-ldbl-128-errno.diff from upstream.
+  * kfreebsd/local-sysdeps.diff: update to revision 2624 (from glibc-bsd).
 
   [ Petr Salinger ]
   * Add kfreebsd/local-no-SOCK_NONBLOCK.diff to fix build on GNU/kFreeBSD.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jul 2009 15:21:56 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jul 2009 21:17:40 +0200
 
 eglibc (2.9-20) UNSTABLE; urgency=low
 
