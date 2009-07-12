@@ -1,8 +1,8 @@
 2009-04-01  Carlos O'Donell  <carlos@codesourcery.com>
-
-	* sysdeps/hppa/nptl/Makefile: Add compat routines
+ 
+ 	* sysdeps/hppa/nptl/Makefile: Add compat routines
 	when building nptl.
-
+ 
 	sysdeps/unix/sysv/linux/hppa/nptl/
 	* Versions: New file.
 	* forward.c: New file.
@@ -53,62 +53,9 @@
 	* pthread_rwlock_unlock.c: New file.
 	* pthread_rwlock_wrlock.c: New file.
 
----
- ports/sysdeps/hppa/nptl/Makefile                                              |   25 
- ports/sysdeps/unix/sysv/linux/hppa/internaltypes.h                            |  184 ++
- ports/sysdeps/unix/sysv/linux/hppa/nptl/Versions                              |   65 +
- ports/sysdeps/unix/sysv/linux/hppa/nptl/forward.c                             |  275 ++++
- ports/sysdeps/unix/sysv/linux/hppa/nptl/init.c                                |  460 +++++++
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_broadcast.c     |   36 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_destroy.c       |   40 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_init.c          |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_signal.c        |   36 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_timedwait.c     |   44 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_wait.c          |   41 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_destroy.c      |   40 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_init.c         |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_lock.c         |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_timedlock.c    |   40 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_trylock.c      |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_unlock.c       |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_destroy.c     |   40 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_init.c        |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_rdlock.c      |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedrdlock.c |   40 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedwrlock.c |   40 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_tryrdlock.c   |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_trywrlock.c   |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_unlock.c      |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_wrlock.c      |   37 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread-functions.h                   |  133 ++
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthreadP.h                            |  621 ++++++++++
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_broadcast.c              |   29 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_destroy.c                |   29 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_init.c                   |   29 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_signal.c                 |   29 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_timedwait.c              |   29 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_wait.c                   |   29 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_cond_lock.c             |   14 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_destroy.c               |   36 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_init.c                  |   36 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_lock.c                  |   40 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_timedlock.c             |   38 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_trylock.c               |   35 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_unlock.c                |   36 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_destroy.c              |   35 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_init.c                 |   35 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_rdlock.c               |   40 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedrdlock.c          |   38 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedwrlock.c          |   38 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_tryrdlock.c            |   35 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_trywrlock.c            |   35 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_unlock.c               |   40 
- ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_wrlock.c               |   40 
- 50 files changed, 3312 insertions(+)
-
 --- a/ports/sysdeps/hppa/nptl/Makefile
 +++ b/ports/sysdeps/hppa/nptl/Makefile
-@@ -25,3 +25,28 @@
+@@ -25,3 +25,28 @@ endif
  # this because the default is too small to run with. 
  tst-oddstacklimit-ENV = ; ulimit -s 8193;
  
@@ -328,7 +275,7 @@
 +++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/Versions
 @@ -0,0 +1,65 @@
 +libc {
-+  GLIBC_2.9 {
++  GLIBC_2.10 {
 +    # Changed lock implemenation, breaking the ABI for
 +    # all structures that can contain statically initialized
 +    # locks. Added compat functions and structures for the
@@ -358,7 +305,7 @@
 +}
 +
 +libpthread {
-+  GLIBC_2.9 {
++  GLIBC_2.10 {
 +    # Changed lock implemenation, breaking the ABI for
 +    # all structures that can contain statically initialized
 +    # locks. Added compat functions and structures for the
@@ -491,7 +438,7 @@
 +compat_symbol (libc, __pthread_cond_broadcast_2_0, pthread_cond_broadcast,
 +	       GLIBC_2_0);
 +#endif
-+#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_10)
 +FORWARD2 (__pthread_cond_broadcast_hppa_2_3_2, int attribute_compat_text_section,
 +	  (pthread_cond_hppa_2_3_2_t *cond), (cond), return 0)
 +compat_symbol (libc, __pthread_cond_broadcast_hppa_2_3_2, pthread_cond_broadcast, 
@@ -499,7 +446,7 @@
 +#endif
 +FORWARD (__pthread_cond_broadcast, (pthread_cond_t *cond), (cond), 0)
 +versioned_symbol (libc, __pthread_cond_broadcast, pthread_cond_broadcast,
-+		  GLIBC_2_9);
++		  GLIBC_2_10);
 +
 +#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_3_2)
 +FORWARD2 (__pthread_cond_destroy_2_0, int attribute_compat_text_section,
@@ -507,7 +454,7 @@
 +compat_symbol (libc, __pthread_cond_destroy_2_0, pthread_cond_destroy,
 +	       GLIBC_2_0);
 +#endif
-+#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_10)
 +FORWARD2 (__pthread_cond_destroy_hppa_2_3_2, int attribute_compat_text_section,
 +	  (pthread_cond_hppa_2_3_2_t *cond), (cond), return 0)
 +compat_symbol (libc, __pthread_cond_destroy_hppa_2_3_2, pthread_cond_destroy,
@@ -515,7 +462,7 @@
 +#endif
 +FORWARD (__pthread_cond_destroy, (pthread_cond_t *cond), (cond), 0)
 +versioned_symbol (libc, __pthread_cond_destroy, pthread_cond_destroy,
-+		  GLIBC_2_9);
++		  GLIBC_2_10);
 +
 +#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_3_2)
 +FORWARD2 (__pthread_cond_init_2_0, int attribute_compat_text_section,
@@ -523,7 +470,7 @@
 +	  (cond, cond_attr), return 0)
 +compat_symbol (libc, __pthread_cond_init_2_0, pthread_cond_init, GLIBC_2_0);
 +#endif
-+#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_10)
 +FORWARD2 (__pthread_cond_init_hppa_2_3_2, int attribute_compat_text_section,
 +	  (pthread_cond_hppa_2_3_2_t *cond, const pthread_condattr_t *cond_attr),
 +	  (cond, cond_attr), return 0)
@@ -532,7 +479,7 @@
 +FORWARD (__pthread_cond_init,
 +	 (pthread_cond_t *cond, const pthread_condattr_t *cond_attr),
 +	 (cond, cond_attr), 0)
-+versioned_symbol (libc, __pthread_cond_init, pthread_cond_init, GLIBC_2_9);
++versioned_symbol (libc, __pthread_cond_init, pthread_cond_init, GLIBC_2_10);
 +
 +#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_3_2)
 +FORWARD2 (__pthread_cond_signal_2_0, int attribute_compat_text_section,
@@ -540,7 +487,7 @@
 +compat_symbol (libc, __pthread_cond_signal_2_0, pthread_cond_signal,
 +	       GLIBC_2_0);
 +#endif
-+#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_10)
 +FORWARD2 (__pthread_cond_signal_hppa_2_3_2, int attribute_compat_text_section,
 +	  (pthread_cond_hppa_2_3_2_t *cond), (cond), return 0)
 +compat_symbol (libc, __pthread_cond_signal_hppa_2_3_2, pthread_cond_signal,
@@ -548,7 +495,7 @@
 +#endif
 +FORWARD (__pthread_cond_signal, (pthread_cond_t *cond), (cond), 0)
 +versioned_symbol (libc, __pthread_cond_signal, pthread_cond_signal,
-+		  GLIBC_2_9);
++		  GLIBC_2_10);
 +
 +#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_3_2)
 +FORWARD2 (__pthread_cond_wait_2_0, int attribute_compat_text_section,
@@ -557,7 +504,7 @@
 +compat_symbol (libc, __pthread_cond_wait_2_0, pthread_cond_wait,
 +	       GLIBC_2_0);
 +#endif
-+#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_10)
 +FORWARD2 (__pthread_cond_wait_hppa_2_3_2, int attribute_compat_text_section,
 +	  (pthread_cond_hppa_2_3_2_t *cond, pthread_mutex_hppa_2_0_t *mutex), (cond, mutex),
 +	  return 0)
@@ -567,7 +514,7 @@
 +FORWARD (__pthread_cond_wait, (pthread_cond_t *cond, pthread_mutex_t *mutex),
 +	 (cond, mutex), 0)
 +versioned_symbol (libc, __pthread_cond_wait, pthread_cond_wait,
-+		  GLIBC_2_9);
++		  GLIBC_2_10);
 +
 +#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_3_2)
 +FORWARD2 (__pthread_cond_timedwait_2_0, int attribute_compat_text_section,
@@ -577,7 +524,7 @@
 +compat_symbol (libc, __pthread_cond_timedwait_2_0, pthread_cond_timedwait,
 +	       GLIBC_2_0);
 +#endif
-+#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_3_2, GLIBC_2_10)
 +FORWARD2 (__pthread_cond_timedwait_hppa_2_3_2, int attribute_compat_text_section,
 +	  (pthread_cond_hppa_2_3_2_t *cond, pthread_mutex_hppa_2_0_t *mutex,
 +	   const struct timespec *abstime), (cond, mutex, abstime),
@@ -589,7 +536,7 @@
 +	 (pthread_cond_t *cond, pthread_mutex_t *mutex,
 +	  const struct timespec *abstime), (cond, mutex, abstime), 0)
 +versioned_symbol (libc, __pthread_cond_timedwait, pthread_cond_timedwait,
-+		  GLIBC_2_9);
++		  GLIBC_2_10);
 +
 +
 +FORWARD (pthread_equal, (pthread_t thread1, pthread_t thread2),
@@ -609,7 +556,7 @@
 +	  const struct sched_param *param), (target_thread, policy, param), 0)
 +
 +
-+#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_10)
 +FORWARD2 (__pthread_mutex_destroy_hppa_2_0, int attribute_compat_text_section,
 +	 (pthread_mutex_hppa_2_0_t *mutex), (mutex), return 0)
 +compat_symbol (libc, __pthread_mutex_destroy_hppa_2_0, pthread_mutex_destroy,
@@ -617,9 +564,9 @@
 +#endif
 +FORWARD (pthread_mutex_destroy, (pthread_mutex_t *mutex), (mutex), 0)
 +versioned_symbol (libc, __pthread_mutex_destroy, pthread_mutex_destroy,
-+		  GLIBC_2_9);
++		  GLIBC_2_10);
 +
-+#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_10)
 +FORWARD2 (__pthread_mutex_init_hppa_2_0, int attribute_compat_text_section,
 +	 (pthread_mutex_hppa_2_0_t *mutex, const pthread_mutexattr_t *mutexattr),
 +	 (mutex, mutexattr), return 0)
@@ -630,9 +577,9 @@
 +	 (pthread_mutex_t *mutex, const pthread_mutexattr_t *mutexattr),
 +	 (mutex, mutexattr), 0)
 +versioned_symbol (libc, __pthread_mutex_init, pthread_mutex_init,
-+		  GLIBC_2_9);
++		  GLIBC_2_10);
 +
-+#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_10)
 +FORWARD2 (__pthread_mutex_lock_hppa_2_0, int attribute_compat_text_section,
 +	 (pthread_mutex_hppa_2_0_t *mutex), (mutex), return 0)
 +compat_symbol (libc, __pthread_mutex_lock_hppa_2_0, pthread_mutex_lock,
@@ -640,9 +587,9 @@
 +#endif
 +FORWARD (pthread_mutex_lock, (pthread_mutex_t *mutex), (mutex), 0)
 +versioned_symbol (libc, __pthread_mutex_lock, pthread_mutex_lock,
-+		  GLIBC_2_9);
++		  GLIBC_2_10);
 +
-+#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libc, GLIBC_2_0, GLIBC_2_10)
 +FORWARD2 (__pthread_mutex_unlock_hppa_2_0, int attribute_compat_text_section,
 +	 (pthread_mutex_hppa_2_0_t *mutex), (mutex), return 0)
 +compat_symbol (libc, __pthread_mutex_unlock_hppa_2_0, pthread_mutex_unlock,
@@ -650,7 +597,7 @@
 +#endif
 +FORWARD (pthread_mutex_unlock, (pthread_mutex_t *mutex), (mutex), 0)
 +versioned_symbol (libc, __pthread_mutex_init, pthread_mutex_init,
-+		  GLIBC_2_9);
++		  GLIBC_2_10);
 +
 +FORWARD2 (pthread_self, pthread_t, (void), (), return 0)
 +
@@ -671,7 +618,7 @@
 +		     })
 +#undef return
 --- /dev/null
-+++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/init.c
++++ b/ports/sysdeps/unix/sysv/linux/hppa/nptl/nptl-init.c
 @@ -0,0 +1,460 @@
 +/* Copyright (C) 2002-2007, 2008, 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -779,7 +726,7 @@
 +    .ptr___pthread_cond_wait_2_0 = __pthread_cond_wait_2_0,
 +    .ptr___pthread_cond_timedwait_2_0 = __pthread_cond_timedwait_2_0,
 +# endif
-+# if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_9)
++# if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_10)
 +    .ptr___pthread_cond_broadcast_hppa_2_3_2 = __pthread_cond_broadcast_hppa_2_3_2,
 +    .ptr___pthread_cond_destroy_hppa_2_3_2 = __pthread_cond_destroy_hppa_2_3_2,
 +    .ptr___pthread_cond_init_hppa_2_3_2 = __pthread_cond_init_hppa_2_3_2,
@@ -795,7 +742,7 @@
 +    .ptr_pthread_mutex_init = INTUSE(__pthread_mutex_init),
 +    .ptr_pthread_mutex_lock = INTUSE(__pthread_mutex_lock),
 +    .ptr_pthread_mutex_unlock = INTUSE(__pthread_mutex_unlock),
-+# if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++# if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +    .ptr___pthread_mutex_destroy_hppa_2_0 = __pthread_mutex_destroy_hppa_2_0,
 +    .ptr___pthread_mutex_init_hppa_2_0 = __pthread_mutex_init_hppa_2_0,
 +    .ptr___pthread_mutex_lock_hppa_2_0 = __pthread_mutex_lock_hppa_2_0,
@@ -1159,7 +1106,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_10)
 +int
 +__pthread_cond_broadcast_hppa_2_3_2 (pthread_cond_hppa_2_3_2_t *var)
 +{
@@ -1198,7 +1145,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_10)
 +int
 +__pthread_cond_destroy_hppa_2_3_2 (pthread_cond_hppa_2_3_2_t *var)
 +{
@@ -1241,7 +1188,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_10)
 +int
 +__pthread_cond_init_hppa_2_3_2 (pthread_cond_hppa_2_3_2_t *var,
 +			      const pthread_condattr_t *attr)
@@ -1281,7 +1228,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_10)
 +int
 +__pthread_cond_signal_hppa_2_3_2 (pthread_cond_hppa_2_3_2_t *var)
 +{
@@ -1322,7 +1269,7 @@
 +
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_10)
 +int
 +__pthread_cond_timedwait_hppa_2_3_2 (pthread_cond_hppa_2_3_2_t *var,
 +				     pthread_mutex_hppa_2_0_t *mutex,
@@ -1367,7 +1314,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_3_2, GLIBC_2_10)
 +int
 +__pthread_cond_wait_hppa_2_3_2 (pthread_cond_hppa_2_3_2_t *var,
 +				pthread_mutex_hppa_2_0_t *mutex)
@@ -1411,7 +1358,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_mutex_destroy_hppa_2_0 (pthread_mutex_hppa_2_0_t *var)
 +{
@@ -1454,7 +1401,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_mutex_init_hppa_2_0 (pthread_mutex_hppa_2_0_t *var,
 +			       const pthread_mutexattr_t *attr)
@@ -1494,7 +1441,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_mutex_lock_hppa_2_0 (pthread_mutex_hppa_2_0_t *var)
 +{
@@ -1536,7 +1483,7 @@
 +
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_mutex_timedlock_hppa_2_0 (pthread_mutex_hppa_2_0_t *var,
 +				    const struct timespec abs_timeout)
@@ -1577,7 +1524,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_mutex_trylock_hppa_2_0 (pthread_mutex_hppa_2_0_t *var)
 +{
@@ -1617,7 +1564,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_mutex_unlock_hppa_2_0 (pthread_mutex_hppa_2_0_t *var)
 +{
@@ -1657,7 +1604,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_rwlock_destroy_hppa_2_0 (pthread_rwlock_hppa_2_0_t *var)
 +{
@@ -1700,7 +1647,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_rwlock_init_hppa_2_0 (pthread_rwlock_hppa_2_0_t *var,
 +			       const pthread_rwlockattr_t *attr)
@@ -1740,7 +1687,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_rwlock_rdlock_hppa_2_0 (pthread_rwlock_hppa_2_0_t *var)
 +{
@@ -1782,7 +1729,7 @@
 +
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_rwlock_timedrdlock_hppa_2_0 (pthread_rwlock_hppa_2_0_t *var,
 +				       const struct timespec *abs_timeout)
@@ -1825,7 +1772,7 @@
 +
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_rwlock_timedwrlock_hppa_2_0 (pthread_rwlock_hppa_2_0_t *var,
 +				       const struct timespec *abs_timeout)
@@ -1866,7 +1813,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_rwlock_tryrdlock_hppa_2_0 (pthread_rwlock_hppa_2_0_t *var)
 +{
@@ -1906,7 +1853,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_rwlock_trywrlock_hppa_2_0 (pthread_rwlock_hppa_2_0_t *var)
 +{
@@ -1946,7 +1893,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_rwlock_unlock_hppa_2_0 (pthread_rwlock_hppa_2_0_t *var)
 +{
@@ -1986,7 +1933,7 @@
 +#include "pthreadP.h"
 +#include <shlib-compat.h>
 +
-+#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_9)
++#if SHLIB_COMPAT(libpthread, GLIBC_2_0, GLIBC_2_10)
 +int
 +__pthread_rwlock_wrlock_hppa_2_0 (pthread_rwlock_hppa_2_0_t *var)
 +{
@@ -2788,7 +2735,7 @@
 +#else
 +# include <shlib-compat.h>
 +# undef GLIBC_2_3_2
-+# define GLIBC_2_3_2 GLIBC_2_9
++# define GLIBC_2_3_2 GLIBC_2_10
 +# include_next <pthread_cond_broadcast.c>
 +#endif
 +
@@ -2820,7 +2767,7 @@
 +#else
 +# include <shlib-compat.h>
 +# undef GLIBC_2_3_2
-+# define GLIBC_2_3_2 GLIBC_2_9
++# define GLIBC_2_3_2 GLIBC_2_10
 +# include_next <pthread_cond_destroy.c>
 +#endif
 +
@@ -2852,7 +2799,7 @@
 +#else
 +# include <shlib-compat.h>
 +# undef GLIBC_2_3_2
-+# define GLIBC_2_3_2 GLIBC_2_9
++# define GLIBC_2_3_2 GLIBC_2_10
 +# include_next <pthread_cond_init.c>
 +#endif
 +
@@ -2884,7 +2831,7 @@
 +#else
 +# include <shlib-compat.h>
 +# undef GLIBC_2_3_2
-+# define GLIBC_2_3_2 GLIBC_2_9
++# define GLIBC_2_3_2 GLIBC_2_10
 +# include_next <pthread_cond_signal.c>
 +#endif
 +
@@ -2916,7 +2863,7 @@
 +#else
 +# include <shlib-compat.h>
 +# undef GLIBC_2_3_2
-+# define GLIBC_2_3_2 GLIBC_2_9
++# define GLIBC_2_3_2 GLIBC_2_10
 +# include_next <pthread_cond_timedwait.c>
 +#endif
 +
@@ -2948,7 +2895,7 @@
 +#else
 +# include <shlib-compat.h>
 +# undef GLIBC_2_3_2
-+# define GLIBC_2_3_2 GLIBC_2_9
++# define GLIBC_2_3_2 GLIBC_2_10
 +# include_next <pthread_cond_wait.c>
 +#endif
 +
@@ -3004,7 +2951,7 @@
 +# undef strong_alias
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_mutex_destroy,
-+		  pthread_mutex_destroy, GLIBC_2_9);
++		  pthread_mutex_destroy, GLIBC_2_10);
 +INTDEF(__pthread_mutex_destroy)
 +#endif
 +
@@ -3043,7 +2990,7 @@
 +# undef strong_alias
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_mutex_init,
-+		  pthread_mutex_init, GLIBC_2_9);
++		  pthread_mutex_init, GLIBC_2_10);
 +INTDEF(__pthread_mutex_init)
 +#endif
 +
@@ -3085,7 +3032,7 @@
 +   file and we do not want to version that interface.  */
 +# ifndef __pthread_mutex_lock
 +versioned_symbol (libpthread, __pthread_mutex_lock,
-+		  pthread_mutex_lock, GLIBC_2_9);
++		  pthread_mutex_lock, GLIBC_2_10);
 +strong_alias (__pthread_mutex_lock, __pthread_mutex_lock_internal)
 +# endif
 +#endif
@@ -3128,7 +3075,7 @@
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +# undef pthread_mutex_timedlock
 +versioned_symbol (libpthread, __pthread_mutex_timedlock,
-+		  pthread_mutex_timedlock, GLIBC_2_9);
++		  pthread_mutex_timedlock, GLIBC_2_10);
 +#endif
 +
 --- /dev/null
@@ -3166,7 +3113,7 @@
 +# undef strong_alias
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_mutex_trylock,
-+		  pthread_mutex_trylock, GLIBC_2_9);
++		  pthread_mutex_trylock, GLIBC_2_10);
 +#endif
 +
 --- /dev/null
@@ -3204,7 +3151,7 @@
 +# undef strong_alias
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_mutex_unlock,
-+		  pthread_mutex_unlock, GLIBC_2_9);
++		  pthread_mutex_unlock, GLIBC_2_10);
 +strong_alias (__pthread_mutex_unlock, __pthread_mutex_unlock_internal)
 +#endif
 +
@@ -3243,7 +3190,7 @@
 +# undef strong_alias
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_rwlock_destroy,
-+		  pthread_rwlock_destroy, GLIBC_2_9);
++		  pthread_rwlock_destroy, GLIBC_2_10);
 +#endif
 +
 --- /dev/null
@@ -3281,7 +3228,7 @@
 +# undef strong_alias
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_rwlock_init,
-+		  pthread_rwlock_init, GLIBC_2_9);
++		  pthread_rwlock_init, GLIBC_2_10);
 +#endif
 +
 --- /dev/null
@@ -3323,7 +3270,7 @@
 +# undef weak_alias
 +# define weak_alias(name, aliasname) _weak_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_rwlock_rdlock,
-+		  pthread_rwlock_rdlock, GLIBC_2_9);
++		  pthread_rwlock_rdlock, GLIBC_2_10);
 +strong_alias (__pthread_rwlock_rdlock, __pthread_rwlock_rdlock_internal)
 +#endif
 +
@@ -3365,7 +3312,7 @@
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +# undef pthread_rwlock_timedrdlock
 +versioned_symbol (libpthread, __pthread_rwlock_timedrdlock,
-+		  pthread_rwlock_timedrdlock, GLIBC_2_9);
++		  pthread_rwlock_timedrdlock, GLIBC_2_10);
 +#endif
 +
 --- /dev/null
@@ -3406,7 +3353,7 @@
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +# undef pthread_rwlock_timedwrlock
 +versioned_symbol (libpthread, __pthread_rwlock_timedwrlock,
-+		  pthread_rwlock_timedwrlock, GLIBC_2_9);
++		  pthread_rwlock_timedwrlock, GLIBC_2_10);
 +#endif
 +
 --- /dev/null
@@ -3444,7 +3391,7 @@
 +# undef strong_alias
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_rwlock_tryrdlock,
-+		  pthread_rwlock_tryrdlock, GLIBC_2_9);
++		  pthread_rwlock_tryrdlock, GLIBC_2_10);
 +#endif
 +
 --- /dev/null
@@ -3482,7 +3429,7 @@
 +# undef strong_alias
 +# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_rwlock_trywrlock,
-+		  pthread_rwlock_trywrlock, GLIBC_2_9);
++		  pthread_rwlock_trywrlock, GLIBC_2_10);
 +#endif
 +
 --- /dev/null
@@ -3524,7 +3471,7 @@
 +# undef weak_alias
 +# define weak_alias(name, aliasname) _weak_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_rwlock_unlock,
-+		  pthread_rwlock_unlock, GLIBC_2_9);
++		  pthread_rwlock_unlock, GLIBC_2_10);
 +strong_alias (__pthread_rwlock_unlock, __pthread_rwlock_unlock_internal)
 +#endif
 +
@@ -3567,7 +3514,7 @@
 +# undef weak_alias
 +# define weak_alias(name, aliasname) _weak_alias(name, aliasname)
 +versioned_symbol (libpthread, __pthread_rwlock_wrlock,
-+		  pthread_rwlock_wrlock, GLIBC_2_9);
++		  pthread_rwlock_wrlock, GLIBC_2_10);
 +strong_alias (__pthread_rwlock_wrlock, __pthread_rwlock_wrlock_internal)
 +#endif
 +
