@@ -106,6 +106,28 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 12 Jul 2009 14:58:42 +0200
 
+eglibc (2.9-22) UNSTABLE; urgency=low
+
+  * kfreebsd/local-sysdeps.diff: update to revision 2653 (from glibc-bsd).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 20 Jul 2009 11:53:15 +0200
+
+eglibc (2.9-21) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * Re-add /usr/include/scsi/scsi.h.  Closes: #537354.
+  * libc6-dev-i386: pre-depends on libc6-i386.  Closes: #535313.
+  * /etc/bindresvport.blacklist: add rsync (port 873). Closes: #537289.
+  * any/local-bindresvport_blacklist.diff: update from latest openSUSE 
+    version.
+  * kfreebsd/local-sysdeps.diff: update to revision 2643 (from glibc-bsd).
+    Closes: #537492.
+  * debian/local/etc_init.d/glibc.sh: add support for start/stop/restart/
+    force-reload options.
+  * debian/debhelper.in/libc-alt.preinst: add set -e.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 19 Jul 2009 21:09:38 +0200
+
 eglibc (2.9-20) unstable; urgency=low
 
   [ Clint Adams ]

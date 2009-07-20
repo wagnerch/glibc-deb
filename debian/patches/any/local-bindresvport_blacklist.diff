@@ -6,7 +6,7 @@ Patch from the OpenSUSE glibc
 
 --- a/sunrpc/bindrsvprt.c
 +++ b/sunrpc/bindrsvprt.c
-@@ -30,28 +30,106 @@
+@@ -30,28 +30,108 @@
   * Copyright (c) 1987 by Sun Microsystems, Inc.
   */
  
@@ -68,6 +68,8 @@ Patch from the OpenSUSE glibc
 +        cp[strlen (cp) - 1] = '\0';
 +
 +      port = strtoul (cp, &tmp, 0);
++      while (isspace(*tmp))
++        ++tmp;
 +      if (*tmp != '\0' || (port == ULONG_MAX && errno == ERANGE))
 +	continue;
 +
