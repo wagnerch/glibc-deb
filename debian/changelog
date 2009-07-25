@@ -6,6 +6,8 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     - Add Handling for group shadow files.  Closes: #519479.
     - Use AT_RANDOM for randomized stack protector value.  Closes: 
       #533077.
+    - don't trigger assertion on __pthread_mutex_lock anymore.  Closes:
+      #479952.
     - debian/copyright, debian/*symbols*, debian/shlibver, 
       debian/locales-depver, debian/debhelper.in/*.lintian: upgrade
       to 2.10.
