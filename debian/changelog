@@ -29,6 +29,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     - Update debian/patches/hurd-i386/submitted-extern_inline.diff.
     - Update debian/patches/hurd-i386/local-atomic-no-multiple_threads.diff.
     - Remove debian/patches/mips/cvs-context.diff (merged).
+    - Remove debian/patches/sparc/cvs-siginfo.diff (merged).
     - Remove debian/patches/all/submitted-readme-version.diff (merged).
     - Remove debian/patches/any/submitted-install-map-files.diff (merged).
     - Remove debian/patches/any/cvs-pthread_h.diff (merged).
@@ -109,13 +110,48 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 12 Jul 2009 14:58:42 +0200
 
-eglibc (2.9-22) UNSTABLE; urgency=low
+eglibc (2.9-23) UNRELEASED; urgency=low
+
+  * debhelper.in/libc.postinst, sysdeps/depflags.pl: remove upgrade code
+    for pre-etch installations.
+  * Don't ship /etc/init.d/glibc.sh anymore: the GNU libc is now smart
+    enough to print "FATAL: kernel too old" alone. This also speed up
+    the boot a bit.
+  * Don't ship /usr/share/doc/libc6/TODO, but keep the file in the 
+    sources.
+  * Don't ship /usr/share/doc/libc6/{README,PROJECT}.gz, they are 
+    irrelevant for an already built GNU libc.
+  * Move /usr/share/doc/libc6/{CONFORMANCE,NAMESPACE,NOTES}.gz to
+    libc6-dev.
+  * Move all upstream changelogs in glibc-docs, and install a small
+    changelog file explaining the reason.
+  * Ship README.libm in libc6-dev.
+  * Update any/cvs-broken-dns.diff from upstream.
+  * any/cvs-pthread_mutex_lock.diff: new patch from upstream to fix
+    a memory ordering problem in pthread_mutex_{,timed}lock.
+  * Replace any/submitted-signalfd-eventfd.diff by upstream version
+    any/cvs-signalfd-eventfd.diff.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 27 Jul 2009 00:01:57 +0200
+
+eglibc (2.9-22) unstable; urgency=low
 
   * kfreebsd/local-sysdeps.diff: update to revision 2670 (from glibc-bsd).
   * any/submitted-signalfd-eventfd.diff: new patch to support < 2.6.27 
     kernels in eventfd/signalfd.  Closes: #537509.
+  * alpha/submitted-fdatasync.diff: update to keep fdatasync() as a
+    cancellation point.  Closes: #537586.
+  * sparc/cvs-siginfo.diff, s390/submitted-siginfo.diff, 
+    ia64/submitted-siginfo.diff: new patches to get "struct sigevent"
+    from bits/siginfo.h in sync with the kernel version. Closes: #534548.
+  * debhelper.in/libc-alt.preinst: also clear old /lib32 and /usr/lib32
+    symlinks on install, as they might have been left by a previous 
+    installation of the package.
+  * patches/any/cvs-getaddrinfo-nss-notfound.diff: new patch to correctly
+    handle missing NSS modules.  Closes: #535106, #298290.
+  * Add X-Interactive: true to /etc/init.d/glibc.sh.  Closes: #538435.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 20 Jul 2009 20:33:36 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 26 Jul 2009 10:16:30 +0200
 
 eglibc (2.9-21) unstable; urgency=low
 

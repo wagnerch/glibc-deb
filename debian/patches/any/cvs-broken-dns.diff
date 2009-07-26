@@ -1,3 +1,9 @@
+2009-07-26  Ulrich Drepper  <drepper@redhat.com>
+ 
+	[BZ #10452]
+	* resolv/res_send.c (send_dg): Pass full SERVFAIL, NOTIMP, REFUSED
+	replies up.
+
 2009-06-26  Ulrich Drepper  <drepper@redhat.com>
 
 	* resolv/resolv.h: Define RES_SNGLKUPREOP.
@@ -164,3 +170,21 @@
  
  #define RES_DEFAULT	(RES_RECURSE|RES_DEFNAMES|RES_DNSRCH|RES_NOIP6DOTINT)
  
+--- a/resolv/res_send.c
++++ b/resolv/res_send.c
+@@ -1278,14 +1278,10 @@ send_dg(res_state statp,
+ 				? *thisanssiz : *thisresplen);
+ 
+ 			if (recvresp1 || (buf2 != NULL && recvresp2))
+-			  {
+-			    *resplen2 = 1;
+-			    return resplen;
+-			  }
++			  return resplen;
+ 			if (buf2 != NULL)
+ 			  {
+ 			    /* We are waiting for a possible second reply.  */
+-			    resplen = 1;
+ 			    if (hp->id == anhp->id)
+ 			      recvresp1 = 1;
+ 			    else

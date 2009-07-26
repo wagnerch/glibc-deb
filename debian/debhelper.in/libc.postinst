@@ -10,57 +10,6 @@ package_name()
     echo LIBC
 }
 
-# Borrowed from sysvinit's postinst.
-#	Function like update-rc.d but simpler & faster.
-#	Usage: updatercd basename start|stop NN runlevel .
-#
-#	Now we use the real update-rc.d, so now this function should
-#	be equivalent to /usr/sbin/update-rc.d.
-#
-updatercd() {
-
-	if [ ! -f /etc/init.d/$1 ]
-	then
-		return
-	fi
-
-	if [ -x /usr/sbin/update-rc.d ]
-	then
-		update-rc.d "$@" > /dev/null
-		return $?
-	fi
-
-	base=$1
-	shift
-	while [ "$1" != "" ]
-	do
-		if [ "$1" = stop ]
-		then
-			tlet=K
-		else
-			tlet=S
-		fi
-		lev=$2
-		shift 2
-		while [ "$1" != "." ]
-		do
-			cd /etc/rc$1.d
-			tmp="`echo $tlet??$base`"
-			case "$tmp" in
-				"$tlet??$base")
-					# Not present yet.
-					ln -s ../init.d/$base $tlet$lev$base
-					;;
-				*)
-					# Already present.
-					;;
-			esac
-			shift
-		done
-		shift
-	done
-}
-
 # element() is a helper function for file-rc:
 element() {
     local element list IFS
@@ -255,45 +204,6 @@ then
 
     # Generate cache file /usr/lib/gconv/gconv-modules.cache
     iconvconfig || true
-
-#   # DO NOT FOLLOW THIS EXAMPLE IN OTHER PACKAGES
-    updatercd glibc.sh start 01 S .
-    if [ -x /usr/sbin/invoke-rc.d ]; then
-	invoke-rc.d glibc.sh start
-    else
-	/etc/init.d/glibc.sh 2>/dev/null || true
-    fi
-fi
-
-if [ "`uname -s`" = Linux ]; then
-#
-#       Upgrade init if possible. There was a bug in all versions
-#       up to and including 2.75-4, which didn't affect i386 but
-#       did affect most other architectures.
-#
-sysvinitver="`dpkg -s sysvinit 2>/dev/null | grep ^Version: | sed -e 's/^Version: *//'`"
-case "`uname -m`" in
-        i?86)
-                badsysvinitver="2.[0-6]*|2.7[0-3]*"
-                ;;
-        *)
-                badsysvinitver="2.[0-6]*|2.7[0-4]*|2.75-*"
-                ;;
-esac
-# Black magic. If we are in a chroot, then /proc/1/exe will not resolve to
-# a file (will return EPERM). This keeps us from breaking things in
-# debootstrap, and the like.
-case "$sysvinitver" in
-        $badsysvinitver)
-                ;;
-        *)
-		if [ "$(stat -c %d/%i /)" = "$(stat -Lc %d/%i /proc/1/root 2>/dev/null)" ]; then
-			# the devicenumber/inode pair of / is the same as that of /sbin/init's
-			# root, so we're *not* in a chroot
-			(init u ; sleep 1)
-		fi
-		;;
-esac
 fi
 
 #DEBHELPER#
