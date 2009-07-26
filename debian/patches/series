@@ -188,7 +188,7 @@ any/cvs-broken-dns.diff
 any/submitted-autotools.diff
 any/cvs-sunrpc-license.diff
 any/submitted-tst-cpucount.diff
-any/submitted-accept4.diff
+any/cvs-accept4.diff
 any/cvs-nptl-init.diff
 any/submitted-accept4-hidden.diff
 any/submitted-nptl_db-symbols.diff
