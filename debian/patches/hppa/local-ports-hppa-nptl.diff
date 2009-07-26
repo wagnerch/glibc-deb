@@ -53,9 +53,62 @@
 	* pthread_rwlock_unlock.c: New file.
 	* pthread_rwlock_wrlock.c: New file.
 
+---
+ ports/sysdeps/hppa/nptl/Makefile                                              |   25 
+ ports/sysdeps/unix/sysv/linux/hppa/internaltypes.h                            |  184 ++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/Versions                              |   65 +
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/forward.c                             |  275 ++++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/nptl-init.c                           |  460 +++++++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_broadcast.c     |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_destroy.c       |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_init.c          |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_signal.c        |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_timedwait.c     |   44 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_cond_wait.c          |   41 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_destroy.c      |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_init.c         |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_lock.c         |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_timedlock.c    |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_trylock.c      |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_mutex_unlock.c       |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_destroy.c     |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_init.c        |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_rdlock.c      |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedrdlock.c |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_timedwrlock.c |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_tryrdlock.c   |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_trywrlock.c   |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_unlock.c      |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/old_hppa_pthread_rwlock_wrlock.c      |   37 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread-functions.h                   |  133 ++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthreadP.h                            |  621 ++++++++++
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_broadcast.c              |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_destroy.c                |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_init.c                   |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_signal.c                 |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_timedwait.c              |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_cond_wait.c                   |   29 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_cond_lock.c             |   14 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_destroy.c               |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_init.c                  |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_lock.c                  |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_timedlock.c             |   38 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_trylock.c               |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_mutex_unlock.c                |   36 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_destroy.c              |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_init.c                 |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_rdlock.c               |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedrdlock.c          |   38 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_timedwrlock.c          |   38 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_tryrdlock.c            |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_trywrlock.c            |   35 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_unlock.c               |   40 
+ ports/sysdeps/unix/sysv/linux/hppa/nptl/pthread_rwlock_wrlock.c               |   40 
+ 50 files changed, 3312 insertions(+)
+
 --- a/ports/sysdeps/hppa/nptl/Makefile
 +++ b/ports/sysdeps/hppa/nptl/Makefile
-@@ -25,3 +25,28 @@ endif
+@@ -25,3 +25,28 @@
  # this because the default is too small to run with. 
  tst-oddstacklimit-ENV = ; ulimit -s 8193;
  

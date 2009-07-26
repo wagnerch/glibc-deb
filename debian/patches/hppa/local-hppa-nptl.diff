@@ -2,9 +2,13 @@
 
 	* Versions.def: Add GLIBC_2.10 for libpthread.
 
+---
+ Versions.def |    1 +
+ 1 file changed, 1 insertion(+)
+
 --- a/Versions.def
 +++ b/Versions.def
-@@ -89,6 +89,7 @@ libpthread {
+@@ -88,6 +88,7 @@
    GLIBC_2.3.4
    GLIBC_2.4
    GLIBC_2.6

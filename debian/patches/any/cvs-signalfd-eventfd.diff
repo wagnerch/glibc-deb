@@ -8,6 +8,12 @@
 	* sysdeps/unix/sysv/linux/kernel-features.h: More CLOEXEC syscalls
 	added, name them.
 
+---
+ sysdeps/unix/sysv/linux/eventfd.c         |   15 ++++++++++++---
+ sysdeps/unix/sysv/linux/kernel-features.h |    2 ++
+ sysdeps/unix/sysv/linux/signalfd.c        |   15 ++++++++++++---
+ 3 files changed, 26 insertions(+), 6 deletions(-)
+
 --- a/sysdeps/unix/sysv/linux/eventfd.c
 +++ b/sysdeps/unix/sysv/linux/eventfd.c
 @@ -1,4 +1,4 @@
@@ -40,7 +46,7 @@
    /* The old system call has no flag parameter which is bad.  So we have
       to wait until we have to support to pass additional values to the
       kernel (sys_indirect) before implementing setting flags like
-@@ -43,5 +50,7 @@ eventfd (int count, int flags)
+@@ -43,5 +50,7 @@
    __set_errno (ENOSYS);
    return -1;
  # endif
@@ -50,14 +56,15 @@
  }
 --- a/sysdeps/unix/sysv/linux/kernel-features.h
 +++ b/sysdeps/unix/sysv/linux/kernel-features.h
-@@ -528,4 +528,6 @@
+@@ -534,6 +534,8 @@
+ # define __ASSUME_SOCK_CLOEXEC	1
  # define __ASSUME_IN_NONBLOCK	1
  # define __ASSUME_PIPE2		1
- # define __ASSUME_PACCEPT	1
 +# define __ASSUME_EVENTFD2	1
 +# define __ASSUME_SIGNALFD4	1
  #endif
-
+ 
+ /* Support for the accept4 syscall was added in 2.6.28.  */
 --- a/sysdeps/unix/sysv/linux/signalfd.c
 +++ b/sysdeps/unix/sysv/linux/signalfd.c
 @@ -1,4 +1,4 @@
@@ -90,7 +97,7 @@
    /* The old system call has no flag parameter which is bad.  So we have
       to wait until we have to support to pass additional values to the
       kernel (sys_indirect) before implementing setting flags like
-@@ -44,5 +51,7 @@ signalfd (int fd, const sigset_t *mask, int flags)
+@@ -44,5 +51,7 @@
    __set_errno (ENOSYS);
    return -1;
  # endif
