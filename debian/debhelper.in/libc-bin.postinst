@@ -4,14 +4,14 @@ set -e
 
 # Move a conffile without triggering a dpkg question
 mv_conffile() {
-    OLDCONFFILE="$1"
-    NEWCONFFILE="$2"
+    local OLDCONFFILE="$1"
+    local NEWCONFFILE="$2"
 
-    if [ -e "$OLDCONFFILE" ]; then
-        echo "Preserving user changes to $NEWCONFFILE ..."
-        mv -f "$NEWCONFFILE" "$NEWCONFFILE".dpkg-new
-        mv -f "$OLDCONFFILE" "$NEWCONFFILE"
-    fi
+    [ -e "$OLDCONFFILE" ] || return 0
+
+    echo "Preserving user changes to $NEWCONFFILE ..."
+    mv -f "$NEWCONFFILE" "$NEWCONFFILE".dpkg-new
+    mv -f "$OLDCONFFILE" "$NEWCONFFILE"
 }
 
 LASTVERSION=2.9-22
