@@ -8,6 +8,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
       #533077.
     - don't trigger assertion on __pthread_mutex_lock anymore.  Closes:
       #479952.
+    - fix week specifier in en_GB.  Closes: #511474.
     - debian/copyright, debian/*symbols*, debian/shlibver, 
       debian/locales-depver, debian/debhelper.in/*.lintian: upgrade
       to 2.10.
