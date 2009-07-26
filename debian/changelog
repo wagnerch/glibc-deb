@@ -1,9 +1,9 @@
-eglibc (2.9-22+multiarch) experimental; urgency=low
+eglibc (2.9-23~multiarch) experimental; urgency=low
 
   * Split out libc-bin from libc6 and libc-dev-bin from libc6-dev. 
     Closes: #330735.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 26 Jul 2009 23:39:31 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 27 Jul 2009 01:10:35 +0200
 
 eglibc (2.9-23) UNRELEASED; urgency=low
 
