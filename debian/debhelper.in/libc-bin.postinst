@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Move a conffile without triggering a dpkg question
 mv_conffile() {
     OLDCONFFILE="$1"

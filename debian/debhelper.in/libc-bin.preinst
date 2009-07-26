@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Prepare to move a conffile without triggering a dpkg question
 prep_mv_conffile() {
     CONFFILE="$1"
