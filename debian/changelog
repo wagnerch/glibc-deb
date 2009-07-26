@@ -12,14 +12,23 @@ eglibc (2.9-23) UNRELEASED; urgency=low
   * Don't ship /etc/init.d/glibc.sh anymore: the GNU libc is now smart
     enough to print "FATAL: kernel too old" alone. This also speed up
     the boot a bit.
+  * Don't ship /usr/share/doc/libc6/TODO, but keep the file in the 
+    sources.
+  * Don't ship /usr/share/doc/libc6/{README,PROJECT}.gz, they are 
+    irrelevant for an already built GNU libc.
+  * Move /usr/share/doc/libc6/{CONFORMANCE,NAMESPACE,NOTES}.gz to
+    libc6-dev.
+  * Move all upstream changelogs in glibc-docs, and install a small
+    changelog file explaining the reason.
+  * Ship README.libm in libc6-dev.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 26 Jul 2009 17:37:06 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 26 Jul 2009 19:17:08 +0200
 
 eglibc (2.9-22) unstable; urgency=low
 
   * kfreebsd/local-sysdeps.diff: update to revision 2670 (from glibc-bsd).
   * any/submitted-signalfd-eventfd.diff: new patch to support < 2.6.27 
-    kernels in eventfd/signalfd.  Closes: #538512.
+    kernels in eventfd/signalfd.  Closes: #537509.
   * alpha/submitted-fdatasync.diff: update to keep fdatasync() as a
     cancellation point.  Closes: #537586.
   * sparc/cvs-siginfo.diff, s390/submitted-siginfo.diff, 
