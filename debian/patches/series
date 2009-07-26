@@ -112,6 +112,8 @@ i386/local-cmov.diff
 i386/local-linuxthreads-gscope.diff
 i386/submitted-i686-timing.diff
 
+ia64/submitted-siginfo.diff
+
 m68k/local-compat.diff
 m68k/local-dwarf2-buildfix.diff
 m68k/local-fpic.diff
@@ -127,6 +129,7 @@ mips/cvs-context.diff
 powerpc/local-sysconf.diff
 
 s390/submitted-nexttowardf.diff
+s390/submitted-siginfo.diff
 
 sh4/local-fpscr_values.diff
 sh4/cvs-headers-update.diff
@@ -134,6 +137,7 @@ sh4/cvs-headers-update.diff
 sparc/local-fork.diff
 sparc/local-sparcv9-target.diff
 sparc/submitted-timing.diff
+sparc/cvs-siginfo.diff
 
 all/local-alias-UTF-8.diff
 all/local-alias-et_EE.diff
@@ -209,3 +213,5 @@ any/submitted-install-map-files.diff
 any/local-revert-3270.diff
 any/cvs-sunrpc-license.diff
 any/submitted-tst-cpucount.diff
+any/submitted-signalfd-eventfd.diff
+any/cvs-getaddrinfo-nss-notfound.diff
