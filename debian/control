@@ -16,6 +16,22 @@ Standards-Version: 3.8.2
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-glibc/glibc-package/
 Vcs-Svn: svn://svn.debian.org/pkg-glibc/glibc-package/
 
+Package: libc-bin
+Architecture: any
+Section: libs
+Priority: required
+Depends: ${shlibs:Depends}
+Description: GNU C Library: Binaries
+ To be filled .
+
+Package: libc-dev-bin
+Architecture: any
+Section: libdevel
+Priority: optional
+Depends: ${shlibs:Depends}
+Description: GNU C Library: Development binaries
+ To be filled .
+
 Package: glibc-doc
 Architecture: all
 Section: doc
@@ -79,6 +95,7 @@ Package: libc6
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: libs
 Priority: required
+Pre-Depends: libc-bin (= ${binary:Version})
 Provides: ${locale-compat:Depends}
 Suggests: debconf | debconf-2.0
 Description: GNU C Library: Shared libraries
@@ -90,7 +107,7 @@ Package: libc6-dev
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: libdevel
 Priority: optional
-Depends: libc6 (= ${binary:Version})
+Depends: libc6 (= ${binary:Version}), libc-dev-bin (= ${binary:Version})
 Recommends: gcc | c-compiler
 Description: GNU C Library: Development Libraries and Header Files
  Contains the symlinks, headers, and object files needed to compile
@@ -147,6 +164,7 @@ Package: libc6.1
 Architecture: alpha ia64
 Section: libs
 Priority: required
+Pre-Depends: libc-bin (= ${binary:Version})
 Provides: ${locale-compat:Depends}
 Suggests: debconf | debconf-2.0
 Description: GNU C Library: Shared libraries
@@ -158,7 +176,7 @@ Package: libc6.1-dev
 Architecture: alpha ia64
 Section: libdevel
 Priority: optional
-Depends: libc6.1 (= ${binary:Version})
+Depends: libc6.1 (= ${binary:Version}), libc-dev-bin (= ${binary:Version})
 Recommends: gcc | c-compiler
 Description: GNU C Library: Development Libraries and Header Files
  Contains the symlinks, headers, and object files needed to compile
@@ -215,6 +233,7 @@ Package: libc0.3
 Architecture: hurd-i386
 Section: libs
 Priority: required
+Pre-Depends: libc-bin (= ${binary:Version})
 Provides: ${locale-compat:Depends}
 Suggests: debconf | debconf-2.0
 Description: GNU C Library: Shared libraries
@@ -226,7 +245,7 @@ Package: libc0.3-dev
 Architecture: hurd-i386
 Section: libdevel
 Priority: optional
-Depends: libc0.3 (= ${binary:Version})
+Depends: libc0.3 (= ${binary:Version}), libc-dev-bin (= ${binary:Version})
 Recommends: gcc | c-compiler
 Description: GNU C Library: Development Libraries and Header Files
  Contains the symlinks, headers, and object files needed to compile
@@ -283,6 +302,7 @@ Package: libc0.1
 Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libs
 Priority: required
+Pre-Depends: libc-bin (= ${binary:Version})
 Provides: ${locale-compat:Depends}
 Suggests: debconf | debconf-2.0
 Description: GNU C Library: Shared libraries
@@ -294,7 +314,7 @@ Package: libc0.1-dev
 Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libdevel
 Priority: optional
-Depends: libc0.1 (= ${binary:Version})
+Depends: libc0.1 (= ${binary:Version}), libc-dev-bin (= ${binary:Version})
 Recommends: gcc | c-compiler
 Description: GNU C Library: Development Libraries and Header Files
  Contains the symlinks, headers, and object files needed to compile

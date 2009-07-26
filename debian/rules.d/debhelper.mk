@@ -20,10 +20,12 @@ $(stamp)binaryinst_$(libc)-pic:: $(stamp)debhelper
 define $(libc)_extra_debhelper_pkg_install
 	install --mode=0644 ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/changelog
 	install --mode=0644 nptl/ChangeLog debian/$(curpass)/usr/share/doc/$(curpass)/ChangeLog.nptl
-	# dh_installmanpages thinks that .so is a language.
-	install --mode=0644 debian/local/manpages/ld.so.8 debian/$(curpass)/usr/share/man/man8/ld.so.8
+endef
 
-	install --mode=0644 debian/FAQ debian/$(curpass)/usr/share/doc/$(curpass)/README.Debian
+define libc-bin_extra_debhelper_pkg_install
+  	# dh_installmanpages thinks that .so is a language.
+ 	install --mode=0644 debian/local/manpages/ld.so.8 debian/libc-bin/usr/share/man/man8/ld.so.8
+ 	install --mode=0644 debian/FAQ debian/$(curpass)/usr/share/doc/libc-bin/README.Debian
 endef
 
 # Should each of these have per-package options?
@@ -149,7 +151,7 @@ debhelper: $(stamp)debhelper
 $(stamp)debhelper:
 	for x in `find debian/debhelper.in -maxdepth 1 -type f`; do \
 	  y=debian/`basename $$x`; \
-	  z=`echo $$y | sed -e 's#/libc#/$(libc)#'`; \
+	  z=`echo $$y | sed -e 's#libc\(\|-alt\|-dev\|-dev-alt\|-otherbuild\|-pic\|-proc\|-udev\)\.#$(libc)\1.#g'`; \
 	  cp $$x $$z; \
 	  sed -e "s#BUILD-TREE#$(build-tree)#" -i $$z; \
 	  sed -e "/NSS_CHECK/r debian/script.in/nsscheck.sh" -i $$z; \
@@ -161,9 +163,6 @@ $(stamp)debhelper:
 	  case $$z in \
 	    *.install) \
 	      sed -e "s/^#.*//" -i $$z ; \
-	      if [ $(DEB_HOST_ARCH) != $(DEB_BUILD_ARCH) ]; then \
-	        sed -i "/^.*librpcsvc.a.*/d" $$z ; \
-	      fi ; \
 	      ;; \
 	    debian/$(libc).preinst) \
 	      rtld=`LANG=C LC_ALL=C readelf -l debian/tmp-libc/usr/bin/iconv | grep "interpreter" | sed -e 's/.*interpreter: \(.*\)]/\1/g'`; \
@@ -186,7 +185,7 @@ $(stamp)debhelper:
 	  slibdir=$$1; \
 	  shift; \
 	  case $$slibdir in \
-	  /lib32 | /lib64 | /emul/ia32-linux/lib) \
+	  /lib32 | /lib64) \
 	    suffix="alt"; \
 	    libdir=$$1; \
 	    shift; \

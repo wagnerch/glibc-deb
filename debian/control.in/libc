@@ -2,6 +2,7 @@ Package: @libc@
 Architecture: @archs@
 Section: libs
 Priority: required
+Pre-Depends: libc-bin (= ${binary:Version})
 Provides: ${locale-compat:Depends}
 Suggests: debconf | debconf-2.0
 Description: GNU C Library: Shared libraries
@@ -13,7 +14,7 @@ Package: @libc@-dev
 Architecture: @archs@
 Section: libdevel
 Priority: optional
-Depends: @libc@ (= ${binary:Version})
+Depends: @libc@ (= ${binary:Version}), libc-dev-bin (= ${binary:Version})
 Recommends: gcc | c-compiler
 Description: GNU C Library: Development Libraries and Header Files
  Contains the symlinks, headers, and object files needed to compile
