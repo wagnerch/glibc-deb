@@ -1,11 +1,11 @@
-eglibc (2.9-23~multiarch) experimental; urgency=low
+eglibc (2.9-23+multiarch) experimental; urgency=low
 
   * Split out libc-bin from libc6 and libc-dev-bin from libc6-dev. 
     Closes: #330735.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 27 Jul 2009 01:10:35 +0200
 
-eglibc (2.9-23) UNRELEASED; urgency=low
+eglibc (2.9-23) unstable; urgency=low
 
   * debhelper.in/libc.postinst, sysdeps/depflags.pl: remove upgrade code
     for pre-etch installations.
@@ -21,8 +21,18 @@ eglibc (2.9-23) UNRELEASED; urgency=low
   * Move all upstream changelogs in glibc-docs, and install a small
     changelog file explaining the reason.
   * Ship README.libm in libc6-dev.
+  * Update any/cvs-broken-dns.diff from upstream.
+  * any/cvs-pthread_mutex_lock.diff: new patch from upstream to fix
+    a memory ordering problem in pthread_mutex_{,timed}lock.
+  * Replace any/submitted-signalfd-eventfd.diff by upstream version
+    any/cvs-signalfd-eventfd.diff.
+  * alpha/submitted-asm-memchr.diff: new patch to fix broken prefetching
+    in memchr() on alpha.
+  * control.in/i386: replace the Pre-Depends by a Conflicts.  Closes: 
+    #538807. Update the breaks version of the packages not yet 
+    transitioned.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 26 Jul 2009 19:17:08 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 27 Jul 2009 15:37:54 +0200
 
 eglibc (2.9-22) unstable; urgency=low
 
