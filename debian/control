@@ -98,9 +98,12 @@ Package: libc6
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: libs
 Priority: required
-Pre-Depends: libc-bin (= ${binary:Version})
+Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
+Suggests: glibc-doc
 Provides: ${locale-compat:Depends}
-Suggests: debconf | debconf-2.0
+Conflicts: tzdata-etch, tzdata (<< 2007k-1)
+Breaks: nscd (<< 2.9)
+Suggests: debconf | debconf-2.0, locales [!hurd-i386]
 Description: GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -110,8 +113,11 @@ Package: libc6-dev
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: libdevel
 Priority: optional
-Depends: libc6 (= ${binary:Version}), libc-dev-bin (= ${binary:Version})
+Depends: libc6 (= ${binary:Version}), libc-dev-bin (= ${binary:Version}), linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386], libpthread-stubs0-dev [hurd-i386]
 Recommends: gcc | c-compiler
+Suggests: glibc-doc, manpages-dev
+Provides: libc-dev, libc6-dev
+Conflicts: binutils (<< 2.17cvs20070426-1)
 Description: GNU C Library: Development Libraries and Header Files
  Contains the symlinks, headers, and object files needed to compile
  and link programs which use the standard C library.
@@ -167,9 +173,12 @@ Package: libc6.1
 Architecture: alpha ia64
 Section: libs
 Priority: required
-Pre-Depends: libc-bin (= ${binary:Version})
+Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
+Suggests: glibc-doc
 Provides: ${locale-compat:Depends}
-Suggests: debconf | debconf-2.0
+Conflicts: tzdata-etch, tzdata (<< 2007k-1)
+Breaks: nscd (<< 2.9)
+Suggests: debconf | debconf-2.0, locales [!hurd-i386]
 Description: GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -179,8 +188,11 @@ Package: libc6.1-dev
 Architecture: alpha ia64
 Section: libdevel
 Priority: optional
-Depends: libc6.1 (= ${binary:Version}), libc-dev-bin (= ${binary:Version})
+Depends: libc6.1 (= ${binary:Version}), libc-dev-bin (= ${binary:Version}), linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386], libpthread-stubs0-dev [hurd-i386]
 Recommends: gcc | c-compiler
+Suggests: glibc-doc, manpages-dev
+Provides: libc-dev, libc6-dev
+Conflicts: binutils (<< 2.17cvs20070426-1)
 Description: GNU C Library: Development Libraries and Header Files
  Contains the symlinks, headers, and object files needed to compile
  and link programs which use the standard C library.
@@ -236,9 +248,12 @@ Package: libc0.3
 Architecture: hurd-i386
 Section: libs
 Priority: required
-Pre-Depends: libc-bin (= ${binary:Version})
+Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
+Suggests: glibc-doc
 Provides: ${locale-compat:Depends}
-Suggests: debconf | debconf-2.0
+Conflicts: tzdata-etch, tzdata (<< 2007k-1)
+Breaks: nscd (<< 2.9)
+Suggests: debconf | debconf-2.0, locales [!hurd-i386]
 Description: GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -248,8 +263,11 @@ Package: libc0.3-dev
 Architecture: hurd-i386
 Section: libdevel
 Priority: optional
-Depends: libc0.3 (= ${binary:Version}), libc-dev-bin (= ${binary:Version})
+Depends: libc0.3 (= ${binary:Version}), libc-dev-bin (= ${binary:Version}), linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386], libpthread-stubs0-dev [hurd-i386]
 Recommends: gcc | c-compiler
+Suggests: glibc-doc, manpages-dev
+Provides: libc-dev, libc6-dev
+Conflicts: binutils (<< 2.17cvs20070426-1)
 Description: GNU C Library: Development Libraries and Header Files
  Contains the symlinks, headers, and object files needed to compile
  and link programs which use the standard C library.
@@ -305,9 +323,12 @@ Package: libc0.1
 Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libs
 Priority: required
-Pre-Depends: libc-bin (= ${binary:Version})
+Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
+Suggests: glibc-doc
 Provides: ${locale-compat:Depends}
-Suggests: debconf | debconf-2.0
+Conflicts: tzdata-etch, tzdata (<< 2007k-1)
+Breaks: nscd (<< 2.9)
+Suggests: debconf | debconf-2.0, locales [!hurd-i386]
 Description: GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
@@ -317,8 +338,11 @@ Package: libc0.1-dev
 Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libdevel
 Priority: optional
-Depends: libc0.1 (= ${binary:Version}), libc-dev-bin (= ${binary:Version})
+Depends: libc0.1 (= ${binary:Version}), libc-dev-bin (= ${binary:Version}), linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386], libpthread-stubs0-dev [hurd-i386]
 Recommends: gcc | c-compiler
+Suggests: glibc-doc, manpages-dev
+Provides: libc-dev, libc6-dev
+Conflicts: binutils (<< 2.17cvs20070426-1)
 Description: GNU C Library: Development Libraries and Header Files
  Contains the symlinks, headers, and object files needed to compile
  and link programs which use the standard C library.
