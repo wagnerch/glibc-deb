@@ -94,6 +94,7 @@ hurd-i386/local-check_native.diff
 hurd-i386/submitted-dl-sysdep.diff
 hurd-i386/submitted-itimer-lock.diff
 hurd-i386/local-pthread_types.diff
+hurd-i386/local-_dl_random.diff
 
 ia64/submitted-memchr.diff
 ia64/submitted-sysconf.diff

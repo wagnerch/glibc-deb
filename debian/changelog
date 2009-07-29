@@ -108,6 +108,10 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   [ Petr Salinger ]
   * Add kfreebsd/local-no-SOCK_NONBLOCK.diff to fix build on GNU/kFreeBSD.
 
+  [ Samuel Thibault ]
+  * Add debian/patches/hurd-i386/local-_dl_random.diff to fix build on
+    hurd-i386.
+
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 12 Jul 2009 14:58:42 +0200
 
 eglibc (2.9-23) unstable; urgency=low
