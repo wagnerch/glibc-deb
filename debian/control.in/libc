@@ -3,11 +3,10 @@ Architecture: @archs@
 Section: libs
 Priority: required
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
-Suggests: glibc-doc
+Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
 Provides: ${locale-compat:Depends}
 Conflicts: tzdata-etch, tzdata (<< 2007k-1)
 Breaks: nscd (<< 2.9)
-Suggests: debconf | debconf-2.0, locales [!hurd-i386]
 Description: GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
  the system. This package includes shared versions of the standard C library
