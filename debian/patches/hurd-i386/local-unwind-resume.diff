@@ -4,20 +4,20 @@
  unwind-resume.c    |   64 +++++++++++++++++++++++++++++++++++++++++++++++++++++
  3 files changed, 77 insertions(+)
 
-Index: sysdeps/mach/hurd/rt-unwind-resume.c
+Index: glibc/sysdeps/mach/hurd/rt-unwind-resume.c
 ===================================================================
-RCS file: sysdeps/mach/hurd/rt-unwind-resume.c
-diff -N sysdeps/mach/hurd/rt-unwind-resume.c
+RCS file: glibc/sysdeps/mach/hurd/rt-unwind-resume.c
+diff -N glibc/sysdeps/mach/hurd/rt-unwind-resume.c
 --- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ sysdeps/mach/hurd/rt-unwind-resume.c	30 Jul 2009 00:21:33 -0000
++++ glibc/sysdeps/mach/hurd/rt-unwind-resume.c	30 Jul 2009 00:21:33 -0000
 @@ -0,0 +1 @@
 +#include <unwind-resume.c>
-Index: sysdeps/mach/hurd/unwind-resume.c
+Index: glibc/sysdeps/mach/hurd/unwind-resume.c
 ===================================================================
-RCS file: sysdeps/mach/hurd/unwind-resume.c
-diff -N sysdeps/mach/hurd/unwind-resume.c
+RCS file: glibc/sysdeps/mach/hurd/unwind-resume.c
+diff -N glibc/sysdeps/mach/hurd/unwind-resume.c
 --- /dev/null	1 Jan 1970 00:00:00 -0000
-+++ sysdeps/mach/hurd/unwind-resume.c	30 Jul 2009 00:21:33 -0000
++++ glibc/sysdeps/mach/hurd/unwind-resume.c	30 Jul 2009 00:21:33 -0000
 @@ -0,0 +1,64 @@
 +/* Copyright (C) 2003 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -83,13 +83,13 @@ diff -N sysdeps/mach/hurd/unwind-resume.c
 +  return libgcc_s_personality (version, actions, exception_class,
 +			       ue_header, context);
 +}
-Index: sysdeps/mach/hurd/Makefile
+Index: glibc/sysdeps/mach/hurd/Makefile
 ===================================================================
 RCS file: /cvs/glibc/libc/sysdeps/mach/hurd/Makefile,v
 retrieving revision 1.96
 diff -u -p -r1.96 Makefile
---- sysdeps/mach/hurd/Makefile	7 Jan 2009 01:59:31 -0000	1.96
-+++ sysdeps/mach/hurd/Makefile	30 Jul 2009 00:21:33 -0000
+--- glibc/sysdeps/mach/hurd/Makefile	7 Jan 2009 01:59:31 -0000	1.96
++++ glibc/sysdeps/mach/hurd/Makefile	30 Jul 2009 00:21:33 -0000
 @@ -211,4 +211,16 @@ ifeq ($(subdir),sunrpc)
  		  net/route.h
  endif
