@@ -52,6 +52,9 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     - Update debian/patches/any/local-libgcc-compat-ports.diff.
     - Update debian/patches/any/local-no-pagesize.diff.
     - Remove debian/patches/any/submitted-date-and-unknown-tz.diff (merged).
+    - Remove debian/patches/any/cvs-sunrpc-license.diff (merged).
+    - Remove debian/patches/any/submitted-tst-cpucount.diff (merged).
+    - Remove debian/patches/any/submitted-signalfd-eventfd.diff (merged).
     - Remove debian/patches/localedata/mt_MT_euro.diff (merged).
     - Remove debian/patches/localedata/submitted-bz9731-el_CY_euro.diff
       (merged).
@@ -81,26 +84,17 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     debian/patches/alpha/submitted-includes.diff and 
     debian/patches/alpha/submitted-lowlevellock.diff to partially fix FTBFS
     on alpha.
-  * Add debian/patches/ia64/submitted-memchr.diff to fix memchr() when 
-    crossing page boundaries on ia64.
-  * Add debian/patches/any/cvs-accept4.diff to fix nscd on non-amd64
-    architectures.
   * Add debian/patches/any/local-linuxthreads-unwind.diff to fix exception
     handling with linuxthreads.
-  * Add debian/patches/powerpc/cvs-long-double-errno.diff to fix errno for
-    IBM long double.
   * Add debian/patches/any/cvs-nptl-init.diff to allow overwriting 
     architectures init.c in csu and nptl individually.
   * Add debian/patches/any/submitted-accept4-hidden.diff to fix build
     on non Linux architectures.
   * Add debian/patches/kfreebsd/local-sysdeps-2.10.diff to update sysdeps
     for glibc 2.10 on GNU/kFreeBSD.
-  * Add debian/patches/any/submitted-nptl_db-symbols.diff to fix testsuite
-    on alpha.
   * Add debian/patches/alpha/submitted-rtld-fPIC.diff to fix build on alpha.
   * Add debian/patches/any/submitted-getent-gshadow.diff to add gshadow 
     support to getent.
-  * Add debian/patches/any/cvs-ldbl-128-errno.diff from upstream.
   * Add hppa/local-hppa-nptl.diff and ppa/local-ports-hppa-nptl.diff from
     Carlos O'Donell to keep ABI compatibility between linuxthreads and NPTL
     on HPPA.
@@ -117,7 +111,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     on Linux, to fix build.
   * Apply kfreebsd/local-no-SOCK_NONBLOCK.diff on hurd-i386 to fix build too.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 12 Jul 2009 14:58:42 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 30 Jul 2009 23:42:16 +0200
 
 eglibc (2.9-24) UNRELEASED; urgency=low
 

@@ -1,9 +1,3 @@
-2009-07-26  Ulrich Drepper  <drepper@redhat.com>
- 
-	[BZ #10452]
-	* resolv/res_send.c (send_dg): Pass full SERVFAIL, NOTIMP, REFUSED
-	replies up.
-
 2009-06-26  Ulrich Drepper  <drepper@redhat.com>
 
 	* resolv/resolv.h: Define RES_SNGLKUPREOP.
@@ -15,11 +9,6 @@
 	single-request-reopen mode which opens a new socket for the second
 	request.
  
-2009-06-11  Ulrich Drepper  <drepper@redhat.com>
-
-	* resolv/res_send.c (send_dg): Remember we switched to
-	single-request mode.
-
 ---
  resolv/res_init.c |    3 ++
  resolv/res_send.c |   75 ++++++++++++++++++++++++++++++++++++------------------
@@ -87,7 +76,7 @@
  		seconds /= statp->nscount;
  	if (seconds <= 0)
  		seconds = 1;
--	bool single_request = ((statp->options) & RES_SNGLKUP) != 0;// XXX
+-	bool single_request = (statp->options & RES_SNGLKUP) != 0;// XXX
 +	bool single_request = (statp->options & RES_SNGLKUP) != 0;
 +	bool single_request_reopen = (statp->options & RES_SNGLKUPREOP) != 0;
  	int save_gotsomewhere = *gotsomewhere;
@@ -100,12 +89,7 @@
   retry:
  	evNowTime(&now);
  	evConsTime(&timeout, seconds, 0);
-@@ -1059,10 +1073,19 @@
- 		       have received the first answer.  */
- 		    if (!single_request)
- 		      {
-+			statp->options |= RES_SNGLKUP;
- 			single_request = true;
+@@ -1059,6 +1073,14 @@
  			*gotsomewhere = save_gotsomewhere;
  			goto retry;
  		      }
@@ -130,22 +114,6 @@
  		  pfd[0].events = POLLIN;
  		else
  		  pfd[0].events = POLLIN | POLLOUT;
-@@ -1254,14 +1278,10 @@
- 				? *thisanssiz : *thisresplen);
- 
- 			if (recvresp1 || (buf2 != NULL && recvresp2))
--			  {
--			    *resplen2 = 1;
--			    return resplen;
--			  }
-+			  return resplen;
- 			if (buf2 != NULL)
- 			  {
- 			    /* We are waiting for a possible second reply.  */
--			    resplen = 1;
- 			    if (hp->id == anhp->id)
- 			      recvresp1 = 1;
- 			    else
 @@ -1305,8 +1325,15 @@
  			recvresp2 = 1;
  		/* Repeat waiting if we have a second answer to arrive.  */
