@@ -115,6 +115,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     hurd-i386.
   * Fix debian/patches/hurd-i386/local-tls-support.diff to align up includes
     on Linux, to fix build.
+  * Apply kfreebsd/local-no-SOCK_NONBLOCK.diff on hurd-i386 to fix build too.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 12 Jul 2009 14:58:42 +0200
 
