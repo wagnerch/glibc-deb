@@ -198,5 +198,4 @@ any/submitted-nptl_db-symbols.diff
 any/submitted-getent-gshadow.diff
 any/cvs-ldbl-128-errno.diff
 any/cvs-getaddrinfo-nss-notfound.diff
-any/cvs-pthread_mutex_lock.diff
 any/cvs-signalfd-eventfd.diff
