@@ -476,14 +476,16 @@
  
 --- a/sysdeps/mach/hurd/tls.h
 +++ b/sysdeps/mach/hurd/tls.h
-@@ -23,6 +23,7 @@
+@@ -23,7 +23,9 @@
  #if defined HAVE_TLS_SUPPORT && !defined __ASSEMBLER__
  
  # include <stddef.h>
 +# include <stdint.h>
  # include <stdbool.h>
++# include <sysdep.h>
  # include <mach/mig_errors.h>
  # include <mach.h>
+ 
 --- /dev/null
 +++ b/sysdeps/mach/hurd/i386/tlsdesc.sym
 @@ -0,0 +1,17 @@
