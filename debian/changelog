@@ -102,6 +102,8 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     (file .svn-revision).
   * debian/rules.d/tarball.mk: add an "update-from-upstream-svn" rule to 
     automatically update debian/patches/svn-updates.diff.
+  * patches/ia64/submitted-libm.diff: new patch to fix part of the errors
+    in the math testsuite on ia64.
 
   [ Petr Salinger ]
   * Add kfreebsd/local-no-SOCK_NONBLOCK.diff to fix build on GNU/kFreeBSD.
@@ -115,7 +117,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     on Linux, to fix build.
   * Apply kfreebsd/local-no-SOCK_NONBLOCK.diff on hurd-i386 to fix build too.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 30 Jul 2009 23:42:16 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 01 Aug 2009 23:09:22 +0200
 
 eglibc (2.9-24) UNRELEASED; urgency=low
 

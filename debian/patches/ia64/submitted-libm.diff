@@ -1,0 +1,52 @@
+2009-08-01  Aurelien Jarno  <aurelien@aurel32.net>
+
+	* sysdeps/ia64/fpu/libm_error.c(__libm_error_support): Pole errors
+	for lgamma and pow should set errno to ERANGE, not EDOM. 
+
+diff --git a/sysdeps/ia64/fpu/libm_error.c b/sysdeps/ia64/fpu/libm_error.c
+index 8ef4bb5..1aa905a 100644
+--- a/sysdeps/ia64/fpu/libm_error.c
++++ b/sysdeps/ia64/fpu/libm_error.c
+@@ -708,15 +708,18 @@ switch(input_tag)
+   case gammal_negative:
+   case gamma_negative:
+   case gammaf_negative:
+-  case lgammal_negative:
+-  case lgamma_negative:
+-  case lgammaf_negative:
+   case tgammal_negative:
+   case tgamma_negative:
+   case tgammaf_negative:
+   {
+        ERRNO_DOMAIN; break;
+   }
++  case lgammal_negative:
++  case lgamma_negative:
++  case lgammaf_negative:
++  {
++       ERRNO_RANGE; break;
++  }
+   case ldexpl_overflow:
+   case ldexpl_underflow:
+   case ldexp_overflow:
+@@ -1081,17 +1084,17 @@ switch(input_tag)
+   case powl_zero_to_negative:
+     /* 0**neg */
+     {
+-       ERRNO_DOMAIN; break;
++       ERRNO_RANGE; break;
+     }
+   case pow_zero_to_negative:
+     /* 0**neg */
+     {
+-       ERRNO_DOMAIN; break;
++       ERRNO_RANGE; break;
+     }
+   case  powf_zero_to_negative:
+     /* 0**neg */
+     {
+-       ERRNO_DOMAIN; break;
++       ERRNO_RANGE; break;
+     }
+   case powl_neg_to_non_integer:
+     /* neg**non_integral */
