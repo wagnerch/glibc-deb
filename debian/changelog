@@ -1,3 +1,10 @@
+eglibc (2.9-23+multiarch.2) experimental; urgency=low
+
+  * Remove the Depends: line in libc-bin and add the corresponding 
+    override for lintian.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 03 Aug 2009 00:27:06 +0200
+
 eglibc (2.9-23+multiarch.1) experimental; urgency=low
 
   * Replace debian/sysdeps/depflags.{mk,pl} by entries in debian/control
