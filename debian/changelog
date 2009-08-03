@@ -106,6 +106,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     math testsuite on ia64.
   * Use gcc 4.4 by default, except on armel, hppa, mips, mipsel, powerpc, 
     ppc64, sparc and hurd-i386.
+  * Update to upstream revision 8758.
 
   [ Petr Salinger ]
   * Add kfreebsd/local-no-SOCK_NONBLOCK.diff to fix build on GNU/kFreeBSD.
@@ -119,7 +120,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     on Linux, to fix build.
   * Apply kfreebsd/local-no-SOCK_NONBLOCK.diff on hurd-i386 to fix build too.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 03 Aug 2009 10:53:04 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 03 Aug 2009 19:49:40 +0200
 
 eglibc (2.9-24) UNRELEASED; urgency=low
 
