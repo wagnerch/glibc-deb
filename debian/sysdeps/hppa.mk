@@ -1,3 +1,6 @@
+CC = gcc-4.3
+CXX = g++-4.3
+
 # To build the NPTL version of the glibc on hppa, uncomment the following line
 # and comment the two next ones. Note that it is currently not binary 
 # compatible with the linuxthreads version.

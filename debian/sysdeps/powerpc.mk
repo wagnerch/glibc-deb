@@ -1,3 +1,6 @@
+CC = gcc-4.3
+CXX = g++-4.3
+
 # build 64-bit (ppc64) alternative library
 EGLIBC_PASSES += ppc64
 DEB_ARCH_REGULAR_PACKAGES += libc6-ppc64 libc6-dev-ppc64
