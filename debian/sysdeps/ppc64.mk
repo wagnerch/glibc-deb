@@ -1,6 +1,3 @@
-CC = gcc-4.3
-CXX = g++-4.3
-
 libc_slibdir = /lib
 libc_libdir = /usr/lib
 libc_rtlddir = /lib64

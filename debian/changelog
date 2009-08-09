@@ -104,8 +104,8 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     automatically update debian/patches/svn-updates.diff.
   * patches/ia64/submitted-libm.diff: new patch to fix errors in the 
     math testsuite on ia64.
-  * Use gcc 4.4 by default, except on armel, hppa, mips, mipsel, powerpc, 
-    ppc64, sparc and hurd-i386.
+  * Use gcc 4.4 by default, except on armel, hppa, mips, mipsel, sparc and 
+    hurd-i386.
   * Update to upstream revision 8758.
 
   [ Petr Salinger ]
