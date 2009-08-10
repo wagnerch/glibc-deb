@@ -11,7 +11,7 @@ Build-Depends: gettext, make (>= 3.80), dpkg-dev (>= 1.15.3.1), bzip2, lzma, fil
  g++-4.3 (>= 4.3.3-2) [alpha]
 Build-Depends-Indep: perl, po-debconf (>= 1.0)
 Maintainer: GNU Libc Maintainers <debian-glibc@lists.debian.org>
-Uploaders: Ben Collins <bcollins@debian.org>, GOTO Masanori <gotom@debian.org>, Philip Blundell <pb@nexus.co.uk>, Jeff Bailey <jbailey@raspberryginger.com>, Daniel Jacobowitz <dan@debian.org>, Clint Adams <schizo@debian.org>, Aurelien Jarno <aurel32@debian.org>, Pierre Habouzit <madcoder@debian.org>
+Uploaders: GOTO Masanori <gotom@debian.org>, Philip Blundell <pb@nexus.co.uk>, Jeff Bailey <jbailey@raspberryginger.com>, Daniel Jacobowitz <dan@debian.org>, Clint Adams <schizo@debian.org>, Aurelien Jarno <aurel32@debian.org>, Pierre Habouzit <madcoder@debian.org>
 Standards-Version: 3.8.2
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-glibc/glibc-package/
 Vcs-Svn: svn://svn.debian.org/pkg-glibc/glibc-package/
@@ -20,6 +20,7 @@ Package: libc-bin
 Architecture: any
 Section: libs
 Priority: required
+Breaks: libc0.1 (<< 2.9), libc0.3 (<< 2.9), libc6 (<< 2.9), libc6.1 (<< 2.9)
 Replaces: libc0.1, libc0.3, libc6, libc6.1
 Description: GNU C Library: Binaries
  This package contains utility programs related to the GNU C Library. 
@@ -98,6 +99,7 @@ Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 spa
 Section: libs
 Priority: required
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
+Recommends: libc6-i686 [amd64], libc0.1-i686 [kfreebsd-amd64]
 Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
 Provides: ${locale-compat:Depends}
 Conflicts: tzdata-etch, tzdata (<< 2007k-1)
@@ -172,6 +174,7 @@ Architecture: alpha ia64
 Section: libs
 Priority: required
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
+Recommends: libc6-i686 [amd64], libc0.1-i686 [kfreebsd-amd64]
 Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
 Provides: ${locale-compat:Depends}
 Conflicts: tzdata-etch, tzdata (<< 2007k-1)
@@ -246,6 +249,7 @@ Architecture: hurd-i386
 Section: libs
 Priority: required
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
+Recommends: libc6-i686 [amd64], libc0.1-i686 [kfreebsd-amd64]
 Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
 Provides: ${locale-compat:Depends}
 Conflicts: tzdata-etch, tzdata (<< 2007k-1)
@@ -320,6 +324,7 @@ Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libs
 Priority: required
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
+Recommends: libc6-i686 [amd64], libc0.1-i686 [kfreebsd-amd64]
 Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
 Provides: ${locale-compat:Depends}
 Conflicts: tzdata-etch, tzdata (<< 2007k-1)

@@ -1,24 +1,30 @@
-eglibc (2.9-23+multiarch.2) experimental; urgency=low
+eglibc (2.9-25) UNRELEASED; urgency=low
 
-  * Remove the Depends: line in libc-bin and add the corresponding 
-    override for lintian.
+  * Remove Ben Collins <bcollins@debian.org> from the uploaders (Closes:
+    bug#540901).
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 03 Aug 2009 00:27:06 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 11 Aug 2009 00:06:09 +0200
 
-eglibc (2.9-23+multiarch.1) experimental; urgency=low
+eglibc (2.9-24) unstable; urgency=low
 
+  [ Aurelien Jarno ]
+  * Remove any/cvs-pthread_mutex_lock.diff following upstream decision.
   * Replace debian/sysdeps/depflags.{mk,pl} by entries in debian/control
     using the "new" dpkg-dev features. Clean-out some very old entries.
-  * Switch the Pre-Depends: libc-bin to a simple Depends:.
+  * Recommends libc6-i686 on amd64 and libc0.1-i686 on kfreebsd-amd64
+    (Closes: bug#455603).
+  * Don't access dpkg files directly in libc6.preinst.
+  * patches/any/local-ld-multiarch.diff: convert i586 and i686 into i486
+    (Closes: bug#540646).
+  * debian/rules.d/debhelper.mk: use dh_lintian instead doing the work
+    manually.
+  * Split out libc-bin from libc6 and libc-dev-bin from libc6-dev.
+    (Closes: #330735).
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 29 Jul 2009 16:37:35 +0200
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: update to revision 2696 (from glibc-bsd).
 
-eglibc (2.9-23+multiarch) experimental; urgency=low
-
-  * Split out libc-bin from libc6 and libc-dev-bin from libc6-dev. 
-    Closes: #330735.
-
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 27 Jul 2009 01:10:35 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 10 Aug 2009 14:32:35 +0200
 
 eglibc (2.9-23) unstable; urgency=low
 
