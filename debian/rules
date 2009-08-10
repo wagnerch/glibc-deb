@@ -123,7 +123,7 @@ log_expected = debian/testsuite-checking/expected-results-$(call xx,configure_ta
 # Which build pass are we on?
 curpass = $(filter-out %_,$(subst _,_ ,$@))
 
-DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-dbg $(libc)-prof $(libc)-pic locales-all
+DEB_ARCH_REGULAR_PACKAGES = $(libc) $(libc)-dev $(libc)-dbg $(libc)-prof $(libc)-pic libc-bin libc-dev-bin locales-all
 DEB_INDEP_REGULAR_PACKAGES = glibc-doc eglibc-source locales
 DEB_UDEB_PACKAGES = $(libc)-udeb libnss-dns-udeb libnss-files-udeb
 
@@ -141,8 +141,6 @@ standard-add-ons = libidn,
 
 -include debian/sysdeps/$(DEB_HOST_ARCH_OS).mk
 -include debian/sysdeps/$(DEB_HOST_ARCH).mk
-
-include debian/sysdeps/depflags.mk
 
 # Don't run dh_strip on this package
 NOSTRIP_$(libc)-dbg = 1
