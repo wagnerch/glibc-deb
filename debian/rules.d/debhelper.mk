@@ -17,9 +17,9 @@ $(stamp)binaryinst_$(libc)-pic:: $(stamp)debhelper
 	install --mode=0644 build-tree/$(DEB_HOST_ARCH)-libc/libresolv.map debian/$(libc)-pic/usr/lib/libresolv_pic.map
 
 # Some per-package extra files to install.
-define $(libc)_extra_debhelper_pkg_install
-	# dh_installmanpages thinks that .so is a language.
-	install --mode=0644 debian/local/manpages/ld.so.8 debian/$(curpass)/usr/share/man/man8/ld.so.8
+define libc-bin_extra_debhelper_pkg_install
+  	# dh_installmanpages thinks that .so is a language.
+ 	install --mode=0644 debian/local/manpages/ld.so.8 debian/libc-bin/usr/share/man/man8/ld.so.8
 endef
 
 # Should each of these have per-package options?
@@ -47,6 +47,7 @@ $(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGUL
 	fi
 	dh_installinit -p$(curpass)
 	dh_installdocs -p$(curpass) 
+	dh_lintian -p $(curpass)
 	dh_link -p$(curpass)
 	set -e; if test -d debian/bug/$(curpass); then                   \
 	    dh_installdirs -p$(curpass) usr/share/bug;                   \
@@ -99,17 +100,9 @@ endif
 	chmod a+x debian/shlibs-add-udebs
 	./debian/shlibs-add-udebs $(curpass)
 
-	if [ -f debian/$(curpass).lintian ] ; then \
-		install -d -m 755 -o root -g root debian/$(curpass)/usr/share/lintian/overrides/ ; \
-		install -m 644 -o root -g root debian/$(curpass).lintian \
-			debian/$(curpass)/usr/share/lintian/overrides/$(curpass) ; \
-	fi
-
 	dh_installdeb -p$(curpass)
-	if [ $(curpass) = nscd ] ; then \
-		dh_shlibdeps -p$(curpass) ; \
-	fi
-	dh_gencontrol -p$(curpass) -- $($(curpass)_control_flags)
+	dh_shlibdeps -p$(curpass)
+	dh_gencontrol -p$(curpass)
 	if [ $(curpass) = nscd ] ; then \
 		sed -i -e "s/\(Depends:.*libc[0-9.]\+\)-[a-z0-9]\+/\1/" debian/nscd/DEBIAN/control ; \
 	fi
@@ -149,7 +142,7 @@ debhelper: $(stamp)debhelper
 $(stamp)debhelper:
 	for x in `find debian/debhelper.in -maxdepth 1 -type f`; do \
 	  y=debian/`basename $$x`; \
-	  z=`echo $$y | sed -e 's#/libc#/$(libc)#'`; \
+	  z=`echo $$y | sed -e 's#libc\(\|-alt\|-dev\|-dev-alt\|-otherbuild\|-pic\|-proc\|-udeb\)\.#$(libc)\1.#g'`; \
 	  cp $$x $$z; \
 	  sed -e "s#BUILD-TREE#$(build-tree)#" -i $$z; \
 	  sed -e "/NSS_CHECK/r debian/script.in/nsscheck.sh" -i $$z; \
@@ -161,9 +154,6 @@ $(stamp)debhelper:
 	  case $$z in \
 	    *.install) \
 	      sed -e "s/^#.*//" -i $$z ; \
-	      if [ $(DEB_HOST_ARCH) != $(DEB_BUILD_ARCH) ]; then \
-	        sed -i "/^.*librpcsvc.a.*/d" $$z ; \
-	      fi ; \
 	      ;; \
 	    debian/$(libc).preinst) \
 	      rtld=`LANG=C LC_ALL=C readelf -l debian/tmp-libc/usr/bin/iconv | grep "interpreter" | sed -e 's/.*interpreter: \(.*\)]/\1/g'`; \
@@ -186,7 +176,7 @@ $(stamp)debhelper:
 	  slibdir=$$1; \
 	  shift; \
 	  case $$slibdir in \
-	  /lib32 | /lib64 | /emul/ia32-linux/lib) \
+	  /lib32 | /lib64) \
 	    suffix="alt"; \
 	    libdir=$$1; \
 	    shift; \
@@ -239,8 +229,7 @@ debhelper-clean:
 	rm -f debian/*.docs
 	rm -f debian/*.doc-base
 	rm -f debian/*.generated
-	rm -f debian/*.lintian
-	rm -f debian/*.linda
+	rm -f debian/*.lintian-overrides
 	rm -f debian/*.NEWS
 	rm -f debian/*.README.Debian
 

@@ -1,3 +1,39 @@
+eglibc (2.9-25) unstable; urgency=low
+
+  * Remove Ben Collins <bcollins@debian.org> from the uploaders (Closes:
+    bug#540901).
+  * Recommends libc6-i686 on i386 and libc0.1-i686 on kfreebsd-i386 
+    (instead of amd64 and kfreebsd-amd64). Closes: bug#455603.
+  * rules.d/debheper.in: fix a one letter typo causing libc6-udeb to be
+    empty. Closes: bug#541725.
+  * alpha/submitted-sock_nonblock.diff, hppa/submitted-sock_nonblock.diff:
+    new patches to accommodate SOCK_NONBLOCK != O_NONBLOCK on these 
+    architectures. Closes: bug#540871.
+  * Add dependency on $syslog in /etc/init.d/nscd. Closes: bug#541492.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 16 Aug 2009 13:43:11 +0200
+
+eglibc (2.9-24) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * Remove any/cvs-pthread_mutex_lock.diff following upstream decision.
+  * Replace debian/sysdeps/depflags.{mk,pl} by entries in debian/control
+    using the "new" dpkg-dev features. Clean-out some very old entries.
+  * Recommends libc6-i686 on amd64 and libc0.1-i686 on kfreebsd-amd64
+    (Closes: bug#455603).
+  * Don't access dpkg files directly in libc6.preinst.
+  * patches/any/local-ld-multiarch.diff: convert i586 and i686 into i486
+    (Closes: bug#540646).
+  * debian/rules.d/debhelper.mk: use dh_lintian instead doing the work
+    manually.
+  * Split out libc-bin from libc6 and libc-dev-bin from libc6-dev.
+    (Closes: #330735).
+
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: update to revision 2696 (from glibc-bsd).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 10 Aug 2009 14:32:35 +0200
+
 eglibc (2.9-23) unstable; urgency=low
 
   * debhelper.in/libc.postinst, sysdeps/depflags.pl: remove upgrade code
