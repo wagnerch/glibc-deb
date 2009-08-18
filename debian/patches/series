@@ -52,6 +52,7 @@ alpha/submitted-PTR_MANGLE.diff
 alpha/submitted-procfs_h.diff
 alpha/submitted-rtld-fPIC.diff
 alpha/submitted-asm-memchr.diff
+alpha/submitted-sock_nonblock.diff
 
 amd64/local-biarch.diff
 amd64/local-clone.diff
@@ -63,6 +64,7 @@ arm/local-lowlevellock.diff
 arm/local-no-hwcap.diff
 arm/local-hwcap-updates.diff
 
+hppa/submitted-sock_nonblock.diff
 hppa/local-inlining.diff
 hppa/local-linuxthreads.diff
 hppa/local-linuxthreads-gscope.diff
