@@ -89,6 +89,8 @@ includedir=$(prefix)/include
 docdir=$(prefix)/share/doc
 mandir=$(prefix)/share/man
 sbindir=$(prefix)/sbin
+slibdir=/lib/$(DEB_HOST_GNU_TYPE)
+libdir=/usr/lib/$(DEB_HOST_GNU_TYPE)
 
 BUILD_CC = gcc
 BUILD_CXX = g++
