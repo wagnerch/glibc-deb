@@ -142,7 +142,7 @@ $(stamp)install_%: $(stamp)check_%
 	if [ $(curpass) = libc ]; then \
 	  mkdir -p debian/tmp-$(curpass)/etc/ld.so.conf.d; \
 	  machine=`sed '/^ *config-machine *=/!d;s/.*= *//g' $(DEB_BUILDDIR)/config.make`; \
-	  os=`sed '/^ *config-os *=/!d;s/.*= *//g' $(DEB_BUILDDIR)/config.make`; \
+	  os=`sed '/^ *config-os *=/!d;s/.*= *//g;s/gnu-gnu/gnu/' $(DEB_BUILDDIR)/config.make`; \
 	  triplet="$$machine-$$os"; \
 	  conffile="debian/tmp-$(curpass)/etc/ld.so.conf.d/$$triplet.conf"; \
 	  echo "# Multiarch support" > $$conffile; \
