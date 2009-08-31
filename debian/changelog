@@ -55,6 +55,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     - Remove debian/patches/any/cvs-sunrpc-license.diff (merged).
     - Remove debian/patches/any/submitted-tst-cpucount.diff (merged).
     - Remove debian/patches/any/submitted-signalfd-eventfd.diff (merged).
+    - Remove debian/patches/any/cvs-unsetenv.diff (merged).
     - Remove debian/patches/localedata/mt_MT_euro.diff (merged).
     - Remove debian/patches/localedata/submitted-bz9731-el_CY_euro.diff
       (merged).
@@ -122,11 +123,43 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   * Fix debian/patches/hurd-i386/local-tls-support.diff to align up includes
     on Linux, to fix build.
   * Apply kfreebsd/local-no-SOCK_NONBLOCK.diff on hurd-i386 to fix build too.
-  * Convert config_os' gnu-gnu into gnu to fix multiarch paths.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 18 Aug 2009 21:39:16 +0200
 
-eglibc (2.9-24) UNRELEASED; urgency=low
+eglibc (2.9-26) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * alpha/submitted-sock_nonblock.diff, hppa/submitted-sock_nonblock.diff:
+    create the files at the correct location. Closes: bug#540871.
+  * Use the full triplet for optimized and biarch packages.
+  * cvs-unsetenv.diff: new patch to not segfault in unsetenv() if run after 
+    clearenv().
+
+  [ Samuel Thibault ]
+  * Convert config_os' gnu-gnu into gnu to fix multiarch paths.
+
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: update to revision 2744 (from glibc-bsd).
+  * any/local-linuxthreads-kill_other.diff, fixes ruby 1.9 testsuite failure
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 31 Aug 2009 07:05:00 +0200
+
+eglibc (2.9-25) unstable; urgency=low
+
+  * Remove Ben Collins <bcollins@debian.org> from the uploaders (Closes:
+    bug#540901).
+  * Recommends libc6-i686 on i386 and libc0.1-i686 on kfreebsd-i386 
+    (instead of amd64 and kfreebsd-amd64). Closes: bug#455603.
+  * rules.d/debheper.in: fix a one letter typo causing libc6-udeb to be
+    empty. Closes: bug#541725.
+  * alpha/submitted-sock_nonblock.diff, hppa/submitted-sock_nonblock.diff:
+    new patches to accommodate SOCK_NONBLOCK != O_NONBLOCK on these 
+    architectures. Closes: bug#540871.
+  * Add dependency on $syslog in /etc/init.d/nscd. Closes: bug#541492.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 16 Aug 2009 13:43:11 +0200
+
+eglibc (2.9-24) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * Remove any/cvs-pthread_mutex_lock.diff following upstream decision.
