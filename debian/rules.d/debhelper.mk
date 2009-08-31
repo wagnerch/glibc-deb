@@ -165,6 +165,7 @@ $(stamp)debhelper:
 	      sed -e "s#RTLD#$$rtld#" -e "s#C_SO#$$c_so#" -e "s#M_SO#$$m_so#" -e "s#PTHREAD_SO#$$pthread_so#" -e "s#RT_SO#$$rt_so#" -e "s#DL_SO#$$dl_so#" -i $$z ; \
 	      ;; \
 	  esac; \
+	  
 	done
 
 	# Hack: special-case passes whose destdir is a biarch directory
