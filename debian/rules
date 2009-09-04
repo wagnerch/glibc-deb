@@ -154,7 +154,7 @@ endif
 # And now the rules...
 include debian/rules.d/*.mk
 
-clean:: unpatch debhelper-clean
+clean:: unpatch
 	make -C $(CURDIR)/linuxthreads/man clean
 	rm -f $(CURDIR)/po/*.mo
 	rm -rf $(patsubst %,debian/tmp-%,$(EGLIBC_PASSES))
