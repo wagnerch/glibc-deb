@@ -32,7 +32,7 @@ debug-packages = $(filter %-dbg,$(DEB_ARCH_REGULAR_PACKAGES))
 non-debug-packages = $(filter-out %-dbg,$(DEB_ARCH_REGULAR_PACKAGES))
 $(patsubst %,$(stamp)binaryinst_%,$(debug-packages)):: $(patsubst %,$(stamp)binaryinst_%,$(non-debug-packages))
 
-$(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGULAR_PACKAGES)):: $(stamp)debhelper
+$(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGULAR_PACKAGES)):: $(patsubst %,$(stamp)install_%,$(EGLIBC_PASSES)) $(stamp)debhelper
 	@echo Running debhelper for $(curpass)
 	dh_testroot
 	dh_installdirs -p$(curpass)
@@ -112,7 +112,7 @@ endif
 	touch $@
 
 $(patsubst %,binaryinst_%,$(DEB_UDEB_PACKAGES)) :: binaryinst_% : $(stamp)binaryinst_%
-$(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper
+$(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES)): $(stamp)debhelper $(patsubst %,$(stamp)install_%,$(EGLIBC_PASSES))
 	@echo Running debhelper for $(curpass)
 	dh_testroot
 	dh_installdirs -p$(curpass)
@@ -139,7 +139,7 @@ OPT_PASSES = $(filter-out libc, $(EGLIBC_PASSES))
 OPT_DIRS = $(foreach pass,$(OPT_PASSES),$($(pass)_slibdir) $($(pass)_libdir))
 
 debhelper: $(stamp)debhelper
-$(stamp)debhelper:
+$(stamp)debhelper: $(patsubst %,$(stamp)install_%,$(EGLIBC_PASSES))
 	for x in `find debian/debhelper.in -maxdepth 1 -type f`; do \
 	  y=debian/`basename $$x`; \
 	  z=`echo $$y | sed -e 's#libc\(\|-alt\|-dev\|-dev-alt\|-otherbuild\|-pic\|-prof\|-udeb\)\.#$(libc)\1.#g'`; \
@@ -165,7 +165,6 @@ $(stamp)debhelper:
 	      sed -e "s#RTLD#$$rtld#" -e "s#C_SO#$$c_so#" -e "s#M_SO#$$m_so#" -e "s#PTHREAD_SO#$$pthread_so#" -e "s#RT_SO#$$rt_so#" -e "s#DL_SO#$$dl_so#" -i $$z ; \
 	      ;; \
 	  esac; \
-	  
 	done
 
 	# Hack: special-case passes whose destdir is a biarch directory

@@ -164,12 +164,9 @@ clean:: unpatch debhelper-clean
 
 # Required Debian targets
 binary-indep: build testroot debian/control $(build-tree) \
-	$(patsubst %,$(stamp)install_%,$(EGLIBC_PASSES)) \
 	$(patsubst %,$(stamp)binaryinst_%,$(DEB_INDEP_REGULAR_PACKAGES))
-# NOTE: Putting install_ stamps before binaryinst_ stamps in the list is the
-# wrong way to represent dependencies.  Fix this.
+
 binary-arch: build testroot debian/control $(build-tree) \
-	$(patsubst %,$(stamp)install_%,$(EGLIBC_PASSES)) \
 	$(patsubst %,$(stamp)binaryinst_%,$(DEB_ARCH_REGULAR_PACKAGES)) \
 	$(patsubst %,$(stamp)binaryinst_%,$(DEB_UDEB_PACKAGES))
 

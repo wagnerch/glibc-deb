@@ -162,5 +162,3 @@ $(stamp)source: $(stamp)patch
 		-f $(build-tree)/eglibc-$(EGLIBC_VERSION).tar.lzma \
 		$(EGLIBC_SOURCES)
 	touch $@
-
-.NOTPARALLEL: $(patsubst %,install_%,$(EGLIBC_PASSES))
