@@ -175,7 +175,7 @@ $(stamp)debhelper_%: $(stamp)debhelper-common $(stamp)install_%
 	curpass=$(curpass) ; \
 	case "$$curpass:$$slibdir" in \
 	  libc:*) \
-	    templates="libc libc-dev libc-pic libc-prof libc-udeb" \
+	    templates="libc libc-dev libc-pic libc-prof libc-udeb libnss-dns-udeb libnss-files-udeb" \
 	    pass="" \
 	    suffix="" \
 	    ;; \
@@ -192,8 +192,10 @@ $(stamp)debhelper_%: $(stamp)debhelper-common $(stamp)install_%
 	esac ; \
 	for t in $$templates ; do \
 	  for s in debian/$$t$$pass.* ; do \
-	    t=`echo $$s | sed -e "s#libc#$(libc)#"`$$suffx ; \
-	    cp $$s $$t ; \
+	    t=`echo $$s | sed -e "s#libc#$(libc)#"`$$suffix ; \
+	    if [ "$$s" != "$$t" ] ; then \
+	      cp $$s $$t ; \
+	    fi ; \
 	    sed -e "s#TMPDIR#debian/tmp-$$curpass#g" -i $$t; \
 	    sed -e "s#SLIBDIR#$$slibdir#g" -i $$t; \
 	    sed -e "s#LIBDIR#$$libdir#g" -i $$t; \
