@@ -138,13 +138,21 @@ $(stamp)install_%: $(stamp)check_%
 	    OUT=debian/tmp-$(curpass)/usr/share/i18n/SUPPORTED; \
 	fi
 
-	# Create the multidir directories, and the configuration file in /etc/ld.so.conf.d
+	# Create the multiarch directories, and the configuration file in /etc/ld.so.conf.d
 	if [ $(curpass) = libc ]; then \
 	  mkdir -p debian/tmp-$(curpass)/etc/ld.so.conf.d; \
 	  conffile="debian/tmp-$(curpass)/etc/ld.so.conf.d/$(DEB_HOST_GNU_TYPE).conf"; \
 	  echo "# Multiarch support" > $$conffile; \
-	  echo /lib/$(DEB_HOST_GNU_TYPE) >> $$conffile; \
-	  echo /usr/lib/$(DEB_HOST_GNU_TYPE) >> $$conffile; \
+	  echo "$(call xx,slibdir)" >> $$conffile; \
+	  echo "$(call xx,libdir)" >> $$conffile; \
+	fi
+	
+	# Create the ld.so symlink to the multiarch directory
+	if [ $(curpass) = libc ]; then \
+	  rtld_so="$$(LANG=C LC_ALL=C readelf -l debian/tmp-$(curpass)/usr/bin/iconv | grep 'interpreter' | sed -e 's/.*interpreter: \(.*\)]/\1/g')" ; \
+	  link_name="debian/tmp-$(curpass)/lib/$$(basename $$rtld_so)" ; \
+	  target="$(call xx,slibdir)/$$(readlink $$rtld_so)" ; \
+	  ln -s $$target $$link_name ;  \
 	fi
 	
 	$(call xx,extra_install)

@@ -2,8 +2,9 @@ eglibc (2.9-27+multiarch) UNRELEASED; urgency=low
 
   * Use the multiarch path for the native version and optimized flavors.
   * Simplify the creation of /etc/ld.so.conf.d/<triplet>.conf.
+  * Install a symlink ABI -> multiarch path.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 07 Sep 2009 21:04:08 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 07 Sep 2009 23:10:09 +0200
 
 eglibc (2.9-27) UNRELEASED; urgency=low
 
