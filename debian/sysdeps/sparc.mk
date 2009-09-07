@@ -7,7 +7,7 @@ sparcv9b_configure_build=sparcv9b-linux-gnu
 sparcv9b_extra_cflags = -mtune=ultrasparc3 -O3
 sparcv9b_extra_config_options = $(extra_config_options) --disable-profile
 sparcv9b_rtlddir = /lib
-sparcv9b_slibdir = /lib/ultra3
+sparcv9b_slibdir = /lib/$(DEB_HOST_GNU_TYPE)/ultra3
 
 # build 64-bit (sparc64) alternative library
 EGLIBC_PASSES += sparc64
