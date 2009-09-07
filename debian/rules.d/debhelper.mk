@@ -198,7 +198,7 @@ $(stamp)debhelper_%: $(stamp)debhelper-common $(stamp)install_%
 	esac ; \
 	for t in $$templates ; do \
 	  for s in debian/$$t$$pass.* ; do \
-	    t=`echo $$s | sed -e "s#libc#$(libc)#"`$$suffix ; \
+	    t=`echo $$s | sed -e "s#libc\(.*\)$$pass#$(libc)\1$$suffix#"` ; \
 	    if [ "$$s" != "$$t" ] ; then \
 	      cp $$s $$t ; \
 	    fi ; \
