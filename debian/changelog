@@ -1,3 +1,31 @@
+eglibc (2.9-27) UNRELEASED; urgency=low
+
+  [ Aurelien Jarno ]
+  * Extend description of libc-bin, patch by Christoph Berg. Closes: 
+    bug#544389.
+  * Strip *.o files manually (dh_strip does not do it) to prevent
+    leakage of the build directory.
+  * libc.postinst: re-add "telinit u", removed by accident in version
+    2.9-24. Closes: bug#545179.
+  * nscd.init: set PATH to "/sbin:/usr/sbin:/bin:/usr/bin". Closes: 
+    bug#544942.
+  * nscd.conf.5: add documentation for max-db-size and auto-propagate
+    options. Closes: bug#544544.
+  * Merge from the multiarch branch:
+    - allow to specify libdir and slibdir also for the main flavor.
+    - use real dependencies between the build_* and binaryinst_* 
+      targets.
+    - simplify clean target.
+
+  [ Samuel Thibault ]
+  * debian/debhelper.in/libc.install: Install libc/*-gnu*/ instead of
+    libc/*-*-gnu*/, to fix FTBFS on hurd-i386 due to it now being i486-gnu/.
+
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: update to revision 2779 (from glibc-bsd).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 07 Sep 2009 20:49:08 +0200
+
 eglibc (2.9-26) unstable; urgency=low
 
   [ Aurelien Jarno ]
