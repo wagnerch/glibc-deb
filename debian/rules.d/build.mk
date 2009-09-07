@@ -141,13 +141,10 @@ $(stamp)install_%: $(stamp)check_%
 	# Create the multidir directories, and the configuration file in /etc/ld.so.conf.d
 	if [ $(curpass) = libc ]; then \
 	  mkdir -p debian/tmp-$(curpass)/etc/ld.so.conf.d; \
-	  machine=`sed '/^ *config-machine *=/!d;s/.*= *//g' $(DEB_BUILDDIR)/config.make`; \
-	  os=`sed '/^ *config-os *=/!d;s/.*= *//g;s/gnu-gnu/gnu/' $(DEB_BUILDDIR)/config.make`; \
-	  triplet="$$machine-$$os"; \
-	  conffile="debian/tmp-$(curpass)/etc/ld.so.conf.d/$$triplet.conf"; \
+	  conffile="debian/tmp-$(curpass)/etc/ld.so.conf.d/$(DEB_HOST_GNU_TYPE).conf"; \
 	  echo "# Multiarch support" > $$conffile; \
-	  echo /lib/$$triplet >> $$conffile; \
-	  echo /usr/lib/$$triplet >> $$conffile; \
+	  echo /lib/$(DEB_HOST_GNU_TYPE) >> $$conffile; \
+	  echo /usr/lib/$(DEB_HOST_GNU_TYPE) >> $$conffile; \
 	fi
 	
 	$(call xx,extra_install)
