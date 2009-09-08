@@ -20,6 +20,7 @@ Package: libc-bin
 Architecture: any
 Section: libs
 Priority: required
+Multiarch: foreign
 Breaks: libc0.1 (<< 2.9), libc0.3 (<< 2.9), libc6 (<< 2.9), libc6.1 (<< 2.9)
 Replaces: libc0.1, libc0.3, libc6, libc6.1
 Description: GNU C Library: Binaries
@@ -38,6 +39,7 @@ Package: libc-dev-bin
 Architecture: any
 Section: libdevel
 Priority: optional
+Multiarch: foreign
 Depends: ${shlibs:Depends}
 Replaces: libc0.1-dev, libc0.3-dev, libc6-dev, libc6.1-dev
 Description: GNU C Library: Development binaries
@@ -84,6 +86,7 @@ Package: locales-all
 Architecture: any
 Section: libs
 Priority: extra
+Multiarch: foreign
 Depends: ${locale:Depends}, lzma
 Provides: locales
 Description: GNU C Library: Precompiled locale data
@@ -95,6 +98,7 @@ Description: GNU C Library: Precompiled locale data
 Package: nscd
 Architecture: any
 Section: admin
+Multiarch: foreign
 Priority: optional
 Depends: ${shlibs:Depends}
 Description: GNU C Library: Name Service Cache Daemon

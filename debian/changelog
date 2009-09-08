@@ -5,6 +5,7 @@ eglibc (2.9-27+multiarch) UNRELEASED; urgency=low
   * Install a symlink ABI -> multiarch path.
   * patches/any/local-ld-multiarch.diff: add the multiarch compat dir
     instead of the multiarch dir.
+  * Add multiarch fields to debian/control.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 07 Sep 2009 23:10:09 +0200
 

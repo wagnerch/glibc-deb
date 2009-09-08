@@ -2,6 +2,7 @@ Package: libc6-sparcv9b
 Architecture: sparc
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc6 (= ${binary:Version})
 Description: GNU C Library: Shared libraries [v9b optimized]
  Contains the standard libraries that are used by nearly all programs on
@@ -16,6 +17,7 @@ Package: libc6-i686
 Architecture: i386
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc6 (= ${binary:Version})
 Description: GNU C Library: Shared libraries [i686 optimized]
  Contains the standard libraries that are used by nearly all programs on
@@ -32,6 +34,7 @@ Package: libc6-xen
 Architecture: i386
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc6 (= ${binary:Version})
 Description: GNU C Library: Shared libraries [Xen version]
  Contains the standard libraries that are used by nearly all programs on
@@ -45,6 +48,7 @@ Package: libc0.1-i686
 Architecture: kfreebsd-i386
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc0.1 (= ${binary:Version})
 Description: GNU C Library: Shared libraries [i686 optimized]
  Contains the standard libraries that are used by nearly all programs on
@@ -61,6 +65,7 @@ Package: libc6.1-alphaev67
 Architecture: alpha
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc6.1 (= ${binary:Version})
 Description: GNU C Library: Shared libraries (EV67 optimized)
  Contains the standard libraries that are used by nearly all programs on

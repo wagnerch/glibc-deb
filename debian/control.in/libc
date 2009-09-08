@@ -2,6 +2,7 @@ Package: @libc@
 Architecture: @archs@
 Section: libs
 Priority: required
+Multiarch: same
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
 Recommends: libc6-i686 [i386], libc0.1-i686 [kfreebsd-i386]
 Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
@@ -17,6 +18,7 @@ Package: @libc@-dev
 Architecture: @archs@
 Section: libdevel
 Priority: optional
+Multiarch: same
 Depends: @libc@ (= ${binary:Version}), libc-dev-bin (= ${binary:Version}), linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386], libpthread-stubs0-dev [hurd-i386]
 Recommends: gcc | c-compiler
 Suggests: glibc-doc, manpages-dev
@@ -30,6 +32,7 @@ Package: @libc@-dbg
 Architecture: @archs@
 Section: debug
 Priority: extra
+Multiarch: same
 Provides: libc-dbg
 Depends: @libc@ (= ${binary:Version})
 Description: GNU C Library: detached debugging symbols
@@ -40,6 +43,7 @@ Package: @libc@-prof
 Architecture: @archs@
 Section: libdevel
 Priority: extra
+Multiarch: same
 Depends: @libc@ (= ${binary:Version})
 Description: GNU C Library: Profiling Libraries
  Static libraries compiled with profiling info (-pg) suitable for use
@@ -49,6 +53,7 @@ Package: @libc@-pic
 Architecture: @archs@
 Section: libdevel
 Priority: optional
+Multiarch: same
 Conflicts: libc-pic
 Provides: libc-pic, glibc-pic
 Depends: @libc@ (= ${binary:Version})

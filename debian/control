@@ -20,6 +20,7 @@ Package: libc-bin
 Architecture: any
 Section: libs
 Priority: required
+Multiarch: foreign
 Breaks: libc0.1 (<< 2.9), libc0.3 (<< 2.9), libc6 (<< 2.9), libc6.1 (<< 2.9)
 Replaces: libc0.1, libc0.3, libc6, libc6.1
 Description: GNU C Library: Binaries
@@ -38,6 +39,7 @@ Package: libc-dev-bin
 Architecture: any
 Section: libdevel
 Priority: optional
+Multiarch: foreign
 Depends: ${shlibs:Depends}
 Replaces: libc0.1-dev, libc0.3-dev, libc6-dev, libc6.1-dev
 Description: GNU C Library: Development binaries
@@ -84,6 +86,7 @@ Package: locales-all
 Architecture: any
 Section: libs
 Priority: extra
+Multiarch: foreign
 Depends: ${locale:Depends}, lzma
 Provides: locales
 Description: GNU C Library: Precompiled locale data
@@ -95,6 +98,7 @@ Description: GNU C Library: Precompiled locale data
 Package: nscd
 Architecture: any
 Section: admin
+Multiarch: foreign
 Priority: optional
 Depends: ${shlibs:Depends}
 Description: GNU C Library: Name Service Cache Daemon
@@ -107,6 +111,7 @@ Package: libc6
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: libs
 Priority: required
+Multiarch: same
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
 Recommends: libc6-i686 [i386], libc0.1-i686 [kfreebsd-i386]
 Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
@@ -122,6 +127,7 @@ Package: libc6-dev
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: libdevel
 Priority: optional
+Multiarch: same
 Depends: libc6 (= ${binary:Version}), libc-dev-bin (= ${binary:Version}), linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386], libpthread-stubs0-dev [hurd-i386]
 Recommends: gcc | c-compiler
 Suggests: glibc-doc, manpages-dev
@@ -135,6 +141,7 @@ Package: libc6-dbg
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: debug
 Priority: extra
+Multiarch: same
 Provides: libc-dbg
 Depends: libc6 (= ${binary:Version})
 Description: GNU C Library: detached debugging symbols
@@ -145,6 +152,7 @@ Package: libc6-prof
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: libdevel
 Priority: extra
+Multiarch: same
 Depends: libc6 (= ${binary:Version})
 Description: GNU C Library: Profiling Libraries
  Static libraries compiled with profiling info (-pg) suitable for use
@@ -154,6 +162,7 @@ Package: libc6-pic
 Architecture: amd64 arm armeb armel i386 m32r m68k mips mipsel powerpc ppc64 sparc s390 hppa sh3 sh4 sh3eb sh4eb
 Section: libdevel
 Priority: optional
+Multiarch: same
 Conflicts: libc-pic
 Provides: libc-pic, glibc-pic
 Depends: libc6 (= ${binary:Version})
@@ -182,6 +191,7 @@ Package: libc6.1
 Architecture: alpha ia64
 Section: libs
 Priority: required
+Multiarch: same
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
 Recommends: libc6-i686 [i386], libc0.1-i686 [kfreebsd-i386]
 Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
@@ -197,6 +207,7 @@ Package: libc6.1-dev
 Architecture: alpha ia64
 Section: libdevel
 Priority: optional
+Multiarch: same
 Depends: libc6.1 (= ${binary:Version}), libc-dev-bin (= ${binary:Version}), linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386], libpthread-stubs0-dev [hurd-i386]
 Recommends: gcc | c-compiler
 Suggests: glibc-doc, manpages-dev
@@ -210,6 +221,7 @@ Package: libc6.1-dbg
 Architecture: alpha ia64
 Section: debug
 Priority: extra
+Multiarch: same
 Provides: libc-dbg
 Depends: libc6.1 (= ${binary:Version})
 Description: GNU C Library: detached debugging symbols
@@ -220,6 +232,7 @@ Package: libc6.1-prof
 Architecture: alpha ia64
 Section: libdevel
 Priority: extra
+Multiarch: same
 Depends: libc6.1 (= ${binary:Version})
 Description: GNU C Library: Profiling Libraries
  Static libraries compiled with profiling info (-pg) suitable for use
@@ -229,6 +242,7 @@ Package: libc6.1-pic
 Architecture: alpha ia64
 Section: libdevel
 Priority: optional
+Multiarch: same
 Conflicts: libc-pic
 Provides: libc-pic, glibc-pic
 Depends: libc6.1 (= ${binary:Version})
@@ -257,6 +271,7 @@ Package: libc0.3
 Architecture: hurd-i386
 Section: libs
 Priority: required
+Multiarch: same
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
 Recommends: libc6-i686 [i386], libc0.1-i686 [kfreebsd-i386]
 Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
@@ -272,6 +287,7 @@ Package: libc0.3-dev
 Architecture: hurd-i386
 Section: libdevel
 Priority: optional
+Multiarch: same
 Depends: libc0.3 (= ${binary:Version}), libc-dev-bin (= ${binary:Version}), linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386], libpthread-stubs0-dev [hurd-i386]
 Recommends: gcc | c-compiler
 Suggests: glibc-doc, manpages-dev
@@ -285,6 +301,7 @@ Package: libc0.3-dbg
 Architecture: hurd-i386
 Section: debug
 Priority: extra
+Multiarch: same
 Provides: libc-dbg
 Depends: libc0.3 (= ${binary:Version})
 Description: GNU C Library: detached debugging symbols
@@ -295,6 +312,7 @@ Package: libc0.3-prof
 Architecture: hurd-i386
 Section: libdevel
 Priority: extra
+Multiarch: same
 Depends: libc0.3 (= ${binary:Version})
 Description: GNU C Library: Profiling Libraries
  Static libraries compiled with profiling info (-pg) suitable for use
@@ -304,6 +322,7 @@ Package: libc0.3-pic
 Architecture: hurd-i386
 Section: libdevel
 Priority: optional
+Multiarch: same
 Conflicts: libc-pic
 Provides: libc-pic, glibc-pic
 Depends: libc0.3 (= ${binary:Version})
@@ -332,6 +351,7 @@ Package: libc0.1
 Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libs
 Priority: required
+Multiarch: same
 Depends: libc-bin (= ${binary:Version}), hurd (>= 20070606-1+SVN) [hurd-i386], libgcc1 [!hppa !m68k], libgcc2 [m68k], libgcc4 [hppa]
 Recommends: libc6-i686 [i386], libc0.1-i686 [kfreebsd-i386]
 Suggests: glibc-doc, debconf | debconf-2.0, locales [!hurd-i386]
@@ -347,6 +367,7 @@ Package: libc0.1-dev
 Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libdevel
 Priority: optional
+Multiarch: same
 Depends: libc0.1 (= ${binary:Version}), libc-dev-bin (= ${binary:Version}), linux-libc-dev [linux-any], kfreebsd-kernel-headers (>= 0.11) [kfreebsd-any], gnumach-dev [hurd-i386], hurd-dev (>= 20080607-3) [hurd-i386], libpthread-stubs0-dev [hurd-i386]
 Recommends: gcc | c-compiler
 Suggests: glibc-doc, manpages-dev
@@ -360,6 +381,7 @@ Package: libc0.1-dbg
 Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: debug
 Priority: extra
+Multiarch: same
 Provides: libc-dbg
 Depends: libc0.1 (= ${binary:Version})
 Description: GNU C Library: detached debugging symbols
@@ -370,6 +392,7 @@ Package: libc0.1-prof
 Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libdevel
 Priority: extra
+Multiarch: same
 Depends: libc0.1 (= ${binary:Version})
 Description: GNU C Library: Profiling Libraries
  Static libraries compiled with profiling info (-pg) suitable for use
@@ -379,6 +402,7 @@ Package: libc0.1-pic
 Architecture: kfreebsd-i386 kfreebsd-amd64
 Section: libdevel
 Priority: optional
+Multiarch: same
 Conflicts: libc-pic
 Provides: libc-pic, glibc-pic
 Depends: libc0.1 (= ${binary:Version})
@@ -611,6 +635,7 @@ Package: libc6-sparcv9b
 Architecture: sparc
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc6 (= ${binary:Version})
 Description: GNU C Library: Shared libraries [v9b optimized]
  Contains the standard libraries that are used by nearly all programs on
@@ -625,6 +650,7 @@ Package: libc6-i686
 Architecture: i386
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc6 (= ${binary:Version})
 Description: GNU C Library: Shared libraries [i686 optimized]
  Contains the standard libraries that are used by nearly all programs on
@@ -641,6 +667,7 @@ Package: libc6-xen
 Architecture: i386
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc6 (= ${binary:Version})
 Description: GNU C Library: Shared libraries [Xen version]
  Contains the standard libraries that are used by nearly all programs on
@@ -654,6 +681,7 @@ Package: libc0.1-i686
 Architecture: kfreebsd-i386
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc0.1 (= ${binary:Version})
 Description: GNU C Library: Shared libraries [i686 optimized]
  Contains the standard libraries that are used by nearly all programs on
@@ -670,6 +698,7 @@ Package: libc6.1-alphaev67
 Architecture: alpha
 Section: libs
 Priority: extra
+Multiarch: same
 Pre-Depends: libc6.1 (= ${binary:Version})
 Description: GNU C Library: Shared libraries (EV67 optimized)
  Contains the standard libraries that are used by nearly all programs on
