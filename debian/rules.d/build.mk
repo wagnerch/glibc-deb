@@ -43,12 +43,8 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 	echo "docdir = $(docdir)"		>> $(DEB_BUILDDIR)/configparms
 	echo "mandir = $(mandir)"		>> $(DEB_BUILDDIR)/configparms
 	echo "sbindir = $(sbindir)"		>> $(DEB_BUILDDIR)/configparms
-	libdir="$(call xx,libdir)" ; if test -n "$$libdir" ; then \
-		echo "libdir = $$libdir" >> $(DEB_BUILDDIR)/configparms ; \
-	fi
-	slibdir="$(call xx,slibdir)" ; if test -n "$$slibdir" ; then \
-		echo "slibdir = $$slibdir" >> $(DEB_BUILDDIR)/configparms ; \
-	fi
+	echo "libdir = $(call xx,libdir)"	>> $(DEB_BUILDDIR)/configparms
+	echo "slibdir = $(call xx,slibdir)"	>> $(DEB_BUILDDIR)/configparms
 	rtlddir="$(call xx,rtlddir)" ; if test -n "$$rtlddir" ; then \
 		echo "rtlddir = $$rtlddir" >> $(DEB_BUILDDIR)/configparms ; \
 	fi
@@ -142,7 +138,7 @@ $(stamp)install_%: $(stamp)check_%
 	    OUT=debian/tmp-$(curpass)/usr/share/i18n/SUPPORTED; \
 	fi
 
-	# Create the multidir directories, and the configuration file in /etc/ld.so.conf.d
+	# Create the multiarch directories, and the configuration file in /etc/ld.so.conf.d
 	if [ $(curpass) = libc ]; then \
 	  mkdir -p debian/tmp-$(curpass)/etc/ld.so.conf.d; \
 	  machine=`sed '/^ *config-machine *=/!d;s/.*= *//g' $(DEB_BUILDDIR)/config.make`; \
@@ -167,5 +163,3 @@ $(stamp)source: $(stamp)patch
 		-f $(build-tree)/eglibc-$(EGLIBC_VERSION).tar.lzma \
 		$(EGLIBC_SOURCES)
 	touch $@
-
-.NOTPARALLEL: $(patsubst %,install_%,$(EGLIBC_PASSES))
