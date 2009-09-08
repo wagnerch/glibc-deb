@@ -151,7 +151,7 @@ $(stamp)install_%: $(stamp)check_%
 	if [ $(curpass) = libc ]; then \
 	  rtld_so="$$(LANG=C LC_ALL=C readelf -l debian/tmp-$(curpass)/usr/bin/iconv | grep 'interpreter' | sed -e 's/.*interpreter: \(.*\)]/\1/g')" ; \
 	  link_name="debian/tmp-$(curpass)/lib/$$(basename $$rtld_so)" ; \
-	  target="$(call xx,slibdir)/$$(readlink $$rtld_so)" ; \
+	  target="$(call xx,slibdir)/$$(readlink debian/tmp-$(curpass)/$$rtld_so)" ; \
 	  ln -s $$target $$link_name ;  \
 	fi
 	
