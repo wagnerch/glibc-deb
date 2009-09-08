@@ -13,7 +13,7 @@ $(stamp)binaryinst_$(libc)-pic:: debhelper
 
 	install --mode=0644 build-tree/$(DEB_HOST_ARCH)-libc/math/libm_pic.a debian/$(libc)-pic/$(libdir)/.
 	install --mode=0644 build-tree/$(DEB_HOST_ARCH)-libc/libm.map debian/$(libc)-pic/$(libdir)/libm_pic.map
-	install --mode=0644 build-tree/$(DEB_HOST_ARCH)-libc/resolv/libresolv_pic.a debian/$(libc)-pic/$(libdir).
+	install --mode=0644 build-tree/$(DEB_HOST_ARCH)-libc/resolv/libresolv_pic.a debian/$(libc)-pic/$(libdir)/.
 	install --mode=0644 build-tree/$(DEB_HOST_ARCH)-libc/libresolv.map debian/$(libc)-pic/$(libdir)/libresolv_pic.map
 
 # Some per-package extra files to install.
