@@ -96,9 +96,6 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   * Add debian/patches/alpha/submitted-rtld-fPIC.diff to fix build on alpha.
   * Add debian/patches/any/submitted-getent-gshadow.diff to add gshadow 
     support to getent.
-  * Add hppa/local-hppa-nptl.diff and hppa/local-ports-hppa-nptl.diff from
-    Carlos O'Donell to keep ABI compatibility between linuxthreads and NPTL
-    on HPPA.
   * debian/rules.d/tarball.mk: store the checkout revision in the tarball
     (file .svn-revision).
   * debian/rules.d/tarball.mk: add an "update-from-upstream-svn" rule to 
