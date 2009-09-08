@@ -121,6 +121,12 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
     on Linux, to fix build.
   * Apply kfreebsd/local-no-SOCK_NONBLOCK.diff on hurd-i386 to fix build too.
 
+  [ Carlos O'Donell ]
+  * Add hppa/cvs-nptl-compat.diff to keep ABI compatibility between 
+    linuxthreads and NPTL on HPPA.
+  * sysdeps/hppa.mk: switch to NPTL.
+  * testsuite-checking/expected-results-hppa-linux-gnu-libc: update.
+
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 18 Aug 2009 21:39:16 +0200
 
 eglibc (2.9-27) UNRELEASED; urgency=low
