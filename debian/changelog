@@ -124,7 +124,7 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   [ Carlos O'Donell ]
   * Add hppa/cvs-nptl-compat.diff to keep ABI compatibility between 
     linuxthreads and NPTL on HPPA.
-  * sysdeps/hppa.mk: switch to NPTL.
+  * sysdeps/hppa.mk: switch to NPTL. Closes: bug#538513.
   * testsuite-checking/expected-results-hppa-linux-gnu-libc: update.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 18 Aug 2009 21:39:16 +0200
