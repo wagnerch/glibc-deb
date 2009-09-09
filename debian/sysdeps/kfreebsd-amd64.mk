@@ -1,7 +1,3 @@
-libc_slibdir = /lib
-libc_libdir = /usr/lib
-libc_rtlddir = /lib
-
 # /lib64 and /usr/lib64 are provided by glibc instead base-files: #259302.
 define libc0.1_extra_pkg_install
 ln -sf /lib debian/$(curpass)/lib64
@@ -20,7 +16,6 @@ i386_add-ons = ports linuxthreads $(add-ons)
 i386_extra_cflags = -march=pentium4 -O3
 i386_extra_config_options = $(extra_config_options) --disable-compatible-utmp
 i386_includedir = /usr/include/i486-kfreebsd-gnu
-i386_rtlddir = /lib
 i386_slibdir = /lib32
 i386_libdir = /usr/lib32
 i386_MIN_KERNEL_SUPPORTED = 5.4.0

@@ -6,7 +6,6 @@ sparcv9b_configure_target=sparcv9b-linux-gnu
 sparcv9b_configure_build=sparcv9b-linux-gnu
 sparcv9b_extra_cflags = -mtune=ultrasparc3 -O3
 sparcv9b_extra_config_options = $(extra_config_options) --disable-profile
-sparcv9b_rtlddir = /lib
 sparcv9b_slibdir = /lib/$(DEB_HOST_GNU_TYPE)/ultra3
 
 # build 64-bit (sparc64) alternative library
@@ -20,6 +19,7 @@ libc6-sparc64_shlib_dep = libc6-sparc64 (>= $(shlib_dep_ver))
 sparc64_extra_cflags = -O3
 sparc64_extra_config_options = $(extra_config_options) --disable-profile
 sparc64_includedir = /usr/include/sparc64-linux-gnu
+sparc64_rtlddir = /lib64
 sparc64_slibdir = /lib64
 sparc64_libdir = /usr/lib64
 
