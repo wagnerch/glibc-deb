@@ -54,7 +54,7 @@ rm -f debian/tmp-libc/usr/include/gnu/stubs-64.h
 endef
 
 define libc6-dev_extra_pkg_install
-mkdir -p debian/libc6-dev/usr/lib/xen
+mkdir -p debian/libc6-dev/$(libdir)/xen
 cp -af debian/tmp-xen/$(libdir)/*.a \
 	debian/libc6-dev/$(libdir)/xen
 endef
