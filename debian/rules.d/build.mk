@@ -150,8 +150,9 @@ $(stamp)install_%: $(stamp)check_%
 	# Create the ld.so symlink to the multiarch directory
 	if [ $(curpass) = libc ]; then \
 	  rtld_so="$$(LANG=C LC_ALL=C readelf -l debian/tmp-$(curpass)/usr/bin/iconv | grep 'interpreter' | sed -e 's/.*interpreter: \(.*\)]/\1/g')" ; \
-	  link_name="debian/tmp-$(curpass)/lib/$$(basename $$rtld_so)" ; \
-	  target="$(call xx,slibdir)/$$(readlink debian/tmp-$(curpass)/$$rtld_so)" ; \
+	  rtld_so="$$(basename $$rtld_so)" ; \
+	  link_name="debian/tmp-$(curpass)/lib/$$rtld_so" ; \
+	  target="$(call xx,slibdir)/$$(readlink debian/tmp-$(curpass)/$(call xx,slibdir)/$$rtld_so)" ; \
 	  ln -s $$target $$link_name ;  \
 	fi
 	
