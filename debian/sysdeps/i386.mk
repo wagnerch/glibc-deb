@@ -55,8 +55,8 @@ endef
 
 define libc6-dev_extra_pkg_install
 mkdir -p debian/libc6-dev/usr/lib/xen
-cp -af debian/tmp-xen/usr/lib/*.a \
-	debian/libc6-dev/usr/lib/xen
+cp -af debian/tmp-xen/$(slibdir)/*.a \
+	debian/libc6-dev/$(slibdir)/xen
 endef
 
 define libc6-dev-amd64_extra_pkg_install
