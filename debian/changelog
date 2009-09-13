@@ -120,6 +120,8 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   * Fix debian/patches/hurd-i386/local-tls-support.diff to align up includes
     on Linux, to fix build.
   * Apply kfreebsd/local-no-SOCK_NONBLOCK.diff on hurd-i386 to fix build too.
+  * debian/ patches/hurd-i386/submitted-null-pathname.diff: New patch to fix
+    chdir("") and chroot("") into returning ENOENT.
 
   [ Carlos O'Donell ]
   * Add hppa/cvs-nptl-compat.diff to keep ABI compatibility between 
