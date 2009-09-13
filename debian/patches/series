@@ -100,6 +100,7 @@ hurd-i386/local-pthread_types.diff
 hurd-i386/local-_dl_random.diff
 hurd-i386/local-unwind-resume.diff
 hurd-i386/submitted-null-pathname.diff
+hurd-i386/submitted-sbrk.diff
 
 ia64/submitted-sysconf.diff
 ia64/submitted-libm.diff
