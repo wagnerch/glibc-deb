@@ -1,4 +1,4 @@
-eglibc (2.10.1-0exp1) experimental; urgency=low
+eglibc (2.10.1-0exp2) experimental; urgency=low
 
   [ Aurelien Jarno ]
   * New upstream release.
@@ -131,7 +131,12 @@ eglibc (2.10.1-0exp1) experimental; urgency=low
   * sysdeps/hppa.mk: switch to NPTL. Closes: bug#538513.
   * testsuite-checking/expected-results-hppa-linux-gnu-libc: update.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 18 Aug 2009 21:39:16 +0200
+  [ Clint Adams ]
+  * debian/rules.d/debhelper.mk: make sure that snippets are included
+    before doing CURRENT_VER substitution; fix thanks to Steve
+    Langasek.
+
+ -- Clint Adams <schizo@debian.org>  Mon, 14 Sep 2009 19:57:11 -0400
 
 eglibc (2.9-27) UNRELEASED; urgency=low
 
