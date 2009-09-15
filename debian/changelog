@@ -27,15 +27,26 @@ eglibc (2.9-27) UNRELEASED; urgency=low
     - use real dependencies between the build_* and binaryinst_* 
       targets.
     - simplify clean target.
+  * Set the minimum kernel version to 6.0.0 for biarch library on
+    kfreebsd-amd64 to match the main library.
 
   [ Samuel Thibault ]
   * debian/debhelper.in/libc.install: Install libc/*-gnu*/ instead of
     libc/*-*-gnu*/, to fix FTBFS on hurd-i386 due to it now being i486-gnu/.
+  * debian/patches/hurd-i386/submitted-null-pathname.diff: New patch to fix
+    chdir("") and chroot("") into returning ENOENT.
+  * debian/patches/hurd-i386/submitted-sbrk.diff: New patch to fix sbrk beyond
+    128MB.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 2779 (from glibc-bsd).
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 07 Sep 2009 20:49:08 +0200
+  [ Clint Adams ]
+  * debian/rules.d/debhelper.mk: make sure that snippets are included
+    before doing CURRENT_VER substitution; fix thanks to Steve
+    Langasek.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 09 Sep 2009 20:08:58 +0200
 
 eglibc (2.9-26) unstable; urgency=low
 
