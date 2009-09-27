@@ -102,6 +102,7 @@ hurd-i386/local-unwind-resume.diff
 hurd-i386/submitted-null-pathname.diff
 hurd-i386/submitted-sbrk.diff
 hurd-i386/local-thread-cancel.diff
+hurd-i386/submitted-termios-IXANY.patch
 
 ia64/submitted-sysconf.diff
 ia64/submitted-libm.diff
