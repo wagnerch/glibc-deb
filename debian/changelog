@@ -128,6 +128,12 @@ eglibc (2.10.1-0exp3) experimental; urgency=low
 
  -- Clint Adams <schizo@debian.org>  Wed, 30 Sep 2009 14:40:25 -0400
 
+eglibc (2.9-28) UNRELEASED; urgency=low
+
+  * libc.postinst: only call telinit on Linux as originally.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 02 Oct 2009 10:26:35 +0200
+
 eglibc (2.9-27) unstable; urgency=low
 
   [ Aurelien Jarno ]
