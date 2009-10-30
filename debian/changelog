@@ -1,4 +1,26 @@
-eglibc (2.10.1-3) UNSTABLE; urgency=low
+eglibc (2.10.1-4) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * patches/any/submitted-localedef-mmap.diff: new patch to cope with
+    different mmap alignment restrictions between MMAP_SHARED and 
+    MMAP_PRIVATE. On SPARC64, MMAP_SHARED implies a 16kB alignment (L1
+    D-Cache size), while MMAP_PRIVATE implies a 8kB alignment (page 
+    size).  Closes: #552233.
+  * patches/any/submitted-confname.h.diff: new patch to fix build of
+    bits/confname.h with -pedantic-errors.  Closes: #552819.
+  * kfreebsd/local-sysdeps.diff: update to revision 2817 (from glibc-bsd).
+    Fixes <netinet/icmp6.h>.  Closes: #552138.
+  * Disable PIE on MIPS/MIPSEL. 
+  * Replace patches/s390/submitted-getutmpx.diff by upstream version
+    (patches/any/cvs-getutmpx-compat.diff).
+  * Don't include debian/ and stamp-dir/ in eglibc source tarball.  Closes:
+    #553053.
+  * Switch to the more common xz format from lzma for eglibc-source 
+    tarball.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 30 Oct 2009 09:48:09 +0100
+
+eglibc (2.10.1-3) unstable; urgency=low
 
   [ Samuel Thibault ]
   * patches/hurd-i386/local-bigmem.diff: Fix patch.
@@ -11,7 +33,7 @@ eglibc (2.10.1-3) UNSTABLE; urgency=low
     #552453.
   * debian/sysdeps/i386.mk: build with gcc-4.3 on i386.  Closes: #551903.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 26 Oct 2009 17:50:16 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 26 Oct 2009 19:40:34 +0100
 
 eglibc (2.10.1-2) unstable; urgency=low
 
