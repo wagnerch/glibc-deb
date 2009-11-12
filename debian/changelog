@@ -1,3 +1,29 @@
+eglibc (2.11-0exp1) UNRELEASED; urgency=low
+
+  * New upstream release.
+    - Update debian/patches/all/local-pthread-manpages.diff
+    - Remove debian/patches/alpha/submitted-getsysstats.diff (merged)
+    - Remove debian/patches/alpha/submitted-includes.diff (merged)
+    - Remove debian/patches/alpha/submitted-lowlevellock.diff (merged)
+    - Remove debian/patches/alpha/submitted-procfs_h.diff (merged)
+    - Remove debian/patches/any/cvs-broken-dns.diff (merged)
+    - Remove debian/patches/any/cvs-getutmpx-compat.diff (merged)
+    - Remove debian/patches/any/cvs-nptl-init.diff (merged)
+    - Remove debian/patches/any/cvs-preadv-pwritev.diff (merged)
+    - Remove debian/patches/any/local-dynamic-resolvconf.diff (merged)
+    - Update debian/patches/any/local-libgcc-compat-main.diff
+    - Remove debian/patches/any/submitted-getent-gshadow.diff (merged)
+    - Remove debian/patches/any/submitted-libgcc_s.so.diff (merged)
+    - Remove debian/patches/any/submitted-missing-etc-hosts.diff (merged)
+    - Remove debian/patches/hppa/cvs-nptl-compat.diff (merged)
+    - Remove debian/patches/hurd-i386/cvs-termios-IXANY.patch (merged)
+    - Update debian/patches/hurd-i386/submitted-readlinkat.diff
+    - Update debian/patches/localedata/first_weekday.diff
+    - Remove debian/patches/locale/fix-C-first_weekday.diff (obsolete)
+    - Remove debian/patches/powerpc/cvs-readahead.diff (merged)
+
+ -- Clint Adams <schizo@debian.org>  Thu, 12 Nov 2009 17:20:41 -0500
+
 eglibc (2.10.1-7) unstable; urgency=low
 
   * patches/all/local-ldd.diff: new patch to handle the case where ld.so is

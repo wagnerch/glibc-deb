@@ -62,7 +62,6 @@
  localedata/locales/es_AR          |    2 ++
  localedata/locales/es_BO          |    2 ++
  localedata/locales/es_CL          |    2 ++
- localedata/locales/es_CO          |    2 ++
  localedata/locales/es_DO          |    2 ++
  localedata/locales/es_EC          |    2 ++
  localedata/locales/es_GT          |    2 ++
@@ -156,8 +155,10 @@
  localedata/locales/zu_ZA          |    2 ++
  143 files changed, 289 insertions(+), 2 deletions(-)
 
---- a/localedata/locales/aa_DJ
-+++ b/localedata/locales/aa_DJ
+Index: eglibc-2.11/localedata/locales/aa_DJ
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/aa_DJ	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/aa_DJ	2009-11-10 23:36:13.625004881 -0500
 @@ -273,5 +273,7 @@
  date_fmt    "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -166,8 +167,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/aa_ER
-+++ b/localedata/locales/aa_ER
+Index: eglibc-2.11/localedata/locales/aa_ER
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/aa_ER	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/aa_ER	2009-11-10 23:36:13.625004881 -0500
 @@ -223,5 +223,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -176,8 +179,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/aa_ER@saaho
-+++ b/localedata/locales/aa_ER@saaho
+Index: eglibc-2.11/localedata/locales/aa_ER@saaho
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/aa_ER@saaho	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/aa_ER@saaho	2009-11-10 23:36:13.625004881 -0500
 @@ -207,5 +207,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -186,8 +191,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/aa_ET
-+++ b/localedata/locales/aa_ET
+Index: eglibc-2.11/localedata/locales/aa_ET
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/aa_ET	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/aa_ET	2009-11-10 23:36:13.625004881 -0500
 @@ -226,5 +226,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -196,8 +203,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/af_ZA
-+++ b/localedata/locales/af_ZA
+Index: eglibc-2.11/localedata/locales/af_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/af_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/af_ZA	2009-11-10 23:36:13.625004881 -0500
 @@ -164,6 +164,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -207,8 +216,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/am_ET
-+++ b/localedata/locales/am_ET
+Index: eglibc-2.11/localedata/locales/am_ET
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/am_ET	2007-10-08 11:18:44.000000000 -0400
++++ eglibc-2.11/localedata/locales/am_ET	2009-11-10 23:36:13.625004881 -0500
 @@ -1564,5 +1564,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12D3><U002F><U121D>"
@@ -217,8 +228,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/ar_AE
-+++ b/localedata/locales/ar_AE
+Index: eglibc-2.11/localedata/locales/ar_AE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_AE	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_AE	2009-11-10 23:36:13.625004881 -0500
 @@ -141,6 +141,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -228,8 +241,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_BH
-+++ b/localedata/locales/ar_BH
+Index: eglibc-2.11/localedata/locales/ar_BH
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_BH	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_BH	2009-11-10 23:36:13.625004881 -0500
 @@ -145,6 +145,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -239,8 +254,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_DZ
-+++ b/localedata/locales/ar_DZ
+Index: eglibc-2.11/localedata/locales/ar_DZ
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_DZ	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_DZ	2009-11-10 23:36:13.625004881 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -250,8 +267,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_EG
-+++ b/localedata/locales/ar_EG
+Index: eglibc-2.11/localedata/locales/ar_EG
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_EG	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_EG	2009-11-10 23:36:13.625004881 -0500
 @@ -148,6 +148,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -261,8 +280,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_IN
-+++ b/localedata/locales/ar_IN
+Index: eglibc-2.11/localedata/locales/ar_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_IN	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_IN	2009-11-10 23:36:13.625004881 -0500
 @@ -127,6 +127,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -272,8 +293,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_IQ
-+++ b/localedata/locales/ar_IQ
+Index: eglibc-2.11/localedata/locales/ar_IQ
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_IQ	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_IQ	2009-11-10 23:36:13.625004881 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -283,8 +306,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_JO
-+++ b/localedata/locales/ar_JO
+Index: eglibc-2.11/localedata/locales/ar_JO
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_JO	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_JO	2009-11-10 23:36:13.629005309 -0500
 @@ -162,6 +162,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -294,8 +319,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_KW
-+++ b/localedata/locales/ar_KW
+Index: eglibc-2.11/localedata/locales/ar_KW
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_KW	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_KW	2009-11-10 23:36:13.629005309 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -305,8 +332,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_LB
-+++ b/localedata/locales/ar_LB
+Index: eglibc-2.11/localedata/locales/ar_LB
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_LB	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_LB	2009-11-10 23:36:13.629005309 -0500
 @@ -161,6 +161,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -316,8 +345,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_LY
-+++ b/localedata/locales/ar_LY
+Index: eglibc-2.11/localedata/locales/ar_LY
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_LY	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_LY	2009-11-10 23:36:13.629005309 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -327,8 +358,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_MA
-+++ b/localedata/locales/ar_MA
+Index: eglibc-2.11/localedata/locales/ar_MA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_MA	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_MA	2009-11-10 23:36:13.629005309 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -338,8 +371,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_OM
-+++ b/localedata/locales/ar_OM
+Index: eglibc-2.11/localedata/locales/ar_OM
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_OM	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_OM	2009-11-10 23:36:13.629005309 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -349,8 +384,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_QA
-+++ b/localedata/locales/ar_QA
+Index: eglibc-2.11/localedata/locales/ar_QA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_QA	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_QA	2009-11-10 23:36:13.629005309 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -360,8 +397,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_SA
-+++ b/localedata/locales/ar_SA
+Index: eglibc-2.11/localedata/locales/ar_SA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_SA	2009-11-10 23:32:26.224004559 -0500
++++ eglibc-2.11/localedata/locales/ar_SA	2009-11-10 23:36:13.629005309 -0500
 @@ -132,6 +132,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -371,8 +410,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_SD
-+++ b/localedata/locales/ar_SD
+Index: eglibc-2.11/localedata/locales/ar_SD
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_SD	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_SD	2009-11-10 23:36:13.629005309 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -382,8 +423,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_SY
-+++ b/localedata/locales/ar_SY
+Index: eglibc-2.11/localedata/locales/ar_SY
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_SY	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_SY	2009-11-10 23:36:13.629005309 -0500
 @@ -161,6 +161,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -393,8 +436,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_TN
-+++ b/localedata/locales/ar_TN
+Index: eglibc-2.11/localedata/locales/ar_TN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_TN	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_TN	2009-11-10 23:36:13.629005309 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -404,8 +449,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ar_YE
-+++ b/localedata/locales/ar_YE
+Index: eglibc-2.11/localedata/locales/ar_YE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ar_YE	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ar_YE	2009-11-10 23:36:13.629005309 -0500
 @@ -144,6 +144,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -415,8 +462,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/az_AZ
-+++ b/localedata/locales/az_AZ
+Index: eglibc-2.11/localedata/locales/az_AZ
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/az_AZ	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/az_AZ	2009-11-10 23:36:13.629005309 -0500
 @@ -274,6 +274,8 @@
  t_fmt     "<U0025><U0054>"
  am_pm     "";""
@@ -426,8 +475,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/be_BY
-+++ b/localedata/locales/be_BY
+Index: eglibc-2.11/localedata/locales/be_BY
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/be_BY	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/be_BY	2009-11-10 23:36:13.629005309 -0500
 @@ -145,6 +145,9 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -438,8 +489,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/be_BY@latin
-+++ b/localedata/locales/be_BY@latin
+Index: eglibc-2.11/localedata/locales/be_BY@latin
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/be_BY@latin	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/be_BY@latin	2009-11-10 23:36:13.629005309 -0500
 @@ -102,6 +102,9 @@
  date_fmt        "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -450,8 +503,10 @@
  END LC_TIME
  
  LC_COLLATE
---- a/localedata/locales/bn_IN
-+++ b/localedata/locales/bn_IN
+Index: eglibc-2.11/localedata/locales/bn_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/bn_IN	2009-02-05 09:29:56.000000000 -0500
++++ eglibc-2.11/localedata/locales/bn_IN	2009-11-10 23:36:13.629005309 -0500
 @@ -145,6 +145,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -461,8 +516,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/br_FR
-+++ b/localedata/locales/br_FR
+Index: eglibc-2.11/localedata/locales/br_FR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/br_FR	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/br_FR	2009-11-10 23:36:13.633006435 -0500
 @@ -141,6 +141,8 @@
  t_fmt   "<U0025><U0054>"
  am_pm   "<U0020>";"<U0020>"
@@ -472,8 +529,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/bs_BA
-+++ b/localedata/locales/bs_BA
+Index: eglibc-2.11/localedata/locales/bs_BA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/bs_BA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/bs_BA	2009-11-10 23:36:13.633006435 -0500
 @@ -208,6 +208,8 @@
  t_fmt   "<U0025><U0054>"
  am_pm   "";""
@@ -483,8 +542,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/byn_ER
-+++ b/localedata/locales/byn_ER
+Index: eglibc-2.11/localedata/locales/byn_ER
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/byn_ER	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/byn_ER	2009-11-10 23:36:13.633006435 -0500
 @@ -218,5 +218,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12A3><U12F5>"
@@ -493,8 +554,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/ca_ES
-+++ b/localedata/locales/ca_ES
+Index: eglibc-2.11/localedata/locales/ca_ES
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ca_ES	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/ca_ES	2009-11-10 23:36:13.633006435 -0500
 @@ -138,6 +138,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -504,8 +567,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/de_BE
-+++ b/localedata/locales/de_BE
+Index: eglibc-2.11/localedata/locales/de_BE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/de_BE	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/de_BE	2009-11-10 23:36:13.633006435 -0500
 @@ -119,6 +119,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -515,8 +580,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/de_CH
-+++ b/localedata/locales/de_CH
+Index: eglibc-2.11/localedata/locales/de_CH
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/de_CH	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/de_CH	2009-11-10 23:36:13.633006435 -0500
 @@ -120,6 +120,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -526,8 +593,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/de_LU
-+++ b/localedata/locales/de_LU
+Index: eglibc-2.11/localedata/locales/de_LU
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/de_LU	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/de_LU	2009-11-10 23:36:13.633006435 -0500
 @@ -119,6 +119,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -537,8 +606,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/dz_BT
-+++ b/localedata/locales/dz_BT
+Index: eglibc-2.11/localedata/locales/dz_BT
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/dz_BT	2009-11-10 23:32:26.060004975 -0500
++++ eglibc-2.11/localedata/locales/dz_BT	2009-11-10 23:36:13.633006435 -0500
 @@ -1546,7 +1546,8 @@
  <U0025><U0049><U0F40><U0F66><U0F62><U0F0B><U0F58><U0025><U004D>/
  <U0F40><U0F66><U0F62><U0F0B><U0F46><U0025><U0053><U0020><U0025><U0070>"
@@ -549,8 +620,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/el_GR
-+++ b/localedata/locales/el_GR
+Index: eglibc-2.11/localedata/locales/el_GR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/el_GR	2009-02-13 13:31:14.000000000 -0500
++++ eglibc-2.11/localedata/locales/el_GR	2009-11-10 23:36:13.633006435 -0500
 @@ -139,6 +139,8 @@
  %
  % Appropriate date representation (date(1))   "%a %d %b %Y %r %Z"
@@ -560,8 +633,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/en_AU
-+++ b/localedata/locales/en_AU
+Index: eglibc-2.11/localedata/locales/en_AU
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_AU	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/en_AU	2009-11-10 23:36:13.633006435 -0500
 @@ -117,6 +117,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -571,8 +646,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/en_CA
-+++ b/localedata/locales/en_CA
+Index: eglibc-2.11/localedata/locales/en_CA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_CA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/en_CA	2009-11-10 23:36:13.633006435 -0500
 @@ -132,6 +132,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -582,8 +659,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/en_DK
-+++ b/localedata/locales/en_DK
+Index: eglibc-2.11/localedata/locales/en_DK
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_DK	2009-11-10 23:32:26.000006805 -0500
++++ eglibc-2.11/localedata/locales/en_DK	2009-11-10 23:36:13.633006435 -0500
 @@ -106,6 +106,9 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -594,8 +673,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/en_HK
-+++ b/localedata/locales/en_HK
+Index: eglibc-2.11/localedata/locales/en_HK
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_HK	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/en_HK	2009-11-10 23:36:13.637005605 -0500
 @@ -133,6 +133,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0070><U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U005A>"
@@ -605,8 +686,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/en_IE
-+++ b/localedata/locales/en_IE
+Index: eglibc-2.11/localedata/locales/en_IE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_IE	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/en_IE	2009-11-10 23:36:13.637005605 -0500
 @@ -115,6 +115,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -616,8 +699,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/en_IN
-+++ b/localedata/locales/en_IN
+Index: eglibc-2.11/localedata/locales/en_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_IN	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/en_IN	2009-11-10 23:36:13.637005605 -0500
 @@ -132,6 +132,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -627,8 +712,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/en_NZ
-+++ b/localedata/locales/en_NZ
+Index: eglibc-2.11/localedata/locales/en_NZ
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_NZ	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/en_NZ	2009-11-10 23:36:13.637005605 -0500
 @@ -117,6 +117,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -638,8 +725,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/en_PH
-+++ b/localedata/locales/en_PH
+Index: eglibc-2.11/localedata/locales/en_PH
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_PH	2009-04-30 17:37:18.000000000 -0400
++++ eglibc-2.11/localedata/locales/en_PH	2009-11-10 23:36:13.637005605 -0500
 @@ -133,6 +133,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -649,8 +738,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/en_SG
-+++ b/localedata/locales/en_SG
+Index: eglibc-2.11/localedata/locales/en_SG
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_SG	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/en_SG	2009-11-10 23:36:13.637005605 -0500
 @@ -131,6 +131,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -660,8 +751,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/en_ZA
-+++ b/localedata/locales/en_ZA
+Index: eglibc-2.11/localedata/locales/en_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/en_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/en_ZA	2009-11-10 23:36:13.637005605 -0500
 @@ -205,6 +205,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -671,8 +764,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/es_AR
-+++ b/localedata/locales/es_AR
+Index: eglibc-2.11/localedata/locales/es_AR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_AR	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_AR	2009-11-10 23:36:13.637005605 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -682,8 +777,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_BO
-+++ b/localedata/locales/es_BO
+Index: eglibc-2.11/localedata/locales/es_BO
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_BO	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_BO	2009-11-10 23:36:13.637005605 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -693,8 +790,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_CL
-+++ b/localedata/locales/es_CL
+Index: eglibc-2.11/localedata/locales/es_CL
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_CL	2009-04-30 17:37:18.000000000 -0400
++++ eglibc-2.11/localedata/locales/es_CL	2009-11-10 23:36:13.637005605 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -704,8 +803,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_CO
-+++ b/localedata/locales/es_CO
+Index: eglibc-2.11/localedata/locales/es_DO
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_DO	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_DO	2009-11-10 23:36:13.637005605 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -715,8 +816,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_DO
-+++ b/localedata/locales/es_DO
+Index: eglibc-2.11/localedata/locales/es_EC
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_EC	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_EC	2009-11-10 23:36:13.637005605 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -726,8 +829,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_EC
-+++ b/localedata/locales/es_EC
+Index: eglibc-2.11/localedata/locales/es_GT
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_GT	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_GT	2009-11-10 23:36:13.637005605 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -737,8 +842,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_GT
-+++ b/localedata/locales/es_GT
+Index: eglibc-2.11/localedata/locales/es_HN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_HN	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_HN	2009-11-10 23:36:13.637005605 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -748,8 +855,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_HN
-+++ b/localedata/locales/es_HN
+Index: eglibc-2.11/localedata/locales/es_MX
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_MX	2009-04-30 17:37:18.000000000 -0400
++++ eglibc-2.11/localedata/locales/es_MX	2009-11-10 23:36:13.637005605 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -759,19 +868,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_MX
-+++ b/localedata/locales/es_MX
-@@ -122,6 +122,8 @@
- date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
- <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
- <U0025><U005A><U0020><U0025><U0059>"
-+%  FIXME: found in CLDR
-+first_weekday 2
- END LC_TIME
- 
- LC_PAPER
---- a/localedata/locales/es_NI
-+++ b/localedata/locales/es_NI
+Index: eglibc-2.11/localedata/locales/es_NI
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_NI	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_NI	2009-11-10 23:36:13.637005605 -0500
 @@ -114,6 +114,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -781,8 +881,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_PA
-+++ b/localedata/locales/es_PA
+Index: eglibc-2.11/localedata/locales/es_PA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_PA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_PA	2009-11-10 23:36:13.637005605 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -792,8 +894,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_PE
-+++ b/localedata/locales/es_PE
+Index: eglibc-2.11/localedata/locales/es_PE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_PE	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_PE	2009-11-10 23:36:13.641006102 -0500
 @@ -123,6 +123,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -803,8 +907,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_PR
-+++ b/localedata/locales/es_PR
+Index: eglibc-2.11/localedata/locales/es_PR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_PR	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_PR	2009-11-10 23:36:13.641006102 -0500
 @@ -113,6 +113,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -814,8 +920,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_PY
-+++ b/localedata/locales/es_PY
+Index: eglibc-2.11/localedata/locales/es_PY
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_PY	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_PY	2009-11-10 23:36:13.641006102 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -825,8 +933,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_SV
-+++ b/localedata/locales/es_SV
+Index: eglibc-2.11/localedata/locales/es_SV
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_SV	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_SV	2009-11-10 23:36:13.641006102 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -836,8 +946,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_US
-+++ b/localedata/locales/es_US
+Index: eglibc-2.11/localedata/locales/es_US
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_US	2009-04-30 17:37:18.000000000 -0400
++++ eglibc-2.11/localedata/locales/es_US	2009-11-10 23:36:13.641006102 -0500
 @@ -174,6 +174,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -847,8 +959,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_UY
-+++ b/localedata/locales/es_UY
+Index: eglibc-2.11/localedata/locales/es_UY
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_UY	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/es_UY	2009-11-10 23:36:13.641006102 -0500
 @@ -122,6 +122,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -858,8 +972,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/es_VE
-+++ b/localedata/locales/es_VE
+Index: eglibc-2.11/localedata/locales/es_VE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/es_VE	2009-04-30 17:37:18.000000000 -0400
++++ eglibc-2.11/localedata/locales/es_VE	2009-11-10 23:36:13.641006102 -0500
 @@ -123,6 +123,8 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -869,8 +985,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/eu_ES
-+++ b/localedata/locales/eu_ES
+Index: eglibc-2.11/localedata/locales/eu_ES
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/eu_ES	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/eu_ES	2009-11-10 23:36:13.641006102 -0500
 @@ -131,6 +131,7 @@
  date_fmt	"<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -879,8 +997,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/ga_IE
-+++ b/localedata/locales/ga_IE
+Index: eglibc-2.11/localedata/locales/ga_IE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ga_IE	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/ga_IE	2009-11-10 23:36:13.641006102 -0500
 @@ -117,6 +117,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -890,8 +1010,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/gd_GB
-+++ b/localedata/locales/gd_GB
+Index: eglibc-2.11/localedata/locales/gd_GB
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/gd_GB	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/gd_GB	2009-11-10 23:36:13.641006102 -0500
 @@ -122,6 +122,8 @@
  t_fmt       "<U0025><U0054>"
  am_pm       "";""
@@ -901,8 +1023,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/gez_ER
-+++ b/localedata/locales/gez_ER
+Index: eglibc-2.11/localedata/locales/gez_ER
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/gez_ER	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/gez_ER	2009-11-10 23:36:13.641006102 -0500
 @@ -215,5 +215,7 @@
  <U1361><U0025><U0072><U1361><U0025><U005A><U1361><U0025><U0059>/
  <U1361><U12D3><U002F><U121D>"
@@ -911,8 +1035,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/gez_ET
-+++ b/localedata/locales/gez_ET
+Index: eglibc-2.11/localedata/locales/gez_ET
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/gez_ET	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/gez_ET	2009-11-10 23:36:13.645005971 -0500
 @@ -216,5 +216,7 @@
  <U1361><U0025><U0072><U1361><U0025><U005A><U1361><U0025><U0059>/
  <U1361><U12D3><U002F><U121D>"
@@ -921,8 +1047,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/gl_ES
-+++ b/localedata/locales/gl_ES
+Index: eglibc-2.11/localedata/locales/gl_ES
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/gl_ES	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/gl_ES	2009-11-10 23:36:13.657006346 -0500
 @@ -121,6 +121,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -932,8 +1060,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/gu_IN
-+++ b/localedata/locales/gu_IN
+Index: eglibc-2.11/localedata/locales/gu_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/gu_IN	2009-01-19 12:43:22.000000000 -0500
++++ eglibc-2.11/localedata/locales/gu_IN	2009-11-10 23:36:13.661005866 -0500
 @@ -178,6 +178,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -943,8 +1073,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/gv_GB
-+++ b/localedata/locales/gv_GB
+Index: eglibc-2.11/localedata/locales/gv_GB
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/gv_GB	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/gv_GB	2009-11-10 23:36:13.661005866 -0500
 @@ -131,6 +131,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -954,8 +1086,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/he_IL
-+++ b/localedata/locales/he_IL
+Index: eglibc-2.11/localedata/locales/he_IL
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/he_IL	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/he_IL	2009-11-10 23:36:13.661005866 -0500
 @@ -123,6 +123,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -965,8 +1099,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/hi_IN
-+++ b/localedata/locales/hi_IN
+Index: eglibc-2.11/localedata/locales/hi_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/hi_IN	2009-02-05 09:29:56.000000000 -0500
++++ eglibc-2.11/localedata/locales/hi_IN	2009-11-10 23:36:13.661005866 -0500
 @@ -173,6 +173,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -976,8 +1112,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/hr_HR
-+++ b/localedata/locales/hr_HR
+Index: eglibc-2.11/localedata/locales/hr_HR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/hr_HR	2009-11-10 23:32:26.232003877 -0500
++++ eglibc-2.11/localedata/locales/hr_HR	2009-11-10 23:36:13.661005866 -0500
 @@ -220,6 +220,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -987,8 +1125,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/hsb_DE
-+++ b/localedata/locales/hsb_DE
+Index: eglibc-2.11/localedata/locales/hsb_DE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/hsb_DE	2009-11-10 23:32:26.236004444 -0500
++++ eglibc-2.11/localedata/locales/hsb_DE	2009-11-10 23:36:13.661005866 -0500
 @@ -220,6 +220,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -998,8 +1138,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/hy_AM
-+++ b/localedata/locales/hy_AM
+Index: eglibc-2.11/localedata/locales/hy_AM
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/hy_AM	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/hy_AM	2009-11-10 23:36:13.661005866 -0500
 @@ -147,6 +147,8 @@
  t_fmt       "<U0025><U0072>"
  am_pm       "";""
@@ -1009,8 +1151,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/id_ID
-+++ b/localedata/locales/id_ID
+Index: eglibc-2.11/localedata/locales/id_ID
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/id_ID	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/id_ID	2009-11-10 23:36:13.661005866 -0500
 @@ -120,6 +120,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1020,8 +1164,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/is_IS
-+++ b/localedata/locales/is_IS
+Index: eglibc-2.11/localedata/locales/is_IS
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/is_IS	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/is_IS	2009-11-10 23:36:13.661005866 -0500
 @@ -2223,6 +2223,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1031,30 +1177,36 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/it_CH
-+++ b/localedata/locales/it_CH
+Index: eglibc-2.11/localedata/locales/it_CH
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/it_CH	2009-11-10 23:32:25.936006180 -0500
++++ eglibc-2.11/localedata/locales/it_CH	2009-11-10 23:36:29.288004068 -0500
 @@ -98,6 +98,8 @@
- date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
- <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
- <U0025><U005A><U0020><U0025><U0059>"
+ date_fmt       "<U0025><U0061><U0020><U0025><U0065><U0020><U0025>/
+ <U0062><U0020><U0025><U0059><U002C><U0020><U0025><U0048><U002E>/
+ <U0025><U004D><U002E><U0025><U0053><U002C><U0020><U0025><U005A>"
 +%  FIXME: found in CLDR
 +first_weekday 2
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/it_IT
-+++ b/localedata/locales/it_IT
+Index: eglibc-2.11/localedata/locales/it_IT
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/it_IT	2009-10-30 13:58:03.000000000 -0400
++++ eglibc-2.11/localedata/locales/it_IT	2009-11-10 23:36:35.816301653 -0500
 @@ -124,6 +124,8 @@
- date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
- <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
- <U0025><U005A><U0020><U0025><U0059>"
+ date_fmt       "<U0025><U0061><U0020><U0025><U0065><U0020><U0025>/
+ <U0062><U0020><U0025><U0059><U002C><U0020><U0025><U0048><U002E>/
+ <U0025><U004D><U002E><U0025><U0053><U002C><U0020><U0025><U005A>"
 +%  FIXME: found in CLDR
 +first_weekday 2
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/ja_JP
-+++ b/localedata/locales/ja_JP
+Index: eglibc-2.11/localedata/locales/ja_JP
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ja_JP	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ja_JP	2009-11-10 23:36:13.665005316 -0500
 @@ -15006,6 +15006,8 @@
  		"<U4E5D><U5341><U56DB>";"<U4E5D><U5341><U4E94>";/
  		"<U4E5D><U5341><U516D>";"<U4E5D><U5341><U4E03>";/
@@ -1064,8 +1216,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/kk_KZ
-+++ b/localedata/locales/kk_KZ
+Index: eglibc-2.11/localedata/locales/kk_KZ
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/kk_KZ	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/kk_KZ	2009-11-10 23:36:13.665005316 -0500
 @@ -232,6 +232,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1075,8 +1229,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/km_KH
-+++ b/localedata/locales/km_KH
+Index: eglibc-2.11/localedata/locales/km_KH
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/km_KH	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/km_KH	2009-11-10 23:36:13.665005316 -0500
 @@ -1841,6 +1841,8 @@
  % ICT-7ICT-7
  %timezone	"<U0049><U0043><U0054><U002D><U0037><U0049><U0043><U0054><U002d><U0037>"
@@ -1086,8 +1242,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/kn_IN
-+++ b/localedata/locales/kn_IN
+Index: eglibc-2.11/localedata/locales/kn_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/kn_IN	2009-01-19 12:43:22.000000000 -0500
++++ eglibc-2.11/localedata/locales/kn_IN	2009-11-10 23:36:13.669004765 -0500
 @@ -182,6 +182,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1097,8 +1255,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ko_KR
-+++ b/localedata/locales/ko_KR
+Index: eglibc-2.11/localedata/locales/ko_KR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ko_KR	2009-03-18 08:35:05.000000000 -0400
++++ eglibc-2.11/localedata/locales/ko_KR	2009-11-10 23:36:13.673007009 -0500
 @@ -6189,6 +6189,8 @@
  <U0020><U0028><U0025><U0061><U0029>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053>/
@@ -1108,8 +1268,10 @@
  
  END LC_TIME
  
---- a/localedata/locales/ku_TR
-+++ b/localedata/locales/ku_TR
+Index: eglibc-2.11/localedata/locales/ku_TR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ku_TR	2009-11-10 23:32:25.848026808 -0500
++++ eglibc-2.11/localedata/locales/ku_TR	2009-11-10 23:36:13.673007009 -0500
 @@ -149,6 +149,8 @@
  t_fmt_ampm  ""
  % format: %A %d %B %Y
@@ -1119,8 +1281,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/kw_GB
-+++ b/localedata/locales/kw_GB
+Index: eglibc-2.11/localedata/locales/kw_GB
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/kw_GB	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/kw_GB	2009-11-10 23:36:13.673007009 -0500
 @@ -123,6 +123,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1130,8 +1294,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/lo_LA
-+++ b/localedata/locales/lo_LA
+Index: eglibc-2.11/localedata/locales/lo_LA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/lo_LA	2008-02-20 07:48:46.000000000 -0500
++++ eglibc-2.11/localedata/locales/lo_LA	2009-11-10 23:36:13.673007009 -0500
 @@ -718,6 +718,8 @@
  <U003A><U0025><U0053><U0020><U0025><U005A>"
  % ICT-7ICT-7
@@ -1141,8 +1307,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/lt_LT
-+++ b/localedata/locales/lt_LT
+Index: eglibc-2.11/localedata/locales/lt_LT
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/lt_LT	2009-11-10 23:32:26.240003684 -0500
++++ eglibc-2.11/localedata/locales/lt_LT	2009-11-10 23:36:13.673007009 -0500
 @@ -137,6 +137,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1152,8 +1320,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/lv_LV
-+++ b/localedata/locales/lv_LV
+Index: eglibc-2.11/localedata/locales/lv_LV
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/lv_LV	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/lv_LV	2009-11-10 23:36:13.677004852 -0500
 @@ -2183,6 +2183,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1163,8 +1333,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/ml_IN
-+++ b/localedata/locales/ml_IN
+Index: eglibc-2.11/localedata/locales/ml_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ml_IN	2009-01-19 12:43:22.000000000 -0500
++++ eglibc-2.11/localedata/locales/ml_IN	2009-11-10 23:36:13.677004852 -0500
 @@ -163,6 +163,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm     "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -1174,8 +1346,10 @@
  END LC_TIME
  %
  LC_MESSAGES
---- a/localedata/locales/mn_MN
-+++ b/localedata/locales/mn_MN
+Index: eglibc-2.11/localedata/locales/mn_MN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/mn_MN	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/mn_MN	2009-11-10 23:36:13.677004852 -0500
 @@ -220,6 +220,8 @@
  % "%Z %Y ony %B %e, %a %H:%M:%S"
  date_fmt  "<U0025><U005A><U0020><U0025><U0059><U0020><U043E><U043D><U044B><U0020><U0025><U0042><U0020>/
@@ -1185,8 +1359,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/mr_IN
-+++ b/localedata/locales/mr_IN
+Index: eglibc-2.11/localedata/locales/mr_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/mr_IN	2009-02-05 09:29:56.000000000 -0500
++++ eglibc-2.11/localedata/locales/mr_IN	2009-11-10 23:36:13.677004852 -0500
 @@ -170,6 +170,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1196,8 +1372,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ms_MY
-+++ b/localedata/locales/ms_MY
+Index: eglibc-2.11/localedata/locales/ms_MY
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ms_MY	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ms_MY	2009-11-10 23:36:13.677004852 -0500
 @@ -139,6 +139,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -1207,8 +1385,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ne_NP
-+++ b/localedata/locales/ne_NP
+Index: eglibc-2.11/localedata/locales/ne_NP
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ne_NP	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ne_NP	2009-11-10 23:36:13.677004852 -0500
 @@ -153,6 +153,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1218,8 +1398,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/nl_BE
-+++ b/localedata/locales/nl_BE
+Index: eglibc-2.11/localedata/locales/nl_BE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/nl_BE	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/nl_BE	2009-11-10 23:36:13.677004852 -0500
 @@ -104,6 +104,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1229,8 +1411,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/nl_NL
-+++ b/localedata/locales/nl_NL
+Index: eglibc-2.11/localedata/locales/nl_NL
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/nl_NL	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/nl_NL	2009-11-10 23:36:13.677004852 -0500
 @@ -123,6 +123,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1240,8 +1424,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/nr_ZA
-+++ b/localedata/locales/nr_ZA
+Index: eglibc-2.11/localedata/locales/nr_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/nr_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/nr_ZA	2009-11-10 23:36:13.677004852 -0500
 @@ -162,6 +162,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1251,8 +1437,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/nso_ZA
-+++ b/localedata/locales/nso_ZA
+Index: eglibc-2.11/localedata/locales/nso_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/nso_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/nso_ZA	2009-11-10 23:36:13.677004852 -0500
 @@ -157,6 +157,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1262,8 +1450,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/oc_FR
-+++ b/localedata/locales/oc_FR
+Index: eglibc-2.11/localedata/locales/oc_FR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/oc_FR	2007-10-08 11:18:44.000000000 -0400
++++ eglibc-2.11/localedata/locales/oc_FR	2009-11-10 23:36:13.677004852 -0500
 @@ -123,6 +123,8 @@
  t_fmt   "<U0025><U0054>"
  am_pm   "";""
@@ -1273,8 +1463,10 @@
  END LC_TIME
  
  LC_NAME
---- a/localedata/locales/om_ET
-+++ b/localedata/locales/om_ET
+Index: eglibc-2.11/localedata/locales/om_ET
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/om_ET	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/om_ET	2009-11-10 23:36:13.677004852 -0500
 @@ -233,5 +233,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1283,8 +1475,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/pa_IN
-+++ b/localedata/locales/pa_IN
+Index: eglibc-2.11/localedata/locales/pa_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/pa_IN	2009-01-19 12:43:22.000000000 -0500
++++ eglibc-2.11/localedata/locales/pa_IN	2009-11-10 23:36:13.677004852 -0500
 @@ -170,6 +170,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1294,8 +1488,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/pt_BR
-+++ b/localedata/locales/pt_BR
+Index: eglibc-2.11/localedata/locales/pt_BR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/pt_BR	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/pt_BR	2009-11-10 23:36:13.677004852 -0500
 @@ -121,6 +121,7 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1304,8 +1500,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/pt_PT
-+++ b/localedata/locales/pt_PT
+Index: eglibc-2.11/localedata/locales/pt_PT
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/pt_PT	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/pt_PT	2009-11-10 23:36:13.677004852 -0500
 @@ -124,6 +124,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1315,8 +1513,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/rw_RW
-+++ b/localedata/locales/rw_RW
+Index: eglibc-2.11/localedata/locales/rw_RW
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/rw_RW	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/rw_RW	2009-11-10 23:36:13.677004852 -0500
 @@ -109,6 +109,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1326,8 +1526,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/sa_IN
-+++ b/localedata/locales/sa_IN
+Index: eglibc-2.11/localedata/locales/sa_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/sa_IN	2007-10-08 11:18:44.000000000 -0400
++++ eglibc-2.11/localedata/locales/sa_IN	2009-11-10 23:36:13.681004860 -0500
 @@ -182,6 +182,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1337,8 +1539,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/se_NO
-+++ b/localedata/locales/se_NO
+Index: eglibc-2.11/localedata/locales/se_NO
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/se_NO	2009-11-10 23:32:26.172005009 -0500
++++ eglibc-2.11/localedata/locales/se_NO	2009-11-10 23:36:13.681004860 -0500
 @@ -277,6 +277,9 @@
  <U0020><U0025><U005A>"
  
@@ -1349,8 +1553,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/sid_ET
-+++ b/localedata/locales/sid_ET
+Index: eglibc-2.11/localedata/locales/sid_ET
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/sid_ET	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/sid_ET	2009-11-10 23:36:13.681004860 -0500
 @@ -222,5 +222,7 @@
  %
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
@@ -1359,8 +1565,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/sl_SI
-+++ b/localedata/locales/sl_SI
+Index: eglibc-2.11/localedata/locales/sl_SI
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/sl_SI	2009-11-10 23:32:26.248004049 -0500
++++ eglibc-2.11/localedata/locales/sl_SI	2009-11-10 23:36:13.681004860 -0500
 @@ -157,6 +157,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1370,8 +1578,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/so_DJ
-+++ b/localedata/locales/so_DJ
+Index: eglibc-2.11/localedata/locales/so_DJ
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/so_DJ	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/so_DJ	2009-11-10 23:36:13.681004860 -0500
 @@ -222,5 +222,7 @@
  date_fmt    "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1380,8 +1590,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/so_ET
-+++ b/localedata/locales/so_ET
+Index: eglibc-2.11/localedata/locales/so_ET
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/so_ET	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/so_ET	2009-11-10 23:36:13.681004860 -0500
 @@ -219,5 +219,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1390,8 +1602,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/so_KE
-+++ b/localedata/locales/so_KE
+Index: eglibc-2.11/localedata/locales/so_KE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/so_KE	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/so_KE	2009-11-10 23:36:13.681004860 -0500
 @@ -218,5 +218,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1400,8 +1614,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/so_SO
-+++ b/localedata/locales/so_SO
+Index: eglibc-2.11/localedata/locales/so_SO
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/so_SO	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/so_SO	2009-11-10 23:36:13.681004860 -0500
 @@ -278,5 +278,7 @@
  date_fmt    "<U0025><U0041><U002C><U0020><U0025><U0042><U0020><U0025><U0065><U002C>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>"
@@ -1410,8 +1626,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/sq_AL
-+++ b/localedata/locales/sq_AL
+Index: eglibc-2.11/localedata/locales/sq_AL
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/sq_AL	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/sq_AL	2009-11-10 23:36:13.681004860 -0500
 @@ -290,6 +290,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1421,8 +1639,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/ss_ZA
-+++ b/localedata/locales/ss_ZA
+Index: eglibc-2.11/localedata/locales/ss_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ss_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/ss_ZA	2009-11-10 23:36:13.681004860 -0500
 @@ -167,6 +167,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1432,8 +1652,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/st_ZA
-+++ b/localedata/locales/st_ZA
+Index: eglibc-2.11/localedata/locales/st_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/st_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/st_ZA	2009-11-10 23:36:13.681004860 -0500
 @@ -164,6 +164,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1443,8 +1665,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/sv_FI
-+++ b/localedata/locales/sv_FI
+Index: eglibc-2.11/localedata/locales/sv_FI
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/sv_FI	2009-02-13 13:31:14.000000000 -0500
++++ eglibc-2.11/localedata/locales/sv_FI	2009-11-10 23:36:13.681004860 -0500
 @@ -107,6 +107,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U002D><U0064><U002E><U0025>/
  <U002D><U006D><U002E><U0025><U0059><U0020><U0025><U0048><U002E><U0025>/
@@ -1454,8 +1678,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/ta_IN
-+++ b/localedata/locales/ta_IN
+Index: eglibc-2.11/localedata/locales/ta_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ta_IN	2009-01-19 12:43:22.000000000 -0500
++++ eglibc-2.11/localedata/locales/ta_IN	2009-11-10 23:36:13.681004860 -0500
 @@ -247,6 +247,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070><U0020><U0025><U005A>"
@@ -1465,8 +1691,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/te_IN
-+++ b/localedata/locales/te_IN
+Index: eglibc-2.11/localedata/locales/te_IN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/te_IN	2009-01-19 12:43:22.000000000 -0500
++++ eglibc-2.11/localedata/locales/te_IN	2009-11-10 23:36:13.681004860 -0500
 @@ -156,6 +156,8 @@
  % %p%I.%M.%S %Z
  t_fmt_ampm  "<U0025><U0070><U0025><U0049><U002E><U0025><U004D><U002E><U0025><U0053><U0020><U0025><U005A>"
@@ -1476,8 +1704,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/th_TH
-+++ b/localedata/locales/th_TH
+Index: eglibc-2.11/localedata/locales/th_TH
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/th_TH	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/th_TH	2009-11-10 23:36:13.685004869 -0500
 @@ -913,6 +913,8 @@
  <U003A><U0025><U0053><U0020><U0025><U005A>"
  % ICT-7ICT-7
@@ -1487,8 +1717,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/ti_ER
-+++ b/localedata/locales/ti_ER
+Index: eglibc-2.11/localedata/locales/ti_ER
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ti_ER	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ti_ER	2009-11-10 23:36:13.685004869 -0500
 @@ -270,5 +270,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12D3><U002F><U121D>"
@@ -1497,8 +1729,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/ti_ET
-+++ b/localedata/locales/ti_ET
+Index: eglibc-2.11/localedata/locales/ti_ET
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ti_ET	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/ti_ET	2009-11-10 23:36:13.685004869 -0500
 @@ -1072,5 +1072,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12D3><U002F><U121D>"
@@ -1507,8 +1741,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/tig_ER
-+++ b/localedata/locales/tig_ER
+Index: eglibc-2.11/localedata/locales/tig_ER
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/tig_ER	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/tig_ER	2009-11-10 23:36:13.685004869 -0500
 @@ -218,5 +218,7 @@
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
  <U0020><U12D3><U002F><U121D>"
@@ -1517,8 +1753,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/tn_ZA
-+++ b/localedata/locales/tn_ZA
+Index: eglibc-2.11/localedata/locales/tn_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/tn_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/tn_ZA	2009-11-10 23:36:13.685004869 -0500
 @@ -169,6 +169,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1528,8 +1766,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/tr_TR
-+++ b/localedata/locales/tr_TR
+Index: eglibc-2.11/localedata/locales/tr_TR
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/tr_TR	2009-11-10 23:32:26.304005279 -0500
++++ eglibc-2.11/localedata/locales/tr_TR	2009-11-10 23:36:13.685004869 -0500
 @@ -1540,6 +1540,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1539,8 +1779,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/ts_ZA
-+++ b/localedata/locales/ts_ZA
+Index: eglibc-2.11/localedata/locales/ts_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ts_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/ts_ZA	2009-11-10 23:36:13.685004869 -0500
 @@ -164,6 +164,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1550,8 +1792,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/tt_RU
-+++ b/localedata/locales/tt_RU
+Index: eglibc-2.11/localedata/locales/tt_RU
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/tt_RU	2006-10-07 07:13:45.000000000 -0400
++++ eglibc-2.11/localedata/locales/tt_RU	2009-11-10 23:36:13.685004869 -0500
 @@ -297,6 +297,8 @@
  t_fmt     "<U0025><U0054>"
  am_pm     "";""
@@ -1561,8 +1805,10 @@
  END LC_TIME
  
  LC_PAPER
---- a/localedata/locales/uz_UZ
-+++ b/localedata/locales/uz_UZ
+Index: eglibc-2.11/localedata/locales/uz_UZ
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/uz_UZ	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/uz_UZ	2009-11-10 23:36:13.685004869 -0500
 @@ -260,6 +260,8 @@
  am_pm       "";""
  t_fmt_ampm  ""
@@ -1572,8 +1818,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/uz_UZ@cyrillic
-+++ b/localedata/locales/uz_UZ@cyrillic
+Index: eglibc-2.11/localedata/locales/uz_UZ@cyrillic
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/uz_UZ@cyrillic	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/uz_UZ@cyrillic	2009-11-10 23:36:13.685004869 -0500
 @@ -263,6 +263,8 @@
  am_pm       "";""
  t_fmt_ampm  ""
@@ -1583,8 +1831,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/ve_ZA
-+++ b/localedata/locales/ve_ZA
+Index: eglibc-2.11/localedata/locales/ve_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/ve_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/ve_ZA	2009-11-10 23:36:13.685004869 -0500
 @@ -166,6 +166,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.
@@ -1594,8 +1844,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/vi_VN
-+++ b/localedata/locales/vi_VN
+Index: eglibc-2.11/localedata/locales/vi_VN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/vi_VN	2007-03-18 14:01:40.000000000 -0400
++++ eglibc-2.11/localedata/locales/vi_VN	2009-11-10 23:36:13.689004807 -0500
 @@ -294,6 +294,8 @@
  am_pm    "<U0041><U004D>";"<U0050><U004D>"
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U0020><U0025><U0070>"
@@ -1605,8 +1857,10 @@
  END LC_TIME
  
  % yes: Va^ng / Da.
---- a/localedata/locales/wa_BE
-+++ b/localedata/locales/wa_BE
+Index: eglibc-2.11/localedata/locales/wa_BE
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/wa_BE	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/wa_BE	2009-11-10 23:36:13.689004807 -0500
 @@ -163,7 +163,8 @@
  am_pm   "<U0041><U004D>";"<U0050><U004D>"
  t_fmt_ampm "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0070>"
@@ -1617,8 +1871,10 @@
  END LC_TIME
  
  LC_NAME
---- a/localedata/locales/wal_ET
-+++ b/localedata/locales/wal_ET
+Index: eglibc-2.11/localedata/locales/wal_ET
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/wal_ET	2009-11-10 23:32:26.304005279 -0500
++++ eglibc-2.11/localedata/locales/wal_ET	2009-11-10 23:36:13.689004807 -0500
 @@ -232,5 +232,7 @@
  <U0020><U130B><U120B><U1233>/
  <U0020><U0025><U0072><U0020><U0025><U005A><U0020><U0025><U0059>/
@@ -1627,8 +1883,10 @@
 +first_weekday 7
  END LC_TIME
  %
---- a/localedata/locales/xh_ZA
-+++ b/localedata/locales/xh_ZA
+Index: eglibc-2.11/localedata/locales/xh_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/xh_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/xh_ZA	2009-11-10 23:36:13.689004807 -0500
 @@ -164,6 +164,8 @@
  % time-zone name,
  % year with century as a decimal number,e.g. 2001.
@@ -1638,8 +1896,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/yi_US
-+++ b/localedata/locales/yi_US
+Index: eglibc-2.11/localedata/locales/yi_US
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/yi_US	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/yi_US	2009-11-10 23:36:13.689004807 -0500
 @@ -186,6 +186,8 @@
  am_pm   "<U0041><U004D>";"<U0050><U004D>"
  t_fmt_ampm  "<U0025><U0049><U003A><U0025><U004D><U003A><U0025><U0053><U0020><U0025><U0050>"
@@ -1649,8 +1909,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/zh_CN
-+++ b/localedata/locales/zh_CN
+Index: eglibc-2.11/localedata/locales/zh_CN
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/zh_CN	2007-04-28 07:25:33.000000000 -0400
++++ eglibc-2.11/localedata/locales/zh_CN	2009-11-10 23:36:13.689004807 -0500
 @@ -135,6 +135,8 @@
  date_fmt       "<U0025><U0059><U5E74><U0020><U0025><U006D><U6708><U0020>/
  <U0025><U0064><U65E5><U0020><U0025><U0041><U0020><U0025><U0048><U003A>/
@@ -1660,8 +1922,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/zh_HK
-+++ b/localedata/locales/zh_HK
+Index: eglibc-2.11/localedata/locales/zh_HK
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/zh_HK	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/zh_HK	2009-11-10 23:36:13.689004807 -0500
 @@ -141,6 +141,8 @@
  date_fmt       "<U0025><U0061><U0020><U0025><U0062><U0020><U0025><U0065>/
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
@@ -1671,8 +1935,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/zh_SG
-+++ b/localedata/locales/zh_SG
+Index: eglibc-2.11/localedata/locales/zh_SG
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/zh_SG	2006-08-16 21:18:26.000000000 -0400
++++ eglibc-2.11/localedata/locales/zh_SG	2009-11-10 23:36:13.689004807 -0500
 @@ -130,6 +130,8 @@
  % Appropriate 12 h time representation (%r)
  t_fmt_ampm  ""
@@ -1682,8 +1948,10 @@
  END LC_TIME
  
  
---- a/localedata/locales/zh_TW
-+++ b/localedata/locales/zh_TW
+Index: eglibc-2.11/localedata/locales/zh_TW
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/zh_TW	2009-11-10 23:32:26.140024636 -0500
++++ eglibc-2.11/localedata/locales/zh_TW	2009-11-10 23:36:13.689004807 -0500
 @@ -128,6 +128,9 @@
  <U0020><U0025><U0048><U003A><U0025><U004D><U003A><U0025><U0053><U0020>/
  <U0025><U005A><U0020><U0025><U0059>"
@@ -1694,8 +1962,10 @@
  END LC_TIME
  
  LC_MESSAGES
---- a/localedata/locales/zu_ZA
-+++ b/localedata/locales/zu_ZA
+Index: eglibc-2.11/localedata/locales/zu_ZA
+===================================================================
+--- eglibc-2.11.orig/localedata/locales/zu_ZA	2008-11-11 10:56:28.000000000 -0500
++++ eglibc-2.11/localedata/locales/zu_ZA	2009-11-10 23:36:13.689004807 -0500
 @@ -170,6 +170,8 @@
  % %Z - time-zone name,
  % %Y - year with century as a decimal number,e.g. 2001.

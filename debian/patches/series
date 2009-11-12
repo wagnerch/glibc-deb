@@ -6,7 +6,6 @@ locale/preprocessor-collate-uli-sucks.diff
 locale/preprocessor-collate.diff  # should not be needed anymore, but keep it anyways.
 locale/locale-print-LANGUAGE.diff
 locale/LC_IDENTIFICATION-optional-fields.diff
-locale/fix-C-first_weekday.diff
 locale/LC_COLLATE-keywords-ordering.diff
 localedata/local-all-no-archive.diff
 localedata/sort-UTF8-first.diff
@@ -45,11 +44,7 @@ alpha/submitted-dl-procinfo.diff
 alpha/submitted-dl-support.diff
 alpha/submitted-fdatasync.diff
 alpha/submitted-fpu-round.diff
-alpha/submitted-getsysstats.diff
-alpha/submitted-includes.diff
-alpha/submitted-lowlevellock.diff
 alpha/submitted-PTR_MANGLE.diff
-alpha/submitted-procfs_h.diff
 alpha/submitted-rtld-fPIC.diff
 alpha/submitted-asm-memchr.diff
 alpha/submitted-sock_nonblock.diff
@@ -104,7 +99,6 @@ hurd-i386/submitted-null-pathname.diff
 hurd-i386/submitted-sbrk.diff
 hurd-i386/local-thread-cancel.diff
 hurd-i386/submitted-readlinkat.diff
-hurd-i386/cvs-termios-IXANY.patch
 hurd-i386/submitted-SOL_IP.patch
 hurd-i386/local-bigmem.diff
 hurd-i386/local-disable-ioctls.diff
@@ -128,10 +122,8 @@ m68k/local-reloc.diff
 m68k/local-pthread_lock.diff
 m68k/submitted-gcc34-seccomment.diff
 
-mips/local-lazy-eval.diff
+#mips/local-lazy-eval.diff
 mips/local-r10k.diff
-
-powerpc/cvs-readahead.diff
 
 s390/submitted-nexttowardf.diff
 s390/submitted-siginfo.diff
@@ -184,10 +176,8 @@ any/local-stdio-lock.diff
 any/local-tcsetaddr.diff
 any/local-disable-test-tgmath2.diff
 any/local-tst-mktime2.diff
-any/local-dynamic-resolvconf.diff
 any/submitted-nis-netgrp.diff
 any/submitted-clock-settime.diff
-any/submitted-libgcc_s.so.diff
 any/submitted-longdouble.diff
 any/submitted-sched_h.diff
 any/local-disable-nscd-host-caching.diff
@@ -200,17 +190,11 @@ any/submitted-futex_robust_pi.diff
 #any/local-disable-gethostbyname4.diff
 any/submitted-getaddrinfo-lo.diff
 any/local-getaddrinfo-interface.diff
-any/cvs-broken-dns.diff
 any/submitted-autotools.diff
-any/cvs-nptl-init.diff
 any/submitted-accept4-hidden.diff
-any/submitted-getent-gshadow.diff
 any/cvs-getaddrinfo-nss-notfound.diff
-any/submitted-missing-etc-hosts.diff
 any/submitted-etc-resolv.conf.diff
 any/submitted-localedef-mmap.diff
 any/submitted-confname.h.diff
-any/cvs-getutmpx-compat.diff
-any/cvs-preadv-pwritev.diff
 any/submitted-sched_h.2.diff
 all/local-ldd.diff
