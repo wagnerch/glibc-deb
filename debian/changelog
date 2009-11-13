@@ -14,7 +14,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Update debian/patches/any/local-libgcc-compat-main.diff
     - Remove debian/patches/any/submitted-getent-gshadow.diff (merged)
     - Remove debian/patches/any/submitted-libgcc_s.so.diff (merged)
-    - Remove debian/patches/any/submitted-missing-etc-hosts.diff (merged)
+    - Update debian/patches/any/submitted-missing-etc-hosts.diff.
     - Remove debian/patches/hppa/cvs-nptl-compat.diff (merged)
     - Remove debian/patches/hurd-i386/cvs-termios-IXANY.patch (merged)
     - Update debian/patches/hurd-i386/submitted-readlinkat.diff

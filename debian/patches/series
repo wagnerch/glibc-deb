@@ -195,4 +195,5 @@ any/submitted-etc-resolv.conf.diff
 any/submitted-localedef-mmap.diff
 any/submitted-confname.h.diff
 any/submitted-sched_h.2.diff
+any/submitted-missing-etc-hosts.diff
 all/local-ldd.diff
