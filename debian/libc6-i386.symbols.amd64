@@ -3,7 +3,7 @@
 ### Override headers of already defined objects
 ###
 ld-linux.so.2 libc6-i386 #MINVER#
-| libc6-i386 (>> 2.12), libc6-i386 (<< 2.12)
+| libc6-i386 (>> 2.11), libc6-i386 (<< 2.12)
  *@GLIBC_PRIVATE 0 1
 #include "symbols.wildcards"
 libc.so.6 libc6-i386 #MINVER#
