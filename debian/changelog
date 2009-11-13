@@ -23,6 +23,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Remove debian/patches/powerpc/cvs-readahead.diff (merged)
     - Remove debian/patches/mips/local-lazy-eval.diff (obsolete)
     - Remove debian/patches/ia64/submitted-siginfo.diff (merged)
+    - Remove debian/patches/s390/submitted-siginfo.diff (merged)
 
  -- Clint Adams <schizo@debian.org>  Thu, 12 Nov 2009 17:20:41 -0500
 
