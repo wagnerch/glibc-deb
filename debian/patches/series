@@ -104,7 +104,6 @@ hurd-i386/local-disable-ioctls.diff
 
 ia64/submitted-sysconf.diff
 ia64/submitted-libm.diff
-ia64/submitted-siginfo.diff
 ia64/submitted-memchr.diff
 
 i386/local-biarch.diff
@@ -124,7 +123,6 @@ m68k/submitted-gcc34-seccomment.diff
 mips/local-r10k.diff
 
 s390/submitted-nexttowardf.diff
-s390/submitted-siginfo.diff
 
 sh4/local-fpscr_values.diff
 
@@ -190,7 +188,6 @@ any/submitted-getaddrinfo-lo.diff
 any/local-getaddrinfo-interface.diff
 any/submitted-autotools.diff
 any/submitted-accept4-hidden.diff
-any/cvs-getaddrinfo-nss-notfound.diff
 any/submitted-etc-resolv.conf.diff
 any/submitted-localedef-mmap.diff
 any/submitted-confname.h.diff
