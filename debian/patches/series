@@ -121,7 +121,6 @@ m68k/local-reloc.diff
 m68k/local-pthread_lock.diff
 m68k/submitted-gcc34-seccomment.diff
 
-#mips/local-lazy-eval.diff
 mips/local-r10k.diff
 
 s390/submitted-nexttowardf.diff

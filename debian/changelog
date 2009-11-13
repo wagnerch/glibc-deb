@@ -21,6 +21,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Update debian/patches/localedata/first_weekday.diff
     - Remove debian/patches/locale/fix-C-first_weekday.diff (obsolete)
     - Remove debian/patches/powerpc/cvs-readahead.diff (merged)
+    - Remove debian/patches/mips/local-lazy-eval.diff (obsolete)
 
  -- Clint Adams <schizo@debian.org>  Thu, 12 Nov 2009 17:20:41 -0500
 
