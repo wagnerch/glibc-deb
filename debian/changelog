@@ -23,6 +23,9 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Remove debian/patches/ia64/submitted-siginfo.diff (merged)
     - Remove debian/patches/s390/submitted-siginfo.diff (merged)
     - Remove debian/patches/any/cvs-malloc-check.diff (merged)
+    - Remove debian/patches/hppa/submitted-sock_nonblock.diff (merged)
+    - Remove debian/patches/hppa/submitted-pie.diff (merged)
+    - Remove debian/patches/any/cvs-ksm.diff (merged)
 
  -- Clint Adams <schizo@debian.org>  Mon, 23 Nov 2009 12:44:27 +0100
 

@@ -59,14 +59,12 @@ arm/local-lowlevellock.diff
 arm/local-no-hwcap.diff
 arm/local-hwcap-updates.diff
 
-hppa/submitted-sock_nonblock.diff
 hppa/local-inlining.diff
 hppa/local-linuxthreads.diff
 hppa/local-linuxthreads-gscope.diff
 hppa/submitted-fadvise64_64.diff
 hppa/submitted-lt.diff
 hppa/submitted-nptl-carlos.diff
-hppa/submitted-pie.diff
 hppa/local-stack-grows-up.diff
 
 hurd-i386/local-dl-dynamic-weak.diff
@@ -193,7 +191,6 @@ any/submitted-etc-resolv.conf.diff
 any/submitted-localedef-mmap.diff
 any/submitted-confname.h.diff
 any/cvs-sched_h.diff
-any/cvs-ksm.diff
 any/submitted-missing-etc-hosts.diff
 any/submitted-bits-fcntl_h-at.diff
 any/submitted-nis-not-configured.diff
