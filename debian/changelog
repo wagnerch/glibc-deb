@@ -1,5 +1,6 @@
 eglibc (2.11-0exp1) UNRELEASED; urgency=low
 
+  [ Clint Adams ]
   * New upstream release.
     - Update debian/patches/all/local-pthread-manpages.diff
     - Remove debian/patches/alpha/submitted-getsysstats.diff (merged)
@@ -9,27 +10,65 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Remove debian/patches/any/cvs-broken-dns.diff (merged)
     - Remove debian/patches/any/cvs-getutmpx-compat.diff (merged)
     - Remove debian/patches/any/cvs-nptl-init.diff (merged)
-    - Remove debian/patches/any/cvs-preadv-pwritev.diff (merged)
     - Remove debian/patches/any/local-dynamic-resolvconf.diff (merged)
     - Update debian/patches/any/local-libgcc-compat-main.diff
     - Remove debian/patches/any/submitted-getent-gshadow.diff (merged)
-    - Remove debian/patches/any/submitted-libgcc_s.so.diff (merged)
     - Update debian/patches/any/submitted-missing-etc-hosts.diff.
     - Remove debian/patches/hppa/cvs-nptl-compat.diff (merged)
     - Remove debian/patches/hurd-i386/cvs-termios-IXANY.patch (merged)
     - Update debian/patches/hurd-i386/submitted-readlinkat.diff
     - Update debian/patches/localedata/first_weekday.diff
-    - Remove debian/patches/locale/fix-C-first_weekday.diff (obsolete)
-    - Remove debian/patches/powerpc/cvs-readahead.diff (merged)
+    - Remove debian/patches/locale/cvs-C-first_weekday.diff (merged)
     - Remove debian/patches/mips/local-lazy-eval.diff (obsolete)
     - Remove debian/patches/ia64/submitted-siginfo.diff (merged)
     - Remove debian/patches/s390/submitted-siginfo.diff (merged)
-    - Remove debian/patches/any/cvs-getaddrinfo-nss-notfound.diff (merged)
+    - Remove debian/patches/any/cvs-malloc-check.diff (merged)
 
- -- Clint Adams <schizo@debian.org>  Thu, 12 Nov 2009 17:20:41 -0500
+ -- Clint Adams <schizo@debian.org>  Mon, 23 Nov 2009 12:44:27 +0100
+
+eglibc (2.10.2-1) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * New upstream minor release.
+    - fix build timeout on SH4.  Closes: #552407.
+    - disabled patches/svn-updates.diff.
+    - remove patches/powerpc/cvs-readahead.diff (merged).
+    - remove patches/any/submitted-libgcc_s.so.diff (merged).
+    - remove patches/any/cvs-preadv-pwritev.diff (merged).
+    - remove patches/any/cvs-getaddrinfo-nss-notfound.diff (merged).
+  * patches/ia64/cvs-memchr.diff: new patch from upstream replacing
+    patches/ia64/submitted-memchr.diff.
+  * patches/any/cvs-malloc-check.diff: new patch from upstream to fix bugs
+    with MALLOC_CHECK.  Closes: #557158.
+  * patches/any/cvs-ksm.diff: add support to KSM, define MADV_MERGEABLE and
+    MADV_UNMERGEABLE. Closes: #556631.
+  * Replace patches/locale/fix-C-first_weekday.diff by upstream version
+    patches/locale/cvs-C-first_weekday.diff.  Closes: #556884.
+  * rules.d/debhelper.mk: don't use --strip-unneeded when stripping .o 
+    objects.  Closes: #556951.
+  * patches/any/submitted-bits-fcntl_h-at.diff: new patch to move AT_* 
+    constants from <fcntl.h> to <bits/fcntl.h>. Closes: #555303.
+  * Replace patches/any/submitted-sched_h.2.diff by upstream version
+    patches/any/cvs-sched_h.diff.
+  * Use gcc/g++-4.4 on sparc.
+  * patches/any/submitted-nis-not-configured.diff: fix getaddrinfo() if
+    NIS is not configured.  Closes: #556600.
+  * patches/any/submitted-getaddrinfo-nodata.diff: new patch from Michael 
+    Stone to fix getaddrinfo() if a plugin returns TRY_AGAIN or NO_DATA.
+    Closes: #557596.
+
+  [ Carlos O'Donell]
+  * patches/hppa/local-stack-grows-up.diff: new version.
+
+  [ Petr Salinger]
+  * kfreebsd/local-sysdeps.diff: update to revision 2859 (from glibc-bsd).
+    Closes: #557248.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 23 Nov 2009 09:46:23 +0100
 
 eglibc (2.10.1-7) unstable; urgency=low
 
+  [ Aurelien Jarno ]
   * patches/all/local-ldd.diff: new patch to handle the case where ld.so is
     not executable (wrong architecture), and always trace dynamic library 
     dependencies through the dynamic linker.  Closes: #502189, 

@@ -104,7 +104,7 @@ hurd-i386/local-disable-ioctls.diff
 
 ia64/submitted-sysconf.diff
 ia64/submitted-libm.diff
-ia64/submitted-memchr.diff
+ia64/cvs-memchr.diff
 
 i386/local-biarch.diff
 i386/local-clone.diff
@@ -136,6 +136,7 @@ all/local-alias-et_EE.diff
 all/local-pthread-manpages.diff
 all/local-remove-manual.diff
 all/local-ru_RU.diff
+all/local-ldd.diff
 
 any/local-asserth-decls.diff
 any/local-bindresvport_blacklist.diff
@@ -191,6 +192,9 @@ any/submitted-accept4-hidden.diff
 any/submitted-etc-resolv.conf.diff
 any/submitted-localedef-mmap.diff
 any/submitted-confname.h.diff
-any/submitted-sched_h.2.diff
+any/cvs-sched_h.diff
+any/cvs-ksm.diff
 any/submitted-missing-etc-hosts.diff
-all/local-ldd.diff
+any/submitted-bits-fcntl_h-at.diff
+any/submitted-nis-not-configured.diff
+any/submitted-getaddrinfo-nodata.diff

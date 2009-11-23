@@ -1,8 +1,17 @@
+2009-11-18  H.J. Lu  <hongjiu.lu@intel.com>
+
+	[BZ #10162]
+	* sysdeps/ia64/memchr.S: Don't use a simple loop on data shorter
+	than software pipeline.  Properly recover from shorter read.
+
 2009-11-09  H.J. Lu  <hongjiu.lu@intel.com>
 
-	PR libc/10162
-	* sysdeps/ia64/memchr.S: Properly recover from shorter read.
+	[BZ #10162]
+	* sysdeps/ia64/memchr.S: Use a simple loop on data shorter than
+	software pipeline.
 
+diff --git a/sysdeps/ia64/memchr.S b/sysdeps/ia64/memchr.S
+index cd062b2..cdd71ca 100644
 --- a/sysdeps/ia64/memchr.S
 +++ b/sysdeps/ia64/memchr.S
 @@ -126,7 +126,16 @@ ENTRY(__memchr)
@@ -23,4 +32,3 @@
  (p[MEMLAT+1])	add	ret0 = -8, ret0;;
  (p[MEMLAT+2])	add	ret0 = -8, ret0;;
  .l4:
-
