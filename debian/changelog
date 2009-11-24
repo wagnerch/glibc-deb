@@ -14,7 +14,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Update debian/patches/any/local-libgcc-compat-main.diff
     - Remove debian/patches/any/submitted-getent-gshadow.diff (merged)
     - Update debian/patches/any/submitted-missing-etc-hosts.diff.
-    - Remove debian/patches/hppa/cvs-nptl-compat.diff (merged)
+    - Update debian/patches/hppa/cvs-nptl-compat.diff.
     - Remove debian/patches/hurd-i386/cvs-termios-IXANY.patch (merged)
     - Update debian/patches/hurd-i386/submitted-readlinkat.diff
     - Update debian/patches/localedata/first_weekday.diff
@@ -28,6 +28,31 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Remove debian/patches/any/cvs-ksm.diff (merged)
 
  -- Clint Adams <schizo@debian.org>  Mon, 23 Nov 2009 12:44:27 +0100
+
+eglibc (2.10.2-3) UNRELEASED; urgency=low
+
+  * debhelper.in/libc.postinst: also restart incron on upgrade.  Closes:
+    #557801.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 24 Nov 2009 16:09:58 +0100
+
+eglibc (2.10.2-2) unstable; urgency=low
+
+  [ Carlos O'Donell]
+  * debian/patches/hppa/cvs-nptl-compat.diff: new version to fix 
+    pthread structures alignment on hppa.
+
+  [ Aurelien Jarno ]
+  * debian/control: bump libc-bin breaks on libc0.1/0.3/6/6.1 to (<< 2.10).
+    Closes: #556945.
+  * patches/localedata/submitted-pt_BR.diff: new patch to fix the thousand
+    separator on pt_BR locale.  Closes: #474479.
+  * debhelper.in/locales.postinst: if an selected entry is present more than 
+    once, only uncomment the first one.  Closes: #529368.
+  * patches/any/submitted-gethostbyname3.diff: return an error if the 
+    nameserver timeouts.  Closes: #499781.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 24 Nov 2009 06:12:57 +0100
 
 eglibc (2.10.2-1) unstable; urgency=low
 
