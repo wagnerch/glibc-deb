@@ -27,7 +27,10 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Remove debian/patches/hppa/submitted-pie.diff (merged)
     - Remove debian/patches/any/cvs-ksm.diff (merged)
 
- -- Clint Adams <schizo@debian.org>  Mon, 23 Nov 2009 12:44:27 +0100
+  [ Aurelien Jarno ]
+  * Enable multi-arch.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 29 Dec 2009 01:10:49 +0100
 
 eglibc (2.10.2-3) UNRELEASED; urgency=low
 

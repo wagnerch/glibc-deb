@@ -76,6 +76,7 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 		--enable-profile \
 		--without-selinux \
 		--enable-stackguard-randomization \
+		--enable-multi-arch \
 		$(call xx,with_headers) $(call xx,extra_config_options))
 	touch $@
 
