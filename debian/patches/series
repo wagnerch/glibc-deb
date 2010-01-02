@@ -1,4 +1,4 @@
-# svn-updates.diff
+svn-updates.diff
 
 locale/check-unknown-symbols.diff
 locale/fix-LC_COLLATE-rules.diff
@@ -211,10 +211,12 @@ any/submitted-etc-resolv.conf.diff
 any/submitted-localedef-mmap.diff
 any/submitted-confname.h.diff
 any/cvs-getutmpx-compat.diff
-any/cvs-malloc-check.diff
 any/cvs-ksm.diff
 any/submitted-bits-fcntl_h-at.diff
 any/cvs-sched_h.diff
-any/submitted-nis-not-configured.diff
+any/cvs-nis-not-configured.diff
 any/submitted-getaddrinfo-nodata.diff
 any/submitted-gethostbyname3.diff
+any/local-ntp-update.diff
+any/cvs-malloc_info-output.diff
+any/cvs-futimens.diff

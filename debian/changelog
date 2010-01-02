@@ -1,6 +1,8 @@
-eglibc (2.10.2-3) UNRELEASED; urgency=low
+eglibc (2.10.2-3) unstable; urgency=low
 
   [ Aurelien Jarno ]
+  * Update from the latest SVN, branch eglibc-2_11:
+    - Remove any/cvs-malloc-check.diff (merged upstream).
   * debhelper.in/libc.postinst: also restart incron on upgrade.  Closes:
     #557801.
   * debhelper.in/libc.postinst: restart the services instead of stopping
@@ -12,6 +14,14 @@ eglibc (2.10.2-3) UNRELEASED; urgency=low
     buildds kernels now that they have been upgraded.
   * debian/control.in/main: add a Homepage: pseudo header.  Closes: #561034.
   * debian/local/manpages/gai.conf.5: fix a typo.  Closes: #560144. 
+  * Replace debian/any/submitted-nis-not-configured.diff by upstream patch
+    debian/any/cvs-nis-not-configured.diff.
+  * Add debian/patches/any/local-ntp-update.diff to partially update the NTP
+    API, backported from upstream.  Closes: #559482.
+  * Add debian/patches/any/cvs-malloc_info-output.diff from upstream to fix
+    malloc_info() output.  Closes: #562678.
+  * Add debian/patches/any/cvs-futimens.diff from upstream to correctly handle
+    AT_FDCWD in futimens().
 
   [ Samuel Thibault ]
   * testsuite-checking/expected-results-i486-linux-gnu-libc: Add hurd-i386
@@ -25,7 +35,7 @@ eglibc (2.10.2-3) UNRELEASED; urgency=low
   [ Petr Salinger]
   * kfreebsd/local-sysdeps.diff: update to revision 2904 (from glibc-bsd).
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 23 Dec 2009 15:44:38 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 02 Jan 2010 13:07:44 +0100
 
 eglibc (2.10.2-2) unstable; urgency=low
 
