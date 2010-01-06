@@ -112,7 +112,6 @@ hurd-i386/local-bigmem.diff
 hurd-i386/local-disable-ioctls.diff
 hurd-i386/submitted-getcwd.diff
 hurd-i386/submitted-setsid.diff
-hurd-i386/submitted-if_ether.diff
 
 ia64/submitted-sysconf.diff
 ia64/submitted-libm.diff
@@ -227,3 +226,4 @@ any/cvs-resolv-uninitialized.diff
 any/cvs-resolv-bindv6only.diff
 any/cvs-resolv-edns0.diff
 any/cvs-resolv-v6mapped.diff
+any/submitted-nis-shadow.diff
