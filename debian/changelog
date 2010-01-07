@@ -1,3 +1,11 @@
+glibc (2.7-18lenny2) stable-security; urgency=low
+
+  * Fix NIS shadow entries leakage to non-priviledge users when nscd is
+    in use.
+    Fixes: CVE-2010-XXXX.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 08 Jan 2010 00:10:10 +0100
+
 glibc (2.7-18lenny1) stable; urgency=low
 
   * patches/any/cvs-realloc.diff: fix bug in realloc() when enlarging a
