@@ -201,3 +201,4 @@ any/cvs-sunrpc-64bits-svc_getreqset.diff -p0
 any/cvs-vfprintf-stack-smashing.diff
 any/cvs-getnetgrent_r-memory-leak.diff
 any/cvs-sunrpc_rpc_thread.diff -p0
+any/submitted-nis-shadow.diff -p1
