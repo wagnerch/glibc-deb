@@ -30,6 +30,10 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
   [ Aurelien Jarno ]
   * Enable multi-arch.
 
+  [ Samuel Thibault ]
+  * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to
+    fix elf/ build on hurd-i386.
+
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 29 Dec 2009 01:10:49 +0100
 
 eglibc (2.10.2-3) UNRELEASED; urgency=low
