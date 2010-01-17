@@ -25,7 +25,7 @@ index 0fa90bc..eadd98d 100644
  #define __rtld_lock_init_recursive(NAME) \
    __libc_lock_init_recursive (NAME)
 +#define __rtld_lock_initialize(NAME) \
-+  (void) ((NAME) = (__rtld_lock_recursive_t) _RTLD_LOCK_RECURSIVE_INITIALIZER
++  (void) ((NAME) = (__rtld_lock_recursive_t) _RTLD_LOCK_RECURSIVE_INITIALIZER)
  #define __rtld_lock_trylock_recursive(NAME) \
    __libc_lock_trylock_recursive (NAME)
  #define __rtld_lock_lock_recursive(NAME) \
