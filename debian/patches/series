@@ -102,6 +102,7 @@ hurd-i386/submitted-SOL_IP.patch
 hurd-i386/local-bigmem.diff
 hurd-i386/local-disable-ioctls.diff
 hurd-i386/submitted-rtld_lock_recursive.diff
+hurd-i386/local-longjmp_chk.diff
 
 ia64/submitted-sysconf.diff
 ia64/submitted-libm.diff
