@@ -1,10 +1,10 @@
-glibc (2.3.6.ds1-13etch10) stable; urgency=low
+glibc (2.3.6.ds1-13etch10) oldstable-security; urgency=low
 
   * Fix NIS shadow entries leakage to non-priviledge users when nscd is
     in use.
     Fixes: CVE-2010-0015.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 16 Jan 2010 16:26:38 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 17 Jan 2010 11:25:12 +0100
 
 glibc (2.3.6.ds1-13etch9) stable; urgency=low
 
