@@ -40,6 +40,9 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
   * kfreebsd/local-sysdeps.diff: update to revision 2941 (from glibc-bsd).
   * define __rtld_lock_initialize also in linuxthreads <bits/libc-lock.h>
     variant (enhance local-linuxthreads-weak.diff).
+  * allow failure of tst-longjmp_chk.out on GNU/kFreeBSD
+  * Add kfreebsd/local-dosavesse.diff, which does not work,
+    so rather use also added kfreebsd/local-nosavesse.diff
  
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 18 Jan 2010 01:10:49 +0100
 
