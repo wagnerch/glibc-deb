@@ -38,6 +38,7 @@ localedata/submitted-bz9725-locale-sv_SE.diff
 localedata/first_weekday.diff
 localedata/submitted-bz9912-locale-ru_UA.diff
 localedata/submitted-pt_BR.diff
+localedata/locale-et_EE.diff
 
 alpha/local-gcc4.1.diff
 alpha/submitted-creat64.diff
@@ -75,6 +76,7 @@ hurd-i386/local-mlock.diff
 hurd-i386/local-tls.diff
 hurd-i386/local-tls-support.diff
 hurd-i386/local-gcc-4.1-init-first.diff
+hurd-i386/submitted-posix_opt.h.diff
 hurd-i386/submitted-ioctl-decode-argument.diff
 hurd-i386/submitted-libc_once.diff
 hurd-i386/submitted-ptr-mangle.diff
@@ -127,6 +129,7 @@ mips/local-r10k.diff
 s390/submitted-nexttowardf.diff
 
 sh4/local-fpscr_values.diff
+sh4/submitted-set_fpscr.diff
 
 sparc/local-fork.diff
 sparc/local-sparcv9-target.diff

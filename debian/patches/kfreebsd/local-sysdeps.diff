@@ -5850,7 +5850,7 @@
 +#endif	/* bits/socket.h */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/stat.h
-@@ -0,0 +1,207 @@
+@@ -0,0 +1,214 @@
 +/* Copyright (C) 1992, 1996-1997, 2000, 2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -6051,10 +6051,17 @@
 +/* Set file flags of the file referred to by FD to FLAGS.  */
 +extern int fchflags (int __fd, unsigned long int __flags) __THROW;
 +
++/* Set file flags for FILE to FLAGS without following symlinks.  */
++extern int lchflags(__const char *__file, int __flags);
 +
-+extern char *devname_r(__dev_t dev, __mode_t type, char *buf, int len) __THROW;
++/* Get device name in /dev with a device number of dev and a file type
++   matching the one encoded in type.  */
 +extern char *devname(__dev_t dev, __mode_t type) __THROW;
-+                                                                                                                                                                                                         
++
++/* Store at most BUFLEN characters of the device name in /dev with a 
++   device number of dev and a file type matching the one encoded in type.  */
++extern char *devname_r(__dev_t dev, __mode_t type, char *buf, int buflen) __THROW;
++
 +__END_DECLS
 +
 +#endif /* __USE_BSD */
@@ -8125,7 +8132,7 @@
 +#include <sys/sysctl.h>
 +
 +char *
-+__devname_r(dev_t dev, mode_t type, char *buf, int len)
++__devname_r(__dev_t dev, __mode_t type, char *buf, int len)
 +{
 +	int i;
 +	size_t j;
@@ -8150,7 +8157,7 @@
 +
 +
 +char *
-+__devname(dev_t dev, mode_t type)
++__devname(__dev_t dev, __mode_t type)
 +{
 +	static char buf[SPECNAMELEN + 1];
 +
@@ -23731,6 +23738,156 @@
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/truncate64.c
 @@ -0,0 +1 @@
 +/* 'truncate64' is the same as 'truncate', because __off64_t == __off_t.  */
+--- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/ttyname.c
+@@ -0,0 +1,67 @@
++/* Copyright (C) 1991,92,93,96,97,98,2000,2002 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <stddef.h>
++#include <sys/types.h>
++#include <sys/ioctl.h>
++#include <unistd.h>
++#include <string.h>
++#include <stdlib.h>
++
++/* Static buffer in `ttyname'.  */
++libc_freeres_ptr (static char *ttyname_buf);
++
++static const char dev[] = "/dev";
++
++/* Return the pathname of the terminal FD is open on, or NULL on errors.
++   The returned storage is good only until the next call to this function.  */
++char *
++ttyname (fd)
++     int fd;
++{
++  static size_t buflen;
++  struct fiodgname_arg fgn;
++
++  if (!__isatty (fd))
++    return NULL;
++
++  if (buflen == 0)
++    {
++      buflen = 4095;
++      ttyname_buf = (char *) malloc (buflen + 1);
++      if (ttyname_buf == NULL)
++	{
++	  buflen = 0;
++	  return NULL;
++	}
++    }
++
++  /* Prepare the result buffer.  */
++  memcpy (ttyname_buf, dev, sizeof (dev) - 1);
++  ttyname_buf[sizeof (dev) - 1] = '/';
++
++  fgn.buf = ttyname_buf + sizeof (dev);
++  fgn.len = buflen - sizeof (dev);
++
++  if (__ioctl(fd, FIODGNAME, &fgn) == -1)
++    {
++      return NULL; 
++    }
++
++  return ttyname_buf;
++}
+--- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/ttyname_r.c
+@@ -0,0 +1,77 @@
++/* Copyright (C) 1991,92,93,95,96,97,98,2004 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <errno.h>
++#include <stddef.h>
++#include <sys/types.h>
++#include <sys/ioctl.h>
++#include <unistd.h>
++#include <string.h>
++#include <stdlib.h>
++
++static const char dev[] = "/dev";
++
++/* Store at most BUFLEN character of the pathname of the terminal FD is
++   open on in BUF.  Return 0 on success,  otherwise an error number.  */
++int
++__ttyname_r (fd, buf, buflen)
++     int fd;
++     char *buf;
++     size_t buflen;
++{
++  int ret;
++  struct fiodgname_arg fgn;
++
++  /* Test for the absolute minimal size.  This makes life easier inside
++     the loop.  */
++  if (!buf)
++    {
++      __set_errno (EINVAL);
++      return EINVAL;
++    }
++
++  if (buflen < (int) (sizeof (dev) + 1))
++    {
++      __set_errno (ERANGE);
++      return ERANGE;
++    }
++
++  if (!__isatty (fd))
++    {
++      __set_errno (ENOTTY);
++      return ENOTTY;
++    }
++
++  /* Prepare the result buffer.  */
++  memcpy (buf, dev, sizeof (dev) - 1);
++  buf[sizeof (dev) - 1] = '/';
++
++  fgn.buf = buf + sizeof (dev);
++  fgn.len = buflen - sizeof (dev);
++
++  ret = __ioctl(fd, FIODGNAME, &fgn);
++  if (ret == -1)
++    {
++      __set_errno (EBADF);
++      return EBADF;
++    }
++
++  return 0;
++}
++
++weak_alias (__ttyname_r, ttyname_r)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/ulimit.c
 @@ -0,0 +1,2 @@

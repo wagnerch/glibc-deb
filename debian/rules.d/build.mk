@@ -27,6 +27,7 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 	echo "BUILD_CC = $(BUILD_CC)"		>> $(DEB_BUILDDIR)/configparms
 	echo "BUILD_CXX = $(BUILD_CXX)"		>> $(DEB_BUILDDIR)/configparms
 	echo "CFLAGS = $(HOST_CFLAGS)"		>> $(DEB_BUILDDIR)/configparms
+	echo "ASFLAGS = $(HOST_CFLAGS)"		>> $(DEB_BUILDDIR)/configparms
 	echo "BUILD_CFLAGS = $(BUILD_CFLAGS)" 	>> $(DEB_BUILDDIR)/configparms
 	echo "LDFLAGS = "		 	>> $(DEB_BUILDDIR)/configparms
 	echo "BASH := /bin/bash"		>> $(DEB_BUILDDIR)/configparms
@@ -76,6 +77,8 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 		--enable-profile \
 		--without-selinux \
 		--enable-stackguard-randomization \
+		--with-pkgversion="Debian EGLIBC $(DEB_VERSION)" \
+		--with-bugurl="http://www.debian.org/Bugs/"
 		--enable-multi-arch \
 		$(call xx,with_headers) $(call xx,extra_config_options))
 	touch $@
@@ -111,7 +114,7 @@ $(stamp)check_%: $(stamp)build_%
 	else \
 	  echo Testing $(curpass); \
 	  find $(DEB_BUILDDIR) -name '*.out' -exec rm {} ';' ; \
-	  LANG="" TIMEOUTFACTOR="50" $(MAKE) -C $(DEB_BUILDDIR) $(NJOBS) -k check 2>&1 | tee $(log_test); \
+	  LANG="" TIMEOUTFACTOR="50" $(MAKE) -C $(DEB_BUILDDIR) -k check 2>&1 | tee $(log_test); \
 	  chmod +x debian/testsuite-checking/convertlog.sh ; \
 	  debian/testsuite-checking/convertlog.sh $(log_test) | tee $(log_results) ; \
 	  if test -f $(log_expected) ; then \
@@ -173,3 +176,5 @@ $(stamp)source: $(stamp)patch
 		-f $(build-tree)/eglibc-$(EGLIBC_VERSION).tar.xz \
 		$(EGLIBC_SOURCES)
 	touch $@
+
+.NOTPARALLEL: $(patsubst %,check_%,$(EGLIBC_PASSES))

@@ -1,6 +1,3 @@
-CC = gcc-4.3
-CXX = g++-4.3
-
 # This is for the GNU OS.  Commonly known as the Hurd.
 
 EGLIBC_OVERLAYS ?= $(shell ls glibc-linuxthreads* glibc-ports* glibc-libidn*)
@@ -24,6 +21,3 @@ libc_extra_config_options := $(extra_config_options)
 
 # Only use libidn as add-on.
 standard-add-ons = libidn
-
-# disabled because the testsuite is known to provoke build abortions.
-RUN_TESTSUITE = no

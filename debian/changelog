@@ -37,7 +37,6 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     debug/____longjmp_chk.S build on hurd-i386.
 
   [ Petr Salinger]
-  * kfreebsd/local-sysdeps.diff: update to revision 2941 (from glibc-bsd).
   * define __rtld_lock_initialize also in linuxthreads <bits/libc-lock.h>
     variant (enhance local-linuxthreads-weak.diff).
   * allow failure of tst-longjmp_chk.out on GNU/kFreeBSD
@@ -46,12 +45,127 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 18 Jan 2010 01:10:49 +0100
 
-eglibc (2.10.2-3) UNRELEASED; urgency=low
+eglibc (2.10.2-6) UNRELEASED; urgency=low
 
+  [ Aurelien Jarno ]
+  * kfreebsd/local-sysdeps.diff: update to revision 2957 (from glibc-bsd).
+  * Don't run the testsuite in parallel, as it sometimes causes some failures
+    in some tests.
+  * Add patches/any/cvs-malloc_info-init.diff to fix malloc_info() with no
+    malloc() done.  Closes: #562679.
+  * Add patches/sh4/submitted-set_fpscr.diff to add __set_fpscr() prototype.
+    Closes: #565369.
+  * debian/rules.d/build.mk: Add --with-pkgversion and --with-bugurl
+    arguments.
+
+  [ Samuel Thibault ]
+  * patches/hurd-i386/local-pthread.diff: New hurd-only patch to provide
+    LIBPTHREAD_SO and disable nscd.
+  * patches/hurd-i386/local-pthread_posix-option.diff: Tell glibc Makefiles that
+    we have a libpthread.
+  * testsuite-checking/expected-results-i486-linux-gnu-libc: Update results.
+  * patches/hurd-i386/submitted-posix_opt.h.diff: Update.
+  * patches/hurd-i386/submitted-sysvshm.diff: Resync.
+  * patches/hurd-i386/submitted-net.diff: New patch to factorize net/ files
+    between Linux and Hurd.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 23 Jan 2010 18:27:05 +0100
+
+eglibc (2.10.2-5) unstable; urgency=low
+
+  [ Petr Salinger]
+  * Update kfreebsd/local-no-SOCK_NONBLOCK.diff to cvs-resolv-* changes.
+    Move it into any/local-no-SOCK_NONBLOCK.diff, as it is used also on hurd.
+    Closes: #564008.
+
+  [ Samuel Thibault ]
+  * patches/hurd-i386/submitted-posix_opt.h.diff: New patch to update standard
+    macros in posix_opt.h.
+  * patches/hurd-i386/local-pthread_posix-option.diff: Refresh and update
+    standard macros in posix_opt.h.
+  * patches/hurd-i386/submitted-sysvshm.diff: Add standard macro _XOPEN_SHM in
+    posix_opt.h.
+  * patches/hurd-i386/local-tls-support.diff: Use kern_return_t instead of
+    error_t to avoid a dependency on a GNU-specific type.
+  * patches/hurd-i386/submitted-getcwd.diff: renamed to cvs-getcwd.diff since
+    merged upstream.
+  * patches/hurd-i386/submitted-setsid.diff: renamed to cvs-setsid.diff since
+    merged upstream.
+
+  [ Aurelien Jarno ]
+  * Fix sparc64 build.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 07 Jan 2010 20:57:49 +0100
+
+eglibc (2.10.2-4) unstable; urgency=low
+
+  [ Samuel Thibault ]
+  * testsuite-checking/expected-results-i486-linux-gnu-libc: Add
+    tst-atime.out failure.
+
+  [ Aurelien Jarno ]
+  * Also build a libc6-sparcv9b package on sparc64.
+  * Disable debian/patches/any/cvs-futimens.diff. Addresses: #563726,
+    #563754.
+  * Add debian/patches/localedata/locale-et_EE.diff to change weekday
+    and workday to Monday.  Closes: #563636.
+  * Add debian/patches/any/cvs-resolv-init.diff to fix mixing IPv4 and
+    IPv6 name server in resolv.conf.
+  * Add debian/patches/any/cvs-resolv-uninitialized.diff to fix an
+    uninitialized variable in resolv code.
+  * Add debian/patches/any/cvs-resolv-bindv6only.diff to not use
+    IPV4-mapped addresses in the resolver code.  Closes: #563552.
+  * Add debian/patches/any/cvs-resolv-edns0.diff to handle overly large
+    answer buffers in resolver.
+  * Add debian/patches/any/cvs-resolv-v6mapped.diff to fix lookup failure
+    with IPv6 mapping enabled and big answers.  Closes: #558984.
+  * Add debian/patches/any/submitted-nis-shadow.diff to remove encrypted
+    passwords from passwd entries, and add them in shadow entries.
+    Closes: #560333.
+
+  [ Petr Salinger]
+  * kfreebsd/local-sysdeps.diff: update to revision 2907 (from glibc-bsd).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 06 Jan 2010 22:18:19 +0100
+
+eglibc (2.10.2-3) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * Update from the latest SVN, branch eglibc-2_11:
+    - Remove any/cvs-malloc-check.diff (merged upstream).
   * debhelper.in/libc.postinst: also restart incron on upgrade.  Closes:
     #557801.
+  * debhelper.in/libc.postinst: restart the services instead of stopping
+    them and then starting them again.  Closes: #211784.
+  * Use gcc/g++-4.4 on hppa, hurd-i386, mips and mipsel.
+  * Mention EGLIBC in packages description.  Closes: #559121.
+  * Add support for sparc64 architecture.
+  * debian/sysdeps/mips.mk, debian/sysdeps/mipsel.mk: remove hack to support
+    buildds kernels now that they have been upgraded.
+  * debian/control.in/main: add a Homepage: pseudo header.  Closes: #561034.
+  * debian/local/manpages/gai.conf.5: fix a typo.  Closes: #560144.
+  * Replace debian/any/submitted-nis-not-configured.diff by upstream patch
+    debian/any/cvs-nis-not-configured.diff.
+  * Add debian/patches/any/local-ntp-update.diff to partially update the NTP
+    API, backported from upstream.  Closes: #559482.
+  * Add debian/patches/any/cvs-malloc_info-output.diff from upstream to fix
+    malloc_info() output.  Closes: #562678.
+  * Add debian/patches/any/cvs-futimens.diff from upstream to correctly handle
+    AT_FDCWD in futimens().
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 24 Nov 2009 16:09:58 +0100
+  [ Samuel Thibault ]
+  * testsuite-checking/expected-results-i486-linux-gnu-libc: Add hurd-i386
+    testsuite results.
+  * sysdeps/hurd.mk: Enable testsuite.
+  * patches/hurd-i386/submitted-getcwd.diff: Add patch to fix duplicate port
+    deallocation.
+  * patches/hurd-i386/submitted-setsid.diff: Add patch to fix bogus port
+    deallocation.
+
+  [ Petr Salinger]
+  * kfreebsd/local-sysdeps.diff: update to revision 2904 (from glibc-bsd).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 02 Jan 2010 13:07:44 +0100
 
 eglibc (2.10.2-2) unstable; urgency=low
 
@@ -97,7 +211,7 @@ eglibc (2.10.2-1) unstable; urgency=low
     patches/any/cvs-sched_h.diff.
   * Use gcc/g++-4.4 on sparc.
   * patches/any/submitted-nis-not-configured.diff: fix getaddrinfo() if
-    NIS is not configured.  Closes: #556600.
+    NIS is not configured. Fixes CVE-2010-0015.  Closes: #556600.
   * patches/any/submitted-getaddrinfo-nodata.diff: new patch from Michael
     Stone to fix getaddrinfo() if a plugin returns TRY_AGAIN or NO_DATA.
     Closes: #557596.
