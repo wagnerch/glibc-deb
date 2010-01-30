@@ -16,7 +16,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Update debian/patches/any/submitted-missing-etc-hosts.diff.
     - Update debian/patches/hppa/cvs-nptl-compat.diff.
     - Remove debian/patches/hurd-i386/cvs-termios-IXANY.patch (merged)
-    - Remove debian/patches/hurd-i386/submitted-readlinkat.diff (merged)
+    - Update debian/patches/hurd-i386/submitted-readlinkat.diff
     - Update debian/patches/localedata/first_weekday.diff
     - Remove debian/patches/locale/cvs-C-first_weekday.diff (merged)
     - Remove debian/patches/mips/local-lazy-eval.diff (obsolete)
