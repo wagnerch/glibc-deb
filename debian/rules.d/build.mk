@@ -79,7 +79,6 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 		--enable-stackguard-randomization \
 		--with-pkgversion="Debian EGLIBC $(DEB_VERSION)" \
 		--with-bugurl="http://www.debian.org/Bugs/" \
-		--enable-multi-arch \
 		$(call xx,with_headers) $(call xx,extra_config_options))
 	touch $@
 
