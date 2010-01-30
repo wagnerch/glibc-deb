@@ -28,6 +28,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Remove debian/patches/hppa/submitted-pie.diff (merged)
     - Remove debian/patches/any/cvs-ksm.diff (merged)
     - Remove debian/patches/any/cvs-sched_h.diff (merged)
+    - testsuite-checking/expected-results-ia64-linux-gnu-libc: update
 
   [ Aurelien Jarno ]
   * Enable multi-arch.
