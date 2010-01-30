@@ -107,7 +107,6 @@ hurd-i386/local-longjmp_chk.diff
 
 ia64/submitted-sysconf.diff
 ia64/submitted-libm.diff
-ia64/cvs-memchr.diff
 
 i386/local-biarch.diff
 i386/local-clone.diff

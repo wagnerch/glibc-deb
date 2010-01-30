@@ -21,6 +21,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Remove debian/patches/locale/cvs-C-first_weekday.diff (merged)
     - Remove debian/patches/mips/local-lazy-eval.diff (obsolete)
     - Remove debian/patches/ia64/submitted-siginfo.diff (merged)
+    - Remove debian/patches/ia64/cvs-memchr.diff (merged)
     - Remove debian/patches/s390/submitted-siginfo.diff (merged)
     - Remove debian/patches/any/cvs-malloc-check.diff (merged)
     - Remove debian/patches/hppa/submitted-sock_nonblock.diff (merged)
