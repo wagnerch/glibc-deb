@@ -37,6 +37,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     fix elf/ build on hurd-i386.
   * debian/patches/hurd-i386/local-longjmp_chk.diff: New patch to fix
     debug/____longjmp_chk.S build on hurd-i386.
+  * Update debian/patches/hurd-i386/local-pthread.diff.
 
   [ Petr Salinger]
   * define __rtld_lock_initialize also in linuxthreads <bits/libc-lock.h>
