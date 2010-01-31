@@ -1,0 +1,33 @@
+2010-01-20  Andreas Schwab  <schwab@redhat.com>
+
+	* sysdeps/unix/sysv/linux/s390/s390-32/____longjmp_chk.c
+	(CHECK_SP): Fix check for alternate stack.
+	* sysdeps/unix/sysv/linux/s390/s390-64/____longjmp_chk.c
+	(CHECK_SP): Likewise.
+
+diff --git a/sysdeps/unix/sysv/linux/s390/s390-32/____longjmp_chk.c b/sysdeps/unix/sysv/linux/s390/s390-32/____longjmp_chk.c
+index b28e587..f2c1518 100644
+--- a/sysdeps/unix/sysv/linux/s390/s390-32/____longjmp_chk.c
++++ b/sysdeps/unix/sysv/linux/s390/s390-32/____longjmp_chk.c
+@@ -46,7 +46,7 @@
+ 	    {								\
+ 	      if ((oss.ss_flags & SS_ONSTACK) == 0			\
+ 		  || ((uintptr_t) (oss.ss_sp + oss.ss_size) - new_sp	\
+-		      >= oss.ss_size))					\
++		      < oss.ss_size))					\
+ 		__fortify_fail ("longjmp causes uninitialized stack frame");\
+ 	    }								\
+ 	}								\
+diff --git a/sysdeps/unix/sysv/linux/s390/s390-64/____longjmp_chk.c b/sysdeps/unix/sysv/linux/s390/s390-64/____longjmp_chk.c
+index dcf58fb..261be25 100644
+--- a/sysdeps/unix/sysv/linux/s390/s390-64/____longjmp_chk.c
++++ b/sysdeps/unix/sysv/linux/s390/s390-64/____longjmp_chk.c
+@@ -46,7 +46,7 @@
+ 	    {								\
+ 	      if ((oss.ss_flags & SS_ONSTACK) == 0			\
+ 		  || ((uintptr_t) (oss.ss_sp + oss.ss_size) - new_sp	\
+-		      >= oss.ss_size))					\
++		      < oss.ss_size))					\
+ 		__fortify_fail ("longjmp causes uninitialized stack frame");\
+ 	    }								\
+ 	}								\

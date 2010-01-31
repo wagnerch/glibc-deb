@@ -32,6 +32,8 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
   * Enable multi-arch.
+  * Add debian/patches/s390/cvs-longjmp.diff from upstream to fix ____longjmp_chk
+    on s390 and s390x.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to
