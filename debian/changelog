@@ -29,6 +29,8 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Remove debian/patches/any/cvs-ksm.diff (merged)
     - Remove debian/patches/any/cvs-sched_h.diff (merged)
     - testsuite-checking/expected-results-ia64-linux-gnu-libc: update
+    - Update debian/patches/localedata/tailor-iso14651_t1.diff
+    - Add debian/patches/localedata/locale-hsb_DE.diff
 
   [ Aurelien Jarno ]
   * Enable multi-arch.

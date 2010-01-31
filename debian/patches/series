@@ -26,6 +26,7 @@ localedata/locale-ia.diff
 localedata/locale-zh_TW.diff
 localedata/locale-se_NO.diff
 localedata/tailor-iso14651_t1.diff
+localedata/locale-hsb_DE.diff
 localedata/tailor-iso14651_t1-common.diff
 localedata/fix-lang.diff
 localedata/fr_BE-first_weekday.diff
