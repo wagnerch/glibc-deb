@@ -31,6 +31,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - testsuite-checking/expected-results-ia64-linux-gnu-libc: update
     - Update debian/patches/localedata/tailor-iso14651_t1.diff
     - Add debian/patches/localedata/locale-hsb_DE.diff
+    - Update debian/patches/localedata/first_weekday.diff
 
   [ Aurelien Jarno ]
   * Enable multi-arch.
