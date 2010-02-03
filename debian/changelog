@@ -1,4 +1,4 @@
-eglibc (2.11-0exp1) UNRELEASED; urgency=low
+eglibc (2.11-0exp3) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream release.
@@ -32,6 +32,7 @@ eglibc (2.11-0exp1) UNRELEASED; urgency=low
     - Update debian/patches/localedata/tailor-iso14651_t1.diff
     - Add debian/patches/localedata/locale-hsb_DE.diff
     - Update debian/patches/localedata/first_weekday.diff
+    - Update debian/testsuite-checking/expected-results-sparc-linux-gnu-libc
 
   [ Aurelien Jarno ]
   * Enable multi-arch.
