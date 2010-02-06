@@ -34,6 +34,7 @@ eglibc (2.11-0exp3) UNRELEASED; urgency=low
     - Update debian/patches/localedata/first_weekday.diff
     - Update testsuite-checking/expected-results-sparc-linux-gnu-libc
     - Update testsuite-checking/expected-results-sparcv9b-linux-gnu-sparcv9b
+    - Remove debian/patches/any/cvs-nis-not-configured.diff (merged)
 
   [ Aurelien Jarno ]
   * Enable multi-arch.
