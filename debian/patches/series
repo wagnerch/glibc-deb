@@ -202,7 +202,7 @@ any/submitted-localedef-mmap.diff
 any/submitted-confname.h.diff
 any/submitted-missing-etc-hosts.diff
 any/submitted-bits-fcntl_h-at.diff
-any/submitted-nis-not-configured.diff
+any/cvs-nis-not-configured.diff
 any/submitted-getaddrinfo-nodata.diff
 any/submitted-gethostbyname3.diff
 any/local-no-SOCK_NONBLOCK.diff
