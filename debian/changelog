@@ -10,7 +10,12 @@ eglibc (2.11-0exp3) UNRELEASED; urgency=low
     - Remove debian/patches/alpha/submitted-procfs_h.diff (merged)
     - Remove debian/patches/any/cvs-broken-dns.diff (merged)
     - Remove debian/patches/any/cvs-getutmpx-compat.diff (merged)
+    - Remove debian/patches/any/cvs-malloc_info-output.diff (merged)
     - Remove debian/patches/any/cvs-nptl-init.diff (merged)
+    - Remove debian/patches/any/cvs-resolv-edns0.diff (merged)
+    - Remove debian/patches/any/cvs-resolv-init.diff (merged)
+    - Remove debian/patches/any/cvs-resolv-uninitialized.diff (merged)
+    - Remove debian/patches/any/cvs-resolv-v6mapped.diff (merged)
     - Remove debian/patches/any/local-dynamic-resolvconf.diff (merged)
     - Update debian/patches/any/local-libgcc-compat-main.diff
     - Remove debian/patches/any/submitted-getent-gshadow.diff (merged)
@@ -32,7 +37,6 @@ eglibc (2.11-0exp3) UNRELEASED; urgency=low
     - testsuite-checking/expected-results-ia64-linux-gnu-libc: update
     - Update debian/patches/localedata/tailor-iso14651_t1.diff
     - Add debian/patches/localedata/locale-hsb_DE.diff
-    - Update debian/patches/localedata/first_weekday.diff
     - Update testsuite-checking/expected-results-sparc-linux-gnu-libc
     - Update testsuite-checking/expected-results-sparcv9b-linux-gnu-sparcv9b
     - Remove debian/patches/any/cvs-nis-not-configured.diff (merged)
