@@ -1,7 +1,8 @@
 eglibc (2.11-0exp3) UNRELEASED; urgency=low
 
   [ Clint Adams ]
-  * New upstream release.
+  * New upstream release:
+    - Fixes a house of mind attack.  Closes: bug#568488.
     - Update debian/patches/all/local-pthread-manpages.diff
     - Remove debian/patches/alpha/submitted-getsysstats.diff (merged)
     - Remove debian/patches/alpha/submitted-includes.diff (merged)
