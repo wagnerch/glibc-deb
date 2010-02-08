@@ -1,7 +1,7 @@
-2010-02-08  Aurelien Jarno  <aurelien@aurel32.net>
+2009-12-02  Mike Frysinger <vapier@gentoo.org>
 
-	* sysdeps/unix/sysv/linux/alpha/nptl/timer_settime.c: fix
-	include path.
+	* sysdeps/unix/sysv/linux/alpha/nptl/timer_settime.c: Fix typo in
+	include timer_gettime.c -> timer_settime.c.
 
 --- a/ports/sysdeps/unix/sysv/linux/alpha/nptl/timer_settime.c
 +++ b/ports/sysdeps/unix/sysv/linux/alpha/nptl/timer_settime.c
