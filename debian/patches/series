@@ -53,6 +53,7 @@ alpha/submitted-rtld-fPIC.diff
 alpha/submitted-asm-memchr.diff
 alpha/submitted-sock_nonblock.diff
 alpha/local-fcntl_h.diff
+alpha/local-longjmp-chk.diff
 
 amd64/local-biarch.diff
 amd64/local-clone.diff
