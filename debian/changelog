@@ -48,7 +48,8 @@ eglibc (2.11-0exp5) UNRELEASED; urgency=low
     fix ____longjmp_chk on s390 and s390x.
   * Add debian/patches/kfreebsd/local-syscalls_2.11.patch to add chflags,
     fchflags, lchflags syscalls on GNU/kFreeBSD.
-  * Add debian/patches/alpha/local-longjmp-chk.diff to fix FTBFS on alpha.
+  * Add debian/patches/alpha/local-longjmp-chk.diff and
+    debian/patches/alpha/submitted-timer_settime.diff to fix FTBFS on alpha.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to
@@ -65,7 +66,7 @@ eglibc (2.11-0exp5) UNRELEASED; urgency=low
   * Add kfreebsd/local-dosavesse.diff, which does not work,
     so rather use also added kfreebsd/local-nosavesse.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 08 Feb 2010 19:25:18 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 08 Feb 2010 20:49:17 +0100
 
 eglibc (2.10.2-7) UNRELEASED; urgency=low
 

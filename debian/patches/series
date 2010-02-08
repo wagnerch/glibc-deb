@@ -52,6 +52,7 @@ alpha/submitted-PTR_MANGLE.diff
 alpha/submitted-rtld-fPIC.diff
 alpha/submitted-asm-memchr.diff
 alpha/submitted-sock_nonblock.diff
+alpha/submitted-timer_settime.diff
 alpha/local-fcntl_h.diff
 alpha/local-longjmp-chk.diff
 
