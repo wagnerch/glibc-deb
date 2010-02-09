@@ -60,6 +60,7 @@ eglibc (2.11-0exp5) UNRELEASED; urgency=low
   * Add debian/patches/mips/local-lowlevellock.diff to fix the testsuite
     on mips.
   * Reenable the testsuite on mips/mipsel build daemons.
+  * Add debian/patches/arm/local-atomic.diff to fix the testsuite on arm.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to
@@ -76,7 +77,7 @@ eglibc (2.11-0exp5) UNRELEASED; urgency=low
   * Add kfreebsd/local-dosavesse.diff, which does not work,
     so rather use also added kfreebsd/local-nosavesse.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 09 Feb 2010 19:18:26 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 09 Feb 2010 23:24:46 +0100
 
 eglibc (2.10.2-7) UNRELEASED; urgency=low
 
