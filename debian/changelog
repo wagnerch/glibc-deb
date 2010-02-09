@@ -41,6 +41,8 @@ eglibc (2.11-0exp5) UNRELEASED; urgency=low
     - Update testsuite-checking/expected-results-sparc-linux-gnu-libc
     - Update testsuite-checking/expected-results-sparcv9b-linux-gnu-sparcv9b
     - Remove debian/patches/any/cvs-nis-not-configured.diff (merged)
+    - Update debian/patches/hppa/local-stack-grows-up.diff from
+      Carlos O'Donell.
   * Add debian/patches/alpha/local-fcntl_h.diff.
 
   [ Aurelien Jarno ]
