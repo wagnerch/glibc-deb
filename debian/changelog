@@ -52,6 +52,8 @@ eglibc (2.11-0exp5) UNRELEASED; urgency=low
   * Add debian/patches/alpha/local-longjmp-chk.diff and
     debian/patches/alpha/cvs-timer_settime.diff to fix FTBFS on alpha, and
     debian/patches/alpha/local-lowlevellock.diff to fix the testsuite.
+  * Add debian/patches/mips/local-lowlevellock.diff to fix the testsuite
+    on mips.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to
@@ -68,7 +70,7 @@ eglibc (2.11-0exp5) UNRELEASED; urgency=low
   * Add kfreebsd/local-dosavesse.diff, which does not work,
     so rather use also added kfreebsd/local-nosavesse.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 08 Feb 2010 20:49:17 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 09 Feb 2010 09:36:51 +0100
 
 eglibc (2.10.2-7) UNRELEASED; urgency=low
 
