@@ -55,6 +55,7 @@ alpha/submitted-sock_nonblock.diff
 alpha/cvs-timer_settime.diff
 alpha/local-fcntl_h.diff
 alpha/local-longjmp-chk.diff
+alpha/local-lowlevellock.diff
 
 amd64/local-biarch.diff
 amd64/local-clone.diff
