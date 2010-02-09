@@ -3,10 +3,8 @@
 	* sysdeps/unix/sysv/linux/mips/nptl/lowlevellock.h: remove
 	useless include.
 
-diff --git a/sysdeps/unix/sysv/linux/mips/nptl/lowlevellock.h b/sysdeps/unix/sysv/linux/mips/nptl/lowlevellock.h
-index ab284df..a80f1e9 100644
---- a/sysdeps/unix/sysv/linux/mips/nptl/lowlevellock.h
-+++ b/sysdeps/unix/sysv/linux/mips/nptl/lowlevellock.h
+--- a/ports/sysdeps/unix/sysv/linux/mips/nptl/lowlevellock.h
++++ b/ports/sysdeps/unix/sysv/linux/mips/nptl/lowlevellock.h
 @@ -24,7 +24,6 @@
  #include <sys/param.h>
  #include <bits/pthreadtypes.h>

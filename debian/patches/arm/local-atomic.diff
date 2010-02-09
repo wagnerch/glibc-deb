@@ -2,8 +2,8 @@
 
 	* sysdeps/arm/bits/atomic.h: remove useless include.
 
---- a/sysdeps/arm/bits/atomic.h
-+++ b/sysdeps/arm/bits/atomic.h
+--- a/ports/sysdeps/arm/bits/atomic.h
++++ b/ports/sysdeps/arm/bits/atomic.h
 @@ -17,7 +17,6 @@
     02111-1307 USA.  */
  
