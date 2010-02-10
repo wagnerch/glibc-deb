@@ -44,9 +44,9 @@ eglibc (2.11-0exp5) UNRELEASED; urgency=low
     - Update debian/patches/hppa/local-stack-grows-up.diff from
       Carlos O'Donell.
   * Add debian/patches/alpha/local-fcntl_h.diff.
-  * Add debian/patches/hppa/ELF_MACHINE_BEFORE_RTLD_RELOC.diff from
+  * Add debian/patches/hppa/local-ELF_MACHINE_BEFORE_RTLD_RELOC.diff from
     Carlos O'Donell.
-  * Add debian/patches/hppa/_dl_fptr_init.diff from Carlos O'Donnell.
+  * Add debian/patches/hppa/local-_dl_fptr_init.diff from Carlos O'Donnell.
 
   [ Aurelien Jarno ]
   * Enable multi-arch.
