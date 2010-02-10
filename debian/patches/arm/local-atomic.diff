@@ -1,9 +1,10 @@
 2010-02-09  Aurelien Jarno  <aurelien@aurel32.net>
 
-	* sysdeps/arm/bits/atomic.h: remove useless include.
+	* sysdeps/unix/sysv/linux/arm/nptl/bits/atomic.h: remove useless
+	include.
 
---- a/ports/sysdeps/arm/bits/atomic.h
-+++ b/ports/sysdeps/arm/bits/atomic.h
+--- a/ports/sysdeps/unix/sysv/linux/arm/nptl/bits/atomic.h
++++ b/ports/sysdeps/unix/sysv/linux/arm/nptl/bits/atomic.h
 @@ -17,7 +17,6 @@
     02111-1307 USA.  */
  
