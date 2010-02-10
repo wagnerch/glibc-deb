@@ -76,8 +76,8 @@ hppa/submitted-lt.diff
 hppa/submitted-nptl-carlos.diff
 hppa/cvs-nptl-compat.diff
 hppa/local-stack-grows-up.diff
-hppa/_dl_fptr_init.diff
-hppa/ELF_MACHINE_BEFORE_RTLD_RELOC.diff
+hppa/local-_dl_fptr_init.diff
+hppa/local-ELF_MACHINE_BEFORE_RTLD_RELOC.diff
 hppa/local-longjmp-chk.diff
 
 hurd-i386/local-dl-dynamic-weak.diff
