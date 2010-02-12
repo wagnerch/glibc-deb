@@ -4,10 +4,12 @@
 # Format: <Failed test>, Error <Make error code> [(ignored)]
 #
 annexc.out, Error 1 (ignored)
+check-execstack.out, Error 1
 check-localplt.out, Error 1
 check-textrel.out, Error 1
 tst-addr1.out, Error 1
 tst-audit2.out, Error 139
+tst-backtrace2.out, Error 1
 tst-cancelx20.out, Error 1
 tst-cancelx21.out, Error 1
 tst-cancelx4.out, Error 1
