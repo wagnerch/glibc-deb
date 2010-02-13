@@ -4,6 +4,7 @@ eglibc (2.11-0exp5) UNRELEASED; urgency=low
   * New upstream release:
     - Fixes a house of mind attack.  Closes: bug#568488.
     - Add the fallocate64() syscall.  Closes: bug#568924.
+    - Add RES_USE_DNSSEC support.  Closes: bug#569592.
     - Update debian/patches/all/local-pthread-manpages.diff
     - Remove debian/patches/alpha/submitted-getsysstats.diff (merged)
     - Remove debian/patches/alpha/submitted-includes.diff (merged)
