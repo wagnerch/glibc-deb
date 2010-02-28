@@ -44,6 +44,7 @@ eglibc (2.11-0exp6) UNRELEASED; urgency=low
     - Remove debian/patches/any/cvs-nis-not-configured.diff (merged)
     - Update debian/patches/hppa/local-stack-grows-up.diff from
       Carlos O'Donell.
+    - Update debian/patches/hurd-i386/cvs-setsid.diff.
   * Add debian/patches/alpha/local-fcntl_h.diff.
   * Add debian/patches/hppa/local-ELF_MACHINE_BEFORE_RTLD_RELOC.diff from
     Carlos O'Donell.
@@ -81,7 +82,7 @@ eglibc (2.11-0exp6) UNRELEASED; urgency=low
   * Add kfreebsd/local-dosavesse.diff, which does not work,
     so rather use also added kfreebsd/local-nosavesse.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 11 Feb 2010 14:57:51 +0100
+ -- Clint Adams <schizo@debian.org>  Sun, 28 Feb 2010 13:58:17 -0500
 
 eglibc (2.10.2-7) UNRELEASED; urgency=low
 
