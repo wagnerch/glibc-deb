@@ -149,7 +149,8 @@ sh4/submitted-set_fpscr.diff
 sparc/local-fork.diff
 sparc/local-sparcv9-target.diff
 sparc/submitted-timing.diff
-sparc/local-sparcv9-memchr.diff
+sparc/cvs-sparcv9-memchr.diff
+sparc/submitted-msgrcv.diff
 
 all/local-alias-UTF-8.diff
 all/local-alias-et_EE.diff
@@ -224,3 +225,6 @@ any/local-no-SOCK_NONBLOCK.diff
 any/cvs-malloc_info-init.diff
 any/submitted-stack-guard-quick-randomization.diff
 any/submitted-leading-zero-stack-guard.diff
+any/submitted-stat-issock.diff
+any/submitted-remove.diff
+any/submitted-nptl-invalid-td.patch
