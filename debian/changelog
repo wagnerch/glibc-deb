@@ -1,4 +1,4 @@
-eglibc (2.11-0exp6) UNRELEASED; urgency=low
+eglibc (2.11-0exp8) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream release:
@@ -61,7 +61,7 @@ eglibc (2.11-0exp6) UNRELEASED; urgency=low
     debian/patches/alpha/local-lowlevellock.diff to fix the testsuite.
   * Add debian/patches/mips/local-lowlevellock.diff to fix the testsuite
     on mips.
-  * Reenable the testsuite on mips/mipsel build daemons.
+  * Re-enable the testsuite on mips/mipsel build daemons.
   * Add debian/patches/arm/local-atomic.diff to fix the testsuite on arm.
   * Add debian/patches/hppa/local-longjmp-chk.diff to fix FTBFS on hppa.
   * Add debian/patches/hppa/local-lowlevellock.diff to fix the testsuite
