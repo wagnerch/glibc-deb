@@ -81,6 +81,8 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
     the getaddrinfo loop on the first successful.
   * Add debian/patches/any/cvs-umount-nofollow.diff from upstream to define
     UMOUNT_NOFOLLOW.
+  * Add debian/patches/any/cvs-glob.diff from upstream to fix glob() with empty
+    pattern.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to
@@ -97,7 +99,7 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
   * Add kfreebsd/local-dosavesse.diff, which does not work,
     so rather use also added kfreebsd/local-nosavesse.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 24 May 2010 18:53:06 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 24 May 2010 19:00:25 +0200
 
 eglibc (2.10.2-9) unstable; urgency=low
 
