@@ -76,6 +76,7 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
     makecontext() on s390.
   * Replace debian/patches/submitted/cvs-stat-issock.diff by the upstream patch
     debian/patches/any/cvs-stat-issock.diff.
+  * Explictely call /sbin/start-stop-daemon in nscd.init.  Closes: bug#575404.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to
@@ -92,7 +93,7 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
   * Add kfreebsd/local-dosavesse.diff, which does not work,
     so rather use also added kfreebsd/local-nosavesse.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 24 May 2010 17:30:33 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 24 May 2010 18:45:18 +0200
 
 eglibc (2.10.2-9) unstable; urgency=low
 
