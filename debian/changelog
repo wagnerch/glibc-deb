@@ -77,6 +77,8 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
   * Replace debian/patches/submitted/cvs-stat-issock.diff by the upstream patch
     debian/patches/any/cvs-stat-issock.diff.
   * Explictely call /sbin/start-stop-daemon in nscd.init.  Closes: bug#575404.
+  * Add debian/patches/any/cvs-getaddrinfo.diff from upstream to not abort
+    the getaddrinfo loop on the first successful.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to
