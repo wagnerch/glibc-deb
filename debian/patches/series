@@ -215,7 +215,6 @@ any/submitted-etc-resolv.conf.diff
 any/submitted-localedef-mmap.diff
 any/submitted-missing-etc-hosts.diff
 any/submitted-bits-fcntl_h-at.diff
-any/submitted-gethostbyname3.diff
 any/local-ntp-update.diff
 #any/cvs-futimens.diff
 any/cvs-resolv-bindv6only.diff

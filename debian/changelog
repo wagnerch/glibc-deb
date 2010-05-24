@@ -26,8 +26,9 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
     - Update debian/patches/any/local-libgcc-compat-main.diff
     - Remove debian/patches/any/submitted-confname.h.diff (merged)
     - Remove debian/patches/any/submitted-getent-gshadow.diff (merged)
-    - Update debian/patches/any/submitted-missing-etc-hosts.diff.
     - Remove debian/patches/any/submitted-getaddrinfo-nodata.diff (merged)
+    - Remove debian/patches/any/submitted-gethostbyname3.diff (merged)
+    - Update debian/patches/any/submitted-missing-etc-hosts.diff.
     - Remove debian/patches/arm/cvs-setjmp-longjmp-fpu.diff (merged)
     - Update debian/patches/hppa/cvs-nptl-compat.diff.
     - Update debian/patches/hppa/local-stack-grows-up.diff from
