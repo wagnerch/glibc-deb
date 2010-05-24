@@ -1,4 +1,4 @@
-svn-updates.diff
+#svn-updates.diff
 
 locale/check-unknown-symbols.diff
 locale/fix-LC_COLLATE-rules.diff
@@ -122,7 +122,6 @@ hurd-i386/local-locarchive.diff
 
 ia64/submitted-sysconf.diff
 ia64/submitted-libm.diff
-ia64/submitted-memchr.diff
 
 i386/local-biarch.diff
 i386/local-clone.diff
@@ -143,7 +142,6 @@ mips/local-r10k.diff
 mips/submitted-rld_map.diff
 
 s390/submitted-nexttowardf.diff
-s390/cvs-longjmp.diff
 
 sh4/local-fpscr_values.diff
 sh4/submitted-set_fpscr.diff
@@ -215,10 +213,8 @@ any/submitted-autotools.diff
 any/submitted-accept4-hidden.diff
 any/submitted-etc-resolv.conf.diff
 any/submitted-localedef-mmap.diff
-any/submitted-confname.h.diff
 any/submitted-missing-etc-hosts.diff
 any/submitted-bits-fcntl_h-at.diff
-any/submitted-getaddrinfo-nodata.diff
 any/submitted-gethostbyname3.diff
 any/local-ntp-update.diff
 #any/cvs-futimens.diff

@@ -1,10 +1,11 @@
-eglibc (2.11-0exp8) UNRELEASED; urgency=low
+eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream release:
     - Fixes a house of mind attack.  Closes: bug#568488.
     - Add the fallocate64() syscall.  Closes: bug#568924.
     - Add RES_USE_DNSSEC support.  Closes: bug#569592.
+    - Don't abort in getifaddrs.  Closes: bug#582383.
     - Update debian/patches/all/local-pthread-manpages.diff
     - Remove debian/patches/alpha/submitted-getsysstats.diff (merged)
     - Remove debian/patches/alpha/submitted-includes.diff (merged)
@@ -23,8 +24,10 @@ eglibc (2.11-0exp8) UNRELEASED; urgency=low
     - Remove debian/patches/any/cvs-sched_h.diff (merged)
     - Remove debian/patches/any/local-dynamic-resolvconf.diff (merged)
     - Update debian/patches/any/local-libgcc-compat-main.diff
+    - Remove debian/patches/any/submitted-confname.h.diff (merged)
     - Remove debian/patches/any/submitted-getent-gshadow.diff (merged)
     - Update debian/patches/any/submitted-missing-etc-hosts.diff.
+    - Remove debian/patches/any/submitted-getaddrinfo-nodata.diff (merged)
     - Remove debian/patches/arm/cvs-setjmp-longjmp-fpu.diff (merged)
     - Update debian/patches/hppa/cvs-nptl-compat.diff.
     - Update debian/patches/hppa/local-stack-grows-up.diff from
@@ -35,8 +38,9 @@ eglibc (2.11-0exp8) UNRELEASED; urgency=low
     - Remove debian/patches/hurd-i386/cvs-termios-IXANY.patch (merged)
     - Remove debian/patches/hurd-i386/submitted-getnprocs.diff (merged)
     - Update debian/patches/hurd-i386/submitted-readlinkat.diff
-    - Remove debian/patches/ia64/submitted-siginfo.diff (merged)
     - Remove debian/patches/ia64/cvs-memchr.diff (merged)
+    - Remove debian/patches/ia64/submitted-memchr.diff (merged)
+    - Remove debian/patches/ia64/submitted-siginfo.diff (merged)
     - Remove debian/patches/locale/cvs-C-first_weekday.diff (merged)
     - Update debian/patches/localedata/first_weekday.diff
     - Update debian/patches/localedata/tailor-iso14651_t1.diff
@@ -54,8 +58,6 @@ eglibc (2.11-0exp8) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
   * Enable multi-arch.
-  * Add debian/patches/s390/cvs-longjmp.diff from upstream to
-    fix ____longjmp_chk on s390 and s390x.
   * Add debian/patches/kfreebsd/local-syscalls_2.11.patch to add the
     lchflag syscalls on GNU/kFreeBSD.
   * Add debian/patches/alpha/local-longjmp-chk.diff and
@@ -85,7 +87,7 @@ eglibc (2.11-0exp8) UNRELEASED; urgency=low
   * Add kfreebsd/local-dosavesse.diff, which does not work,
     so rather use also added kfreebsd/local-nosavesse.diff
 
- -- Clint Adams <schizo@debian.org>  Sun, 28 Feb 2010 13:58:17 -0500
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 24 May 2010 17:30:33 +0200
 
 eglibc (2.10.2-9) unstable; urgency=low
 
