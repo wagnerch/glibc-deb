@@ -72,6 +72,10 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
   * Add debian/patches/hppa/local-longjmp-chk.diff to fix FTBFS on hppa.
   * Add debian/patches/hppa/local-lowlevellock.diff to fix the testsuite
     on hppa.
+  * Add debian/patches/s390/cvs-makecontext.diff from upstream to fix 
+    makecontext() on s390.
+  * Replace debian/patches/submitted/cvs-stat-issock.diff by the upstream patch
+    debian/patches/any/cvs-stat-issock.diff.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to

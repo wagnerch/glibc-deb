@@ -141,6 +141,7 @@ mips/local-lowlevellock.diff
 mips/local-r10k.diff
 mips/submitted-rld_map.diff
 
+s390/cvs-makecontext.diff
 s390/submitted-nexttowardf.diff
 
 sh4/local-fpscr_values.diff
@@ -223,7 +224,7 @@ any/local-no-SOCK_NONBLOCK.diff
 any/cvs-malloc_info-init.diff
 any/submitted-stack-guard-quick-randomization.diff
 any/submitted-leading-zero-stack-guard.diff
-any/submitted-stat-issock.diff
+any/cvs-stat-issock.diff
 any/cvs-remove.diff
 any/submitted-nptl-invalid-td.patch
 any/local-gai-rfc1918-scope-global.patch
