@@ -12,43 +12,45 @@ eglibc (2.11-0exp8) UNRELEASED; urgency=low
     - Remove debian/patches/alpha/submitted-procfs_h.diff (merged)
     - Remove debian/patches/any/cvs-broken-dns.diff (merged)
     - Remove debian/patches/any/cvs-getutmpx-compat.diff (merged)
+    - Remove debian/patches/any/cvs-ksm.diff (merged)
     - Remove debian/patches/any/cvs-malloc_info-output.diff (merged)
+    - Remove debian/patches/any/cvs-nis-not-configured.diff (merged)
     - Remove debian/patches/any/cvs-nptl-init.diff (merged)
     - Remove debian/patches/any/cvs-resolv-edns0.diff (merged)
     - Remove debian/patches/any/cvs-resolv-init.diff (merged)
     - Remove debian/patches/any/cvs-resolv-uninitialized.diff (merged)
     - Remove debian/patches/any/cvs-resolv-v6mapped.diff (merged)
+    - Remove debian/patches/any/cvs-sched_h.diff (merged)
     - Remove debian/patches/any/local-dynamic-resolvconf.diff (merged)
     - Update debian/patches/any/local-libgcc-compat-main.diff
     - Remove debian/patches/any/submitted-getent-gshadow.diff (merged)
     - Update debian/patches/any/submitted-missing-etc-hosts.diff.
+    - Remove debian/patches/arm/cvs-setjmp-longjmp-fpu.diff (merged)
     - Update debian/patches/hppa/cvs-nptl-compat.diff.
-    - Remove debian/patches/hurd-i386/cvs-termios-IXANY.patch (merged)
-    - Update debian/patches/hurd-i386/submitted-readlinkat.diff
-    - Update debian/patches/localedata/first_weekday.diff
-    - Remove debian/patches/locale/cvs-C-first_weekday.diff (merged)
-    - Remove debian/patches/mips/local-lazy-eval.diff (obsolete)
-    - Remove debian/patches/ia64/submitted-siginfo.diff (merged)
-    - Remove debian/patches/ia64/cvs-memchr.diff (merged)
-    - Remove debian/patches/s390/submitted-siginfo.diff (merged)
-    - Remove debian/patches/any/cvs-malloc-check.diff (merged)
-    - Remove debian/patches/hppa/submitted-sock_nonblock.diff (merged)
-    - Remove debian/patches/hppa/submitted-pie.diff (merged)
-    - Remove debian/patches/any/cvs-ksm.diff (merged)
-    - Remove debian/patches/any/cvs-sched_h.diff (merged)
-    - testsuite-checking/expected-results-ia64-linux-gnu-libc: update
-    - Update debian/patches/localedata/tailor-iso14651_t1.diff
-    - Add debian/patches/localedata/locale-hsb_DE.diff
-    - Update testsuite-checking/expected-results-sparc-linux-gnu-libc
-    - Update testsuite-checking/expected-results-sparcv9b-linux-gnu-sparcv9b
-    - Remove debian/patches/any/cvs-nis-not-configured.diff (merged)
     - Update debian/patches/hppa/local-stack-grows-up.diff from
       Carlos O'Donell.
+    - Remove debian/patches/hppa/submitted-pie.diff (merged)
+    - Remove debian/patches/hppa/submitted-sock_nonblock.diff (merged)
     - Update debian/patches/hurd-i386/cvs-setsid.diff.
+    - Remove debian/patches/hurd-i386/cvs-termios-IXANY.patch (merged)
+    - Remove debian/patches/hurd-i386/submitted-getnprocs.diff (merged)
+    - Update debian/patches/hurd-i386/submitted-readlinkat.diff
+    - Remove debian/patches/ia64/submitted-siginfo.diff (merged)
+    - Remove debian/patches/ia64/cvs-memchr.diff (merged)
+    - Remove debian/patches/locale/cvs-C-first_weekday.diff (merged)
+    - Update debian/patches/localedata/first_weekday.diff
+    - Update debian/patches/localedata/tailor-iso14651_t1.diff
+    - Remove debian/patches/mips/local-lazy-eval.diff (obsolete)
+    - Remove debian/patches/s390/submitted-siginfo.diff (merged)
+    - testsuite-checking/expected-results-ia64-linux-gnu-libc: update
+    - Update testsuite-checking/expected-results-sparc-linux-gnu-libc
+    - Update testsuite-checking/expected-results-sparcv9b-linux-gnu-sparcv9b
+
   * Add debian/patches/alpha/local-fcntl_h.diff.
   * Add debian/patches/hppa/local-ELF_MACHINE_BEFORE_RTLD_RELOC.diff from
     Carlos O'Donell.
   * Add debian/patches/hppa/local-_dl_fptr_init.diff from Carlos O'Donnell.
+  * Add debian/patches/localedata/locale-hsb_DE.diff
 
   [ Aurelien Jarno ]
   * Enable multi-arch.
@@ -62,7 +64,8 @@ eglibc (2.11-0exp8) UNRELEASED; urgency=low
   * Add debian/patches/mips/local-lowlevellock.diff to fix the testsuite
     on mips.
   * Re-enable the testsuite on mips/mipsel build daemons.
-  * Add debian/patches/arm/local-atomic.diff to fix the testsuite on arm.
+  * Add debian/patches/arm/local-atomic.diff and 
+    debian/patches/arm/local-lowlevellock.diff to fix the testsuite on arm.
   * Add debian/patches/hppa/local-longjmp-chk.diff to fix FTBFS on hppa.
   * Add debian/patches/hppa/local-lowlevellock.diff to fix the testsuite
     on hppa.
@@ -84,7 +87,30 @@ eglibc (2.11-0exp8) UNRELEASED; urgency=low
 
  -- Clint Adams <schizo@debian.org>  Sun, 28 Feb 2010 13:58:17 -0500
 
-eglibc (2.10.2-8) UNSTABLE; urgency=low
+eglibc (2.10.2-9) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * Add powerpcspe port support. Closes: #579778.
+
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: update to revision 3038 (from glibc-bsd).
+    Closes: #581545. 
+
+  [ Aurelien Jarno ]
+  * debian/control.in/libc: don't make libc0.1/0.3/6/6.1 depends on 
+    ${misc:Depends} as suggested by lintian, as it is turned out into a 
+    debconf depends.  Closes: #581835.
+  * debian/debhelper.in/nscd.init: stop supporting the reload argument.
+    Closes: #578870.
+  * debian/script.in/nsscheck.sh: correctly detect stopped and running 
+    services. Closes: #573247, #575868.
+  * debian/patches/mips/submitted-rld_map.diff: don't segfault for MIPS
+    binaries with RLD_MAP set to 0. Closes: #579917.
+  * Add debian/source/format and debian/source/lintian-overrides files.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 20 May 2010 12:09:58 +0200
+
+eglibc (2.10.2-8) unstable; urgency=low
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 3036 (from glibc-bsd).
@@ -92,6 +118,8 @@ eglibc (2.10.2-8) UNSTABLE; urgency=low
   [ Clint Adams ]
   * Spanish debconf translation update from Omar Campagne Polaino.
     closes: #579351.
+  * Add patches/arm/cvs-setjmp-longjmp-fpu.diff.  closes: #580529
+    ("setjmp/longjmp broken on ARM w/ FPU").
 
  -- Clint Adams <schizo@debian.org>  Tue, 27 Apr 2010 20:33:40 -0400
 
