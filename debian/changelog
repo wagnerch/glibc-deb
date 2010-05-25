@@ -42,6 +42,7 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
     - Remove debian/patches/ia64/cvs-memchr.diff (merged)
     - Remove debian/patches/ia64/submitted-memchr.diff (merged)
     - Remove debian/patches/ia64/submitted-siginfo.diff (merged)
+    - Update debian/patches/kfreebsd/local-readdir_r.diff.
     - Remove debian/patches/locale/cvs-C-first_weekday.diff (merged)
     - Update debian/patches/localedata/first_weekday.diff
     - Update debian/patches/localedata/tailor-iso14651_t1.diff
