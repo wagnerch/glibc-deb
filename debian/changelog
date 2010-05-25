@@ -83,6 +83,8 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
     UMOUNT_NOFOLLOW.
   * Add debian/patches/any/cvs-glob.diff from upstream to fix glob() with empty
     pattern.
+  * Add debian/patches/submitted-tst-audit6-avx.diff to skip AVX tests if if
+    AVX is not available.
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to
