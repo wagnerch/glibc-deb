@@ -1,4 +1,4 @@
-eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
+eglibc (2.11.1-0exp9) UNRELEASED; urgency=low
 
   [ Clint Adams ]
   * New upstream release:
@@ -107,7 +107,7 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
   * Add kfreebsd/local-dosavesse.diff, which does not work,
     so rather use also added kfreebsd/local-nosavesse.diff
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 24 May 2010 19:00:25 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 26 May 2010 20:28:26 +0200
 
 eglibc (2.10.2-9) unstable; urgency=low
 
