@@ -53,9 +53,7 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
     - Update testsuite-checking/expected-results-sparcv9b-linux-gnu-sparcv9b
 
   * Add debian/patches/alpha/local-fcntl_h.diff.
-  * Add debian/patches/hppa/local-ELF_MACHINE_BEFORE_RTLD_RELOC.diff from
-    Carlos O'Donell.
-  * Add debian/patches/hppa/local-_dl_fptr_init.diff from Carlos O'Donnell.
+  * Add debian/patches/hppa/local-dlfptr.diff from Carlos O'Donnell.
   * Add debian/patches/localedata/locale-hsb_DE.diff
 
   [ Aurelien Jarno ]

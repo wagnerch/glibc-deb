@@ -1,5 +1,5 @@
 diff --git a/elf/dl-fptr.c b/elf/dl-fptr.c
-index e068124..036e9d6 100644
+index e068124..0853894 100644
 --- a/elf/dl-fptr.c
 +++ b/elf/dl-fptr.c
 @@ -1,5 +1,5 @@
@@ -9,17 +9,20 @@ index e068124..036e9d6 100644
     This file is part of the GNU C Library.
  
     The GNU C Library is free software; you can redistribute it and/or
-@@ -56,7 +56,8 @@ static struct local
+@@ -56,7 +56,12 @@ static struct local
    }
  local =
    {
--    .root = &local.boot_table,
++#ifndef SHARED
+     .root = &local.boot_table,
++#else
 +    /* Address of .boot_table is not known until runtime.  */
 +    .root = 0,
++#endif
      .npages = 2,
      .boot_table =
        {
-@@ -93,6 +94,17 @@ new_fdesc_table (struct local *l, size_t *size)
+@@ -93,6 +98,17 @@ new_fdesc_table (struct local *l, size_t *size)
    return new_table;
  }
  
@@ -51,3 +54,17 @@ index d47fb7b..b957fbb 100644
  extern ElfW(Addr) _dl_make_fptr (struct link_map *, const ElfW(Sym) *,
  				 ElfW(Addr));
  
+diff --git a/sysdeps/hppa/dl-machine.h b/sysdeps/hppa/dl-machine.h
+index e462fd3..ae4b6c1 100644
+--- a/ports/sysdeps/hppa/dl-machine.h
++++ b/ports/sysdeps/hppa/dl-machine.h
+@@ -64,7 +64,8 @@ __hppa_init_bootstrap_fdesc_table (struct link_map *map)
+ }
+ 
+ #define ELF_MACHINE_BEFORE_RTLD_RELOC(dynamic_info)		\
+-	__hppa_init_bootstrap_fdesc_table (&bootstrap_map);
++	__hppa_init_bootstrap_fdesc_table (&bootstrap_map);	\
++	_dl_fptr_init();
+ 
+ /* Return nonzero iff ELF header is compatible with the running host.  */
+ static inline int
