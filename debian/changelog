@@ -84,6 +84,9 @@ eglibc (2.11.1-0exp8) UNRELEASED; urgency=low
     pattern.
   * Add debian/patches/submitted-tst-audit6-avx.diff to skip AVX tests if if
     AVX is not available.
+  * Allow failures of the testsuite on HPPA until bugs are fixed:
+    - tstdiomisc.out (due to bug #582787 on gcc-4.4)
+    - tst-fork1.out (due to bug #561203 on linux-2.6)
 
   [ Samuel Thibault ]
   * debian/patches/hurd-i386/submitted-rtld_lock_recursive.diff: New patch to

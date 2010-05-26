@@ -24,3 +24,9 @@ tst-longjmp_chk.out, Error 1
 tst-mqueue3.out, Error 1
 tst-timer4.out, Error 1
 tst-timer5.out, Error 1
+
+# Should be removed when bug #582787 is fixed
+tstdiomisc.out, Error 1
+
+# Should be removed when bug #561203 is fixed
+tst-fork1.out, Error 139
