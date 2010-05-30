@@ -12,7 +12,7 @@
  linuxthreads/man/pthread_join.man                  |   64 +++++-----
  linuxthreads/man/pthread_key_create.man            |   62 ++++-----
  linuxthreads/man/pthread_kill_other_threads_np.man |   22 +--
- linuxthreads/man/pthread_mutex_init.man            |   92 +++++++-------
+ linuxthreads/man/pthread_mutex_init.man            |   94 +++++++-------
  linuxthreads/man/pthread_mutexattr_init.man        |   62 ++++-----
  linuxthreads/man/pthread_mutexattr_setkind_np.man  |   20 +--
  linuxthreads/man/pthread_once.man                  |   18 +-
@@ -20,7 +20,7 @@
  linuxthreads/man/pthread_setschedparam.man         |   62 ++++-----
  linuxthreads/man/pthread_sigmask.man               |   86 ++++++-------
  linuxthreads/man/sem_init.man                      |   88 +++++++-------
- 21 files changed, 568 insertions(+), 571 deletions(-)
+ 21 files changed, 569 insertions(+), 572 deletions(-)
 
 --- a/linuxthreads/man/pthread_atfork.man
 +++ b/linuxthreads/man/pthread_atfork.man
@@ -1444,7 +1444,8 @@
 +If \fImutexattr\fP is \fBNULL\fP, default attributes are used instead.
  
  The LinuxThreads implementation supports only one mutex attributes,
- the |mutex kind|, which is either ``fast'', ``recursive'', or
+-the |mutex kind|, which is either ``fast'', ``recursive'', or
++the \fImutex kind\fP, which is either ``fast'', ``recursive'', or
  ``error checking''. The kind of a mutex determines whether
  it can be locked again by a thread that already owns it.
 -The default kind is ``fast''. See !pthread_mutexattr_init!(3) for more
@@ -1508,16 +1509,16 @@
  the calling thread), and only when this count reaches zero is the
  mutex actually unlocked.
  
--On ``error checking'' mutexes, !pthread_mutex_unlock! actually checks
-+On ``error checking'' mutexes, \fBpthread_mutex_unlock\fP actually checks
- at run-time that the mutex is locked on entrance, and that it was
--locked by the same thread that is now calling !pthread_mutex_unlock!.
-+locked by the same thread that is now calling \fBpthread_mutex_unlock\fP.
- If these conditions are not met, an error code is returned and the
- mutex remains unchanged.  ``Fast'' and ``recursive'' mutexes perform
- no such checks, thus allowing a locked mutex to be unlocked by a
- thread other than its owner. This is non-portable behavior and must
- not be relied upon.
+ On ``error checking'' and ``recursive'' mutexes,
+-!pthread_mutex_unlock! actually checks at run-time that the mutex is
++\fBpthread_mutex_unlock\fP actually checks at run-time that the mutex is
+ locked on entrance, and that it was locked by the same thread that is
+-now calling !pthread_mutex_unlock!.  If these conditions are not met,
++now calling \fBpthread_mutex_unlock\fP.  If these conditions are not met,
+ an error code is returned and the mutex remains unchanged.  ``Fast''
+ mutexes perform no such checks, thus allowing a locked mutex to be
+ unlocked by a thread other than its owner. This is non-portable behavior
+ and must not be relied upon.
  
 -!pthread_mutex_destroy! destroys a mutex object, freeing the resources
 +\fBpthread_mutex_destroy\fP destroys a mutex object, freeing the resources
