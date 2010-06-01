@@ -103,7 +103,7 @@
 @@ -9,6 +9,11 @@
  # On i686 we must avoid generating the trampoline functions generated
  # to get the GOT pointer.
- CFLAGS-initfini.s += -march=i386 -mtune=i386
+ CFLAGS-initfini.s += -march=i386 -mtune=i386 -fno-asynchronous-unwind-tables -fno-unwind-tables
 +ifeq (yes,$(build-shared))
 +# Compatibility
 +sysdep_routines += libgcc-compat
@@ -111,7 +111,7 @@
 +endif
  endif
  
- ifeq ($(subdir),gmon)
+ ifeq ($(subdir),nptl)
 --- a/sysdeps/i386/Versions
 +++ b/sysdeps/i386/Versions
 @@ -2,6 +2,9 @@
