@@ -1,3 +1,10 @@
+glibc (2.7-18lenny3) UNRELEASED; urgency=low
+
+  * patches/any/cvs-mntent.diff: fix mntent newline processing error 
+    (CVE-2010-0296).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 03 Jun 2010 09:32:40 +0200
+
 glibc (2.7-18lenny2) stable-security; urgency=low
 
   * Fix NIS shadow entries leakage to non-priviledge users when nscd is
