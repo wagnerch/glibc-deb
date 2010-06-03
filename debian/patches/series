@@ -234,3 +234,4 @@ any/submitted-user_h.diff -p1
 any/cvs-realloc.diff -p1
 any/submitted-nis-shadow.diff -p1
 any/cvs-mntent.diff -p1
+any/cvs-ld-elf.diff -p1

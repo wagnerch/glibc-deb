@@ -2,6 +2,8 @@ glibc (2.7-18lenny3) UNRELEASED; urgency=low
 
   * patches/any/cvs-mntent.diff: fix mntent newline processing error 
     (CVE-2010-0296).
+  * patches/any/cvs-ld-elf.diff: fix integer signedness error in ld.so
+    (CVE-2010-0830).
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 03 Jun 2010 09:32:40 +0200
 
