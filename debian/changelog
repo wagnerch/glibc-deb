@@ -1,4 +1,4 @@
-glibc (2.7-18lenny3) UNRELEASED; urgency=low
+glibc (2.7-18lenny3) stable-security; urgency=low
 
   * patches/any/cvs-strfmon.diff: fix integer overflows in the
     strfmon implementation (CVE-2008-1391, CVE-2009-4880).
@@ -8,9 +8,8 @@ glibc (2.7-18lenny3) UNRELEASED; urgency=low
     (CVE-2010-0296).  Closes: bug#583908.
   * patches/any/cvs-ld-elf.diff: fix integer signedness error in ld.so
     (CVE-2010-0830).
-  * patches/any/ 
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 04 Jun 2010 18:29:56 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 04 Jun 2010 20:24:46 +0200
 
 glibc (2.7-18lenny2) stable-security; urgency=low
 
