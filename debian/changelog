@@ -1,11 +1,13 @@
 glibc (2.7-18lenny3) UNRELEASED; urgency=low
 
+  * patches/any/cvs-strfmon.diff: fix integer overflows in the strfmon.
+    (CVE-2009-4880).
   * patches/any/cvs-mntent.diff: fix mntent newline processing error 
     (CVE-2010-0296).  Closes: bug#583908.
   * patches/any/cvs-ld-elf.diff: fix integer signedness error in ld.so
     (CVE-2010-0830).
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 03 Jun 2010 09:32:40 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 04 Jun 2010 18:14:08 +0200
 
 glibc (2.7-18lenny2) stable-security; urgency=low
 
