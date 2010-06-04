@@ -236,3 +236,4 @@ any/submitted-nis-shadow.diff -p1
 any/cvs-mntent.diff -p1
 any/cvs-ld-elf.diff -p1
 any/cvs-strfmon.diff -p1
+any/cvs-strfmon_l.diff -p1
