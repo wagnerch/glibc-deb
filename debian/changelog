@@ -1,7 +1,7 @@
 glibc (2.7-18lenny3) UNRELEASED; urgency=low
 
   * patches/any/cvs-strfmon.diff: fix integer overflows in the
-    strfmon implementation (CVE-2009-4880).
+    strfmon implementation (CVE-2008-1391, CVE-2009-4880).
   * patches/any/cvs-strfmon_l.diff: fix integer overflows in the 
     strfmon_l implementation (CVE-2009-4881).
   * patches/any/cvs-mntent.diff: fix mntent newline processing error 
