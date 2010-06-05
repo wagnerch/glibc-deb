@@ -51,6 +51,7 @@ alpha/submitted-fpu-round.diff -p0
 alpha/submitted-xstat.diff -p0
 alpha/submitted-PTR_MANGLE.diff
 alpha/submitted-procfs_h.diff -p1
+alpha/submitted-rtld-fPIC.diff -p1
 
 amd64/cvs-vdso_clock_gettime.diff -p1
 amd64/local-biarch.diff 
