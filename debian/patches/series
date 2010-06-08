@@ -56,6 +56,7 @@ alpha/cvs-timer_settime.diff
 alpha/local-fcntl_h.diff
 alpha/local-longjmp-chk.diff
 alpha/local-lowlevellock.diff
+alpha/submitted-syscall.diff
 
 amd64/local-biarch.diff
 amd64/local-clone.diff
@@ -132,7 +133,9 @@ ia64/submitted-libm.diff
 i386/local-biarch.diff
 i386/local-clone.diff
 i386/local-cmov.diff
+i386/local-cpuid-level2.diff
 i386/local-linuxthreads-gscope.diff
+i386/local-pthread_cond_wait.diff
 i386/submitted-i686-timing.diff
 
 m68k/local-compat.diff
@@ -240,3 +243,4 @@ any/cvs-getaddrinfo.diff
 any/cvs-umount-nofollow.diff
 any/cvs-glob.diff
 any/local-dlfptr.diff
+any/submitted-string2-strcmp.diff
