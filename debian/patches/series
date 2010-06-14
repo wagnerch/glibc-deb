@@ -41,6 +41,7 @@ localedata/submitted-bz9912-locale-ru_UA.diff
 localedata/submitted-pt_BR.diff
 localedata/locale-et_EE.diff
 localedata/locale-es_CR.diff
+localedata/submitted-translit-colon.diff
 
 alpha/local-gcc4.1.diff
 alpha/submitted-creat64.diff
@@ -61,7 +62,6 @@ alpha/submitted-syscall.diff
 amd64/local-biarch.diff
 amd64/local-clone.diff
 amd64/local-linuxthreads-gscope.diff
-amd64/submitted-cpuid.diff
 amd64/submitted-tst-audit6-avx.diff
 
 arm/local-atomic.diff
@@ -157,7 +157,6 @@ s390/submitted-nexttowardf.diff
 
 sh4/local-fpscr_values.diff
 sh4/submitted-set_fpscr.diff
-sh4/cvs-register_dump.diff
 
 sparc/local-fork.diff
 sparc/local-sparcv9-target.diff
@@ -245,3 +244,4 @@ any/cvs-umount-nofollow.diff
 any/cvs-glob.diff
 any/local-dlfptr.diff
 any/submitted-string2-strcmp.diff
+any/submitted-group_member.diff
