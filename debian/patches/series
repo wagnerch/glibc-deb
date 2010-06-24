@@ -82,6 +82,7 @@ hppa/local-stack-grows-up.diff
 hppa/local-dlfptr.diff
 hppa/local-longjmp-chk.diff
 hppa/local-lowlevellock.diff
+hppa/cvs-vfork.diff
 
 hurd-i386/local-dl-dynamic-weak.diff
 hurd-i386/local-enable-ldconfig.diff
@@ -247,3 +248,4 @@ any/submitted-string2-strcmp.diff
 any/submitted-group_member.diff
 any/cvs-redirect-throw.diff
 any/cvs-flush-cache-textrels.diff
+any/cvs-__block.diff
