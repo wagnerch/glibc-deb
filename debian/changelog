@@ -1,4 +1,32 @@
-eglibc (2.11.2-3) UNRELEASED; urgency=low
+eglibc (2.11.2-5) unstable; urgency=low
+
+  [ Samuel Thibault ]
+  * mv patches/hurd-i386/{submitted,cvs}-sched_param.diff.
+
+  [ Aurelien Jarno ]
+  * Replace any/cvs-etc-resolv.conf.diff by my previous version 
+    any/submitted-etc-resolv.conf.diff. At least it really fixes the
+    original issue.  Closes: bug#595269.
+  * testsuite/alpha: allow tst-timer4.out to fail as it fails on one of
+    the build daemon.
+  * Update any/cvs-sunrpc-license.diff from upstream.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 03 Sep 2010 19:16:09 +0200
+
+eglibc (2.11.2-4) unstable; urgency=low
+
+  [ Samuel Thibault ]
+  * patches/hurd-i386/submitted-sched_param.diff: New patch to permit other
+    headers to get a __sched_param structure.
+
+  [ Aurelien Jarno ]
+  * Remove manpages now provided by manpages-dev (closes: bug#595194):
+    - pthread_kill_other_threads_np (3)
+    - pthread_sigmask (3)
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 01 Sep 2010 23:15:05 +0200
+
+eglibc (2.11.2-3) unstable; urgency=low
 
   [ Samuel Thibault ]
   * testsuite-checking/expected-results-i486-gnu-libc: update.
@@ -25,13 +53,38 @@ eglibc (2.11.2-3) UNRELEASED; urgency=low
   [ Clint Adams ]
   * Reflect EGLIBC in binary package short descriptions.  closes: #587586.
 
+  [ Finn Thain ]
+  * Backport m68k TLS from version 2.12.  Closes: #586005.
+
   [ Aurelien Jarno ]
   * Always try to restart init when needed, and ignore the possible errors.
     Closes: #588922, 590175.
   * Look for apache2.2-common instead of apache2-common in nsscheck. 
     Closes: #586527.
+  * Update Galician debconf translation, by Jorge Barreiro.  Closes: #592807.
+  * Replace any/submitted-etc-resolv.conf.diff by upstream version
+    patches/any/cvs-etc-resolv.conf.diff.
+  * Add mips/cvs-non-pic-n32-64-syscall.diff from upstream to fix non-PIC
+    syscall on MIPS n32 and 64 ABI.
+  * debian/control.in/libc: conflicts with prelink (<= 0.0.20090311-1). 
+    Earlier versions corrupts libc 2.11 libraries.  Closes: #593966.
+  * Add alpha/submitted-epoll.diff and sparc/submitted-epoll.diff to fix
+    epoll_create1() on Alpha and SPARC.  Closes: #576826.
+  * Remove patches/alpha/cvs-longjmp-chk.diff and restore 
+    patches/alpha/local-longjmp-chk.diff as the upstream version causes
+    regressions.
+  * Add localedata/locale-tt_RU.diff from upstream to fix the name of the
+    tt_RU.UTF-8@iqtelif locale.  Closes: #588478.
+  * Add any/cvs-sunrpc-license.diff from upstream to fix the license of 
+    Sun RPC: contrary to what Simon Phipps announced on his blog, and 
+    according to the lawyers, the copy in glibc wasn't contained in the 
+    agreement from February, 2009. In August, 2010, Oracle confirmed that
+    the code has been relicensed under BSD. Update debian/copyright 
+    accordingly.
+  * Disable any/cvs-flush-cache-textrels.diff to workaround a possible 
+    CPU or kernel bug.  Closes: #594807.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 30 Jul 2010 22:18:39 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 01 Sep 2010 11:46:14 +0200
 
 eglibc (2.11.2-2) unstable; urgency=medium
 
