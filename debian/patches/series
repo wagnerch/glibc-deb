@@ -71,6 +71,7 @@ arm/local-ioperm.diff
 arm/local-lowlevellock.diff
 arm/local-no-hwcap.diff
 arm/local-hwcap-updates.diff
+arm/local-sigaction.diff
 
 hppa/local-inlining.diff
 hppa/local-linuxthreads.diff
@@ -264,3 +265,5 @@ any/cvs-redirect-throw.diff
 any/cvs-__block.diff
 any/cvs-sunrpc-license.diff
 any/submitted-resolv.conf-thread.diff
+any/submitted-origin.diff
+any/cvs-audit-suid.diff
