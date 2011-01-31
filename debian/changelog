@@ -1,10 +1,18 @@
-eglibc (2.11.2-10) UNRELEASED; urgency=low
+eglibc (2.11.2-11) unstable; urgency=low
+
+  * patches/kfreebsd/local-sysdeps.diff: remove stub marks for at* 
+    syscalls as we don't support FreeBSD 7.x kernels anyway.  Closes: 
+    #610749.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 31 Jan 2011 21:02:31 +0100
+
+eglibc (2.11.2-10) unstable; urgency=low
 
   * Add patches/amd64/cvs-avx-tcb-alignment.diff from upstream to fix 
     alignement issues on CPU supporting the AVX instruction set. Closes:
     #610657.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 23 Jan 2011 19:52:52 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 23 Jan 2011 19:54:44 +0100
 
 eglibc (2.11.2-9) unstable; urgency=low
 
