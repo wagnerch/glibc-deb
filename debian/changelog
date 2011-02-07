@@ -5,7 +5,7 @@ eglibc (2.11.2-12) UNRELEASED; urgency=low
 
   [ Samuel Thibault ]
   * patches/any/submitted-sched_h.diff: Synchronize bits/sched.h with
-    sysdeps/unix/sysv/linux/bits/sched.h
+    sysdeps/unix/sysv/linux/bits/sched.h (Closes: #527589)
 
  -- Samuel Thibault <sthibault@debian.org>  Mon, 07 Feb 2011 04:06:43 +0100
 
