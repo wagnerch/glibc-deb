@@ -1,8 +1,13 @@
 eglibc (2.11.2-12) UNRELEASED; urgency=low
 
+  [ Aurelien Jarno ]
   * Re-enable build failure in case of testsuite regressions.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 06 Feb 2011 21:20:05 +0100
+  [ Samuel Thibault ]
+  * patches/any/submitted-sched_h.diff: Synchronize bits/sched.h with
+    sysdeps/unix/sysv/linux/bits/sched.h
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 07 Feb 2011 04:06:43 +0100
 
 eglibc (2.11.2-11) unstable; urgency=low
 
