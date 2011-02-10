@@ -5,7 +5,8 @@ eglibc (2.11.2-12) UNRELEASED; urgency=low
 
   [ Samuel Thibault ]
   * patches/any/submitted-sched_h.diff: Synchronize bits/sched.h with
-    sysdeps/unix/sysv/linux/bits/sched.h (Closes: #527589)
+    sysdeps/unix/sysv/linux/bits/sched.h (Closes: #527589), rename to
+    cvs-sched_h.diff.
 
   [ Clint Adams ]
   * Patch from Nobuhiro Iwamatsu to cope with the removal of
