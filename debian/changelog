@@ -7,6 +7,8 @@ eglibc (2.11.2-12) UNRELEASED; urgency=low
   * patches/any/submitted-sched_h.diff: Synchronize bits/sched.h with
     sysdeps/unix/sysv/linux/bits/sched.h (Closes: #527589), rename to
     cvs-sched_h.diff.
+  * patches/hurd-i386/submitted-if_freereq.diff: Fix crash when siocgifconf
+    actually succeeds.
 
   [ Clint Adams ]
   * Patch from Nobuhiro Iwamatsu to cope with the removal of
