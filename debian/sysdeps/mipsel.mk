@@ -1,21 +1,3 @@
-#
-# Temporary hack to use our own version of unistd.h
-# to workaround kernel bugs on the build daemons
-#
-KERNEL_HEADER_DIR = $(stamp)mkincludedir-mips
-$(stamp)mkincludedir-mips:
-	rm -rf debian/include
-	mkdir debian/include
-	ln -s $(LINUX_HEADERS)/linux debian/include
-	ln -s $(LINUX_HEADERS)/asm-generic debian/include
-	cp -a $(LINUX_HEADERS)/asm debian/include
-	cp -f debian/mips_asm_unistd.h debian/include/asm/unistd.h
-
-	# To make configure happy if libc6-dev is not installed.
-	touch debian/include/assert.h
-
-	touch $@
-
 libc_add-ons = ports nptl $(add-ons)
 
 # build 32-bit (n32) alternative library
@@ -26,7 +8,6 @@ mipsn32_configure_target = mips32el-linux-gnu
 mipsn32_CC = $(CC) -mabi=n32
 mipsn32_CXX = $(CXX) -mabi=n32
 libc6-mipsn32_shlib_dep = libc6-mipsn32 (>= $(shlib_dep_ver))
-mipsn32_extra_cflags = -O3
 mipsn32_rtlddir = /lib32
 mipsn32_slibdir = /lib32
 mipsn32_libdir = /usr/lib32
@@ -40,7 +21,6 @@ mips64_configure_target = mips64el-linux-gnu
 mips64_CC = $(CC) -mabi=64
 mips64_CXX = $(CXX) -mabi=64
 libc6-mips64_shlib_dep = libc6-mips64 (>= $(shlib_dep_ver))
-mips64_extra_cflags = -O3
 mips64_rtlddir = /lib64
 mips64_slibdir = /lib64
 mips64_libdir = /usr/lib64

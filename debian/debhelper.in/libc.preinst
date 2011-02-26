@@ -62,7 +62,7 @@ then
 
     if [ -n "$preversion" ]; then
 	# NSS authentication trouble guard
-	if dpkg --compare-versions "$preversion" lt 2.9-5; then
+	if dpkg --compare-versions "$preversion" lt 2.11-1; then
 	    if pidof xscreensaver xlockmore >/dev/null; then
 		if [ -f /usr/share/debconf/confmodule ] ; then
 		    db_version 2.0
@@ -90,7 +90,7 @@ then
 		fi
 	    fi
 
-	    check="gdm kdm proftpd postgresql xdm"
+	    check="kdm postgresql xdm"
 	    # NSS services check: NSS_CHECK
 	    if [ -n "$services" ]; then 
 		if [ -f /usr/share/debconf/confmodule ] ; then
@@ -140,7 +140,7 @@ then
 	            exit 1
 		fi
 	    fi
-	fi # end upgrading and $preversion lt 2.9-1
+	fi # end upgrading and $preversion lt 2.11-1
     fi # Upgrading
 
     # This will keep us from using hwcap libs (optimized) during an
@@ -356,5 +356,18 @@ then
 fi
 
 #DEBHELPER#
+
+if [ -n "$preversion" ]; then
+    if dpkg --compare-versions "$preversion" lt 2.12; then
+	# upgrading from a pre-multiarch libc to a multiarch libc; we have
+	# to blow away /etc/ld.so.cache, otherwise the old unpacked libc
+	# is still first in the cache and segfaults when combined with
+	# our newly-unpacked ld.so.  For the moment, assume the version
+	# constraint is the same as for NSS (but it may need to be
+	# tightened)
+	# and do this last to avoid slowing down the rest of the upgrade.
+	rm -f /etc/ld.so.cache
+    fi
+fi
 
 exit 0

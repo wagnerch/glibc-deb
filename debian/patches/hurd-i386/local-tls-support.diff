@@ -1,31 +1,33 @@
+TLS support
+
 ---
- csu/libc-start.c                    |    2 +
- hurd/hurdfault.c                    |    2 +
- hurd/hurdsig.c                      |    4 +-
- mach/mach.h                         |    3 +
- mach/setup-thread.c                 |   30 +++++++++++++++++-
- sysdeps/generic/thread_state.h      |    1 
- sysdeps/mach/alpha/thread_state.h   |    1 
- sysdeps/mach/hurd/bits/libc-lock.h  |    3 +
- sysdeps/mach/hurd/bits/libc-tsd.h   |   35 ---------------------
- sysdeps/mach/hurd/fork.c            |    7 +++-
- sysdeps/mach/hurd/i386/init-first.c |   60 ++++++++++++++++++++++--------------
- sysdeps/mach/hurd/i386/tls.h        |   43 ++++++++++++++++++++++---
- sysdeps/mach/hurd/i386/trampoline.c |    2 -
- sysdeps/mach/hurd/profil.c          |    2 +
- sysdeps/mach/hurd/setitimer.c       |    3 +
- sysdeps/mach/hurd/tls.h             |    1 
- sysdeps/mach/i386/thread_state.h    |   11 ++++++
- sysdeps/mach/powerpc/thread_state.h |    1 
- sysdeps/mach/thread_state.h         |    3 +
- sysdeps/mach/hurd/i386/tlsdesc.sym  |   17 +++++++++
- 20 files changed, 161 insertions(+), 70 deletions(-)
+ csu/libc-start.c                        |    2 +
+ hurd/hurdfault.c                        |    2 +
+ hurd/hurdsig.c                          |    4 +-
+ mach/mach.h                             |    3 +
+ mach/setup-thread.c                     |   30 +++++++++++++++-
+ ports/sysdeps/mach/alpha/thread_state.h |    1 
+ sysdeps/generic/thread_state.h          |    1 
+ sysdeps/mach/hurd/bits/libc-lock.h      |    3 +
+ sysdeps/mach/hurd/bits/libc-tsd.h       |   35 ------------------
+ sysdeps/mach/hurd/fork.c                |    7 +++
+ sysdeps/mach/hurd/i386/init-first.c     |   60 +++++++++++++++++++-------------
+ sysdeps/mach/hurd/i386/tls.h            |   55 ++++++++++++++++++++++++-----
+ sysdeps/mach/hurd/i386/tlsdesc.sym      |   17 +++++++++
+ sysdeps/mach/hurd/i386/trampoline.c     |    2 -
+ sysdeps/mach/hurd/profil.c              |    2 +
+ sysdeps/mach/hurd/setitimer.c           |    3 +
+ sysdeps/mach/hurd/tls.h                 |    2 +
+ sysdeps/mach/i386/thread_state.h        |   11 +++++
+ sysdeps/mach/powerpc/thread_state.h     |    1 
+ sysdeps/mach/thread_state.h             |    3 +
+ 20 files changed, 169 insertions(+), 75 deletions(-)
 
 --- a/csu/libc-start.c
 +++ b/csu/libc-start.c
-@@ -134,10 +134,12 @@
-     }
- # endif
+@@ -140,10 +140,12 @@
+   /* Performe IREL{,A} relocations.  */
+   __libc_csu_irel ();
  
 +#ifndef __GNU__
    /* Initialize the thread library at least a bit since the libgcc
@@ -35,7 +37,7 @@
 +#endif
  
    /* Set up the stack checker's canary.  */
-   uintptr_t stack_chk_guard = _dl_setup_stack_chk_guard ();
+   uintptr_t stack_chk_guard = _dl_setup_stack_chk_guard (_dl_random);
 --- a/hurd/hurdfault.c
 +++ b/hurd/hurdfault.c
 @@ -206,6 +206,8 @@
@@ -49,7 +51,7 @@
  
 --- a/hurd/hurdsig.c
 +++ b/hurd/hurdsig.c
-@@ -1267,6 +1267,8 @@
+@@ -1268,6 +1268,8 @@
  				 (vm_address_t *) &__hurd_sigthread_stack_base,
  				 &stacksize);
        assert_perror (err);
@@ -58,7 +60,7 @@
  
        __hurd_sigthread_stack_end = __hurd_sigthread_stack_base + stacksize;
        __hurd_sigthread_variables =
-@@ -1275,8 +1277,6 @@
+@@ -1276,8 +1278,6 @@
  	__libc_fatal ("hurd: Can't allocate threadvars for signal thread\n");
        memset (__hurd_sigthread_variables, 0,
  	      __hurd_threadvar_max * sizeof (unsigned long int));
@@ -135,8 +137,8 @@
  #define MACHINE_THREAD_STATE_FLAVOR	<machine>_THREAD_STATE
  #define MACHINE_THREAD_STATE_COUNT	<machine>_THREAD_STATE_COUNT
  
---- a/sysdeps/mach/alpha/thread_state.h
-+++ b/sysdeps/mach/alpha/thread_state.h
+--- a/ports/sysdeps/mach/alpha/thread_state.h
++++ b/ports/sysdeps/mach/alpha/thread_state.h
 @@ -19,6 +19,7 @@
  
  #include <mach/machine/thread_status.h>
@@ -307,23 +309,53 @@
       properly before before cthreads initialization, so cthreads can know
 --- a/sysdeps/mach/hurd/i386/tls.h
 +++ b/sysdeps/mach/hurd/i386/tls.h
-@@ -96,7 +96,7 @@
+@@ -31,6 +31,8 @@
+ 
+ # ifndef __ASSEMBLER__
+ 
++#include <pthread/pthread.h>
++
+ /* Use i386-specific RPCs to arrange that %gs segment register prefix
+    addresses the TCB in each thread.  */
+ # include <mach/i386/mach_i386.h>
+@@ -72,7 +74,7 @@
+ 
+       /* Get the first available selector.  */
+       int sel = -1;
+-      error_t err = __i386_set_gdt (tcb->self, &sel, desc);
++      kern_return_t err = __i386_set_gdt (tcb->self, &sel, desc);
+       if (err == MIG_BAD_ID)
+ 	{
+ 	  /* Old kernel, use a per-thread LDT.  */
+@@ -96,16 +98,16 @@
        /* Fetch the selector set by the first call.  */
        int sel;
        asm ("mov %%gs, %w0" : "=q" (sel) : "0" (0));
 -      if (__builtin_expect (sel, 0x50) & 4) /* LDT selector */
 +      if (__builtin_expect (sel, 0x48) & 4) /* LDT selector */
  	{
- 	  error_t err = __i386_set_ldt (tcb->self, sel, &desc, 1);
+-	  error_t err = __i386_set_ldt (tcb->self, sel, &desc, 1);
++	  kern_return_t err = __i386_set_ldt (tcb->self, sel, &desc, 1);
  	  assert_perror (err);
-@@ -142,9 +142,40 @@
+ 	  if (err)
+ 	    return "i386_set_ldt failed";
+ 	}
+       else
+ 	{
+-	  error_t err = __i386_set_gdt (tcb->self, &sel, desc);
++	  kern_return_t err = __i386_set_gdt (tcb->self, &sel, desc);
+ 	  assert_perror (err);
+ 	  if (err)
+ 	    return "i386_set_gdt failed";
+@@ -142,9 +144,40 @@
  
  #include <mach/machine/thread_status.h>
  
 -/* Set up TLS in the new thread of a fork child, copying from our own.  */
-+/* Set up TLS in the new thread of a fork child, copying from the original.  */
- static inline error_t __attribute__ ((unused))
+-static inline error_t __attribute__ ((unused))
 -_hurd_tls_fork (thread_t child, struct i386_thread_state *state)
++/* Set up TLS in the new thread of a fork child, copying from the original.  */
++static inline kern_return_t __attribute__ ((unused))
 +_hurd_tls_fork (thread_t child, thread_t orig, struct i386_thread_state *state)
 +{
 +  /* Fetch the selector set by _hurd_tls_init.  */
@@ -333,7 +365,7 @@
 +    return 0;
 +
 +  struct descriptor desc, *_desc = &desc;
-+  error_t err;
++  int err;
 +  unsigned int count;
 +
 +  if (__builtin_expect (sel, 0x48) & 4) /* LDT selector */
@@ -354,23 +386,24 @@
 +  return err;
 +}
 +
-+static inline error_t __attribute__ ((unused))
++static inline kern_return_t __attribute__ ((unused))
 +_hurd_tls_new (thread_t child, struct i386_thread_state *state, tcbhead_t *tcb)
  {
    /* Fetch the selector set by _hurd_tls_init.  */
    int sel;
-@@ -152,11 +183,13 @@
+@@ -152,11 +185,13 @@
    if (sel == state->ds)		/* _hurd_tls_init was never called.  */
      return 0;
  
 -  tcbhead_t *const tcb = THREAD_SELF;
    HURD_TLS_DESC_DECL (desc, tcb);
-   error_t err;
- 
--  if (__builtin_expect (sel, 0x50) & 4) /* LDT selector */
+-  error_t err;
++  kern_return_t err;
++
 +  tcb->tcb = tcb;
 +  tcb->self = child;
-+
+ 
+-  if (__builtin_expect (sel, 0x50) & 4) /* LDT selector */
 +  if (__builtin_expect (sel, 0x48) & 4) /* LDT selector */
      err = __i386_set_ldt (child, sel, &desc, 1);
    else
@@ -476,14 +509,16 @@
  
 --- a/sysdeps/mach/hurd/tls.h
 +++ b/sysdeps/mach/hurd/tls.h
-@@ -23,6 +23,7 @@
+@@ -23,7 +23,9 @@
  #if defined HAVE_TLS_SUPPORT && !defined __ASSEMBLER__
  
  # include <stddef.h>
 +# include <stdint.h>
  # include <stdbool.h>
++# include <sysdep.h>
  # include <mach/mig_errors.h>
  # include <mach.h>
+ 
 --- /dev/null
 +++ b/sysdeps/mach/hurd/i386/tlsdesc.sym
 @@ -0,0 +1,17 @@

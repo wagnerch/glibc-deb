@@ -4,7 +4,7 @@ DEB_ARCH_REGULAR_PACKAGES += libc6-sparcv9b
 sparcv9b_add-ons = nptl $(add-ons)
 sparcv9b_configure_target=sparcv9b-linux-gnu
 sparcv9b_configure_build=sparcv9b-linux-gnu
-sparcv9b_extra_cflags = -mtune=ultrasparc3 -O3
+sparcv9b_extra_cflags = -mcpu=ultrasparc3
 sparcv9b_extra_config_options = $(extra_config_options) --disable-profile
 sparcv9b_slibdir = /lib/$(DEB_HOST_GNU_TYPE)/ultra3
 
@@ -16,7 +16,6 @@ sparc64_configure_target=sparc64-linux-gnu
 sparc64_CC = $(CC) -m64
 sparc64_CXX = $(CXX) -m64
 libc6-sparc64_shlib_dep = libc6-sparc64 (>= $(shlib_dep_ver))
-sparc64_extra_cflags = -O3
 sparc64_extra_config_options = $(extra_config_options) --disable-profile
 sparc64_includedir = /usr/include/sparc64-linux-gnu
 sparc64_rtlddir = /lib64

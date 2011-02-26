@@ -27,12 +27,14 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 	echo "BUILD_CC = $(BUILD_CC)"		>> $(DEB_BUILDDIR)/configparms
 	echo "BUILD_CXX = $(BUILD_CXX)"		>> $(DEB_BUILDDIR)/configparms
 	echo "CFLAGS = $(HOST_CFLAGS)"		>> $(DEB_BUILDDIR)/configparms
+	echo "ASFLAGS = $(HOST_CFLAGS)"		>> $(DEB_BUILDDIR)/configparms
 	echo "BUILD_CFLAGS = $(BUILD_CFLAGS)" 	>> $(DEB_BUILDDIR)/configparms
 	echo "LDFLAGS = "		 	>> $(DEB_BUILDDIR)/configparms
 	echo "BASH := /bin/bash"		>> $(DEB_BUILDDIR)/configparms
 	echo "KSH := /bin/bash"			>> $(DEB_BUILDDIR)/configparms
 	echo "SHELL := /bin/bash"		>> $(DEB_BUILDDIR)/configparms
 	echo "LIBGD = no"			>> $(DEB_BUILDDIR)/configparms
+	echo "have-fpie = $(fpie)"              >> $(DEB_BUILDDIR)/configparms
 	echo "bindir = $(bindir)"		>> $(DEB_BUILDDIR)/configparms
 	echo "datadir = $(datadir)"		>> $(DEB_BUILDDIR)/configparms
 	echo "localedir = $(localedir)" 	>> $(DEB_BUILDDIR)/configparms
@@ -73,6 +75,8 @@ $(stamp)configure_%: $(stamp)mkbuilddir_%
 		--enable-profile \
 		--without-selinux \
 		--enable-stackguard-randomization \
+		--with-pkgversion="Debian EGLIBC $(DEB_VERSION)" \
+		--with-bugurl="http://www.debian.org/Bugs/" \
 		$(call xx,with_headers) $(call xx,extra_config_options))
 	touch $@
 
@@ -99,15 +103,13 @@ $(stamp)check_%: $(stamp)build_%
 	  echo "Flavour cross-compiled, tests have been skipped." | tee $(log_results) ; \
 	elif ! $(call kernel_check,$(call xx,MIN_KERNEL_SUPPORTED)); then \
 	  echo "Kernel too old, tests have been skipped." | tee $(log_results) ; \
-	elif hostname | grep -q -E 'ball|mayr|mayer|rem' ; then \
-	  echo "Buggy build daemon detected, tests have been skipped." | tee $(log_results) ; \
 	elif [ $(call xx,RUN_TESTSUITE) != "yes" ]; then \
 	  echo "Testsuite disabled for $(curpass), skipping tests."; \
 	  echo "Tests have been disabled." > $(log_results) ; \
 	else \
 	  echo Testing $(curpass); \
 	  find $(DEB_BUILDDIR) -name '*.out' -exec rm {} ';' ; \
-	  LANG="" TIMEOUTFACTOR="50" $(MAKE) -C $(DEB_BUILDDIR) $(NJOBS) -k check 2>&1 | tee $(log_test); \
+	  LANG="" TIMEOUTFACTOR="50" $(MAKE) -C $(DEB_BUILDDIR) -k check 2>&1 | tee $(log_test); \
 	  chmod +x debian/testsuite-checking/convertlog.sh ; \
 	  debian/testsuite-checking/convertlog.sh $(log_test) | tee $(log_results) ; \
 	  if test -f $(log_expected) ; then \
@@ -129,6 +131,13 @@ $(stamp)install_%: $(stamp)check_%
 	rm -rf $(CURDIR)/debian/tmp-$(curpass)
 	$(MAKE) -C $(DEB_BUILDDIR) \
 	  install_root=$(CURDIR)/debian/tmp-$(curpass) install
+
+ifneq (,$(findstring $(call xx,slibdir), /lib /lib32 /lib64))
+	# Generate gconv-modules.cache
+	/usr/sbin/iconvconfig --nostdlib --prefix=$(CURDIR)/debian/tmp-$(curpass) \
+			      -o $(CURDIR)/debian/tmp-$(curpass)/$(call xx,libdir)/gconv/gconv-modules.cache \
+			      $(call xx,libdir)/gconv
+endif
 
 	# Generate the list of SUPPORTED locales
 	if [ $(curpass) = libc ]; then \
@@ -162,7 +171,10 @@ $(stamp)doc: $(stamp)patch
 	touch $@
 
 $(stamp)source: $(stamp)patch
-	tar -c --lzma -C .. \
-		-f $(build-tree)/eglibc-$(EGLIBC_VERSION).tar.lzma \
+	mkdir -p $(build-tree)
+	tar -c -J -C .. \
+		-f $(build-tree)/eglibc-$(EGLIBC_VERSION).tar.xz \
 		$(EGLIBC_SOURCES)
 	touch $@
+
+.NOTPARALLEL: $(patsubst %,check_%,$(EGLIBC_PASSES))

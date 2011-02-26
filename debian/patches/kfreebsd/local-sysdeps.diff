@@ -1,6 +1,6 @@
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/Dist
-@@ -0,0 +1,30 @@
+@@ -0,0 +1,29 @@
 +bits/mcontext.h
 +bits/stat16.h
 +fpu.h
@@ -14,7 +14,6 @@
 +regdef.h
 +sa_len.c
 +stat16conv.c
-+statconv.c
 +statfsconv.c
 +sys/acl.h
 +sys/extattr.h
@@ -47,7 +46,7 @@
 +gnu
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/Makefile
-@@ -0,0 +1,136 @@
+@@ -0,0 +1,134 @@
 +# Use bash, not /bin/sh, for executing scripts, because the native
 +# FreeBSD /bin/sh does not interpret the  IFS="<tab>" read ...  command
 +# in localedata/tst-fmon.sh correctly.
@@ -86,7 +85,7 @@
 +# For <fcntl.h>.
 +sysdep_routines += sys_open sys_openat open_2
 +# For <sys/stat.h>.
-+sysdep_routines += sys_fchmodat sys_fstat sys_fstatat sys_lstat sys_mkdirat sys_mkfifoat sys_mknod sys_mknodat sys_nfstat sys_nlstat sys_nstat sys_stat
++sysdep_routines += sys_fchmodat sys_fstat sys_fstatat sys_lstat sys_mkdirat sys_mkfifoat sys_mknod sys_mknodat sys_nfstat sys_nlstat sys_nstat sys_stat lchflags
 +# For <sys/statfs.h>.
 +sysdep_routines += fstatfs64 statfs64 sys_fstatfs sys_statfs
 +# For <stdio.h>
@@ -123,8 +122,6 @@
 +sysdep_routines += minherit sys_mmap sys_freebsd6_mmap sys_munmap
 +# For <sys/mount.h>.
 +sysdep_routines += fhopen sys_fhstat sys_fhstatfs fhstat fhstat64 fhstatfs fhstatfs64 getfh getfsstat getfsstat64 sys_getfsstat getmntinfo getmntinfo64 mount nmount unmount
-+# For <sys/ptrace.h>.
-+sysdep_routines += sys_ptrace
 +# For <sys/rfork.h>.
 +sysdep_routines += rfork
 +# For <sys/rtprio.h>.
@@ -142,7 +139,7 @@
 +# for INLINE_SYSCALL
 +sysdep_routines += sys_fork sys_execve sys_sigaction sys_close sys_fcntl
 +sysdep_routines += sys_clock_getres sys_clock_gettime sys_clock_settime
-+sysdep_routines += sys_shm_open sys_shm_unlink
++sysdep_routines += sys_shm_open sys_shm_unlink sys_pselect
 +endif
 +
 +ifeq ($(subdir),posix)
@@ -186,7 +183,7 @@
 +endif
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/Versions
-@@ -0,0 +1,103 @@
+@@ -0,0 +1,114 @@
 +libc {
 +  # The comment lines with "#errlist-compat" are magic; see errlist-compat.awk.
 +  # When you get an error from errlist-compat.awk, you need to add a new
@@ -269,6 +266,17 @@
 +
 +    # functions used in inline functions or macros
 +    __libc_sa_len;
++  }
++  GLIBC_2.10 {
++    devname;
++    devname_r;
++    kenv;
++    sysctlnametomib;
++  }
++  GLIBC_2.11 {
++    lchflags;
++    #errlist-compat 94
++    _sys_errlist; sys_errlist; _sys_nerr; sys_nerr;
 +  }
 +  GLIBC_PRIVATE {
 +    # needed by libpthread.
@@ -3168,7 +3176,7 @@
 +#define _DIRENT_HAVE_D_TYPE 1
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/errno.h
-@@ -0,0 +1,182 @@
+@@ -0,0 +1,183 @@
 +/*-
 + * Copyright (c) 1982, 1986, 1989, 1993
 + *	The Regents of the University of California.  All rights reserved.
@@ -3326,8 +3334,9 @@
 +#define	EMULTIHOP	90		/* Multihop attempted */
 +#define	ENOLINK		91		/* Link has been severed */
 +#define	EPROTO		92		/* Protocol error */
++#define	ENOTCAPABLE	93		/* Capabilities insufficient */
 +
-+#define	ELAST		92		/* Must be equal largest errno */
++#define	ELAST		93		/* Must be equal largest errno */
 +
 +# ifndef __ASSEMBLER__
 +/* Function to get address of global `errno' variable.  */
@@ -3353,7 +3362,7 @@
 +
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/fcntl.h
-@@ -0,0 +1,168 @@
+@@ -0,0 +1,180 @@
 +/* O_*, F_*, FD_* bit values for FreeBSD.
 +   Copyright (C) 1991-1992, 1997, 2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -3431,6 +3440,18 @@
 +   given to `open'.  */
 +#define FREAD		1
 +#define	FWRITE		2
++#endif
++
++#ifdef __USE_ATFILE
++# define AT_FDCWD		-100	/* Special value used to indicate
++					   the *at functions should use the
++					   current working directory. */
++# define AT_EACCESS		0x100	/* Test access permitted for
++					   effective IDs, not real IDs.  */
++# define AT_SYMLINK_NOFOLLOW	0x200	/* Do not follow symbolic links.  */
++# define AT_SYMLINK_FOLLOW	0x400	/* Follow symbolic links.  */
++# define AT_REMOVEDIR		0x800	/* Remove directory instead of
++					   unlinking file.  */
 +#endif
 +
 +/*
@@ -3524,7 +3545,7 @@
 +
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/in.h
-@@ -0,0 +1,305 @@
+@@ -0,0 +1,308 @@
 +/* Copyright (C) 1997, 2000, 2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -3555,6 +3576,7 @@
 +#define	IMPLINK_LOWEXPER	156
 +#define	IMPLINK_HIGHEXPER	158
 +
++#define IPPROTO_DIVERT          258             /* divert pseudo-protocol */
 +
 +/* To select the IP level.  */
 +#define SOL_IP	0
@@ -3655,6 +3677,8 @@
 +/*
 + * Filter modes; also used to represent per-socket filter mode internally.
 + */
++ 
++#define MCAST_UNDEFINED 0       /* fmode: not yet defined */
 +#define	MCAST_INCLUDE	1	/* fmode: include these source(s) */
 +#define	MCAST_EXCLUDE	2	/* fmode: exclude these source(s) */
 +
@@ -4678,7 +4702,7 @@
 +  (__extension__							      \
 +   ({ size_t __cpu = (cpu);						      \
 +      __cpu < 8 * (setsize)						      \
-+      ? ((((__cpu_mask *) ((cpusetp)->__bits))[__CPUELT (__cpu)]	      \
++      ? ((((__const __cpu_mask *) ((cpusetp)->__bits))[__CPUELT (__cpu)]	      \
 +	  & __CPUMASK (__cpu))) != 0					      \
 +      : 0; }))
 +
@@ -4691,8 +4715,8 @@
 +# else
 +#  define __CPU_EQUAL_S(setsize, cpusetp1, cpusetp2) \
 +  (__extension__							      \
-+   ({ __cpu_mask *__arr1 = (cpusetp1)->__bits;				      \
-+      __cpu_mask *__arr2 = (cpusetp2)->__bits;				      \
++   ({ __const __cpu_mask *__arr1 = (cpusetp1)->__bits;				      \
++      __const __cpu_mask *__arr2 = (cpusetp2)->__bits;				      \
 +      size_t __imax = (setsize) / sizeof (__cpu_mask);			      \
 +      size_t __i;							      \
 +      for (__i = 0; __i < __imax; ++__i)				      \
@@ -4704,8 +4728,8 @@
 +# define __CPU_OP_S(setsize, destset, srcset1, srcset2, op) \
 +  (__extension__							      \
 +   ({ cpu_set_t *__dest = (destset);					      \
-+      __cpu_mask *__arr1 = (srcset1)->__bits;				      \
-+      __cpu_mask *__arr2 = (srcset2)->__bits;				      \
++      __const __cpu_mask *__arr1 = (srcset1)->__bits;				      \
++      __const __cpu_mask *__arr2 = (srcset2)->__bits;				      \
 +      size_t __imax = (setsize) / sizeof (__cpu_mask);			      \
 +      size_t __i;							      \
 +      for (__i = 0; __i < __imax; ++__i)				      \
@@ -5833,7 +5857,7 @@
 +#endif	/* bits/socket.h */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/stat.h
-@@ -0,0 +1,203 @@
+@@ -0,0 +1,214 @@
 +/* Copyright (C) 1992, 1996-1997, 2000, 2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -5879,15 +5903,17 @@
 +    __ino64_t st_ino;		/* File serial number.	*/
 +#endif
 +
-+    __uint32_t st_mode;		/* File mode.  */
-+    __uint32_t st_nlink;	/* Link count.  */
++    __mode_t st_mode;		/* File mode.  */
++    __mode_t __pad_mode;	/* __mode_t is 16 bit, fill to 32 bit to retain previous ABI */
++    __nlink_t st_nlink;		/* Link count.  */
++    __nlink_t __pad_nlink;	/* __nlink_t is 16 bit, fill to 32 bit to retain previous ABI */
 +
 +    __uid_t st_uid;		/* User ID of the file's owner.  */
 +    __gid_t st_gid;		/* Group ID of the file's group.  */
 +
 +    __dev_t st_rdev;		/* Device number, if device.  */
 +
-+#ifdef __USE_MISC
++#if defined __USE_MISC || defined __USE_XOPEN2K8
 +    /* Nanosecond resolution timestamps are stored in a format
 +       equivalent to 'struct timespec'.  This is the type used
 +       whenever possible but the Unix namespace rules do not allow the
@@ -5929,15 +5955,17 @@
 +    __dev_t st_dev;		/* Device containing the file.  */
 +    __ino64_t st_ino;		/* File serial number.	*/
 +
-+    __uint32_t st_mode;		/* File mode.  */
-+    __uint32_t st_nlink;	/* Link count.  */
++    __mode_t st_mode;		/* File mode.  */
++    __mode_t __pad_mode;	/* __mode_t is 16 bit, fill to 32 bit to retain previous ABI */
++    __nlink_t st_nlink;		/* Link count.  */
++    __nlink_t __pad_nlink;	/* __nlink_t is 16 bit, fill to 32 bit to retain previous ABI */
 +
 +    __uid_t st_uid;		/* User ID of the file's owner.  */
 +    __gid_t st_gid;		/* Group ID of the file's group.  */
 +
 +    __dev_t st_rdev;		/* Device number, if device.  */
 +
-+#ifdef __USE_MISC
++#if defined __USE_MISC || defined __USE_XOPEN2K8
 +    /* Nanosecond resolution timestamps are stored in a format
 +       equivalent to 'struct timespec'.  This is the type used
 +       whenever possible but the Unix namespace rules do not allow the
@@ -6030,10 +6058,17 @@
 +/* Set file flags of the file referred to by FD to FLAGS.  */
 +extern int fchflags (int __fd, unsigned long int __flags) __THROW;
 +
++/* Set file flags for FILE to FLAGS without following symlinks.  */
++extern int lchflags(__const char *__file, int __flags);
 +
-+extern char *devname_r(dev_t dev, mode_t type, char *buf, int len) __THROW;
-+extern char *devname(dev_t dev, mode_t type) __THROW;
-+                                                                                                                                                                                                         
++/* Get device name in /dev with a device number of dev and a file type
++   matching the one encoded in type.  */
++extern char *devname(__dev_t dev, __mode_t type) __THROW;
++
++/* Store at most BUFLEN characters of the device name in /dev with a 
++   device number of dev and a file type matching the one encoded in type.  */
++extern char *devname_r(__dev_t dev, __mode_t type, char *buf, int buflen) __THROW;
++
 +__END_DECLS
 +
 +#endif /* __USE_BSD */
@@ -6615,6 +6650,107 @@
 +#endif
 +
 --- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/time.h
+@@ -0,0 +1,98 @@
++/* System-dependent timing definitions.  FreeBSD version.
++   Copyright (C) 1996-1997, 1999, 2000, 2002 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++/*
++ * Never include this file directly; use <time.h> instead.
++ */
++
++#ifndef __need_timeval
++# ifndef _BITS_TIME_H
++#  define _BITS_TIME_H	1
++
++/* ISO/IEC 9899:1990 7.12.1: <time.h>
++   The macro `CLOCKS_PER_SEC' is the number per second of the value
++   returned by the `clock' function. */
++/* CAE XSH, Issue 4, Version 2: <time.h>
++   The value of CLOCKS_PER_SEC is required to be 1 million on all
++   XSI-conformant systems. */
++#  define CLOCKS_PER_SEC  1000000l
++
++#  if !defined __STRICT_ANSI__ && !defined __USE_XOPEN2K
++/* Even though CLOCKS_PER_SEC has such a strange value CLK_TCK
++   presents the real value for clock ticks per second for the system.  */
++#   define CLK_TCK 128
++#  endif
++
++#  ifdef __USE_POSIX199309
++/* Identifier for system-wide realtime clock.  */
++#   define CLOCK_REALTIME		0
++/* High-resolution timer from the CPU.  */
++#   define CLOCK_PROCESS_CPUTIME_ID	2
++/* Thread-specific CPU-time clock.  */
++#   define CLOCK_THREAD_CPUTIME_ID	3
++/* Monotonic system-wide clock.  */
++#   define CLOCK_MONOTONIC		4
++/* These are BSD specific clocks.  */
++#   ifdef __USE_BSD
++#    define CLOCK_VIRTUAL		1
++#    define CLOCK_PROF			2
++#    define CLOCK_UPTIME    5               /* FreeBSD-specific. */
++#    define CLOCK_UPTIME_PRECISE    7       /* FreeBSD-specific. */
++#    define CLOCK_UPTIME_FAST       8       /* FreeBSD-specific. */
++#    define CLOCK_REALTIME_PRECISE  9       /* FreeBSD-specific. */
++#    define CLOCK_REALTIME_FAST     10      /* FreeBSD-specific. */
++#    define CLOCK_MONOTONIC_PRECISE 11      /* FreeBSD-specific. */
++#    define CLOCK_MONOTONIC_FAST    12      /* FreeBSD-specific. */
++#    define CLOCK_SECOND    13              /* FreeBSD-specific. */
++#   endif
++
++/* Flag to indicate time is absolute.  */
++#   define TIMER_RELTIME	0   /* relative timer */
++#   define TIMER_ABSTIME	1   /* absolute timer */
++#  endif
++
++
++/* Getkerninfo clock information structure */
++struct clockinfo
++  {
++    int hz;		/* clock frequency */
++    int tick;		/* micro-seconds per hz tick */
++    int spare;
++    int stathz;		/* statistics clock frequency */
++    int profhz;		/* profiling clock frequency */
++  };
++
++# endif	/* bits/time.h */
++#endif
++
++#ifdef __need_timeval
++# undef __need_timeval
++# ifndef _STRUCT_TIMEVAL
++#  define _STRUCT_TIMEVAL	1
++#  include <bits/types.h>
++
++/* A time value that is accurate to the nearest
++   microsecond but also has a range of years.  */
++struct timeval
++  {
++    __time_t tv_sec;		/* Seconds.  */
++    __suseconds_t tv_usec;	/* Microseconds.  */
++  };
++# endif	/* struct timeval */
++#endif	/* need timeval */
+--- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/bits/typesizes.h
 @@ -0,0 +1,66 @@
 +/* bits/typesizes.h -- underlying types for *_t.  kFreeBSD version.
@@ -6669,13 +6805,13 @@
 +#define __TIME_T_TYPE		__SLONGWORD_TYPE
 +#define __USECONDS_T_TYPE	__U32_TYPE
 +#define __SUSECONDS_T_TYPE	__SLONGWORD_TYPE
-+#define __DADDR_T_TYPE		__S32_TYPE
++#define __DADDR_T_TYPE		__SQUAD_TYPE
 +#define __SWBLK_T_TYPE		__S32_TYPE
 +#define __KEY_T_TYPE		__SLONGWORD_TYPE
 +#define __CLOCKID_T_TYPE	__S32_TYPE
 +#define __TIMER_T_TYPE		__S32_TYPE
 +#define __BLKSIZE_T_TYPE	__U32_TYPE
-+#define __FSID_T_TYPE		struct { int __val[2]; }
++#define __FSID_T_TYPE		union { int __val[2]; int val[2]; }
 +#define __SSIZE_T_TYPE		__SWORD_TYPE
 +
 +/* Number of descriptors that can fit in an `fd_set'.  */
@@ -7030,7 +7166,7 @@
 +#include <inet/check_pf.c>
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/clock_getres.c
-@@ -0,0 +1,33 @@
+@@ -0,0 +1,42 @@
 +/* Copyright (C) 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -7055,8 +7191,17 @@
 +libc_hidden_proto (__syscall_clock_getres)
 +
 +# define SYSDEP_GETRES \
-+  case CLOCK_REALTIME:							      \
-+  case CLOCK_MONOTONIC:							      \
++	case CLOCK_REALTIME:		\
++	case CLOCK_MONOTONIC:		\
++	case CLOCK_REALTIME_FAST:	\
++	case CLOCK_REALTIME_PRECISE:	\
++	case CLOCK_MONOTONIC_FAST:	\
++	case CLOCK_MONOTONIC_PRECISE:	\
++	case CLOCK_UPTIME:		\
++	case CLOCK_UPTIME_FAST:		\
++	case CLOCK_UPTIME_PRECISE:	\
++	case CLOCK_VIRTUAL:		\
++	case CLOCK_SECOND:		\
 +    retval = INLINE_SYSCALL (clock_getres, 2, clock_id, res);		      \
 +    break
 +
@@ -7066,7 +7211,7 @@
 +#include <sysdeps/posix/clock_getres.c>
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/clock_gettime.c
-@@ -0,0 +1,33 @@
+@@ -0,0 +1,42 @@
 +/* Copyright (C) 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -7092,8 +7237,17 @@
 +libc_hidden_proto (__syscall_clock_gettime)
 +
 +# define SYSDEP_GETTIME \
-+  case CLOCK_REALTIME:							      \
-+  case CLOCK_MONOTONIC:							      \
++	case CLOCK_REALTIME:		\
++	case CLOCK_MONOTONIC:		\
++	case CLOCK_REALTIME_FAST:	\
++	case CLOCK_REALTIME_PRECISE:	\
++	case CLOCK_MONOTONIC_FAST:	\
++	case CLOCK_MONOTONIC_PRECISE:	\
++	case CLOCK_UPTIME:		\
++	case CLOCK_UPTIME_FAST:		\
++	case CLOCK_UPTIME_PRECISE:	\
++	case CLOCK_VIRTUAL:		\
++	case CLOCK_SECOND:		\
 +    retval = INLINE_SYSCALL (clock_gettime, 2, clock_id, tp);		      \
 +    break
 +
@@ -7985,7 +8139,7 @@
 +#include <sys/sysctl.h>
 +
 +char *
-+__devname_r(dev_t dev, mode_t type, char *buf, int len)
++__devname_r(__dev_t dev, __mode_t type, char *buf, int len)
 +{
 +	int i;
 +	size_t j;
@@ -8010,7 +8164,7 @@
 +
 +
 +char *
-+__devname(dev_t dev, mode_t type)
++__devname(__dev_t dev, __mode_t type)
 +{
 +	static char buf[SPECNAMELEN + 1];
 +
@@ -8114,8 +8268,134 @@
 +
 +#include_next <dl-machine.h>
 --- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/dl-origin.c
+@@ -0,0 +1,123 @@
++/* Find path of executable.
++   Copyright (C) 1998, 1999, 2000, 2002, 2004 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++   Contributed by Ulrich Drepper <drepper@cygnus.com>, 1998.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <assert.h>
++#include <stdlib.h>
++#include <string.h>
++#include <unistd.h>
++#include <sys/param.h>
++#include <ldsodefs.h>
++#include <sysdep.h>
++
++#include <dl-dst.h>
++
++const char *_self_program_name_from_auxv attribute_hidden;
++
++static int
++_dl_self_name(char *buf, int buflen)
++{
++  int len, wdlen;
++
++  /* try /proc/self/exe symlink. */  
++  len = __readlink("/proc/self/exe", buf, buflen);
++
++  if (len > 0 && buf[0] == '/')
++    return len;
++
++  if (!_self_program_name_from_auxv)
++    return -1;
++
++  len = strlen(_self_program_name_from_auxv);
++  if (len > 0 && _self_program_name_from_auxv[0] == '/')
++  {
++    /* absolute file name */
++    if (len < buflen)
++    {
++      strcpy(buf, _self_program_name_from_auxv);
++      return len;
++    }
++    memcpy(buf, _self_program_name_from_auxv, buflen);
++    buf[buflen - 1] = 0;
++    return buflen - 1;
++  };
++  
++  /* relative file name, do our best */
++  if (NULL == __getcwd(buf, buflen))
++    return -1;
++  
++  wdlen = strlen(buf);
++  buf[wdlen] = '/';
++  if ((wdlen + len + 1) < buflen)
++  {
++    strcpy(buf + wdlen + 1, _self_program_name_from_auxv);
++    return wdlen + len + 1;
++  }
++  memcpy(buf + wdlen + 1, _self_program_name_from_auxv, buflen - wdlen - 1);  
++  buf[buflen - 1] = 0;
++  return buflen - 1;  
++}
++
++
++
++const char *
++_dl_get_origin (void)
++{
++  char linkval[2*PATH_MAX];
++  char *result;
++  int len;
++
++  len = _dl_self_name(linkval, sizeof(linkval));
++
++  if (len > 0)
++    {
++      /* We can use this value.  */
++      while (len > 1 && linkval[len - 1] != '/')
++	--len;
++      result = (char *) malloc (len + 1);
++      if (result == NULL)
++	result = (char *) -1;
++      else if (len == 1)
++	memcpy (result, "/", 2);
++      else
++	*((char *) __mempcpy (result, linkval, len - 1)) = '\0';
++    }
++  else
++    {
++      result = (char *) -1;
++      /* We use the environment variable LD_ORIGIN_PATH.  If it is set make
++	 a copy and strip out trailing slashes.  */
++      if (GLRO(dl_origin_path) != NULL)
++	{
++	  size_t len = strlen (GLRO(dl_origin_path));
++	  result = (char *) malloc (len + 1);
++	  if (result == NULL)
++	    result = (char *) -1;
++	  else
++	    {
++	      char *cp = __mempcpy (result, GLRO(dl_origin_path), len);
++	      while (cp > result + 1 && cp[-1] == '/')
++		--cp;
++	      *cp = '\0';
++	    }
++	}
++    }
++
++  return result;
++}
+--- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/dl-osinfo.h
-@@ -0,0 +1,83 @@
+@@ -0,0 +1,98 @@
 +/* Operating system specific code  for generic dynamic loader functions.
 +   Copyright (C) 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -8180,7 +8460,7 @@
 +  } while (0)
 +
 +static inline uintptr_t __attribute__ ((always_inline))
-+_dl_setup_stack_chk_guard (void)
++_dl_setup_stack_chk_guard (void *dl_random)
 +{
 +  uintptr_t ret;
 +#ifdef ENABLE_STACKGUARD_RANDOMIZE
@@ -8199,6 +8479,21 @@
 +  p[sizeof (ret) - 2] = '\n';
 +  return ret;
 +}
++
++static inline uintptr_t __attribute__ ((always_inline))
++_dl_setup_pointer_guard (void *dl_random, uintptr_t stack_chk_guard)
++{
++  uintptr_t ret;
++
++  ret = stack_chk_guard;
++# ifndef HP_TIMING_NONAVAIL
++  hp_timing_t now;
++  HP_TIMING_NOW (now);
++  ret ^= now;
++# endif
++  return ret;
++}
++
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/dl-sysdep.c
 @@ -0,0 +1,56 @@
@@ -8289,7 +8584,7 @@
 +#endif
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/faccessat.c
-@@ -0,0 +1,164 @@
+@@ -0,0 +1,171 @@
 +/* Test for access to file, relative to open directory.  Linux version.
 +   Copyright (C) 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -8360,10 +8655,18 @@
 +	  int mib[4];
 +	  size_t kf_len = 0;
 +	  char *kf_buf, *kf_bufp;
++	  size_t filelen;
 +
 +	  if (fd < 0)
 +	    {
 +	      __set_errno (EBADF);
++	      return -1;
++	    }
++
++	  filelen = strlen (file);
++	  if (__builtin_expect (filelen == 0, 0))
++	    {
++	      __set_errno (ENOENT);
 +	      return -1;
 +	    }
 +
@@ -8378,7 +8681,7 @@
 +	      return -1;
 +	    }
 +
-+	  kf_buf = alloca (kf_len + strlen (file));
++	  kf_buf = alloca (kf_len + filelen);
 +	  if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	    {
 +	      __set_errno (ENOSYS);
@@ -8453,10 +8756,9 @@
 +  __set_errno (EACCES);
 +  return -1;
 +}
-+stub_warning(faccessat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/fchmodat.c
-@@ -0,0 +1,131 @@
+@@ -0,0 +1,138 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -8527,10 +8829,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t filelen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      filelen = strlen (file);
++      if (__builtin_expect (filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -8545,7 +8855,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (file));
++      kf_buf = alloca (kf_len + filelen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -8587,10 +8897,9 @@
 +    return __chmod(file, mode);
 +#endif
 +}
-+stub_warning(fchmodat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/fchownat.c
-@@ -0,0 +1,130 @@
+@@ -0,0 +1,137 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -8660,10 +8969,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t filelen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      filelen = strlen (file);
++      if (__builtin_expect (filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -8678,7 +8995,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (file));
++      kf_buf = alloca (kf_len + filelen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -8720,14 +9037,81 @@
 +    return __chown(file, owner, group);
 +#endif
 +}
-+stub_warning(fchownat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/fcntl.c
-@@ -0,0 +1 @@
-+#include <sysdeps/unix/sysv/linux/fcntl.c>
+@@ -0,0 +1,69 @@
++/* Copyright (C) 2000, 2002, 2003, 2004 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <assert.h>
++#include <errno.h>
++#include <sysdep-cancel.h>	/* Must come before <fcntl.h>.  */
++#include <fcntl.h>
++#include <stdarg.h>
++
++#include <sys/syscall.h>
++
++
++#ifndef NO_CANCELLATION
++int
++__fcntl_nocancel (int fd, int cmd, ...)
++{
++  va_list ap;
++  void *arg;
++
++  va_start (ap, cmd);
++  arg = va_arg (ap, void *);
++  va_end (ap);
++
++  return INLINE_SYSCALL (fcntl, 3, fd, cmd, arg);
++}
++#endif
++
++
++int
++__libc_fcntl (int fd, int cmd, ...)
++{
++  va_list ap;
++  void *arg;
++
++  va_start (ap, cmd);
++  arg = va_arg (ap, void *);
++  va_end (ap);
++
++  if (SINGLE_THREAD_P || cmd != F_SETLKW)
++    return INLINE_SYSCALL (fcntl, 3, fd, cmd, arg);
++
++  int oldtype = LIBC_CANCEL_ASYNC ();
++
++  int result = INLINE_SYSCALL (fcntl, 3, fd, cmd, arg);
++
++  LIBC_CANCEL_RESET (oldtype);
++
++  return result;
++}
++libc_hidden_def (__libc_fcntl)
++
++weak_alias (__libc_fcntl, __fcntl)
++libc_hidden_weak (__fcntl)
++weak_alias (__libc_fcntl, fcntl)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/fexecve.c
-@@ -0,0 +1,104 @@
+@@ -0,0 +1,103 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -8831,7 +9215,6 @@
 +  return -1;
 +#endif
 +}
-+stub_warning(fexecve)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/fhstat.c
 @@ -0,0 +1,40 @@
@@ -9225,7 +9608,7 @@
 +/* 'ftruncate64' is the same as 'ftruncate', because __off64_t == __off_t.  */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/futimesat.c
-@@ -0,0 +1,131 @@
+@@ -0,0 +1,138 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -9293,10 +9676,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t filelen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      filelen = strlen (file);
++      if (__builtin_expect (filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -9314,7 +9705,7 @@
 +      if (file == NULL)
 +	kf_buf = alloca (kf_len);
 +      else
-+	kf_buf = alloca (kf_len + strlen (file));
++	kf_buf = alloca (kf_len + filelen);
 +
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
@@ -9356,7 +9747,6 @@
 +  return __utimes(file, tvp);
 +#endif
 +}
-+stub_warning(futimesat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/fxstat.c
 @@ -0,0 +1,48 @@
@@ -9457,7 +9847,7 @@
 +hidden_def (__fxstat64)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/fxstatat.c
-@@ -0,0 +1,151 @@
+@@ -0,0 +1,158 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -9546,10 +9936,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t filelen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      filelen = strlen (file);
++      if (__builtin_expect (filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -9564,7 +9962,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (file));
++      kf_buf = alloca (kf_len + filelen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -9608,10 +10006,9 @@
 +}
 +
 +libc_hidden_def (__fxstatat)
-+stub_warning(fstatat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/fxstatat64.c
-@@ -0,0 +1,145 @@
+@@ -0,0 +1,152 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -9694,10 +10091,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t filelen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      filelen = strlen (file);
++      if (__builtin_expect (filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -9712,7 +10117,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (file));
++      kf_buf = alloca (kf_len + filelen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -9756,7 +10161,6 @@
 +}
 +
 +libc_hidden_def (__fxstatat64)
-+stub_warning(fstatat64)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/getcwd.c
 @@ -0,0 +1,91 @@
@@ -10803,7 +11207,7 @@
 +/* 'getrlimit64' is the same as 'getrlimit', because __rlim64_t == __rlim_t.  */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/getsysstats.c
-@@ -0,0 +1,108 @@
+@@ -0,0 +1,109 @@
 +/* Copyright (C) 2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +   Contributed by Bruno Haible <bruno@clisp.org>, 2002.
@@ -10824,6 +11228,7 @@
 +   02111-1307 USA.  */
 +
 +#include <sys/sysctl.h>
++#include <unistd.h>
 +#include <stddef.h>
 +
 +
@@ -10861,13 +11266,13 @@
 +  /* Fetch sysctl value of "hw.physmem".  This is a little smaller than
 +     the real installed memory size, but so what.  */
 +  int request[2] = { CTL_HW, HW_PHYSMEM };
-+  int result;
++  unsigned long int result;
 +  size_t result_len = sizeof (result);
 +
 +  if (__sysctl (request, 2, &result, &result_len, NULL, 0) < 0)
 +    return -1;
 +
-+  return result;
++  return result / __getpagesize();
 +}
 +
 +weak_alias (__get_phys_pages, get_phys_pages)
@@ -10961,6 +11366,16 @@
 +    i386_get_ldt; i386_set_ldt;
 +  }
 +}
+--- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/i386/____longjmp_chk.S
+@@ -0,0 +1,7 @@
++/* Jump to the position specified by ENV, causing the
++   setjmp call there to return VAL, or 1 if VAL is 0.
++   void __longjmp (__jmp_buf env, int val).  */
++      
++#warning longjmp_chk unimplemented
++#define __longjmp ____longjmp_chk
++#include<__longjmp.S>
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/i386/bits/mcontext.h
 @@ -0,0 +1,111 @@
@@ -11176,100 +11591,8 @@
 +
 +#endif /* _BITS_SIGCONTEXT_H */
 --- /dev/null
-+++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/i386/bits/time.h
-@@ -0,0 +1,89 @@
-+/* System-dependent timing definitions.  FreeBSD version.
-+   Copyright (C) 1996-1997, 1999, 2000, 2002 Free Software Foundation, Inc.
-+   This file is part of the GNU C Library.
-+
-+   The GNU C Library is free software; you can redistribute it and/or
-+   modify it under the terms of the GNU Lesser General Public
-+   License as published by the Free Software Foundation; either
-+   version 2.1 of the License, or (at your option) any later version.
-+
-+   The GNU C Library is distributed in the hope that it will be useful,
-+   but WITHOUT ANY WARRANTY; without even the implied warranty of
-+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+   Lesser General Public License for more details.
-+
-+   You should have received a copy of the GNU Lesser General Public
-+   License along with the GNU C Library; if not, write to the Free
-+   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-+   02111-1307 USA.  */
-+
-+/*
-+ * Never include this file directly; use <time.h> instead.
-+ */
-+
-+#ifndef __need_timeval
-+# ifndef _BITS_TIME_H
-+#  define _BITS_TIME_H	1
-+
-+/* ISO/IEC 9899:1990 7.12.1: <time.h>
-+   The macro `CLOCKS_PER_SEC' is the number per second of the value
-+   returned by the `clock' function. */
-+/* CAE XSH, Issue 4, Version 2: <time.h>
-+   The value of CLOCKS_PER_SEC is required to be 1 million on all
-+   XSI-conformant systems. */
-+#  define CLOCKS_PER_SEC  1000000l
-+
-+#  if !defined __STRICT_ANSI__ && !defined __USE_XOPEN2K
-+/* Even though CLOCKS_PER_SEC has such a strange value CLK_TCK
-+   presents the real value for clock ticks per second for the system.  */
-+#   define CLK_TCK 128
-+#  endif
-+
-+#  ifdef __USE_POSIX199309
-+/* Identifier for system-wide realtime clock.  */
-+#   define CLOCK_REALTIME		0
-+/* High-resolution timer from the CPU.  */
-+#   define CLOCK_PROCESS_CPUTIME_ID	2
-+/* Thread-specific CPU-time clock.  */
-+#   define CLOCK_THREAD_CPUTIME_ID	3
-+/* Monotonic system-wide clock.  */
-+#   define CLOCK_MONOTONIC		4
-+/* These are BSD specific clocks.  */
-+#   ifdef __USE_BSD
-+#    define CLOCK_VIRTUAL		1
-+#    define CLOCK_PROF			2
-+#   endif
-+
-+/* Flag to indicate time is absolute.  */
-+#   define TIMER_ABSTIME		1
-+#  endif
-+
-+
-+/* Getkerninfo clock information structure */
-+struct clockinfo
-+  {
-+    int hz;		/* clock frequency */
-+    int tick;		/* micro-seconds per hz tick */
-+    int spare;
-+    int stathz;		/* statistics clock frequency */
-+    int profhz;		/* profiling clock frequency */
-+  };
-+
-+# endif	/* bits/time.h */
-+#endif
-+
-+#ifdef __need_timeval
-+# undef __need_timeval
-+# ifndef _STRUCT_TIMEVAL
-+#  define _STRUCT_TIMEVAL	1
-+#  include <bits/types.h>
-+
-+/* A time value that is accurate to the nearest
-+   microsecond but also has a range of years.  */
-+struct timeval
-+  {
-+    __time_t tv_sec;		/* Seconds.  */
-+    __suseconds_t tv_usec;	/* Microseconds.  */
-+  };
-+# endif	/* struct timeval */
-+#endif	/* need timeval */
---- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/i386/dl-machine.h
-@@ -0,0 +1,124 @@
+@@ -0,0 +1,149 @@
 +/* Machine-dependent ELF dynamic relocation inline functions.
 +   FreeBSD i386 specific version of dl_platform_init()
 +   Copyright (C) 2006 Free Software Foundation, Inc.
@@ -11294,6 +11617,30 @@
 +
 +/* For FreeBSD we redefine an initialization function.
 +   This is called very early in dl_sysdep_start.  */
++
++#if 0
++Under FreeBSD:
++#define AT_EXECPATH     15      /* Path to the executable. */
++
++Under Linux:
++#define AT_PLATFORM     15      /* String identifying platform.  */
++
++Filled entries from kernel:
++
++        if (args->execfd != -1)
++                AUXARGS_ENTRY(pos, AT_EXECFD, args->execfd);
++        AUXARGS_ENTRY(pos, AT_PHDR, args->phdr);    
++        AUXARGS_ENTRY(pos, AT_PHENT, args->phent);  
++        AUXARGS_ENTRY(pos, AT_PHNUM, args->phnum);  
++        AUXARGS_ENTRY(pos, AT_PAGESZ, args->pagesz);
++        AUXARGS_ENTRY(pos, AT_FLAGS, args->flags);
++        AUXARGS_ENTRY(pos, AT_ENTRY, args->entry);
++        AUXARGS_ENTRY(pos, AT_BASE, args->base);
++        if (imgp->execpathp != 0)
++                AUXARGS_ENTRY(pos, AT_EXECPATH, imgp->execpathp);
++        AUXARGS_ENTRY(pos, AT_NULL, 0);
++                                                                                                                
++#endif
 +
 +#include_next <dl-machine.h>
 +
@@ -11340,14 +11687,16 @@
 +    );
 +}
 +
++extern const char *_self_program_name_from_auxv attribute_hidden;
++
 +static inline void __attribute__ ((unused))
 +dl_platform_kfreebsd_i386_init (void)
 +{
-+    if ((GLRO(dl_platform) == NULL) || (*GLRO(dl_platform) == '\0'))
-+    {
 +	/* we don't have reasonable AT_PLATFORM from kernel
 +	   try to use cpuid to get one, also guess AT_HWCAP */
 +
++        _self_program_name_from_auxv = GLRO(dl_platform);
++        
 +	int val, hwcap;
 +
 +	val = try_flip_flags(X86_EFLAGS_AC | X86_EFLAGS_ID);
@@ -11390,7 +11739,6 @@
 +		}
 +            }
 +	}
-+    }
 +}
 +
 +#endif
@@ -13202,7 +13550,7 @@
 +#endif	/* !PIC */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/i386/sysdep.h
-@@ -0,0 +1,235 @@
+@@ -0,0 +1,240 @@
 +/* Copyright (C) 1992,1993,1995-2000,2002,2003,2004
 +   Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -13233,6 +13581,11 @@
 +/* Defines RTLD_PRIVATE_ERRNO and USE_DL_SYSINFO.  */
 +#include <dl-sysdep.h>
 +#include <tls.h>
++
++#if defined __i686 && defined __ASSEMBLER__
++#undef __i686
++#define __i686 __i686
++#endif
 +
 +#ifdef __ASSEMBLER__
 +
@@ -14642,7 +14995,7 @@
 +#endif /* ldsodefs.h */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linkat.c
-@@ -0,0 +1,172 @@
+@@ -0,0 +1,181 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -14715,10 +15068,20 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t fromlen, tolen;
 +
 +      if ((fromfd < 0) || (tofd < 0))
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      fromlen = strlen (from);
++      tolen = strlen (to);
++      if (__builtin_expect (fromlen == 0, 0)
++	  || __builtin_expect (tolen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -14758,7 +15121,7 @@
 +		      return -1;
 +		    }
 +
-+		  buf = alloca (strlen (kf->kf_path) + strlen (from) + 2);
++		  buf = alloca (strlen (kf->kf_path) + fromlen + 2);
 +		  strcpy(buf, kf->kf_path);
 +		  strcat (buf, "/");
 +		  strcat (buf, from);
@@ -14793,7 +15156,7 @@
 +		      return -1;
 +		    }
 +
-+		  buf = alloca (strlen (kf->kf_path) + strlen (to) + 2);
++		  buf = alloca (strlen (kf->kf_path) + tolen + 2);
 +		  strcpy(buf, kf->kf_path);
 +		  strcat (buf, "/");
 +		  strcat (buf, to);
@@ -14814,7 +15177,6 @@
 +  return __link (from, to);
 +#endif
 +}
-+stub_warning(linkat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/linuxthreads/Implies
 @@ -0,0 +1 @@
@@ -14925,25 +15287,25 @@
 +#define	_POSIX_SAVED_IDS	1
 +
 +/* Priority scheduling is supported.  */
-+#define	_POSIX_PRIORITY_SCHEDULING	200112L
++#define	_POSIX_PRIORITY_SCHEDULING	200809L
 +
 +/* Synchronizing file data is supported.  */
-+#define	_POSIX_SYNCHRONIZED_IO	200112L
++#define	_POSIX_SYNCHRONIZED_IO	200809L
 +
 +/* The fsync function is present.  */
-+#define	_POSIX_FSYNC	200112L
++#define	_POSIX_FSYNC	200809L
 +
 +/* Mapping of files to memory is supported.  */
-+#define	_POSIX_MAPPED_FILES	200112L
++#define	_POSIX_MAPPED_FILES	200809L
 +
 +/* Locking of all memory is supported.  */
-+#define	_POSIX_MEMLOCK	200112L
++#define	_POSIX_MEMLOCK	200809L
 +
 +/* Locking of ranges of memory is supported.  */
-+#define	_POSIX_MEMLOCK_RANGE	200112L
++#define	_POSIX_MEMLOCK_RANGE	200809L
 +
 +/* Setting of memory protections is supported.  */
-+#define	_POSIX_MEMORY_PROTECTION	200112L
++#define	_POSIX_MEMORY_PROTECTION	200809L
 +
 +/* Only root can change owner of file.  */
 +#define	_POSIX_CHOWN_RESTRICTED	1
@@ -14970,29 +15332,29 @@
 +#define	_XOPEN_SHM	1
 +
 +/* Tell we have POSIX threads.  */
-+#define _POSIX_THREADS	200112L
++#define _POSIX_THREADS	200809L
 +
 +/* We have the reentrant functions described in POSIX.  */
 +#define _POSIX_REENTRANT_FUNCTIONS	1
-+#define _POSIX_THREAD_SAFE_FUNCTIONS	200112L
++#define _POSIX_THREAD_SAFE_FUNCTIONS	200809L
 +
 +/* We provide priority scheduling for threads.  */
-+#define _POSIX_THREAD_PRIORITY_SCHEDULING	200112L
++#define _POSIX_THREAD_PRIORITY_SCHEDULING	200809L
 +
 +/* We support user-defined stack sizes.  */
-+#define _POSIX_THREAD_ATTR_STACKSIZE	200112L
++#define _POSIX_THREAD_ATTR_STACKSIZE	200809L
 +
 +/* We support user-defined stacks.  */
-+#define _POSIX_THREAD_ATTR_STACKADDR	200112L
++#define _POSIX_THREAD_ATTR_STACKADDR	200809L
 +
 +/* We support POSIX.1b semaphores, but only the non-shared form for now.  */
-+#define _POSIX_SEMAPHORES	200112L
++#define _POSIX_SEMAPHORES	200809L
 +
 +/* Real-time signals are not available.  */
 +#define _POSIX_REALTIME_SIGNALS	-1
 +
 +/* We support asynchronous I/O.  */
-+#define _POSIX_ASYNCHRONOUS_IO	200112L
++#define _POSIX_ASYNCHRONOUS_IO	200809L
 +#define _POSIX_ASYNC_IO		1
 +/* Alternative name for Unix98.  */
 +#define _LFS_ASYNCHRONOUS_IO	1
@@ -15008,7 +15370,7 @@
 +#define _LFS64_STDIO		1
 +
 +/* POSIX shared memory objects are implemented.  */
-+#define _POSIX_SHARED_MEMORY_OBJECTS	200112L
++#define _POSIX_SHARED_MEMORY_OBJECTS	200809L
 +
 +/* CPU-time clocks somewhere supported.  */
 +#define _POSIX_CPUTIME	0
@@ -15020,25 +15382,25 @@
 +#define _POSIX_REGEXP	1
 +
 +/* Reader/Writer locks are available.  */
-+#define _POSIX_READER_WRITER_LOCKS	200112L
++#define _POSIX_READER_WRITER_LOCKS	200809L
 +
 +/* We have a POSIX shell.  */
 +#define _POSIX_SHELL	1
 +
 +/* We support the Timeouts option.  */
-+#define _POSIX_TIMEOUTS	200112L
++#define _POSIX_TIMEOUTS	200809L
 +
 +/* We support spinlocks.  */
-+#define _POSIX_SPIN_LOCKS	200112L
++#define _POSIX_SPIN_LOCKS	200809L
 +
 +/* The `spawn' function family is supported.  */
-+#define _POSIX_SPAWN	200112L
++#define _POSIX_SPAWN	200809L
 +
 +/* We have POSIX timers.  */
-+#define _POSIX_TIMERS	200112L
++#define _POSIX_TIMERS	200809L
 +
 +/* The barrier functions are available.  */
-+#define _POSIX_BARRIERS	200112L
++#define _POSIX_BARRIERS	200809L
 +
 +/* POSIX message queues are not available.  */
 +#define _POSIX_MESSAGE_PASSING	-1
@@ -15047,7 +15409,7 @@
 +#define _POSIX_THREAD_PROCESS_SHARED	-1
 +
 +/* The monotonic clock is available.  */
-+#define _POSIX_MONOTONIC_CLOCK	200112L
++#define _POSIX_MONOTONIC_CLOCK	200809L
 +
 +/* The clock selection interfaces are not available.  */
 +#define _POSIX_CLOCK_SELECTION	-1
@@ -15056,13 +15418,13 @@
 +#define _POSIX_ADVISORY_INFO	-1
 +
 +/* IPv6 support is available.  */
-+#define _POSIX_IPV6	200112L
++#define _POSIX_IPV6	200809L
 +
 +/* Raw socket support is available.  */
-+#define _POSIX_RAW_SOCKETS	200112L
++#define _POSIX_RAW_SOCKETS	200809L
 +
 +/* We have at least one terminal.  */
-+#define _POSIX2_CHAR_TERM	200112L
++#define _POSIX2_CHAR_TERM	200809L
 +
 +/* Neither process nor thread sporadic server interfaces is available.  */
 +#define _POSIX_SPORADIC_SERVER	-1
@@ -15178,13 +15540,13 @@
 +#define __TIME_T_TYPE		__SLONGWORD_TYPE
 +#define __USECONDS_T_TYPE	__U32_TYPE
 +#define __SUSECONDS_T_TYPE	__SLONGWORD_TYPE
-+#define __DADDR_T_TYPE		__S32_TYPE
++#define __DADDR_T_TYPE		__SQUAD_TYPE
 +#define __SWBLK_T_TYPE		__S32_TYPE
 +#define __KEY_T_TYPE		__SLONGWORD_TYPE
 +#define __CLOCKID_T_TYPE	__S32_TYPE
 +#define __TIMER_T_TYPE		__S32_TYPE
 +#define __BLKSIZE_T_TYPE	__U32_TYPE
-+#define __FSID_T_TYPE		struct { int __val[2]; }
++#define __FSID_T_TYPE		union { int __val[2]; int val[2]; }
 +#define __SSIZE_T_TYPE		__SWORD_TYPE
 +
 +/* Number of descriptors that can fit in an `fd_set'.  */
@@ -15560,7 +15922,7 @@
 +hidden_def (__lxstat64)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/mkdirat.c
-@@ -0,0 +1,119 @@
+@@ -0,0 +1,126 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -15622,10 +15984,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t filelen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      filelen = strlen (file);
++      if (__builtin_expect (filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -15640,7 +16010,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (file));
++      kf_buf = alloca (kf_len + filelen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -15679,7 +16049,6 @@
 +  return __mkdir (file, mode);
 +#endif
 +}
-+stub_warning(mkdirat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/mmap.c
 @@ -0,0 +1,86 @@
@@ -15819,7 +16188,7 @@
 +weak_alias (__munmap, munmap)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/net/ethernet.h
-@@ -0,0 +1,76 @@
+@@ -0,0 +1,77 @@
 +/* Copyright (C) 1997, 1999, 2001, 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -15854,7 +16223,8 @@
 +   systems.  */
 +struct ether_addr
 +{
-+  u_int8_t ether_addr_octet[ETH_ALEN];
++  u_int8_t octet[ETH_ALEN];
++#define ether_addr_octet octet  
 +} __attribute__ ((__packed__));
 +
 +/* 10Mb/s ethernet header */
@@ -15898,7 +16268,7 @@
 +#endif	/* net/ethernet.h */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/net/if.h
-@@ -0,0 +1,432 @@
+@@ -0,0 +1,449 @@
 +/*-
 + * Copyright (c) 1982, 1986, 1989, 1993
 + *	The Regents of the University of California.  All rights reserved.
@@ -16039,6 +16409,8 @@
 +#define	IFF_MONITOR	0x40000		/* (n) user-requested monitor mode */
 +#define	IFF_STATICARP	0x80000		/* (n) static ARP */
 +#define	IFF_NEEDSGIANT	0x100000	/* (i) hold Giant over if_start calls */
++#define IFF_DYING       0x200000        /* (n) interface is winding down */
++#define	IFF_RENAMING    0x400000        /* (n) interface is being renamed */
 +
 +/*
 + * Old names for driver flags so that user space tools can continue to use
@@ -16104,6 +16476,9 @@
 +#define	IFCAP_TOE4		0x04000	/* interface can offload TCP */
 +#define	IFCAP_TOE6		0x08000	/* interface can offload TCP6 */
 +#define	IFCAP_VLAN_HWFILTER	0x10000 /* interface hw can filter vlan tag */
++#define IFCAP_POLLING_NOCOUNT   0x20000 /* polling ticks cannot be fragmented */
++#define	IFCAP_VLAN_HWTSO        0x40000 /* can do IFCAP_TSO on VLANs */
++#define	IFCAP_LINKSTATE         0x80000 /* the runtime link state is dynamic */
 +
 +#define	IFCAP_HWCSUM		(IFCAP_RXCSUM | IFCAP_TXCSUM)
 +#define	IFCAP_TSO		(IFCAP_TSO4 | IFCAP_TSO6)
@@ -16170,6 +16545,14 @@
 +#define	IFAN_DEPARTURE	1	/* interface departure */
 +
 +/*
++ * Buffer with length to be used in SIOCGIFDESCR/SIOCSIFDESCR requests
++ */
++struct ifreq_buffer {
++	size_t  length;
++	void    *buffer;
++};
++ 
++/*
 + * Interface request structure used for socket
 + * ioctl's.  All interface ioctl's must have parameter
 + * definitions which begin with ifr_name.  The
@@ -16182,8 +16565,10 @@
 +		struct	sockaddr ifru_dstaddr;
 +		struct	sockaddr ifru_broadaddr;
 +		struct	sockaddr ifru_netmask;
++		struct  ifreq_buffer ifru_buffer;
 +		short	ifru_flags[2];
 +		short	ifru_index;
++		int	ifru_jid;
 +		int	ifru_metric;
 +		int	ifru_mtu;
 +		int	ifru_phys;
@@ -16195,8 +16580,10 @@
 +#define	ifr_dstaddr	ifr_ifru.ifru_dstaddr	/* other end of p-to-p link */
 +#define	ifr_broadaddr	ifr_ifru.ifru_broadaddr	/* broadcast address */
 +#define	ifr_netmask	ifr_ifru.ifru_netmask	/* interface net mask */
++#define	ifr_buffer      ifr_ifru.ifru_buffer    /* user supplied buffer with its length */
 +#define	ifr_flags	ifr_ifru.ifru_flags[0]	/* flags (low 16 bits) */
 +#define	ifr_flagshigh	ifr_ifru.ifru_flags[1]	/* flags (high 16 bits) */
++#define ifr_jid         ifr_ifru.ifru_jid       /* jail/vnet */
 +#define	ifr_metric	ifr_ifru.ifru_metric	/* metric */
 +#define	ifr_mtu		ifr_ifru.ifru_mtu	/* mtu */
 +#define ifr_phys	ifr_ifru.ifru_phys	/* physical wire */
@@ -16438,6 +16825,534 @@
 +} __attribute__((packed));
 +
 +#endif	/* net/if_ether.h */
+--- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/netinet/icmp6.h
+@@ -0,0 +1,525 @@
++/* Copyright (C) 1991-1997,2000,2006,2009 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#ifndef _NETINET_ICMP6_H
++#define _NETINET_ICMP6_H 1
++
++#include <inttypes.h>
++#include <string.h>
++#include <sys/types.h>
++#include <netinet/in.h>
++
++#define ICMP6_FILTER 18
++
++#define ICMP6_FILTER_BLOCK		1
++#define ICMP6_FILTER_PASS		2
++#define ICMP6_FILTER_BLOCKOTHERS	3
++#define ICMP6_FILTER_PASSONLY		4
++
++#define ICMPV6_PLD_MAXLEN	1232	/* IPV6_MMTU - sizeof(struct ip6_hdr)
++					   - sizeof(struct icmp6_hdr) */
++
++struct icmp6_filter
++  {
++    uint32_t icmp6_filt[8];
++  } __attribute__ ((__packed__));
++
++struct icmp6_hdr
++  {
++    uint8_t     icmp6_type;   /* type field */
++    uint8_t     icmp6_code;   /* code field */
++    uint16_t    icmp6_cksum;  /* checksum field */
++    union
++      {
++	uint32_t  icmp6_un_data32[1]; /* type-specific field */
++	uint16_t  icmp6_un_data16[2]; /* type-specific field */
++	uint8_t   icmp6_un_data8[4];  /* type-specific field */
++      } icmp6_dataun;
++  } __attribute__ ((__packed__));
++
++#define icmp6_data32    icmp6_dataun.icmp6_un_data32
++#define icmp6_data16    icmp6_dataun.icmp6_un_data16
++#define icmp6_data8     icmp6_dataun.icmp6_un_data8
++#define icmp6_pptr      icmp6_data32[0]  /* parameter prob */
++#define icmp6_mtu       icmp6_data32[0]  /* packet too big */
++#define icmp6_id        icmp6_data16[0]  /* echo request/reply */
++#define icmp6_seq       icmp6_data16[1]  /* echo request/reply */
++#define icmp6_maxdelay  icmp6_data16[0]  /* mcast group membership */
++
++#define ICMP6_DST_UNREACH             1
++#define ICMP6_PACKET_TOO_BIG          2
++#define ICMP6_TIME_EXCEEDED           3
++#define ICMP6_PARAM_PROB              4
++
++#define ICMP6_INFOMSG_MASK  0x80    /* all informational messages */
++
++#define ICMP6_NI_SUBJ_IPV6            0 /* Query Subject is an IPv6 address */
++#define ICMP6_NI_SUBJ_FQDN            1 /* Query Subject is a Domain name */
++#define ICMP6_NI_SUBJ_IPV4            2 /* Query Subject is an IPv4 address */
++
++#define ICMP6_NI_SUCCESS              0 /* node information successful reply */
++#define ICMP6_NI_REFUSED              1 /* node information request is refused */
++#define ICMP6_NI_UNKNOWN              2 /* unknown Qtype */
++
++#define ICMP6_ECHO_REQUEST          128
++#define ICMP6_ECHO_REPLY            129
++#define MLD_LISTENER_QUERY          130
++#define MLD_LISTENER_REPORT         131
++#define MLD_LISTENER_DONE           132
++#define MLD_LISTENER_REDUCTION      MLD_LISTENER_DONE
++
++/* RFC2292 decls */
++#define ICMP6_MEMBERSHIP_QUERY      130 /* group membership query */
++#define ICMP6_MEMBERSHIP_REPORT     131 /* group membership report */
++#define ICMP6_MEMBERSHIP_REDUCTION  132 /* group membership termination */
++/* the followings are for backward compatibility to old KAME apps. */
++#define MLD6_LISTENER_QUERY         MLD_LISTENER_QUERY
++#define MLD6_LISTENER_REPORT        MLD_LISTENER_REPORT
++#define MLD6_LISTENER_DONE          MLD_LISTENER_DONE
++
++
++#define ICMP6_DST_UNREACH_NOROUTE     0 /* no route to destination */
++#define ICMP6_DST_UNREACH_ADMIN       1 /* communication with destination */
++                                        /* administratively prohibited */
++#define ICMP6_DST_UNREACH_BEYONDSCOPE 2 /* beyond scope of source address */
++#define ICMP6_DST_UNREACH_ADDR        3 /* address unreachable */
++#define ICMP6_DST_UNREACH_NOPORT      4 /* bad port */
++
++#define ICMP6_TIME_EXCEED_TRANSIT     0 /* Hop Limit == 0 in transit */
++#define ICMP6_TIME_EXCEED_REASSEMBLY  1 /* Reassembly time out */
++
++#define ICMP6_PARAMPROB_HEADER        0 /* erroneous header field */
++#define ICMP6_PARAMPROB_NEXTHEADER    1 /* unrecognized Next Header */
++#define ICMP6_PARAMPROB_OPTION        2 /* unrecognized IPv6 option */
++
++#define ICMP6_FILTER_WILLPASS(type, filterp) \
++	((((filterp)->icmp6_filt[(type) >> 5]) & (1 << ((type) & 31))) != 0)
++
++#define ICMP6_FILTER_WILLBLOCK(type, filterp) \
++	((((filterp)->icmp6_filt[(type) >> 5]) & (1 << ((type) & 31))) == 0)
++
++#define ICMP6_FILTER_SETPASS(type, filterp) \
++	((((filterp)->icmp6_filt[(type) >> 5]) |= (1 << ((type) & 31))))
++
++#define ICMP6_FILTER_SETBLOCK(type, filterp) \
++	((((filterp)->icmp6_filt[(type) >> 5]) &= ~(1 << ((type) & 31))))
++
++#define ICMP6_FILTER_SETPASSALL(filterp) \
++	memset (filterp, 0xFF, sizeof (struct icmp6_filter));
++
++#define ICMP6_FILTER_SETBLOCKALL(filterp) \
++	memset (filterp, 0, sizeof (struct icmp6_filter));
++
++#define ND_ROUTER_SOLICIT           133
++#define ND_ROUTER_ADVERT            134
++#define ND_NEIGHBOR_SOLICIT         135
++#define ND_NEIGHBOR_ADVERT          136
++#define ND_REDIRECT                 137
++
++struct nd_router_solicit      /* router solicitation */
++  {
++    struct icmp6_hdr  nd_rs_hdr;
++    /* could be followed by options */
++  } __attribute__ ((__packed__));
++
++#define nd_rs_type               nd_rs_hdr.icmp6_type
++#define nd_rs_code               nd_rs_hdr.icmp6_code
++#define nd_rs_cksum              nd_rs_hdr.icmp6_cksum
++#define nd_rs_reserved           nd_rs_hdr.icmp6_data32[0]
++
++struct nd_router_advert       /* router advertisement */
++  {
++    struct icmp6_hdr  nd_ra_hdr;
++    uint32_t   nd_ra_reachable;   /* reachable time */
++    uint32_t   nd_ra_retransmit;  /* retransmit timer */
++    /* could be followed by options */
++  } __attribute__ ((__packed__));
++
++#define nd_ra_type               nd_ra_hdr.icmp6_type
++#define nd_ra_code               nd_ra_hdr.icmp6_code
++#define nd_ra_cksum              nd_ra_hdr.icmp6_cksum
++#define nd_ra_curhoplimit        nd_ra_hdr.icmp6_data8[0]
++#define nd_ra_flags_reserved     nd_ra_hdr.icmp6_data8[1]
++#define ND_RA_FLAG_MANAGED       0x80
++#define ND_RA_FLAG_OTHER         0x40
++#define ND_RA_FLAG_HOME_AGENT    0x20
++#define nd_ra_router_lifetime    nd_ra_hdr.icmp6_data16[1]
++
++struct nd_neighbor_solicit    /* neighbor solicitation */
++  {
++    struct icmp6_hdr  nd_ns_hdr;
++    struct in6_addr   nd_ns_target; /* target address */
++    /* could be followed by options */
++  } __attribute__ ((__packed__));
++
++#define nd_ns_type               nd_ns_hdr.icmp6_type
++#define nd_ns_code               nd_ns_hdr.icmp6_code
++#define nd_ns_cksum              nd_ns_hdr.icmp6_cksum
++#define nd_ns_reserved           nd_ns_hdr.icmp6_data32[0]
++
++struct nd_neighbor_advert     /* neighbor advertisement */
++  {
++    struct icmp6_hdr  nd_na_hdr;
++    struct in6_addr   nd_na_target; /* target address */
++    /* could be followed by options */
++  } __attribute__ ((__packed__));
++
++#define nd_na_type               nd_na_hdr.icmp6_type
++#define nd_na_code               nd_na_hdr.icmp6_code
++#define nd_na_cksum              nd_na_hdr.icmp6_cksum
++#define nd_na_flags_reserved     nd_na_hdr.icmp6_data32[0]
++#if     BYTE_ORDER == BIG_ENDIAN
++#define ND_NA_FLAG_ROUTER        0x80000000
++#define ND_NA_FLAG_SOLICITED     0x40000000
++#define ND_NA_FLAG_OVERRIDE      0x20000000
++#else   /* BYTE_ORDER == LITTLE_ENDIAN */
++#define ND_NA_FLAG_ROUTER        0x00000080
++#define ND_NA_FLAG_SOLICITED     0x00000040
++#define ND_NA_FLAG_OVERRIDE      0x00000020
++#endif
++
++struct nd_redirect            /* redirect */
++  {
++    struct icmp6_hdr  nd_rd_hdr;
++    struct in6_addr   nd_rd_target; /* target address */
++    struct in6_addr   nd_rd_dst;    /* destination address */
++    /* could be followed by options */
++  } __attribute__ ((__packed__));;
++
++#define nd_rd_type               nd_rd_hdr.icmp6_type
++#define nd_rd_code               nd_rd_hdr.icmp6_code
++#define nd_rd_cksum              nd_rd_hdr.icmp6_cksum
++#define nd_rd_reserved           nd_rd_hdr.icmp6_data32[0]
++
++struct nd_opt_hdr             /* Neighbor discovery option header */
++  {
++    uint8_t  nd_opt_type;
++    uint8_t  nd_opt_len;        /* in units of 8 octets */
++    /* followed by option specific data */
++  } __attribute__ ((__packed__));
++
++#define ND_OPT_SOURCE_LINKADDR		1
++#define ND_OPT_TARGET_LINKADDR		2
++#define ND_OPT_PREFIX_INFORMATION	3
++#define ND_OPT_REDIRECTED_HEADER	4
++#define ND_OPT_MTU			5
++#define ND_OPT_RTR_ADV_INTERVAL		7
++#define ND_OPT_HOME_AGENT_INFO		8
++
++struct nd_opt_prefix_info     /* prefix information */
++  {
++    uint8_t   nd_opt_pi_type;
++    uint8_t   nd_opt_pi_len;
++    uint8_t   nd_opt_pi_prefix_len;
++    uint8_t   nd_opt_pi_flags_reserved;
++    uint32_t  nd_opt_pi_valid_time;
++    uint32_t  nd_opt_pi_preferred_time;
++    uint32_t  nd_opt_pi_reserved2;
++    struct in6_addr  nd_opt_pi_prefix;
++  } __attribute__ ((__packed__));
++
++#define ND_OPT_PI_FLAG_ONLINK	0x80
++#define ND_OPT_PI_FLAG_AUTO	0x40
++#define ND_OPT_PI_FLAG_RADDR	0x20
++
++struct nd_opt_rd_hdr          /* redirected header */
++  {
++    uint8_t   nd_opt_rh_type;
++    uint8_t   nd_opt_rh_len;
++    uint16_t  nd_opt_rh_reserved1;
++    uint32_t  nd_opt_rh_reserved2;
++    /* followed by IP header and data */
++  } __attribute__ ((__packed__));
++
++struct nd_opt_mtu             /* MTU option */
++  {
++    uint8_t   nd_opt_mtu_type;
++    uint8_t   nd_opt_mtu_len;
++    uint16_t  nd_opt_mtu_reserved;
++    uint32_t  nd_opt_mtu_mtu;
++  } __attribute__ ((__packed__));
++
++struct mld_hdr
++  {
++    struct icmp6_hdr    mld_icmp6_hdr;
++    struct in6_addr     mld_addr; /* multicast address */
++  } __attribute__ ((__packed__));
++
++#define mld_type        mld_icmp6_hdr.icmp6_type
++#define mld_code        mld_icmp6_hdr.icmp6_code
++#define mld_cksum       mld_icmp6_hdr.icmp6_cksum
++#define mld_maxdelay    mld_icmp6_hdr.icmp6_data16[0]
++#define mld_reserved    mld_icmp6_hdr.icmp6_data16[1]
++
++/* definitions to provide backward compatibility to old KAME applications */
++#define mld6_hdr        mld_hdr
++#define mld6_type       mld_type
++#define mld6_code       mld_code
++#define mld6_cksum      mld_cksum
++#define mld6_maxdelay   mld_maxdelay
++#define mld6_reserved   mld_reserved
++#define mld6_addr       mld_addr
++
++#define ICMP6_ROUTER_RENUMBERING    138
++
++#define ICMP6_ROUTER_RENUMBERING_COMMAND  0 /* rr command */
++#define ICMP6_ROUTER_RENUMBERING_RESULT   1 /* rr result */
++#define ICMP6_ROUTER_RENUMBERING_SEQNUM_RESET   255 /* rr seq num reset */
++
++struct icmp6_router_renum    /* router renumbering header */
++  {
++    struct icmp6_hdr    rr_hdr;
++    uint8_t             rr_segnum;
++    uint8_t             rr_flags;
++    uint16_t            rr_maxdelay;
++    uint32_t            rr_reserved;
++  } __attribute__ ((__packed__));
++
++#define rr_type		rr_hdr.icmp6_type
++#define rr_code         rr_hdr.icmp6_code
++#define rr_cksum        rr_hdr.icmp6_cksum
++#define rr_seqnum       rr_hdr.icmp6_data32[0]
++
++/* Router renumbering flags */
++#define ICMP6_RR_FLAGS_TEST             0x80
++#define ICMP6_RR_FLAGS_REQRESULT        0x40
++#define ICMP6_RR_FLAGS_FORCEAPPLY       0x20
++#define ICMP6_RR_FLAGS_SPECSITE         0x10
++#define ICMP6_RR_FLAGS_PREVDONE         0x08
++
++#define ICMP6_WRUREQUEST                139     /* who are you request */
++#define ICMP6_WRUREPLY                  140     /* who are you reply */
++#define ICMP6_FQDN_QUERY                139     /* FQDN query */
++#define ICMP6_FQDN_REPLY                140     /* FQDN reply */
++#define ICMP6_NI_QUERY                  139     /* node information request */
++#define ICMP6_NI_REPLY                  140     /* node information reply */
++
++struct rr_pco_match    /* match prefix part */
++  {
++    uint8_t             rpm_code;
++    uint8_t             rpm_len;
++    uint8_t             rpm_ordinal;
++    uint8_t             rpm_matchlen;
++    uint8_t             rpm_minlen;
++    uint8_t             rpm_maxlen;
++    uint16_t            rpm_reserved;
++    struct in6_addr     rpm_prefix;
++  } __attribute__ ((__packed__));
++
++/* PCO code values */
++#define RPM_PCO_ADD             1
++#define RPM_PCO_CHANGE          2
++#define RPM_PCO_SETGLOBAL       3
++#define RPM_PCO_MAX             4
++
++struct rr_pco_use      /* use prefix part */
++  {
++    uint8_t             rpu_uselen;
++    uint8_t             rpu_keeplen;
++    uint8_t             rpu_ramask;
++    uint8_t             rpu_raflags;
++    uint32_t            rpu_vltime;
++    uint32_t            rpu_pltime;
++    uint32_t            rpu_flags;
++    struct in6_addr     rpu_prefix;
++  } __attribute__ ((__packed__));
++
++#define ICMP6_RR_PCOUSE_RAFLAGS_ONLINK  0x80
++#define ICMP6_RR_PCOUSE_RAFLAGS_AUTO    0x40
++
++#if BYTE_ORDER == BIG_ENDIAN
++# define ICMP6_RR_PCOUSE_FLAGS_DECRVLTIME 0x80000000
++# define ICMP6_RR_PCOUSE_FLAGS_DECRPLTIME 0x40000000
++#elif BYTE_ORDER == LITTLE_ENDIAN
++# define ICMP6_RR_PCOUSE_FLAGS_DECRVLTIME 0x80
++# define ICMP6_RR_PCOUSE_FLAGS_DECRPLTIME 0x40
++#endif
++
++struct rr_result       /* router renumbering result message */
++  {
++    uint16_t            rrr_flags;
++    uint8_t             rrr_ordinal;
++    uint8_t             rrr_matchedlen;
++    uint32_t            rrr_ifid;
++    struct in6_addr     rrr_prefix;
++  } __attribute__ ((__packed__));
++
++#if BYTE_ORDER == BIG_ENDIAN
++# define ICMP6_RR_RESULT_FLAGS_OOB       0x0002
++# define ICMP6_RR_RESULT_FLAGS_FORBIDDEN 0x0001
++#elif BYTE_ORDER == LITTLE_ENDIAN
++# define ICMP6_RR_RESULT_FLAGS_OOB       0x0200
++# define ICMP6_RR_RESULT_FLAGS_FORBIDDEN 0x0100
++#endif
++
++/* Mobile IPv6 extension: Advertisement Interval.  */
++struct nd_opt_adv_interval
++  {
++    uint8_t   nd_opt_adv_interval_type;
++    uint8_t   nd_opt_adv_interval_len;
++    uint16_t  nd_opt_adv_interval_reserved;
++    uint32_t  nd_opt_adv_interval_ival;
++  };
++
++/* Mobile IPv6 extension: Home Agent Info.  */
++struct nd_opt_home_agent_info
++  {
++    uint8_t   nd_opt_home_agent_info_type;
++    uint8_t   nd_opt_home_agent_info_len;
++    uint16_t  nd_opt_home_agent_info_reserved;
++    uint16_t  nd_opt_home_agent_info_preference;
++    uint16_t  nd_opt_home_agent_info_lifetime;
++  };
++
++/*-
++ * Copyright (C) 1995, 1996, 1997, and 1998 WIDE Project.
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 3. Neither the name of the project nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE PROJECT AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE PROJECT OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ */
++
++/*-
++ * Copyright (c) 1982, 1986, 1993
++ *	The Regents of the University of California.  All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 4. Neither the name of the University nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ *
++ *	@(#)ip_icmp.h	8.1 (Berkeley) 6/10/93
++ */
++
++/*
++ * IP6 route structure
++ */
++
++struct route_in6 {
++        struct  rtentry *ro_rt;
++        struct  llentry *ro_lle;
++        struct  sockaddr_in6 ro_dst;
++};
++
++/*
++ * Variables related to this implementation
++ * of the internet control message protocol version 6.
++ */
++struct icmp6errstat {
++	u_quad_t icp6errs_dst_unreach_noroute;
++	u_quad_t icp6errs_dst_unreach_admin;
++	u_quad_t icp6errs_dst_unreach_beyondscope;
++	u_quad_t icp6errs_dst_unreach_addr;
++	u_quad_t icp6errs_dst_unreach_noport;
++	u_quad_t icp6errs_packet_too_big;
++	u_quad_t icp6errs_time_exceed_transit;
++	u_quad_t icp6errs_time_exceed_reassembly;
++	u_quad_t icp6errs_paramprob_header;
++	u_quad_t icp6errs_paramprob_nextheader;
++	u_quad_t icp6errs_paramprob_option;
++	u_quad_t icp6errs_redirect; /* we regard redirect as an error here */
++	u_quad_t icp6errs_unknown;
++};
++
++struct icmp6stat {
++/* statistics related to icmp6 packets generated */
++	u_quad_t icp6s_error;		/* # of calls to icmp6_error */
++	u_quad_t icp6s_canterror;	/* no error 'cuz old was icmp */
++	u_quad_t icp6s_toofreq;		/* no error 'cuz rate limitation */
++	u_quad_t icp6s_outhist[256];
++/* statistics related to input message processed */
++	u_quad_t icp6s_badcode;		/* icmp6_code out of range */
++	u_quad_t icp6s_tooshort;	/* packet < sizeof(struct icmp6_hdr) */
++	u_quad_t icp6s_checksum;	/* bad checksum */
++	u_quad_t icp6s_badlen;		/* calculated bound mismatch */
++	/*
++	 * number of responses: this member is inherited from netinet code, but
++	 * for netinet6 code, it is already available in icp6s_outhist[].
++	 */
++	u_quad_t icp6s_reflect;
++	u_quad_t icp6s_inhist[256];	
++	u_quad_t icp6s_nd_toomanyopt;	/* too many ND options */
++	struct icmp6errstat icp6s_outerrhist;
++#define icp6s_odst_unreach_noroute \
++	icp6s_outerrhist.icp6errs_dst_unreach_noroute
++#define icp6s_odst_unreach_admin icp6s_outerrhist.icp6errs_dst_unreach_admin
++#define icp6s_odst_unreach_beyondscope \
++	icp6s_outerrhist.icp6errs_dst_unreach_beyondscope
++#define icp6s_odst_unreach_addr icp6s_outerrhist.icp6errs_dst_unreach_addr
++#define icp6s_odst_unreach_noport icp6s_outerrhist.icp6errs_dst_unreach_noport
++#define icp6s_opacket_too_big icp6s_outerrhist.icp6errs_packet_too_big
++#define icp6s_otime_exceed_transit \
++	icp6s_outerrhist.icp6errs_time_exceed_transit
++#define icp6s_otime_exceed_reassembly \
++	icp6s_outerrhist.icp6errs_time_exceed_reassembly
++#define icp6s_oparamprob_header icp6s_outerrhist.icp6errs_paramprob_header
++#define icp6s_oparamprob_nextheader \
++	icp6s_outerrhist.icp6errs_paramprob_nextheader
++#define icp6s_oparamprob_option icp6s_outerrhist.icp6errs_paramprob_option
++#define icp6s_oredirect icp6s_outerrhist.icp6errs_redirect
++#define icp6s_ounknown icp6s_outerrhist.icp6errs_unknown
++	u_quad_t icp6s_pmtuchg;		/* path MTU changes */
++	u_quad_t icp6s_nd_badopt;	/* bad ND options */
++	u_quad_t icp6s_badns;		/* bad neighbor solicitation */
++	u_quad_t icp6s_badna;		/* bad neighbor advertisement */
++	u_quad_t icp6s_badrs;		/* bad router advertisement */
++	u_quad_t icp6s_badra;		/* bad router advertisement */
++	u_quad_t icp6s_badredirect;	/* bad redirect message */
++};
++
++#endif /* netinet/icmpv6.h */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/netinet/if_ether.h
 @@ -0,0 +1,138 @@
@@ -17339,25 +18254,25 @@
 +#define	_POSIX_SAVED_IDS	1
 +
 +/* Priority scheduling is supported.  */
-+#define	_POSIX_PRIORITY_SCHEDULING	200112L
++#define	_POSIX_PRIORITY_SCHEDULING	200809L
 +
 +/* Synchronizing file data is supported.  */
-+#define	_POSIX_SYNCHRONIZED_IO	200112L
++#define	_POSIX_SYNCHRONIZED_IO	200809L
 +
 +/* The fsync function is present.  */
-+#define	_POSIX_FSYNC	200112L
++#define	_POSIX_FSYNC	200809L
 +
 +/* Mapping of files to memory is supported.  */
-+#define	_POSIX_MAPPED_FILES	200112L
++#define	_POSIX_MAPPED_FILES	200809L
 +
 +/* Locking of all memory is supported.  */
-+#define	_POSIX_MEMLOCK	200112L
++#define	_POSIX_MEMLOCK	200809L
 +
 +/* Locking of ranges of memory is supported.  */
-+#define	_POSIX_MEMLOCK_RANGE	200112L
++#define	_POSIX_MEMLOCK_RANGE	200809L
 +
 +/* Setting of memory protections is supported.  */
-+#define	_POSIX_MEMORY_PROTECTION	200112L
++#define	_POSIX_MEMORY_PROTECTION	200809L
 +
 +/* Only root can change owner of file.  */
 +#define	_POSIX_CHOWN_RESTRICTED	1
@@ -17384,29 +18299,29 @@
 +#define	_XOPEN_SHM	1
 +
 +/* Tell we have POSIX threads.  */
-+#define _POSIX_THREADS	200112L
++#define _POSIX_THREADS	200809L
 +
 +/* We have the reentrant functions described in POSIX.  */
 +#define _POSIX_REENTRANT_FUNCTIONS	1
-+#define _POSIX_THREAD_SAFE_FUNCTIONS	200112L
++#define _POSIX_THREAD_SAFE_FUNCTIONS	200809L
 +
 +/* We provide priority scheduling for threads.  */
-+#define _POSIX_THREAD_PRIORITY_SCHEDULING	200112L
++#define _POSIX_THREAD_PRIORITY_SCHEDULING	200809L
 +
 +/* We support user-defined stack sizes.  */
-+#define _POSIX_THREAD_ATTR_STACKSIZE	200112L
++#define _POSIX_THREAD_ATTR_STACKSIZE	200809L
 +
 +/* We support user-defined stacks.  */
-+#define _POSIX_THREAD_ATTR_STACKADDR	200112L
++#define _POSIX_THREAD_ATTR_STACKADDR	200809L
 +
 +/* We support POSIX.1b semaphores, but only the non-shared form for now.  */
-+#define _POSIX_SEMAPHORES	200112L
++#define _POSIX_SEMAPHORES	200809L
 +
 +/* Real-time signals are not available.  */
 +#define _POSIX_REALTIME_SIGNALS	-1
 +
 +/* We support asynchronous I/O.  */
-+#define _POSIX_ASYNCHRONOUS_IO	200112L
++#define _POSIX_ASYNCHRONOUS_IO	200809L
 +#define _POSIX_ASYNC_IO		1
 +/* Alternative name for Unix98.  */
 +#define _LFS_ASYNCHRONOUS_IO	1
@@ -17422,7 +18337,7 @@
 +#define _LFS64_STDIO		1
 +
 +/* POSIX shared memory objects are implemented.  */
-+#define _POSIX_SHARED_MEMORY_OBJECTS	200112L
++#define _POSIX_SHARED_MEMORY_OBJECTS	200809L
 +
 +/* CPU-time clocks somewhere supported.  */
 +#define _POSIX_CPUTIME	0
@@ -17434,25 +18349,25 @@
 +#define _POSIX_REGEXP	1
 +
 +/* Reader/Writer locks are available.  */
-+#define _POSIX_READER_WRITER_LOCKS	200112L
++#define _POSIX_READER_WRITER_LOCKS	200809L
 +
 +/* We have a POSIX shell.  */
 +#define _POSIX_SHELL	1
 +
 +/* We support the Timeouts option.  */
-+#define _POSIX_TIMEOUTS	200112L
++#define _POSIX_TIMEOUTS	200809L
 +
 +/* We support spinlocks.  */
-+#define _POSIX_SPIN_LOCKS	200112L
++#define _POSIX_SPIN_LOCKS	200809L
 +
 +/* The `spawn' function family is supported.  */
-+#define _POSIX_SPAWN	200112L
++#define _POSIX_SPAWN	200809L
 +
 +/* We have POSIX timers.  */
-+#define _POSIX_TIMERS	200112L
++#define _POSIX_TIMERS	200809L
 +
 +/* The barrier functions are available.  */
-+#define _POSIX_BARRIERS	200112L
++#define _POSIX_BARRIERS	200809L
 +
 +/* POSIX message queues are not available.  */
 +#define _POSIX_MESSAGE_PASSING	-1
@@ -17461,7 +18376,7 @@
 +#define _POSIX_THREAD_PROCESS_SHARED	-1
 +
 +/* The monotonic clock is available.  */
-+#define _POSIX_MONOTONIC_CLOCK	200112L
++#define _POSIX_MONOTONIC_CLOCK	200809L
 +
 +/* The clock selection interfaces are not available.  */
 +#define _POSIX_CLOCK_SELECTION	-1
@@ -17470,13 +18385,13 @@
 +#define _POSIX_ADVISORY_INFO	-1
 +
 +/* IPv6 support is available.  */
-+#define _POSIX_IPV6	200112L
++#define _POSIX_IPV6	200809L
 +
 +/* Raw socket support is available.  */
-+#define _POSIX_RAW_SOCKETS	200112L
++#define _POSIX_RAW_SOCKETS	200809L
 +
 +/* We have at least one terminal.  */
-+#define _POSIX2_CHAR_TERM	200112L
++#define _POSIX2_CHAR_TERM	200809L
 +
 +/* Neither process nor thread sporadic server interfaces is available.  */
 +#define _POSIX_SPORADIC_SERVER	-1
@@ -17563,7 +18478,7 @@
 +}
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/open.c
-@@ -0,0 +1,89 @@
+@@ -0,0 +1,63 @@
 +/* Copyright (C) 1999, 2000, 2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -17615,32 +18530,6 @@
 +    fd = INLINE_SYSCALL (open, 3, file, oflag, mode);
 +    LIBC_CANCEL_RESET (oldtype);
 +  }
-+
-+  if (fd >= 0 && (oflag & O_TRUNC))
-+    {
-+      /* Set the modification time.  The kernel ought to do this.  */
-+      int saved_errno = errno;
-+      struct timeval tv[2];
-+
-+      if (__gettimeofday (&tv[1], NULL) >= 0)
-+	{
-+	  struct stat statbuf;
-+
-+	  if (__fxstat (_STAT_VER, fd, &statbuf) >= 0)
-+	    {
-+	      tv[0].tv_sec = statbuf.st_atime;
-+	      tv[0].tv_usec = 0;
-+
-+#ifdef NOT_IN_libc
-+	      futimes (fd, tv);
-+#else
-+	      __futimes (fd, tv);
-+#endif
-+	    }
-+	}
-+      __set_errno (saved_errno);
-+    }
-+
 +  return fd;
 +}
 +libc_hidden_def (__libc_open)
@@ -17665,7 +18554,7 @@
 +strong_alias (__open_2, __open64_2)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/openat.c
-@@ -0,0 +1,296 @@
+@@ -0,0 +1,189 @@
 +/* Copyright (C) 2005, 2006, 2007 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -17735,10 +18624,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t filelen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      filelen = strlen (file);
++      if (__builtin_expect (filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -17753,7 +18650,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (file));
++      kf_buf = alloca (kf_len + filelen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -17814,128 +18711,15 @@
 +      mode = va_arg (arg, int);
 +      va_end (arg);
 +    }
-+
-+# ifndef __ASSUME_ATFCTS
-+  if (__have_atfcts >= 0)
-+# endif
++  
++  if (SINGLE_THREAD_P)
++    return __openat_nocancel(fd, file, oflag, mode);
++  else
 +    {
-+      if (SINGLE_THREAD_P)
-+	{
-+	  result = INLINE_SYSCALL (openat, 4, fd, file, oflag, mode);
-+	}
-+      else
-+	{
-+	  int oldtype = LIBC_CANCEL_ASYNC ();
-+	  result = INLINE_SYSCALL (openat, 4, fd, file, oflag, mode);
-+	  LIBC_CANCEL_RESET (oldtype);
-+	}
-+# ifndef __ASSUME_ATFCTS
-+      if (result == -1 && errno == ENOSYS)
-+	__have_atfcts = -1;
-+# endif
++      int oldtype = LIBC_CANCEL_ASYNC ();
++      result = __openat_nocancel(fd, file, oflag, mode);
++      LIBC_CANCEL_RESET (oldtype);
 +    }
-+
-+#ifndef __ASSUME_ATFCTS
-+  if (__have_atfcts < 0)
-+    {
-+      if (fd != AT_FDCWD && file[0] != '/')
-+	{
-+	  int mib[4];
-+	  size_t kf_len = 0;
-+	  char *kf_buf, *kf_bufp;
-+
-+	  if (fd < 0)
-+	    {
-+	      __set_errno (EBADF);
-+	      return -1;
-+	    }
-+
-+	  mib[0] = CTL_KERN;
-+	  mib[1] = KERN_PROC;
-+	  mib[2] = KERN_PROC_FILEDESC;
-+	  mib[3] = __getpid ();
-+
-+	  if (__sysctl (mib, 4, NULL, &kf_len, NULL, 0) != 0)
-+	    {
-+	      __set_errno (ENOSYS);
-+	      return -1;
-+	    }
-+
-+	  kf_buf = alloca (kf_len + strlen (file));
-+	  if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
-+	    {
-+	      __set_errno (ENOSYS);
-+	      return -1;
-+	    }
-+
-+	  kf_bufp = kf_buf;
-+	  while (kf_bufp < kf_buf + kf_len)
-+	    {
-+	      struct kinfo_file *kf =
-+		(struct kinfo_file *) (uintptr_t) kf_bufp;
-+
-+	      if (kf->kf_fd == fd)
-+		{
-+		  if (kf->kf_type != KF_TYPE_VNODE ||
-+		      kf->kf_vnode_type != KF_VTYPE_VDIR)
-+		    {
-+		      __set_errno (ENOTDIR);
-+		      return -1;
-+		    }
-+
-+		  strcat (kf->kf_path, "/");
-+		  strcat (kf->kf_path, file);
-+		  file = kf->kf_path;
-+		  break;
-+		}
-+	      kf_bufp += kf->kf_structsize;
-+	    }
-+
-+	  if (kf_bufp >= kf_buf + kf_len)
-+	    {
-+	      __set_errno (EBADF);
-+	      return -1;
-+	    }
-+	}
-+      if (SINGLE_THREAD_P)
-+	{
-+	  result = INLINE_SYSCALL (open, 3, file, oflag, mode);
-+	}
-+      else
-+	{
-+	  int oldtype = LIBC_CANCEL_ASYNC ();
-+	  result = INLINE_SYSCALL (open, 3, file, oflag, mode);
-+	  LIBC_CANCEL_RESET (oldtype);
-+	}
-+
-+    }
-+#endif
-+
-+  if (result >= 0 && (oflag & O_TRUNC))
-+    {
-+      /* Set the modification time.  The kernel ought to do this.  */
-+      int saved_errno = errno;
-+      struct timeval tv[2];
-+
-+      if (__gettimeofday (&tv[1], NULL) >= 0)
-+	{
-+	  struct stat statbuf;
-+
-+	  if (__fxstat (_STAT_VER, result, &statbuf) >= 0)
-+	    {
-+	      tv[0].tv_sec = statbuf.st_atime;
-+	      tv[0].tv_usec = 0;
-+
-+#ifdef NOT_IN_libc
-+	      futimes (fd, tv);
-+#else
-+	      __futimes (fd, tv);
-+#endif
-+	    }
-+	}
-+      __set_errno (saved_errno);
-+    }
-+
 +  return result;
 +}
 +
@@ -17960,8 +18744,6 @@
 +}
 +
 +strong_alias (__openat_2, __openat64_2)
-+stub_warning(openat)
-+stub_warning(openat64)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/openat64.c
 @@ -0,0 +1,2 @@
@@ -18121,6 +18903,10 @@
 @@ -0,0 +1 @@
 +/* 'pread64' is the same as 'pread', because __off64_t == __off_t.  */
 --- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/preadv64.c
+@@ -0,0 +1 @@
++/* 'preadv64' is the same as 'preadv', because __off64_t == __off_t.  */
+--- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/prof-freq.c
 @@ -0,0 +1,47 @@
 +/* Copyright (C) 2002 Free Software Foundation, Inc.
@@ -18171,9 +18957,9 @@
 +}
 +libc_hidden_def (__profile_frequency)
 --- /dev/null
-+++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/ptrace.c
-@@ -0,0 +1,68 @@
-+/* Copyright (C) 1995-1998, 2000, 2002 Free Software Foundation, Inc.
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/pselect.c
+@@ -0,0 +1,72 @@
++/* Copyright (C) 2006, 2007, 2010 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
 +   The GNU C Library is free software; you can redistribute it and/or
@@ -18192,55 +18978,59 @@
 +   02111-1307 USA.  */
 +
 +#include <errno.h>
-+#include <sys/types.h>
-+#include <sys/ptrace.h>
-+#include <stdarg.h>
++#include <signal.h>
++#include <time.h>
++#include <sys/poll.h>
++#include <kernel-features.h>
++#include <sysdep-cancel.h>
 +
-+#include <sysdep.h>
-+#include <sys/syscall.h>
 +
-+extern int __syscall_ptrace (enum __ptrace_request request, pid_t pid,
-+			     void *addr, void *data);
-+
-+int
-+ptrace (enum __ptrace_request request, ...)
-+{
-+  int res, ret;
-+  va_list ap;
-+  pid_t pid;
-+  void *addr, *data;
-+
-+  /* Usually 4 arguments are given, except when request == PTRACE_TRACEME.
-+     But it doesn't harm to peek at the stack in this case as well.  */
-+  va_start (ap, request);
-+  pid = va_arg (ap, pid_t);
-+  addr = va_arg (ap, void *);
-+  data = va_arg (ap, void *);
-+  va_end (ap);
-+
-+  switch (request)
-+    {
-+    case PTRACE_PEEKTEXT:
-+    case PTRACE_PEEKDATA:
-+#ifdef PTRACE_PEEKUSER
-+    case PTRACE_PEEKUSER:
++#ifndef __ASSUME_PSELECT
++static int __generic_pselect (int nfds, fd_set *readfds, fd_set *writefds,
++			      fd_set *exceptfds,
++			      const struct timespec *timeout,
++			      const sigset_t *sigmask);
 +#endif
-+      res = INLINE_SYSCALL (ptrace, 4, request, pid, addr, &ret);
-+      if (res >= 0)
-+	{
-+	  /* ret can be -1 even for successful operation.  */
-+	  __set_errno (0);
-+	  return ret;
-+	}
-+      break;
 +
-+    default:
-+      res = INLINE_SYSCALL (ptrace, 4, request, pid, addr, data);
-+      break;
++extern int __syscall_pselect (int nfds, fd_set *readfds, fd_set *writefds,
++			      fd_set *exceptfds,
++			      const struct timespec *timeout,
++			      const sigset_t *sigmask) __THROW;
++
++int 
++__pselect (int nfds, fd_set *readfds, fd_set *writefds,
++			      fd_set *exceptfds,
++			      const struct timespec *timeout,
++			      const sigset_t *sigmask)
++{
++  int result;
++
++  if (SINGLE_THREAD_P)
++    result = INLINE_SYSCALL (pselect, 6, nfds, readfds, writefds, exceptfds, 
++			     timeout, sigmask);
++  else
++    {
++      int oldtype = LIBC_CANCEL_ASYNC ();
++      result = INLINE_SYSCALL (pselect, 6, nfds, readfds, writefds, exceptfds, 
++  			       timeout, sigmask);
++      LIBC_CANCEL_RESET (oldtype);
 +    }
 +
-+  return res;
++#ifndef __ASSUME_PSELECT
++  if (result == -1 && errno == ENOSYS)
++    return __generic_pselect (nfds, readfds, writefds, exceptfds,
++                                timeout, sigmask);
++#endif
++
++  return result;
 +}
++weak_alias (__pselect, pselect)
++strong_alias (__pselect, __libc_pselect)
++
++#ifndef __ASSUME_PSELECT
++# define __pselect static __generic_pselect
++# include <misc/pselect.c>
++#endif
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/ptsname.c
 @@ -0,0 +1,104 @@
@@ -18424,6 +19214,10 @@
 @@ -0,0 +1 @@
 +/* 'pwrite64' is the same as 'pwrite', because __off64_t == __off_t.  */
 --- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/pwritev64.c
+@@ -0,0 +1 @@
++/* 'pwritev64' is the same as 'pwritev', because __off64_t == __off_t.  */
+--- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/readdir.c
 @@ -0,0 +1,11 @@
 +/* 'readdir64' is the same as 'readdir', because
@@ -18463,7 +19257,7 @@
 +weak_alias (__readdir64_r, readdir64_r)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/readlinkat.c
-@@ -0,0 +1,123 @@
+@@ -0,0 +1,130 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -18527,10 +19321,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t pathlen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      pathlen = strlen (path);
++      if (__builtin_expect (pathlen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -18545,7 +19347,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (path));
++      kf_buf = alloca (kf_len + pathlen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -18586,7 +19388,6 @@
 +}
 +
 +libc_hidden_def (readlinkat)
-+stub_warning(readlinkat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/readonly-area.c
 @@ -0,0 +1,96 @@
@@ -18791,8 +19592,51 @@
 +
 +LIBC_CANCEL_HANDLED (); /* in __libc_recvfrom */
 --- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/remove.c
+@@ -0,0 +1,40 @@
++/* ANSI C `remove' function to delete a file or directory.  POSIX.1 version.
++   Copyright (C) 1995,96,97,2002,2003 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <errno.h>
++#include <stdio.h>
++#include <unistd.h>
++
++int
++remove (file)
++     const char *file;
++{
++  /* First try to unlink since this is more frequently the necessary action. */
++  if (__unlink (file) != 0
++      /* If it is indeed a directory...  */
++      /* Linux returns EISDIR, POSIX mandates EPERM */
++      && (((errno != EISDIR) && (errno != EPERM))
++	  /* ...try to remove it.  */
++	  || __rmdir (file) != 0))
++    /* Cannot remove the object for whatever reason.  */
++    return -1;
++
++  return 0;
++}
++libc_hidden_def (remove)
+--- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/renameat.c
-@@ -0,0 +1,165 @@
+@@ -0,0 +1,174 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -18857,10 +19701,20 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t old_filelen, new_filelen;
 +
 +      if ((oldfd < 0) || (newfd < 0))
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      old_filelen = strlen (old);
++      new_filelen = strlen (new);
++      if (__builtin_expect (old_filelen == 0, 0)
++	  || __builtin_expect (new_filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -18900,7 +19754,7 @@
 +		      return -1;
 +		    }
 +
-+		  buf = alloca (strlen (kf->kf_path) + strlen (old) + 2);
++		  buf = alloca (strlen (kf->kf_path) + old_filelen + 2);
 +		  strcpy(buf, kf->kf_path);
 +		  strcat (buf, "/");
 +		  strcat (buf, old);
@@ -18935,7 +19789,7 @@
 +		      return -1;
 +		    }
 +
-+		  buf = alloca (strlen (kf->kf_path) + strlen (new) + 2);
++		  buf = alloca (strlen (kf->kf_path) + new_filelen + 2);
 +		  strcpy(buf, kf->kf_path);
 +		  strcat (buf, "/");
 +		  strcat (buf, new);
@@ -18957,7 +19811,6 @@
 +  return __rename (old, new);
 +#endif
 +}
-+stub_warning(renameat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/rtld-lowlevel.h
 @@ -0,0 +1,131 @@
@@ -19465,7 +20318,7 @@
 +weak_alias (__send, send)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/sendto.c
-@@ -0,0 +1,70 @@
+@@ -0,0 +1,73 @@
 +/* Copyright (C) 2005 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +   Contributed by Aurelien Jarno <aurelien@aurel32.net>, 2005.
@@ -19513,6 +20366,8 @@
 +{
 +  socklen_t new_addrlen;
 +
++  if (addr.__sockaddr__)
++  {
 +#ifndef NOT_IN_libc
 +  new_addrlen = INTUSE(__libc_sa_len) ((addr.__sockaddr__)->sa_family);
 +#else
@@ -19523,6 +20378,7 @@
 +    stack corruption */
 +  if (new_addrlen < addrlen)
 +    addrlen = new_addrlen;
++  }
 +
 +  /* We pass 6 arguments.  */
 +  if (SINGLE_THREAD_P)
@@ -19966,7 +20822,7 @@
 +weak_alias (__sleep, sleep)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/stat16conv.c
-@@ -0,0 +1,80 @@
+@@ -0,0 +1,84 @@
 +/* Convert between different 'struct stat' formats.
 +   Copyright (C) 2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -20007,7 +20863,9 @@
 +  q->st_dev = p16->st_dev;
 +  q->st_ino = p16->st_ino;
 +  q->st_mode = p16->st_mode;
++  q->__pad_mode = 0;
 +  q->st_nlink = p16->st_nlink;
++  q->__pad_nlink = 0;
 +  q->st_uid = p16->st_uid;
 +  q->st_gid = p16->st_gid;
 +  q->st_rdev = p16->st_rdev;
@@ -20031,7 +20889,9 @@
 +  q->st_dev = p16->st_dev;
 +  q->st_ino = p16->st_ino;
 +  q->st_mode = p16->st_mode;
++  q->__pad_mode = 0;
 +  q->st_nlink = p16->st_nlink;
++  q->__pad_nlink = 0;
 +  q->st_uid = p16->st_uid;
 +  q->st_gid = p16->st_gid;
 +  q->st_rdev = p16->st_rdev;
@@ -20046,55 +20906,6 @@
 +#if 0
 +  memcpy (q->__unused1, p16->__unused2, sizeof (p16->__unused2));
 +#endif
-+}
---- /dev/null
-+++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/statconv.c
-@@ -0,0 +1,46 @@
-+/* Convert between different 'struct stat' formats.
-+   Copyright (C) 2002 Free Software Foundation, Inc.
-+   This file is part of the GNU C Library.
-+   Contributed by Bruno Haible <bruno@clisp.org>, 2002.
-+
-+   The GNU C Library is free software; you can redistribute it and/or
-+   modify it under the terms of the GNU Lesser General Public
-+   License as published by the Free Software Foundation; either
-+   version 2.1 of the License, or (at your option) any later version.
-+
-+   The GNU C Library is distributed in the hope that it will be useful,
-+   but WITHOUT ANY WARRANTY; without even the implied warranty of
-+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+   Lesser General Public License for more details.
-+
-+   You should have received a copy of the GNU Lesser General Public
-+   License along with the GNU C Library; if not, write to the Free
-+   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-+   02111-1307 USA.  */
-+
-+#include <string.h>
-+
-+/* Convert a 'struct stat' to 'struct stat64'.  */
-+static inline void
-+stat_to_stat64 (const struct stat *p32, struct stat64 *p64)
-+{
-+  p64->st_dev = p32->st_dev;
-+  p64->st_ino = p32->st_ino;
-+  p64->st_mode = p32->st_mode;
-+  p64->st_nlink = p32->st_nlink;
-+  p64->st_uid = p32->st_uid;
-+  p64->st_gid = p32->st_gid;
-+  p64->st_rdev = p32->st_rdev;
-+  p64->st_atime = p32->st_atime;
-+  p64->st_atimensec = p32->st_atimensec;
-+  p64->st_mtime = p32->st_mtime;
-+  p64->st_mtimensec = p32->st_mtimensec;
-+  p64->st_ctime = p32->st_ctime;
-+  p64->st_ctimensec = p32->st_ctimensec;
-+  p64->st_size = p32->st_size;
-+  p64->st_blocks = p32->st_blocks;
-+  p64->st_blksize = p32->st_blksize;
-+  p64->st_flags = p32->st_flags;
-+  p64->st_gen = p32->st_gen;
-+  memcpy (p64->__unused1, p32->__unused1, sizeof (p32->__unused1));
 +}
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/statfs.c
@@ -20479,7 +21290,7 @@
 +#include <misc/stty.c>
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/symlinkat.c
-@@ -0,0 +1,119 @@
+@@ -0,0 +1,126 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -20541,10 +21352,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t tolen;
 +
 +      if (tofd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      tolen = strlen (to);
++      if (__builtin_expect (tolen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -20559,7 +21378,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (to));
++      kf_buf = alloca (kf_len + tolen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -20598,7 +21417,6 @@
 +  return __symlink (from, to);
 +#endif
 +}
-+stub_warning(symlinkat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/sys/kd.h
 @@ -0,0 +1,25 @@
@@ -21068,7 +21886,7 @@
 +#endif /* _SYS_MOUNT_H */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/sys/param.h
-@@ -0,0 +1,237 @@
+@@ -0,0 +1,238 @@
 +/* Copyright (C) 1995,1996,1997,2000,2001,2003 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -21111,6 +21929,7 @@
 +
 +/* Some inet code expects that this file defines the 'u_int32_t' type.  */
 +#include <sys/types.h>
++#include <stdint.h>
 +
 +/*
 + * Machine-independent constants (some used in following include files).
@@ -21308,135 +22127,116 @@
 +
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/sys/ptrace.h
-@@ -0,0 +1,132 @@
-+/* `ptrace' debugger support interface.  FreeBSD version.
-+   Copyright (C) 1996-1999, 2000, 2002 Free Software Foundation, Inc.
-+   This file is part of the GNU C Library.
-+
-+   The GNU C Library is free software; you can redistribute it and/or
-+   modify it under the terms of the GNU Lesser General Public
-+   License as published by the Free Software Foundation; either
-+   version 2.1 of the License, or (at your option) any later version.
-+
-+   The GNU C Library is distributed in the hope that it will be useful,
-+   but WITHOUT ANY WARRANTY; without even the implied warranty of
-+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+   Lesser General Public License for more details.
-+
-+   You should have received a copy of the GNU Lesser General Public
-+   License along with the GNU C Library; if not, write to the Free
-+   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-+   02111-1307 USA.  */
-+
+@@ -0,0 +1,113 @@
++/*-
++ * Copyright (c) 1984, 1993
++ *	The Regents of the University of California.  All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 4. Neither the name of the University nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ *
++ *	@(#)ptrace.h	8.2 (Berkeley) 1/4/94
++ * $FreeBSD: src/sys/sys/ptrace.h,v 1.28.10.1.2.1 2009/10/25 01:10:29 kensmith Exp $
++ */
++ 
 +#ifndef _SYS_PTRACE_H
 +#define _SYS_PTRACE_H	1
 +
 +#include <features.h>
++#include <sys/types.h>
 +
 +__BEGIN_DECLS
 +
-+/* Type of the REQUEST argument to `ptrace.'  */
-+enum __ptrace_request
-+{
-+  /* Indicate that the process making this request should be traced.
-+     All signals received by this process can be intercepted by its
-+     parent, and its parent can use the other `ptrace' requests.  */
-+  PTRACE_TRACEME = 0,
-+#define PT_TRACE_ME PTRACE_TRACEME
++#define	PT_TRACE_ME	0	/* child declares it's being traced */
++#define	PT_READ_I	1	/* read word in child's I space */
++#define	PT_READ_D	2	/* read word in child's D space */
++/* was	PT_READ_U	3	 * read word in child's user structure */
++#define	PT_WRITE_I	4	/* write word in child's I space */
++#define	PT_WRITE_D	5	/* write word in child's D space */
++/* was	PT_WRITE_U	6	 * write word in child's user structure */
++#define	PT_CONTINUE	7	/* continue the child */
++#define	PT_KILL		8	/* kill the child process */
++#define	PT_STEP		9	/* single step the child */
 +
-+  /* Return the word in the process's text space at address ADDR.  */
-+  PTRACE_PEEKTEXT = 1,
-+#define PT_READ_I PTRACE_PEEKTEXT
++#define	PT_ATTACH	10	/* trace some running process */
++#define	PT_DETACH	11	/* stop tracing a process */
++#define PT_IO		12	/* do I/O to/from stopped process. */
 +
-+  /* Return the word in the process's data space at address ADDR.  */
-+  PTRACE_PEEKDATA = 2,
-+#define PT_READ_D PTRACE_PEEKDATA
-+
-+#if 1 /* NB: removed in FreeBSD 4.6 */
-+  /* Return the word in the process's user area at offset ADDR.  */
-+  PTRACE_PEEKUSER = 3,
-+#define PT_READ_U PTRACE_PEEKUSER
++#if 0				/* our threading libray is different */
++#define	PT_LWPINFO	13	/* Info about the LWP that stopped. */
++#define PT_GETNUMLWPS	14	/* get total number of threads */
++#define PT_GETLWPLIST	15	/* get thread list */
 +#endif
 +
-+  /* Write the word DATA into the process's text space at address ADDR.  */
-+  PTRACE_POKETEXT = 4,
-+#define PT_WRITE_I PTRACE_POKETEXT
++#define PT_CLEARSTEP	16	/* turn off single step */
++#define PT_SETSTEP	17	/* turn on single step */
++#define PT_SUSPEND	18	/* suspend a thread */
++#define PT_RESUME	19	/* resume a thread */
 +
-+  /* Write the word DATA into the process's data space at address ADDR.  */
-+  PTRACE_POKEDATA = 5,
-+#define PT_WRITE_D PTRACE_POKEDATA
++#define	PT_TO_SCE	20
++#define	PT_TO_SCX	21
++#define	PT_SYSCALL	22
 +
-+#if 1 /* NB: removed in FreeBSD 4.6 */
-+  /* Write the word DATA into the process's user area at offset ADDR.  */
-+  PTRACE_POKEUSER = 6,
-+#define PT_WRITE_U PTRACE_POKEUSER
-+#endif
++#define PT_GETREGS      33	/* get general-purpose registers */
++#define PT_SETREGS      34	/* set general-purpose registers */
++#define PT_GETFPREGS    35	/* get floating-point registers */
++#define PT_SETFPREGS    36	/* set floating-point registers */
++#define PT_GETDBREGS    37	/* get debugging registers */
++#define PT_SETDBREGS    38	/* set debugging registers */
++#define PT_FIRSTMACH    64	/* for machine-specific requests */
 +
-+  /* Continue the process.  */
-+  PTRACE_CONT = 7,
-+#define PT_CONTINUE PTRACE_CONT
-+
-+  /* Kill the process.  */
-+  PTRACE_KILL = 8,
-+#define PT_KILL PTRACE_KILL
-+
-+  /* Single step the process.
-+     This is not supported on all machines.  */
-+  PTRACE_SINGLESTEP = 9,
-+#define PT_STEP PTRACE_SINGLESTEP
-+
-+  /* Attach to a process that is already running. */
-+  PTRACE_ATTACH = 10,
-+#define PT_ATTACH PTRACE_ATTACH
-+
-+  /* Detach from a process attached to with PTRACE_ATTACH.  */
-+  PTRACE_DETACH = 11,
-+#define PT_DETACH PTRACE_DETACH
-+
-+  /* CPU specific requests start here.  */
-+  __PTRACE_FIRSTMACH = 32,
-+
-+  /* Get all general purpose registers used by a processes.
-+     This is not supported on all machines.  */
-+   PTRACE_GETREGS,
-+#define PT_GETREGS PTRACE_GETREGS
-+
-+  /* Set all general purpose registers used by a processes.
-+     This is not supported on all machines.  */
-+   PTRACE_SETREGS,
-+#define PT_SETREGS PTRACE_SETREGS
-+
-+  /* Get all floating point registers used by a processes.
-+     This is not supported on all machines.  */
-+   PTRACE_GETFPREGS,
-+#define PT_GETFPREGS PTRACE_GETFPREGS
-+
-+  /* Set all floating point registers used by a processes.
-+     This is not supported on all machines.  */
-+   PTRACE_SETFPREGS,
-+#define PT_SETFPREGS PTRACE_SETFPREGS
-+
-+  /* Get all debug registers used by a processes.
-+     This is not supported on all machines.  */
-+   PTRACE_GETDBREGS,
-+#define PT_GETDBREGS PTRACE_GETDBREGS
-+
-+  /* Set all debug registers used by a processes.
-+     This is not supported on all machines.  */
-+   PTRACE_SETDBREGS
-+#define PT_SETDBREGS PTRACE_SETDBREGS
++struct ptrace_io_desc {
++	int	piod_op;	/* I/O operation */
++	void	*piod_offs;	/* child offset */
++	void	*piod_addr;	/* parent offset */
++	size_t	piod_len;	/* request length */
 +};
 +
-+/* Perform process tracing functions.  REQUEST is one of the values
-+   above, and determines the action to be taken.
-+   For all requests except PTRACE_TRACEME, PID specifies the process to be
-+   traced.
++/*
++ * Operations in piod_op.
++ */
++#define PIOD_READ_D	1	/* Read from D space */
++#define PIOD_WRITE_D	2	/* Write to D space */
++#define PIOD_READ_I	3	/* Read from I space */
++#define PIOD_WRITE_I	4	/* Write to I space */
 +
-+   PID and the other arguments described above for the various requests should
-+   appear (those that are used for the particular request) as:
-+     pid_t PID, void *ADDR, int DATA, void *ADDR2
-+   after REQUEST.  */
-+extern int ptrace (enum __ptrace_request __request, ...) __THROW;
++#if 0
++/* Argument structure for PT_LWPINFO. */
++struct ptrace_lwpinfo {
++	lwpid_t	pl_lwpid;	/* LWP described. */
++	int	pl_event;	/* Event that stopped the LWP. */
++#define	PL_EVENT_NONE	0
++#define	PL_EVENT_SIGNAL	1
++	int	pl_flags;	/* LWP flags. */
++#define	PL_FLAG_SA	0x01	/* M:N thread */
++#define	PL_FLAG_BOUND	0x02	/* M:N bound thread */
++	sigset_t	pl_sigmask;	/* LWP signal mask */
++	sigset_t	pl_siglist;	/* LWP pending signal */
++};
++#endif
++
++extern int ptrace(int _request, pid_t _pid, caddr_t _addr, int _data) __THROW;
 +
 +__END_DECLS
 +
@@ -21620,6 +22420,198 @@
 +
 +#endif /* _SYS_RFORK_H */
 --- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/sys/socketvar.h
+@@ -0,0 +1,189 @@
++/* This header is used on many systems but for GNU we have 
++   almost everything defined in the standard header.  */
++
++#include <sys/socket.h>
++
++/*-
++ * Copyright (c) 1982, 1986, 1990, 1993
++ *	The Regents of the University of California.  All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 4. Neither the name of the University nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ *
++ *	@(#)socketvar.h	8.3 (Berkeley) 2/19/95
++ *
++ * $FreeBSD: src/sys/sys/socketvar.h,v 1.171.2.1.2.1 2009/10/25 01:10:29 kensmith Exp $
++ */
++
++#ifndef _SYS_SOCKETVAR_H_
++#define _SYS_SOCKETVAR_H_
++
++#include <sys/queue.h>			/* for TAILQ macros */
++#include <sys/selinfo.h>		/* for struct selinfo */
++#include <sys/_lock.h>
++#include <sys/_mutex.h>
++#include <sys/_sx.h>
++
++struct socket;
++struct vnet;
++
++struct	xsockbuf {
++	u_int	sb_cc;
++	u_int	sb_hiwat;
++	u_int	sb_mbcnt;
++	u_int   sb_mcnt;
++	u_int   sb_ccnt;
++	u_int	sb_mbmax;
++	int	sb_lowat;
++	int	sb_timeo;
++	short	sb_flags;
++};
++
++/*
++ * Variables for socket buffering.
++ */
++struct	sockbuf {
++	struct	selinfo sb_sel;	/* process selecting read/write */
++	struct	mtx sb_mtx;	/* sockbuf lock */
++	struct	sx sb_sx;	/* prevent I/O interlacing */
++	short	sb_state;	/* (c/d) socket state on sockbuf */
++#define	sb_startzero	sb_mb
++	struct	mbuf *sb_mb;	/* (c/d) the mbuf chain */
++	struct	mbuf *sb_mbtail; /* (c/d) the last mbuf in the chain */
++	struct	mbuf *sb_lastrecord;	/* (c/d) first mbuf of last
++					 * record in socket buffer */
++	struct	mbuf *sb_sndptr; /* (c/d) pointer into mbuf chain */
++	u_int	sb_sndptroff;	/* (c/d) byte offset of ptr into chain */
++	u_int	sb_cc;		/* (c/d) actual chars in buffer */
++	u_int	sb_hiwat;	/* (c/d) max actual char count */
++	u_int	sb_mbcnt;	/* (c/d) chars of mbufs used */
++	u_int   sb_mcnt;        /* (c/d) number of mbufs in buffer */
++	u_int   sb_ccnt;        /* (c/d) number of clusters in buffer */
++	u_int	sb_mbmax;	/* (c/d) max chars of mbufs to use */
++	u_int	sb_ctl;		/* (c/d) non-data chars in buffer */
++	int	sb_lowat;	/* (c/d) low water mark */
++	int	sb_timeo;	/* (c/d) timeout for read/write */
++	short	sb_flags;	/* (c/d) flags, see below */
++	int	(*sb_upcall)(struct socket *, void *, int); /* (c/d) */
++	void	*sb_upcallarg;	/* (c/d) */
++};
++
++
++/*
++ * Kernel structure per socket.
++ * Contains send and receive buffer queues,
++ * handle on protocol and pointer to protocol
++ * private data and error information.
++ */
++typedef	u_quad_t so_gen_t;
++
++
++/*-
++ * Locking key to struct socket:
++ * (a) constant after allocation, no locking required.
++ * (b) locked by SOCK_LOCK(so).
++ * (c) locked by SOCKBUF_LOCK(&so->so_rcv).
++ * (d) locked by SOCKBUF_LOCK(&so->so_snd).
++ * (e) locked by ACCEPT_LOCK().
++ * (f) not locked since integer reads/writes are atomic.
++ * (g) used only as a sleep/wakeup address, no value.
++ * (h) locked by global mutex so_global_mtx.
++ */
++struct socket {
++	int	so_count;		/* (b) reference count */
++	short	so_type;		/* (a) generic type, see socket.h */
++	short	so_options;		/* from socket call, see socket.h */
++	short	so_linger;		/* time to linger while closing */
++	short	so_state;		/* (b) internal state flags SS_* */
++	int	so_qstate;		/* (e) internal state flags SQ_* */
++	void	*so_pcb;		/* protocol control block */
++	struct	vnet *so_vnet;		/* network stack instance */
++	struct	protosw *so_proto;	/* (a) protocol handle */
++/*
++ * Variables for connection queuing.
++ * Socket where accepts occur is so_head in all subsidiary sockets.
++ * If so_head is 0, socket is not related to an accept.
++ * For head socket so_incomp queues partially completed connections,
++ * while so_comp is a queue of connections ready to be accepted.
++ * If a connection is aborted and it has so_head set, then
++ * it has to be pulled out of either so_incomp or so_comp.
++ * We allow connections to queue up based on current queue lengths
++ * and limit on number of queued connections for this socket.
++ */
++	struct	socket *so_head;	/* (e) back pointer to listen socket */
++	TAILQ_HEAD(, socket) so_incomp;	/* (e) queue of partial unaccepted connections */
++	TAILQ_HEAD(, socket) so_comp;	/* (e) queue of complete unaccepted connections */
++	TAILQ_ENTRY(socket) so_list;	/* (e) list of unaccepted connections */
++	u_short	so_qlen;		/* (e) number of unaccepted connections */
++	u_short	so_incqlen;		/* (e) number of unaccepted incomplete
++					   connections */
++	u_short	so_qlimit;		/* (e) max number queued connections */
++	short	so_timeo;		/* (g) connection timeout */
++	u_short	so_error;		/* (f) error affecting connection */
++	struct	sigio *so_sigio;	/* [sg] information for async I/O or
++					   out of band data (SIGURG) */
++	u_long	so_oobmark;		/* (c) chars to oob mark */
++	TAILQ_HEAD(, aiocblist) so_aiojobq; /* AIO ops waiting on socket */
++
++	struct sockbuf so_rcv, so_snd;
++
++	struct	ucred *so_cred;		/* (a) user credentials */
++	struct	label *so_label;	/* (b) MAC label for socket */
++	struct	label *so_peerlabel;	/* (b) cached MAC label for peer */
++	/* NB: generation count must not be first. */
++	so_gen_t so_gencnt;		/* (h) generation count */
++	void	*so_emuldata;		/* (b) private data for emulators */
++ 	struct so_accf {
++		struct	accept_filter *so_accept_filter;
++		void	*so_accept_filter_arg;	/* saved filter args */
++		char	*so_accept_filter_str;	/* saved user args */
++	} *so_accf;
++	int so_fibnum;		/* routing domain for this socket */
++};
++
++/*
++ * Externalized form of struct socket used by the sysctl(3) interface.
++ */
++struct xsocket {
++	size_t	xso_len;	/* length of this structure */
++	struct	socket *xso_so;	/* makes a convenient handle sometimes */
++	short	so_type;
++	short	so_options;
++	short	so_linger;
++	short	so_state;
++	caddr_t	so_pcb;		/* another convenient handle */
++	int	xso_protocol;
++	int	xso_family;
++	u_short	so_qlen;
++	u_short	so_incqlen;
++	u_short	so_qlimit;
++	short	so_timeo;
++	u_short	so_error;
++	pid_t	so_pgid;
++	u_long	so_oobmark;
++	struct xsockbuf so_rcv, so_snd;
++	uid_t	so_uid;		/* XXX */
++};
++
++#endif /* !_SYS_SOCKETVAR_H_ */
+--- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/sys/swap.h
 @@ -0,0 +1,37 @@
 +/* Calls to enable swapping on specified locations.  FreeBSD version.
@@ -21661,7 +22653,7 @@
 +#endif /* sys/swap.h */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/sys/syscall.h
-@@ -0,0 +1,446 @@
+@@ -0,0 +1,441 @@
 +/* Copyright (C) 2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -21983,11 +22975,6 @@
 +#define	SYS_nfsclnt	375
 +#define	SYS_eaccess	376
 +#define	SYS_nmount	378
-+#define	SYS_kse_exit	379
-+#define	SYS_kse_wakeup	380
-+#define	SYS_kse_create	381
-+#define	SYS_kse_thr_interrupt	382
-+#define	SYS_kse_release	383
 +#define	SYS_mac_get_proc	384
 +#define	SYS_mac_set_proc	385
 +#define	SYS_mac_get_fd	386
@@ -22040,7 +23027,6 @@
 +#define	SYS_extattr_list_fd	437
 +#define	SYS_extattr_list_file	438
 +#define	SYS_extattr_list_link	439
-+#define	SYS_kse_switchin	440
 +#define	SYS_ksem_timedwait	441
 +#define	SYS_thr_suspend	442
 +#define	SYS_thr_wake	443
@@ -22105,7 +23091,8 @@
 +#define	SYS_jail_get	506
 +#define	SYS_jail_set	507
 +#define	SYS_jail_remove	508
-+#define	SYS_MAXSYSCALL	509
++#define	SYS_pselect	522
++#define	SYS_MAXSYSCALL	523
 +
 +#endif
 --- /dev/null
@@ -22362,7 +23349,7 @@
 +#endif
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/syscalls.list
-@@ -0,0 +1,184 @@
+@@ -0,0 +1,187 @@
 +# File name		Caller	Syscall name		# args		Strong name	Weak names
 +sys_access		-	access			i:si		__syscall_access
 +acl_aclcheck_fd		-	acl_aclcheck_fd		i:iip		__acl_aclcheck_fd
@@ -22422,6 +23409,7 @@
 +kldunload		-	kldunload		i:i		kldunload
 +kldunloadf		-	kldunloadf		i:ii		kldunloadf
 +ktrace			-	ktrace			i:siii		ktrace
++lchflags		-	lchflags		i:si		lchflags
 +lchmod			-	lchmod			i:si		__lchmod lchmod
 +lchown			-	lchown			i:sii		__lchown lchown
 +sys_lio_listio		-	lio_listio		i:ibnP		__syscall_lio_listio
@@ -22461,9 +23449,10 @@
 +poll			-	poll			Ci:pii		__poll poll
 +sys_pread		-	pread			i:ibni		__syscall_pread
 +sys_freebsd6_pread	-	freebsd6_pread		i:ibnii		__syscall_freebsd6_pread
-+sys_ptrace		-	ptrace			i:iipi		__syscall_ptrace
 +sys_pwrite		-	pwrite			i:ibni		__syscall_pwrite
 +sys_freebsd6_pwrite	-	freebsd6_pwrite		i:ibnii		__syscall_freebsd6_pwrite
++preadv			-	preadv			Ci:ipii		__preadv  preadv  __preadv64  preadv64 
++pwritev			-	pwritev			Ci:ipii		__pwritev pwritev __pwritev64 pwritev64 
 +quotactl		-	quotactl		i:siip		quotactl
 +sys_readv		-	readv			i:ipi		__syscall_readv
 +rfork			-	rfork			i:i		__rfork rfork
@@ -22547,9 +23536,10 @@
 +sys_shm_open		-	shm_open		i:sii		__syscall_shm_open
 +sys_shm_unlink		-	shm_unlink		i:s		__syscall_shm_unlink
 +readlink		-	readlink       		i:spi   	__syscall_readlink __readlink readlink
++sys_pselect		-	pselect			i:iPPPPP	__syscall_pselect
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/sysconf.c
-@@ -0,0 +1,50 @@
+@@ -0,0 +1,69 @@
 +/* Get file-specific information about a file.
 +   Copyright (C) 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -22576,6 +23566,7 @@
 +#include <time.h>
 +#include <unistd.h>
 +#include <hp-timing.h>
++#include <sys/sysctl.h>
 +
 +static long int posix_sysconf (int name);
 +
@@ -22583,15 +23574,33 @@
 +long int
 +__sysconf (int name)
 +{
-+  if (name == _SC_CPUTIME || name == _SC_THREAD_CPUTIME)
++  int request[2];
++  int value;
++  size_t len = sizeof(value);
++
++  switch(name)
 +    {
++      case _SC_CPUTIME:
++      case _SC_THREAD_CPUTIME:
 +#if HP_TIMING_AVAIL
-+      // XXX We can add  here test for machines which cannot support a
-+      // XXX usable TSC.
-+      return 200112L;
++	// XXX We can add  here test for machines which cannot support a
++	// XXX usable TSC.
++	return 200809L;
 +#else
-+      return -1;
++	return -1;
 +#endif
++      case _SC_NGROUPS_MAX:
++	request[0] = CTL_KERN;
++	request[1] = KERN_NGROUPS;
++	if (__sysctl(request, 2, &value, &len, NULL, 0) == -1)
++	    return NGROUPS_MAX;
++	return (long)value;
++      case _SC_ARG_MAX:
++	request[0] = CTL_KERN;
++	request[1] = KERN_ARGMAX;
++	if (__sysctl(request, 2, &value, &len, NULL, 0) == -1)
++	    return ARG_MAX;
++	return (long)value;
 +    }
 +  return posix_sysconf (name);
 +}
@@ -22845,6 +23854,156 @@
 @@ -0,0 +1 @@
 +/* 'truncate64' is the same as 'truncate', because __off64_t == __off_t.  */
 --- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/ttyname.c
+@@ -0,0 +1,67 @@
++/* Copyright (C) 1991,92,93,96,97,98,2000,2002 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <stddef.h>
++#include <sys/types.h>
++#include <sys/ioctl.h>
++#include <unistd.h>
++#include <string.h>
++#include <stdlib.h>
++
++/* Static buffer in `ttyname'.  */
++libc_freeres_ptr (static char *ttyname_buf);
++
++static const char dev[] = "/dev";
++
++/* Return the pathname of the terminal FD is open on, or NULL on errors.
++   The returned storage is good only until the next call to this function.  */
++char *
++ttyname (fd)
++     int fd;
++{
++  static size_t buflen;
++  struct fiodgname_arg fgn;
++
++  if (!__isatty (fd))
++    return NULL;
++
++  if (buflen == 0)
++    {
++      buflen = 4095;
++      ttyname_buf = (char *) malloc (buflen + 1);
++      if (ttyname_buf == NULL)
++	{
++	  buflen = 0;
++	  return NULL;
++	}
++    }
++
++  /* Prepare the result buffer.  */
++  memcpy (ttyname_buf, dev, sizeof (dev) - 1);
++  ttyname_buf[sizeof (dev) - 1] = '/';
++
++  fgn.buf = ttyname_buf + sizeof (dev);
++  fgn.len = buflen - sizeof (dev);
++
++  if (__ioctl(fd, FIODGNAME, &fgn) == -1)
++    {
++      return NULL; 
++    }
++
++  return ttyname_buf;
++}
+--- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/ttyname_r.c
+@@ -0,0 +1,77 @@
++/* Copyright (C) 1991,92,93,95,96,97,98,2004 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <errno.h>
++#include <stddef.h>
++#include <sys/types.h>
++#include <sys/ioctl.h>
++#include <unistd.h>
++#include <string.h>
++#include <stdlib.h>
++
++static const char dev[] = "/dev";
++
++/* Store at most BUFLEN character of the pathname of the terminal FD is
++   open on in BUF.  Return 0 on success,  otherwise an error number.  */
++int
++__ttyname_r (fd, buf, buflen)
++     int fd;
++     char *buf;
++     size_t buflen;
++{
++  int ret;
++  struct fiodgname_arg fgn;
++
++  /* Test for the absolute minimal size.  This makes life easier inside
++     the loop.  */
++  if (!buf)
++    {
++      __set_errno (EINVAL);
++      return EINVAL;
++    }
++
++  if (buflen < (int) (sizeof (dev) + 1))
++    {
++      __set_errno (ERANGE);
++      return ERANGE;
++    }
++
++  if (!__isatty (fd))
++    {
++      __set_errno (ENOTTY);
++      return ENOTTY;
++    }
++
++  /* Prepare the result buffer.  */
++  memcpy (buf, dev, sizeof (dev) - 1);
++  buf[sizeof (dev) - 1] = '/';
++
++  fgn.buf = buf + sizeof (dev);
++  fgn.len = buflen - sizeof (dev);
++
++  ret = __ioctl(fd, FIODGNAME, &fgn);
++  if (ret == -1)
++    {
++      __set_errno (EBADF);
++      return EBADF;
++    }
++
++  return 0;
++}
++
++weak_alias (__ttyname_r, ttyname_r)
+--- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/ulimit.c
 @@ -0,0 +1,2 @@
 +/* just use linux variant */
@@ -22964,7 +24123,7 @@
 +libc_hidden_def (uname)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/unlinkat.c
-@@ -0,0 +1,128 @@
+@@ -0,0 +1,135 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -23033,10 +24192,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t filelen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      filelen = strlen (file);
++      if (__builtin_expect (filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -23051,7 +24218,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (file));
++      kf_buf = alloca (kf_len + filelen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -23092,7 +24259,6 @@
 +    return __unlink (file);
 +#endif
 +}
-+stub_warning(unlinkat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/unlockpt.c
 @@ -0,0 +1,45 @@
@@ -24079,16 +25245,29 @@
 +
 +ifeq ($(subdir),misc)
 +# For <sys/io.h> and <sys/perm.h>.
-+sysdep_routines += iopl
++sysdep_routines += iopl ioperm
 +endif
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/Versions
-@@ -0,0 +1,5 @@
+@@ -0,0 +1,8 @@
 +libc {
 +  GLIBC_2.3.4 {
 +    iopl;
 +  }
++  GLIBC_2.10 {
++    ioperm;
++  }
 +}
+--- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/____longjmp_chk.S
+@@ -0,0 +1,7 @@
++/* Jump to the position specified by ENV, causing the
++   setjmp call there to return VAL, or 1 if VAL is 0.
++   void __longjmp (__jmp_buf env, int val).  */
++      
++#warning longjmp_chk unimplemented
++#define __longjmp ____longjmp_chk
++#include<__longjmp.S>
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/bits/mcontext.h
 @@ -0,0 +1,167 @@
@@ -24410,104 +25589,12 @@
 +
 +#endif /* _BITS_SIGCONTEXT_H */
 --- /dev/null
-+++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/bits/time.h
-@@ -0,0 +1,89 @@
-+/* System-dependent timing definitions.  FreeBSD version.
-+   Copyright (C) 1996-1997, 1999, 2000, 2002 Free Software Foundation, Inc.
-+   This file is part of the GNU C Library.
-+
-+   The GNU C Library is free software; you can redistribute it and/or
-+   modify it under the terms of the GNU Lesser General Public
-+   License as published by the Free Software Foundation; either
-+   version 2.1 of the License, or (at your option) any later version.
-+
-+   The GNU C Library is distributed in the hope that it will be useful,
-+   but WITHOUT ANY WARRANTY; without even the implied warranty of
-+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+   Lesser General Public License for more details.
-+
-+   You should have received a copy of the GNU Lesser General Public
-+   License along with the GNU C Library; if not, write to the Free
-+   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-+   02111-1307 USA.  */
-+
-+/*
-+ * Never include this file directly; use <time.h> instead.
-+ */
-+
-+#ifndef __need_timeval
-+# ifndef _BITS_TIME_H
-+#  define _BITS_TIME_H	1
-+
-+/* ISO/IEC 9899:1990 7.12.1: <time.h>
-+   The macro `CLOCKS_PER_SEC' is the number per second of the value
-+   returned by the `clock' function. */
-+/* CAE XSH, Issue 4, Version 2: <time.h>
-+   The value of CLOCKS_PER_SEC is required to be 1 million on all
-+   XSI-conformant systems. */
-+#  define CLOCKS_PER_SEC  1000000l
-+
-+#  if !defined __STRICT_ANSI__ && !defined __USE_XOPEN2K
-+/* Even though CLOCKS_PER_SEC has such a strange value CLK_TCK
-+   presents the real value for clock ticks per second for the system.  */
-+#   define CLK_TCK 128
-+#  endif
-+
-+#  ifdef __USE_POSIX199309
-+/* Identifier for system-wide realtime clock.  */
-+#   define CLOCK_REALTIME		0
-+/* High-resolution timer from the CPU.  */
-+#   define CLOCK_PROCESS_CPUTIME_ID	2
-+/* Thread-specific CPU-time clock.  */
-+#   define CLOCK_THREAD_CPUTIME_ID	3
-+/* Monotonic system-wide clock.  */
-+#   define CLOCK_MONOTONIC		4
-+/* These are BSD specific clocks.  */
-+#   ifdef __USE_BSD
-+#    define CLOCK_VIRTUAL		1
-+#    define CLOCK_PROF			2
-+#   endif
-+
-+/* Flag to indicate time is absolute.  */
-+#   define TIMER_ABSTIME		1
-+#  endif
-+
-+
-+/* Getkerninfo clock information structure */
-+struct clockinfo
-+  {
-+    int hz;		/* clock frequency */
-+    int tick;		/* micro-seconds per hz tick */
-+    int spare;
-+    int stathz;		/* statistics clock frequency */
-+    int profhz;		/* profiling clock frequency */
-+  };
-+
-+# endif	/* bits/time.h */
-+#endif
-+
-+#ifdef __need_timeval
-+# undef __need_timeval
-+# ifndef _STRUCT_TIMEVAL
-+#  define _STRUCT_TIMEVAL	1
-+#  include <bits/types.h>
-+
-+/* A time value that is accurate to the nearest
-+   microsecond but also has a range of years.  */
-+struct timeval
-+  {
-+    __time_t tv_sec;		/* Seconds.  */
-+    __suseconds_t tv_usec;	/* Microseconds.  */
-+  };
-+# endif	/* struct timeval */
-+#endif	/* need timeval */
---- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/dl-cache.h
 @@ -0,0 +1 @@
 +#include <sysdeps/unix/sysv/linux/x86_64/dl-cache.h>
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/dl-machine.h
-@@ -0,0 +1,80 @@
+@@ -0,0 +1,137 @@
 +/* Machine-dependent ELF dynamic relocation inline functions.  FreeBSD/amd64 version.
 +   Copyright (C) 2006 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -24528,9 +25615,6 @@
 +   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
 +   02111-1307 USA.  */
 +
-+#ifdef dl_machine_h
-+#include_next <dl-machine.h>
-+#else
 +#include_next <dl-machine.h>
 +
 +#undef RTLD_START
@@ -24586,6 +25670,66 @@
 +	jmp *%r12\n\
 +.previous\n\
 +");
++
++#if 0
++Under FreeBSD:
++#define AT_EXECPATH     15      /* Path to the executable. */
++
++Under Linux:
++#define AT_PLATFORM     15      /* String identifying platform.  */
++
++Filled entries from kernel:
++
++        if (args->execfd != -1)
++                AUXARGS_ENTRY(pos, AT_EXECFD, args->execfd);
++        AUXARGS_ENTRY(pos, AT_PHDR, args->phdr);    
++        AUXARGS_ENTRY(pos, AT_PHENT, args->phent);  
++        AUXARGS_ENTRY(pos, AT_PHNUM, args->phnum);  
++        AUXARGS_ENTRY(pos, AT_PAGESZ, args->pagesz);
++        AUXARGS_ENTRY(pos, AT_FLAGS, args->flags);
++        AUXARGS_ENTRY(pos, AT_ENTRY, args->entry);
++        AUXARGS_ENTRY(pos, AT_BASE, args->base);
++        if (imgp->execpathp != 0)
++                AUXARGS_ENTRY(pos, AT_EXECPATH, imgp->execpathp);
++        AUXARGS_ENTRY(pos, AT_NULL, 0);
++                                                                                                                
++#endif
++
++#undef  DL_PLATFORM_INIT
++#define DL_PLATFORM_INIT dl_platform_kfreebsd_x86_64_init ()
++
++#ifndef _DL_MACHINE_KFREEBSD
++#define _DL_MACHINE_KFREEBSD
++
++static inline void cpuid(long op, long *rax, long *rdx)
++{
++    __asm__(
++	"push %%rbx\n\t"
++	"cpuid\n\t"
++	"pop %%rbx\n\t"
++	: "=a" (*rax),
++	  "=d" (*rdx)
++	: "0" (op)
++	: "rcx"
++    );
++}
++
++extern const char *_self_program_name_from_auxv attribute_hidden;
++
++                           
++static inline void __attribute__ ((unused))
++dl_platform_kfreebsd_x86_64_init (void)
++{
++	/* we don't have reasonable AT_PLATFORM from kernel
++	   use cpuid to guess AT_HWCAP */
++
++	long val, hwcap;
++
++	cpuid(1, &val, &hwcap);
++	GLRO(dl_hwcap) = hwcap;
++	_self_program_name_from_auxv = GLRO(dl_platform);
++	GLRO(dl_platform) = ELF_MACHINE_NAME;
++}
 +
 +#endif
 --- /dev/null
@@ -24787,6 +25931,41 @@
 +PSEUDO_END(__getcontext)
 +
 +weak_alias(__getcontext, getcontext)
+--- /dev/null
++++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/ioperm.c
+@@ -0,0 +1,32 @@
++/* Copyright (C) 2009 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, write to the Free
++   Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
++   02111-1307 USA.  */
++
++#include <sys/perm.h>
++#include <sysarch.h>
++
++int
++ioperm (unsigned long int from, unsigned long int num, int turn_on)
++{
++  struct i386_ioperm_args args;
++
++  args.start = from;
++  args.length = num;
++  args.enable = turn_on;
++
++  return __sysarch (I386_SET_IOPERM, &args);
++}
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/iopl.c
 @@ -0,0 +1 @@
@@ -25687,7 +26866,7 @@
 +weak_alias(__swapcontext, swapcontext)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/sys/io.h
-@@ -0,0 +1,171 @@
+@@ -0,0 +1,180 @@
 +/* Copyright (C) 1996, 2000, 2002, 2004 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -25712,6 +26891,15 @@
 +#include <features.h>
 +
 +__BEGIN_DECLS
++
++/* If TURN_ON is TRUE, request for permission to do direct i/o on the
++   port numbers in the range [FROM,FROM+NUM-1].  Otherwise, turn I/O
++   permission off for that range.  This call requires root privileges.
++
++   Portability note: not all kFreeBSD platforms support this call.  Most
++   platforms based on the PC I/O architecture probably will, however. */
++extern int ioperm (unsigned long int __from, unsigned long int __num,
++                   int __turn_on) __THROW;
 +
 +/* Set the I/O privilege level to LEVEL.  If LEVEL>3, permission to
 +   access any I/O port is granted.  This call requires root
@@ -25861,7 +27049,7 @@
 +#endif /* _SYS_IO_H */
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/x86_64/sys/perm.h
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,36 @@
 +/* Copyright (C) 1996, 1999, 2002 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -25886,6 +27074,11 @@
 +#include <features.h>
 +
 +__BEGIN_DECLS
++
++/* Set port input/output permissions.  */
++extern int ioperm (unsigned long int __from, unsigned long int __num,
++		   int __turn_on) __THROW;
++
 +
 +/* Change I/O privilege level.  */
 +extern int iopl (int __level) __THROW;
@@ -26556,7 +27749,7 @@
 +weak_alias (__xmknod, _xmknod)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/xmknodat.c
-@@ -0,0 +1,138 @@
+@@ -0,0 +1,145 @@
 +/* Copyright (C) 2009 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
 +
@@ -26635,10 +27828,18 @@
 +      int mib[4];
 +      size_t kf_len = 0;
 +      char *kf_buf, *kf_bufp;
++      size_t filelen;
 +
 +      if (fd < 0)
 +	{
 +	  __set_errno (EBADF);
++	  return -1;
++	}
++
++      filelen = strlen (file);
++      if (__builtin_expect (filelen == 0, 0))
++	{
++	  __set_errno (ENOENT);
 +	  return -1;
 +	}
 +
@@ -26653,7 +27854,7 @@
 +	  return -1;
 +	}
 +
-+      kf_buf = alloca (kf_len + strlen (file));
++      kf_buf = alloca (kf_len + filelen);
 +      if (__sysctl (mib, 4, kf_buf, &kf_len, NULL, 0) != 0)
 +	{
 +	  __set_errno (ENOSYS);
@@ -26694,7 +27895,6 @@
 +}
 +
 +libc_hidden_def (__xmknodat)
-+stub_warning(xmknodat)
 --- /dev/null
 +++ b/ports/sysdeps/unix/bsd/bsd4.4/kfreebsd/xstat.c
 @@ -0,0 +1,49 @@

@@ -64,7 +64,7 @@ EGLIBC_VERSION = $(shell echo $(DEB_VERSION) | sed -e 's/-.*//')
 DEB_BUILDDIR ?= $(build-tree)/$(DEB_HOST_ARCH)-$(curpass)
 
 EGLIBC_SOURCES = $(addprefix $(shell basename $(CURDIR))/, \
-		 $(filter-out $(stamp) CVS $(build-tree), $(wildcard *)))
+		 $(filter-out debian $(shell basename $(stamp)) $(build-tree), $(wildcard *)))
 		 
 # The kernel uses different CPU appreviations (uname output) than the GNU
 # tools do (config.sub).  Map them.
@@ -103,8 +103,8 @@ ifneq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
 CC     = $(DEB_HOST_GNU_TYPE)-gcc
 CXX    = $(DEB_HOST_GNU_TYPE)-g++
 else
-CC     = gcc-4.3
-CXX    = gcc-4.3
+CC     = gcc-4.4
+CXX    = g++-4.4
 endif
 
 BUILD_CFLAGS = -O2 -g
