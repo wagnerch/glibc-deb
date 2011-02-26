@@ -1,4 +1,4 @@
-eglibc (2.11.2-12) UNRELEASED; urgency=low
+eglibc (2.11.2-12) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * Re-enable build failure in case of testsuite regressions.
@@ -25,7 +25,7 @@ eglibc (2.11.2-12) UNRELEASED; urgency=low
     - Set default rtlddir to /lib and override it when needed.
     - Install xen library in $(libdir)/xen instead of /usr/lib/xen.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 Feb 2011 18:24:24 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 Feb 2011 18:28:26 +0100
 
 eglibc (2.11.2-11) unstable; urgency=low
 
