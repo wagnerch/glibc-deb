@@ -15,10 +15,8 @@
  elf/Makefile |    2 +-
  2 files changed, 7 insertions(+), 2 deletions(-)
 
-Index: eglibc-2.12.1/Makeconfig
-===================================================================
---- eglibc-2.12.1.orig/Makeconfig
-+++ eglibc-2.12.1/Makeconfig
+--- a/Makeconfig
++++ b/Makeconfig
 @@ -202,6 +202,11 @@
  endif
  inst_slibdir = $(install_root)$(slibdir)
@@ -40,10 +38,8 @@ Index: eglibc-2.12.1/Makeconfig
  endif
  endif
  ifndef link-libc
-Index: eglibc-2.12.1/elf/Makefile
-===================================================================
---- eglibc-2.12.1.orig/elf/Makefile
-+++ eglibc-2.12.1/elf/Makefile
+--- a/elf/Makefile
++++ b/elf/Makefile
 @@ -380,7 +380,7 @@
  	  | $(AWK) '($$7 ~ /^UND(|EF)$$/ && $$1 != "0:" && $$4 != "REGISTER") { print; p=1 } END { exit p != 0 }'
  

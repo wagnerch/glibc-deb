@@ -19,8 +19,8 @@ xen_slibdir = /lib/$(DEB_HOST_GNU_TYPE)/i686/nosegneg
 xen_extra_config_options = $(extra_config_options) --disable-profile
 
 define libc0.3-dev_extra_pkg_install
-mkdir -p debian/libc0.3-dev/usr/lib/xen
-cp -af debian/tmp-xen/usr/lib/*.a \
-	debian/libc0.3-dev/usr/lib/xen
+mkdir -p debian/libc0.3-dev/$(libdir)/xen
+cp -af debian/tmp-xen/$(libdir)/*.a \
+	debian/libc0.3-dev/$(libdir)/xen
 endef
 

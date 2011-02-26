@@ -89,7 +89,7 @@ includedir=$(prefix)/include
 docdir=$(prefix)/share/doc
 mandir=$(prefix)/share/man
 sbindir=$(prefix)/sbin
-rtlddir = /lib
+rtlddir=/lib
 slibdir=/lib/$(DEB_HOST_GNU_TYPE)
 libdir=/usr/lib/$(DEB_HOST_GNU_TYPE)
 

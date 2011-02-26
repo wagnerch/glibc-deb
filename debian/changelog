@@ -1,18 +1,4 @@
-eglibc (2.11.2-12) UNRELEASED; urgency=low
-
-  [ Aurelien Jarno ]
-  * Re-enable build failure in case of testsuite regressions.
-
-  [ Samuel Thibault ]
-  * patches/any/submitted-sched_h.diff: Synchronize bits/sched.h with
-    sysdeps/unix/sysv/linux/bits/sched.h (Closes: #527589), rename to
-    cvs-sched_h.diff.
-  * patches/hurd-i386/cvs-if_freereq.diff: Fix crash when siocgifconf
-    actually succeeds.
-
-  [ Clint Adams ]
-  * Patch from Nobuhiro Iwamatsu to cope with the removal of
-    patch --unified-reject-files.  closes: #612540.
+eglibc (2.11.2-13) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
   * Use the multiarch path for the native version and optimized flavors.
@@ -37,7 +23,36 @@ eglibc (2.11.2-12) UNRELEASED; urgency=low
     precedence.
   * set multiarch field for new optimized hurd-i386 packages
 
- -- Clint Adams <clint@debian.org>  Tue, 08 Feb 2011 22:29:28 -0500
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 Feb 2011 18:28:26 +0100
+
+eglibc (2.11.2-12) unstable; urgency=medium
+
+  [ Aurelien Jarno ]
+  * Re-enable build failure in case of testsuite regressions.
+  * Add patches/any/cvs-fnmatch-alloca.patch from upstream to fix a 
+    memory corruption in fnmatch() that can lead to code execution.  
+    Closes: #615120.
+  * Add patches/any/cvs-qsort-race.diff from upstream to fix race in
+    qsort_r().  Closes: #614892.
+
+  [ Samuel Thibault ]
+  * patches/any/submitted-sched_h.diff: Synchronize bits/sched.h with
+    sysdeps/unix/sysv/linux/bits/sched.h (Closes: #527589), rename to
+    cvs-sched_h.diff.
+  * patches/hurd-i386/cvs-if_freereq.diff: Fix crash when siocgifconf
+    actually succeeds.
+
+  [ Clint Adams ]
+  * Patch from Nobuhiro Iwamatsu to cope with the removal of
+    patch --unified-reject-files.  closes: #612540.
+
+  [ Steve Langasek ]
+  * Merge parts of multiarch patch:
+    - Use the correct path in the ldd script as well
+    - Set default rtlddir to /lib and override it when needed.
+    - Install xen library in $(libdir)/xen instead of /usr/lib/xen.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 Feb 2011 18:28:26 +0100
 
 eglibc (2.11.2-11) unstable; urgency=low
 
