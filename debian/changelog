@@ -19,7 +19,13 @@ eglibc (2.11.2-12) UNRELEASED; urgency=low
   * Patch from Nobuhiro Iwamatsu to cope with the removal of
     patch --unified-reject-files.  closes: #612540.
 
- -- Clint Adams <clint@debian.org>  Tue, 08 Feb 2011 22:29:28 -0500
+  [ Steve Langasek ]
+  * Merge parts of multiarch patch:
+    - Use the correct path in the ldd script as well
+    - Set default rtlddir to /lib and override it when needed.
+    - Install xen library in $(libdir)/xen instead of /usr/lib/xen.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 Feb 2011 18:24:24 +0100
 
 eglibc (2.11.2-11) unstable; urgency=low
 
