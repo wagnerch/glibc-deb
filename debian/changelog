@@ -2,9 +2,11 @@ eglibc (2.11.2-12) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
   * Re-enable build failure in case of testsuite regressions.
-  * Add patches/any/cvs-fnmatch-alloca.patch from upstream to a memory
-    corruption in fnmatch() that can lead to code execution.  Closes:
-    #615120.
+  * Add patches/any/cvs-fnmatch-alloca.patch from upstream to fix a 
+    memory corruption in fnmatch() that can lead to code execution.  
+    Closes: #615120.
+  * Add patches/any/cvs-qsort-race.diff from upstream to fix race in
+    qsort_r().  Closes: #614892.
 
   [ Samuel Thibault ]
   * patches/any/submitted-sched_h.diff: Synchronize bits/sched.h with

@@ -271,3 +271,4 @@ any/cvs-audit-suid.diff
 any/cvs-dont-expand-dst-twice.diff
 any/cvs-ignore-origin-privileged.diff
 any/cvs-fnmatch-alloca.patch
+any/cvs-qsort-race.diff
