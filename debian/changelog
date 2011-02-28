@@ -1,4 +1,4 @@
-eglibc (2.11.2-13) UNRELEASED; urgency=low
+eglibc (2.11.2-14) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
   * Use the multiarch path for the native version and optimized flavors.
@@ -24,6 +24,12 @@ eglibc (2.11.2-13) UNRELEASED; urgency=low
   * set multiarch field for new optimized hurd-i386 packages
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 26 Feb 2011 18:28:26 +0100
+
+eglibc (2.11.2-13) unstable; urgency=low
+
+  * Fix a typo in debian/patches/any/local-rtld.diff.  Closes: #615806.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 28 Feb 2011 07:09:56 +0100
 
 eglibc (2.11.2-12) unstable; urgency=medium
 
