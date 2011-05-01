@@ -1,4 +1,4 @@
-eglibc (2.13-0exp5) experimental; urgency=low
+eglibc (2.13-1) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * New upstream release:
@@ -157,6 +157,8 @@ eglibc (2.13-0exp5) experimental; urgency=low
     misaligned blocks larger than 144 Bytes.
   * Add patches/any/local-dl-deps.diff to workaround assert triggered by 
     some binaries.  Closes: #624515.
+  * Add patches/any/submitted-fwrite-wur.diff to not warn about unused 
+    result for fwrite().  Closes: #616627.
 
   [ Samuel Thibault ]
   * Add patches/any/cvs-glro_dl_debug_mask.diff to fix build without
@@ -177,7 +179,7 @@ eglibc (2.13-0exp5) experimental; urgency=low
   * debian/rules.d/debhelper.mk: set $rtlddir in the debhelper substitution
     rules, so we don't substitute an empty string.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 28 Mar 2011 19:04:57 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 01 May 2011 19:53:41 +0200
 
 eglibc (2.11.2-13) unstable; urgency=low
 
