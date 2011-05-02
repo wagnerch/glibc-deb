@@ -269,3 +269,4 @@ any/submitted-resolv.conf-thread.diff
 any/cvs-audit-suid.diff
 any/cvs-dont-expand-dst-twice.diff
 any/cvs-ignore-origin-privileged.diff
+any/cvs-string-restrict.diff
