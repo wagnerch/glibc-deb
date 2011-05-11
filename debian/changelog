@@ -1,4 +1,4 @@
-eglibc (2.13-3) UNRELEASED; urgency=low
+eglibc (2.13-3) unstable; urgency=low
 
   * patches/any/local-no-pagesize.diff: use __sysconf() instead of 
     sysconf().
@@ -8,14 +8,19 @@ eglibc (2.13-3) UNRELEASED; urgency=low
     of unqualified domain names.
   * Add patches/any/cvs-sys-param-ARG_MAX.diff from upstream to fix
     bassackwards tests for ARG_MAX in sys/param.h.  Closes: #583433.
-  * Add patches/any/cvs-nss-initgroups.diff from upstream to correctly
-    return NSS_STATUS_NOTFOUND if no record was found.
   * Add support for the new armhf triplet (Closes: #625846):
     - Update patches/any/submitted-autotools.diff to detect the new triplet. 
     - Add patches/arm/submitted-armhf-triplet.diff to support the 
       new triplet.
+  * Add patches/any/submitted-at-pagesize.diff from Fedora to fix 
+    getpagesize() on static binaries.  Closes: #626379.
+  * sysdeps/sparc.mk, sysdeps/sparc64.mk: disable multiarch support. 
+    Workarounds: #625607.
+  * debian/local/memcpy-wrapper/*: on amd64, provide and build two wrappers
+    to workaround and debug memcpy() issues. Explain how to use them in 
+    debian/debhelper.in/libc.NEWS.
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 04 May 2011 19:53:33 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 11 May 2011 23:03:15 +0200
 
 eglibc (2.13-2) unstable; urgency=low
 
