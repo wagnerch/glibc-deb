@@ -3,7 +3,7 @@ eglibc (2.11.2-10squeeze1) UNRELEASED; urgency=low
   * Add patches/any/cvs-string-restrict.diff to fix wrong memmove/bcopy
     optimization with gcc-4.6.  Closes: #619963.
   * Add patches/any/cvs-fnmatch.diff to fix an integer overflow in 
-    fnmatch().  Closes: #626370.
+    fnmatch() (CVE-2011-1659).  Closes: #626370.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 02 May 2011 06:32:12 +0200
 
