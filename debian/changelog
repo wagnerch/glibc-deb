@@ -8,6 +8,8 @@ eglibc (2.11.2-10squeeze1) UNRELEASED; urgency=low
     if_nameindex() with more than 3 interfaces on GNU/kFreeBSD.
   * Fix preinst script wrt 3.0 kernel. Patch by Colin Watson.  Closes: 
     #630077.
+  * Update submitted-resolv.conf-thread.diff from upstream to fix a 
+    deadlock in some rare cases.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jun 2011 18:12:35 +0200
 
