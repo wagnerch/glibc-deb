@@ -139,6 +139,8 @@ hurd-i386/submitted-add-needed.diff
 hurd-i386/local-ED.diff
 hurd-i386/unsubmitted-pthread_posix-option.diff
 hurd-i386/local-madvise_warn.diff
+hurd-i386/submitted-PTRACE_CONTINUE.diff
+hurd-i386/submitted-ldsodefs.h.diff
 
 ia64/local-dlfptr.diff
 ia64/submitted-sysconf.diff
@@ -265,6 +267,7 @@ any/cvs-getaddrinfo-single-lookup.diff
 any/cvs-unique_sym_table-corruptions.diff
 any/submitted-mqueue-throw.diff
 any/cvs-addmntent.diff
-any/cvs-resolv-different-nameserver.diff
+#any/cvs-resolv-different-nameserver.diff
 any/cvs-fnmatch.diff
 any/cvs-ifunc.diff
+powerpc/submitted-ifunc.diff
