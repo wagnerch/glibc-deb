@@ -4,8 +4,10 @@ eglibc (2.11.2-10squeeze1) UNRELEASED; urgency=low
     optimization with gcc-4.6.  Closes: #619963.
   * Add patches/any/cvs-fnmatch.diff to fix an integer overflow in 
     fnmatch() (CVE-2011-1659).  Closes: #626370.
-  * Update patches/kfreebsd/local-sysdeps.diff to fix a crash in
-    if_nameindex() with more than 3 interfaces on GNU/kFreeBSD.
+  * kfreebsd/local-sysdeps.diff, update to r3662 (from squeeze glibc-bsd).
+    - fixes LD_PRELOAD with a kfreebsd-9 kernel. Closes: #630695.
+    - uses upstream RFTSIGZMB for exit signal selection when available.
+    - fixes a crash in if_nameindex() with more than 3 interfaces.
   * Fix preinst script wrt 3.0 kernel. Patch by Colin Watson.  Closes: 
     #630077.
   * Update submitted-resolv.conf-thread.diff from upstream to fix a 
