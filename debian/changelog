@@ -4,7 +4,6 @@ eglibc (2.13-10) unstable; urgency=low
   * Revert patch to make libc6-dev multiarch.  Closes: #632667.
   * Add patches/alpha/submitted-statfs64.patch to fix statvfs() on alpha.
     Closes: #324051.
-  * Add a Breaks: perl (<< 5.12.4-2) to libc0.1/6/6.1.  Closes: #636686.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 04 Jul 2011 22:02:35 +0200
 
