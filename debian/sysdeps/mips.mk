@@ -26,6 +26,20 @@ mips64_slibdir = /lib64
 mips64_libdir = /usr/lib64
 mips64_extra_config_options := $(extra_config_options) --disable-profile
 
+define libc6-dev-mips64_extra_pkg_install
+
+mkdir -p debian/libc6-dev-mips64/usr/include
+ln -s mips-linux-gnu/bits debian/libc6-dev-mips64/usr/include/
+ln -s mips-linux-gnu/gnu debian/libc6-dev-mips64/usr/include/
+ln -s mips-linux-gnu/fpu_control.h debian/libc6-dev-mips64/usr/include/
+
+mkdir -p debian/libc6-dev-mips64/usr/include/sys
+for i in `ls debian/tmp-libc/usr/include/mips-linux-gnu/sys` ; do \
+        ln -s ../mips-linux-gnu/sys/$$i debian/libc6-dev-mips64/usr/include/sys/$$i ; \
+done
+
+endef
+
 # Need to put a tri-arch aware version of ldd in the base package
 define mipsn32_extra_install
 cp debian/tmp-mipsn32/usr/bin/ldd debian/tmp-libc/usr/bin

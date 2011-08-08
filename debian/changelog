@@ -1,9 +1,57 @@
-eglibc (2.13-12) UNRELEASED; urgency=low
+eglibc (2.13-15) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * Add testsuite results for s390x.
+  * Install x86-64 version of ldd in libc-bin:i386.  Closes: #636947.
+  * Add a Breaks: perl (<< 5.12.4-2) to libc0.1/6/6.1.  Closes: #636686.
+  * Install x86-64 headers on i386 instead of the i386 ones.  Closes: 
+    #637000.
+  * debhelper.in/libc-dev-alt.preinst: test if not a symlink instead of
+    testing if a directory. Fixes triarch includes on mips/mipsel.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 08 Aug 2011 14:39:41 +0200
+
+eglibc (2.13-14) unstable; urgency=low
+
+  [ Aurelien Jarno ]
+  * Remove amd64 biarch includes from libc6-dev:i386.  Closes: #636115,
+    #636116.
+  * Fix the biarch symlinks on mipsel, pointing them to the right multiarch
+    directory.
+  * Include a symlink for fpu_control in biarch packages.  Closes: #635685.
+  * Update conflicts to libc6-dev in biarch packages to (<< 2.13-14) so that
+    the directory to symlink conversion is done correctly.
+  * On mips/mipsel, only ship the includes symlinks in libc6-dev-mips64. Add
+    a dependency to libc6-dev-mips64 in libc6-dev-mipsn32.
+  * Build with gcc-4.6/g++-4.6 on armhf to get correct atomic operations in 
+    thumb-2 mode.
+
+  [ Samuel Thibault ]
+  * patches/hurd-i386/submitted-sysvshm.diff: Fix shm creation: do not create
+    file on first lookup.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 04 Aug 2011 09:41:41 +0200
+
+eglibc (2.13-13) unstable; urgency=low
+
+  * sysdeps/*.mk: install the biarch includes in /usr/include instead
+    of the multiarch path. Fix FTBFS on some architectures.
+  * sysdeps/mips.*mk: fix triarch includes on mips and mipsel.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 31 Jul 2011 02:42:58 +0200
+
+eglibc (2.13-12) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * rules.d/debhelper.mk: Fix a typo about kfreebsd-amd64.
+  * Change include directory on i386 from i486-linux-gnu to i386-linux-gnu
+    and on kfreebsd-i386 from i486-kfreebsd-gnu to i386-kfreebsd-gnu.
+  * Fix installation of biarch headers (Closes: #635685):
+    - Use a symlink for bits/ and gnu/ directories
+    - Use symlinked files for sys/ directory
+    - Add a preinst script to do the directory <-> symlink conversion.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 26 Jul 2011 16:04:27 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 30 Jul 2011 13:33:39 +0200
 
 eglibc (2.13-11) unstable; urgency=low
 
