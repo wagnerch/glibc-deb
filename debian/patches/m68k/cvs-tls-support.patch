@@ -20,9 +20,9 @@ index 7a3e8b7..87117d3 100644
 +	* sysdeps/unix/sysv/linux/m68k/bits/fcntl.h: Change misleading
 +	names of parameters of sync_file_range.
 +
- 2009-11-17  Joseph Myers  <joseph@codesourcery.com>
+ 2011-01-18  Andreas Schwab  <schwab@linux-m68k.org>
  
- 	[BZ #10972]
+ 	* sysdeps/unix/sysv/linux/m68k/bits/mman.h (MADV_HUGEPAGE)
 diff --git a/ports/sysdeps/unix/sysv/linux/m68k/bits/fcntl.h b/ports/sysdeps/unix/sysv/linux/m68k/bits/fcntl.h
 index 6fc7a0a..c6dd1a8 100644
 --- a/ports/sysdeps/unix/sysv/linux/m68k/bits/fcntl.h
@@ -3816,7 +3816,7 @@ index cdc0ab5..6cf5d39 100644
 +
  2010-05-22  Andreas Schwab  <schwab@linux-m68k.org>
  
- 	* data/ports/c++-types-m68k-linux-gnu.data: New file.
+ 	* data/c++-types-m68k-linux-gnu.data: New file.
 diff --git a/ports/sysdeps/unix/sysv/linux/m68k/nptl/bits/pthreadtypes.h b/ports/sysdeps/unix/sysv/linux/m68k/nptl/bits/pthreadtypes.h
 index 0140810..832609d 100644
 --- a/ports/sysdeps/unix/sysv/linux/m68k/nptl/bits/pthreadtypes.h

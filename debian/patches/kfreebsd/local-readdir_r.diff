@@ -1,17 +1,18 @@
 ---
- sysdeps/unix/readdir_r.c |   30 +++++++++++++++++++++++++++++-
- 1 file changed, 29 insertions(+), 1 deletion(-)
+ sysdeps/unix/readdir_r.c |   33 +++++++++++++++++++++++++--------
+ 1 file changed, 25 insertions(+), 8 deletions(-)
 
 --- a/sysdeps/unix/readdir_r.c
 +++ b/sysdeps/unix/readdir_r.c
-@@ -114,14 +114,32 @@
+@@ -114,15 +114,32 @@
  
    if (dp != NULL)
      {
 -#ifdef GETDENTS_64BIT_ALIGNED
 -      /* The d_reclen value might include padding which is not part of
 -	 the DIRENT_TYPE data structure.  */
--      reclen = MIN (reclen, sizeof (DIRENT_TYPE));
+-      reclen = MIN (reclen,
+-		    offsetof (DIRENT_TYPE, d_name) + sizeof (dp->d_name));
 -#endif
 +	/* The required size of *entry, according to POSIX, is
 +	offsetof (DIRENT_TYPE, d_name[0]) + NAME_MAX + 1.

@@ -4,10 +4,10 @@
 
 --- a/math/Makefile
 +++ b/math/Makefile
-@@ -93,13 +93,17 @@
- tests = test-matherr test-fenv atest-exp atest-sincos atest-exp2 basic-test \
+@@ -94,13 +94,17 @@
  	test-misc test-fpucw tst-definitions test-tgmath test-tgmath-ret \
- 	bug-nextafter bug-nexttoward bug-tgmath1 test-tgmath-int
+ 	bug-nextafter bug-nexttoward bug-tgmath1 test-tgmath-int \
+ 	test-powl
 -# We do the `long double' tests only if this data type is available and
 -# distinct from `double'.
 +# We do the `long double' tests only if this data type is available.
@@ -25,7 +25,7 @@
  	test-ifloat test-idouble
  libm-tests.o = $(addsuffix .o,$(libm-tests))
  
-@@ -173,11 +177,15 @@
+@@ -175,11 +179,15 @@
  ifneq ($(long-double-fcts),yes)
  # The `double' and `long double' types are the same on this machine.
  # We won't compile the `long double' code at all.  Tell the `double' code

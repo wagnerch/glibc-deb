@@ -1,9 +1,29 @@
-eglibc (2.11.2-10squeeze1) UNRELEASED; urgency=low
+eglibc (2.11.3-1) UNRELEASED; urgency=low
 
-  * Add patches/any/cvs-string-restrict.diff to fix wrong memmove/bcopy
-    optimization with gcc-4.6.  Closes: #619963.
-  * Add patches/any/cvs-fnmatch.diff to fix an integer overflow in 
-    fnmatch() (CVE-2011-1659).  Closes: #626370.
+  * Update from stable upstream version, and update from the upstream 
+    stable branch:
+    - fix wrong memmove/bcopy optimization with gcc-4.6.  Closes: #619963.
+    - fix an integer overflow in fnmatch() (CVE-2011-1659).  Closes: #626370.
+    - fix spurious warning in bswap_16() with -Wconversion.  Closes: #561249.
+    - fix auxiliary cache file creation.  Closes: #588218.
+  * Update patches:
+    - patches/locale/locale-print-LANGUAGE.diff
+    - patches/hppa/local-stack-grows-up.diff
+    - patches/m68k/cvs-tls-support.patch
+    - patches/any/local-disable-test-tgmath2.diff
+    - patches/any/submitted-longdouble.diff
+    - patches/any/submitted-bits-fcntl_h-at.diff
+    - patches/kfreebsd/local-readdir_r.diff
+  * Drop obsolete patches:
+    - patches/any/cvs-redirect-throw.diff
+    - patches/any/cvs-flush-cache-textrels.diff
+    - patches/hurd-i386/cvs-linkat.diff
+    - patches/hurd-i386/cvs-select.diff
+    - patches/sparc/submitted-epoll.diff
+    - patches/any/cvs-dont-expand-dst-twice.diff
+    - patches/amd64/cvs-avx-tcb-alignment.diff
+    - patches/any/submitted-etc-resolv.conf.diff
+    - patches/any/cvs-audit-suid.diff
   * kfreebsd/local-sysdeps.diff, update to r3665 (from squeeze glibc-bsd).
     - fixes LD_PRELOAD with a kfreebsd-9 kernel. Closes: #630695.
     - uses upstream RFTSIGZMB for exit signal selection when available.
