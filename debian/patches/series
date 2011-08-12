@@ -263,3 +263,4 @@ any/cvs-ignore-origin-privileged.diff
 any/cvs-resolv-different-nameserver.diff
 any/submitted-resolv-assert.diff
 any/cvs-getaddrinfo-single-lookup.diff
+any/cvs-pthread-setgroups.diff
