@@ -260,3 +260,5 @@ any/cvs-__block.diff
 any/cvs-sunrpc-license.diff
 any/submitted-resolv.conf-thread.diff
 any/cvs-ignore-origin-privileged.diff
+any/cvs-resolv-different-nameserver.diff
+any/submitted-resolv-assert.diff
