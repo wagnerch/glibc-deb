@@ -637,7 +637,7 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
     Architectures must provide a few lowlevel macros (the compare
 --- a/ChangeLog	(revision 12231)
 +++ b/ChangeLog	(revision 14920)
-@@ -1,3 +1,374 @@
+@@ -1,3 +1,369 @@
 +2011-05-17  H.J. Lu  <hongjiu.lu@intel.com>
 +
 +	[BZ #12775]
@@ -778,11 +778,6 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +	* sysdeps/unix/sysv/linux/x86_64/____longjmp_chk.S (CALL_FAIL):
 +	Maintain aligned stack.
 +	(CHECK_RSP): Remove unused macro.
-+
-+2011-04-01  Andreas Schwab  <schwab@redhat.com>
-+
-+	* sysdeps/unix/sysv/linux/Makefile (sysdep_headers): Add
-+	bits/timex.h
 +
 +2011-03-18  Ulrich Drepper  <drepper@gmail.com>
 +
@@ -1184,17 +1179,6 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/sysdeps/unix/sysv/linux/Makefile	(revision 12231)
-+++ b/sysdeps/unix/sysv/linux/Makefile	(revision 14920)
-@@ -96,7 +96,7 @@
- endif
- 
- ifeq ($(subdir),time)
--sysdep_headers += sys/timex.h
-+sysdep_headers += sys/timex.h bits/timex.h
- 
- sysdep_routines += ntp_gettime
- endif
 --- a/sysdeps/unix/sysv/linux/mkdirat.c	(revision 12231)
 +++ b/sysdeps/unix/sysv/linux/mkdirat.c	(revision 14920)
 @@ -1,4 +1,4 @@
