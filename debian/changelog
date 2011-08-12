@@ -6,6 +6,8 @@ eglibc (2.11.3-1) UNRELEASED; urgency=low
     - fix an integer overflow in fnmatch() (CVE-2011-1659).  Closes: #626370.
     - fix spurious warning in bswap_16() with -Wconversion.  Closes: #561249.
     - fix auxiliary cache file creation.  Closes: #588218.
+    - fix memory corruption in fnmatch() that can lead to code execution 
+      (CVE-2011-1071).  Closes: #615120
   * Update patches:
     - patches/locale/locale-print-LANGUAGE.diff
     - patches/hppa/local-stack-grows-up.diff
