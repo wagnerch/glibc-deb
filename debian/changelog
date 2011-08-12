@@ -38,6 +38,8 @@ eglibc (2.11.3-1) UNRELEASED; urgency=low
   * Add patches/any/cvs-resolv-different-nameserver.diff and
     patches/any/submitted-resolv-assert.diff to try a different
     nameserver if the first one returns REFUSED.  Closes: #535504.
+  * Add patches/any/cvs-getaddrinfo-single-lookup.diff to fix fallback to
+    single lookup dns requests.  Closes: #541167.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jun 2011 18:12:35 +0200
 
