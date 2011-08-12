@@ -8,6 +8,7 @@ eglibc (2.11.3-1) UNRELEASED; urgency=low
     - fix auxiliary cache file creation.  Closes: #588218.
     - fix memory corruption in fnmatch() that can lead to code execution 
       (CVE-2011-1071).  Closes: #615120
+    - fix strchr() on x86-64 CPU with SSE4.2.  Closes: #635885
   * Update patches:
     - patches/locale/locale-print-LANGUAGE.diff
     - patches/hppa/local-stack-grows-up.diff
