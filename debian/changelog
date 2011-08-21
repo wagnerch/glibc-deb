@@ -27,7 +27,7 @@ eglibc (2.11.3-1) UNRELEASED; urgency=low
     - patches/amd64/cvs-avx-tcb-alignment.diff
     - patches/any/submitted-etc-resolv.conf.diff
     - patches/any/cvs-audit-suid.diff
-  * kfreebsd/local-sysdeps.diff, update to r3665 (from squeeze glibc-bsd).
+  * kfreebsd/local-sysdeps.diff, update to r3691 (from squeeze glibc-bsd).
     - fixes LD_PRELOAD with a kfreebsd-9 kernel. Closes: #630695.
     - uses upstream RFTSIGZMB for exit signal selection when available.
     - fixes a crash in if_nameindex() with more than 3 interfaces.
