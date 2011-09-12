@@ -42,6 +42,9 @@ eglibc (2.11.3-1) UNRELEASED; urgency=low
     single lookup dns requests.  Closes: #541167.
   * Add patches/any/cvs-pthread-setgroups.diff to fix setgroups() with
     multiple threads.
+  * Add debian/patches/cvs-dl_close-scope-handling.diff from upstream to
+    fix issues with dl_close() when resolving locally-defined symbols.
+    Closes: #625250.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jun 2011 18:12:35 +0200
 
