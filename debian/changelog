@@ -45,6 +45,7 @@ eglibc (2.11.3-1) UNRELEASED; urgency=low
   * Add debian/patches/cvs-dl_close-scope-handling.diff from upstream to
     fix issues with dl_close() when resolving locally-defined symbols.
     Closes: #625250.
+  * patches/i386/local-cpuid-level2.diff: fix a typo.  Closes: #609389.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jun 2011 18:12:35 +0200
 
