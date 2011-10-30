@@ -48,6 +48,8 @@ eglibc (2.11.3-1) UNRELEASED; urgency=low
     fix issues with dl_close() when resolving locally-defined symbols.
     Closes: #625250.
   * patches/i386/local-cpuid-level2.diff: fix a typo.  Closes: #609389.
+  * patches/any/cvs-nptl-pthread-race.diff: fix a race in NPTL code that
+    sometimes causes a deadlock when calling fork() from a thread.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jun 2011 18:12:35 +0200
 

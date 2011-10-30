@@ -265,3 +265,4 @@ any/submitted-resolv-assert.diff
 any/cvs-getaddrinfo-single-lookup.diff
 any/cvs-pthread-setgroups.diff
 any/cvs-dl_close-scope-handling.diff
+any/cvs-nptl-pthread-race.diff
