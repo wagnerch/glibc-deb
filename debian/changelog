@@ -1,4 +1,23 @@
-eglibc (2.13-22) UNRELEASED; urgency=low
+eglibc (2.13-22) unstable; urgency=low
+
+  [ Adam Conrad ]
+  * patches/arm/unsubmitted-ldconfig-cache-abi.diff: New patch from
+    Steve McIntyre that adds tagging to armhf libraries in ld.so.cache
+  * patches/arm/unsubmitted-ldso-abi-check.diff: Another patch from
+    Steve McIntyre, giving ld.so the ability to differentiate between
+    soft and hard-float ABIs and provide sane exits when required.
+  * Merge armel/armhf bi-arch support from Ubuntu, but disable until
+    the armhf bootstrap in Debian has removed /lib/ld-linux.so.3:
+    - Fix install locations for libc6-dev-armel in sysdeps.
+    - Change armel_rtlddir (for libc6-armel) to /lib, as required.
+    - Install /lib/ld-linux.so.3 symlink in libc6-armel.
+    - Install ld.so.conf.d file for the multilib ARM targets.
+  * Add dynamic linker name for the non-default multilib in ARM ldd.
+  * debian/debhelper.in/libc-udeb.install.armhf: Install ld-linux.so.3
+    to the correct location in the udeb, so binaries can find it.
+  * Install /lib/ld-linux.so.3 symlink in libc6:armhf, this will need
+    to be reverted once the rebuild/rebootstrap is completed.
+  * Fix chmod regex in udeb pass to match the one used for others.
 
   [ Aurelien Jarno ]
   * patches/i386/local-cpuid-level2.diff: fix a typo.  Closes: #609389.
@@ -17,6 +36,16 @@ eglibc (2.13-22) UNRELEASED; urgency=low
   * patches/amd64/cvs-dl_trampoline-cfi.diff: fix CFI in dl_trampoline code.
   * patches/mips/submitted-dl-platform.diff: fix a typo preventing loongson2f
     platform directory to be used.  Closes: #646610.
+  * Update Dutch debconf translation, by Vincent Zweije.  Closes: #649605.
+  * Update expected-results-x86_64-kfreebsd-gnu-libc to allow tst-clock1.out
+    to fail, as it seems to happen when there is other load than glibc on the
+    building machine.  Closes: #649185.
+  * patches/any/local-linuxthreads-XPG7.diff: fix XPG7 compliance in
+    linuxthreads version of pthread.h.  Closes: #647823.
+  * Update from the latest SVN, branch eglibc-2_13.
+  * Add patches/amd64/cvs-pthread_cond_wait.diff to correctly handle EAGAIN
+    from FUTEX_WAIT_REQUEUE_PI.
+  * debian/rules.d/tarball.mk: ignore manual/ directory.
 
   [ Samuel Thibault ]
   * patches/hurd-i386/submitted-setresid.diff: New patch to fix -1 passed to
@@ -38,11 +67,31 @@ eglibc (2.13-22) UNRELEASED; urgency=low
     tg-____longjmp_chk.diff, tg-elfosabi_gnu.diff, tg-libc_once.diff}.
   * patches/hurd-i386/submitted-libc_once.diff: Move kfreebsd part to
     patches/kfreebsd/submitted-libc_once.diff.
-  * patches/hurd-i386/submitted-ldsodefs.h.diff: Move commited part to
+  * patches/hurd-i386/submitted-ldsodefs.h.diff: Move committed part to
     patches/hurd-i386/cvs-ldsodefs.h.diff
+  * patches/hurd-i386/cvs-sgttyb.diff: New patch to fix sgttyb ioctls values.
+  * patches/hurd-i386/tg-dup3.diff: New patch from Hurd topgit to implement
+    dup3.
+  * patches/hurd-i386/submitted-dup2-fix.diff: Trivially port to dup3.
+  * patches/hurd-i386/local-clock_gettime_MONOTONIC.diff: New patch to
+    brown-tape fix iceweasel.
+  * patches/hurd-i386/submitted-_hurd_socket_server-indexcheck.diff: New patch
+    from Pino Toscano to fix crash or spurious deallocation on bogus input.
+  * libc0.3.symbols.hurd-i386: Drop removed unused xxx_ and yyy_ RPCs.
+  * patches/hurd-i386/submitted-hurd-recvfrom.diff: New patch from Pino
+    Toscano to fix recvfrom on socketpair. Closes: #650095.
+  * patches/hurd-i386/local-select.diff: New patch to fix select with a zero
+    timeout. Closes: #79358.
+  * patches/hurd-i386/tg-struct_stat.diff: Add POSIX 2008 visibility.
+  * patches/hurd-i386/submitted-posix2008.diff: Add POSIX 2008 visibility.
+  * patches/hurd-i386/submitted-select-inputcheck.diff: Add select input check.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 3763 (from glibc-bsd).
+  * add kfreebsd/local-use-thr-primitives.diff to use kernel thr*
+    primitives inside linuxthreads. Closes: #639658.
+  * debian/sysdeps/sysdeps/kfreebsd.mk, debhelper.in/libc.preinst:
+    bump minimal FreeBSD kernel version to 8.1.
 
   [ Steve Langasek ]
   * Add a new debconf template, libraries/restart-without-asking, shared
@@ -52,8 +101,13 @@ eglibc (2.13-22) UNRELEASED; urgency=low
     during an upgrade between releases to ask whether it's ok to restart a
     service that will be restarted anyway when the package itself gets
     upgraded.
+  * Name our biarch compat ld.so.conf.d files on arm* consistently with the
+    ones on other archs.
 
- -- Samuel Thibault <sthibault@debian.org>  Mon, 17 Oct 2011 01:23:52 +0200
+  [ Kyle Moffett ]
+  * Add support for stage1 builds.  Closes: #644546.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 10 Dec 2011 21:49:03 +0100
 
 eglibc (2.13-21) unstable; urgency=low
 
