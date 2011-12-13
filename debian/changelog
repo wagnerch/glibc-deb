@@ -1,4 +1,4 @@
-eglibc (2.11.3-1) UNRELEASED; urgency=low
+eglibc (2.11.3-1) unstable; urgency=low
 
   * Update from stable upstream version, and update from the upstream 
     stable branch:
@@ -58,7 +58,7 @@ eglibc (2.11.3-1) UNRELEASED; urgency=low
   * patches/any/cvs-dlopen-tls.diff:  fix handling of static TLS in
     dlopen'ed objects.  Closes: #637239.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jun 2011 18:12:35 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 13 Dec 2011 11:23:12 +0100
 
 eglibc (2.11.2-10) unstable; urgency=low
 
