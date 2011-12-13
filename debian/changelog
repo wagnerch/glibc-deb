@@ -55,6 +55,8 @@ eglibc (2.11.3-1) UNRELEASED; urgency=low
   * patches/any/cvs-statvfs-mount-flags.diff: get the mount flags directly
     from the kernel when possible instead of parsing /proc/mounts.  Closes: 
     #639897.
+  * patches/any/cvs-dlopen-tls.diff:  fix handling of static TLS in
+    dlopen'ed objects.  Closes: #637239.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 11 Jun 2011 18:12:35 +0200
 
