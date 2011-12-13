@@ -1,4 +1,4 @@
-eglibc (2.11.3-1) unstable; urgency=low
+eglibc (2.11.3-1) stable; urgency=low
 
   * Update from stable upstream version, and update from the upstream 
     stable branch:
