@@ -1,7 +1,7 @@
 SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 
---- a/stdlib/bug-getcontext.c	(révision 0)
-+++ b/stdlib/bug-getcontext.c	(révision 15252)
+--- a/stdlib/bug-getcontext.c	(revision 0)
++++ b/stdlib/bug-getcontext.c	(revision 16211)
 @@ -0,0 +1,48 @@
 +/* BZ 12420 */
 +
@@ -51,8 +51,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +#define TEST_FUNCTION do_test ()
 +#include "../test-skeleton.c"
---- a/stdlib/msort.c	(révision 12231)
-+++ b/stdlib/msort.c	(révision 15252)
+--- a/stdlib/msort.c	(revision 12231)
++++ b/stdlib/msort.c	(revision 16211)
 @@ -25,6 +25,7 @@
  #include <unistd.h>
  #include <memcopy.h>
@@ -80,8 +80,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	  pagesize = __sysconf (_SC_PAGESIZE);
  	}
  
---- a/stdlib/Makefile	(révision 12231)
-+++ b/stdlib/Makefile	(révision 15252)
+--- a/stdlib/Makefile	(revision 12231)
++++ b/stdlib/Makefile	(revision 16211)
 @@ -1,4 +1,4 @@
 -# Copyright (C) 1991-2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 +# Copyright (C) 1991-2009, 2011 Free Software Foundation, Inc.
@@ -108,8 +108,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +link-libm = $(common-objpfx)math/libm.a
 +endif
 +$(objpfx)bug-getcontext: $(link-libm)
---- a/nscd/hstcache.c	(révision 12231)
-+++ b/nscd/hstcache.c	(révision 15252)
+--- a/nscd/hstcache.c	(revision 12231)
++++ b/nscd/hstcache.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Cache handling for host lookup.
 -   Copyright (C) 1998-2008, 2009 Free Software Foundation, Inc.
@@ -173,8 +173,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	      errval = EAGAIN;
  	      break;
  	    }
---- a/libio/fmemopen.c	(révision 12231)
-+++ b/libio/fmemopen.c	(révision 15252)
+--- a/libio/fmemopen.c	(revision 12231)
++++ b/libio/fmemopen.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Fmemopen implementation.
 -   Copyright (C) 2000, 2002, 2005, 2006, 2008, 2009
@@ -191,8 +191,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
    if (mode[0] == 'a')
      c->pos = c->maxpos;
---- a/libio/fileops.c	(révision 12231)
-+++ b/libio/fileops.c	(révision 15252)
+--- a/libio/fileops.c	(revision 12231)
++++ b/libio/fileops.c	(revision 16211)
 @@ -291,7 +291,7 @@
  #ifdef _LIBC
    last_recognized = mode;
@@ -256,8 +256,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
        /* Now write out the remainder.  Normally, this will fit in the
  	 buffer, but it's somewhat messier for line-buffered files,
---- a/wcsmbs/bits/wchar2.h	(révision 12231)
-+++ b/wcsmbs/bits/wchar2.h	(révision 15252)
+--- a/wcsmbs/bits/wchar2.h	(revision 12231)
++++ b/wcsmbs/bits/wchar2.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Checking macros for wchar functions.
 -   Copyright (C) 2005, 2006, 2007 Free Software Foundation, Inc.
@@ -382,8 +382,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  {
    /* We would have to include <limits.h> to get a definition of MB_LEN_MAX.
       But this would only disturb the namespace.  So we define our own
---- a/wcsmbs/wchar.h	(révision 12231)
-+++ b/wcsmbs/wchar.h	(révision 15252)
+--- a/wcsmbs/wchar.h	(revision 12231)
++++ b/wcsmbs/wchar.h	(revision 16211)
 @@ -319,8 +319,7 @@
  #endif
  
@@ -410,8 +410,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
       __THROW;
  #endif	/* use GNU */
  
---- a/include/alloca.h	(révision 12231)
-+++ b/include/alloca.h	(révision 15252)
+--- a/include/alloca.h	(revision 12231)
++++ b/include/alloca.h	(revision 16211)
 @@ -14,6 +14,7 @@
  
  extern int __libc_use_alloca (size_t size) __attribute__ ((const));
@@ -420,8 +420,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
  #define __MAX_ALLOCA_CUTOFF	65536
  
---- a/include/atomic.h	(révision 12231)
-+++ b/include/atomic.h	(révision 15252)
+--- a/include/atomic.h	(revision 12231)
++++ b/include/atomic.h	(revision 16211)
 @@ -33,7 +33,7 @@
       the multi-thread case.  The interfaces have the prefix
       "catomic_".
@@ -431,8 +431,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
       "atomic_".
  
     Architectures must provide a few lowlevel macros (the compare
---- a/ChangeLog	(révision 12231)
-+++ b/ChangeLog	(révision 15252)
+--- a/ChangeLog	(revision 12231)
++++ b/ChangeLog	(revision 16211)
 @@ -1,3 +1,369 @@
 +2011-05-29  Ulrich Drepper  <drepper@gmail.com>
 +
@@ -803,8 +803,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  2010-05-31  Petr Baudis  <pasky@suse.cz>
  
  	[BZ #11149]
---- a/sysdeps/powerpc/powerpc32/power6/fpu/s_isnanf.S	(révision 12231)
-+++ b/sysdeps/powerpc/powerpc32/power6/fpu/s_isnanf.S	(révision 15252)
+--- a/sysdeps/powerpc/powerpc32/power6/fpu/s_isnanf.S	(revision 12231)
++++ b/sysdeps/powerpc/powerpc32/power6/fpu/s_isnanf.S	(revision 16211)
 @@ -1,5 +1,5 @@
  /* isnanf().  PowerPC32 version.
 -   Copyright (C) 2008 Free Software Foundation, Inc.
@@ -822,8 +822,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  hidden_def (__isnanf)
  weak_alias (__isnanf, isnanf)
 -
---- a/sysdeps/powerpc/dl-tls.h	(révision 12231)
-+++ b/sysdeps/powerpc/dl-tls.h	(révision 15252)
+--- a/sysdeps/powerpc/dl-tls.h	(revision 12231)
++++ b/sysdeps/powerpc/dl-tls.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Thread-local storage handling in the ELF dynamic linker.  PowerPC version.
 -   Copyright (C) 2003 Free Software Foundation, Inc.
@@ -838,8 +838,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +/* Value used for dtv entries for which the allocation is delayed.  */
 +#define TLS_DTV_UNALLOCATED	((void *) -1l)
---- a/sysdeps/unix/sysv/linux/s390/bits/mman.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/s390/bits/mman.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/s390/bits/mman.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/s390/bits/mman.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/s390 version.
 -   Copyright (C) 2000-2003,2005,2006,2009 Free Software Foundation, Inc.
@@ -856,13 +856,13 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/sysdeps/unix/sysv/linux/sparc/sparc64/fxstat.c	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/sparc/sparc64/fxstat.c	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/sparc/sparc64/fxstat.c	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/sparc/sparc64/fxstat.c	(revision 16211)
 @@ -1 +1 @@
 -#include "../../fxstat.c"
 +#include "../../i386/fxstat.c"
---- a/sysdeps/unix/sysv/linux/sparc/bits/mman.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/sparc/bits/mman.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/sparc/bits/mman.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/sparc/bits/mman.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/SPARC version.
 -   Copyright (C) 1997,1999,2000,2003,2005,2006,2009
@@ -879,8 +879,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/sysdeps/unix/sysv/linux/sparc/bits/socket.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/sparc/bits/socket.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/sparc/bits/socket.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/sparc/bits/socket.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* System-specific socket constants and types.  Linux/SPARC version.
 -   Copyright (C) 1991, 1992, 1994-2001, 2004, 2006, 2007, 2008, 2009
@@ -919,8 +919,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  #define MSG_CMSG_CLOEXEC MSG_CMSG_CLOEXEC
    };
  
---- a/sysdeps/unix/sysv/linux/i386/bits/mman.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/i386/bits/mman.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/i386/bits/mman.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/i386/bits/mman.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/i386 version.
 -   Copyright (C) 1997,2000,2003,2005,2006,2009,2010
@@ -937,8 +937,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/sysdeps/unix/sysv/linux/powerpc/powerpc64/sysdep.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/powerpc/powerpc64/sysdep.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/powerpc/powerpc64/sysdep.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/powerpc/powerpc64/sysdep.h	(revision 16211)
 @@ -172,7 +172,7 @@
         : "r9", "r10", "r11", "r12",					\
           "cr0", "ctr", "lr", "memory");					\
@@ -957,8 +957,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
    })
  #define INTERNAL_SYSCALL(name, err, nr, args...)			\
    INTERNAL_SYSCALL_NCS (__NR_##name, err, nr, args)
---- a/sysdeps/unix/sysv/linux/powerpc/bits/mman.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/powerpc/bits/mman.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/powerpc/bits/mman.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/powerpc/bits/mman.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/PowerPC version.
 -   Copyright (C) 1997,2000,2003,2005,2006,2008,2009
@@ -975,8 +975,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/sysdeps/unix/sysv/linux/mkdirat.c	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/mkdirat.c	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/mkdirat.c	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/mkdirat.c	(revision 16211)
 @@ -1,4 +1,4 @@
 -/* Copyright (C) 2005, 2006, 2009 Free Software Foundation, Inc.
 +/* Copyright (C) 2005, 2006, 2009, 2011 Free Software Foundation, Inc.
@@ -992,8 +992,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	__have_atfcts = -1;
        else
  # endif
---- a/sysdeps/unix/sysv/linux/bits/socket.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/bits/socket.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/bits/socket.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/bits/socket.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* System-specific socket constants and types.  Linux version.
 -   Copyright (C) 1991, 1992, 1994-2001, 2004, 2006, 2007, 2008, 2009
@@ -1021,8 +1021,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  #define	AF_MAX		PF_MAX
  
  /* Socket level values.  Others are defined in the appropriate headers.
---- a/sysdeps/unix/sysv/linux/sh/bits/mman.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/sh/bits/mman.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/sh/bits/mman.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/sh/bits/mman.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/SH version.
 -   Copyright (C) 1997,1999,2000,2003,2005,2006,2009
@@ -1039,8 +1039,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/sysdeps/unix/sysv/linux/x86_64/getcontext.S	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/x86_64/getcontext.S	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/x86_64/getcontext.S	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/x86_64/getcontext.S	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Save current context.
 -   Copyright (C) 2002, 2005 Free Software Foundation, Inc.
@@ -1056,8 +1056,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	stmxcsr oMXCSR(%rdi)
  
  	/* Save the current signal mask with
---- a/sysdeps/unix/sysv/linux/x86_64/____longjmp_chk.S	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/x86_64/____longjmp_chk.S	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/x86_64/____longjmp_chk.S	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/x86_64/____longjmp_chk.S	(revision 16211)
 @@ -1,4 +1,4 @@
 -/* Copyright (C) 2001,2004,2005,2006,2009,2010 Free Software Foundation, Inc.
 +/* Copyright (C) 2001,2004,2005,2006,2009,2010,2011 Free Software Foundation, Inc.
@@ -1098,8 +1098,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  /* Jump to the position specified by ENV, causing the
     setjmp call there to return VAL, or 1 if VAL is 0.
     void __longjmp (__jmp_buf env, int val).  */
---- a/sysdeps/unix/sysv/linux/x86_64/bits/mman.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/x86_64/bits/mman.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/x86_64/bits/mman.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/x86_64/bits/mman.h	(revision 16211)
 @@ -1,5 +1,6 @@
  /* Definitions for POSIX memory map interface.  Linux/x86_64 version.
 -   Copyright (C) 2001,2003,2005,2006,2009,2010 Free Software Foundation, Inc.
@@ -1117,8 +1117,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/sysdeps/unix/sysv/linux/ia64/bits/mman.h	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/ia64/bits/mman.h	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/ia64/bits/mman.h	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/ia64/bits/mman.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/ia64 version.
 -   Copyright (C) 1997,1998,2000,2003,2005,2006,2009
@@ -1135,16 +1135,16 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/sysdeps/unix/sysv/linux/wordsize-64/readdir_r.c	(révision 12231)
-+++ b/sysdeps/unix/sysv/linux/wordsize-64/readdir_r.c	(révision 15252)
+--- a/sysdeps/unix/sysv/linux/wordsize-64/readdir_r.c	(revision 12231)
++++ b/sysdeps/unix/sysv/linux/wordsize-64/readdir_r.c	(revision 16211)
 @@ -1,4 +1,5 @@
  #define readdir64_r __no_readdir64_r_decl
 +#define GETDENTS_64BIT_ALIGNED 1
  #include <sysdeps/unix/readdir_r.c>
  #undef readdir64_r
  weak_alias (__readdir_r, readdir64_r)
---- a/sysdeps/unix/readdir_r.c	(révision 12231)
-+++ b/sysdeps/unix/readdir_r.c	(révision 15252)
+--- a/sysdeps/unix/readdir_r.c	(revision 12231)
++++ b/sysdeps/unix/readdir_r.c	(revision 16211)
 @@ -117,7 +117,8 @@
  #ifdef GETDENTS_64BIT_ALIGNED
        /* The d_reclen value might include padding which is not part of
@@ -1155,8 +1155,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  #endif
        *result = memcpy (entry, dp, reclen);
  #ifdef GETDENTS_64BIT_ALIGNED
---- a/sysdeps/pthread/aio_misc.c	(révision 12231)
-+++ b/sysdeps/pthread/aio_misc.c	(révision 15252)
+--- a/sysdeps/pthread/aio_misc.c	(revision 12231)
++++ b/sysdeps/pthread/aio_misc.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Handle general operations.
 -   Copyright (C) 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2006, 2007, 2009
@@ -1193,8 +1193,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
      }
  
    if (init->aio_idle_time != 0)
---- a/sysdeps/i386/dl-tls.h	(révision 12231)
-+++ b/sysdeps/i386/dl-tls.h	(révision 15252)
+--- a/sysdeps/i386/dl-tls.h	(revision 12231)
++++ b/sysdeps/i386/dl-tls.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Thread-local storage handling in the ELF dynamic linker.  i386 version.
 -   Copyright (C) 2002, 2004 Free Software Foundation, Inc.
@@ -1209,8 +1209,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +/* Value used for dtv entries for which the allocation is delayed.  */
 +#define TLS_DTV_UNALLOCATED	((void *) -1l)
---- a/sysdeps/i386/Makefile	(révision 12231)
-+++ b/sysdeps/i386/Makefile	(révision 15252)
+--- a/sysdeps/i386/Makefile	(revision 12231)
++++ b/sysdeps/i386/Makefile	(revision 16211)
 @@ -51,6 +51,7 @@
  # And a couple of other routines
  ifeq ($(subdir),stdlib)
@@ -1219,8 +1219,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  endif
  ifeq ($(subdir),elf)
  CFLAGS-dl-init.c += -mpreferred-stack-boundary=4
---- a/sysdeps/i386/fpu/libm-test-ulps	(révision 12231)
-+++ b/sysdeps/i386/fpu/libm-test-ulps	(révision 15252)
+--- a/sysdeps/i386/fpu/libm-test-ulps	(revision 12231)
++++ b/sysdeps/i386/fpu/libm-test-ulps	(revision 16211)
 @@ -857,8 +857,8 @@
  ildouble: 2
  ldouble: 2
@@ -1232,8 +1232,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  ildouble: 4
  ldouble: 4
  Test "yn (10, 1.0) == -121618014.278689189288130426667971145":
---- a/sysdeps/wordsize-64/tst-writev.c	(révision 0)
-+++ b/sysdeps/wordsize-64/tst-writev.c	(révision 15252)
+--- a/sysdeps/wordsize-64/tst-writev.c	(revision 0)
++++ b/sysdeps/wordsize-64/tst-writev.c	(revision 16211)
 @@ -0,0 +1,107 @@
 +/* Copyright (C) 2011 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1342,8 +1342,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +#define TEST_FUNCTION do_test ()
 +#include "../test-skeleton.c"
---- a/sysdeps/s390/dl-tls.h	(révision 12231)
-+++ b/sysdeps/s390/dl-tls.h	(révision 15252)
+--- a/sysdeps/s390/dl-tls.h	(revision 12231)
++++ b/sysdeps/s390/dl-tls.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Thread-local storage handling in the ELF dynamic linker.  s390 version.
 -   Copyright (C) 2003, 2004 Free Software Foundation, Inc.
@@ -1362,8 +1362,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +/* Value used for dtv entries for which the allocation is delayed.  */
 +#define TLS_DTV_UNALLOCATED	((void *) -1l)
---- a/sysdeps/x86_64/dl-tls.h	(révision 12231)
-+++ b/sysdeps/x86_64/dl-tls.h	(révision 15252)
+--- a/sysdeps/x86_64/dl-tls.h	(revision 12231)
++++ b/sysdeps/x86_64/dl-tls.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Thread-local storage handling in the ELF dynamic linker.  x86-64 version.
 -   Copyright (C) 2002, 2005 Free Software Foundation, Inc.
@@ -1378,8 +1378,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +/* Value used for dtv entries for which the allocation is delayed.  */
 +#define TLS_DTV_UNALLOCATED	((void *) -1l)
---- a/sysdeps/x86_64/fpu/e_powl.S	(révision 12231)
-+++ b/sysdeps/x86_64/fpu/e_powl.S	(révision 15252)
+--- a/sysdeps/x86_64/fpu/e_powl.S	(revision 12231)
++++ b/sysdeps/x86_64/fpu/e_powl.S	(revision 16211)
 @@ -1,5 +1,5 @@
  /* ix87 specific implementation of pow function.
 -   Copyright (C) 1996, 1997, 1998, 1999, 2001, 2004, 2007
@@ -1396,8 +1396,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	jz	7f
  	fsub	%st(1)		// x-1 : 1.0 : y
  	fyl2xp1			// log2(x) : y
---- a/sysdeps/posix/spawni.c	(révision 12231)
-+++ b/sysdeps/posix/spawni.c	(révision 15252)
+--- a/sysdeps/posix/spawni.c	(revision 12231)
++++ b/sysdeps/posix/spawni.c	(revision 16211)
 @@ -142,9 +142,7 @@
      }
    else if ((flags & POSIX_SPAWN_SETSCHEDULER) != 0)
@@ -1409,8 +1409,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	_exit (SPAWN_ERROR);
      }
  #endif
---- a/sysdeps/posix/getaddrinfo.c	(révision 12231)
-+++ b/sysdeps/posix/getaddrinfo.c	(révision 15252)
+--- a/sysdeps/posix/getaddrinfo.c	(revision 12231)
++++ b/sysdeps/posix/getaddrinfo.c	(revision 16211)
 @@ -207,7 +207,7 @@
        if (herrno == NETDB_INTERNAL)					      \
  	{								      \
@@ -1437,8 +1437,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	      }
  	    else
  #endif
---- a/sysdeps/ia64/dl-tls.h	(révision 12231)
-+++ b/sysdeps/ia64/dl-tls.h	(révision 15252)
+--- a/sysdeps/ia64/dl-tls.h	(revision 12231)
++++ b/sysdeps/ia64/dl-tls.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Thread-local storage handling in the ELF dynamic linker.  IA-64 version.
 -   Copyright (C) 2002, 2003 Free Software Foundation, Inc.
@@ -1453,8 +1453,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +/* Value used for dtv entries for which the allocation is delayed.  */
 +#define TLS_DTV_UNALLOCATED	((void *) -1l)
---- a/sysdeps/mach/hurd/ifreq.h	(révision 0)
-+++ b/sysdeps/mach/hurd/ifreq.h	(révision 15252)
+--- a/sysdeps/mach/hurd/ifreq.h	(revision 0)
++++ b/sysdeps/mach/hurd/ifreq.h	(revision 16211)
 @@ -0,0 +1,45 @@
 +/* Copyright (C) 1999, 2002, 2003, 2011 Free Software Foundation, Inc.
 +   This file is part of the GNU C Library.
@@ -1501,8 +1501,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +{
 +  munmap (ifreqs, num_ifs * sizeof (struct ifreq));
 +}
---- a/sysdeps/sparc/dl-tls.h	(révision 12231)
-+++ b/sysdeps/sparc/dl-tls.h	(révision 15252)
+--- a/sysdeps/sparc/dl-tls.h	(revision 12231)
++++ b/sysdeps/sparc/dl-tls.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Thread-local storage handling in the ELF dynamic linker.  SPARC version.
 -   Copyright (C) 2003 Free Software Foundation, Inc.
@@ -1517,8 +1517,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +/* Value used for dtv entries for which the allocation is delayed.  */
 +#define TLS_DTV_UNALLOCATED	((void *) -1l)
---- a/sysdeps/sh/dl-tls.h	(révision 12231)
-+++ b/sysdeps/sh/dl-tls.h	(révision 15252)
+--- a/sysdeps/sh/dl-tls.h	(revision 12231)
++++ b/sysdeps/sh/dl-tls.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Thread-local storage handling in the ELF dynamic linker.  SH version.
 -   Copyright (C) 2002 Free Software Foundation, Inc.
@@ -1533,8 +1533,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +/* Value used for dtv entries for which the allocation is delayed.  */
 +#define TLS_DTV_UNALLOCATED	((void *) -1l)
---- a/misc/mntent_r.c	(révision 12231)
-+++ b/misc/mntent_r.c	(révision 15252)
+--- a/misc/mntent_r.c	(revision 12231)
++++ b/misc/mntent_r.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Utilities for reading/writing fstab, mtab, etc.
 -   Copyright (C) 1995-2000, 2001, 2002, 2003, 2006, 2010
@@ -1553,8 +1553,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  }
  weak_alias (__addmntent, addmntent)
  
---- a/misc/error.c	(révision 12231)
-+++ b/misc/error.c	(révision 15252)
+--- a/misc/error.c	(revision 12231)
++++ b/misc/error.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Error handler for noninteractive utilities
 -   Copyright (C) 1990-1998, 2000-2005, 2006 Free Software Foundation, Inc.
@@ -1573,8 +1573,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	/* Simply return and print nothing.  */
  	return;
  
---- a/inet/getnameinfo.c	(révision 12231)
-+++ b/inet/getnameinfo.c	(révision 15252)
+--- a/inet/getnameinfo.c	(revision 12231)
++++ b/inet/getnameinfo.c	(revision 16211)
 @@ -159,7 +159,7 @@
  int
  getnameinfo (const struct sockaddr *sa, socklen_t addrlen, char *host,
@@ -1593,8 +1593,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
      }
  
    if (serv && (servlen > 0))
---- a/nss/nss_files/files-hosts.c	(révision 12231)
-+++ b/nss/nss_files/files-hosts.c	(révision 15252)
+--- a/nss/nss_files/files-hosts.c	(revision 12231)
++++ b/nss/nss_files/files-hosts.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Hosts file parser in nss_files module.
 -   Copyright (C) 1996-2001, 2003-2008, 2009 Free Software Foundation, Inc.
@@ -1701,8 +1701,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	}								      \
  									      \
  									      \
---- a/string/bits/string3.h	(révision 12231)
-+++ b/string/bits/string3.h	(révision 15252)
+--- a/string/bits/string3.h	(revision 12231)
++++ b/string/bits/string3.h	(revision 16211)
 @@ -1,4 +1,4 @@
 -/* Copyright (C) 2004, 2005, 2007, 2009 Free Software Foundation, Inc.
 +/* Copyright (C) 2004, 2005, 2007, 2009, 2010 Free Software Foundation, Inc.
@@ -1729,8 +1729,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  {
    (void) __builtin___memmove_chk (__dest, __src, __len, __bos0 (__dest));
  }
---- a/iconv/loop.c	(révision 12231)
-+++ b/iconv/loop.c	(révision 15252)
+--- a/iconv/loop.c	(revision 12231)
++++ b/iconv/loop.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Conversion loop frame work.
 -   Copyright (C) 1998-2002, 2003, 2005, 2008 Free Software Foundation, Inc.
@@ -1748,8 +1748,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
        inptr = bytebuf;
        inptrp = &inptr;
        inend = &bytebuf[inlen];
---- a/math/test-powl.c	(révision 0)
-+++ b/math/test-powl.c	(révision 15252)
+--- a/math/test-powl.c	(revision 0)
++++ b/math/test-powl.c	(revision 16211)
 @@ -0,0 +1,51 @@
 +/* Test for powl
 +   Copyright (C) 2011 Free Software Foundation, Inc.
@@ -1802,8 +1802,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +  return result;
 +}
---- a/math/Makefile	(révision 12231)
-+++ b/math/Makefile	(révision 15252)
+--- a/math/Makefile	(revision 12231)
++++ b/math/Makefile	(revision 16211)
 @@ -92,7 +92,8 @@
  # Rules for the test suite.
  tests = test-matherr test-fenv atest-exp atest-sincos atest-exp2 basic-test \
@@ -1822,8 +1822,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  CPPFLAGS-test-ifloat.c = -U__LIBC_INTERNAL_MATH_INLINES -D__FAST_MATH__ \
  			 -DTEST_FAST_MATH -fno-builtin
  CPPFLAGS-test-idouble.c = -U__LIBC_INTERNAL_MATH_INLINES -D__FAST_MATH__ \
---- a/malloc/malloc.c	(révision 12231)
-+++ b/malloc/malloc.c	(révision 15252)
+--- a/malloc/malloc.c	(revision 12231)
++++ b/malloc/malloc.c	(revision 16211)
 @@ -2832,7 +2832,7 @@
    max_fast_bin = fastbin_index(get_max_fast ());
  
@@ -1833,8 +1833,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
      /* The following test can only be performed for the main arena.
         While mallopt calls malloc_consolidate to get rid of all fast
---- a/nptl/ChangeLog	(révision 12231)
-+++ b/nptl/ChangeLog	(révision 15252)
+--- a/nptl/ChangeLog	(revision 12231)
++++ b/nptl/ChangeLog	(revision 16211)
 @@ -1,3 +1,21 @@
 +2011-05-11  Ulrich Drepper  <drepper@gmail.com>
 +
@@ -1857,8 +1857,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  2010-08-12  H.J. Lu  <hongjiu.lu@intel.com>
  
  	* nptl/sysdeps/unix/sysv/linux/i386/Makefile: New file.
---- a/nptl/alloca_cutoff.c	(révision 12231)
-+++ b/nptl/alloca_cutoff.c	(révision 15252)
+--- a/nptl/alloca_cutoff.c	(revision 12231)
++++ b/nptl/alloca_cutoff.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Determine whether block of given size can be allocated on the stack or not.
 -   Copyright (C) 2002 Free Software Foundation, Inc.
@@ -1871,8 +1871,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  		       ?: __MAX_ALLOCA_CUTOFF * 4));
  }
 +libc_hidden_def (__libc_alloca_cutoff)
---- a/nptl/allocatestack.c	(révision 12231)
-+++ b/nptl/allocatestack.c	(révision 15252)
+--- a/nptl/allocatestack.c	(revision 12231)
++++ b/nptl/allocatestack.c	(revision 16211)
 @@ -1,4 +1,4 @@
 -/* Copyright (C) 2002-2007, 2009 Free Software Foundation, Inc.
 +/* Copyright (C) 2002-2007, 2009, 2011 Free Software Foundation, Inc.
@@ -1907,8 +1907,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
  	      lll_lock (stack_cache_lock, LLL_PRIVATE);
  
---- a/nptl/Versions	(révision 12231)
-+++ b/nptl/Versions	(révision 15252)
+--- a/nptl/Versions	(revision 12231)
++++ b/nptl/Versions	(revision 16211)
 @@ -27,6 +27,7 @@
      pthread_cond_broadcast; pthread_cond_timedwait;
    }
@@ -1917,8 +1917,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
      # Internal libc interface to libpthread
      __libc_dl_error_tsd;
    }
---- a/login/programs/pt_chown.c	(révision 12231)
-+++ b/login/programs/pt_chown.c	(révision 15252)
+--- a/login/programs/pt_chown.c	(revision 12231)
++++ b/login/programs/pt_chown.c	(revision 16211)
 @@ -64,7 +64,7 @@
  Copyright (C) %s Free Software Foundation, Inc.\n\
  This is free software; see the source for copying conditions.  There is NO\n\
@@ -1937,8 +1937,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
      return FAIL_EACCES;
  
    /* Set the permission mode to readable and writable by the owner,
---- a/shadow/sgetspent.c	(révision 12231)
-+++ b/shadow/sgetspent.c	(révision 15252)
+--- a/shadow/sgetspent.c	(revision 12231)
++++ b/shadow/sgetspent.c	(revision 16211)
 @@ -1,4 +1,4 @@
 -/* Copyright (C) 1996, 1997 Free Software Foundation, Inc.
 +/* Copyright (C) 1996, 1997, 2011 Free Software Foundation, Inc.
@@ -1956,8 +1956,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
      {
        char *new_buf;
        buffer_size += BUFLEN_SPWD;
---- a/posix/regex_internal.c	(révision 12231)
-+++ b/posix/regex_internal.c	(révision 15252)
+--- a/posix/regex_internal.c	(revision 12231)
++++ b/posix/regex_internal.c	(revision 16211)
 @@ -237,14 +237,9 @@
        else
  	p = (const char *) pstr->raw_mbs + pstr->raw_mbs_idx + byte_idx;
@@ -2012,8 +2012,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	  {
  	    /* It is an invalid character or '\0'.  Just use the byte.  */
  	    int ch = pstr->raw_mbs[pstr->raw_mbs_idx + src_idx];
---- a/posix/regexec.c	(révision 12231)
-+++ b/posix/regexec.c	(révision 15252)
+--- a/posix/regexec.c	(revision 12231)
++++ b/posix/regexec.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Extended regular expression matching and search library.
 -   Copyright (C) 2002, 2003, 2004, 2005, 2007, 2009 Free Software Foundation, Inc.
@@ -2069,8 +2069,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
    if (BE (ret != REG_NOERROR, 0))
      return ret;
  
---- a/posix/Makefile	(révision 12231)
-+++ b/posix/Makefile	(révision 15252)
+--- a/posix/Makefile	(revision 12231)
++++ b/posix/Makefile	(revision 16211)
 @@ -106,7 +106,7 @@
  		   tst-fnmatch2 tst-cpucount tst-cpuset
  tests-$(OPTION_EGLIBC_LOCALE_CODE)					    \
@@ -2080,8 +2080,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  tests-$(OPTION_EGLIBC_INET) \
  	        += tst-getaddrinfo bug-ga1 tst-getaddrinfo2 \
  		   tst-rfc3484 tst-rfc3484-2 tst-rfc3484-3 tst-getaddrinfo3
---- a/posix/bug-regex32.c	(révision 0)
-+++ b/posix/bug-regex32.c	(révision 15252)
+--- a/posix/bug-regex32.c	(revision 0)
++++ b/posix/bug-regex32.c	(revision 16211)
 @@ -0,0 +1,36 @@
 +// BZ 12811
 +#include <regex.h>
@@ -2119,8 +2119,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +#define TEST_FUNCTION do_test ()
 +#include "../test-skeleton.c"
---- a/posix/fnmatch.c	(révision 12231)
-+++ b/posix/fnmatch.c	(révision 15252)
+--- a/posix/fnmatch.c	(revision 12231)
++++ b/posix/fnmatch.c	(revision 16211)
 @@ -1,4 +1,4 @@
 -/* Copyright (C) 1991,1992,1993,1996,1997,1998,1999,2000,2001,2002,2003,2007,2010
 +/* Copyright (C) 1991,1992,1993,1996,1997,1998,1999,2000,2001,2002,2003,2007,2010,2011
@@ -2152,8 +2152,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
  	  wstring_malloc = wstring
  	    = (wchar_t *) malloc ((n + 1) * sizeof (wchar_t));
---- a/stdio-common/printf_fp.c	(révision 12231)
-+++ b/stdio-common/printf_fp.c	(révision 15252)
+--- a/stdio-common/printf_fp.c	(revision 12231)
++++ b/stdio-common/printf_fp.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Floating point output for `printf'.
 -   Copyright (C) 1995-2003, 2006, 2007, 2008 Free Software Foundation, Inc.
@@ -2211,8 +2211,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
        PRINT (tmpptr, wstartp, wide ? wcp - wstartp : cp - tmpptr);
  
---- a/stdio-common/tst-grouping.c	(révision 0)
-+++ b/stdio-common/tst-grouping.c	(révision 15252)
+--- a/stdio-common/tst-grouping.c	(revision 0)
++++ b/stdio-common/tst-grouping.c	(revision 16211)
 @@ -0,0 +1,83 @@
 +/* BZ 12394, test by Bruno Haible.  */
 +#include <locale.h>
@@ -2297,8 +2297,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +#define TEST_FUNCTION do_test ()
 +#include "../test-skeleton.c"
---- a/stdio-common/_i18n_number.h	(révision 12231)
-+++ b/stdio-common/_i18n_number.h	(révision 15252)
+--- a/stdio-common/_i18n_number.h	(revision 12231)
++++ b/stdio-common/_i18n_number.h	(revision 16211)
 @@ -33,8 +33,8 @@
  # define decimal NULL
  # define thousands NULL
@@ -2332,8 +2332,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
      }
  #endif
  
---- a/stdio-common/bug23.c	(révision 0)
-+++ b/stdio-common/bug23.c	(révision 15252)
+--- a/stdio-common/bug23.c	(revision 0)
++++ b/stdio-common/bug23.c	(revision 16211)
 @@ -0,0 +1,21 @@
 +#include <stdio.h>
 +#include <string.h>
@@ -2356,8 +2356,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 +
 +#define TEST_FUNCTION do_test ()
 +#include "../test-skeleton.c"
---- a/stdio-common/Makefile	(révision 12231)
-+++ b/stdio-common/Makefile	(révision 15252)
+--- a/stdio-common/Makefile	(revision 12231)
++++ b/stdio-common/Makefile	(revision 16211)
 @@ -1,4 +1,4 @@
 -# Copyright (C) 1991-2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 +# Copyright (C) 1991-2009, 2011 Free Software Foundation, Inc.
@@ -2384,8 +2384,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
  ifneq (,$(filter %REENTRANT, $(defines)))
  CPPFLAGS += -D_IO_MTSAFE_IO
---- a/stdio-common/vfprintf.c	(révision 12231)
-+++ b/stdio-common/vfprintf.c	(révision 15252)
+--- a/stdio-common/vfprintf.c	(revision 12231)
++++ b/stdio-common/vfprintf.c	(revision 16211)
 @@ -1,4 +1,4 @@
 -/* Copyright (C) 1991-2008, 2009   Free Software Foundation, Inc.
 +/* Copyright (C) 1991-2008, 2009, 2011   Free Software Foundation, Inc.
@@ -2402,8 +2402,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
  	    /* Copy the old array's elements to the new space.  */
  	    memmove (specs, old, nspecs * sizeof (struct printf_spec));
---- a/stdio-common/printf-parsemb.c	(révision 12231)
-+++ b/stdio-common/printf-parsemb.c	(révision 15252)
+--- a/stdio-common/printf-parsemb.c	(revision 12231)
++++ b/stdio-common/printf-parsemb.c	(revision 16211)
 @@ -295,9 +295,9 @@
        /* We don't try to get the types for all arguments if the format
  	 uses more than one.  The normal case is covered though.  If
@@ -2417,8 +2417,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
      {
        /* Find the data argument types of a built-in spec.  */
        spec->ndata_args = 1;
---- a/resolv/res_debug.c	(révision 12231)
-+++ b/resolv/res_debug.c	(révision 15252)
+--- a/resolv/res_debug.c	(revision 12231)
++++ b/resolv/res_debug.c	(revision 16211)
 @@ -189,7 +189,7 @@
  						buf = malloc(buflen += 1024);
  					if (buf == NULL) {
@@ -2445,8 +2445,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  				/* XXX nonreentrant */
  	default:		sprintf(nbuf, "?0x%lx?", (u_long)option);
  				return (nbuf);
---- a/resolv/netdb.h	(révision 12231)
-+++ b/resolv/netdb.h	(révision 15252)
+--- a/resolv/netdb.h	(revision 12231)
++++ b/resolv/netdb.h	(revision 16211)
 @@ -1,4 +1,4 @@
 -  /* Copyright (C) 1996-2002, 2003, 2004, 2009 Free Software Foundation, Inc.
 +  /* Copyright (C) 1996-2004, 2009, 2011 Free Software Foundation, Inc.
@@ -2462,8 +2462,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  #endif	/* POSIX */
  
  #ifdef __USE_GNU
---- a/resolv/res_init.c	(révision 12231)
-+++ b/resolv/res_init.c	(révision 15252)
+--- a/resolv/res_init.c	(revision 12231)
++++ b/resolv/res_init.c	(revision 16211)
 @@ -545,6 +545,11 @@
  		} else if (!strncmp(cp, "single-request",
  				    sizeof("single-request") - 1)) {
@@ -2476,8 +2476,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  		} else {
  			/* XXX - print a warning here? */
  		}
---- a/resolv/res_query.c	(révision 12231)
-+++ b/resolv/res_query.c	(révision 15252)
+--- a/resolv/res_query.c	(revision 12231)
++++ b/resolv/res_query.c	(revision 16211)
 @@ -123,7 +123,7 @@
  {
  	HEADER *hp = (HEADER *) answer;
@@ -2528,8 +2528,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  		ret = __libc_res_nquerydomain(statp, name, NULL, class, type,
  					      answer, anslen, answerp,
  					      answerp2, nanswerp2, resplen2);
---- a/resolv/resolv.h	(révision 12231)
-+++ b/resolv/resolv.h	(révision 15252)
+--- a/resolv/resolv.h	(revision 12231)
++++ b/resolv/resolv.h	(revision 16211)
 @@ -102,7 +102,7 @@
  # define RES_MAXTIME		65535	/* Infinity, in milliseconds. */
  
@@ -2548,8 +2548,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
  #define RES_DEFAULT	(RES_RECURSE|RES_DEFNAMES|RES_DNSRCH|RES_NOIP6DOTINT)
  
---- a/resolv/nss_dns/dns-host.c	(révision 12231)
-+++ b/resolv/nss_dns/dns-host.c	(révision 15252)
+--- a/resolv/nss_dns/dns-host.c	(revision 12231)
++++ b/resolv/nss_dns/dns-host.c	(revision 16211)
 @@ -599,7 +599,6 @@
    int (*name_ok) (const char *);
    u_char packtmp[NS_MAXCDNAME];
@@ -2585,8 +2585,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	    *ttlp = ttl;
  
  	  (*pat)->name = canon ?: h_name;
---- a/conform/data/netdb.h-data	(révision 12231)
-+++ b/conform/data/netdb.h-data	(révision 15252)
+--- a/conform/data/netdb.h-data	(revision 12231)
++++ b/conform/data/netdb.h-data	(revision 16211)
 @@ -87,7 +87,7 @@
  function {struct hostent*} gethostbyaddr (const void*, socklen_t, int)
  function {struct hostent*} gethostbyname (const char*)
@@ -2596,8 +2596,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  function {struct netent*} getnetbyaddr (uint32_t, int)
  function {struct netent*} getnetbyname (const char*)
  function {struct netent*} getnetent (void)
---- a/elf/dl-tls.c	(révision 12231)
-+++ b/elf/dl-tls.c	(révision 15252)
+--- a/elf/dl-tls.c	(revision 12231)
++++ b/elf/dl-tls.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Thread-local storage handling in the ELF dynamic linker.  Generic version.
 -   Copyright (C) 2002,2003,2004,2005,2006,2008 Free Software Foundation, Inc.
@@ -2616,8 +2616,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  /* Out-of-memory handler.  */
  #ifdef SHARED
  static void
---- a/elf/dl-deps.c	(révision 12231)
-+++ b/elf/dl-deps.c	(révision 15252)
+--- a/elf/dl-deps.c	(revision 12231)
++++ b/elf/dl-deps.c	(revision 16211)
 @@ -491,6 +491,10 @@
    if (errno == 0 && errno_saved != 0)
      __set_errno (errno_saved);
@@ -2638,8 +2638,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
 -    _dl_signal_error (errno_reason == -1 ? 0 : errno_reason, objname,
 -		      NULL, errstring);
  }
---- a/elf/dl-dst.h	(révision 12231)
-+++ b/elf/dl-dst.h	(révision 15252)
+--- a/elf/dl-dst.h	(revision 12231)
++++ b/elf/dl-dst.h	(revision 16211)
 @@ -1,6 +1,5 @@
  /* Handling of dynamic sring tokens.
 -   Copyright (C) 1999,2001,2002,2003,2004,2006,2007
@@ -2720,8 +2720,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
      }									      \
    else
  #endif
---- a/elf/dl-runtime.c	(révision 12231)
-+++ b/elf/dl-runtime.c	(révision 15252)
+--- a/elf/dl-runtime.c	(revision 12231)
++++ b/elf/dl-runtime.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* On-demand PLT fixup for shared objects.
 -   Copyright (C) 1995-2009, 2010 Free Software Foundation, Inc.
@@ -2737,8 +2737,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
    /* Get the symbol name.  */
    const char *strtab = (const void *) D_PTR (reloc_result->bound,
---- a/elf/dl-load.c	(révision 12231)
-+++ b/elf/dl-load.c	(révision 15252)
+--- a/elf/dl-load.c	(revision 12231)
++++ b/elf/dl-load.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Map in a shared object's segments from the file.
 -   Copyright (C) 1995-2005, 2006, 2007, 2009 Free Software Foundation, Inc.
@@ -3019,8 +3019,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  		  : local_strdup (name));
        if (realname == NULL)
  	fd = -1;
---- a/elf/ldconfig.c	(révision 12231)
-+++ b/elf/ldconfig.c	(révision 15252)
+--- a/elf/ldconfig.c	(revision 12231)
++++ b/elf/ldconfig.c	(revision 16211)
 @@ -387,15 +387,18 @@
      }
  
@@ -3046,8 +3046,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
    char *path = entry->path;
    if (opt_chroot)
      path = chroot_canon (opt_chroot, path);
---- a/elf/dl-lookup.c	(révision 12231)
-+++ b/elf/dl-lookup.c	(révision 15252)
+--- a/elf/dl-lookup.c	(revision 12231)
++++ b/elf/dl-lookup.c	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Look up a symbol in the loaded objects.
 -   Copyright (C) 1995-2005, 2006, 2007, 2009 Free Software Foundation, Inc.
@@ -3146,8 +3146,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  	      ++tab->n_elements;
  
  	      __rtld_lock_unlock_recursive (tab->lock);
---- a/io/fcntl.h	(révision 12231)
-+++ b/io/fcntl.h	(révision 15252)
+--- a/io/fcntl.h	(revision 12231)
++++ b/io/fcntl.h	(revision 16211)
 @@ -1,4 +1,4 @@
 -/* Copyright (C) 1991,1992,1994-2001,2003,2004,2005,2006,2007, 2009
 +/* Copyright (C) 1991,1992,1994-2001,2003,2004,2005,2006,2007,2009,2010,2011
@@ -3163,8 +3163,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define AT_EACCESS		0x200	/* Test access permitted for
  					   effective IDs, not real IDs.  */
  #endif
---- a/ports/sysdeps/arm/sysdep.h	(révision 12231)
-+++ b/ports/sysdeps/arm/sysdep.h	(révision 15252)
+--- a/ports/sysdeps/arm/sysdep.h	(revision 12231)
++++ b/ports/sysdeps/arm/sysdep.h	(revision 16211)
 @@ -18,6 +18,7 @@
     02111-1307 USA.  */
  
@@ -3203,8 +3203,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  
  #if defined(__ARM_EABI__)
  /* Tag_ABI_align8_preserved: This code preserves 8-byte
---- a/ports/sysdeps/arm/elf/start.S	(révision 12231)
-+++ b/ports/sysdeps/arm/elf/start.S	(révision 15252)
+--- a/ports/sysdeps/arm/elf/start.S	(revision 12231)
++++ b/ports/sysdeps/arm/elf/start.S	(revision 16211)
 @@ -134,6 +134,7 @@
  	bl abort
  
@@ -3213,8 +3213,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  .L_GOT:
  	.word _GLOBAL_OFFSET_TABLE_ - .L_GOT
  	.word __libc_csu_fini(GOT)
---- a/ports/sysdeps/unix/sysv/linux/arm/bits/mman.h	(révision 12231)
-+++ b/ports/sysdeps/unix/sysv/linux/arm/bits/mman.h	(révision 15252)
+--- a/ports/sysdeps/unix/sysv/linux/arm/bits/mman.h	(revision 12231)
++++ b/ports/sysdeps/unix/sysv/linux/arm/bits/mman.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/ARM version.
 -   Copyright (C) 1997, 2000, 2003, 2005, 2006, 2009
@@ -3231,8 +3231,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/ports/sysdeps/unix/sysv/linux/m68k/bits/mman.h	(révision 12231)
-+++ b/ports/sysdeps/unix/sysv/linux/m68k/bits/mman.h	(révision 15252)
+--- a/ports/sysdeps/unix/sysv/linux/m68k/bits/mman.h	(revision 12231)
++++ b/ports/sysdeps/unix/sysv/linux/m68k/bits/mman.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/m68k version.
 -   Copyright (C) 1997, 2000, 2003, 2005, 2008, 2009
@@ -3249,23 +3249,31 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/statfs64.c	(révision 0)
-+++ b/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/statfs64.c	(révision 15252)
+--- a/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/ftw.c	(revision 0)
++++ b/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/ftw.c	(revision 16211)
+@@ -0,0 +1 @@
++#include <io/ftw.c>
+--- a/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/ftw64.c	(revision 0)
++++ b/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/ftw64.c	(revision 16211)
+@@ -0,0 +1 @@
++#include <io/ftw64.c>
+--- a/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/statfs64.c	(revision 0)
++++ b/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/statfs64.c	(revision 16211)
 @@ -0,0 +1 @@
 +/* Empty.  */
---- a/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/fstatfs64.c	(révision 0)
-+++ b/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/fstatfs64.c	(révision 15252)
+--- a/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/fstatfs64.c	(revision 0)
++++ b/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/fstatfs64.c	(revision 16211)
 @@ -0,0 +1 @@
 +/* Empty.  */
---- a/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/syscalls.list	(révision 0)
-+++ b/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/syscalls.list	(révision 15252)
+--- a/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/syscalls.list	(revision 0)
++++ b/ports/sysdeps/unix/sysv/linux/mips/mips64/n64/syscalls.list	(revision 16211)
 @@ -0,0 +1,4 @@
 +# File name	Caller	Syscall name	# args	Strong name	Weak names
 +
 +fstatfs		-	fstatfs		i:ip	__fstatfs	fstatfs fstatfs64 __fstatfs64
 +statfs		-	statfs		i:sp	__statfs	statfs statfs64 __statfs64
---- a/ports/sysdeps/unix/sysv/linux/mips/bits/mman.h	(révision 12231)
-+++ b/ports/sysdeps/unix/sysv/linux/mips/bits/mman.h	(révision 15252)
+--- a/ports/sysdeps/unix/sysv/linux/mips/bits/mman.h	(revision 12231)
++++ b/ports/sysdeps/unix/sysv/linux/mips/bits/mman.h	(revision 16211)
 @@ -1,5 +1,5 @@
  /* Definitions for POSIX memory map interface.  Linux/MIPS version.
 -   Copyright (C) 1997, 2000, 2003, 2004, 2005, 2006, 2009
@@ -3282,8 +3290,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  # define MADV_HWPOISON	  100	/* Poison a page for testing.  */
  #endif
  
---- a/ports/sysdeps/unix/sysv/linux/mips/bits/socket.h	(révision 12231)
-+++ b/ports/sysdeps/unix/sysv/linux/mips/bits/socket.h	(révision 15252)
+--- a/ports/sysdeps/unix/sysv/linux/mips/bits/socket.h	(revision 12231)
++++ b/ports/sysdeps/unix/sysv/linux/mips/bits/socket.h	(revision 16211)
 @@ -1,6 +1,6 @@
  /* System-specific socket constants and types.  Linux/MIPS version.
     Copyright (C) 1991, 92, 1994-1999, 2000, 2001, 2004, 2005, 2006, 2007, 2008,
@@ -3312,9 +3320,14 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  #define	AF_MAX		PF_MAX
  
  /* Socket level values.  Others are defined in the appropriate headers.
---- a/ports/ChangeLog.mips	(révision 12231)
-+++ b/ports/ChangeLog.mips	(révision 15252)
-@@ -1,3 +1,21 @@
+--- a/ports/ChangeLog.mips	(revision 12231)
++++ b/ports/ChangeLog.mips	(revision 16211)
+@@ -1,3 +1,26 @@
++2011-11-17  Joseph Myers  <joseph@codesourcery.com>
++
++	* sysdeps/unix/sysv/linux/mips/mips64/n64/ftw.c,
++	sysdeps/unix/sysv/linux/mips/mips64/n64/ftw64.c: New.
++
 +2011-09-06  Joseph Myers  <joseph@codesourcery.com>
 +
 +	[BZ #13109]
@@ -3336,8 +3349,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  2009-12-16  Joseph Myers  <joseph@codesourcery.com>
  
  	* sysdeps/mips/dl-lookup.c: Update from generic version.
---- a/ports/ChangeLog.arm	(révision 12231)
-+++ b/ports/ChangeLog.arm	(révision 15252)
+--- a/ports/ChangeLog.arm	(revision 12231)
++++ b/ports/ChangeLog.arm	(revision 16211)
 @@ -1,3 +1,19 @@
 +2011-06-30  Richard Sandiford  <richard.sandiford@linaro.org>
 +
@@ -3358,8 +3371,8 @@ SVN update of svn://svn.eglibc.org/branches/eglibc-2_11 from revision 12231
  2009-11-19  Joseph Myers  <joseph@codesourcery.com>
  
  	* sysdeps/unix/sysv/linux/arm/kernel-features.h (__ASSUME_PSELECT,
---- a/ports/ChangeLog.m68k	(révision 12231)
-+++ b/ports/ChangeLog.m68k	(révision 15252)
+--- a/ports/ChangeLog.m68k	(revision 12231)
++++ b/ports/ChangeLog.m68k	(revision 16211)
 @@ -1,3 +1,8 @@
 +2011-01-18  Andreas Schwab  <schwab@linux-m68k.org>
 +
