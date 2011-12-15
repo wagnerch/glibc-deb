@@ -73,6 +73,7 @@ arm/local-lowlevellock.diff
 arm/local-no-hwcap.diff
 arm/local-hwcap-updates.diff
 arm/local-sigaction.diff
+arm/cvs-tls-unallocated.diff
 
 hppa/local-inlining.diff
 hppa/local-linuxthreads.diff
@@ -164,6 +165,7 @@ mips/cvs-non-pic-n32-64-syscall.diff
 mips/local-lowlevellock.diff
 mips/local-r10k.diff
 mips/submitted-rld_map.diff
+mips/cvs-tls-unallocated.diff
 
 s390/cvs-makecontext.diff
 s390/submitted-nexttowardf.diff
