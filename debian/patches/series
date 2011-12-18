@@ -270,3 +270,4 @@ any/cvs-pthread-setgroups.diff
 any/cvs-dl_close-scope-handling.diff
 any/cvs-nptl-pthread-race.diff
 any/cvs-statvfs-mount-flags.diff
+any/cvs-tzfile.diff
