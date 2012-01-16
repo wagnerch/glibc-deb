@@ -1,7 +1,7 @@
 eglibc (2.11.3-3) UNRELEASED; urgency=low
 
   * patches/any/cvs-tzfile.diff: fix integer overflow in timezone code.
-    Closes: #650790.
+    (CVE-2009-5029).  Closes: #650790.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 18 Dec 2011 17:33:40 +0100
 
