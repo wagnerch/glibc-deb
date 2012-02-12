@@ -1,12 +1,14 @@
-eglibc (2.11.3-3) UNRELEASED; urgency=low
+eglibc (2.11.3-3) stable; urgency=low
 
   * patches/any/cvs-tzfile.diff: fix integer overflow in timezone code.
     (CVE-2009-5029).  Closes: #650790.
   * patches/any/submitted-resolv-first-query-failure.diff: new patch to fix
     resolving issues with broken servers returning NOTIMP or FORMERR to AAAA
     queries.  Closes: #658171.
+  * local/manpages/gai.conf.5: update from latest RedHat version.  Closes:
+    #659504.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 18 Dec 2011 17:33:40 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 02 Feb 2012 22:20:02 +0100
 
 eglibc (2.11.3-2) stable; urgency=low
 
