@@ -1,3 +1,10 @@
+eglibc (2.11.3-4) UNRELEASED; urgency=low
+
+  * Enable patches/any/cvs-dlopen-tls.diff, not enabled by mistake.  Closes:
+    #637239.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 26 Apr 2012 18:01:39 +0200
+
 eglibc (2.11.3-3) stable; urgency=low
 
   * patches/any/cvs-tzfile.diff: fix integer overflow in timezone code.
