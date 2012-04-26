@@ -273,3 +273,4 @@ any/cvs-statvfs-mount-flags.diff
 any/cvs-tzfile.diff
 any/submitted-resolv-first-query-failure.diff
 any/cvs-dlopen-tls.diff
+any/cvs-FORTIFY_SOURCE-format-strings.diff

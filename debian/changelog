@@ -2,6 +2,9 @@ eglibc (2.11.3-4) UNRELEASED; urgency=low
 
   * Enable patches/any/cvs-dlopen-tls.diff, not enabled by mistake.  Closes:
     #637239.
+  * patches/any/cvs-FORTIFY_SOURCE-format-strings.diff: new patch from
+    upstream to fix FORTIFY_SOURCE format string protection bypass.  Closes:
+    #660611.
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 26 Apr 2012 18:01:39 +0200
 
