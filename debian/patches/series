@@ -47,6 +47,9 @@ localedata/locale-sv_FI.diff
 localedata/locale-os_RU.diff
 localedata/cvs-rupee.diff
 localedata/locale-nb_NO.diff
+localedata/cvs-es-lc_numeric.diff
+localedata/submitted-de_AT-mon.diff
+localedata/submitted-en_AU-date_fmt.diff
 
 alpha/local-gcc4.1.diff
 alpha/submitted-creat64.diff
@@ -107,11 +110,17 @@ hppa/local-longjmp-chk.diff
 hppa/local-lowlevellock.diff
 hppa/submitted-fcntl_h.diff
 hppa/submitted-libm-hidden.diff
-hppa/submitted-stackinfo.diff
+hppa/cvs-stackinfo.diff
+hppa/local-EAGAIN.diff
+hppa/cvs-sys_procfs_h.diff
+hppa/cvs-test-tls-support.diff
+hppa/cvs-cloexec-nonblock.diff
+hppa/cvs-prlimit64.diff
 
 hurd-i386/local-dl-dynamic-weak.diff
 hurd-i386/local-enable-ldconfig.diff
 hurd-i386/tg-mlock.diff
+hurd-i386/unsubmitted-tls.diff
 hurd-i386/tg-tls.diff
 hurd-i386/tg-tlsdesc.sym.diff
 hurd-i386/unsubmitted-gcc-4.1-init-first.diff
@@ -189,7 +198,6 @@ hurd-i386/libpthread_clean.diff
 hurd-i386/tg-libpthread_depends.diff
 hurd-i386/libpthread_librt-link.diff
 hurd-i386/libpthread_version.diff
-hurd-i386/tg-tls-threadvar.diff
 
 kfreebsd/submitted-libc_once.diff
 
