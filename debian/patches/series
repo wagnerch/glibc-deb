@@ -51,6 +51,7 @@ localedata/cvs-es-lc_numeric.diff
 localedata/submitted-de_AT-mon.diff
 localedata/submitted-en_AU-date_fmt.diff
 localedata/cvs-rupeesign.diff
+localedata/submitted-es_MX-decimal_point.diff
 
 alpha/local-gcc4.1.diff
 alpha/submitted-creat64.diff
@@ -204,6 +205,8 @@ hurd-i386/submitted-getgroups.diff
 hurd-i386/submitted-getlogin_r.diff
 hurd-i386/submitted-ptsname.diff
 hurd-i386/submitted-sendto.diff
+hurd-i386/tg-chflags.diff
+hurd-i386/submitted-exec_filename.diff
 
 kfreebsd/submitted-libc_once.diff
 
@@ -353,3 +356,7 @@ any/submitted-resolv-first-query-failure.diff
 any/cvs-getaddrinfo-AI_V4MAPPED.diff
 any/local-linuxthreads-setclock.diff
 any/cvs-FORTIFY_SOURCE-format-strings.diff
+any/cvs-regex.diff
+any/cvs-getpwuid-nsswitch.diff
+any/local-sunrpc-dos.diff
+any/cvs-ld.so-rpath-origin.diff

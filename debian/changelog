@@ -1,4 +1,4 @@
-eglibc (2.13-33) UNRELEASED; urgency=medium
+eglibc (2.13-33) unstable; urgency=medium
 
   [ Clint Adams ]
   * patches/localedata/cvs-rupeesign.diff: use new rupee symbol
@@ -26,6 +26,13 @@ eglibc (2.13-33) UNRELEASED; urgency=medium
   * control/{main,libc}: Remove libpthread-stubs-dev dependency on hurd-i386.
   * patches/hurd-i386/libpthread.diff: Add -lrt in libpthread.a to fix static
     linking.
+  * patches/hurd-i386/tg-chflags.diff: New patch to fix and add f?chflags
+    prototype.
+  * patches/hurd-i386/submitted-exec_filename.diff: New patch to pass argv[0]
+    through exec, to fix some shell scripts, e.g. glib testsuite.
+  * control.in/main: build-depend on newer hurd package to be able to pass
+    argv[0] through exec.
+  * libc0.3.symbols.hurd-i386: Add symbols for RPCs for argv[0] through exec.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 4286 (from glibc-bsd).
@@ -34,8 +41,31 @@ eglibc (2.13-33) UNRELEASED; urgency=medium
   [ Aurelien Jarno ]
   * debian/control.in/main: set glibc-doc as Multiarch: foreign. 
     Closes: #674645.
+  * Update Portuguese debconf translation, by Pedro Ribeiro.  Closes: #674954.
+  * patches/arm/unsubmitted-ldso-abi-check.diff: fix broken armhf specific 
+    hack.  Closes: #674602.
+  * patches/any/cvs-regex.diff: fix access after end of search string in regex
+    matcher.  Closes: #672688.
+  * patches/any/cvs-getpwuid-nsswitch.diff: fix a memory leak in
+    getpwuid/nsswitch.c.  Closes: #674072.
+  * patches/localedata/submitted-es_MX-decimal_point.diff: fix
+    decimal_point and thousands_sep.  Closes: #673339.
+  * patches/any/local-sunrpc-dos.diff: fix a DoS in RPC implementation
+    (CVE-2011-4609).  Closes: #671478.
+  * patches/kfreebsd/local-use-thr-primitives.diff: bump LinuxThreads 
+    version.  Closes: #675606.
+  * Take-over nsswitch.conf installation from base-files.  Closes: 
+    #673271.
+  * Set libc*-dev "Multi-Arch: same". Add conflicts betwwen libc*-dev
+    packages. Move a.out.h and ieee754.h to the arch qualified path.
+    Thanks to Thibaut Girka for the help.  Closes: #666760.
+  * Add patches/any/cvs-ld.so-rpath-origin.diff to fix an insecure handling
+    of privileged programs' RPATHs with $ORIGIN (CVE-2011-1658).  Closes:
+    #672119.
+  * Refresh all patches to loose the "diff --git" headers.  Closes: 
+    #673933.
 
- -- Clint Adams <clint@debian.org>  Fri, 04 May 2012 23:39:00 -0400
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 03 Jun 2012 21:38:54 +0200
 
 eglibc (2.13-32) unstable; urgency=medium
 

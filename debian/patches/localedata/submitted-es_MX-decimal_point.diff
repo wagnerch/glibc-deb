@@ -1,0 +1,22 @@
+2012-06-02  Aurelien Jarno  <aurelien@aurel32.net>
+
+	* locales/es_MX (LC_NUMERIC): Correctly set decimal_point,
+	thousands_sep and grouping.
+
+---
+ localedata/locales/es_MX |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+--- a/localedata/locales/es_MX
++++ b/localedata/locales/es_MX
+@@ -78,7 +78,9 @@
+ END LC_MONETARY
+ 
+ LC_NUMERIC
+-copy "es_ES"
++decimal_point        "<U002E>"
++thousands_sep        "<U002C>"
++grouping             3;3
+ END LC_NUMERIC
+ 
+ LC_TIME
