@@ -1,4 +1,4 @@
-eglibc (2.11.3-4) UNRELEASED; urgency=low
+eglibc (2.11.3-4) stable; urgency=low
 
   * Enable patches/any/cvs-dlopen-tls.diff, not enabled by mistake.  Closes:
     #637239.
@@ -8,7 +8,7 @@ eglibc (2.11.3-4) UNRELEASED; urgency=low
   * patches/any/local-sunrpc-dos.diff: fix a DoS in RPC implementation
     (CVE-2011-4609).  Closes: #671478.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 26 Apr 2012 18:01:39 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 06 Jun 2012 18:03:02 +0200
 
 eglibc (2.11.3-3) stable; urgency=low
 
