@@ -275,3 +275,5 @@ any/submitted-resolv-first-query-failure.diff
 any/cvs-dlopen-tls.diff
 any/cvs-FORTIFY_SOURCE-format-strings.diff
 any/local-sunrpc-dos.diff
+any/cvs-vfprintf-positional.diff
+any/cvs-vfprintf-many-format-strings.diff

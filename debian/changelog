@@ -1,6 +1,10 @@
 eglibc (2.11.3-5) UNRELEASED; urgency=low
 
-  * 
+  * patches/any/cvs-vfprintf-positional.diff: new patch from upstream to
+    fix a stack corruption in vfprintf with positional parameters
+    (CVE-2012-3404). patches/any/cvs-vfprintf-many-format-strings.diff: new
+    patch from upstream to fix a FORTIFY_SOURCE format string protection
+    bypass (CVE-2012-3405).  Closes: #681473.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 06 Jun 2012 23:59:32 +0200
 
