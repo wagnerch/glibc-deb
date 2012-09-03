@@ -363,3 +363,4 @@ any/cvs-ld.so-rpath-origin.diff
 any/cvs-pthread-builtin-expect.diff
 any/cvs-vfprintf-positional.diff
 any/cvs-vfprintf-many-format-strings.diff
+any/cvs-strtod-overflow.diff

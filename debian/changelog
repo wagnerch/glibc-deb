@@ -1,6 +1,9 @@
 eglibc (2.13-36) UNRELEASED; urgency=low
 
-  * 
+  [ Aurelien Jarno ]
+  * patches/any/cvs-strtod-overflow.diff: new patch from upstream to fix
+    an integer/buffer overflow in strtod() (CVE-2012-3480).  Closes: 
+    #684889.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 23 Jul 2012 11:10:53 +0200
 
