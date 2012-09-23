@@ -5,6 +5,13 @@ eglibc (2.13-36) UNRELEASED; urgency=low
     an integer/buffer overflow in strtod() (CVE-2012-3480).  Closes: 
     #684889.
 
+  [ Samuel Thibault ]
+  * libc0.3.symbols.hurd-i386: Add missing *_exec_file_name symbols.
+  * patches/hurd-i386/unsubmitted-gnumach.defs.diff: New patch to build stubs
+    for new gnumach.defs.
+  * libc0.3.symbols.hurd-i386: Add new gnumach.defs stubs symbols.
+  * control: build-depend on gnumach-dev that provides gnumach.defs.
+
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 23 Jul 2012 11:10:53 +0200
 
 eglibc (2.13-35) unstable; urgency=low

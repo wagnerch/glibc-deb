@@ -207,6 +207,7 @@ hurd-i386/submitted-ptsname.diff
 hurd-i386/submitted-sendto.diff
 hurd-i386/tg-chflags.diff
 hurd-i386/submitted-exec_filename.diff
+hurd-i386/unsubmitted-gnumach.defs.diff
 
 kfreebsd/submitted-libc_once.diff
 
