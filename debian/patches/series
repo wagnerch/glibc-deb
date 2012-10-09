@@ -210,6 +210,7 @@ hurd-i386/submitted-exec_filename.diff
 hurd-i386/unsubmitted-gnumach.defs.diff
 
 kfreebsd/submitted-libc_once.diff
+kfreebsd/local-getaddrinfo-freebsd-kernel.diff
 
 ia64/local-dlfptr.diff
 ia64/submitted-sysconf.diff

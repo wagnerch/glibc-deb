@@ -4,6 +4,9 @@ eglibc (2.13-36) UNRELEASED; urgency=low
   * patches/any/cvs-strtod-overflow.diff: new patch from upstream to fix
     an integer/buffer overflow in strtod() (CVE-2012-3480).  Closes: 
     #684889.
+  * patches/kfreebsd/local-getaddrinfo-freebsd-kernel.diff: new patch to
+    fix getaddrinfo() when service = 0 on a FreeBSD kernel with DNS
+    server returning IPv6, but without IPv6 connection.  Closes: #690021.
 
   [ Samuel Thibault ]
   * libc0.3.symbols.hurd-i386: Add missing *_exec_file_name symbols.
