@@ -7,6 +7,7 @@ eglibc (2.13-36) UNRELEASED; urgency=low
   * patches/kfreebsd/local-getaddrinfo-freebsd-kernel.diff: new patch to
     fix getaddrinfo() when service = 0 on a FreeBSD kernel with DNS
     server returning IPv6, but without IPv6 connection.  Closes: #690021.
+  * sysdeps/linux.mk: fix kernel version parsing with only two numbers.
 
   [ Samuel Thibault ]
   * libc0.3.symbols.hurd-i386: Add missing *_exec_file_name symbols.
