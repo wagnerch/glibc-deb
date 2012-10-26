@@ -10,6 +10,8 @@ eglibc (2.13-36) UNRELEASED; urgency=low
   * sysdeps/linux.mk: fix kernel version parsing with only two numbers.
   * patches/any/cvs-arch-lowlevellock.diff: new patch from upstream to
     fix futexes atomic issue on ARM and SPARC.  Closes: #691173.
+  * local/manpages/ldconfig.8: fix wrong description of ld.so.conf format.
+    Closes: #684682.
 
   [ Samuel Thibault ]
   * libc0.3.symbols.hurd-i386: Add missing *_exec_file_name symbols.
