@@ -1,4 +1,4 @@
-eglibc (2.13-36) UNRELEASED; urgency=low
+eglibc (2.13-36) unstable; urgency=low
 
   [ Aurelien Jarno ]
   * patches/any/cvs-strtod-overflow.diff: new patch from upstream to fix
@@ -20,7 +20,7 @@ eglibc (2.13-36) UNRELEASED; urgency=low
   * libc0.3.symbols.hurd-i386: Add new gnumach.defs stubs symbols.
   * control: build-depend on gnumach-dev that provides gnumach.defs.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 23 Jul 2012 11:10:53 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 26 Oct 2012 14:28:06 +0000
 
 eglibc (2.13-35) unstable; urgency=low
 
