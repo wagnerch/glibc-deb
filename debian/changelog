@@ -1,6 +1,8 @@
 eglibc (2.13-37) UNRELEASED; urgency=low
 
-  * 
+  [ Aurelien Jarno ]
+  * debhelper.in/locales.postinst: correctly lookup for the locales-all
+    package.  Closes: #692777.
 
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 26 Oct 2012 19:26:34 +0200
 
