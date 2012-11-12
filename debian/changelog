@@ -4,6 +4,11 @@ eglibc (2.13-37) UNRELEASED; urgency=low
   * debhelper.in/locales.postinst: correctly lookup for the locales-all
     package.  Closes: #692777.
 
+  [ Jonathan Nieder ]
+  * control.in/opt: remove outdated reference to 2.6 kernel from
+    description of i686 variant.  Thanks to Regid Ichira.  Closes:
+    #692154.
+
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 26 Oct 2012 19:26:34 +0200
 
 eglibc (2.13-36) unstable; urgency=low
