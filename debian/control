@@ -11,7 +11,7 @@ Build-Depends: gettext, make (>= 3.80), dpkg-dev (>= 1.16.0), bzip2, xz-utils, f
 Build-Depends-Indep: perl, po-debconf (>= 1.0)
 Maintainer: GNU Libc Maintainers <debian-glibc@lists.debian.org>
 Uploaders: Clint Adams <clint@debian.org>, Aurelien Jarno <aurel32@debian.org>, Adam Conrad <adconrad@0c3.net>
-Standards-Version: 3.9.4
+Standards-Version: 3.9.3
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-glibc/glibc-package/
 Vcs-Svn: svn://svn.debian.org/pkg-glibc/glibc-package/
 Homepage: http://www.eglibc.org
@@ -746,10 +746,10 @@ Description: Embedded GNU C Library: Shared libraries [i686 optimized]
  library and the standard math library, as well as many others.
  .
  This set of libraries is optimized for i686 machines, and will only be
- used if you are running a 2.6 kernel on an i686 class CPU (check the 
- output of `uname -m').  This includes Pentium Pro, Pentium II/III/IV, 
- Celeron CPU's and similar class CPU's (including clones such as AMD 
- Athlon/Opteron, VIA C3 Nehemiah, but not VIA C3 Ezra).  
+ used on an i686 class CPU (check the output of `uname -m').  This includes 
+ Pentium Pro, Pentium II/III/IV, Celeron CPU's and similar class CPU's
+ (including clones such as AMD Athlon/Opteron, VIA C3 Nehemiah, but not VIA 
+ C3 Ezla).  
 
 Package: libc6-xen
 Architecture: i386
