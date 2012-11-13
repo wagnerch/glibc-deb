@@ -3,6 +3,8 @@ eglibc (2.13-37) UNRELEASED; urgency=low
   [ Aurelien Jarno ]
   * debhelper.in/locales.postinst: correctly lookup for the locales-all
     package.  Closes: #692777.
+  * patches/kfreebsd/local-getaddrinfo-freebsd-kernel.diff: update to 
+    fix uninitialised bytes access in getaddrinfo().  Closes: #692433.
 
   [ Jonathan Nieder ]
   * control.in/opt: remove outdated reference to 2.6 kernel from
