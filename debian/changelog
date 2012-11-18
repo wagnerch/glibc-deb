@@ -5,6 +5,8 @@ eglibc (2.13-37) UNRELEASED; urgency=low
     package.  Closes: #692777.
   * patches/kfreebsd/local-getaddrinfo-freebsd-kernel.diff: update to 
     fix uninitialised bytes access in getaddrinfo().  Closes: #692433.
+  * patches/localedata/locale-C.diff: update to fix strftime('%X') return
+    a 24-hour time format.  Closes: #693446.
 
   [ Jonathan Nieder ]
   * control.in/opt: remove outdated reference to 2.6 kernel from
