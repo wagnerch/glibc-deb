@@ -1,3 +1,13 @@
+eglibc (2.13-38) UNRELEASED; urgency=low
+
+  * debian/patches/arm/cvs-ldconfig-cache-abi.diff: Backport upstream
+    patch to re-enable ldconfig cache tagging for armhf binaries again.
+  * debian/patches/arm/unsubmitted-ldconfig-cache-abi.diff: Re-enable
+    and adjust to account for changes in cvs-ldconfig-cache-abi.diff.
+  * debian/debhelper.in/libc.preinst: Remove old ld.so.cache on upgrade.
+
+ -- Adam Conrad <adconrad@0c3.net>  Mon, 19 Nov 2012 14:23:26 -0700
+
 eglibc (2.13-37) unstable; urgency=low
 
   [ Aurelien Jarno ]
