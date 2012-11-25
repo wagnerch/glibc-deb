@@ -6,7 +6,7 @@ eglibc (2.13-38) UNRELEASED; urgency=low
   * debian/patches/arm/unsubmitted-ldconfig-cache-abi.diff: Re-enable
     and adjust to account for changes in cvs-ldconfig-cache-abi.diff.
   * debian/debhelper.in/libc.preinst: Remove old ld.so.cache on upgrade.
-  * debian/control.in/i386: Move libc6-amd64 from standard to optional.
+  * debian/control.in/amd64: Move libc6-amd64 from standard to optional.
 
   [ Jonathan Nieder ]
   * control.in/opt: correct misspelling of "Ezra" in descriptions of
