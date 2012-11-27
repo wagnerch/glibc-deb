@@ -1,11 +1,14 @@
-commit 6b2fca45129f07f1575a5a6e5a719090b59555d6
-Author: Richard Braun <rbraun@sceen.net>
-Date:   Wed Sep 5 11:27:05 2012 +0200
+2012-09-05  Richard Braun  <rbraun@sceen.net>
 
-    Hurd: fix sigstate_is_global_rcv
+       * hurd/hurdsig.c (sigstate_is_global_rcv): Do not return true
+       if _HURD_GLOBAL_SIGSTATE is null.
+
+---
+ hurd/hurdsig.c |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/hurd/hurdsig.c b/hurd/hurdsig.c
-index 736ce3d..87c685b 100644
+index 140f951..7840cd5 100644
 --- a/hurd/hurdsig.c
 +++ b/hurd/hurdsig.c
 @@ -159,7 +159,8 @@ _hurd_sigstate_set_global_rcv (struct hurd_sigstate *ss)
@@ -18,3 +21,5 @@ index 736ce3d..87c685b 100644
  }
  
  /* Lock/unlock a hurd_sigstate structure.  If the accessors below require
+-- 
+tg: (2ac13c4..) t/hurdsig-boot-fix (depends on: t/hurdsig-global-dispositions)
