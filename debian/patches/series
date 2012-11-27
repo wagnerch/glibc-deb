@@ -211,6 +211,7 @@ hurd-i386/submitted-exec_filename.diff
 hurd-i386/unsubmitted-gnumach.defs.diff
 hurd-i386/submitted-fork_port_leak.diff
 hurd-i386/libpthread_hurd_cond_wait.diff
+hurd-i386/unsubmitted-sigstate_is_global_rcv.diff
 
 kfreebsd/submitted-libc_once.diff
 kfreebsd/local-getaddrinfo-freebsd-kernel.diff
