@@ -23,6 +23,8 @@ eglibc (2.13-38) UNRELEASED; urgency=low
     sigstate_is_global_rcv at boot in libpthread-based translators.
   * patches/hurd-i386/tg-hurdsig-global-dispositions.diff: Update with Thomas'
     fork deadlock fix.
+  * patches/hurd-i386/unsubmitted-single-hurdselect-timeout.diff: Temporarily
+    fix double select timeout on single fd.
 
  -- Adam Conrad <adconrad@0c3.net>  Mon, 19 Nov 2012 14:23:26 -0700
 
