@@ -25,6 +25,8 @@ eglibc (2.13-38) UNRELEASED; urgency=low
     fork deadlock fix.
   * patches/hurd-i386/unsubmitted-single-hurdselect-timeout.diff: Temporarily
     fix double select timeout on single fd.
+  * patches/hurd-i386/unsubmitted-setitimer_fix.diff: Fix Hurd implementation
+    of setitimer.
 
  -- Adam Conrad <adconrad@0c3.net>  Mon, 19 Nov 2012 14:23:26 -0700
 
