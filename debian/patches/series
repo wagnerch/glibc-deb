@@ -373,3 +373,4 @@ any/cvs-vfprintf-positional.diff
 any/cvs-vfprintf-many-format-strings.diff
 any/cvs-strtod-overflow.diff
 any/cvs-arch-lowlevellock.diff
+any/local-tst-eintr1-eagain.diff
