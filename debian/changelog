@@ -3,6 +3,8 @@ eglibc (2.17-93) UNRELEASED; urgency=low
   [ Adam Conrad ]
   * patches/any/cvs-tst-cancel4-buf.diff: Increase nptl test case buffer
     size to 16384 so we really block on current (>= 3.10) Linux kernels.
+  * patches/any/cvs-CVE-2013-4332-*.diff: Backport git fixes for integer
+    overflows in allocator functions: CVE-2013-4332 (Closes: #722536)
 
   [ Samuel Thibault ]
   * patches/hurd-i386/unsubmitted-clock_t_centiseconds.diff: New patch from

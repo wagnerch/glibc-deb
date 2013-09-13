@@ -248,3 +248,6 @@ any/cvs-regexp-overrun.diff
 any/cvs-gethostbyname-numeric.diff
 any/cvs-getaddrinfo-EAI_NONAME.diff
 any/cvs-tst-cancel4-buf.diff
+any/cvs-CVE-2013-4332-memalign.diff
+any/cvs-CVE-2013-4332-pvalloc.diff
+any/cvs-CVE-2013-4332-valloc.diff
