@@ -17,6 +17,8 @@ eglibc (2.17-93) UNRELEASED; urgency=low
     Winter to fix hurd-i386's _PATH_MOUNTED according to Debian usage.
   * patches/hurd-i386/tg-socket{,pair}_flags.diff: New patch from Thomas
     Schwinge to add support for SOCK_CLOEXEC and SOCK_NONBLOCK.
+  * patches/hurd-i386/tg-pthread-atfork.diff,cvs-pthread_atfork.diff: Add
+    pthread_atfork support.
 
  -- Adam Conrad <adconrad@0c3.net>  Thu, 01 Aug 2013 23:00:51 +0100
 
