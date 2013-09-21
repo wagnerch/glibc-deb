@@ -15,6 +15,8 @@ eglibc (2.17-93) UNRELEASED; urgency=low
     Winter to prepare reboot() for /hurd/init getting PID 2 instead of 1.
   * patches/hurd-i386/submitted-path_mounted.diff: New patch from Justus
     Winter to fix hurd-i386's _PATH_MOUNTED according to Debian usage.
+  * patches/hurd-i386/tg-socket{,pair}_flags.diff: New patch from Thomas
+    Schwinge to add support for SOCK_CLOEXEC and SOCK_NONBLOCK.
 
  -- Adam Conrad <adconrad@0c3.net>  Thu, 01 Aug 2013 23:00:51 +0100
 

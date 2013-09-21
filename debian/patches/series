@@ -128,6 +128,8 @@ hurd-i386/tg-context_functions.diff
 hurd-i386/unsubmitted-clock_t_centiseconds.diff
 hurd-i386/submitted-startup-pid2.diff
 hurd-i386/submitted-path_mounted.diff
+hurd-i386/tg-socket_flags.diff
+hurd-i386/tg-socketpair_flags.diff
 
 i386/local-biarch.diff
 i386/local-cmov.diff
