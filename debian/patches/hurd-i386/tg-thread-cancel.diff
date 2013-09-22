@@ -51,6 +51,6 @@ index 867579d..bcd06dd 100644
 -  assert (! __spin_lock_locked (&ss->critical_section_lock));
    __spin_lock (&ss->critical_section_lock);
  
-   _hurd_sigstate_lock (ss);
+   __spin_lock (&ss->lock);
 -- 
 tg: (9a079e2..) t/thread-cancel (depends on: baseline)
