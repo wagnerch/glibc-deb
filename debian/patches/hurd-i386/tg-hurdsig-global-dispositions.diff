@@ -1226,7 +1226,7 @@ during/around the time __proc_dostop executes.
 --- a/sysdeps/mach/hurd/spawni.c
 +++ b/sysdeps/mach/hurd/spawni.c
 @@ -238,26 +238,29 @@
-   assert (! __spin_lock_locked (&ss->critical_section_lock));
+ 
    __spin_lock (&ss->critical_section_lock);
  
 -  __spin_lock (&ss->lock);
