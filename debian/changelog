@@ -23,6 +23,9 @@ eglibc (2.17-93) UNRELEASED; urgency=low
     overzealous assertions.
   * patches/hurd-i386/tg-pipe2.diff: New patch to add pipe2 support.
 
+  [ Pino Toscano ]
+  * Generate udeb shlibs also for Hurd's libmachuser and libhurduser.
+
  -- Adam Conrad <adconrad@0c3.net>  Thu, 01 Aug 2013 23:00:51 +0100
 
 eglibc (2.17-92) unstable; urgency=low
