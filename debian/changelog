@@ -1,4 +1,4 @@
-eglibc (2.17-93) UNRELEASED; urgency=low
+eglibc (2.17-93) unstable; urgency=low
 
   [ Adam Conrad ]
   * patches/any/cvs-tst-cancel4-buf.diff: Increase nptl test case buffer
@@ -27,7 +27,7 @@ eglibc (2.17-93) UNRELEASED; urgency=low
   [ Pino Toscano ]
   * Generate udeb shlibs also for Hurd's libmachuser and libhurduser.
 
- -- Adam Conrad <adconrad@0c3.net>  Thu, 01 Aug 2013 23:00:51 +0100
+ -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 20:05:36 -0600
 
 eglibc (2.17-92) unstable; urgency=low
 
