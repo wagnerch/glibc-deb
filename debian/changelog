@@ -5,6 +5,7 @@ eglibc (2.17-93) UNRELEASED; urgency=low
     size to 16384 so we really block on current (>= 3.10) Linux kernels.
   * patches/any/cvs-CVE-2013-4332-*.diff: Backport git fixes for integer
     overflows in allocator functions: CVE-2013-4332 (Closes: #722536)
+  * debian{control,sysdeps/arm64.mk}: Switch to gcc-4.8 on arm64 only.
 
   [ Samuel Thibault ]
   * patches/hurd-i386/unsubmitted-clock_t_centiseconds.diff: New patch from
