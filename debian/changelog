@@ -3,7 +3,8 @@ eglibc (2.17-94) UNRELEASED; urgency=low
   [ Samuel Thibault ]
   * libc0.3.symbols.hurd-i386: Refresh.
   * patches/hurd-i386/tg-sendmsg-SCM_RIGHTS.diff: Fix spurious returned error
-    when flags are not 0.
+    when flags are not 0.  Thanks Svante Signell for the catch
+    (Closes: #724681)
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
 
