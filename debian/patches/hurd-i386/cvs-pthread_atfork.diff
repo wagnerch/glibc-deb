@@ -136,12 +136,10 @@ This adds support for pthread_atfork.
 +/* TODO: unregister_atfork, and define UNREGISTER_ATFORK, for module unload support */
 --- a/libpthread/sysdeps/generic/pt-atfork.c
 +++ b/libpthread/sysdeps/generic/pt-atfork.c
-@@ -25,7 +25,7 @@ pthread_atfork (void (*prepare) (void),
+@@ -25,5 +25,5 @@ pthread_atfork (void (*prepare) (void),
  		void (*parent) (void),
  		void (*child) (void))
  {
 -  return ENOSYS;
 +  return __register_atfork (prepare, parent, child);
  }
-
- stub_warning (pthread_atfork)
