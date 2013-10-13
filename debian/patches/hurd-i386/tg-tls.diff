@@ -305,7 +305,7 @@ glibc-2.8/debian/patches/hurd-i386/local-tls-support.diff 3151
 +
 +  struct descriptor desc, *_desc = &desc;
 +  int err;
-+  unsigned int count;
++  unsigned int count = 1;
 +
 +  if (__builtin_expect (sel, 0x48) & 4) /* LDT selector */
 +    err = __i386_get_ldt (orig, sel, 1, &_desc, &count);
