@@ -8,6 +8,10 @@ eglibc (2.17-94) UNRELEASED; urgency=low
   * patches/hurd-i386/libpthread_stubs.diff: Drop stub for pthread_atfork, now
     implemented.
   * patches/hurd-i386/tg-tls.diff: Fix getting LDT on fork.
+  * patches/hurd-i386/local-dl-dynamic-weak.diff: Remove patch, issue fixed in
+    libpthread.
+  * control: Make libc0.3 break old binaries which were depending on the
+    previous patch.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
 

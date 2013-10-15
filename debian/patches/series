@@ -64,7 +64,6 @@ hppa/local-longjmp-chk.diff
 hppa/local-lowlevellock.diff
 hppa/local-EAGAIN.diff
 
-hurd-i386/local-dl-dynamic-weak.diff
 hurd-i386/local-enable-ldconfig.diff
 hurd-i386/tg-tls-threadvar.diff
 hurd-i386/tg-tls.diff
