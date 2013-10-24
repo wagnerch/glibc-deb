@@ -16,6 +16,8 @@ eglibc (2.17-94) UNRELEASED; urgency=low
     libc outside libc.
   * patches/hurd-i386/cvs-tls-threadvar-threadself.diff: New patch, store
     pthread_self in TLS instead of threadvar.
+  * patches/hurd-i386/cvs-libpthread-tls.diff: New patch, delay TLS
+    deallocation.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
 
