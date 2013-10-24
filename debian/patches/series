@@ -65,8 +65,8 @@ hppa/local-lowlevellock.diff
 hppa/local-EAGAIN.diff
 
 hurd-i386/local-enable-ldconfig.diff
-hurd-i386/tg-tls-threadvar.diff
 hurd-i386/tg-tls.diff
+hurd-i386/tg-tls-threadvar.diff
 hurd-i386/tg-tlsdesc.sym.diff
 hurd-i386/tg-sysvshm.diff
 hurd-i386/tg-ioctl-base-types.diff

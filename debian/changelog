@@ -18,6 +18,9 @@ eglibc (2.17-94) UNRELEASED; urgency=low
     pthread_self in TLS instead of threadvar.
   * patches/hurd-i386/cvs-libpthread-tls.diff: New patch, delay TLS
     deallocation.
+  * patches/hurd-i386/tg-tls.diff: Update, fix errno declaration for TLS.
+  * patches/hurd-i386/tg-tls-threadvar.diff: Update, replace all threadvars
+    with TLS.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
 
