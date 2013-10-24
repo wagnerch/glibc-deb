@@ -5,7 +5,7 @@ Fix some ``extern inline'' stuff.
 
 glibc-2.8/debian/patches/hurd-i386/submitted-extern_inline.diff 3057
 
-Probably all done by Samuel Thibault.
+2008-01-08  Samuel Thibault  <samuel.thibault@ens-lyon.org>
 
 ---
  hurd/hurd.h                         |    4 ++++
@@ -20,7 +20,7 @@ Probably all done by Samuel Thibault.
  sysdeps/generic/machine-lock.h      |   12 ++++++++++++
  sysdeps/generic/machine-sp.h        |    4 ++++
  sysdeps/mach/i386/machine-lock.h    |   12 ++++++++++++
- 14 files changed, 155 insertions(+), 3 deletions(-)
+ 12 files changed, 139 insertions(+), 3 deletions(-)
 
 --- a/hurd/hurd.h
 +++ b/hurd/hurd.h
@@ -50,7 +50,7 @@ Probably all done by Samuel Thibault.
  
 +struct hurd_fd *_hurd_fd_get (int fd);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_FD_H_EXTERN_INLINE struct hurd_fd *
  _hurd_fd_get (int fd)
  {
@@ -133,7 +133,7 @@ Probably all done by Samuel Thibault.
  
 +void _hurd_port_init (struct hurd_port *port, mach_port_t init);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_PORT_H_EXTERN_INLINE void
  _hurd_port_init (struct hurd_port *port, mach_port_t init)
  {
@@ -153,7 +153,7 @@ Probably all done by Samuel Thibault.
 +_hurd_port_locked_get (struct hurd_port *port,
 +		       struct hurd_userlink *link);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_PORT_H_EXTERN_INLINE mach_port_t
  _hurd_port_locked_get (struct hurd_port *port,
  		       struct hurd_userlink *link)
@@ -169,7 +169,7 @@ Probably all done by Samuel Thibault.
 +_hurd_port_get (struct hurd_port *port,
 +		struct hurd_userlink *link);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_PORT_H_EXTERN_INLINE mach_port_t
  _hurd_port_get (struct hurd_port *port,
  		struct hurd_userlink *link)
@@ -187,7 +187,7 @@ Probably all done by Samuel Thibault.
 +		 struct hurd_userlink *link,
 +		 mach_port_t used_port);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_PORT_H_EXTERN_INLINE void
  _hurd_port_free (struct hurd_port *port,
  		 struct hurd_userlink *link,
@@ -203,7 +203,7 @@ Probably all done by Samuel Thibault.
  
 +void _hurd_port_locked_set (struct hurd_port *port, mach_port_t newport);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_PORT_H_EXTERN_INLINE void
  _hurd_port_locked_set (struct hurd_port *port, mach_port_t newport)
  {
@@ -217,7 +217,7 @@ Probably all done by Samuel Thibault.
  
 +void _hurd_port_set (struct hurd_port *port, mach_port_t newport);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_PORT_H_EXTERN_INLINE void
  _hurd_port_set (struct hurd_port *port, mach_port_t newport)
  {
@@ -235,7 +235,7 @@ Probably all done by Samuel Thibault.
  #define _HURD_SIGNAL_H_EXTERN_INLINE __extern_inline
  #endif
  
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_SIGNAL_H_EXTERN_INLINE struct hurd_sigstate *
  _hurd_self_sigstate (void)
  {
@@ -256,7 +256,7 @@ Probably all done by Samuel Thibault.
  
 +void *_hurd_critical_section_lock (void);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_SIGNAL_H_EXTERN_INLINE void *
  _hurd_critical_section_lock (void)
  {
@@ -273,7 +273,7 @@ Probably all done by Samuel Thibault.
  
 +void _hurd_critical_section_unlock (void *our_lock);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_SIGNAL_H_EXTERN_INLINE void
  _hurd_critical_section_unlock (void *our_lock)
  {
@@ -301,7 +301,7 @@ Probably all done by Samuel Thibault.
  extern unsigned long int *__hurd_threadvar_location_from_sp
    (enum __hurd_threadvar_index __index, void *__sp);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_THREADVAR_H_EXTERN_INLINE unsigned long int *
  __hurd_threadvar_location_from_sp (enum __hurd_threadvar_index __index,
  				   void *__sp)
@@ -317,7 +317,7 @@ Probably all done by Samuel Thibault.
  	the same stack frame by different threads.  */
       __attribute__ ((__const__));
  
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_THREADVAR_H_EXTERN_INLINE unsigned long int *
  __hurd_threadvar_location (enum __hurd_threadvar_index __index)
  {
@@ -338,7 +338,7 @@ Probably all done by Samuel Thibault.
 +_hurd_userlink_link (struct hurd_userlink **chainp,
 +		     struct hurd_userlink *link);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_USERLINK_H_EXTERN_INLINE void
  _hurd_userlink_link (struct hurd_userlink **chainp,
  		     struct hurd_userlink *link)
@@ -354,7 +354,7 @@ Probably all done by Samuel Thibault.
  
 +int _hurd_userlink_unlink (struct hurd_userlink *link);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_USERLINK_H_EXTERN_INLINE int
  _hurd_userlink_unlink (struct hurd_userlink *link)
  {
@@ -372,7 +372,7 @@ Probably all done by Samuel Thibault.
  
 +int _hurd_userlink_clear (struct hurd_userlink **chainp);
 +
-+#ifdef __USE_EXTERN_INLINES
++#if defined __USE_EXTERN_INLINES && defined _LIBC
  _HURD_USERLINK_H_EXTERN_INLINE int
  _hurd_userlink_clear (struct hurd_userlink **chainp)
  {
