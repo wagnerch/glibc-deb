@@ -14,6 +14,8 @@ eglibc (2.17-94) UNRELEASED; urgency=low
     previous patch.
   * patches/hurd-i386/tg-extern_inline.diff: Do not expose some internals of
     libc outside libc.
+  * patches/hurd-i386/cvs-tls-threadvar-threadself.diff: New patch, store
+    pthread_self in TLS instead of threadvar.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
 
