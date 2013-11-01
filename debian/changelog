@@ -25,6 +25,7 @@ eglibc (2.17-94) UNRELEASED; urgency=low
     user-provided stacks.
   * patches/hurd-i386/tg-libc_getspecific.diff: New patch, fix erroneous
     __libc_getspecific weak reference.
+  * control: Make libc0.3 break old hurd with overzealous inlines.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
 
