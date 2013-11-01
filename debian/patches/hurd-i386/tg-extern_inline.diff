@@ -286,40 +286,6 @@ glibc-2.8/debian/patches/hurd-i386/submitted-extern_inline.diff 3057
  
  /* Convenient macros for simple uses of critical sections.
     These two must be used as a pair at the same C scoping level.  */
---- a/hurd/hurd/threadvar.h
-+++ b/hurd/hurd/threadvar.h
-@@ -81,6 +81,8 @@
- 
- extern unsigned long int *__hurd_threadvar_location_from_sp
-   (enum __hurd_threadvar_index __index, void *__sp);
-+
-+#if defined __USE_EXTERN_INLINES && defined _LIBC
- _HURD_THREADVAR_H_EXTERN_INLINE unsigned long int *
- __hurd_threadvar_location_from_sp (enum __hurd_threadvar_index __index,
- 				   void *__sp)
-@@ -92,6 +94,7 @@
- 	   : (unsigned long int *) ((__stack & __hurd_threadvar_stack_mask) +
- 				    __hurd_threadvar_stack_offset))[__index];
- }
-+#endif
- 
- #include <machine-sp.h>		/* Define __thread_stack_pointer.  */
- 
-@@ -105,12 +108,14 @@
- 	the same stack frame by different threads.  */
-      __attribute__ ((__const__));
- 
-+#if defined __USE_EXTERN_INLINES && defined _LIBC
- _HURD_THREADVAR_H_EXTERN_INLINE unsigned long int *
- __hurd_threadvar_location (enum __hurd_threadvar_index __index)
- {
-   return __hurd_threadvar_location_from_sp (__index,
- 					    __thread_stack_pointer ());
- }
-+#endif
- 
- extern mach_port_t __hurd_reply_port0;
- #define __hurd_local_reply_port (*(__libc_no_tls() ? &__hurd_reply_port0 : &THREAD_SELF->reply_port))
 Index: eglibc-2.17/hurd/hurd/userlink.h
 ===================================================================
 --- eglibc-2.17.orig/hurd/hurd/userlink.h	2013-10-24 01:20:25.000000000 +0000

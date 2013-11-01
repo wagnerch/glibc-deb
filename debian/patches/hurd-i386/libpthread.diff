@@ -2813,7 +2813,7 @@
 +}
 --- /dev/null
 +++ b/libpthread/libpthread.a
-@@ -0,0 +1,20 @@
+@@ -0,0 +1,23 @@
 +/* pthread initializer is weak in glibc.  It must be included if glibc
 +   is to start threading. */
 +EXTERN(_cthread_init_routine)
@@ -2832,11 +2832,14 @@
 +EXTERN(_cthreads_flockfile)
 +EXTERN(_cthreads_funlockfile)
 +EXTERN(_cthreads_ftrylockfile)
++/* To get the sigthread stack layout on fork */
++EXTERN(pthread_getattr_np)
++EXTERN(pthread_attr_getstack)
 +
 +GROUP(-lpthread2 -lihash -lrt)
 --- /dev/null
 +++ b/libpthread/libpthread_pic.a
-@@ -0,0 +1,20 @@
+@@ -0,0 +1,23 @@
 +/* pthread initializer is weak in glibc.  It must be included if glibc
 +   is to start threading. */
 +EXTERN(_cthread_init_routine)
@@ -2855,6 +2858,9 @@
 +EXTERN(_cthreads_flockfile)
 +EXTERN(_cthreads_funlockfile)
 +EXTERN(_cthreads_ftrylockfile)
++/* To get the sigthread stack layout on fork */
++EXTERN(pthread_getattr_np)
++EXTERN(pthread_attr_getstack)
 +
 +GROUP(-lpthread2_pic -lihash_pic)
 --- /dev/null

@@ -65,6 +65,7 @@ hppa/local-lowlevellock.diff
 hppa/local-EAGAIN.diff
 
 hurd-i386/local-enable-ldconfig.diff
+hurd-i386/tg-context_functions.diff
 hurd-i386/tg-tls.diff
 hurd-i386/tg-tls-threadvar.diff
 hurd-i386/tg-tlsdesc.sym.diff
@@ -123,7 +124,6 @@ hurd-i386/tg-EIEIO-fr.diff
 hurd-i386/libpthread_ctypes.diff
 hurd-i386/tg-io_select_timeout.diff
 hurd-i386/tg-poll_errors_fixes.diff
-hurd-i386/tg-context_functions.diff
 hurd-i386/unsubmitted-clock_t_centiseconds.diff
 hurd-i386/submitted-startup-pid2.diff
 hurd-i386/submitted-path_mounted.diff
@@ -134,6 +134,8 @@ hurd-i386/cvs-pthread_atfork.diff
 hurd-i386/tg-pipe2.diff
 hurd-i386/cvs-tls-threadvar-threadself.diff
 hurd-i386/cvs-libpthread-tls.diff
+hurd-i386/cvs-libpthread-userstack.diff
+hurd-i386/tg-libc_getspecific.diff
 
 i386/local-biarch.diff
 i386/local-cmov.diff

@@ -21,6 +21,10 @@ eglibc (2.17-94) UNRELEASED; urgency=low
   * patches/hurd-i386/tg-tls.diff: Update, fix errno declaration for TLS.
   * patches/hurd-i386/tg-tls-threadvar.diff: Update, replace all threadvars
     with TLS.
+  * patches/hurd-i386/cvs-libpthread-userstack.diff: New patch, allow
+    user-provided stacks.
+  * patches/hurd-i386/tg-libc_getspecific.diff: New patch, fix erroneous
+    __libc_getspecific weak reference.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
 
