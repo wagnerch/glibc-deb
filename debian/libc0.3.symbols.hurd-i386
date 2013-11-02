@@ -339,6 +339,8 @@ libhurduser.so.0.3 #PACKAGE# #MINVER#
  __proc_set_arg_locations_request@Base 2.11
  __proc_set_code@Base 2.17-93
  __proc_set_code_request@Base 2.17-93
+ __proc_set_init_task@Base 2.17-94
+ __proc_set_init_task_request@Base 2.17-94
  __proc_setexecdata@Base 2.11
  __proc_setexecdata_request@Base 2.11
  __proc_setlogin@Base 2.11
@@ -696,6 +698,8 @@ libhurduser.so.0.3 #PACKAGE# #MINVER#
  proc_set_arg_locations_request@Base 2.11
  proc_set_code@Base 2.17-93
  proc_set_code_request@Base 2.17-93
+ proc_set_init_task@Base 2.17-94
+ proc_set_init_task_request@Base 2.17-94
  proc_setexecdata@Base 2.11
  proc_setexecdata_request@Base 2.11
  proc_setlogin@Base 2.11
