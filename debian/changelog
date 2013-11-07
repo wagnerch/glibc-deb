@@ -28,6 +28,10 @@ eglibc (2.17-94) UNRELEASED; urgency=low
   * control: Make libc0.3 break old hurd with overzealous inlines.
   * patches/hurd-i386/libpthread.diff: Synchronize with upstream.
 
+  [ Petr Salinger ]
+  * fbtl.diff: limit default stack size to 4 * ARCH_STACK_DEFAULT_SIZE.
+    See #727009, #725516.
+
  -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
 
 eglibc (2.17-93) unstable; urgency=low
