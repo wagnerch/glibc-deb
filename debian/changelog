@@ -31,6 +31,7 @@ eglibc (2.17-94) UNRELEASED; urgency=low
   [ Petr Salinger ]
   * fbtl.diff: limit default stack size to 4 * ARCH_STACK_DEFAULT_SIZE.
     See #727009, #725516.
+  * sysdeps.diff: fixup get/set owner of socket
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
 
