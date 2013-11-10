@@ -1,4 +1,4 @@
-eglibc (2.17-94) UNRELEASED; urgency=low
+eglibc (2.17-94) unstable; urgency=low
 
   [ Adam Conrad]
   * patches/any/cvs-CVE-2012-44xx.diff: backport overflow fixes in strcoll
@@ -49,7 +49,7 @@ eglibc (2.17-94) UNRELEASED; urgency=low
     See #727009, #725516.
   * sysdeps.diff: fixup get/set owner of socket
 
- -- Adam Conrad <adconrad@0c3.net>  Sun, 22 Sep 2013 23:39:33 -0600
+ -- Adam Conrad <adconrad@0c3.net>  Sat, 09 Nov 2013 18:06:17 -0700
 
 eglibc (2.17-93) unstable; urgency=low
 
