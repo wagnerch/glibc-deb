@@ -6,6 +6,7 @@ eglibc (2.17-95) UNRELEASED; urgency=low
   * patches/any/cvs-CVE-2013-4788-static-ptrguard-arm.diff: Pull fix
     from git to Fix the static-ptrguard testsuite regression on ARM.
   * patches/series: Re-enable CVE-2013-4788 fixed (Closes: #717178)
+  * patches/series.kfreebsd*: Disable kfreebsd/local-readdir_r.diff.
 
   [ Samuel Thibault ]
   * patches/any/cvs-CVE-2012-44xx.diff: Include <sys/param.h> to get
