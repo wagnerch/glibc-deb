@@ -1,3 +1,11 @@
+eglibc (2.17-96) UNRELEASED; urgency=low
+
+  !!! PLEASE MOVE FEATURE DEVELOPMENT TO 2.18 OR UPSTREAM !!!
+
+  * 
+
+ -- Adam Conrad <adconrad@0c3.net>  Sun, 10 Nov 2013 09:41:24 -0700
+
 eglibc (2.17-95) unstable; urgency=low
 
   [ Adam Conrad ]
