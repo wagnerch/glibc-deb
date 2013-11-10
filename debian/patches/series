@@ -56,6 +56,8 @@ arm/local-soname-hack.diff
 arm/local-vfp-sysdeps.diff
 arm/unsubmitted-ldso-multilib.diff
 
+arm64/cvs-setjmp-clobber.diff
+
 hppa/local-inlining.diff
 hppa/submitted-fadvise64_64.diff
 hppa/submitted-nptl-carlos.diff
@@ -259,3 +261,9 @@ any/cvs-tst-cancel4-buf.diff
 any/cvs-CVE-2013-4332-memalign.diff
 any/cvs-CVE-2013-4332-pvalloc.diff
 any/cvs-CVE-2013-4332-valloc.diff
+any/cvs-CVE-2012-44xx.diff
+any/cvs-CVE-2013-4237.diff
+#any/cvs-CVE-2013-2207-pt_chown.diff
+#any/cvs-CVE-2013-4788-static-ptrguard.diff
+#any/cvs-CVE-2013-4788-static-ptrguard-ppc64.diff
+any/unsubmitted-dlopen-static-crash.diff
