@@ -2,9 +2,14 @@ eglibc (2.17-95) UNRELEASED; urgency=low
 
   !!! PLEASE MOVE FEATURE DEVELOPMENT TO 2.18 OR UPSTREAM !!!
 
+  [ Adam Conrad ]
+  * patches/any/cvs-CVE-2013-4788-static-ptrguard-arm.diff: Pull fix
+    from git to Fix the static-ptrguard testsuite regression on ARM.
+  * patches/series: Re-enable CVE-2013-4788 fixed (Closes: #717178)
+
   [ Samuel Thibault ]
-  * patches/any/cvs-CVE-2012-44xx.diff: Include <sys/param.h> to get MIN/MAX
-    macros.
+  * patches/any/cvs-CVE-2012-44xx.diff: Include <sys/param.h> to get
+    MIN/MAX macros on hurd-i386.
 
  -- Adam Conrad <adconrad@0c3.net>  Sat, 09 Nov 2013 21:45:05 -0700
 
