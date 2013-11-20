@@ -1,3 +1,11 @@
+eglibc (2.17-97) UNRELEASED; urgency=low
+
+  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.18 BRANCH OR UPSTREAM !!!
+
+  * 
+
+ -- Adam Conrad <adconrad@0c3.net>  Wed, 20 Nov 2013 08:45:14 -0700
+
 eglibc (2.17-96) unstable; urgency=low
 
   * patches/any/cvs-CVE-2013-4237-alignment.diff: Fix alignment of the
