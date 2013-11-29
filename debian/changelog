@@ -4,6 +4,8 @@ eglibc (2.13-39) UNRELEASED; urgency=low
     regressions to ease the pain of ongoing stable/security maintenance.
   * patches/any/cvs-CVE-2012-44xx.diff: backport overflow fixes in strcoll
     addressing CVE-2012-4412 and CVE-2012-4424 (Closes: #687530, #689423).
+  * patches/any/CVE-2013-0242.diff: Backport buffer overrun in regexp matcher
+    addressing CVE-2013-0242 (Closes: #699399).
 
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 29 Nov 2013 21:59:21 +0100
 
