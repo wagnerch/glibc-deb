@@ -1,10 +1,17 @@
-eglibc (2.17-97) UNRELEASED; urgency=low
+eglibc (2.17-97) unstable; urgency=medium
 
-  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.18 BRANCH OR UPSTREAM !!!
+  [ Aurelien Jarno ]
+  * patches/mips/local-prlimit64.diff: remove.
+  * patches/mips/cvs-prlimit64.diff: new patch from upstream to fix
+    getrlimit64/setrlimit64 with recent 64-bit kernels (Closes: #665897).
+  * patches/any/submitted-findlocale-div-by-zero.diff: new patch to fix
+    a SIGFPE when locale-archive has been corrupted to all zeros (Closes:
+    #718890, #730336).
 
-  * 
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: raise MAXLOGNAME
 
- -- Adam Conrad <adconrad@0c3.net>  Wed, 20 Nov 2013 08:45:14 -0700
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 29 Nov 2013 16:43:19 +0100
 
 eglibc (2.17-96) unstable; urgency=low
 
