@@ -1,6 +1,4 @@
-eglibc (2.17-97) UNRELEASED; urgency=low
-
-  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.18 BRANCH OR UPSTREAM !!!
+eglibc (2.17-97) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * patches/mips/local-prlimit64.diff: remove.
@@ -13,7 +11,7 @@ eglibc (2.17-97) UNRELEASED; urgency=low
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: raise MAXLOGNAME
 
- -- Adam Conrad <adconrad@0c3.net>  Wed, 20 Nov 2013 08:45:14 -0700
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 29 Nov 2013 16:43:19 +0100
 
 eglibc (2.17-96) unstable; urgency=low
 
