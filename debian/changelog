@@ -2,7 +2,10 @@ eglibc (2.17-97) UNRELEASED; urgency=low
 
   !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.18 BRANCH OR UPSTREAM !!!
 
-  * 
+  [ Aurelien Jarno ]
+  * patches/mips/local-prlimit64.diff: remove.
+  * patches/mips/cvs-prlimit64.diff: new patch from upstream to fix
+    getrlimit64/setrlimit64 with recent 64-bit kernels (Closes: #665897).
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: raise MAXLOGNAME
