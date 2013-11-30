@@ -1,11 +1,18 @@
 eglibc (2.13-39) UNRELEASED; urgency=low
 
+  [ Aurelien Jarno ]
   * debian/testsuite-checking/compare.sh: Disable failing the build on test
     regressions to ease the pain of ongoing stable/security maintenance.
   * patches/any/cvs-CVE-2012-44xx.diff: backport overflow fixes in strcoll
     addressing CVE-2012-4412 and CVE-2012-4424 (Closes: #687530, #689423).
   * patches/any/CVE-2013-0242.diff: Backport buffer overrun in regexp matcher
     addressing CVE-2013-0242 (Closes: #699399).
+
+  [ Petr Salinger ]
+  * patches/kfreebsd/local-initgroups-order.diff: always put supplied extra
+    gid as the first entry of group list in setgroups(). Closes: #699593.
+  * inline is not keyword in c89 mode, use __inline. Closes: #704598.
+  * sys_ktimer_settime have 4 parameters. Closes: #712196.
 
  -- Aurelien Jarno <aurel32@debian.org>  Fri, 29 Nov 2013 21:59:21 +0100
 
