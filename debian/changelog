@@ -9,9 +9,13 @@ eglibc (2.13-38+deb7u1) UNRELEASED; urgency=low
     addressing CVE-2013-0242 (Closes: #699399).
   * patches/cvs-CVE-2013-1914.diff: backport stack overflow fixes in
     getaddrinfo() addressing CVE-2013-1914 (Closes: #704623).
+  * patches/any/cvs-CVE-2013-4237.diff: backport buffer overwrite fix in
+    readdir_r for file systems returning file names longer than NAME_MAX
+    characters, addressing CVE-2013-4237 (Closes: #719558).
   * patches/any/cvs-findlocale-div-by-zero.diff: patch from upstream to fix
     a SIGFPE when locale-archive has been corrupted to all zeros (Closes:
-    #718890, #730336).
+    #718890, #730336). patches/kfreebsd/local-readdir_r.diff: remove
+    superseeded by the CVE patch.
   * patches/mips/cvs-prlimit64.diff: patch from upstream to fix getrlimit64
     and setrlimit64 with recent 64-bit kernels (Closes: #665897).
     

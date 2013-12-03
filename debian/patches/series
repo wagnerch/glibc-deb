@@ -378,4 +378,5 @@ any/local-tst-eintr1-eagain.diff
 any/cvs-CVE-2012-44xx.diff
 any/cvs-CVE-2013-0242.diff
 any/cvs-CVE-2013-1914.diff
+any/cvs-CVE-2013-4237.diff
 any/cvs-findlocale-div-by-zero.diff
