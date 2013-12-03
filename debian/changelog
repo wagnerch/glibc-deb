@@ -10,7 +10,9 @@ eglibc (2.13-38+deb7u1) UNRELEASED; urgency=low
   * patches/any/cvs-findlocale-div-by-zero.diff: patch from upstream to fix
     a SIGFPE when locale-archive has been corrupted to all zeros (Closes:
     #718890, #730336).
-
+  * patches/mips/cvs-prlimit64.diff: patch from upstream to fix getrlimit64
+    and setrlimit64 with recent 64-bit kernels (Closes: #665897).
+    
   [ Petr Salinger ]
   * patches/kfreebsd/local-initgroups-order.diff: always put supplied extra
     gid as the first entry of group list in setgroups(). Closes: #699593.
