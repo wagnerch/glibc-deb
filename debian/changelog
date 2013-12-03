@@ -7,6 +7,9 @@ eglibc (2.13-38+deb7u1) UNRELEASED; urgency=low
     addressing CVE-2012-4412 and CVE-2012-4424 (Closes: #687530, #689423).
   * patches/any/CVE-2013-0242.diff: Backport buffer overrun in regexp matcher
     addressing CVE-2013-0242 (Closes: #699399).
+  * patches/any/cvs-findlocale-div-by-zero.diff: patch from upstream to fix
+    a SIGFPE when locale-archive has been corrupted to all zeros (Closes:
+    #718890, #730336).
 
   [ Petr Salinger ]
   * patches/kfreebsd/local-initgroups-order.diff: always put supplied extra

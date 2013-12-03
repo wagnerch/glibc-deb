@@ -376,3 +376,4 @@ any/cvs-arch-lowlevellock.diff
 any/local-tst-eintr1-eagain.diff
 any/cvs-CVE-2012-44xx.diff
 any/cvs-CVE-2013-0242.diff
+any/cvs-findlocale-div-by-zero.diff
