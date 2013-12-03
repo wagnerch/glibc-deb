@@ -1,27 +1,28 @@
 eglibc (2.13-38+deb7u1) UNRELEASED; urgency=low
 
   [ Aurelien Jarno ]
-  * debian/testsuite-checking/compare.sh: Disable failing the build on test
+  * debian/testsuite-checking/compare.sh: disable failing the build on test
     regressions to ease the pain of ongoing stable/security maintenance.
-  * patches/any/cvs-CVE-2012-44xx.diff: backport overflow fixes in strcoll
+  * patches/any/cvs-CVE-2012-44xx.diff: backport overflow fixes in strcoll,
     addressing CVE-2012-4412 and CVE-2012-4424 (Closes: #687530, #689423).
-  * patches/any/CVE-2013-0242.diff: Backport buffer overrun in regexp matcher
+  * patches/any/CVE-2013-0242.diff: backport buffer overrun in regexp matcher,
     addressing CVE-2013-0242 (Closes: #699399).
   * patches/cvs-CVE-2013-1914.diff: backport stack overflow fixes in
-    getaddrinfo() addressing CVE-2013-1914 (Closes: #704623).
+    getaddrinfo(), addressing CVE-2013-1914 (Closes: #704623).
   * patches/any/cvs-CVE-2013-4237.diff: backport buffer overwrite fix in
     readdir_r for file systems returning file names longer than NAME_MAX
     characters, addressing CVE-2013-4237 (Closes: #719558).
+    patches/kfreebsd/local-readdir_r.diff: remove superseeded by the CVE
+    patch.
   * patches/any/cvs-CVE-2013-4458.diff: backport stack (frame) overflow fixes
     in getaddrinfo() when called with AF_INET6, addressing CVE-2013-4458
     (Closes: #727181).
   * patches/any/cvs-findlocale-div-by-zero.diff: patch from upstream to fix
     a SIGFPE when locale-archive has been corrupted to all zeros (Closes:
-    #718890, #730336). patches/kfreebsd/local-readdir_r.diff: remove
-    superseeded by the CVE patch.
+    #718890, #730336).
   * patches/mips/cvs-prlimit64.diff: patch from upstream to fix getrlimit64
     and setrlimit64 with recent 64-bit kernels (Closes: #665897).
-    
+
   [ Petr Salinger ]
   * patches/kfreebsd/local-initgroups-order.diff: always put supplied extra
     gid as the first entry of group list in setgroups(). Closes: #699593.
