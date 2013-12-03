@@ -12,6 +12,9 @@ eglibc (2.13-38+deb7u1) UNRELEASED; urgency=low
   * patches/any/cvs-CVE-2013-4237.diff: backport buffer overwrite fix in
     readdir_r for file systems returning file names longer than NAME_MAX
     characters, addressing CVE-2013-4237 (Closes: #719558).
+  * patches/any/cvs-CVE-2013-4458.diff: backport stack (frame) overflow fixes
+    in getaddrinfo() when called with AF_INET6, addressing CVE-2013-4458
+    (Closes: #727181).
   * patches/any/cvs-findlocale-div-by-zero.diff: patch from upstream to fix
     a SIGFPE when locale-archive has been corrupted to all zeros (Closes:
     #718890, #730336). patches/kfreebsd/local-readdir_r.diff: remove
