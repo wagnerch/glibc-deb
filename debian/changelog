@@ -12,7 +12,7 @@ eglibc (2.13-38+deb7u1) UNRELEASED; urgency=low
   * patches/any/cvs-CVE-2013-4237.diff: backport buffer overwrite fix in
     readdir_r for file systems returning file names longer than NAME_MAX
     characters, addressing CVE-2013-4237 (Closes: #719558).
-    patches/kfreebsd/local-readdir_r.diff: remove superseeded by the CVE
+    patches/kfreebsd/local-readdir_r.diff: remove superseded by the CVE
     patch.
   * patches/any/cvs-CVE-2013-4332.diff: backport integer overflow fixes
     in pvalloc, valloc, posix_memalign, memalign and aligned_alloc functions,
