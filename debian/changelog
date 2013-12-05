@@ -1,4 +1,4 @@
-eglibc (2.13-38+deb7u1) UNRELEASED; urgency=low
+eglibc (2.13-38+deb7u1) wheezy; urgency=low
 
   [ Aurelien Jarno ]
   * debian/testsuite-checking/compare.sh: disable failing the build on test
@@ -36,7 +36,7 @@ eglibc (2.13-38+deb7u1) UNRELEASED; urgency=low
   * inline is not keyword in c89 mode, use __inline. Closes: #704598.
   * sys_ktimer_settime have 4 parameters. Closes: #712196.
 
- -- Aurelien Jarno <aurel32@debian.org>  Fri, 29 Nov 2013 21:59:21 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 05 Dec 2013 23:19:48 +0100
 
 eglibc (2.13-38) unstable; urgency=low
 
