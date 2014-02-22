@@ -2,7 +2,11 @@ eglibc (2.18-2) UNRELEASED; urgency=medium
 
   !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
 
-  * 
+  [ Aurelien Jarno ]
+  * any/local-ldconfig-ignore-ld.so.diff: new patch to ignore the dynamic
+    linker in ldconfig.  Closes: #699206, #707185, #727786, #736097,
+    #739734, #739758.
+
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 5443 (from glibc-bsd).
 
