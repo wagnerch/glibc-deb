@@ -3,6 +3,8 @@ eglibc (2.18-2) UNRELEASED; urgency=medium
   !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
 
   * 
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: update to revision 5443 (from glibc-bsd).
 
  -- Adam Conrad <adconrad@0c3.net>  Thu, 20 Feb 2014 23:39:37 -0700
 
