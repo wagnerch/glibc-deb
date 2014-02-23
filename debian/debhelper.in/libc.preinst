@@ -312,7 +312,7 @@ then
         echo "Warning: found a potentially broken dynamic loader symlink,"
 	echo "disabling ldconfig to avoid a possible system breakage. It"
 	echo "will be reenabled when a new version of libc-bin is unpacked." 
-	ln -sf /bin/true /sbin/ldconfig.real
+	ln -sf /bin/true /sbin/ldconfig
     fi
 fi
 
