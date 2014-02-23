@@ -1,3 +1,11 @@
+eglibc (2.18-3) UNRELEASED; urgency=medium
+
+  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
+
+  * 
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 23 Feb 2014 14:47:58 +0100
+
 eglibc (2.18-2) unstable; urgency=medium
 
   [ Aurelien Jarno ]
