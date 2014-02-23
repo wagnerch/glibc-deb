@@ -265,3 +265,4 @@ any/cvs-CVE-2013-4458-getaddrinfo.diff
 any/cvs-DL_CALL_DT_INIT_FINI.diff
 any/cvs-vfscanf-0e+0.diff
 any/cvs-ptrace_peeksiginfo_args.diff
+any/local-ldconfig-ignore-ld.so.diff
