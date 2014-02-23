@@ -6,6 +6,10 @@ eglibc (2.18-2) UNRELEASED; urgency=medium
   * any/local-ldconfig-ignore-ld.so.diff: new patch to ignore the dynamic
     linker in ldconfig.  Closes: #699206, #707185, #727786, #736097,
     #739734, #739758.
+  * debian/debhelper.in/libc.preinst: Disable ldconfig when a potentially
+    broken dynamic loader symlink is found. This happens when a biarch
+    package of the same architecture than the native one has been installed
+    (e.g.: libc6-amd64:i386 on amd64) and ldconfig is run afterwards.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 5443 (from glibc-bsd).
