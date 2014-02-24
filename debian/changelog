@@ -1,6 +1,4 @@
-eglibc (2.18-3) UNRELEASED; urgency=medium
-
-  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
+eglibc (2.18-3) unstable; urgency=medium
 
   * debian/patches/any/local-no-malloc-backtrace.diff: Lower the default
     for MALLOC_CHECK_ to 1, and add it to the list of insecure variables
@@ -9,7 +7,7 @@ eglibc (2.18-3) UNRELEASED; urgency=medium
     backtrace for suid binaries where an attacker calling into a corrupt
     malloc internal data structure with malloc could lead to Bad Things.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 23 Feb 2014 14:47:58 +0100
+ -- Adam Conrad <adconrad@0c3.net>  Sun, 23 Feb 2014 18:43:36 -0700
 
 eglibc (2.18-2) unstable; urgency=medium
 
