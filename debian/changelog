@@ -1,3 +1,11 @@
+eglibc (2.18-4) UNRELEASED; urgency=medium
+
+  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
+
+  * 
+
+ -- Adam Conrad <adconrad@0c3.net>  Sun, 23 Feb 2014 21:29:11 -0700
+
 eglibc (2.18-3) unstable; urgency=medium
 
   * debian/patches/any/local-no-malloc-backtrace.diff: Lower the default
