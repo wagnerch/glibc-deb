@@ -5,7 +5,7 @@ eglibc (2.18-4) UNRELEASED; urgency=medium
   [ Aurelien Jarno ]
   * debian/debhelper.in/libc.preinst: Don't fail if the dynamic loader
     symlink is dangling or missing.  Closes: #740158, #740196.
-  * debian/debhelper.in/libc.preinst: onlt disable ldconfig after making
+  * debian/debhelper.in/libc.preinst: only disable ldconfig after making
     sure a fixed version hasn't already been unpacked, as the unpack order
     is not guaranteed.
 
