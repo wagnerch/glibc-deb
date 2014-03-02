@@ -8,6 +8,8 @@ eglibc (2.18-4) UNRELEASED; urgency=medium
   * debian/debhelper.in/libc.preinst: only disable ldconfig after making
     sure a fixed version hasn't already been unpacked, as the unpack order
     is not guaranteed.
+  * debian/debhelper.in/libc.postrm: generalize the dynamic linker
+    symlink creation to all biarch packages.
   * debian/debhelper.in/libc-alt.postrm: generalize the dynamic linker
     symlink removal to all biarch packages.
 
