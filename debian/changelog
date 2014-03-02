@@ -1,6 +1,4 @@
-eglibc (2.18-4) UNRELEASED; urgency=medium
-
-  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
+eglibc (2.18-4) unstable; urgency=high
 
   [ Aurelien Jarno ]
   * debian/debhelper.in/libc.preinst: Don't fail if the dynamic loader
@@ -13,7 +11,7 @@ eglibc (2.18-4) UNRELEASED; urgency=medium
   * debian/debhelper.in/libc-alt.postrm: generalize the dynamic linker
     symlink removal to all biarch packages.
 
- -- Adam Conrad <adconrad@0c3.net>  Sun, 23 Feb 2014 21:29:11 -0700
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 02 Mar 2014 15:32:16 +0100
 
 eglibc (2.18-3) unstable; urgency=medium
 
