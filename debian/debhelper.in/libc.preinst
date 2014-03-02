@@ -267,9 +267,9 @@ then
         ldbytes=$(head -c 20 RTLD_SO | od -c)
     else
         # If the symlink to the dynamic linker is dangling or missing, set
-	# ldbytes to an empty string, the test below will fail and all the
-	# libraries found will be ignored.
-	ldbytes=""
+        # ldbytes to an empty string, the test below will fail and all the
+        # libraries found will be ignored.
+        ldbytes=""
     fi
     libcfiles=$(dpkg-query -L $(package_name) 2>/dev/null)
 
