@@ -2,7 +2,9 @@ eglibc (2.18-5) UNRELEASED; urgency=medium
 
   !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
 
-  * 
+  [ Samuel Thibault ]
+  * patches/hurd-i386/tg-mmap_file_prot_none_fix.diff: New patch, fixes locale
+    generation.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 02 Mar 2014 16:19:49 +0100
 
