@@ -5,6 +5,8 @@ eglibc (2.18-5) UNRELEASED; urgency=medium
   [ Samuel Thibault ]
   * patches/hurd-i386/tg-mmap_file_prot_none_fix.diff: New patch, fixes locale
     generation.
+  * control.in/main: Bump hurd dependency to version with newer RPCs.
+  * libc0.3.symbols.hurd-i386: Update accordingly.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 02 Mar 2014 16:19:49 +0100
 
