@@ -8,6 +8,10 @@ eglibc (2.18-5) UNRELEASED; urgency=medium
   * control.in/main: Bump hurd dependency to version with newer RPCs.
   * libc0.3.symbols.hurd-i386: Update accordingly.
 
+  [ Petr Salinger ]
+  * kfreebsd/local-sysdeps.diff: update to revision 5460 (from glibc-bsd).
+  * kfreebsd/local-fbtl.diff: likewise
+
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 02 Mar 2014 16:19:49 +0100
 
 eglibc (2.18-4) unstable; urgency=high
