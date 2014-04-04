@@ -7,6 +7,9 @@ eglibc (2.18-5) UNRELEASED; urgency=medium
     generation.
   * control.in/main: Bump hurd dependency to version with newer RPCs.
   * libc0.3.symbols.hurd-i386: Update accordingly.
+  * patches/hurd-i386/libpthread_nort.diff: Remove patch, replaced by...
+  * patches/hurd-i386/cvs-libpthread-pthread_condattr_setclock.diff: Fix for
+    pthread_condattr_setclock, for glib2.0 build.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 5460 (from glibc-bsd).
