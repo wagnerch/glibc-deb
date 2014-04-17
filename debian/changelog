@@ -14,6 +14,7 @@ eglibc (2.18-5) UNRELEASED; urgency=medium
     initialization.
   * patches/hurd-i386/cvs-tcbhead_t.diff: New patch to complete TLS variables,
     to fix gcc's -fsplit-stack support.
+  * Update hurd-i386 testsuite results.
 
   [ Petr Salinger ]
   * kfreebsd/local-sysdeps.diff: update to revision 5460 (from glibc-bsd).
