@@ -726,6 +726,15 @@ diff --git a/sysdeps/mach/hurd/i386/tls.h b/sysdeps/mach/hurd/i386/tls.h
 index bf0cf43..7159484 100644
 --- a/sysdeps/mach/hurd/i386/tls.h
 +++ b/sysdeps/mach/hurd/i386/tls.h
+@@ -47,6 +47,8 @@ typedef struct
+   void *__private_tm[4];
+   /* GCC split stack support.  */
+   void *__private_ss;
++  mach_port_t reply_port;     /* This thread's reply port.  */
++  struct hurd_sigstate *_hurd_sigstate;
+ } tcbhead_t;
+ #endif
+ 
 @@ -53,6 +53,17 @@
        | (((unsigned int) (tcb)) & 0xff000000) /* base 24..31 */		      \
      }
@@ -865,17 +874,4 @@ index e4be948..7cae6ac 100644
 +/* Use our static variable instead of the usual TLS mechanism for
     this. */
  #define __mig_get_reply_port() profil_reply_port
- 
-diff --git a/sysdeps/mach/hurd/i386/tls.h b/sysdeps/mach/hurd/i386/tls.h
-index 230f907..a5f65ff 100644
---- a/sysdeps/mach/hurd/i386/tls.h
-+++ b/sysdeps/mach/hurd/i386/tls.h
-@@ -47,6 +47,8 @@ typedef struct
-   void *__private_tm[4];
-   /* GCC split stack support.  */
-   void *__private_ss;
-+  mach_port_t reply_port;	/* This thread's reply port.  */
-+  struct hurd_sigstate *_hurd_sigstate;
- } tcbhead_t;
- #endif
  
