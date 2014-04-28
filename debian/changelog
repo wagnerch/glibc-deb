@@ -1,6 +1,4 @@
-eglibc (2.18-5) UNRELEASED; urgency=medium
-
-  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
+eglibc (2.18-5) unstable; urgency=medium
 
   [ Samuel Thibault ]
   * patches/hurd-i386/tg-mmap_file_prot_none_fix.diff: New patch, fixes locale
@@ -30,7 +28,7 @@ eglibc (2.18-5) UNRELEASED; urgency=medium
     ifunc memcpy routines from 2.19 to fix alignment issues and computed-jump
     calculations for ARM_ALWAYS_BX, should fix memcpy on our ArmadaXP buildds.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 02 Mar 2014 16:19:49 +0100
+ -- Adam Conrad <adconrad@0c3.net>  Sun, 27 Apr 2014 15:06:57 -0600
 
 eglibc (2.18-4) unstable; urgency=high
 
