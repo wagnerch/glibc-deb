@@ -25,6 +25,11 @@ eglibc (2.18-5) UNRELEASED; urgency=medium
   * kfreebsd/local-sysdeps.diff: update to revision 5460 (from glibc-bsd).
   * kfreebsd/local-fbtl.diff: likewise
 
+  [ Adam Conrad ]
+  * debian/patches/arm/cvs-{memcpy-align.patch,arm-always-blx.diff}: Backport
+    ifunc memcpy routines from 2.19 to fix alignment issues and computed-jump
+    calculations for ARM_ALWAYS_BX, should fix memcpy on our ArmadaXP buildds.
+
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 02 Mar 2014 16:19:49 +0100
 
 eglibc (2.18-4) unstable; urgency=high

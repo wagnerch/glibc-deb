@@ -60,6 +60,8 @@ arm/cvs-arm-pointer-mangling.diff
 arm/cvs-arm__longjmp-thumb.diff
 arm/cvs-arm__sigsetjmp-thumb.diff
 arm/cvs-arm-pointer-mangle-frame.diff
+arm/cvs-arm-always-blx.diff
+arm/cvs-memcpy-align.diff
 
 arm64/cvs-arm64-sigcontext.diff
 arm64/cvs-arm64-relocs.diff

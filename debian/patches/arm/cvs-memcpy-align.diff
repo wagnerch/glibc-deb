@@ -1,0 +1,67 @@
+commit cd90698b541046c22544c2c057a4676368fd1d7f
+Author: Will Newton <will.newton@linaro.org>
+Date:   Wed Aug 7 14:15:52 2013 +0100
+
+    ARM: Improve armv7 memcpy performance.
+    
+    Only enter the aligned copy loop with buffers that can be 8-byte
+    aligned. This improves performance slightly on Cortex-A9 and
+    Cortex-A15 cores for large copies with buffers that are 4-byte
+    aligned but not 8-byte aligned.
+    
+    ports/ChangeLog.arm:
+    
+    2013-09-16  Will Newton  <will.newton@linaro.org>
+    
+    	* sysdeps/arm/armv7/multiarch/memcpy_impl.S: Tighten check
+    	on entry to aligned copy loop to improve performance.
+
+2013-09-16  Will Newton  <will.newton@linaro.org>
+
+	* sysdeps/arm/armv7/multiarch/memcpy_impl.S: Tighten check
+	on entry to aligned copy loop to improve performance.
+
+diff --git a/ports/sysdeps/arm/armv7/multiarch/memcpy_impl.S b/ports/sysdeps/arm/armv7/multiarch/memcpy_impl.S
+index 3decad6..ad43a3d 100644
+--- a/ports/sysdeps/arm/armv7/multiarch/memcpy_impl.S
++++ b/ports/sysdeps/arm/armv7/multiarch/memcpy_impl.S
+@@ -24,7 +24,6 @@
+     ARMv6 (ARMv7-a if using Neon)
+     ARM state
+     Unaligned accesses
+-    LDRD/STRD support unaligned word accesses
+ 
+  */
+ 
+@@ -369,8 +368,8 @@ ENTRY(memcpy)
+ 	cfi_adjust_cfa_offset (FRAME_SIZE)
+ 	cfi_rel_offset (tmp2, 0)
+ 	cfi_remember_state
+-	and	tmp2, src, #3
+-	and	tmp1, dst, #3
++	and	tmp2, src, #7
++	and	tmp1, dst, #7
+ 	cmp	tmp1, tmp2
+ 	bne	.Lcpy_notaligned
+ 
+@@ -381,9 +380,9 @@ ENTRY(memcpy)
+ 	vmov.f32	s0, s0
+ #endif
+ 
+-	/* SRC and DST have the same mutual 32-bit alignment, but we may
++	/* SRC and DST have the same mutual 64-bit alignment, but we may
+ 	   still need to pre-copy some bytes to get to natural alignment.
+-	   We bring DST into full 64-bit alignment.  */
++	   We bring SRC and DST into full 64-bit alignment.  */
+ 	lsls	tmp2, dst, #29
+ 	beq	1f
+ 	rsbs	tmp2, tmp2, #0
+@@ -515,7 +514,7 @@ ENTRY(memcpy)
+ 
+ .Ltail63aligned:			/* Count in tmp2.  */
+ 	/* Copy up to 7 d-words of data.  Similar to Ltail63unaligned, but
+-	   we know that the src and dest are 32-bit aligned so we can use
++	   we know that the src and dest are 64-bit aligned so we can use
+ 	   LDRD/STRD to improve efficiency.  */
+ 	/* TMP2 is now negative, but we don't care about that.  The bottom
+ 	   six bits still tell us how many bytes are left to copy.  */
