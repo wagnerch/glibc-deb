@@ -275,3 +275,4 @@ any/cvs-ptrace_peeksiginfo_args.diff
 any/local-ldconfig-ignore-ld.so.diff
 any/local-no-malloc-backtrace.diff
 any/cvs-make-4.0.diff
+any/cvs-wprintf.diff
