@@ -11,6 +11,8 @@ eglibc (2.18-6) UNRELEASED; urgency=medium
     4.0 and greater.  Closes: #747013.
   * patches/sparc/cvs-strcmp.diff: patch from upstream to fix a corner case
     in the sparc specific strcmp() implementation.  Closes: #746310.
+  * debhelper.in/nscd.init: invalidate nscd cache on startup.  Closes:
+    #689427.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 27 Apr 2014 23:15:13 -0600
 
