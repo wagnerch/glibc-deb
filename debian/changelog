@@ -6,6 +6,10 @@ eglibc (2.18-6) UNRELEASED; urgency=medium
   * patches/hurd-i386/cvs-libpthread_guardsize.diff: Fix guardsize semantic
     for gcc's -fsplit-stack.
 
+  [ Aurelien Jarno ]
+  * patches/any/cvs-make-4.0.diff: patch from upstream to allow GNU Make
+    4.0 and greater.  Closes: #747013.
+
  -- Adam Conrad <adconrad@0c3.net>  Sun, 27 Apr 2014 23:15:13 -0600
 
 eglibc (2.18-5) unstable; urgency=medium
