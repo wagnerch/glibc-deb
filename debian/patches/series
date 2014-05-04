@@ -197,6 +197,7 @@ s390/cvs-s390-tls-got-pointer.diff
 sparc/local-fork.diff
 sparc/local-sparcv9-target.diff
 sparc/submitted-timing.diff
+sparc/cvs-strcmp.diff
 
 all/local-alias-UTF-8.diff
 all/local-alias-et_EE.diff
