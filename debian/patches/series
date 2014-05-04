@@ -246,7 +246,6 @@ any/submitted-ldsodefs_rtld_debug.diff
 any/local-ldconfig-multiarch.diff
 any/local-tst-writev.diff
 any/submitted-resolv-init.diff
-any/submitted-resolv-first-query-failure.diff
 any/local-disable-libnss-db.diff
 any/local-revert-bz13979.diff
 any/local-tst-eintr1-eagain.diff
@@ -276,3 +275,4 @@ any/local-ldconfig-ignore-ld.so.diff
 any/local-no-malloc-backtrace.diff
 any/cvs-make-4.0.diff
 any/cvs-wprintf.diff
+any/cvs-resolv-first-query-failure.diff
