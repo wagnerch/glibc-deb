@@ -1,7 +1,7 @@
 2013-10-31  Marc-Antoine Perennou <Marc-Antoine@Perennou.com>
 
 	[BZ #16037]
-	* configure.ac: allow GNU Make 4.0 and greater.
+	* configure.in: allow GNU Make 4.0 and greater.
 	* configure: Regenerated.
 
 diff --git a/configure b/configure
@@ -16,9 +16,9 @@ diff --git a/configure b/configure
         ac_prog_version="$ac_prog_version, ok"; ac_verc_fail=no;;
      *) ac_prog_version="$ac_prog_version, bad"; ac_verc_fail=yes;;
  
-diff --git a/configure.ac b/configure.ac
---- a/configure.ac
-+++ b/configure.ac
+diff --git a/configure.in b/configure.in
+--- a/configure.in
++++ b/configure.in
 @@ -984,7 +984,7 @@ AC_CHECK_PROG_VER(CC, ${ac_tool_prefix}gcc ${ac_tool_prefix}cc, -v,
    critic_missing="$critic_missing gcc")
  AC_CHECK_PROG_VER(MAKE, gnumake gmake make, --version,
