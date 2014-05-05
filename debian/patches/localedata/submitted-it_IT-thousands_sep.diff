@@ -1,0 +1,43 @@
+commit 266975c3a67e75a74838d10a5305010ef4d5c7cd
+Author: Aurelien Jarno <aurelien@aurel32.net>
+Date:   Mon May 5 12:58:34 2014 +0200
+
+    Set thousand separator for Italian locale
+    
+    The Italian locale does not set thousands_sep nor grouping for
+    LC_NUMERIC, though it sets them for LC_MONETARY. This patch fixes that.
+    It can be verified that the thousand separator is the correct one on row
+    3048 of the Unicode's CLDR chart:
+    
+    http://www.unicode.org/repos/cldr-aux/charts/23/summary/it.html
+    
+    Note: this is Debian bug#712157, reported by Giuseppe Bilotta
+    <giuseppe.bilotta@gmail.com>
+
+diff --git a/localedata/ChangeLog b/localedata/ChangeLog
+index 7db10fb..b042d0e 100644
+--- a/localedata/ChangeLog
++++ b/localedata/ChangeLog
+@@ -1,3 +1,7 @@
++2014-05-05  Aurelien Jarno  <aurelien@aurel32.net>
++
++	* locales/it_IT: Use same grouping in LC_NUMERIC as in LC_MONETARY.
++
+ 2014-03-07  Joseph Myers  <joseph@codesourcery.com>
+ 
+ 	* Makefile (LOCALES): Move definition above include of Rules.
+diff --git a/localedata/locales/it_IT b/localedata/locales/it_IT
+index 2383b82..b22dc40 100644
+--- a/localedata/locales/it_IT
++++ b/localedata/locales/it_IT
+@@ -82,8 +82,8 @@ END LC_MONETARY
+ 
+ LC_NUMERIC
+ decimal_point             "<U002C>"
+-thousands_sep             ""
+-grouping                  0;0
++thousands_sep             "<U002E>"
++grouping                  3;3
+ END LC_NUMERIC
+ 
+ LC_TIME
