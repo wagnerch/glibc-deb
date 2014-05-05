@@ -23,6 +23,9 @@ eglibc (2.18-6) UNRELEASED; urgency=medium
     the thousands separator for the it_IT locale.  Closes: #712157.
   * patches/any/submitted-ptsname_r-uninitialized-memory.diff: new patch to
     fix uninitialized memory in ptsname_r().  Closes: #741482.
+  * patches/all/submitted-po-fr-fixes.diff: new patch to fix the French
+    translation of inappropriate (inappropré -> inapproprié).  Closes:
+    #733237.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 27 Apr 2014 23:15:13 -0600
 

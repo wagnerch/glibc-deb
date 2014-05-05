@@ -206,6 +206,7 @@ all/local-remove-manual.diff
 all/local-ru_RU.diff
 all/local-ldd.diff
 all/local-nis-shadow.diff
+all/submitted-po-fr-fixes.diff
 
 any/local-rtlddir-cross.diff
 any/local-use-glibc-predef.diff
