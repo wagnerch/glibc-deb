@@ -52,6 +52,7 @@ localedata/submitted-de_AT-mon.diff
 localedata/submitted-en_AU-date_fmt.diff
 localedata/cvs-rupeesign.diff
 localedata/submitted-es_MX-decimal_point.diff
+localedata/cvs-de_AT-Februar.diff
 
 alpha/local-gcc4.1.diff
 alpha/submitted-creat64.diff
