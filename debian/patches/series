@@ -277,3 +277,4 @@ any/local-no-malloc-backtrace.diff
 any/cvs-make-4.0.diff
 any/cvs-wprintf.diff
 any/cvs-resolv-first-query-failure.diff
+any/submitted-ptsname_r-uninitialized-memory.diff
