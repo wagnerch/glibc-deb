@@ -31,7 +31,7 @@ eglibc (2.18-6) UNRELEASED; urgency=medium
   * patches/any/submitted-nl_langinfo-static.diff: new patch to fix
     nl_langinfo() used in static binaries.  Closes: #747103.
   * patches/any/sparc/cvs-efd_semaphore.diff: new patch from upstream to
-    declare EFD_SEMAPHORE in <bits/eventfd.h> on SPARC.  Closes: #703559,
+    declare EFD_SEMAPHORE in <bits/eventfd.h> on SPARC.  Closes: #730092,
     #737697.
   * patches/svn-updates.diff: update from 2.18 branch, to fix a race in free()
     of fastbin chunk.
