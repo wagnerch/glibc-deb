@@ -30,6 +30,9 @@ eglibc (2.18-6) UNRELEASED; urgency=medium
     socketcall multiplex syscall features detection.  Closes: #730744.
   * patches/any/submitted-nl_langinfo-static.diff: new patch to fix
     nl_langinfo() used in static binaries.  Closes: #747103.
+  * patches/any/sparc/cvs-efd_semaphore.diff: new patch from upstream to
+    declare EFD_SEMAPHORE in <bits/eventfd.h> on SPARC.  Closes: #703559,
+    #737697.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 27 Apr 2014 23:15:13 -0600
 
