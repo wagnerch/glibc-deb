@@ -33,6 +33,8 @@ eglibc (2.18-6) UNRELEASED; urgency=medium
   * patches/any/sparc/cvs-efd_semaphore.diff: new patch from upstream to
     declare EFD_SEMAPHORE in <bits/eventfd.h> on SPARC.  Closes: #703559,
     #737697.
+  * patches/svn-updates.diff: update from 2.18 branch, to fix a race in free()
+    of fastbin chunk.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 27 Apr 2014 23:15:13 -0600
 
