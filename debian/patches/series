@@ -73,10 +73,16 @@ hppa/local-inlining.diff
 hppa/submitted-fadvise64_64.diff
 hppa/submitted-nptl-carlos.diff
 hppa/local-stack-grows-up.diff
-hppa/local-longjmp-chk.diff
 hppa/local-lowlevellock.diff
 hppa/local-EAGAIN.diff
 hppa/cvs-hppa-DL_CALL_DT_INIT_FINI.diff
+hppa/local-elf-make-cflags.diff
+hppa/local-setjmp-namespace.diff
+hppa/local-fcntl-osync.diff
+hppa/local-atomic.diff
+hppa/local-fpu.diff
+hppa/local-shmlba.diff
+hppa/local-pthread_spin_unlock.diff
 
 hurd-i386/cvs-tcbhead_t.diff
 hurd-i386/local-enable-ldconfig.diff
