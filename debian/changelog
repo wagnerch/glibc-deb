@@ -1,6 +1,4 @@
-eglibc (2.18-6) UNRELEASED; urgency=medium
-
-  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
+eglibc (2.18-6) unstable; urgency=medium
 
   [ Samuel Thibault ]
   * patches/hurd-i386/cvs-libpthread_guardsize.diff: Fix guardsize semantic
@@ -51,7 +49,7 @@ eglibc (2.18-6) UNRELEASED; urgency=medium
     outdated-autotools-helper-file tag.
   * control.in/main: Bump Standards-Version to 3.9.5 (no changes).
 
- -- Adam Conrad <adconrad@0c3.net>  Sun, 27 Apr 2014 23:15:13 -0600
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 14 May 2014 19:15:10 +0200
 
 eglibc (2.18-5) unstable; urgency=medium
 
