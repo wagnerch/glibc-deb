@@ -46,6 +46,9 @@ eglibc (2.18-6) UNRELEASED; urgency=medium
   * local/manpages/sotruss.1: new manpage.
   * patches/sparc/submitted-prlimit.diff: new patch to fix missing
     prlimit/prlimit64 prototypes on SPARC.  Closes: #703559.
+  * source/lintian-overrides: add override for false positive
+    license-problem-non-free-RFC tag. Remove old override for 
+    outdated-autotools-helper-file tag.
 
  -- Adam Conrad <adconrad@0c3.net>  Sun, 27 Apr 2014 23:15:13 -0600
 
