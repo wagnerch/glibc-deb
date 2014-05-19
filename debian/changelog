@@ -1,6 +1,4 @@
-eglibc (2.18-7) UNRELEASED; urgency=medium
-
-  !!! PLEASE MOVE ALL MAJOR DEVELOPMENT TO THE 2.19 BRANCH OR UPSTREAM !!!
+eglibc (2.18-7) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * testsuite-checking/expected-results-*s390*: ignore tst-cancel17.out
@@ -15,7 +13,7 @@ eglibc (2.18-7) UNRELEASED; urgency=medium
   * patches/hurd-i386/cvs-libpthread_guardsize.diff: Disable for now, it
     breaks a bunch of tests.
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 14 May 2014 20:16:16 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 19 May 2014 11:49:49 +0200
 
 eglibc (2.18-6) unstable; urgency=medium
 
