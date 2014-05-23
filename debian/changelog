@@ -30,8 +30,10 @@ eglibc (2.19-0experimental0) UNRELEASED; urgency=medium
     - debian/patches/any/submitted-resolv-init.diff: Merged upstream.
     - debian/patches/arm/cvs-arm-always-blx.diff: Merged upstream.
     - debian/patches/arm/cvs-memcpy-align.diff: Merged upstream.
+    - debian/patches/sparc/cvs-strcmp.diff: Merged upstream.
+    - debian/patches/sparc/cvs-efd_semaphore.diff: Merged upstream.
+    - debian/patches/sparc/submitted-prlimit.diff: Merged upstream.
     - Drop all cvs-* patches that are included in the 2.19 upstream release.
-    - Most kfreebsd-* patches not rebased yet, needs work.
   * debian/sysdeps/ppc64el.mk: Use --with-cpu=power7 to optimize properly.
   * debian/*: Update occurences of 2.18 to 2.19 and update symbols to match.
   * debian/patches/any/unsubmitted-tst-ftell-locale.diff: Apply the correct
