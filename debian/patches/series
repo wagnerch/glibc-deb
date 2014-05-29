@@ -89,7 +89,8 @@ hurd-i386/tg-sendmsg-SCM_RIGHTS.diff
 hurd-i386/tg-grantpt.diff
 hurd-i386/submitted-add-needed.diff
 hurd-i386/local-ED.diff
-hurd-i386/unsubmitted-pthread_posix-option.diff
+hurd-i386/tg-posix_thread.diff
+hurd-i386/tg-gai_misc.diff
 hurd-i386/local-madvise_warn.diff
 hurd-i386/tg-hurdsig-fixes.diff
 hurd-i386/tg-hurdsig-global-dispositions.diff

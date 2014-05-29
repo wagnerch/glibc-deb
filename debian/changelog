@@ -3,6 +3,10 @@ eglibc (2.19-0experimental1) UNRELEASED; urgency=medium
   [ Aurelien Jarno ]
   * debian/control.in/main: remove outdated Build-Depends on bzip2.
 
+  [ Samuel Thibault ]
+  * hurd-i386/unsubmitted-pthread_posix-option.diff: Split patches into...
+  * ... hurd-i386/tg-{posix_thread,gai_misc}.diff.
+
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 25 May 2014 18:37:40 +0200
 
 eglibc (2.19-0experimental0) experimental; urgency=medium
