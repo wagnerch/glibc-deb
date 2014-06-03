@@ -242,3 +242,4 @@ any/submitted-ptsname_r-uninitialized-memory.diff
 any/cvs-socketcall-syscall.diff
 any/submitted-nl_langinfo-static.diff
 any/cvs-strtod.diff
+any/cvs-resolv-reuse-fd.diff
