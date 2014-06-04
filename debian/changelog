@@ -11,6 +11,9 @@ eglibc (2.19-0experimental1) UNRELEASED; urgency=medium
   * debian/patches/any/submitted-argp-attribute.diff: new patch from Ondřej
     Bílka to fix string functions with FORTIFY_SOURCE=2 when <argp.h> is
     included before <string.h>.  Closes: #647084.
+  * debian/sysdeps/{sparc,sparc64}.mk: temporarily pass --disable-multiarch
+    to configure to try to fix random segmentation faults on Niagara 1
+    machines.
 
   [ Samuel Thibault ]
   * hurd-i386/unsubmitted-pthread_posix-option.diff: Split patches into...
