@@ -6,6 +6,8 @@ eglibc (2.19-0experimental1) UNRELEASED; urgency=medium
     to fix invalid file descriptor reuse while sending DNS query.  Closes:
     #722075.
   * Finish debconf translation update from Esko Arajärvi.  Closes: #750124.
+  * debian/patches/git-updates.diff: update from the 2.19 branch:
+    - fixes pthread_spin_lock on sparc/sparc64.  Closes: #749087.
 
   [ Samuel Thibault ]
   * hurd-i386/unsubmitted-pthread_posix-option.diff: Split patches into...
