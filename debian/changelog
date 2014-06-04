@@ -8,6 +8,9 @@ eglibc (2.19-0experimental1) UNRELEASED; urgency=medium
   * Finish debconf translation update from Esko Arajärvi.  Closes: #750124.
   * debian/patches/git-updates.diff: update from the 2.19 branch:
     - fixes pthread_spin_lock on sparc/sparc64.  Closes: #749087.
+  * debian/patches/any/submitted-argp-attribute.diff: new patch from Ondřej
+    Bílka to fix string functions with FORTIFY_SOURCE=2 when <argp.h> is
+    included before <string.h>.  Closes: #647084.
 
   [ Samuel Thibault ]
   * hurd-i386/unsubmitted-pthread_posix-option.diff: Split patches into...
