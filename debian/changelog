@@ -1,4 +1,4 @@
-eglibc (2.19-1) UNRELEASED; urgency=medium
+eglibc (2.19-1) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * debian/control.in/main: remove outdated Build-Depends on bzip2.
@@ -21,7 +21,7 @@ eglibc (2.19-1) UNRELEASED; urgency=medium
   * patches/hurd-i386/cvs-libpthread_guardsize.diff: Fix guard size
     computation and enable again.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 25 May 2014 18:37:40 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 04 Jun 2014 20:32:06 +0200
 
 eglibc (2.19-0experimental0) experimental; urgency=medium
 
