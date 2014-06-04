@@ -1,4 +1,4 @@
-eglibc (2.19-0experimental1) UNRELEASED; urgency=medium
+eglibc (2.19-1) UNRELEASED; urgency=medium
 
   [ Aurelien Jarno ]
   * debian/control.in/main: remove outdated Build-Depends on bzip2.
