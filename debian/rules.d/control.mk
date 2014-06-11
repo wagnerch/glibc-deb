@@ -33,6 +33,7 @@ $(stamp)control: debian/rules.d/control.mk $(control_deps)
 	cat debian/control.in/amd64		>> $@T
 	cat debian/control.in/powerpc		>> $@T
 	cat debian/control.in/ppc64		>> $@T
+	cat debian/control.in/mips32		>> $@T
 	cat debian/control.in/mipsn32		>> $@T
 	cat debian/control.in/mips64		>> $@T
 	cat debian/control.in/armhf		>> $@T

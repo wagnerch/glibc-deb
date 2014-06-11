@@ -17,6 +17,9 @@ Replaces: libc6-amd64 [amd64],
           libc6-ppc64 [ppc64],
           libc6-s390x [s390x],
           libc6-sparc64 [sparc64],
+          libc6-mips64 [mips64 mips64el],
+          libc6-mipsn32 [mipsn32 mipsn32el],
+          libc6-mips32 [mips mipsel],
           hurd (<< 20120408-3) [hurd-i386]
 Description: Embedded GNU C Library: Shared libraries
  Contains the standard libraries that are used by nearly all programs on
