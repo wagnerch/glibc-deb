@@ -20,10 +20,6 @@ eglibc (2.19-2) UNRELEASED; urgency=medium
     - debian/sysdeps/mips64el.mk: new file.
     - debian/sysdeps/mipsn32.mk: new file.
     - debian/sysdeps/mipsn32el.mk: new file.
-  * debian/control.in/main, debian/sysdeps/linux.mk: disable systemtap support
-    as it causes issues on some architectures, it will be reenabled when it is
-    clear on which architectures it is actually supported.  Closes: #750996.
-    Reopen: #700760.
   * debian/control.in/libc: add a Breaks: check (<< 0.9.10-6.1+b1) on s390x,
     to make sure libcheck.a is using the GLIBC_2.19 version of the *jmp*
     functions.
