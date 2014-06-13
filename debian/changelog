@@ -29,7 +29,7 @@ eglibc (2.19-2) UNRELEASED; urgency=medium
   * Update Swedish debconf translation, by Martin Bagge.  Closes: #751172.
   * debian/patches/alpha/submitted-lll_futex_timed_wait_bitset.diff: new
     patch to fix issues in the testsuite on alpha.  Closes: #750996.
-  * debian/testsuite-checking/expected-results-mips*-linux-gu-*: re-add
+  * debian/testsuite-checking/expected-results-mips*-linux-gnu-*: re-add
     tst-mqueue5.out (removed in the latest cleanup) as it still occasionally
     fails.
 
