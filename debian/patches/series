@@ -246,3 +246,4 @@ any/cvs-strtod.diff
 any/cvs-resolv-reuse-fd.diff
 any/submitted-argp-attribute.diff
 any/submitted-resolv-ipv6-nameservers.diff
+any/cvs-posix_spawn_file_actions_addopen.diff
