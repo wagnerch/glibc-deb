@@ -245,3 +245,4 @@ any/submitted-nl_langinfo-static.diff
 any/cvs-strtod.diff
 any/cvs-resolv-reuse-fd.diff
 any/submitted-argp-attribute.diff
+any/submitted-resolv-ipv6-nameservers.diff

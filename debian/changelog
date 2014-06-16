@@ -32,6 +32,9 @@ eglibc (2.19-2) UNRELEASED; urgency=medium
   * debian/testsuite-checking/expected-results-mips*-linux-gnu-*: re-add
     tst-mqueue5.out (removed in the latest cleanup) as it still occasionally
     fails.
+  * debian/patches/any/submitted-resolv-ipv6-nameservers.diff: new patch to
+    fix resolving issues when using IPv6 nameservers in resolv.conf.  Closes:
+    #627531, #644406, #709867.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 04 Jun 2014 21:51:13 +0200
 
