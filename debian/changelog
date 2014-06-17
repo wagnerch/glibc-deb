@@ -7,6 +7,8 @@ eglibc (2.19-3) UNRELEASED; urgency=medium
     path even when the GNU triplet change.
   * debian/debhelper.in/libc.{preinst,postrm,postinst}: remove old
     ld.so configuration file on hurd-i386, i386 and kfreebsd-i386.
+  * debian/debhelper.in/libc.postinst: don't create/modify ld.so.conf,
+    but instead provide it as a conffile in libc-bin.  Closes: #737588.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 16 Jun 2014 21:30:22 +0200
 

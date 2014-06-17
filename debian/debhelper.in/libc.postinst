@@ -70,16 +70,6 @@ checkpkgver () {
 
 if [ "$type" = "configure" ]
 then
-    # Add support for /etc/ld.so.conf.d
-    if [ -e /etc/ld.so.conf ]; then
-        [ -z "$(tail -n 1 /etc/ld.so.conf)" ] || echo >> /etc/ld.so.conf
-    else
-        touch /etc/ld.so.conf
-    fi
-    if ! grep -q '^include /etc/ld.so.conf.d/.*\.conf$' /etc/ld.so.conf ; then
-        echo 'include /etc/ld.so.conf.d/*.conf' >> /etc/ld.so.conf
-    fi
-
     # We don't use a registry anymore, remove the old file
     rm -f /etc/ld.so.hwcappkgs
  
