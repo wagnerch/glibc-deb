@@ -2,6 +2,11 @@ eglibc (2.19-3) UNRELEASED; urgency=medium
 
   [ Aurelien Jarno ]
   * debian/control.in/libc: fix libtirpc1 breaks.  Closes: #751852.
+  * debian/rules.d/build.mk: generate ld.so configuration file using
+    DEB_HOST_MULTIARCH instead of DEB_HOST_GNU_TYPE to have a stable
+    path even when the GNU triplet change.
+  * debian/debhelper.in/libc.{preinst,postrm,postinst}: remove old
+    ld.so configuration file on hurd-i386, i386 and kfreebsd-i386.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 16 Jun 2014 21:30:22 +0200
 
