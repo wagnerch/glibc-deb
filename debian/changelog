@@ -1,4 +1,4 @@
-eglibc (2.19-3) UNRELEASED; urgency=medium
+eglibc (2.19-3) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * debian/control.in/libc: fix libtirpc1 breaks.  Closes: #751852.
@@ -11,7 +11,7 @@ eglibc (2.19-3) UNRELEASED; urgency=medium
     but instead provide it as a conffile in libc-bin.  Closes: #737588.
   * debian/debhelper.in/libc.preinst: remove dead code.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 16 Jun 2014 21:30:22 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 17 Jun 2014 18:57:11 +0200
 
 eglibc (2.19-2) unstable; urgency=medium
 
