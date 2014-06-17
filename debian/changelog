@@ -1,6 +1,7 @@
 eglibc (2.19-3) UNRELEASED; urgency=medium
 
-  * 
+  [ Aurelien Jarno ]
+  * debian/control.in/libc: fix libtirpc1 breaks.  Closes: #751852.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 16 Jun 2014 21:30:22 +0200
 
@@ -29,7 +30,7 @@ eglibc (2.19-2) unstable; urgency=medium
   * debian/control.in/libc: add a Breaks: check (<< 0.9.10-6.1+b1) on s390x,
     to make sure libcheck.a is using the GLIBC_2.19 version of the *jmp*
     functions.
-  * debian/control.in/libc: add a Breaks: libtirpc1 (<< 2.3), as earlier
+  * debian/control.in/libc: add a Breaks: libtirpc1 (<< 0.2.3), as earlier
     versions try to unlock a lock which hasn't been locked, causing an
     issue with lock elision.  Closes: #751134.
   * Update Swedish debconf translation, by Martin Bagge.  Closes: #751172.
