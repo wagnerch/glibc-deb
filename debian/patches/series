@@ -388,3 +388,5 @@ any/cvs-findlocale-div-by-zero.diff
 any/local-ldconfig-ignore-ld.so.diff
 any/cvs-nl_langinfo-static.diff
 any/cvs-socketcall-syscall.diff
+any/submitted-setlocale-alloca.diff
+any/submitted-CVE-2014-0475.diff

@@ -1,3 +1,11 @@
+eglibc (2.13-38+deb7u3) wheezy-security; urgency=high
+
+  * debian/patches/any/submitted-CVE-2014-0475.diff: setlocale security fix.
+  * debian/patches/any/submitted-setlocale-alloca: Additional setlocale
+    hardening.
+
+ -- Florian Weimer <fw@deneb.enyo.de>  Tue, 08 Jul 2014 20:59:10 +0200
+
 eglibc (2.13-38+deb7u2) wheezy; urgency=medium
 
   [ Aurelien Jarno ]
