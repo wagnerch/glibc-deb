@@ -390,3 +390,4 @@ any/cvs-nl_langinfo-static.diff
 any/cvs-socketcall-syscall.diff
 any/submitted-setlocale-alloca.diff
 any/submitted-CVE-2014-0475.diff
+any/cvs-resolv-reuse-fd.diff
