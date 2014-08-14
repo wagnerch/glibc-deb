@@ -3,6 +3,8 @@ eglibc (2.13-38+deb7u4) UNRELEASED; urgency=medium
   * debian/patches/any/cvs-resolv-reuse-fd.diff: new patch from upstream
     to fix invalid file descriptor reuse while sending DNS query.  Closes:
     #722075, #756343.
+  * debian/patches/any/cvs-CVE-2013-4357.diff: new patch from upstream to
+    fix stack overflow issues. Closes: #742925.
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 14 Aug 2014 15:00:43 +0200
 
