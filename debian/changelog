@@ -1,4 +1,4 @@
-eglibc (2.13-38+deb7u4) UNRELEASED; urgency=medium
+eglibc (2.13-38+deb7u5) UNRELEASED; urgency=medium
 
   * debian/patches/any/cvs-resolv-reuse-fd.diff: new patch from upstream
     to fix invalid file descriptor reuse while sending DNS query.  Closes:
@@ -7,6 +7,13 @@ eglibc (2.13-38+deb7u4) UNRELEASED; urgency=medium
     fix stack overflow issues. Closes: #742925.
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 14 Aug 2014 15:00:43 +0200
+
+eglibc (2.13-38+deb7u4) wheezy-security; urgency=high
+
+  * Apply upstream patch to fix buffer overflow in __gconv_translit_find.
+    (CVE-2014-5119)
+
+ -- Florian Weimer <fw@deneb.enyo.de>  Tue, 26 Aug 2014 20:39:59 +0200
 
 eglibc (2.13-38+deb7u3) wheezy-security; urgency=high
 
