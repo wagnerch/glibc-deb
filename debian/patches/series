@@ -393,3 +393,4 @@ any/submitted-CVE-2014-0475.diff
 any/cvs-CVE-2014-5119.diff
 any/cvs-resolv-reuse-fd.diff
 any/cvs-CVE-2013-4357.diff
+any/cvs-dlopen-tls-memleak.patch

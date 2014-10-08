@@ -7,6 +7,9 @@ eglibc (2.13-38+deb7u5) UNRELEASED; urgency=medium
     fix stack overflow issues. Closes: #742925.
   * debian/patches/any/submitted-CVE-2014-0475.diff: update from upstream
     to fix a localplt regression introduced in version 2.13-38+deb7u3.
+  * patches/any/cvs-dlopen-tls-memleak.patch: new patch from upstream to
+    fix a memory leak with dlopen() and thread-local storage variables.
+    Closes: #763559.
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 14 Aug 2014 15:00:43 +0200
 
