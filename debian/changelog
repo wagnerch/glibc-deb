@@ -1,4 +1,4 @@
-eglibc (2.13-38+deb7u5) UNRELEASED; urgency=medium
+eglibc (2.13-38+deb7u5) wheezy; urgency=medium
 
   * debian/patches/any/cvs-resolv-reuse-fd.diff: new patch from upstream
     to fix invalid file descriptor reuse while sending DNS query.  Closes:
@@ -11,7 +11,7 @@ eglibc (2.13-38+deb7u5) UNRELEASED; urgency=medium
     fix a memory leak with dlopen() and thread-local storage variables.
     Closes: #763559.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 14 Aug 2014 15:00:43 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 08 Oct 2014 22:50:01 +0200
 
 eglibc (2.13-38+deb7u4) wheezy-security; urgency=high
 
