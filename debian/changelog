@@ -1,3 +1,18 @@
+eglibc (2.13-38+deb7u7) wheezy-security; urgency=medium
+
+  * debian/patches/any/cvs-gethostbyname.diff: new patch from upstream
+    to fix a buffer overflow in gethostbyname (CVE-2015-0235).
+  * debian/patches/any/cvs-iconvdata-ibm930.diff: new patch from upstream to
+    fix a possible crash when using the iconv function to convert IBM930
+    encoded data (CVE-2012-6656).
+  * debian/patches/any/cvs-iconvdata-ibm.diff: new patch from upstream to fix
+    fix a possible crash when using the iconv function to convert IBM933, 
+    IBM935, IBM937, IBM939, IBM1364 encoded data (CVE-2014-6040).
+  * debian/patches/any/cvs-wordexp.diff: new patch from upstream to fix a
+    command execution in wordexp() with WRDE_NOCMD specified (CVS-2014-7817).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 27 Jan 2015 00:38:49 +0100
+
 eglibc (2.13-38+deb7u6) wheezy; urgency=medium
 
   * Update 2.13-38+deb7u5 changelog to mention that some lost glibc-doc
