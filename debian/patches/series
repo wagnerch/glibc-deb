@@ -398,3 +398,4 @@ any/cvs-gethostbyname.diff
 any/cvs-iconvdata-ibm930.diff
 any/cvs-iconvdata-ibm.diff
 any/cvs-wordexp.diff
+any/cvs-wscanf.diff
