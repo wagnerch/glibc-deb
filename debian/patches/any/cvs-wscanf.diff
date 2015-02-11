@@ -56,7 +56,7 @@
 -	  size_t newsize = (UCHAR_MAX + 1 > 2 * wpmax			    \
 -			    ? UCHAR_MAX + 1 : 2 * wpmax);		    \
 -	  if (use_malloc || !__libc_use_alloca (newsize))		    \
-+	  bool fits = __glibc_likely (wpmax <= SIZE_MAX / sizeof (CHAR_T) / 2); \
++	  bool fits = __builtin_expect (wpmax <= SIZE_MAX / sizeof (CHAR_T) / 2, 1); \
 +	  size_t wpneed = MAX (UCHAR_MAX + 1, 2 * wpmax);		    \
 +	  size_t newsize = fits ? wpneed * sizeof (CHAR_T) : SIZE_MAX;	    \
 +	  if (!__libc_use_alloca (newsize))				    \
