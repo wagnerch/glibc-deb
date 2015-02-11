@@ -400,3 +400,4 @@ any/cvs-iconvdata-ibm.diff
 any/cvs-wordexp.diff
 any/cvs-wscanf.diff
 any/cvs-vfprintf.diff
+any/cvs-posix_spawn_file_actions_addopen.diff

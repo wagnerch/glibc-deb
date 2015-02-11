@@ -5,6 +5,9 @@ eglibc (2.13-38+deb7u8) UNRELEASED; urgency=medium
     #777197.
   * debian/patches/any/cvs-vfprintf.diff: new patch from ustream to fix a
     stack overflow in vfprintf (CVE-2012-3406). Closes: #681888.
+  * debian/patches/any/cvs-posix_spawn_file_actions_addopen.diff: new patch
+    from upstream to fix a vulnerability in posix_spawn_file_actions_addopen
+    (CVE-2014-4043). Closes: #751774.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 11 Feb 2015 21:54:57 +0100
 
