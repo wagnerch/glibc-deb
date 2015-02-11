@@ -10,6 +10,8 @@ eglibc (2.13-38+deb7u8) UNRELEASED; urgency=medium
     (CVE-2014-4043). Closes: #751774.
   * debian/patches/any/cvs-getnetbyname.diff: new patch from upstream to fix
     an infinite loop in getnetbyname (CVE-2014-9402). Closes: #775572.
+  * debian/patches/any/cvs-getaddrinfo-idn.diff: new patch from upstream to
+    fix a invalid-free when using getaddrinfo with IDN (CVE-2013-7424).
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 11 Feb 2015 21:54:57 +0100
 
