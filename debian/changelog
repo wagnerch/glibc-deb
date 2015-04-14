@@ -1,8 +1,10 @@
 glibc (2.19-18) UNRELEASED; urgency=medium
 
-  * 
+  [ Aurelien Jarno ]
+  * debhelper.in/locales.templates: allow the C.UTF-8 locale to be
+    selected as the default locale. Closes: #782241.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 14 Mar 2015 10:48:40 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 14 Apr 2015 19:46:24 +0200
 
 glibc (2.19-17) unstable; urgency=medium
 
