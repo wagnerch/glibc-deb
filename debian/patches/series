@@ -191,6 +191,8 @@ powerpc/local-math-logb.diff
 powerpc/cvs-ibm-branch.diff
 powerpc/local-powerpc8xx-dcbz.diff
 
+ppc64le/cvs-gprof-entry-point.diff
+
 s390/submitted-nexttowardf.diff
 
 sh4/local-fpscr_values.diff

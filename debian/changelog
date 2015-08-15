@@ -3,6 +3,8 @@ glibc (2.19-19) UNRELEASED; urgency=medium
   [ Aurelien Jarno ]
   * patches/any/cvs-forced-elision.diff: Fix pthread_mutex_trylock with
     lock elision.  Closes: #759197, #788999.
+  * patches/ppc64le/cvs-gprof-entry-point.diff: Fix gprof entry point on
+    ppc64el.  Closes: #794222.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 15 Aug 2015 10:02:18 +0200
 

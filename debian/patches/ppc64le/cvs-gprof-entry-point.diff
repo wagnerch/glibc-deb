@@ -1,0 +1,21 @@
+2013-07-29  Adhemerval Zanella  <azanella@linux.vnet.ibm.com>
+
+	[BZ #17213]
+	* sysdeps/powerpc/powerpc64/entry.h: Fix TEXT_START definition for
+	powerpc64le.
+
+--- a/sysdeps/powerpc/powerpc64/entry.h
++++ b/sysdeps/powerpc/powerpc64/entry.h
+@@ -23,6 +23,7 @@ extern void _start (void);
+ 
+ #define ENTRY_POINT _start
+ 
++#if _CALL_ELF != 2
+ /* We have to provide a special declaration.  */
+ #define ENTRY_POINT_DECL(class) class void _start (void);
+ 
+@@ -33,3 +34,4 @@ extern void _start (void);
+ #define TEXT_START \
+   ({ extern unsigned long int _start_as_data[] asm ("_start");  \
+      _start_as_data[0]; })
++#endif
