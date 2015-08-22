@@ -163,7 +163,7 @@ ifneq ($(filter stage1,$(DEB_BUILD_PROFILES)),)
 	    install-bootstrap-headers=yes install-headers )
 
 	install -d $(CURDIR)/debian/tmp-$(curpass)/lib
-	install -m 644 $(DEB_BUILDDIR)/csu/crt[1in].o $(CURDIR)/debian/tmp-$(curpass)/lib
+	dnstall -m 644 $(DEB_BUILDDIR)/csu/crt[01in].o $(CURDIR)/debian/tmp-$(curpass)/lib
 	${CC} -nostdlib -nostartfiles -shared -x c /dev/null \
 	        -o $(CURDIR)/debian/tmp-$(curpass)/lib/libc.so
 else
