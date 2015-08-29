@@ -24,8 +24,7 @@ glibc (2.19-20~0) UNRELEASED; urgency=medium
     - Fix pthread_mutex_trylock with lock elision.  Closes: #759197,
       #788999.
     - Fix gprof entry point on ppc64el.  Closes: #794222.
-    - Fix a buffer overflow in overflow in getanswer_r (CVE-2015-1781)
-      Closes: #796105.
+    - Fix a buffer overflow in getanswer_r (CVE-2015-1781).  Closes: #796105.
 
  -- Samuel Thibault <sthibault@debian.org>  Sun, 09 Aug 2015 20:00:16 +0000
 
