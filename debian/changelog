@@ -1,6 +1,9 @@
 glibc (2.19-18+deb8u2) UNRELEASED; urgency=medium
 
-  * 
+  [ Aurelien Jarno ]
+  * Update from upstream stable branch:
+    - Fix getaddrinfo sometimes returning uninitialized data with nscd.
+      Closes: #798515.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 29 Aug 2015 11:19:53 +0200
 
