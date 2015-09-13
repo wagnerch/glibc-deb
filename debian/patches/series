@@ -283,3 +283,4 @@ any/cvs-getnetbyname.diff
 any/cvs-vfprintf.diff
 any/cvs-wscanf.diff
 any/cvs-ldconfig-aux-cache.diff
+any/cvs-pie-lt_executable.diff
