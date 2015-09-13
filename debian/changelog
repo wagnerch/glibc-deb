@@ -35,6 +35,12 @@ glibc (2.19-20~0) UNRELEASED; urgency=medium
       Closes: #798515.
   * sysdeps.mk/mips*.mk: force the ISA until it gets propagated to all GCC
     versions.
+  * Update hppa patches.  Closes: #785664:
+    - Replace patches/hppa/local-fpu.diff by upstream patch cvs-fpu-r2.diff.
+    - Add patches/hppa/cvs-fpu2.diff from upstream.
+    - Add patches/hppa/local-fptr-table-size.diff from Carlos O'Donnell.
+    - Add patches/hppa/local-setcontext.diff.
+    - Add patches/hppa/cvs-start.diff from upstream.
 
  -- Samuel Thibault <sthibault@debian.org>  Sun, 09 Aug 2015 20:00:16 +0000
 
