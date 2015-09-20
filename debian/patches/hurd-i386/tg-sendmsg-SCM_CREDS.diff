@@ -20,10 +20,8 @@ Samuel Thibault  <samuel.thibault@ens-lyon.org>
  sysdeps/mach/hurd/sendmsg.c |  34 +++++++++++
  2 files changed, 170 insertions(+)
 
-Index: glibc-2.19/sysdeps/mach/hurd/recvmsg.c
-===================================================================
---- glibc-2.19.orig/sysdeps/mach/hurd/recvmsg.c
-+++ glibc-2.19/sysdeps/mach/hurd/recvmsg.c
+--- a/sysdeps/mach/hurd/recvmsg.c
++++ b/sysdeps/mach/hurd/recvmsg.c
 @@ -23,6 +23,123 @@
  #include <hurd/fd.h>
  #include <hurd/socket.h>
@@ -181,11 +179,9 @@ Index: glibc-2.19/sysdeps/mach/hurd/recvmsg.c
  	}
      }
  
-Index: glibc-2.19/sysdeps/mach/hurd/sendmsg.c
-===================================================================
---- glibc-2.19.orig/sysdeps/mach/hurd/sendmsg.c
-+++ glibc-2.19/sysdeps/mach/hurd/sendmsg.c
-@@ -112,6 +112,8 @@ __libc_sendmsg (int fd, const struct msg
+--- a/sysdeps/mach/hurd/sendmsg.c
++++ b/sysdeps/mach/hurd/sendmsg.c
+@@ -111,6 +111,8 @@ __libc_sendmsg (int fd, const struct msg
      if (cmsg->cmsg_level == SOL_SOCKET && cmsg->cmsg_type == SCM_RIGHTS)
        nports += (cmsg->cmsg_len - CMSG_ALIGN (sizeof (struct cmsghdr)))
  		/ sizeof (int);
@@ -194,7 +190,7 @@ Index: glibc-2.19/sysdeps/mach/hurd/sendmsg.c
  
    if (nports)
      ports = __alloca (nports * sizeof (mach_port_t));
-@@ -146,6 +148,38 @@ __libc_sendmsg (int fd, const struct msg
+@@ -145,6 +147,38 @@ __libc_sendmsg (int fd, const struct msg
  		goto out;
  	    }
  	}
@@ -233,10 +229,8 @@ Index: glibc-2.19/sysdeps/mach/hurd/sendmsg.c
      }
  
    if (addr)
-Index: glibc-2.19/hurd/Makefile
-===================================================================
---- glibc-2.19.orig/hurd/Makefile
-+++ glibc-2.19/hurd/Makefile
+--- a/hurd/Makefile
++++ b/hurd/Makefile
 @@ -33,7 +33,7 @@ inline-headers = hurd.h $(addprefix hurd
  # The RPC interfaces go in a separate library.
  interface-library := libhurduser
@@ -245,4 +239,4 @@ Index: glibc-2.19/hurd/Makefile
 +				       auth auth_request auth_reply startup \
  				       process process_request \
  				       msg msg_reply msg_request \
- 				       exec exec_experimental exec_startup crash interrupt \
+ 				       exec exec_startup crash interrupt \
