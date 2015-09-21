@@ -1,7 +1,7 @@
 glibc (2.19-22) unstable; urgency=medium
 
-  * patches/hurd-i386/cvs-cache-mach_host_self.diff: Add missing
-    __mach_host_self_, actually used in some translators.
+  * patches/hurd-i386/cvs-cache-mach_host_self.diff: Remove, since it introduces
+    a new symbol, which will be easier to handle in 2.21.
 
  -- Samuel Thibault <sthibault@debian.org>  Tue, 22 Sep 2015 01:38:34 +0200
 
