@@ -4,6 +4,8 @@ glibc (2.19-18+deb8u2) UNRELEASED; urgency=medium
   * Update from upstream stable branch:
     - Fix getaddrinfo sometimes returning uninitialized data with nscd.
       Closes: #798515.
+    - Fix data corruption while reading the NSS files database
+      (CVE-2015-5277).  Closes: #799966.
 
   [ Henrique de Moraes Holschuh ]
   * Replace patches/amd64/local-blacklist-on-TSX-Haswell.diff by 
