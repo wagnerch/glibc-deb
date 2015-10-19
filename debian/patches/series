@@ -273,3 +273,4 @@ any/cvs-vfprintf.diff
 any/cvs-wscanf.diff
 any/cvs-ldconfig-aux-cache.diff
 any/cvs-ld_pointer_guard.diff
+any/cvs-mangle-tls_dtor_list.diff
