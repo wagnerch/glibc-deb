@@ -404,3 +404,4 @@ any/cvs-posix_spawn_file_actions_addopen.diff
 any/cvs-getnetbyname.diff
 any/cvs-getaddrinfo-idn.diff
 any/cvs-CVE-2015-1781.diff
+any/cvs-CVE-2014-8121.diff
