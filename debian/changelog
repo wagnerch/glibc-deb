@@ -1,3 +1,10 @@
+eglibc (2.13-38+deb7u9) UNRELEASED; urgency=medium
+
+  * patches/any/cvs-CVE-2015-1781.diff: new patch from upstream to fix
+    a buffer overflow in getanswer_r (CVE-2015-1781). Closes: #796105.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 19 Oct 2015 12:40:42 +0200
+
 eglibc (2.13-38+deb7u8) wheezy-security; urgency=medium
 
   * debian/patches/any/cvs-wscanf.diff: new patch from upstream to fix a
