@@ -405,3 +405,4 @@ any/cvs-getnetbyname.diff
 any/cvs-getaddrinfo-idn.diff
 any/cvs-CVE-2015-1781.diff
 any/cvs-CVE-2014-8121.diff
+any/cvs-fnmatch-overflow.diff
