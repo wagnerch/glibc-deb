@@ -4,6 +4,8 @@ eglibc (2.13-38+deb7u9) UNRELEASED; urgency=medium
     a buffer overflow in getanswer_r (CVE-2015-1781). Closes: #796105.
   * patches/any/cvs-fnmatch-overflow.diff: new patch from upstream to fix
     a buffer overflow (read past end of buffer) in internal_fnmatch.
+  * patches/any/cvs-_IO_wstr_overflow.diff: new patch from upstream to fix
+    an integer overlow in IO_wstr_overflow.
   * patches/any/cvs-CVE-2014-8121.diff: new patch from upstream to fix
     an unexpected closing of nss_files databases after lookups, causing
     denial of service (CVE-2014-8121).  Closes: #779587.
