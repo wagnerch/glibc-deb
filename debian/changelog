@@ -9,6 +9,8 @@ eglibc (2.13-38+deb7u9) UNRELEASED; urgency=medium
   * patches/any/cvs-CVE-2014-8121.diff: new patch from upstream to fix
     an unexpected closing of nss_files databases after lookups, causing
     denial of service (CVE-2014-8121).  Closes: #779587.
+  * patches/any/cvs-ld_pointer_guard.diff: new patch from upstream to
+    unconditionally disable LD_POINTER_GUARD.  Closes: #798316, #801691.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 19 Oct 2015 12:40:42 +0200
 
