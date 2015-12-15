@@ -1,4 +1,4 @@
-eglibc (2.13-38+deb7u9) wheezy; urgency=medium
+eglibc (2.13-38+deb7u9) UNRELEASED; urgency=medium
 
   [ Aurelien Jarno ]
   * patches/any/cvs-CVE-2015-1781.diff: new patch from upstream to fix
