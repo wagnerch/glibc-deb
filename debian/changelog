@@ -1,4 +1,4 @@
-eglibc (2.13-38+deb7u9) UNRELEASED; urgency=medium
+eglibc (2.13-38+deb7u9) wheezy; urgency=medium
 
   [ Aurelien Jarno ]
   * patches/any/cvs-CVE-2015-1781.diff: new patch from upstream to fix
@@ -18,7 +18,7 @@ eglibc (2.13-38+deb7u9) UNRELEASED; urgency=medium
     from upstream to fix memory allocations issues that can lead to buffer
     overflows on the stack. Closes: #803927.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 19 Oct 2015 20:49:40 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 21 Dec 2015 00:01:08 +0100
 
 eglibc (2.13-38+deb7u8) wheezy-security; urgency=medium
 
