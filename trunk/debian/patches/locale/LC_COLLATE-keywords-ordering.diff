@@ -1,0 +1,104 @@
+Be less strict about keywords ordering in LC_COLLATE section, to
+ease definition of new scripts.
+
+Submitted upstream: BZ690
+
+# DP: Dpatch author: Denis Barbier
+# DP: Patch author: Denis Barbier
+# DP: Upstream status: BZ690
+# DP: Date: 2006-01-08
+
+--- locale/programs/ld-collate.c.orig
++++ locale/programs/ld-collate.c
+@@ -2832,14 +2832,23 @@
+       switch (nowtok)
+ 	{
+ 	case tok_copy:
+-	  /* Allow copying other locales.  */
++	  /* Ignore the rest of the line if we don't need the input of
++	     this line.  */
++	  if (ignore_content)
++	    {
++	      lr_ignore_rest (ldfile, 0);
++	      break;
++	    }
++
+ 	  now = lr_token (ldfile, charmap, result, NULL, verbose);
+ 	  if (now->tok != tok_string)
+ 	    goto err_label;
+ 
+-	  if (! ignore_content)
+-	    load_locale (LC_COLLATE, now->val.str.startmb, repertoire_name,
+-			 charmap, result);
++	  if (state == 1 || state == 3 || state == 5)
++	    goto err_label;
++
++	  load_locale (LC_COLLATE, now->val.str.startmb, repertoire_name,
++		       charmap, result);
+ 
+ 	  lr_ignore_rest (ldfile, 1);
+ 	  break;
+@@ -2853,9 +2862,6 @@
+ 	      break;
+ 	    }
+ 
+-	  if (state != 0)
+-	    goto err_label;
+-
+ 	  arg = lr_token (ldfile, charmap, result, NULL, verbose);
+ 	  if (arg->tok != tok_number)
+ 	    goto err_label;
+@@ -2876,7 +2882,7 @@
+ 	      break;
+ 	    }
+ 
+-	  if (state != 0)
++	  if (state == 1 || state == 3 || state == 5)
+ 	    goto err_label;
+ 
+ 	  arg = lr_token (ldfile, charmap, result, repertoire, verbose);
+@@ -2923,7 +2929,7 @@
+ 	      break;
+ 	    }
+ 
+-	  if (state != 0 && state != 2)
++	  if (state == 1 || state == 3 || state == 5)
+ 	    goto err_label;
+ 
+ 	  arg = lr_token (ldfile, charmap, result, repertoire, verbose);
+@@ -2992,7 +2998,7 @@
+ 	      break;
+ 	    }
+ 
+-	  if (state != 0 && state != 2)
++	  if (state == 1 || state == 3 || state == 5)
+ 	    goto err_label;
+ 
+ 	  arg = lr_token (ldfile, charmap, result, repertoire, verbose);
+@@ -3140,7 +3146,7 @@
+ 	      break;
+ 	    }
+ 
+-	  if (state != 0)
++	  if (state == 1 || state == 3 || state == 5)
+ 	    goto err_label;
+ 
+ 	  arg = lr_token (ldfile, charmap, result, repertoire, verbose);
+@@ -3256,7 +3262,7 @@
+ 	      break;
+ 	    }
+ 
+-	  if (state != 0 && state != 1 && state != 2)
++	  if (state == 3 || state == 5)
+ 	    goto err_label;
+ 	  state = 1;
+ 
+@@ -3566,8 +3572,6 @@
+ %s: missing `reorder-end' keyword"), "LC_COLLATE"));
+ 	      state = 4;
+ 	    }
+-	  else if (state != 2 && state != 4)
+-	    goto err_label;
+ 	  state = 5;
+ 
+ 	  /* Get the name of the sections we are adding after.  */
