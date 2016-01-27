@@ -1,3 +1,14 @@
+glibc (2.19-18+deb8u3) UNRELEASED; urgency=medium
+
+  [ Aurelien Jarno ]
+  * Update from upstream stable branch:
+    - Fix segmentation fault caused by passing out-of-range data to strftime()
+      (CVE-2015-8776).  Closes: #812445.
+    - Fix multiple unbounded stack allocations in catopen() (CVE-2015-8779).
+      Closes: #812455.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 27 Jan 2016 18:46:44 +0100
+
 glibc (2.19-18+deb8u2) stable; urgency=medium
 
   [ Aurelien Jarno ]
