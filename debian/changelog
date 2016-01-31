@@ -8,6 +8,8 @@ glibc (2.19-18+deb8u3) UNRELEASED; urgency=medium
       Closes: #812441.
     - Fix multiple unbounded stack allocations in catopen() (CVE-2015-8779).
       Closes: #812455.
+  * patches/any/local-CVE-2015-7547.diff: new patch to fix glibc getaddrinfo
+    stack-based buffer overflow (CVE-2015-7547).
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 27 Jan 2016 18:46:44 +0100
 
