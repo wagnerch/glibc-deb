@@ -9,6 +9,9 @@ eglibc (2.13-38+deb7u10) UNRELEASED; urgency=medium
   * patches/any/cvs-catopen.diff: new patch from upstream to fix multiple
     unbounded stack allocations in catopen() (CVE-2015-8779).  Closes:
     #812455.
+  * patches/any/cvs-gethostbyname4-memory-leak.diff: new patch from
+    upstream to fix a memory leak in _nss_dns_gethostbyname4_r with big
+    DNS answers.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 31 Jan 2016 12:55:29 +0100
 
