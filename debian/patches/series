@@ -411,3 +411,4 @@ any/cvs-ld_pointer_guard.diff
 any/cvs-strxfrm-buffer-overflows.diff
 any/cvs-strftime.diff
 any/cvs-hcreate.diff
+any/cvs-catopen.diff

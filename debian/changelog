@@ -6,6 +6,9 @@ eglibc (2.13-38+deb7u10) UNRELEASED; urgency=medium
     (CVE-2015-8776).  Closes: #812445.
   * patches/any/cvs-hcreate.diff: new patch from upstream to fix an integer
     overflow in hcreate() and hcreate_r() (CVE-2015-8778). Closes: #812441.
+  * patches/any/cvs-catopen.diff: new patch from upstream to fix multiple
+    unbounded stack allocations in catopen() (CVE-2015-8779).  Closes:
+    #812455.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 31 Jan 2016 12:55:29 +0100
 
