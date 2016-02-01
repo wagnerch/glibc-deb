@@ -1,3 +1,12 @@
+eglibc (2.13-38+deb7u10) UNRELEASED; urgency=medium
+
+  [ Aurelien Jarno ]
+  * patches/any/cvs-strftime.diff: new patch from upstream to fix
+    segmentation fault caused by passing out-of-range data to strftime()
+    (CVE-2015-8776).  Closes: #812445.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 31 Jan 2016 12:55:29 +0100
+
 eglibc (2.13-38+deb7u9) wheezy; urgency=medium
 
   [ Aurelien Jarno ]
