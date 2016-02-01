@@ -413,3 +413,4 @@ any/cvs-strftime.diff
 any/cvs-hcreate.diff
 any/cvs-catopen.diff
 any/cvs-gethostbyname4-memory-leak.diff
+any/local-CVE-2015-7547.diff
