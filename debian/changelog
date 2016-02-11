@@ -1,4 +1,4 @@
-eglibc (2.13-38+deb7u10) UNRELEASED; urgency=medium
+eglibc (2.13-38+deb7u10) wheezy-security; urgency=medium
 
   [ Aurelien Jarno ]
   * patches/any/cvs-strftime.diff: new patch from upstream to fix
@@ -15,7 +15,7 @@ eglibc (2.13-38+deb7u10) UNRELEASED; urgency=medium
   * patches/any/local-CVE-2015-7547.diff: new patch to fix glibc getaddrinfo
     stack-based buffer overflow (CVE-2015-7547).
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 31 Jan 2016 12:55:29 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 11 Feb 2016 23:11:53 +0100
 
 eglibc (2.13-38+deb7u9) wheezy; urgency=medium
 
