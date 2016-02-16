@@ -5,6 +5,7 @@ glibc (2.19-18+deb8u4) UNRELEASED; urgency=medium
       - Fixes bug18240 failing with a timeout on machines with a lot of swap.
   * patches/any/cvs-grantpt-pty-owner.diff: new patch from upstream to
     improve granpt when /dev/pts is not mounted with the correct options.
+  * sysdeps/linux.mk: don't build pt_chown (CVE-2013-2207). Closes: #717544.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 16 Feb 2016 23:02:13 +0100
 
