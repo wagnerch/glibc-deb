@@ -9,6 +9,7 @@ glibc (2.22-0experimental4) UNRELEASED; urgency=medium
   [ Samuel Thibault ]
   * control: Accept hurd-headers-dev and libihash-dev as alternatives to
     hurd-dev for bootstrapping.
+  * hurd-i386/submitted-auxv.diff: New patch, fixes cvs crash.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 01 Mar 2016 21:37:40 +0100
 
