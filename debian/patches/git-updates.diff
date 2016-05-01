@@ -1,10 +1,48 @@
 GIT update of git://sourceware.org/git/glibc.git/release/2.19/master from glibc-2.19
 
 diff --git a/ChangeLog b/ChangeLog
-index 81c393a..9907019 100644
+index 81c393a..ac7f870 100644
 --- a/ChangeLog
 +++ b/ChangeLog
-@@ -1,3 +1,443 @@
+@@ -1,3 +1,481 @@
++2016-04-28  Stefan Liebler  <stli@linux.vnet.ibm.com>
++
++	[BZ #18508]
++	* stdlib/Makefile ($(objpfx)tst-makecontext3):
++	Depend on $(libdl).
++	* stdlib/tst-makecontext.c (cf): Test if _Unwind_Backtrace
++	is not called infinitely times.
++	(backtrace_helper): New function.
++	(trace_arg): New struct.
++	(st1): Enlarge stack size.
++	* sysdeps/unix/sysv/linux/s390/s390-32/__makecontext_ret.S:
++	(__makecontext_ret): Omit cfi_startproc and cfi_endproc.
++	* sysdeps/unix/sysv/linux/s390/s390-64/__makecontext_ret.S:
++	Likewise.
++
++2016-04-28  Stefan Liebler  <stli@linux.vnet.ibm.com>
++
++	[BZ #18080]
++	* sysdeps/unix/sysv/linux/s390/s390-32/setcontext.S
++	(__setcontext): Use SIG_SETMASK instead of SIG_BLOCK.
++	* sysdeps/unix/sysv/linux/s390/s390-64/setcontext.S
++	(__setcontext): Likewise.
++	* sysdeps/unix/sysv/linux/s390/s390-32/swapcontext.S
++	(__swapcontext): Use SIG_SETMASK instead of SIG_BLOCK.
++	Call rt_sigprocmask syscall one time to set new signal mask
++	and retrieve the current signal mask instead of two calls.
++	* sysdeps/unix/sysv/linux/s390/s390-64/swapcontext.S
++	(__swapcontext): Likewise.
++	* stdlib/Makefile (tests): Add new testcase tst-setcontext2.
++	* stdlib/tst-setcontext2.c: New file.
++
++2016-04-01  Florian Weimer  <fweimer@redhat.com>
++
++	[BZ #19879]
++	CVE-2016-3075
++	* resolv/nss_dns/dns-network.c (_nss_dns_getnetbyname_r): Do not
++	copy name.
++
 +2016-02-12  Florian Weimer  <fweimer@redhat.com>
 +
 +	* misc/bug18240.c (do_test): Set RLIMIT_AS.
@@ -449,10 +487,10 @@ index 81c393a..9907019 100644
  
  	[BZ #16529]
 diff --git a/NEWS b/NEWS
-index 98b479e..0d1952c 100644
+index 98b479e..b2a1871 100644
 --- a/NEWS
 +++ b/NEWS
-@@ -5,6 +5,65 @@ See the end for copying conditions.
+@@ -5,6 +5,70 @@ See the end for copying conditions.
  Please send GNU C library bug reports via <http://sourceware.org/bugzilla/>
  using `glibc' in the "product" field.
  
@@ -463,7 +501,7 @@ index 98b479e..0d1952c 100644
 +  15946, 16545, 16574, 16623, 16657, 16695, 16743, 16758, 16759, 16760,
 +  16878, 16882, 16885, 16916, 16932, 16943, 16958, 17048, 17062, 17069,
 +  17079, 17137, 17153, 17213, 17263, 17269, 17325, 17555, 17905, 18007,
-+  18032, 18240, 18287, 18905.
++  18032, 18080, 18240, 18287, 18508, 18905, 19879.
 +
 +* A buffer overflow in gethostbyname_r and related functions performing DNS
 +  requests has been fixed.  If the NSS functions were called with a
@@ -514,6 +552,11 @@ index 98b479e..0d1952c 100644
 +  the get*ent functions if any of the query functions for the same database
 +  are used during the iteration, causing a denial-of-service condition in
 +  some applications.
++
++* The getnetbyname implementation in nss_dns had a potentially unbounded
++  alloca call (in the form of a call to strdupa), leading to a stack
++  overflow (stack exhaustion) and a crash if getnetbyname is invoked
++  on a very long name.  (CVE-2016-3075)
 +
  Version 2.19
  
@@ -3201,19 +3244,31 @@ index f8f192e..f36d28b 100644
        /* The buffer is too small.  */
      too_small:
 diff --git a/resolv/nss_dns/dns-network.c b/resolv/nss_dns/dns-network.c
-index 8e80a60..13ad38c 100644
+index 8e80a60..37de664 100644
 --- a/resolv/nss_dns/dns-network.c
 +++ b/resolv/nss_dns/dns-network.c
-@@ -129,7 +129,7 @@ _nss_dns_getnetbyname_r (const char *name, struct netent *result,
+@@ -118,18 +118,15 @@ _nss_dns_getnetbyname_r (const char *name, struct netent *result,
+   } net_buffer;
+   querybuf *orig_net_buffer;
+   int anslen;
+-  char *qbuf;
+   enum nss_status status;
+ 
+   if (__res_maybe_init (&_res, 0) == -1)
+     return NSS_STATUS_UNAVAIL;
+ 
+-  qbuf = strdupa (name);
+-
    net_buffer.buf = orig_net_buffer = (querybuf *) alloca (1024);
  
-   anslen = __libc_res_nsearch (&_res, qbuf, C_IN, T_PTR, net_buffer.buf->buf,
+-  anslen = __libc_res_nsearch (&_res, qbuf, C_IN, T_PTR, net_buffer.buf->buf,
 -			       1024, &net_buffer.ptr, NULL, NULL, NULL);
++  anslen = __libc_res_nsearch (&_res, name, C_IN, T_PTR, net_buffer.buf->buf,
 +			       1024, &net_buffer.ptr, NULL, NULL, NULL, NULL);
    if (anslen < 0)
      {
        /* Nothing found.  */
-@@ -205,7 +205,7 @@ _nss_dns_getnetbyaddr_r (uint32_t net, int type, struct netent *result,
+@@ -205,7 +202,7 @@ _nss_dns_getnetbyaddr_r (uint32_t net, int type, struct netent *result,
    net_buffer.buf = orig_net_buffer = (querybuf *) alloca (1024);
  
    anslen = __libc_res_nquery (&_res, qbuf, C_IN, T_PTR, net_buffer.buf->buf,
@@ -3492,6 +3547,337 @@ index 7f2e85f..416da87 100644
  				}
  			}
  			goto wait;
+diff --git a/stdlib/Makefile b/stdlib/Makefile
+index 1be16eb..8a34b83 100644
+--- a/stdlib/Makefile
++++ b/stdlib/Makefile
+@@ -64,11 +64,11 @@ test-srcs	:= tst-fmtmsg
+ tests		:= tst-strtol tst-strtod testmb testrand testsort testdiv   \
+ 		   test-canon test-canon2 tst-strtoll tst-environ	    \
+ 		   tst-xpg-basename tst-random tst-random2 tst-bsearch	    \
+-		   tst-limits tst-rand48 bug-strtod tst-setcontext	    \
+-		   test-a64l tst-qsort tst-system testmb2 bug-strtod2	    \
+-		   tst-atof1 tst-atof2 tst-strtod2 tst-strtod3 tst-rand48-2 \
+-		   tst-makecontext tst-strtod4 tst-strtod5 tst-qsort2	    \
+-		   tst-makecontext2 tst-strtod6 tst-unsetenv1		    \
++		   tst-limits tst-rand48 bug-strtod tst-setcontext          \
++		   tst-setcontext2 test-a64l tst-qsort tst-system testmb2   \
++		   bug-strtod2 tst-atof1 tst-atof2 tst-strtod2 tst-strtod3  \
++		   tst-rand48-2 tst-makecontext tst-strtod4 tst-strtod5     \
++		   tst-qsort2 tst-makecontext2 tst-strtod6 tst-unsetenv1    \
+ 		   tst-makecontext3 bug-getcontext bug-fmtmsg1		    \
+ 		   tst-secure-getenv tst-strtod-overflow tst-strtod-round   \
+ 		   tst-tininess tst-strtod-underflow tst-tls-atexit
+@@ -164,3 +164,5 @@ tst-tls-atexit-lib.so-no-z-defs = yes
+ $(objpfx)tst-tls-atexit: $(common-objpfx)nptl/libpthread.so \
+ 			 $(common-objpfx)dlfcn/libdl.so
+ $(objpfx)tst-tls-atexit.out: $(objpfx)tst-tls-atexit-lib.so
++
++$(objpfx)tst-makecontext: $(libdl)
+diff --git a/stdlib/tst-makecontext.c b/stdlib/tst-makecontext.c
+index 7968a6d..ef1e27a 100644
+--- a/stdlib/tst-makecontext.c
++++ b/stdlib/tst-makecontext.c
+@@ -19,23 +19,62 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <ucontext.h>
++#include <assert.h>
++#include <unwind.h>
++#include <dlfcn.h>
++#include <gnu/lib-names.h>
+ 
+ ucontext_t ucp;
+-char st1[8192];
++char st1[16384];
+ __thread int thr;
+ 
+ int somevar = -76;
+ long othervar = -78L;
+ 
++struct trace_arg
++{
++  int cnt, size;
++};
++
++static _Unwind_Reason_Code
++backtrace_helper (struct _Unwind_Context *ctx, void *a)
++{
++  struct trace_arg *arg = a;
++  if (++arg->cnt == arg->size)
++    return _URC_END_OF_STACK;
++  return _URC_NO_REASON;
++}
++
+ void
+ cf (int i)
+ {
++  struct trace_arg arg = { .size = 100, .cnt = -1 };
++  void *handle;
++  _Unwind_Reason_Code (*unwind_backtrace) (_Unwind_Trace_Fn, void *);
++
+   if (i != othervar || thr != 94)
+     {
+       printf ("i %d thr %d\n", i, thr);
+       exit (1);
+     }
+ 
++  /* Test if callback function of _Unwind_Backtrace is not called infinitely
++     times. See Bug 18508 or gcc bug "Bug 66303 - runtime.Caller() returns
++     infinitely deep stack frames on s390x.".
++     The go runtime calls backtrace_full() in
++     <gcc-src>/libbacktrace/backtrace.c, which uses _Unwind_Backtrace().  */
++  handle = dlopen (LIBGCC_S_SO, RTLD_LAZY);
++  if (handle != NULL)
++    {
++      unwind_backtrace = dlsym (handle, "_Unwind_Backtrace");
++      if (unwind_backtrace != NULL)
++	{
++	  unwind_backtrace (backtrace_helper, &arg);
++	  assert (arg.cnt != -1 && arg.cnt < 100);
++	}
++      dlclose (handle);
++    }
++
+   /* Since uc_link below has been set to NULL, setcontext is supposed to
+      terminate the process normally after this function returns.  */
+ }
+diff --git a/stdlib/tst-setcontext2.c b/stdlib/tst-setcontext2.c
+new file mode 100644
+index 0000000..8582cc0
+--- /dev/null
++++ b/stdlib/tst-setcontext2.c
+@@ -0,0 +1,230 @@
++/* Testcase checks, if setcontext(), swapcontext() restores signal-mask
++   and if pending signals are delivered after those calls.
++   Copyright (C) 2015 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <http://www.gnu.org/licenses/>.  */
++
++#include <stdio.h>
++#include <stdlib.h>
++#include <sys/types.h>
++#include <signal.h>
++#include <ucontext.h>
++#include <unistd.h>
++
++volatile int global;
++volatile sig_atomic_t handlerCalled;
++
++static void
++check (const char *funcName)
++{
++  sigset_t set;
++
++  /* check if SIGUSR2 is unblocked after setcontext-call.  */
++  sigprocmask (SIG_BLOCK, NULL, &set);
++
++  if (sigismember (&set, SIGUSR2) != 0)
++    {
++      printf ("FAIL: SIGUSR2 is blocked after %s.\n", funcName);
++      exit (1);
++    }
++
++  if (sigismember (&set, SIGUSR1) != 1)
++    {
++      printf ("FAIL: SIGUSR1 is not blocked after %s.\n", funcName);
++      exit (1);
++    }
++}
++
++static void
++signalmask (int how, int signum)
++{
++  sigset_t set;
++  sigemptyset (&set);
++  sigaddset (&set, signum);
++  if (sigprocmask (how, &set, NULL) != 0)
++    {
++      printf ("FAIL: sigprocmaks (%d, %d, NULL): %m\n", how, signum);
++      exit (1);
++    }
++}
++
++static void
++signalpending (int signum, const char *msg)
++{
++  sigset_t set;
++  sigemptyset (&set);
++  if (sigpending (&set) != 0)
++    {
++      printf ("FAIL: sigpending: %m\n");
++      exit (1);
++    }
++  if (sigismember (&set, SIGUSR2) != 1)
++    {
++      printf ("FAIL: Signal %d is not pending %s\n", signum, msg);
++      exit (1);
++    }
++}
++
++static void
++handler (int __attribute__ ((unused)) signum)
++{
++  handlerCalled ++;
++}
++
++static int
++do_test (void)
++{
++  ucontext_t ctx, oldctx;
++  struct sigaction action;
++  pid_t pid;
++
++  pid = getpid ();
++
++  /* unblock SIGUSR2 */
++  signalmask (SIG_UNBLOCK, SIGUSR2);
++
++  /* block SIGUSR1 */
++  signalmask (SIG_BLOCK, SIGUSR1);
++
++  /* register handler for SIGUSR2  */
++  action.sa_flags = 0;
++  action.sa_handler = handler;
++  sigemptyset (&action.sa_mask);
++  sigaction (SIGUSR2, &action, NULL);
++
++  if (getcontext (&ctx) != 0)
++    {
++      printf ("FAIL: getcontext: %m\n");
++      exit (1);
++    }
++
++  global++;
++
++  if (global == 1)
++    {
++      puts ("after getcontext");
++
++      /* block SIGUSR2  */
++      signalmask (SIG_BLOCK, SIGUSR2);
++
++      /* send SIGUSR2 to me  */
++      handlerCalled = 0;
++      kill (pid, SIGUSR2);
++
++      /* was SIGUSR2 handler called?  */
++      if (handlerCalled != 0)
++	{
++	  puts ("FAIL: signal handler was called, but signal was blocked.");
++	  exit (1);
++	}
++
++      /* is SIGUSR2 pending?  */
++      signalpending (SIGUSR2, "before setcontext");
++
++      /* SIGUSR2 will be unblocked by setcontext-call.  */
++      if (setcontext (&ctx) != 0)
++	{
++	  printf ("FAIL: setcontext: %m\n");
++	  exit (1);
++	}
++    }
++  else if (global == 2)
++    {
++      puts ("after setcontext");
++
++      /* check SIGUSR1/2  */
++      check ("setcontext");
++
++      /* was SIGUSR2 handler called? */
++      if (handlerCalled != 1)
++	{
++	  puts ("FAIL: signal handler was not called after setcontext.");
++	  exit (1);
++	}
++
++      /* block SIGUSR2 */
++      signalmask (SIG_BLOCK, SIGUSR2);
++
++      /* send SIGUSR2 to me  */
++      handlerCalled = 0;
++      kill (pid, SIGUSR2);
++
++      /* was SIGUSR2 handler called?  */
++      if (handlerCalled != 0)
++	{
++	  puts ("FAIL: signal handler was called, but signal was blocked.");
++	  exit (1);
++	}
++
++      /* is SIGUSR2 pending?  */
++      signalpending (SIGUSR2, "before swapcontext");
++
++      if (swapcontext (&oldctx, &ctx) != 0)
++	{
++	  printf ("FAIL: swapcontext: %m\n");
++	  exit (1);
++	}
++
++      puts ("after returned from swapcontext");
++
++      if (global != 3)
++	{
++	  puts ("FAIL: returned from swapcontext without ctx-context called.");
++	  exit (1);
++	}
++
++      puts ("test succeeded");
++      return 0;
++    }
++  else if ( global != 3 )
++    {
++      puts ("FAIL: 'global' not incremented three times");
++      exit (1);
++    }
++
++  puts ("after swapcontext");
++  /* check SIGUSR1/2  */
++  check ("swapcontext");
++
++  /* was SIGUSR2 handler called? */
++  if (handlerCalled != 1)
++    {
++      puts ("FAIL: signal handler was not called after swapcontext.");
++      exit (1);
++    }
++
++  /* check sigmask in old context of swapcontext-call  */
++  if (sigismember (&oldctx.uc_sigmask, SIGUSR2) != 1)
++    {
++      puts ("FAIL: SIGUSR2 is not blocked in oldctx.uc_sigmask.");
++      exit (1);
++    }
++
++  if (sigismember (&oldctx.uc_sigmask, SIGUSR1) != 1)
++    {
++      puts ("FAIL: SIGUSR1 is not blocked in oldctx.uc_sigmaks.");
++      exit (1);
++    }
++
++  /* change to old context, which was gathered by swapcontext() call.  */
++  setcontext (&oldctx);
++
++  puts ("FAIL: returned from setcontext (&oldctx)");
++  exit (1);
++}
++
++#define TEST_FUNCTION do_test ()
++#include "../test-skeleton.c"
 diff --git a/string/test-strcmp.c b/string/test-strcmp.c
 index b395dc7..fcd059f 100644
 --- a/string/test-strcmp.c
@@ -5145,6 +5531,25 @@ index a1b7a6a..e74f335 100644
 -# endif
 -#endif /* !NOT_IN_libc */
 +#include "__longjmp.c"
+diff --git a/sysdeps/unix/sysv/linux/s390/s390-32/__makecontext_ret.S b/sysdeps/unix/sysv/linux/s390/s390-32/__makecontext_ret.S
+index 83cf0d8..67ea206 100644
+--- a/sysdeps/unix/sysv/linux/s390/s390-32/__makecontext_ret.S
++++ b/sysdeps/unix/sysv/linux/s390/s390-32/__makecontext_ret.S
+@@ -17,6 +17,14 @@
+ 
+ #include <sysdep.h>
+ 
++/* We do not want .eh_frame info so that __makecontext_ret stops unwinding
++   if backtrace was called within a context created by makecontext. (There
++   is also no .eh_frame info for _start or thread_start.)  */
++#undef cfi_startproc
++#define cfi_startproc
++#undef cfi_endproc
++#define cfi_endproc
++
+ ENTRY(__makecontext_ret)
+ 	basr  %r14,%r7
+ 	ltr   %r8,%r8			/* Check whether uc_link is 0.  */
 diff --git a/sysdeps/unix/sysv/linux/s390/s390-32/getcontext-common.S b/sysdeps/unix/sysv/linux/s390/s390-32/getcontext-common.S
 deleted file mode 100644
 index 4992030..0000000
@@ -5368,9 +5773,18 @@ index 03f2e83..0194f0b 100644
   _longjmp F
   _setjmp F
 diff --git a/sysdeps/unix/sysv/linux/s390/s390-32/setcontext.S b/sysdeps/unix/sysv/linux/s390/s390-32/setcontext.S
-index fbe8b77..42839e2 100644
+index fbe8b77..b263773 100644
 --- a/sysdeps/unix/sysv/linux/s390/s390-32/setcontext.S
 +++ b/sysdeps/unix/sysv/linux/s390/s390-32/setcontext.S
+@@ -34,7 +34,7 @@ ENTRY(__setcontext)
+ 	lr	%r1,%r2
+ 
+ 	/* rt_sigprocmask (SIG_SETMASK, &sc->sc_mask, NULL, sigsetsize).  */
+-	la      %r2,SIG_BLOCK
++	la      %r2,SIG_SETMASK
+ 	la	%r3,SC_MASK(%r1)
+ 	slr	%r4,%r4
+ 	lhi	%r5,_NSIG8
 @@ -62,16 +62,8 @@ ENTRY(__setcontext)
  	/* Don't touch %a0, used for thread purposes.  */
  	lam	%a1,%a15,SC_ACRS+4(%r1)
@@ -5390,10 +5804,33 @@ index fbe8b77..42839e2 100644
  	/* Return.  */
  	br	%r14
 diff --git a/sysdeps/unix/sysv/linux/s390/s390-32/swapcontext.S b/sysdeps/unix/sysv/linux/s390/s390-32/swapcontext.S
-index 41ede4b..9206aa3 100644
+index 41ede4b..8f9cfd8 100644
 --- a/sysdeps/unix/sysv/linux/s390/s390-32/swapcontext.S
 +++ b/sysdeps/unix/sysv/linux/s390/s390-32/swapcontext.S
-@@ -65,31 +65,19 @@ ENTRY(__swapcontext)
+@@ -24,7 +24,7 @@
+ /*  __swapcontext (ucontext_t *oucp, const ucontext_t *ucp)
+ 
+   Saves the machine context in oucp such that when it is activated,
+-  it appears as if __swapcontextt() returned again, restores the
++  it appears as if __swapcontext() returned again, restores the
+   machine context in ucp and thereby resumes execution in that
+   context.
+ 
+@@ -39,13 +39,6 @@ ENTRY(__swapcontext)
+ 	lr	%r1,%r2
+ 	lr      %r0,%r3
+ 
+-	/* sigprocmask (SIG_BLOCK, NULL, &sc->sc_mask).  */
+-	la      %r2,SIG_BLOCK
+-	slr	%r3,%r3
+-	la	%r4,SC_MASK(%r1)
+-	lhi	%r5,_NSIG8
+-	svc	SYS_ify(rt_sigprocmask)
+-
+ 	/* Store fpu context.  */
+ 	stfpc   SC_FPC(%r1)
+ 	std     %f0,SC_FPRS(%r1)
+@@ -65,32 +58,21 @@ ENTRY(__swapcontext)
  	std     %f14,SC_FPRS+112(%r1)
  	std     %f15,SC_FPRS+120(%r1)
  
@@ -5410,8 +5847,9 @@ index 41ede4b..9206aa3 100644
  	stm     %r0,%r15,SC_GPRS(%r1)
  
 -	/* Copy uc_flags into the new ucontext_t.  */
-+	/* sigprocmask (SIG_SETMASK, &sc->sc_mask, NULL).  */
-+	la      %r2,SIG_BLOCK
++	/* rt_sigprocmask (SIG_SETMASK, &ucp->uc_sigmask, &oucp->uc_sigmask,
++	   sigsetsize).  */
++	la      %r2,SIG_SETMASK
  	lr	%r5,%r0
 -	l	%r2,SC_FLGS(%r5)
 -	st	%r2,SC_FLGS(%r1)
@@ -5427,10 +5865,12 @@ index 41ede4b..9206aa3 100644
 -	/* rt_sigprocmask (SIG_SETMASK, &sc->sc_mask, NULL, sigsetsize).  */
 -0:	la      %r2,SIG_BLOCK
 -	la      %r3,SC_MASK(%r5)
+-	slr	%r4,%r4
 +	la	%r3,SC_MASK(%r5)
- 	slr	%r4,%r4
++	la	%r4,SC_MASK(%r1)
  	lhi	%r5,_NSIG8
  	svc	SYS_ify(rt_sigprocmask)
+ 
 diff --git a/sysdeps/unix/sysv/linux/s390/s390-32/ucontext_i.sym b/sysdeps/unix/sysv/linux/s390/s390-32/ucontext_i.sym
 deleted file mode 100644
 index 705c7ab..0000000
@@ -5503,6 +5943,25 @@ index bc27b08..a3b1375 100644
 -# endif
 -#endif /* !NOT_IN_libc */
 +#include "__longjmp.c"
+diff --git a/sysdeps/unix/sysv/linux/s390/s390-64/__makecontext_ret.S b/sysdeps/unix/sysv/linux/s390/s390-64/__makecontext_ret.S
+index 71ecbab..a2bf3ca 100644
+--- a/sysdeps/unix/sysv/linux/s390/s390-64/__makecontext_ret.S
++++ b/sysdeps/unix/sysv/linux/s390/s390-64/__makecontext_ret.S
+@@ -17,6 +17,14 @@
+ 
+ #include <sysdep.h>
+ 
++/* We do not want .eh_frame info so that __makecontext_ret stops unwinding
++   if backtrace was called within a context created by makecontext. (There
++   is also no .eh_frame info for _start or thread_start.)  */
++#undef cfi_startproc
++#define cfi_startproc
++#undef cfi_endproc
++#define cfi_endproc
++
+ ENTRY(__makecontext_ret)
+ 	basr	%r14,%r7
+ 	ltgr	%r8,%r8			/* Check whether uc_link is 0.  */
 diff --git a/sysdeps/unix/sysv/linux/s390/s390-64/getcontext-common.S b/sysdeps/unix/sysv/linux/s390/s390-64/getcontext-common.S
 deleted file mode 100644
 index 3e61e30..0000000
@@ -5692,11 +6151,47 @@ index 4576fc8..807f702 100644
   __sigsetjmp F
   _longjmp F
   _setjmp F
+diff --git a/sysdeps/unix/sysv/linux/s390/s390-64/setcontext.S b/sysdeps/unix/sysv/linux/s390/s390-64/setcontext.S
+index 83df5ce..1464e6a 100644
+--- a/sysdeps/unix/sysv/linux/s390/s390-64/setcontext.S
++++ b/sysdeps/unix/sysv/linux/s390/s390-64/setcontext.S
+@@ -34,7 +34,7 @@ ENTRY(__setcontext)
+ 	lgr	%r1,%r2
+ 
+ 	/* sigprocmask (SIG_SETMASK, &sc->sc_mask, NULL).  */
+-	la      %r2,SIG_BLOCK
++	la      %r2,SIG_SETMASK
+ 	la	%r3,SC_MASK(%r1)
+ 	slgr	%r4,%r4
+ 	lghi	%r5,_NSIG8
 diff --git a/sysdeps/unix/sysv/linux/s390/s390-64/swapcontext.S b/sysdeps/unix/sysv/linux/s390/s390-64/swapcontext.S
-index ac74b6b..e3e624c 100644
+index ac74b6b..8346fd5 100644
 --- a/sysdeps/unix/sysv/linux/s390/s390-64/swapcontext.S
 +++ b/sysdeps/unix/sysv/linux/s390/s390-64/swapcontext.S
-@@ -65,25 +65,21 @@ ENTRY(__swapcontext)
+@@ -24,7 +24,7 @@
+ /*  __swapcontext (ucontext_t *oucp, const ucontext_t *ucp)
+ 
+   Saves the machine context in oucp such that when it is activated,
+-  it appears as if __swapcontextt() returned again, restores the
++  it appears as if __swapcontext() returned again, restores the
+   machine context in ucp and thereby resumes execution in that
+   context.
+ 
+@@ -39,13 +39,6 @@ ENTRY(__swapcontext)
+ 	lgr	%r1,%r2
+ 	lgr     %r0,%r3
+ 
+-	/* sigprocmask (SIG_BLOCK, NULL, &sc->sc_mask).  */
+-	la      %r2,SIG_BLOCK
+-	slgr	%r3,%r3
+-	la	%r4,SC_MASK(%r1)
+-	lghi	%r5,_NSIG8
+-	svc	SYS_ify(rt_sigprocmask)
+-
+ 	/* Store fpu context.  */
+ 	stfpc   SC_FPC(%r1)
+ 	std     %f0,SC_FPRS(%r1)
+@@ -65,24 +58,21 @@ ENTRY(__swapcontext)
  	std     %f14,SC_FPRS+112(%r1)
  	std     %f15,SC_FPRS+120(%r1)
  
@@ -5713,20 +6208,21 @@ index ac74b6b..e3e624c 100644
  	stmg    %r0,%r15,SC_GPRS(%r1)
  
 -	/* Copy uc_flags into the new ucontext_t.  */
--	lgr	%r5,%r0
++	/* rt_sigprocmask (SIG_SETMASK, &ucp->uc_sigmask, &oucp->uc_sigmask,
++	   sigsetsize).  */
++	la      %r2,SIG_SETMASK
+ 	lgr	%r5,%r0
 -	lg	%r2,SC_FLGS(%r5)
 -	stg	%r2,SC_FLGS(%r1)
 -
- 	/* rt_sigprocmask (SIG_SETMASK, &sc->sc_mask, NULL, sigsetsize).  */
- 	la      %r2,SIG_BLOCK
-+	lgr	%r5,%r0
+-	/* rt_sigprocmask (SIG_SETMASK, &sc->sc_mask, NULL, sigsetsize).  */
+-	la      %r2,SIG_BLOCK
  	la	%r3,SC_MASK(%r5)
 -	slgr	%r4,%r4
++	la	%r4,SC_MASK(%r1)
  	lghi	%r5,_NSIG8
-+	slgr	%r4,%r4
  	svc	SYS_ify(rt_sigprocmask)
  
- 	/* Load fpu context.  */
 diff --git a/sysdeps/unix/sysv/linux/s390/s390-64/ucontext_i.sym b/sysdeps/unix/sysv/linux/s390/s390-64/ucontext_i.sym
 deleted file mode 100644
 index 6cc9f19..0000000
