@@ -1,10 +1,34 @@
 GIT update of git://sourceware.org/git/glibc.git/release/2.19/master from glibc-2.19
 
 diff --git a/ChangeLog b/ChangeLog
-index 81c393a..671f2bf 100644
+index 81c393a..f9a9e33 100644
 --- a/ChangeLog
 +++ b/ChangeLog
-@@ -1,3 +1,527 @@
+@@ -1,3 +1,551 @@
++2016-03-25  Florian Weimer  <fweimer@redhat.com>
++
++	[BZ #19791]
++	* resolv/res_send.c (close_and_return_error): New function.
++	(send_dg): Initialize *resplen2 after reopen failure.  Call
++	close_and_return_error for error returns.  On error paths without
++	__res_iclose, initialze *resplen2 explicitly.  Update comment for
++	successful return.
++
++2016-02-15  Carlos O'Donell  <carlos@redhat.com>
++
++	[BZ #18665]
++	* resolv/nss_dns/dns-host.c (gaih_getanswer_slice): Always set
++	*herrno_p.
++	(gaih_getanswer): Document functional behviour. Return tryagain
++	if any result is tryagain.
++	* resolv/res_query.c (__libc_res_nsearch): Set buffer size to zero
++	when freed.
++	* resolv/res_send.c: Add copyright text.
++	(__libc_res_nsend): Document that MAXPACKET is expected.
++	(send_vc): Document. Remove buffer reuse.
++	(send_dg): Document. Remove buffer reuse. Set *thisanssizp to set the
++	size of the buffer. Add Dprint for truncated UDP buffer.
++
 +2016-04-29  Florian Weimer  <fweimer@redhat.com>
 +
 +	[BZ #20010]
@@ -533,10 +557,10 @@ index 81c393a..671f2bf 100644
  
  	[BZ #16529]
 diff --git a/NEWS b/NEWS
-index 98b479e..5304a05 100644
+index 98b479e..d14f9ed 100644
 --- a/NEWS
 +++ b/NEWS
-@@ -5,6 +5,79 @@ See the end for copying conditions.
+@@ -5,6 +5,94 @@ See the end for copying conditions.
  Please send GNU C library bug reports via <http://sourceware.org/bugzilla/>
  using `glibc' in the "product" field.
  
@@ -547,7 +571,8 @@ index 98b479e..5304a05 100644
 +  15946, 16545, 16574, 16623, 16657, 16695, 16743, 16758, 16759, 16760,
 +  16878, 16882, 16885, 16916, 16932, 16943, 16958, 17048, 17062, 17069,
 +  17079, 17137, 17153, 17213, 17263, 17269, 17325, 17555, 17905, 18007,
-+  18032, 18080, 18240, 18287, 18508, 18905, 19779, 19879, 20010.
++  18032, 18080, 18240, 18287, 18508, 18665, 18905, 19779, 19791, 19879,
++  20010.
 +
 +* A buffer overflow in gethostbyname_r and related functions performing DNS
 +  requests has been fixed.  If the NSS functions were called with a
@@ -612,6 +637,20 @@ index 98b479e..5304a05 100644
 +  even after the fix for CVE-2013-4458 has been applied, potentially
 +  resulting in a stack overflow.  getaddrinfo now uses a heap allocation
 +  instead.  Reported by Michael Petlan.  (CVE-2016-3706)
++
++* A stack-based buffer overflow was found in libresolv when invoked from
++  libnss_dns, allowing specially crafted DNS responses to seize control
++  of execution flow in the DNS client.  The buffer overflow occurs in
++  the functions send_dg (send datagram) and send_vc (send TCP) for the
++  NSS module libnss_dns.so.2 when calling getaddrinfo with AF_UNSPEC
++  family.  The use of AF_UNSPEC triggers the low-level resolver code to
++  send out two parallel queries for A and AAAA.  A mismanagement of the
++  buffers used for those queries could result in the response of a query
++  writing beyond the alloca allocated buffer created by
++  _nss_dns_gethostbyname4_r.  Buffer management is simplified to remove
++  the overflow.  Thanks to the Google Security Team and Red Hat for
++  reporting the security impact of this issue, and Robert Holiday of
++  Ciena for reporting the related bug 18665. (CVE-2015-7547)
 +
  Version 2.19
  
@@ -3572,7 +3611,7 @@ index a9db232..e8c112c 100644
  	{
  	  /* We need to decode the response.  Just one question record.
 diff --git a/resolv/nss_dns/dns-host.c b/resolv/nss_dns/dns-host.c
-index f8f192e..f36d28b 100644
+index f8f192e..63029d9 100644
 --- a/resolv/nss_dns/dns-host.c
 +++ b/resolv/nss_dns/dns-host.c
 @@ -190,7 +190,7 @@ _nss_dns_gethostbyname3_r (const char *name, int af, struct hostent *result,
@@ -3672,6 +3711,152 @@ index f8f192e..f36d28b 100644
      {
        /* The buffer is too small.  */
      too_small:
+@@ -1049,7 +1052,10 @@ gaih_getanswer_slice (const querybuf *answer, int anslen, const char *qname,
+   int h_namelen = 0;
+ 
+   if (ancount == 0)
+-    return NSS_STATUS_NOTFOUND;
++    {
++      *h_errnop = HOST_NOT_FOUND;
++      return NSS_STATUS_NOTFOUND;
++    }
+ 
+   while (ancount-- > 0 && cp < end_of_message && had_error == 0)
+     {
+@@ -1226,7 +1232,14 @@ gaih_getanswer_slice (const querybuf *answer, int anslen, const char *qname,
+   /* Special case here: if the resolver sent a result but it only
+      contains a CNAME while we are looking for a T_A or T_AAAA record,
+      we fail with NOTFOUND instead of TRYAGAIN.  */
+-  return canon == NULL ? NSS_STATUS_TRYAGAIN : NSS_STATUS_NOTFOUND;
++  if (canon != NULL)
++    {
++      *h_errnop = HOST_NOT_FOUND;
++      return NSS_STATUS_NOTFOUND;
++    }
++
++  *h_errnop = NETDB_INTERNAL;
++  return NSS_STATUS_TRYAGAIN;
+ }
+ 
+ 
+@@ -1240,11 +1253,101 @@ gaih_getanswer (const querybuf *answer1, int anslen1, const querybuf *answer2,
+ 
+   enum nss_status status = NSS_STATUS_NOTFOUND;
+ 
++  /* Combining the NSS status of two distinct queries requires some
++     compromise and attention to symmetry (A or AAAA queries can be
++     returned in any order).  What follows is a breakdown of how this
++     code is expected to work and why. We discuss only SUCCESS,
++     TRYAGAIN, NOTFOUND and UNAVAIL, since they are the only returns
++     that apply (though RETURN and MERGE exist).  We make a distinction
++     between TRYAGAIN (recoverable) and TRYAGAIN' (not-recoverable).
++     A recoverable TRYAGAIN is almost always due to buffer size issues
++     and returns ERANGE in errno and the caller is expected to retry
++     with a larger buffer.
++
++     Lastly, you may be tempted to make significant changes to the
++     conditions in this code to bring about symmetry between responses.
++     Please don't change anything without due consideration for
++     expected application behaviour.  Some of the synthesized responses
++     aren't very well thought out and sometimes appear to imply that
++     IPv4 responses are always answer 1, and IPv6 responses are always
++     answer 2, but that's not true (see the implementation of send_dg
++     and send_vc to see response can arrive in any order, particularly
++     for UDP). However, we expect it holds roughly enough of the time
++     that this code works, but certainly needs to be fixed to make this
++     a more robust implementation.
++
++     ----------------------------------------------
++     | Answer 1 Status /   | Synthesized | Reason |
++     | Answer 2 Status     | Status      |        |
++     |--------------------------------------------|
++     | SUCCESS/SUCCESS     | SUCCESS     | [1]    |
++     | SUCCESS/TRYAGAIN    | TRYAGAIN    | [5]    |
++     | SUCCESS/TRYAGAIN'   | SUCCESS     | [1]    |
++     | SUCCESS/NOTFOUND    | SUCCESS     | [1]    |
++     | SUCCESS/UNAVAIL     | SUCCESS     | [1]    |
++     | TRYAGAIN/SUCCESS    | TRYAGAIN    | [2]    |
++     | TRYAGAIN/TRYAGAIN   | TRYAGAIN    | [2]    |
++     | TRYAGAIN/TRYAGAIN'  | TRYAGAIN    | [2]    |
++     | TRYAGAIN/NOTFOUND   | TRYAGAIN    | [2]    |
++     | TRYAGAIN/UNAVAIL    | TRYAGAIN    | [2]    |
++     | TRYAGAIN'/SUCCESS   | SUCCESS     | [3]    |
++     | TRYAGAIN'/TRYAGAIN  | TRYAGAIN    | [3]    |
++     | TRYAGAIN'/TRYAGAIN' | TRYAGAIN'   | [3]    |
++     | TRYAGAIN'/NOTFOUND  | TRYAGAIN'   | [3]    |
++     | TRYAGAIN'/UNAVAIL   | UNAVAIL     | [3]    |
++     | NOTFOUND/SUCCESS    | SUCCESS     | [3]    |
++     | NOTFOUND/TRYAGAIN   | TRYAGAIN    | [3]    |
++     | NOTFOUND/TRYAGAIN'  | TRYAGAIN'   | [3]    |
++     | NOTFOUND/NOTFOUND   | NOTFOUND    | [3]    |
++     | NOTFOUND/UNAVAIL    | UNAVAIL     | [3]    |
++     | UNAVAIL/SUCCESS     | UNAVAIL     | [4]    |
++     | UNAVAIL/TRYAGAIN    | UNAVAIL     | [4]    |
++     | UNAVAIL/TRYAGAIN'   | UNAVAIL     | [4]    |
++     | UNAVAIL/NOTFOUND    | UNAVAIL     | [4]    |
++     | UNAVAIL/UNAVAIL     | UNAVAIL     | [4]    |
++     ----------------------------------------------
++
++     [1] If the first response is a success we return success.
++	 This ignores the state of the second answer and in fact
++	 incorrectly sets errno and h_errno to that of the second
++	 answer.  However because the response is a success we ignore
++	 *errnop and *h_errnop (though that means you touched errno on
++	 success).  We are being conservative here and returning the
++	 likely IPv4 response in the first answer as a success.
++
++     [2] If the first response is a recoverable TRYAGAIN we return
++	 that instead of looking at the second response.  The
++	 expectation here is that we have failed to get an IPv4 response
++	 and should retry both queries.
++
++     [3] If the first response was not a SUCCESS and the second
++	 response is not NOTFOUND (had a SUCCESS, need to TRYAGAIN,
++	 or failed entirely e.g. TRYAGAIN' and UNAVAIL) then use the
++	 result from the second response, otherwise the first responses
++	 status is used.  Again we have some odd side-effects when the
++	 second response is NOTFOUND because we overwrite *errnop and
++	 *h_errnop that means that a first answer of NOTFOUND might see
++	 its *errnop and *h_errnop values altered.  Whether it matters
++	 in practice that a first response NOTFOUND has the wrong
++	 *errnop and *h_errnop is undecided.
++
++     [4] If the first response is UNAVAIL we return that instead of
++	 looking at the second response.  The expectation here is that
++	 it will have failed similarly e.g. configuration failure.
++
++     [5] Testing this code is complicated by the fact that truncated
++	 second response buffers might be returned as SUCCESS if the
++	 first answer is a SUCCESS.  To fix this we add symmetry to
++	 TRYAGAIN with the second response.  If the second response
++	 is a recoverable error we now return TRYAGIN even if the first
++	 response was SUCCESS.  */
++
+   if (anslen1 > 0)
+     status = gaih_getanswer_slice(answer1, anslen1, qname,
+ 				  &pat, &buffer, &buflen,
+ 				  errnop, h_errnop, ttlp,
+ 				  &first);
++
+   if ((status == NSS_STATUS_SUCCESS || status == NSS_STATUS_NOTFOUND
+        || (status == NSS_STATUS_TRYAGAIN
+ 	   /* We want to look at the second answer in case of an
+@@ -1260,8 +1363,15 @@ gaih_getanswer (const querybuf *answer1, int anslen1, const querybuf *answer2,
+ 						     &pat, &buffer, &buflen,
+ 						     errnop, h_errnop, ttlp,
+ 						     &first);
++      /* Use the second response status in some cases.  */
+       if (status != NSS_STATUS_SUCCESS && status2 != NSS_STATUS_NOTFOUND)
+ 	status = status2;
++      /* Do not return a truncated second response (unless it was
++	 unavoidable e.g. unrecoverable TRYAGAIN).  */
++      if (status == NSS_STATUS_SUCCESS
++	  && (status2 == NSS_STATUS_TRYAGAIN
++	      && *errnop == ERANGE && *h_errnop != NO_RECOVERY))
++	status = NSS_STATUS_TRYAGAIN;
+     }
+ 
+   return status;
 diff --git a/resolv/nss_dns/dns-network.c b/resolv/nss_dns/dns-network.c
 index 8e80a60..37de664 100644
 --- a/resolv/nss_dns/dns-network.c
@@ -3707,7 +3892,7 @@ index 8e80a60..37de664 100644
      {
        /* Nothing found.  */
 diff --git a/resolv/res_query.c b/resolv/res_query.c
-index 1325f97..c5c3402 100644
+index 1325f97..6f5280d 100644
 --- a/resolv/res_query.c
 +++ b/resolv/res_query.c
 @@ -98,7 +98,7 @@ static int
@@ -3777,7 +3962,7 @@ index 1325f97..c5c3402 100644
  		if (ret > 0 || trailing_dot)
  			return (ret);
  		saved_herrno = h_errno;
-@@ -386,11 +390,11 @@ __libc_res_nsearch(res_state statp,
+@@ -386,11 +390,12 @@ __libc_res_nsearch(res_state statp,
  			answer = *answerp;
  			anslen = MAXPACKET;
  		}
@@ -3787,11 +3972,12 @@ index 1325f97..c5c3402 100644
  		  {
  		    free (*answerp2);
  		    *answerp2 = NULL;
++		    *nanswerp2 = 0;
 +		    *answerp2_malloced = 0;
  		  }
  	}
  
-@@ -417,7 +421,7 @@ __libc_res_nsearch(res_state statp,
+@@ -417,7 +422,7 @@ __libc_res_nsearch(res_state statp,
  						      class, type,
  						      answer, anslen, answerp,
  						      answerp2, nanswerp2,
@@ -3800,7 +3986,7 @@ index 1325f97..c5c3402 100644
  			if (ret > 0)
  				return (ret);
  
-@@ -425,12 +429,11 @@ __libc_res_nsearch(res_state statp,
+@@ -425,12 +430,12 @@ __libc_res_nsearch(res_state statp,
  				answer = *answerp;
  				anslen = MAXPACKET;
  			}
@@ -3811,11 +3997,12 @@ index 1325f97..c5c3402 100644
  			  {
  			    free (*answerp2);
  			    *answerp2 = NULL;
++			    *nanswerp2 = 0;
 +			    *answerp2_malloced = 0;
  			  }
  
  			/*
-@@ -486,7 +489,8 @@ __libc_res_nsearch(res_state statp,
+@@ -486,7 +491,8 @@ __libc_res_nsearch(res_state statp,
  	    && !(tried_as_is || root_on_list)) {
  		ret = __libc_res_nquerydomain(statp, name, NULL, class, type,
  					      answer, anslen, answerp,
@@ -3825,7 +4012,7 @@ index 1325f97..c5c3402 100644
  		if (ret > 0)
  			return (ret);
  	}
-@@ -498,10 +502,11 @@ __libc_res_nsearch(res_state statp,
+@@ -498,10 +504,12 @@ __libc_res_nsearch(res_state statp,
  	 * else send back meaningless H_ERRNO, that being the one from
  	 * the last DNSRCH we did.
  	 */
@@ -3834,11 +4021,12 @@ index 1325f97..c5c3402 100644
  	  {
  	    free (*answerp2);
  	    *answerp2 = NULL;
++	    *nanswerp2 = 0;
 +	    *answerp2_malloced = 0;
  	  }
  	if (saved_herrno != -1)
  		RES_SET_H_ERRNO(statp, saved_herrno);
-@@ -521,7 +526,7 @@ res_nsearch(res_state statp,
+@@ -521,7 +529,7 @@ res_nsearch(res_state statp,
  	    int anslen)		/* size of answer */
  {
  	return __libc_res_nsearch(statp, name, class, type, answer,
@@ -3847,7 +4035,7 @@ index 1325f97..c5c3402 100644
  }
  libresolv_hidden_def (res_nsearch)
  
-@@ -539,7 +544,8 @@ __libc_res_nquerydomain(res_state statp,
+@@ -539,7 +547,8 @@ __libc_res_nquerydomain(res_state statp,
  			u_char **answerp,
  			u_char **answerp2,
  			int *nanswerp2,
@@ -3857,7 +4045,7 @@ index 1325f97..c5c3402 100644
  {
  	char nbuf[MAXDNAME];
  	const char *longname = nbuf;
-@@ -581,7 +587,7 @@ __libc_res_nquerydomain(res_state statp,
+@@ -581,7 +590,7 @@ __libc_res_nquerydomain(res_state statp,
  	}
  	return (__libc_res_nquery(statp, longname, class, type, answer,
  				  anslen, answerp, answerp2, nanswerp2,
@@ -3866,7 +4054,7 @@ index 1325f97..c5c3402 100644
  }
  
  int
-@@ -593,7 +599,8 @@ res_nquerydomain(res_state statp,
+@@ -593,7 +602,8 @@ res_nquerydomain(res_state statp,
  	    int anslen)		/* size of answer */
  {
  	return __libc_res_nquerydomain(statp, name, domain, class, type,
@@ -3877,10 +4065,31 @@ index 1325f97..c5c3402 100644
  libresolv_hidden_def (res_nquerydomain)
  
 diff --git a/resolv/res_send.c b/resolv/res_send.c
-index 7f2e85f..416da87 100644
+index 7f2e85f..11d0bbd 100644
 --- a/resolv/res_send.c
 +++ b/resolv/res_send.c
-@@ -186,12 +186,12 @@ evNowTime(struct timespec *res) {
+@@ -1,3 +1,20 @@
++/* Copyright (C) 2016 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <http://www.gnu.org/licenses/>.  */
++
+ /*
+  * Copyright (c) 1985, 1989, 1993
+  *    The Regents of the University of California.  All rights reserved.
+@@ -186,12 +203,12 @@ evNowTime(struct timespec *res) {
  static int		send_vc(res_state, const u_char *, int,
  				const u_char *, int,
  				u_char **, int *, int *, int, u_char **,
@@ -3895,7 +4104,7 @@ index 7f2e85f..416da87 100644
  #ifdef DEBUG
  static void		Aerror(const res_state, FILE *, const char *, int,
  			       const struct sockaddr *);
-@@ -343,7 +343,7 @@ int
+@@ -343,7 +360,7 @@ int
  __libc_res_nsend(res_state statp, const u_char *buf, int buflen,
  		 const u_char *buf2, int buflen2,
  		 u_char *ans, int anssiz, u_char **ansp, u_char **ansp2,
@@ -3904,7 +4113,16 @@ index 7f2e85f..416da87 100644
  {
    int gotsomewhere, terrno, try, v_circuit, resplen, ns, n;
  
-@@ -546,7 +546,8 @@ __libc_res_nsend(res_state statp, const u_char *buf, int buflen,
+@@ -360,6 +377,8 @@ __libc_res_nsend(res_state statp, const u_char *buf, int buflen,
+ #ifdef USE_HOOKS
+ 	if (__builtin_expect (statp->qhook || statp->rhook, 0)) {
+ 		if (anssiz < MAXPACKET && ansp) {
++			/* Always allocate MAXPACKET, callers expect
++			   this specific size.  */
+ 			u_char *buf = malloc (MAXPACKET);
+ 			if (buf == NULL)
+ 				return (-1);
+@@ -546,7 +565,8 @@ __libc_res_nsend(res_state statp, const u_char *buf, int buflen,
  			try = statp->retry;
  			n = send_vc(statp, buf, buflen, buf2, buflen2,
  				    &ans, &anssiz, &terrno,
@@ -3914,7 +4132,7 @@ index 7f2e85f..416da87 100644
  			if (n < 0)
  				return (-1);
  			if (n == 0 && (buf2 == NULL || *resplen2 == 0))
-@@ -556,7 +557,7 @@ __libc_res_nsend(res_state statp, const u_char *buf, int buflen,
+@@ -556,7 +576,7 @@ __libc_res_nsend(res_state statp, const u_char *buf, int buflen,
  			n = send_dg(statp, buf, buflen, buf2, buflen2,
  				    &ans, &anssiz, &terrno,
  				    ns, &v_circuit, &gotsomewhere, ansp,
@@ -3923,7 +4141,7 @@ index 7f2e85f..416da87 100644
  			if (n < 0)
  				return (-1);
  			if (n == 0 && (buf2 == NULL || *resplen2 == 0))
-@@ -646,7 +647,7 @@ res_nsend(res_state statp,
+@@ -646,26 +666,105 @@ res_nsend(res_state statp,
  	  const u_char *buf, int buflen, u_char *ans, int anssiz)
  {
    return __libc_res_nsend(statp, buf, buflen, NULL, 0, ans, anssiz,
@@ -3932,7 +4150,93 @@ index 7f2e85f..416da87 100644
  }
  libresolv_hidden_def (res_nsend)
  
-@@ -657,7 +658,7 @@ send_vc(res_state statp,
+ /* Private */
+ 
++/* Close the resolver structure, assign zero to *RESPLEN2 if RESPLEN2
++   is not NULL, and return zero.  */
++static int
++__attribute__ ((warn_unused_result))
++close_and_return_error (res_state statp, int *resplen2)
++{
++  __res_iclose(statp, false);
++  if (resplen2 != NULL)
++    *resplen2 = 0;
++  return 0;
++}
++
++/* The send_vc function is responsible for sending a DNS query over TCP
++   to the nameserver numbered NS from the res_state STATP i.e.
++   EXT(statp).nssocks[ns].  The function supports sending both IPv4 and
++   IPv6 queries at the same serially on the same socket.
++
++   Please note that for TCP there is no way to disable sending both
++   queries, unlike UDP, which honours RES_SNGLKUP and RES_SNGLKUPREOP
++   and sends the queries serially and waits for the result after each
++   sent query.  This implemetnation should be corrected to honour these
++   options.
++
++   Please also note that for TCP we send both queries over the same
++   socket one after another.  This technically violates best practice
++   since the server is allowed to read the first query, respond, and
++   then close the socket (to service another client).  If the server
++   does this, then the remaining second query in the socket data buffer
++   will cause the server to send the client an RST which will arrive
++   asynchronously and the client's OS will likely tear down the socket
++   receive buffer resulting in a potentially short read and lost
++   response data.  This will force the client to retry the query again,
++   and this process may repeat until all servers and connection resets
++   are exhausted and then the query will fail.  It's not known if this
++   happens with any frequency in real DNS server implementations.  This
++   implementation should be corrected to use two sockets by default for
++   parallel queries.
++
++   The query stored in BUF of BUFLEN length is sent first followed by
++   the query stored in BUF2 of BUFLEN2 length.  Queries are sent
++   serially on the same socket.
++
++   Answers to the query are stored firstly in *ANSP up to a max of
++   *ANSSIZP bytes.  If more than *ANSSIZP bytes are needed and ANSCP
++   is non-NULL (to indicate that modifying the answer buffer is allowed)
++   then malloc is used to allocate a new response buffer and ANSCP and
++   ANSP will both point to the new buffer.  If more than *ANSSIZP bytes
++   are needed but ANSCP is NULL, then as much of the response as
++   possible is read into the buffer, but the results will be truncated.
++   When truncation happens because of a small answer buffer the DNS
++   packets header feild TC will bet set to 1, indicating a truncated
++   message and the rest of the socket data will be read and discarded.
++
++   Answers to the query are stored secondly in *ANSP2 up to a max of
++   *ANSSIZP2 bytes, with the actual response length stored in
++   *RESPLEN2.  If more than *ANSSIZP bytes are needed and ANSP2
++   is non-NULL (required for a second query) then malloc is used to
++   allocate a new response buffer, *ANSSIZP2 is set to the new buffer
++   size and *ANSP2_MALLOCED is set to 1.
++
++   The ANSP2_MALLOCED argument will eventually be removed as the
++   change in buffer pointer can be used to detect the buffer has
++   changed and that the caller should use free on the new buffer.
++
++   Note that the answers may arrive in any order from the server and
++   therefore the first and second answer buffers may not correspond to
++   the first and second queries.
++
++   It is not supported to call this function with a non-NULL ANSP2
++   but a NULL ANSCP.  Put another way, you can call send_vc with a
++   single unmodifiable buffer or two modifiable buffers, but no other
++   combination is supported.
++
++   It is the caller's responsibility to free the malloc allocated
++   buffers by detecting that the pointers have changed from their
++   original values i.e. *ANSCP or *ANSP2 has changed.
++
++   If errors are encountered then *TERRNO is set to an appropriate
++   errno value and a zero result is returned for a recoverable error,
++   and a less-than zero result is returned for a non-recoverable error.
++
++   If no errors are encountered then *TERRNO is left unmodified and
++   a the length of the first response in bytes is returned.  */
+ static int
+ send_vc(res_state statp,
  	const u_char *buf, int buflen, const u_char *buf2, int buflen2,
  	u_char **ansp, int *anssizp,
  	int *terrno, int ns, u_char **anscp, u_char **ansp2, int *anssizp2,
@@ -3941,16 +4245,159 @@ index 7f2e85f..416da87 100644
  {
  	const HEADER *hp = (HEADER *) buf;
  	const HEADER *hp2 = (HEADER *) buf2;
-@@ -823,6 +824,8 @@ send_vc(res_state statp,
+-	u_char *ans = *ansp;
+-	int orig_anssizp = *anssizp;
+-	// XXX REMOVE
+-	// int anssiz = *anssizp;
+-	HEADER *anhp = (HEADER *) ans;
++	HEADER *anhp = (HEADER *) *ansp;
+ 	struct sockaddr_in6 *nsap = EXT(statp).nsaddrs[ns];
+ 	int truncating, connreset, resplen, n;
+ 	struct iovec iov[4];
+@@ -741,6 +840,8 @@ send_vc(res_state statp,
+ 	 * Receive length & response
+ 	 */
+ 	int recvresp1 = 0;
++	/* Skip the second response if there is no second query.
++	   To do that we mark the second response as received.  */
+ 	int recvresp2 = buf2 == NULL;
+ 	uint16_t rlen16;
+  read_len:
+@@ -777,33 +878,14 @@ send_vc(res_state statp,
+ 	u_char **thisansp;
+ 	int *thisresplenp;
+ 	if ((recvresp1 | recvresp2) == 0 || buf2 == NULL) {
++		/* We have not received any responses
++		   yet or we only have one response to
++		   receive.  */
+ 		thisanssizp = anssizp;
+ 		thisansp = anscp ?: ansp;
+ 		assert (anscp != NULL || ansp2 == NULL);
+ 		thisresplenp = &resplen;
+ 	} else {
+-		if (*anssizp != MAXPACKET) {
+-			/* No buffer allocated for the first
+-			   reply.  We can try to use the rest
+-			   of the user-provided buffer.  */
+-#ifdef _STRING_ARCH_unaligned
+-			*anssizp2 = orig_anssizp - resplen;
+-			*ansp2 = *ansp + resplen;
+-#else
+-			int aligned_resplen
+-			  = ((resplen + __alignof__ (HEADER) - 1)
+-			     & ~(__alignof__ (HEADER) - 1));
+-			*anssizp2 = orig_anssizp - aligned_resplen;
+-			*ansp2 = *ansp + aligned_resplen;
+-#endif
+-		} else {
+-			/* The first reply did not fit into the
+-			   user-provided buffer.  Maybe the second
+-			   answer will.  */
+-			*anssizp2 = orig_anssizp;
+-			*ansp2 = *ansp;
+-		}
+-
+ 		thisanssizp = anssizp2;
+ 		thisansp = ansp2;
+ 		thisresplenp = resplen2;
+@@ -811,10 +893,14 @@ send_vc(res_state statp,
+ 	anhp = (HEADER *) *thisansp;
+ 
+ 	*thisresplenp = rlen;
+-	if (rlen > *thisanssizp) {
+-		/* Yes, we test ANSCP here.  If we have two buffers
+-		   both will be allocatable.  */
+-		if (__builtin_expect (anscp != NULL, 1)) {
++	/* Is the answer buffer too small?  */
++	if (*thisanssizp < rlen) {
++		/* If the current buffer is non-NULL and it's not
++		   pointing at the static user-supplied buffer then
++		   we can reallocate it.  */
++		if (thisansp != NULL && thisansp != ansp) {
++			/* Always allocate MAXPACKET, callers expect
++			   this specific size.  */
+ 			u_char *newp = malloc (MAXPACKET);
+ 			if (newp == NULL) {
+ 				*terrno = ENOMEM;
+@@ -823,7 +909,12 @@ send_vc(res_state statp,
  			}
  			*thisanssizp = MAXPACKET;
  			*thisansp = newp;
 +			if (thisansp == ansp2)
 +			  *ansp2_malloced = 1;
  			anhp = (HEADER *) newp;
++			/* A uint16_t can't be larger than MAXPACKET
++			   thus it's safe to allocate MAXPACKET but
++			   read RLEN bytes instead.  */
  			len = rlen;
  		} else {
-@@ -992,7 +995,7 @@ send_dg(res_state statp,
+ 			Dprint(statp->options & RES_DEBUG,
+@@ -987,17 +1078,75 @@ reopen (res_state statp, int *terrno, int ns)
+ 	return 1;
+ }
+ 
++/* The send_dg function is responsible for sending a DNS query over UDP
++   to the nameserver numbered NS from the res_state STATP i.e.
++   EXT(statp).nssocks[ns].  The function supports IPv4 and IPv6 queries
++   along with the ability to send the query in parallel for both stacks
++   (default) or serially (RES_SINGLKUP).  It also supports serial lookup
++   with a close and reopen of the socket used to talk to the server
++   (RES_SNGLKUPREOP) to work around broken name servers.
++
++   The query stored in BUF of BUFLEN length is sent first followed by
++   the query stored in BUF2 of BUFLEN2 length.  Queries are sent
++   in parallel (default) or serially (RES_SINGLKUP or RES_SNGLKUPREOP).
++
++   Answers to the query are stored firstly in *ANSP up to a max of
++   *ANSSIZP bytes.  If more than *ANSSIZP bytes are needed and ANSCP
++   is non-NULL (to indicate that modifying the answer buffer is allowed)
++   then malloc is used to allocate a new response buffer and ANSCP and
++   ANSP will both point to the new buffer.  If more than *ANSSIZP bytes
++   are needed but ANSCP is NULL, then as much of the response as
++   possible is read into the buffer, but the results will be truncated.
++   When truncation happens because of a small answer buffer the DNS
++   packets header feild TC will bet set to 1, indicating a truncated
++   message, while the rest of the UDP packet is discarded.
++
++   Answers to the query are stored secondly in *ANSP2 up to a max of
++   *ANSSIZP2 bytes, with the actual response length stored in
++   *RESPLEN2.  If more than *ANSSIZP bytes are needed and ANSP2
++   is non-NULL (required for a second query) then malloc is used to
++   allocate a new response buffer, *ANSSIZP2 is set to the new buffer
++   size and *ANSP2_MALLOCED is set to 1.
++
++   The ANSP2_MALLOCED argument will eventually be removed as the
++   change in buffer pointer can be used to detect the buffer has
++   changed and that the caller should use free on the new buffer.
++
++   Note that the answers may arrive in any order from the server and
++   therefore the first and second answer buffers may not correspond to
++   the first and second queries.
++
++   It is not supported to call this function with a non-NULL ANSP2
++   but a NULL ANSCP.  Put another way, you can call send_vc with a
++   single unmodifiable buffer or two modifiable buffers, but no other
++   combination is supported.
++
++   It is the caller's responsibility to free the malloc allocated
++   buffers by detecting that the pointers have changed from their
++   original values i.e. *ANSCP or *ANSP2 has changed.
++
++   If an answer is truncated because of UDP datagram DNS limits then
++   *V_CIRCUIT is set to 1 and the return value non-zero to indicate to
++   the caller to retry with TCP.  The value *GOTSOMEWHERE is set to 1
++   if any progress was made reading a response from the nameserver and
++   is used by the caller to distinguish between ECONNREFUSED and
++   ETIMEDOUT (the latter if *GOTSOMEWHERE is 1).
++
++   If errors are encountered then *TERRNO is set to an appropriate
++   errno value and a zero result is returned for a recoverable error,
++   and a less-than zero result is returned for a non-recoverable error.
++
++   If no errors are encountered then *TERRNO is left unmodified and
++   a the length of the first response in bytes is returned.  */
+ static int
+ send_dg(res_state statp,
  	const u_char *buf, int buflen, const u_char *buf2, int buflen2,
  	u_char **ansp, int *anssizp,
  	int *terrno, int ns, int *v_circuit, int *gotsomewhere, u_char **anscp,
@@ -3959,23 +4406,243 @@ index 7f2e85f..416da87 100644
  {
  	const HEADER *hp = (HEADER *) buf;
  	const HEADER *hp2 = (HEADER *) buf2;
-@@ -1238,6 +1241,8 @@ send_dg(res_state statp,
+-	u_char *ans = *ansp;
+-	int orig_anssizp = *anssizp;
+ 	struct timespec now, timeout, finish;
+ 	struct pollfd pfd[1];
+ 	int ptimeout;
+@@ -1022,7 +1171,11 @@ send_dg(res_state statp,
+  retry_reopen:
+ 	retval = reopen (statp, terrno, ns);
+ 	if (retval <= 0)
+-		return retval;
++	  {
++	    if (resplen2 != NULL)
++	      *resplen2 = 0;
++	    return retval;
++	  }
+  retry:
+ 	evNowTime(&now);
+ 	evConsTime(&timeout, seconds, 0);
+@@ -1030,11 +1183,11 @@ send_dg(res_state statp,
+ 	int need_recompute = 0;
+ 	int nwritten = 0;
+ 	int recvresp1 = 0;
++	/* Skip the second response if there is no second query.
++           To do that we mark the second response as received.  */
+ 	int recvresp2 = buf2 == NULL;
+ 	pfd[0].fd = EXT(statp).nssocks[ns];
+ 	pfd[0].events = POLLOUT;
+-	if (resplen2 != NULL)
+-	  *resplen2 = 0;
+  wait:
+ 	if (need_recompute) {
+ 	recompute_resend:
+@@ -1042,9 +1195,7 @@ send_dg(res_state statp,
+ 		if (evCmpTime(finish, now) <= 0) {
+ 		poll_err_out:
+ 			Perror(statp, stderr, "poll", errno);
+-		err_out:
+-			__res_iclose(statp, false);
+-			return (0);
++			return close_and_return_error (statp, resplen2);
+ 		}
+ 		evSubTime(&timeout, &finish, &now);
+ 		need_recompute = 0;
+@@ -1091,7 +1242,9 @@ send_dg(res_state statp,
+ 		  }
+ 
+ 		*gotsomewhere = 1;
+-		return (0);
++		if (resplen2 != NULL)
++		  *resplen2 = 0;
++		return 0;
+ 	}
+ 	if (n < 0) {
+ 		if (errno == EINTR)
+@@ -1159,7 +1312,7 @@ send_dg(res_state statp,
+ 
+ 		      fail_sendmmsg:
+ 			Perror(statp, stderr, "sendmmsg", errno);
+-			goto err_out;
++			return close_and_return_error (statp, resplen2);
+ 		      }
+ 		  }
+ 		else
+@@ -1177,7 +1330,7 @@ send_dg(res_state statp,
+ 		      if (errno == EINTR || errno == EAGAIN)
+ 			goto recompute_resend;
+ 		      Perror(statp, stderr, "send", errno);
+-		      goto err_out;
++		      return close_and_return_error (statp, resplen2);
+ 		    }
+ 		  just_one:
+ 		    if (nwritten != 0 || buf2 == NULL || single_request)
+@@ -1193,53 +1346,56 @@ send_dg(res_state statp,
+ 		int *thisresplenp;
+ 
+ 		if ((recvresp1 | recvresp2) == 0 || buf2 == NULL) {
++			/* We have not received any responses
++			   yet or we only have one response to
++			   receive.  */
+ 			thisanssizp = anssizp;
+ 			thisansp = anscp ?: ansp;
+ 			assert (anscp != NULL || ansp2 == NULL);
+ 			thisresplenp = &resplen;
+ 		} else {
+-			if (*anssizp != MAXPACKET) {
+-				/* No buffer allocated for the first
+-				   reply.  We can try to use the rest
+-				   of the user-provided buffer.  */
+-#ifdef _STRING_ARCH_unaligned
+-				*anssizp2 = orig_anssizp - resplen;
+-				*ansp2 = *ansp + resplen;
+-#else
+-				int aligned_resplen
+-				  = ((resplen + __alignof__ (HEADER) - 1)
+-				     & ~(__alignof__ (HEADER) - 1));
+-				*anssizp2 = orig_anssizp - aligned_resplen;
+-				*ansp2 = *ansp + aligned_resplen;
+-#endif
+-			} else {
+-				/* The first reply did not fit into the
+-				   user-provided buffer.  Maybe the second
+-				   answer will.  */
+-				*anssizp2 = orig_anssizp;
+-				*ansp2 = *ansp;
+-			}
+-
+ 			thisanssizp = anssizp2;
+ 			thisansp = ansp2;
+ 			thisresplenp = resplen2;
+ 		}
+ 
+ 		if (*thisanssizp < MAXPACKET
+-		    /* Yes, we test ANSCP here.  If we have two buffers
+-		       both will be allocatable.  */
+-		    && anscp
++		    /* If the current buffer is non-NULL and it's not
++		       pointing at the static user-supplied buffer then
++		       we can reallocate it.  */
++		    && (thisansp != NULL && thisansp != ansp)
+ #ifdef FIONREAD
++		    /* Is the size too small?  */
+ 		    && (ioctl (pfd[0].fd, FIONREAD, thisresplenp) < 0
+ 			|| *thisanssizp < *thisresplenp)
+ #endif
+                     ) {
++			/* Always allocate MAXPACKET, callers expect
++			   this specific size.  */
+ 			u_char *newp = malloc (MAXPACKET);
  			if (newp != NULL) {
- 				*anssizp = MAXPACKET;
- 				*thisansp = ans = newp;
+-				*anssizp = MAXPACKET;
+-				*thisansp = ans = newp;
++				*thisanssizp = MAXPACKET;
++				*thisansp = newp;
 +				if (thisansp == ansp2)
 +				  *ansp2_malloced = 1;
  			}
  		}
++		/* We could end up with truncation if anscp was NULL
++		   (not allowed to change caller's buffer) and the
++		   response buffer size is too small.  This isn't a
++		   reliable way to detect truncation because the ioctl
++		   may be an inaccurate report of the UDP message size.
++		   Therefore we use this only to issue debug output.
++		   To do truncation accurately with UDP we need
++		   MSG_TRUNC which is only available on Linux.  We
++		   can abstract out the Linux-specific feature in the
++		   future to detect truncation.  */
++		if (__glibc_unlikely (*thisanssizp < *thisresplenp)) {
++			Dprint(statp->options & RES_DEBUG,
++			       (stdout, ";; response may be truncated (UDP)\n")
++			);
++		}
++
  		HEADER *anhp = (HEADER *) *thisansp;
-@@ -1405,6 +1410,7 @@ send_dg(res_state statp,
+ 		socklen_t fromlen = sizeof(struct sockaddr_in6);
+ 		assert (sizeof(from) <= fromlen);
+@@ -1252,7 +1408,7 @@ send_dg(res_state statp,
+ 				goto wait;
+ 			}
+ 			Perror(statp, stderr, "recvfrom", errno);
+-			goto err_out;
++			return close_and_return_error (statp, resplen2);
+ 		}
+ 		*gotsomewhere = 1;
+ 		if (__builtin_expect (*thisresplenp < HFIXEDSZ, 0)) {
+@@ -1263,7 +1419,7 @@ send_dg(res_state statp,
+ 			       (stdout, ";; undersized: %d\n",
+ 				*thisresplenp));
+ 			*terrno = EMSGSIZE;
+-			goto err_out;
++			return close_and_return_error (statp, resplen2);
+ 		}
+ 		if ((recvresp1 || hp->id != anhp->id)
+ 		    && (recvresp2 || hp2->id != anhp->id)) {
+@@ -1312,7 +1468,7 @@ send_dg(res_state statp,
+ 				? *thisanssizp : *thisresplenp);
+ 			/* record the error */
+ 			statp->_flags |= RES_F_EDNS0ERR;
+-			goto err_out;
++			return close_and_return_error (statp, resplen2);
+ 	}
+ #endif
+ 		if (!(statp->options & RES_INSECURE2)
+@@ -1364,10 +1520,10 @@ send_dg(res_state statp,
+ 			  }
+ 
+ 		next_ns:
+-			__res_iclose(statp, false);
+ 			/* don't retry if called from dig */
+ 			if (!statp->pfcode)
+-				return (0);
++			  return close_and_return_error (statp, resplen2);
++			__res_iclose(statp, false);
+ 		}
+ 		if (anhp->rcode == NOERROR && anhp->ancount == 0
+ 		    && anhp->aa == 0 && anhp->ra == 0 && anhp->arcount == 0) {
+@@ -1389,6 +1545,8 @@ send_dg(res_state statp,
+ 			__res_iclose(statp, false);
+ 			// XXX if we have received one reply we could
+ 			// XXX use it and not repeat it over TCP...
++			if (resplen2 != NULL)
++			  *resplen2 = 0;
+ 			return (1);
+ 		}
+ 		/* Mark which reply we received.  */
+@@ -1404,20 +1562,22 @@ send_dg(res_state statp,
+ 					__res_iclose (statp, false);
  					retval = reopen (statp, terrno, ns);
  					if (retval <= 0)
- 						return retval;
+-						return retval;
++					  {
++					    if (resplen2 != NULL)
++					      *resplen2 = 0;
++					    return retval;
++					  }
 +					pfd[0].fd = EXT(statp).nssocks[ns];
  				}
  			}
  			goto wait;
+ 		}
+-		/*
+-		 * All is well, or the error is fatal.  Signal that the
+-		 * next nameserver ought not be tried.
+-		 */
++		/* All is well.  We have received both responses (if
++		   two responses were requested).  */
+ 		return (resplen);
+-	} else if (pfd[0].revents & (POLLERR | POLLHUP | POLLNVAL)) {
+-		/* Something went wrong.  We can stop trying.  */
+-		goto err_out;
+-	}
++	} else if (pfd[0].revents & (POLLERR | POLLHUP | POLLNVAL))
++	  /* Something went wrong.  We can stop trying.  */
++	  return close_and_return_error (statp, resplen2);
+ 	else {
+ 		/* poll should not have returned > 0 in this case.  */
+ 		abort ();
 diff --git a/stdlib/Makefile b/stdlib/Makefile
 index 1be16eb..8a34b83 100644
 --- a/stdlib/Makefile
