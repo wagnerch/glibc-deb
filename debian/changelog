@@ -10,6 +10,7 @@ glibc (2.19-18+deb8u5) UNRELEASED; urgency=medium
     - Fix a buffer overflow in the glob function (CVE-2016-1234).
     - Fix a stack overflow in nss_dns_getnetbyname_r (CVE-2016-3075).
     - Fix a stack overflow in getaddrinfo function (CVE-2016-3706).
+    - Fix a stack overflow in Sun RPC clntudp_call() (CVE-2016-4429).
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 01 May 2016 16:38:48 +0200
 
