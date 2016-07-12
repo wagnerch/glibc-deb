@@ -1,4 +1,4 @@
-glibc (2.19-18+deb8u5) UNRELEASED; urgency=medium
+glibc (2.19-18+deb8u5) stable; urgency=medium
 
   [ Aurelien Jarno ]
   * Update from upstream stable branch:
@@ -12,7 +12,7 @@ glibc (2.19-18+deb8u5) UNRELEASED; urgency=medium
     - Fix a stack overflow in getaddrinfo function (CVE-2016-3706).
     - Fix a stack overflow in Sun RPC clntudp_call() (CVE-2016-4429).
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 01 May 2016 16:38:48 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 13 Jul 2016 00:03:52 +0200
 
 glibc (2.19-18+deb8u4) stable; urgency=medium
 
