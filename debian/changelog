@@ -1,3 +1,13 @@
+glibc (2.19-18+deb8u6) UNRELEASED; urgency=medium
+
+  * Update from upstream stable branch:
+    - Drop debian/patches/any/cvs-ld_pointer_guard.diff (merged upstream).
+    - Drop debian/patches/any/cvs-mangle-tls_dtor_list.diff (merged upstream).
+    - Drop debian/patches/any/cvs-strxfrm-buffer-overflows.diff (merged
+      upstream).
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 13 Aug 2016 17:57:34 +0200
+
 glibc (2.19-18+deb8u5) stable; urgency=medium
 
   [ Aurelien Jarno ]
