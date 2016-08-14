@@ -5,6 +5,9 @@ glibc (2.19-18+deb8u6) UNRELEASED; urgency=medium
     - Drop debian/patches/any/cvs-mangle-tls_dtor_list.diff (merged upstream).
     - Drop debian/patches/any/cvs-strxfrm-buffer-overflows.diff (merged
       upstream).
+  * debian/patches/any/submitted-resolv-ipv6-nameservers.diff: replace by
+    patch cvs-resolv-ipv6-nameservers.diff taken from upstream. This fixes
+    mtr on systems using only IPv6 nameservers.  Closes: #818281.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 13 Aug 2016 17:57:34 +0200
 
