@@ -1,10 +1,35 @@
 GIT update of git://sourceware.org/git/glibc.git/release/2.19/master from glibc-2.19
 
 diff --git a/ChangeLog b/ChangeLog
-index 81c393a..5d3bc8f 100644
+index 81c393a..3d2063b 100644
 --- a/ChangeLog
 +++ b/ChangeLog
-@@ -1,3 +1,591 @@
+@@ -1,3 +1,616 @@
++2015-02-24  Eric Rannaud  <e@nanocritical.com>
++
++	[BZ #17523]
++	* io/fcntl.h (__OPEN_NEEDS_MODE): New macro.
++	* io/bits/fcntl2.h (open): Use it.
++	(openat): Likewise.
++	* io/open.c (__libc_open): Likewise.
++	* io/open64.c (__libc_open64): Likewise.
++	* io/open64_2.c (__open64_2): Likewise.
++	* io/open_2.c (__open_2): Likewise.
++	* io/openat.c (__openat): Likewise.
++	* io/openat64.c (__openat64): Likewise.
++	* io/openat64_2.c (__openat64_2): Likewise.
++	* io/openat_2.c (__openat_2): Likewise.
++	* sysdeps/mach/hurd/open.c (__libc_open): Likewise.
++	* sysdeps/mach/hurd/openat.c (__openat): Likewise.
++	* sysdeps/posix/open64.c (__libc_open64): Likewise.
++	* sysdeps/unix/sysv/linux/dl-openat64.c (openat64): Likewise.
++	* ports/sysdeps/unix/sysv/linux/generic/open.c (__libc_open): Likewise.
++	(__open_nocancel): Likewise.
++	* ports/sysdeps/unix/sysv/linux/generic/open64.c (__libc_open64):
++	Likewise.
++	* sysdeps/unix/sysv/linux/open64.c (__libc_open64): Likewise.
++	* sysdeps/unix/sysv/linux/openat.c (__OPENAT): Likewise.
++
 +2016-07-11  Florian Weimer  <fweimer@redhat.com>
 +
 +	[BZ #19018]
@@ -597,7 +622,7 @@ index 81c393a..5d3bc8f 100644
  
  	[BZ #16529]
 diff --git a/NEWS b/NEWS
-index 98b479e..41481cd 100644
+index 98b479e..473e35a 100644
 --- a/NEWS
 +++ b/NEWS
 @@ -5,6 +5,98 @@ See the end for copying conditions.
@@ -610,9 +635,9 @@ index 98b479e..41481cd 100644
 +
 +  15946, 16009, 16545, 16574, 16623, 16657, 16695, 16743, 16758, 16759,
 +  16760, 16878, 16882, 16885, 16916, 16932, 16943, 16958, 17048, 17062,
-+  17069, 17079, 17137, 17153, 17213, 17263, 17269, 17325, 17555, 17905,
-+  18007, 18032, 18080, 18240, 18287, 18508, 18665, 18905, 18928, 19018,
-+  19779, 19791, 19879, 20010, 20112.
++  17069, 17079, 17137, 17153, 17213, 17263, 17269, 17325, 17523, 17555,
++  17905, 18007, 18032, 18080, 18240, 18287, 18508, 18665, 18905, 18928,
++  19018, 19779, 19791, 19879, 20010, 20112.
 +
 +* A buffer overflow in gethostbyname_r and related functions performing DNS
 +  requests has been fixed.  If the NSS functions were called with a
@@ -1416,6 +1441,271 @@ index 62cdfda..f6d064d 100644
    datap->cursor = (char *) __rawmemchr (datap->cursor, '\0') + 1;
  
    return NSS_STATUS_SUCCESS;
+diff --git a/io/bits/fcntl2.h b/io/bits/fcntl2.h
+index 4f13b10..bb8d233 100644
+--- a/io/bits/fcntl2.h
++++ b/io/bits/fcntl2.h
+@@ -20,7 +20,7 @@
+ # error "Never include <bits/fcntl2.h> directly; use <fcntl.h> instead."
+ #endif
+ 
+-/* Check that calls to open and openat with O_CREAT set have an
++/* Check that calls to open and openat with O_CREAT or O_TMPFILE set have an
+    appropriate third/fourth parameter.  */
+ #ifndef __USE_FILE_OFFSET64
+ extern int __open_2 (const char *__path, int __oflag) __nonnull ((1));
+@@ -35,7 +35,7 @@ extern int __REDIRECT (__open_alias, (const char *__path, int __oflag, ...),
+ __errordecl (__open_too_many_args,
+ 	     "open can be called either with 2 or 3 arguments, not more");
+ __errordecl (__open_missing_mode,
+-	     "open with O_CREAT in second argument needs 3 arguments");
++	     "open with O_CREAT or O_TMPFILE in second argument needs 3 arguments");
+ 
+ __fortify_function int
+ open (const char *__path, int __oflag, ...)
+@@ -45,7 +45,7 @@ open (const char *__path, int __oflag, ...)
+ 
+   if (__builtin_constant_p (__oflag))
+     {
+-      if ((__oflag & O_CREAT) != 0 && __va_arg_pack_len () < 1)
++      if (__OPEN_NEEDS_MODE (__oflag) && __va_arg_pack_len () < 1)
+ 	{
+ 	  __open_missing_mode ();
+ 	  return __open_2 (__path, __oflag);
+@@ -67,7 +67,7 @@ extern int __REDIRECT (__open64_alias, (const char *__path, int __oflag,
+ __errordecl (__open64_too_many_args,
+ 	     "open64 can be called either with 2 or 3 arguments, not more");
+ __errordecl (__open64_missing_mode,
+-	     "open64 with O_CREAT in second argument needs 3 arguments");
++	     "open64 with O_CREAT or O_TMPFILE in second argument needs 3 arguments");
+ 
+ __fortify_function int
+ open64 (const char *__path, int __oflag, ...)
+@@ -77,7 +77,7 @@ open64 (const char *__path, int __oflag, ...)
+ 
+   if (__builtin_constant_p (__oflag))
+     {
+-      if ((__oflag & O_CREAT) != 0 && __va_arg_pack_len () < 1)
++      if (__OPEN_NEEDS_MODE (__oflag) && __va_arg_pack_len () < 1)
+ 	{
+ 	  __open64_missing_mode ();
+ 	  return __open64_2 (__path, __oflag);
+@@ -111,7 +111,7 @@ extern int __REDIRECT (__openat_alias, (int __fd, const char *__path,
+ __errordecl (__openat_too_many_args,
+ 	     "openat can be called either with 3 or 4 arguments, not more");
+ __errordecl (__openat_missing_mode,
+-	     "openat with O_CREAT in third argument needs 4 arguments");
++	     "openat with O_CREAT or O_TMPFILE in third argument needs 4 arguments");
+ 
+ __fortify_function int
+ openat (int __fd, const char *__path, int __oflag, ...)
+@@ -121,7 +121,7 @@ openat (int __fd, const char *__path, int __oflag, ...)
+ 
+   if (__builtin_constant_p (__oflag))
+     {
+-      if ((__oflag & O_CREAT) != 0 && __va_arg_pack_len () < 1)
++      if (__OPEN_NEEDS_MODE (__oflag) && __va_arg_pack_len () < 1)
+ 	{
+ 	  __openat_missing_mode ();
+ 	  return __openat_2 (__fd, __path, __oflag);
+@@ -145,7 +145,7 @@ extern int __REDIRECT (__openat64_alias, (int __fd, const char *__path,
+ __errordecl (__openat64_too_many_args,
+ 	     "openat64 can be called either with 3 or 4 arguments, not more");
+ __errordecl (__openat64_missing_mode,
+-	     "openat64 with O_CREAT in third argument needs 4 arguments");
++	     "openat64 with O_CREAT or O_TMPFILE in third argument needs 4 arguments");
+ 
+ __fortify_function int
+ openat64 (int __fd, const char *__path, int __oflag, ...)
+@@ -155,7 +155,7 @@ openat64 (int __fd, const char *__path, int __oflag, ...)
+ 
+   if (__builtin_constant_p (__oflag))
+     {
+-      if ((__oflag & O_CREAT) != 0 && __va_arg_pack_len () < 1)
++      if (__OPEN_NEEDS_MODE (__oflag) && __va_arg_pack_len () < 1)
+ 	{
+ 	  __openat64_missing_mode ();
+ 	  return __openat64_2 (__fd, __path, __oflag);
+diff --git a/io/fcntl.h b/io/fcntl.h
+index 28d83ae..16f792e 100644
+--- a/io/fcntl.h
++++ b/io/fcntl.h
+@@ -34,6 +34,15 @@ __BEGIN_DECLS
+    numbers and flag bits for `open', `fcntl', et al.  */
+ #include <bits/fcntl.h>
+ 
++/* Detect if open needs mode as a third argument (or for openat as a fourth
++   argument).  */
++#ifdef __O_TMPFILE
++# define __OPEN_NEEDS_MODE(oflag) \
++  (((oflag) & O_CREAT) != 0 || ((oflag) & __O_TMPFILE) == __O_TMPFILE)
++#else
++# define __OPEN_NEEDS_MODE(oflag) (((oflag) & O_CREAT) != 0)
++#endif
++
+ /* POSIX.1-2001 specifies that these types are defined by <fcntl.h>.
+    Earlier POSIX standards permitted any type ending in `_t' to be defined
+    by any POSIX header, so we don't conditionalize the definitions here.  */
+@@ -160,8 +169,9 @@ typedef __pid_t pid_t;
+ extern int fcntl (int __fd, int __cmd, ...);
+ 
+ /* Open FILE and return a new file descriptor for it, or -1 on error.
+-   OFLAG determines the type of access used.  If O_CREAT is on OFLAG,
+-   the third argument is taken as a `mode_t', the mode of the created file.
++   OFLAG determines the type of access used.  If O_CREAT or O_TMPFILE is set
++   in OFLAG, the third argument is taken as a `mode_t', the mode of the
++   created file.
+ 
+    This function is a cancellation point and therefore not marked with
+    __THROW.  */
+diff --git a/io/open.c b/io/open.c
+index 24aa380..d1df5c3 100644
+--- a/io/open.c
++++ b/io/open.c
+@@ -23,7 +23,7 @@
+ #include <stdio.h>
+ 
+ 
+-/* Open FILE with access OFLAG.  If OFLAG includes O_CREAT,
++/* Open FILE with access OFLAG.  If O_CREAT or O_TMPFILE is in OFLAG,
+    a third argument is the file protection.  */
+ int
+ __libc_open (file, oflag)
+@@ -38,7 +38,7 @@ __libc_open (file, oflag)
+       return -1;
+     }
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start(arg, oflag);
+diff --git a/io/open64.c b/io/open64.c
+index 3f3d2e8..def4e0b 100644
+--- a/io/open64.c
++++ b/io/open64.c
+@@ -21,7 +21,7 @@
+ #include <stddef.h>
+ #include <stdio.h>
+ 
+-/* Open FILE with access OFLAG.  If OFLAG includes O_CREAT,
++/* Open FILE with access OFLAG.  If O_CREAT or O_TMPFILE is in OFLAG,
+    a third argument is the file protection.  */
+ int
+ __libc_open64 (file, oflag)
+@@ -36,7 +36,7 @@ __libc_open64 (file, oflag)
+       return -1;
+     }
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
+diff --git a/io/open64_2.c b/io/open64_2.c
+index 7cafbba..dced8ab 100644
+--- a/io/open64_2.c
++++ b/io/open64_2.c
+@@ -22,8 +22,8 @@
+ int
+ __open64_2 (const char *file, int oflag)
+ {
+-  if (oflag & O_CREAT)
+-    __fortify_fail ("invalid open64 call: O_CREAT without mode");
++  if (__OPEN_NEEDS_MODE (oflag))
++    __fortify_fail ("invalid open64 call: O_CREAT or O_TMPFILE without mode");
+ 
+   return __open64 (file, oflag);
+ }
+diff --git a/io/open_2.c b/io/open_2.c
+index 65d2c1c..d5b3afe 100644
+--- a/io/open_2.c
++++ b/io/open_2.c
+@@ -22,8 +22,8 @@
+ int
+ __open_2 (const char *file, int oflag)
+ {
+-  if (oflag & O_CREAT)
+-    __fortify_fail ("invalid open call: O_CREAT without mode");
++  if (__OPEN_NEEDS_MODE (oflag))
++    __fortify_fail ("invalid open call: O_CREAT or O_TMPFILE without mode");
+ 
+   return __open (file, oflag);
+ }
+diff --git a/io/openat.c b/io/openat.c
+index 2d82270..f3ac8a7 100644
+--- a/io/openat.c
++++ b/io/openat.c
+@@ -30,7 +30,7 @@ int __have_atfcts;
+ #endif
+ 
+ /* Open FILE with access OFLAG.  Interpret relative paths relative to
+-   the directory associated with FD.  If OFLAG includes O_CREAT, a
++   the directory associated with FD.  If O_CREAT or O_TMPFILE is in OFLAG, a
+    third argument is the file protection.  */
+ int
+ __openat (fd, file, oflag)
+@@ -60,7 +60,7 @@ __openat (fd, file, oflag)
+ 	}
+     }
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
+diff --git a/io/openat64.c b/io/openat64.c
+index c0c4e19..d104bc1 100644
+--- a/io/openat64.c
++++ b/io/openat64.c
+@@ -23,7 +23,7 @@
+ #include <sys/stat.h>
+ 
+ /* Open FILE with access OFLAG.  Interpret relative paths relative to
+-   the directory associated with FD.  If OFLAG includes O_CREAT, a
++   the directory associated with FD.  If O_CREAT or O_TMPFILE is in OFLAG, a
+    third argument is the file protection.  */
+ int
+ __openat64 (fd, file, oflag)
+@@ -53,7 +53,7 @@ __openat64 (fd, file, oflag)
+ 	}
+     }
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
+diff --git a/io/openat64_2.c b/io/openat64_2.c
+index 6cfea6a..9c22a28 100644
+--- a/io/openat64_2.c
++++ b/io/openat64_2.c
+@@ -22,8 +22,8 @@
+ int
+ __openat64_2 (int fd, const char *file, int oflag)
+ {
+-  if (oflag & O_CREAT)
+-    __fortify_fail ("invalid openat64 call: O_CREAT without mode");
++  if (__OPEN_NEEDS_MODE (oflag))
++    __fortify_fail ("invalid openat64 call: O_CREAT or O_TMPFILE without mode");
+ 
+   return __openat64 (fd, file, oflag);
+ }
+diff --git a/io/openat_2.c b/io/openat_2.c
+index 9e38c14..d15d1e9 100644
+--- a/io/openat_2.c
++++ b/io/openat_2.c
+@@ -22,8 +22,8 @@
+ int
+ __openat_2 (int fd, const char *file, int oflag)
+ {
+-  if (oflag & O_CREAT)
+-    __fortify_fail ("invalid openat call: O_CREAT without mode");
++  if (__OPEN_NEEDS_MODE (oflag))
++    __fortify_fail ("invalid openat call: O_CREAT or O_TMPFILE without mode");
+ 
+   return __openat (fd, file, oflag);
+ }
 diff --git a/libio/wstrops.c b/libio/wstrops.c
 index 399a377..9218d4a 100644
 --- a/libio/wstrops.c
@@ -3066,6 +3356,57 @@ index f6903b5..fed1dcb 100644
  #   define SINGLE_THREAD_P_PIC(x) SINGLE_THREAD_P
  #  endif
  # endif
+diff --git a/ports/sysdeps/unix/sysv/linux/generic/open.c b/ports/sysdeps/unix/sysv/linux/generic/open.c
+index 4f73fa0..b4c6834 100644
+--- a/ports/sysdeps/unix/sysv/linux/generic/open.c
++++ b/ports/sysdeps/unix/sysv/linux/generic/open.c
+@@ -22,14 +22,14 @@
+ #include <stdio.h>
+ #include <sysdep-cancel.h>
+ 
+-/* Open FILE with access OFLAG.  If OFLAG includes O_CREAT,
++/* Open FILE with access OFLAG.  If O_CREAT or O_TMPFILE is in OFLAG,
+    a third argument is the file protection.  */
+ int
+ __libc_open (const char *file, int oflag, ...)
+ {
+   int mode = 0;
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
+@@ -59,7 +59,7 @@ __open_nocancel (const char *file, int oflag, ...)
+ {
+   int mode = 0;
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
+diff --git a/ports/sysdeps/unix/sysv/linux/generic/open64.c b/ports/sysdeps/unix/sysv/linux/generic/open64.c
+index 93d79e3..faea4df 100644
+--- a/ports/sysdeps/unix/sysv/linux/generic/open64.c
++++ b/ports/sysdeps/unix/sysv/linux/generic/open64.c
+@@ -22,14 +22,14 @@
+ #include <stdio.h>
+ #include <sysdep-cancel.h>
+ 
+-/* Open FILE with access OFLAG.  If OFLAG includes O_CREAT,
++/* Open FILE with access OFLAG.  If O_CREAT or O_TMPFILE is in OFLAG,
+    a third argument is the file protection.  */
+ int
+ __libc_open64 (const char *file, int oflag, ...)
+ {
+   int mode = 0;
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
 diff --git a/posix/Makefile b/posix/Makefile
 index 6709900..8f6e6b5 100644
 --- a/posix/Makefile
@@ -5895,6 +6236,50 @@ index 6105e9f..50109b8 100644
  	      res = do_sin (u, y, db, &cor);
  	      cor = (cor > 0) ? 1.035 * cor + eps : 1.035 * cor - eps;
  	      retval = ((res == res + cor) ? ((m) ? res : -res)
+diff --git a/sysdeps/mach/hurd/open.c b/sysdeps/mach/hurd/open.c
+index 7d9b2de..f003d03 100644
+--- a/sysdeps/mach/hurd/open.c
++++ b/sysdeps/mach/hurd/open.c
+@@ -22,7 +22,7 @@
+ #include <hurd.h>
+ #include <hurd/fd.h>
+ 
+-/* Open FILE with access OFLAG.  If OFLAG includes O_CREAT,
++/* Open FILE with access OFLAG.  If O_CREAT or O_TMPFILE is in OFLAG,
+    a third argument is the file protection.  */
+ int
+ __libc_open (const char *file, int oflag, ...)
+@@ -30,7 +30,7 @@ __libc_open (const char *file, int oflag, ...)
+   mode_t mode;
+   io_t port;
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
+diff --git a/sysdeps/mach/hurd/openat.c b/sysdeps/mach/hurd/openat.c
+index 318cb22..83ffe13 100644
+--- a/sysdeps/mach/hurd/openat.c
++++ b/sysdeps/mach/hurd/openat.c
+@@ -26,7 +26,7 @@
+ #include <hurd/fd.h>
+ 
+ /* Open FILE with access OFLAG.  Interpret relative paths relative to
+-   the directory associated with FD.  If OFLAG includes O_CREAT, a
++   the directory associated with FD.  If O_CREAT or O_TMPFILE is in OFLAG, a
+    third argument is the file protection.  */
+ int
+ __openat (fd, file, oflag)
+@@ -37,7 +37,7 @@ __openat (fd, file, oflag)
+   mode_t mode;
+   io_t port;
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
 diff --git a/sysdeps/posix/getaddrinfo.c b/sysdeps/posix/getaddrinfo.c
 index 8218237..df6ce8b 100644
 --- a/sysdeps/posix/getaddrinfo.c
@@ -6079,6 +6464,27 @@ index 8218237..df6ce8b 100644
  		      if (*pat == NULL)
  			{
  			  *pat = addrfree++;
+diff --git a/sysdeps/posix/open64.c b/sysdeps/posix/open64.c
+index 64d192a..4b7ec36 100644
+--- a/sysdeps/posix/open64.c
++++ b/sysdeps/posix/open64.c
+@@ -19,14 +19,14 @@
+ #include <stdarg.h>
+ #include <sysdep-cancel.h>
+ 
+-/* Open FILE with access OFLAG.  If OFLAG includes O_CREAT,
++/* Open FILE with access OFLAG.  If O_CREAT or O_TMPFILE is in OFLAG,
+    a third argument is the file protection.  */
+ int
+ __libc_open64 (const char *file, int oflag, ...)
+ {
+   int mode = 0;
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
 diff --git a/sysdeps/powerpc/powerpc64/entry.h b/sysdeps/powerpc/powerpc64/entry.h
 index 76ead1d..30553c1 100644
 --- a/sysdeps/powerpc/powerpc64/entry.h
@@ -7434,6 +7840,19 @@ index 8925396..f32b0fc 100644
  	cmp	rTMP1, rSTRXOR
  	retl
  	 movgu	%xcc, 0, %o0
+diff --git a/sysdeps/unix/sysv/linux/dl-openat64.c b/sysdeps/unix/sysv/linux/dl-openat64.c
+index 9d00b45..5ac16a2 100644
+--- a/sysdeps/unix/sysv/linux/dl-openat64.c
++++ b/sysdeps/unix/sysv/linux/dl-openat64.c
+@@ -28,7 +28,7 @@ openat64 (dfd, file, oflag)
+      const char *file;
+      int oflag;
+ {
+-  assert ((oflag & O_CREAT) == 0);
++  assert (!__OPEN_NEEDS_MODE (oflag));
+ 
+ #ifdef __NR_openat
+   return INLINE_SYSCALL (openat, 3, dfd, file, oflag | O_LARGEFILE);
 diff --git a/sysdeps/unix/sysv/linux/i386/glob64.c b/sysdeps/unix/sysv/linux/i386/glob64.c
 index b4fcd1a..802c957 100644
 --- a/sysdeps/unix/sysv/linux/i386/glob64.c
@@ -7476,6 +7895,51 @@ index b4fcd1a..802c957 100644
  #define glob_in_dir __old_glob_in_dir
  #define GLOB_ATTRIBUTE attribute_compat_text_section
  
+diff --git a/sysdeps/unix/sysv/linux/open64.c b/sysdeps/unix/sysv/linux/open64.c
+index 0d63806..6d91b21 100644
+--- a/sysdeps/unix/sysv/linux/open64.c
++++ b/sysdeps/unix/sysv/linux/open64.c
+@@ -21,14 +21,14 @@
+ #include <stdio.h>
+ #include <sysdep-cancel.h>
+ 
+-/* Open FILE with access OFLAG.  If OFLAG includes O_CREAT,
++/* Open FILE with access OFLAG.  If O_CREAT or O_TMPFILE is in OFLAG,
+    a third argument is the file protection.  */
+ int
+ __libc_open64 (const char *file, int oflag, ...)
+ {
+   int mode = 0;
+ 
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
+diff --git a/sysdeps/unix/sysv/linux/openat.c b/sysdeps/unix/sysv/linux/openat.c
+index 9bb8ace..5a75f52 100644
+--- a/sysdeps/unix/sysv/linux/openat.c
++++ b/sysdeps/unix/sysv/linux/openat.c
+@@ -148,8 +148,8 @@ OPENAT_NOT_CANCEL (fd, file, oflag, mode)
+ 
+ 
+ /* Open FILE with access OFLAG.  Interpret relative paths relative to
+-   the directory associated with FD.  If OFLAG includes O_CREAT, a
+-   third argument is the file protection.  */
++   the directory associated with FD.  If OFLAG includes O_CREAT or
++   O_TMPFILE, a fourth argument is the file protection.  */
+ int
+ __OPENAT (fd, file, oflag)
+      int fd;
+@@ -157,7 +157,7 @@ __OPENAT (fd, file, oflag)
+      int oflag;
+ {
+   mode_t mode = 0;
+-  if (oflag & O_CREAT)
++  if (__OPEN_NEEDS_MODE (oflag))
+     {
+       va_list arg;
+       va_start (arg, oflag);
 diff --git a/sysdeps/unix/sysv/linux/s390/Makefile b/sysdeps/unix/sysv/linux/s390/Makefile
 index f91179d..45b1922 100644
 --- a/sysdeps/unix/sysv/linux/s390/Makefile
