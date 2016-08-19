@@ -1,6 +1,8 @@
 glibc (2.19-18+deb8u6) UNRELEASED; urgency=medium
 
   * Update from upstream stable branch:
+    - Fix backtrace hang on armel/armhf, possibly causing a minor
+      denial-of-service vulnerability (CVE-2016-6323).  Closes: #834752.
     - Fix open and openat functions with O_TMPFILE.  Closes: #832521.
     - Drop debian/patches/any/cvs-ld_pointer_guard.diff (merged upstream).
     - Drop debian/patches/any/cvs-mangle-tls_dtor_list.diff (merged upstream).

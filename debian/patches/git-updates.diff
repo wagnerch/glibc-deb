@@ -1,10 +1,16 @@
 GIT update of git://sourceware.org/git/glibc.git/release/2.19/master from glibc-2.19
 
 diff --git a/ChangeLog b/ChangeLog
-index 81c393a..3d2063b 100644
+index 81c393a..30da116 100644
 --- a/ChangeLog
 +++ b/ChangeLog
-@@ -1,3 +1,616 @@
+@@ -1,3 +1,622 @@
++2016-08-15  Andreas Schwab  <schwab@suse.de>
++
++	[BZ #20435]
++	* ports/sysdeps/unix/sysv/linux/arm/setcontext.S (__startcontext):
++	Mark as .cantunwind.
++
 +2015-02-24  Eric Rannaud  <e@nanocritical.com>
 +
 +	[BZ #17523]
@@ -622,10 +628,10 @@ index 81c393a..3d2063b 100644
  
  	[BZ #16529]
 diff --git a/NEWS b/NEWS
-index 98b479e..473e35a 100644
+index 98b479e..a1bb834 100644
 --- a/NEWS
 +++ b/NEWS
-@@ -5,6 +5,98 @@ See the end for copying conditions.
+@@ -5,6 +5,104 @@ See the end for copying conditions.
  Please send GNU C library bug reports via <http://sourceware.org/bugzilla/>
  using `glibc' in the "product" field.
  
@@ -720,6 +726,12 @@ index 98b479e..473e35a 100644
 +* The Sun RPC UDP client could exhaust all available stack space when
 +  flooded with crafted ICMP and UDP messages.  Reported by Aldy Hernandez'
 +  alloca plugin for GCC.  (CVE-2016-4429)
++
++* On ARM EABI (32-bit), generating a backtrace for execution contexts which
++  have been created with makecontext could fail to terminate due to a
++  missing .cantunwind annotation.  This has been observed to lead to a hang
++  (denial of service) in some Go applications compiled with gccgo.  Reported
++  by Andreas Schwab.  (CVE-2016-6323)
 +
  Version 2.19
  
@@ -3356,6 +3368,30 @@ index f6903b5..fed1dcb 100644
  #   define SINGLE_THREAD_P_PIC(x) SINGLE_THREAD_P
  #  endif
  # endif
+diff --git a/ports/sysdeps/unix/sysv/linux/arm/setcontext.S b/ports/sysdeps/unix/sysv/linux/arm/setcontext.S
+index 7b9b511..7da16a9 100644
+--- a/ports/sysdeps/unix/sysv/linux/arm/setcontext.S
++++ b/ports/sysdeps/unix/sysv/linux/arm/setcontext.S
+@@ -86,12 +86,19 @@ weak_alias(__setcontext, setcontext)
+ 
+ 	/* Called when a makecontext() context returns.  Start the
+ 	   context in R4 or fall through to exit().  */
++	/* Unwind descriptors are looked up based on PC - 2, so we have to
++	   make sure to mark the instruction preceding the __startcontext
++	   label as .cantunwind.  */
++	.fnstart
++	.cantunwind
++	nop
+ ENTRY(__startcontext)
+ 	movs    r0, r4
+ 	bne     PLTJMP(__setcontext)
+ 
+ 	@ New context was 0 - exit
+ 	b       PLTJMP(HIDDEN_JUMPTARGET(_exit))
++	.fnend
+ END(__startcontext)
+ 
+ #ifdef PIC
 diff --git a/ports/sysdeps/unix/sysv/linux/generic/open.c b/ports/sysdeps/unix/sysv/linux/generic/open.c
 index 4f73fa0..b4c6834 100644
 --- a/ports/sysdeps/unix/sysv/linux/generic/open.c
