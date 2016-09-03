@@ -1,4 +1,4 @@
-glibc (2.19-18+deb8u6) UNRELEASED; urgency=medium
+glibc (2.19-18+deb8u6) stable; urgency=medium
 
   * Update from upstream stable branch:
     - Fix backtrace hang on armel/armhf, possibly causing a minor
@@ -12,7 +12,7 @@ glibc (2.19-18+deb8u6) UNRELEASED; urgency=medium
     patch cvs-resolv-ipv6-nameservers.diff taken from upstream. This fixes
     mtr on systems using only IPv6 nameservers.  Closes: #818281.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sat, 13 Aug 2016 17:57:34 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 03 Sep 2016 22:39:43 +0200
 
 glibc (2.19-18+deb8u5) stable; urgency=medium
 
