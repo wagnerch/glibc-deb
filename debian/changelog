@@ -7,6 +7,11 @@ glibc (2.19-18+deb8u7) UNRELEASED; urgency=medium
   * debian/patches/any/cvs-hesiod-resolver.diff: patch from upstream to
     fix a regression introduced by cvs-resolv-ipv6-nameservers.diff in
     hesiod.  Closes: #821358.
+  * debian/sysdeps/{amd64,i386,x32}.mk: disable lock elision (aka Intel TSX)
+    on x86 architectures. This causes programs (wrongly) unlocking an already
+    unlocked mutex to abort. More importantly most of the other distributions
+    decided to disable it, so we don't want to be the only distribution left
+    testing this code path.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 04 Sep 2016 01:26:19 +0200
 
