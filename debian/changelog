@@ -2,7 +2,7 @@ glibc (2.19-18+deb8u7) UNRELEASED; urgency=medium
 
   [ Aurelien Jarno ]
   * Update from upstream stable branch:
-    - Do not unconditionally use the fqsrt instruction on 64-bit PowerPC
+    - Do not unconditionally use the fsqrt instruction on 64-bit PowerPC
       CPUs.  Closes: #843904.
   * debian/patches/any/cvs-hesiod-resolver.diff: patch from upstream to
     fix a regression introduced by cvs-resolv-ipv6-nameservers.diff in
