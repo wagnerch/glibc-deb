@@ -1,4 +1,4 @@
-glibc (2.19-18+deb8u7) UNRELEASED; urgency=medium
+glibc (2.19-18+deb8u7) stable; urgency=medium
 
   [ Aurelien Jarno ]
   * Update from upstream stable branch:
@@ -13,7 +13,7 @@ glibc (2.19-18+deb8u7) UNRELEASED; urgency=medium
     decided to disable it, so we don't want to be the only distribution left
     testing this code path.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 04 Sep 2016 01:26:19 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 24 Nov 2016 23:48:11 +0100
 
 glibc (2.19-18+deb8u6) stable; urgency=medium
 
