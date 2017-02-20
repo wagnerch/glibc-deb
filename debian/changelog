@@ -1,3 +1,11 @@
+glibc (2.19-18+deb8u8) UNRELEASED; urgency=medium
+
+  [ Aurelien Jarno ]
+  * Update from upstream stable branch:
+    - Fix PowerPC sqrt inaccuracy.  Closes: #855606.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 20 Feb 2017 23:30:47 +0100
+
 glibc (2.19-18+deb8u7) stable; urgency=medium
 
   [ Aurelien Jarno ]
