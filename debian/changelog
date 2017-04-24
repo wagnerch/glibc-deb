@@ -1,4 +1,4 @@
-glibc (2.19-18+deb8u8) UNRELEASED; urgency=medium
+glibc (2.19-18+deb8u8) stable; urgency=medium
 
   [ Aurelien Jarno ]
   * Update from upstream stable branch:
@@ -7,7 +7,7 @@ glibc (2.19-18+deb8u8) UNRELEASED; urgency=medium
     NULL pointer dereference in libresolv when receiving a T_UNSPEC internal
     QTYPE (CVE-2015-5180).  Closes: #796106.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 20 Feb 2017 23:30:47 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 24 Apr 2017 06:41:38 +0200
 
 glibc (2.19-18+deb8u7) stable; urgency=medium
 
