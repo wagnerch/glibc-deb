@@ -274,4 +274,3 @@ any/cvs-wscanf.diff
 any/cvs-ldconfig-aux-cache.diff
 any/cvs-grantpt-pty-owner.diff
 any/cvs-hesiod-resolver.diff
-any/cvs-resolv-internal-qtype.diff
