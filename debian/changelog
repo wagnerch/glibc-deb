@@ -1,9 +1,9 @@
-glibc (2.19-18+deb8u9) UNRELEASED; urgency=medium
+glibc (2.19-18+deb8u9) stable; urgency=medium
 
   * Remove patches/any/cvs-resolv-internal-qtype.diff, it breaks the
     libnss/libnss-dns ABI.  Reopens: #796106.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 27 Apr 2017 22:59:00 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 27 Apr 2017 23:00:02 +0200
 
 glibc (2.19-18+deb8u8) stable; urgency=medium
 
