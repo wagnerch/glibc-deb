@@ -17,7 +17,7 @@ glibc (2.24-11+deb9u2) UNRELEASED; urgency=medium
     - debian/patches/any/cvs-hwcap-AT_SECURE.diff: drop, merged upstream.
     - Avoid use-after-free read access in clntudp_call (CVE-2017-12133).
       Closes: #870648.
-    - Fix compatiblity with Intel C++ __regcall calling convention.  Closes:
+    - Fix compatibility with Intel C++ __regcall calling convention.  Closes:
       #881850.
     - Fix a buffer overrun in rpcgen.
     - Fix strlen on null pointer in nss_nisplus.
