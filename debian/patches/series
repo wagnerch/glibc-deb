@@ -215,12 +215,5 @@ any/local-dynamic-resolvconf.diff
 any/local-libpic.diff
 any/local-bootstrap-headers.diff
 any/submitted-dlopen-noload.diff
-any/submitted-perl-inc.diff
 any/submitted-unicode-9.0.0.diff
-any/cvs-remove-pid-tid-cache-clone.diff
 any/cvs-malloc-hardening.diff
-any/local-CVE-2017-1000366-rtld-LD_LIBRARY_PATH.diff
-any/local-CVE-2017-1000366-rtld-LD_PRELOAD.diff
-any/local-CVE-2017-1000366-rtld-LD_AUDIT.diff
-any/cvs-vectorized-strcspn-guards.diff
-any/cvs-hwcap-AT_SECURE.diff
