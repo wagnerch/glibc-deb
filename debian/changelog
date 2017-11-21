@@ -24,6 +24,9 @@ glibc (2.24-11+deb9u2) UNRELEASED; urgency=medium
     - Fix invalid cast in group merging affecting ppc64 and s390x.
     - Define collation for Malayalam chillu characters.
     - Correct collation of U+0D36 and U+0D37 Malayalam characters.
+  * debian/script.in/nohwcap.sh: always check for all optimized packages
+    as multiarch allows one to install foreign architectures.  Closes:
+    #882272.
 
   [ Santiago Vila ]
   * debian/debhelper.in/libc-bin.postinst: do not update /etc/nsswitch.conf
