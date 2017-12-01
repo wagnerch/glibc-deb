@@ -1,4 +1,4 @@
-glibc (2.24-11+deb9u2) UNRELEASED; urgency=medium
+glibc (2.24-11+deb9u2) stretch; urgency=medium
 
   [ Aurelien Jarno ]
   * debian/control.in/x32: Add a gcc-multilib Recommends for libc6-dev-x32.
@@ -32,7 +32,7 @@ glibc (2.24-11+deb9u2) UNRELEASED; urgency=medium
   * debian/debhelper.in/libc-bin.postinst: do not update /etc/nsswitch.conf
     when its content already matches the default.  Closes: #865144.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 20 Aug 2017 13:58:01 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Fri, 01 Dec 2017 21:09:18 +0100
 
 glibc (2.24-11+deb9u1) stretch-security; urgency=medium
 
