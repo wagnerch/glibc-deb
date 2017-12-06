@@ -147,6 +147,12 @@ $(stamp)debhelper-common:
 	  esac; \
 	done
 
+	# We need the NOHWCAP code also for the transitional libc6-i686 package
+ifeq ($(DEB_HOST_ARCH),i386)
+	cp debian/libc-otherbuild.postinst debian/libc6-i686.postinst
+	cp debian/libc-otherbuild.postrm debian/libc6-i686.postrm
+endif
+
 	# Install nscd systemd files on linux
 ifeq ($(DEB_HOST_ARCH_OS),linux)
 	cp nscd/nscd.service debian/nscd.service

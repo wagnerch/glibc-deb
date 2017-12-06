@@ -1,3 +1,13 @@
+glibc (2.24-11+deb9u3) UNRELEASED; urgency=medium
+
+  [ Aurelien Jarno ]
+  * debian/rules.d/debhelper.mk: install the libc-otherbuild postinst and
+    postrm in the libc6-i686 transitional package, to make sure
+    /etc/ld.so.nohwcap is correctly removed after an upgrade.  Closes:
+    #883394.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 06 Dec 2017 21:58:24 +0100
+
 glibc (2.24-11+deb9u2) stretch; urgency=medium
 
   [ Aurelien Jarno ]
