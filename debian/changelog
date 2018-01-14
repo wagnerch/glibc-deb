@@ -1,4 +1,4 @@
-glibc (2.24-11+deb9u3) UNRELEASED; urgency=medium
+glibc (2.24-11+deb9u3) stretch; urgency=medium
 
   [ Aurelien Jarno ]
   * debian/rules.d/debhelper.mk: install the libc-otherbuild postinst and
@@ -6,7 +6,7 @@ glibc (2.24-11+deb9u3) UNRELEASED; urgency=medium
     /etc/ld.so.nohwcap is correctly removed after an upgrade.  Closes:
     #883394.
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 06 Dec 2017 21:58:24 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 14 Jan 2018 11:39:44 +0100
 
 glibc (2.24-11+deb9u2) stretch; urgency=medium
 
