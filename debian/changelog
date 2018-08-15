@@ -1,3 +1,20 @@
+glibc (2.24-11+deb9u4) UNRELEASED; urgency=medium
+
+  [ Aurelien Jarno ]
+  * debian/patches/git-updates.diff: update from upstream stable branch:
+    - Fix buffer overflow in glob with GLOB_TILDE (CVE-2017-15670).  Closes:
+      #879501.
+    - Fix memory leak in glob with GLOB_TILDE (CVE-2017-15671).  Closes:
+      #879500.
+    - Fix a buffer overflow in glob with GLOB_TILDE in unescaping
+      (CVE-2017-15804).  Closes: #879955.
+    - Fix a memory leak in ld.so (CVE-2017-1000408).  Closes: #884132.
+    - Fix a buffer overflow in ld.so (CVE-2017-1000409).  Closes: #884133.
+    - Fixes incorrect RPATH/RUNPATH handling for SUID binaries
+      (CVE-2017-16997).  Closes: #884615.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 15 Aug 2018 11:01:50 +0200
+
 glibc (2.24-11+deb9u3) stretch; urgency=medium
 
   [ Aurelien Jarno ]
