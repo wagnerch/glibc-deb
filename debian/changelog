@@ -12,6 +12,12 @@ glibc (2.24-11+deb9u4) UNRELEASED; urgency=medium
     - Fix a buffer overflow in ld.so (CVE-2017-1000409).  Closes: #884133.
     - Fixes incorrect RPATH/RUNPATH handling for SUID binaries
       (CVE-2017-16997).  Closes: #884615.
+    - Fix a data corruption in SSE2-optimized memmove implementation for
+      i386 (CVE-2017-18269).
+    - Fix a stack-based buffer overflow in the realpath function
+      (CVE-2018-11236).  Closes: #899071.
+    - Fix a buffer overflow in the AVX-512-optimized implementation of the
+      mempcpy function (CVE-2018-11237).  Closes: #899070.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 15 Aug 2018 11:01:50 +0200
 
