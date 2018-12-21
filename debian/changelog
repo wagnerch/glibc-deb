@@ -19,6 +19,11 @@ glibc (2.24-11+deb9u4) UNRELEASED; urgency=medium
     - Fix a buffer overflow in the AVX-512-optimized implementation of the
       mempcpy function (CVE-2018-11237).  Closes: #899070.
 
+  [ Sebastian Andrzej Siewior ]
+  * patches/any/local-condvar-do-not-use-requeue-for-pshared-condvars.patch:
+    patch to fix pthread_cond_wait() in the pshared case on non-x86.  Closes:
+    #904158.
+
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 15 Aug 2018 11:01:50 +0200
 
 glibc (2.24-11+deb9u3) stretch; urgency=medium
