@@ -1,10 +1,41 @@
 GIT update of git://sourceware.org/git/glibc.git/release/2.24/master from glibc-2.24
 
 diff --git a/ChangeLog b/ChangeLog
-index c44c926094..988615f03b 100644
+index c44c926094..82767ac063 100644
 --- a/ChangeLog
 +++ b/ChangeLog
-@@ -1,3 +1,915 @@
+@@ -1,3 +1,946 @@
++2018-01-11  Florian Weimer  <fweimer@redhat.com>
++
++	* sysdeps/gnu/unwind-resume.c (__libgcc_s_init): Update comment
++	and error message.
++
++2018-01-16  Florian Weimer  <fweimer@redhat.com>
++
++	* nptl/Makefile (CFLAGS-tst-minstack-throw.o): Compile in C++11
++	mode with GNU extensions.
++
++2018-01-11  Florian Weimer  <fweimer@redhat.com>
++
++	[BZ #22636]
++	* nptl/Makefile (tests): Add tst-minstack-cancel, tst-minstack-exit.
++	* nptl/tst-minstack-cancel.c, nptl/tst-minstack-exit.c: New files.
++
++2018-01-10  Florian Weimer  <fweimer@redhat.com>
++
++	[BZ #22636]
++	* sysdeps/nptl/unwind-forcedunwind.c (pthread_cancel_init): Open
++	libgcc.so with RTLD_NOW, to avoid lazy binding during unwind.
++
++2018-01-08  Szabolcs Nagy  <szabolcs.nagy@arm.com>
++
++	[BZ #22637]
++	* nptl/descr.h (stackblock, stackblock_size): Update comments.
++	* nptl/allocatestack.c (allocate_stack): Add guardsize to stacksize.
++	* nptl/nptl-init.c (__pthread_get_minstack): Remove guardsize from
++	stacksize.
++	* nptl/pthread_getattr_np.c (pthread_getattr_np): Likewise.
++
 +2018-05-23  Andreas Schwab  <schwab@suse.de>
 +
 +	[BZ #23196]
@@ -975,10 +1006,10 @@ index 03fd89c13e..ee379f5852 100644
  
  ifndef avoid-generated
 diff --git a/NEWS b/NEWS
-index b0447e7169..13ac8dd911 100644
+index b0447e7169..9a11b86b11 100644
 --- a/NEWS
 +++ b/NEWS
-@@ -5,6 +5,80 @@ See the end for copying conditions.
+@@ -5,6 +5,82 @@ See the end for copying conditions.
  Please send GNU C library bug reports via <http://sourceware.org/bugzilla/>
  using `glibc' in the "product" field.
  
@@ -1048,6 +1079,8 @@ index b0447e7169..13ac8dd911 100644
 +  [21609] x86-64: Align the stack in __tls_get_addr
 +  [21624] Unsafe alloca allows local attackers to alias stack and heap (CVE-2017-1000366)
 +  [21654] nss: Fix invalid cast in group merging
++  [22636] PTHREAD_STACK_MIN is too small on x86-64
++  [22637] nptl: Fix stack guard size accounting
 +  [22644] string: memmove-sse2-unaligned on 32bit x86 produces garbage when
 +    crossing 2GB threshold (CVE-2017-18269)
 +  [22715] x86-64: Properly align La_x86_64_retval to VEC_SIZE
@@ -2414,7 +2447,7 @@ index 7f698b4e6d..cb5acce01d 100644
        *errnop = EINVAL;
        return NSS_STATUS_UNAVAIL;
 diff --git a/nptl/Makefile b/nptl/Makefile
-index 0d8aadebed..fa925819ca 100644
+index 0d8aadebed..1aa52afd71 100644
 --- a/nptl/Makefile
 +++ b/nptl/Makefile
 @@ -268,7 +268,7 @@ tests = tst-typesizes \
@@ -2426,8 +2459,19 @@ index 0d8aadebed..fa925819ca 100644
  	tst-exit1 tst-exit2 tst-exit3 \
  	tst-stdio1 tst-stdio2 \
  	tst-stack1 tst-stack2 tst-stack3 tst-stack4 tst-pthread-getattr \
+@@ -290,7 +290,9 @@ tests = tst-typesizes \
+ 	tst-initializers1 $(addprefix tst-initializers1-,\
+ 			    c89 gnu89 c99 gnu99 c11 gnu11) \
+ 	tst-bad-schedattr \
+-	tst-thread_local1 tst-mutex-errorcheck tst-robust10
++	tst-thread_local1 tst-mutex-errorcheck tst-robust10 \
++	tst-minstack-cancel tst-minstack-exit
++
+ xtests = tst-setuid1 tst-setuid1-static tst-setuid2 \
+ 	tst-mutexpp1 tst-mutexpp6 tst-mutexpp10
+ test-srcs = tst-oddstacklimit
 diff --git a/nptl/allocatestack.c b/nptl/allocatestack.c
-index 6b42b11d5a..7365ca606b 100644
+index 6b42b11d5a..9aba97fe7c 100644
 --- a/nptl/allocatestack.c
 +++ b/nptl/allocatestack.c
 @@ -440,9 +440,6 @@ allocate_stack (const struct pthread_attr *attr, struct pthread **pdp,
@@ -2440,7 +2484,18 @@ index 6b42b11d5a..7365ca606b 100644
        /* Don't allow setxid until cloned.  */
        pd->setxid_futex = -1;
  
-@@ -579,9 +576,6 @@ allocate_stack (const struct pthread_attr *attr, struct pthread **pdp,
+@@ -487,6 +484,10 @@ allocate_stack (const struct pthread_attr *attr, struct pthread **pdp,
+       /* Make sure the size of the stack is enough for the guard and
+ 	 eventually the thread descriptor.  */
+       guardsize = (attr->guardsize + pagesize_m1) & ~pagesize_m1;
++      if (guardsize < attr->guardsize || size + guardsize < guardsize)
++	/* Arithmetic overflow.  */
++	return EINVAL;
++      size += guardsize;
+       if (__builtin_expect (size < ((guardsize + __static_tls_size
+ 				     + MINIMAL_REST_STACK + pagesize_m1)
+ 				    & ~pagesize_m1),
+@@ -579,9 +580,6 @@ allocate_stack (const struct pthread_attr *attr, struct pthread **pdp,
  	  /* Don't allow setxid until cloned.  */
  	  pd->setxid_futex = -1;
  
@@ -2450,7 +2505,7 @@ index 6b42b11d5a..7365ca606b 100644
  	  /* Allocate the DTV for this thread.  */
  	  if (_dl_allocate_tls (TLS_TPADJ (pd)) == NULL)
  	    {
-@@ -875,9 +869,6 @@ __reclaim_stacks (void)
+@@ -875,9 +873,6 @@ __reclaim_stacks (void)
  	  /* This marks the stack as free.  */
  	  curp->tid = 0;
  
@@ -2460,7 +2515,7 @@ index 6b42b11d5a..7365ca606b 100644
  	  /* Account for the size of the stack.  */
  	  stack_cache_actsize += curp->stackblock_size;
  
-@@ -903,13 +894,6 @@ __reclaim_stacks (void)
+@@ -903,13 +898,6 @@ __reclaim_stacks (void)
  	}
      }
  
@@ -2474,7 +2529,7 @@ index 6b42b11d5a..7365ca606b 100644
    /* Add the stack of all running threads to the cache.  */
    list_splice (&stack_used, &stack_cache);
  
-@@ -1054,9 +1038,9 @@ setxid_signal_thread (struct xid_command *cmdp, struct pthread *t)
+@@ -1054,9 +1042,9 @@ setxid_signal_thread (struct xid_command *cmdp, struct pthread *t)
      return 0;
  
    int val;
@@ -2487,7 +2542,7 @@ index 6b42b11d5a..7365ca606b 100644
    /* If this failed, it must have had not started yet or else exited.  */
    if (!INTERNAL_SYSCALL_ERROR_P (val, err))
 diff --git a/nptl/descr.h b/nptl/descr.h
-index 8e4938deb5..bc92abf010 100644
+index 8e4938deb5..7e62c3cb23 100644
 --- a/nptl/descr.h
 +++ b/nptl/descr.h
 @@ -167,8 +167,8 @@ struct pthread
@@ -2501,8 +2556,20 @@ index 8e4938deb5..bc92abf010 100644
  
    /* List of robust mutexes the thread is holding.  */
  #ifdef __PTHREAD_MUTEX_HAVE_PREV
+@@ -363,9 +363,9 @@ struct pthread
+   /* Machine-specific unwind info.  */
+   struct _Unwind_Exception exc;
+ 
+-  /* If nonzero pointer to area allocated for the stack and its
+-     size.  */
++  /* If nonzero, pointer to the area allocated for the stack and guard. */
+   void *stackblock;
++  /* Size of the stackblock area including the guard.  */
+   size_t stackblock_size;
+   /* Size of the included guard area.  */
+   size_t guardsize;
 diff --git a/nptl/nptl-init.c b/nptl/nptl-init.c
-index bdbdfedcef..48fab50c4e 100644
+index bdbdfedcef..4dabb64722 100644
 --- a/nptl/nptl-init.c
 +++ b/nptl/nptl-init.c
 @@ -184,18 +184,12 @@ __nptl_set_robust (struct pthread *self)
@@ -2546,6 +2613,16 @@ index bdbdfedcef..48fab50c4e 100644
        || si->si_code != SI_TKILL)
      return;
  
+@@ -504,8 +493,5 @@ strong_alias (__pthread_initialize_minimal_internal,
+ size_t
+ __pthread_get_minstack (const pthread_attr_t *attr)
+ {
+-  struct pthread_attr *iattr = (struct pthread_attr *) attr;
+-
+-  return (GLRO(dl_pagesize) + __static_tls_size + PTHREAD_STACK_MIN
+-	  + iattr->guardsize);
++  return GLRO(dl_pagesize) + __static_tls_size + PTHREAD_STACK_MIN;
+ }
 diff --git a/nptl/pthread_cancel.c b/nptl/pthread_cancel.c
 index 1419baf988..89d02e1741 100644
 --- a/nptl/pthread_cancel.c
@@ -2584,10 +2661,25 @@ index 1419baf988..89d02e1741 100644
  	    result = INTERNAL_SYSCALL_ERRNO (val, err);
  #else
 diff --git a/nptl/pthread_getattr_np.c b/nptl/pthread_getattr_np.c
-index fb906f0484..32d7484bf8 100644
+index fb906f0484..c2dfa13fa9 100644
 --- a/nptl/pthread_getattr_np.c
 +++ b/nptl/pthread_getattr_np.c
-@@ -68,7 +68,6 @@ pthread_getattr_np (pthread_t thread_id, pthread_attr_t *attr)
+@@ -57,9 +57,12 @@ pthread_getattr_np (pthread_t thread_id, pthread_attr_t *attr)
+   /* The sizes are subject to alignment.  */
+   if (__glibc_likely (thread->stackblock != NULL))
+     {
+-      iattr->stacksize = thread->stackblock_size;
++      /* The stack size reported to the user should not include the
++	 guard size.  */
++      iattr->stacksize = thread->stackblock_size - thread->guardsize;
+ #if _STACK_GROWS_DOWN
+-      iattr->stackaddr = (char *) thread->stackblock + iattr->stacksize;
++      iattr->stackaddr = (char *) thread->stackblock
++			 + thread->stackblock_size;
+ #else
+       iattr->stackaddr = (char *) thread->stackblock;
+ #endif
+@@ -68,7 +71,6 @@ pthread_getattr_np (pthread_t thread_id, pthread_attr_t *attr)
      {
        /* No stack information available.  This must be for the initial
  	 thread.  Get the info in some magical way.  */
@@ -2797,6 +2889,112 @@ index 0000000000..4327d8d41c
 +
 +  return 0;
 +}
+diff --git a/nptl/tst-minstack-cancel.c b/nptl/tst-minstack-cancel.c
+new file mode 100644
+index 0000000000..a306320e88
+--- /dev/null
++++ b/nptl/tst-minstack-cancel.c
+@@ -0,0 +1,48 @@
++/* Test cancellation with a minimal stack size.
++   Copyright (C) 2018 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <http://www.gnu.org/licenses/>.  */
++
++/* Note: This test is similar to tst-minstack-exit, but is separate to
++   avoid spurious test passes due to warm-up effects.  */
++
++#include <limits.h>
++#include <unistd.h>
++#include <support/check.h>
++#include <support/xthread.h>
++
++static void *
++threadfunc (void *closure)
++{
++  while (1)
++    pause ();
++  return NULL;
++}
++
++static int
++do_test (void)
++{
++  pthread_attr_t attr;
++  xpthread_attr_init (&attr);
++  xpthread_attr_setstacksize (&attr, PTHREAD_STACK_MIN);
++  pthread_t thr = xpthread_create (&attr, threadfunc, NULL);
++  xpthread_cancel (thr);
++  TEST_VERIFY (xpthread_join (thr) == PTHREAD_CANCELED);
++  xpthread_attr_destroy (&attr);
++  return 0;
++}
++
++#include <support/test-driver.c>
+diff --git a/nptl/tst-minstack-exit.c b/nptl/tst-minstack-exit.c
+new file mode 100644
+index 0000000000..9c7e9a4dfe
+--- /dev/null
++++ b/nptl/tst-minstack-exit.c
+@@ -0,0 +1,46 @@
++/* Test that pthread_exit works with the minimum stack size.
++   Copyright (C) 2018 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <http://www.gnu.org/licenses/>.  */
++
++/* Note: This test is similar to tst-minstack-cancel, but is separate
++   to avoid spurious test passes due to warm-up effects.  */
++
++#include <limits.h>
++#include <unistd.h>
++#include <support/check.h>
++#include <support/xthread.h>
++
++static void *
++threadfunc (void *closure)
++{
++  pthread_exit (threadfunc);
++  return NULL;
++}
++
++static int
++do_test (void)
++{
++  pthread_attr_t attr;
++  xpthread_attr_init (&attr);
++  xpthread_attr_setstacksize (&attr, PTHREAD_STACK_MIN);
++  pthread_t thr = xpthread_create (&attr, threadfunc, NULL);
++  TEST_VERIFY (xpthread_join (thr) == threadfunc);
++  xpthread_attr_destroy (&attr);
++  return 0;
++}
++
++#include <support/test-driver.c>
 diff --git a/nptl/tst-once5.cc b/nptl/tst-once5.cc
 index 978d8271bd..513ac53f6f 100644
 --- a/nptl/tst-once5.cc
@@ -14543,6 +14741,30 @@ index 0000000000..f092d0bf8b
 +#include <posix/globfree.c>
 +
 +libc_hidden_def (globfree64)
+diff --git a/sysdeps/gnu/unwind-resume.c b/sysdeps/gnu/unwind-resume.c
+index 5d25e73dd1..e81b65692a 100644
+--- a/sysdeps/gnu/unwind-resume.c
++++ b/sysdeps/gnu/unwind-resume.c
+@@ -35,13 +35,17 @@ __libgcc_s_init (void)
+   void *resume, *personality;
+   void *handle;
+ 
+-  handle = __libc_dlopen (LIBGCC_S_SO);
++  /* Use RTLD_NOW here for consistency with pthread_cancel_init.
++     RTLD_NOW will rarely make a difference here because unwinding is
++     already in progress, so libgcc_s.so has already been loaded if
++     its unwinder is used.  */
++  handle = __libc_dlopen_mode (LIBGCC_S_SO, RTLD_NOW | __RTLD_DLOPEN);
+ 
+   if (handle == NULL
+       || (resume = __libc_dlsym (handle, "_Unwind_Resume")) == NULL
+       || (personality = __libc_dlsym (handle, "__gcc_personality_v0")) == NULL)
+     __libc_fatal (LIBGCC_S_SO
+-                  " must be installed for pthread_cancel to work\n");
++                  " must be installed for unwinding to work\n");
+ 
+ #ifdef PTR_MANGLE
+   PTR_MANGLE (resume);
 diff --git a/sysdeps/hppa/dl-machine.h b/sysdeps/hppa/dl-machine.h
 index 9404211819..01bd5bf197 100644
 --- a/sysdeps/hppa/dl-machine.h
@@ -14941,6 +15163,19 @@ index 616d897a36..a5d1e86d71 100644
        /* Release acquired locks in the multi-threaded case.  */
        if (multiple_threads)
  	{
+diff --git a/sysdeps/nptl/unwind-forcedunwind.c b/sysdeps/nptl/unwind-forcedunwind.c
+index ca757c48ce..24a1c5b30d 100644
+--- a/sysdeps/nptl/unwind-forcedunwind.c
++++ b/sysdeps/nptl/unwind-forcedunwind.c
+@@ -49,7 +49,7 @@ pthread_cancel_init (void)
+       return;
+     }
+ 
+-  handle = __libc_dlopen (LIBGCC_S_SO);
++  handle = __libc_dlopen_mode (LIBGCC_S_SO, RTLD_NOW | __RTLD_DLOPEN);
+ 
+   if (handle == NULL
+       || (resume = __libc_dlsym (handle, "_Unwind_Resume")) == NULL
 diff --git a/sysdeps/posix/wait3.c b/sysdeps/posix/wait3.c
 index cf43d973a7..73722d2be6 100644
 --- a/sysdeps/posix/wait3.c

@@ -18,6 +18,9 @@ glibc (2.24-11+deb9u4) UNRELEASED; urgency=medium
       (CVE-2018-11236).  Closes: #899071.
     - Fix a buffer overflow in the AVX-512-optimized implementation of the
       mempcpy function (CVE-2018-11237).  Closes: #899070.
+    - Fix stack guard size accounting and reduce stack usage during
+      unwinding to avoid segmentation faults on CPUs with AVX512-F.  Closes:
+      #903554.
 
   [ Sebastian Andrzej Siewior ]
   * patches/any/local-condvar-do-not-use-requeue-for-pshared-condvars.patch:
