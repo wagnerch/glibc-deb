@@ -22,6 +22,8 @@ glibc (2.24-11+deb9u4) UNRELEASED; urgency=medium
       unwinding to avoid segmentation faults on CPUs with AVX512-F.  Closes:
       #903554.
     - Fix a use after free in pthread_create().  Closes: #916925.
+  * debian/debhelper.in/libc.postinst, script.in/nsscheck.sh: check for
+    postgresql in NSS check.  Closes: #710275.
 
   [ Sebastian Andrzej Siewior ]
   * patches/any/local-condvar-do-not-use-requeue-for-pshared-condvars.patch:
