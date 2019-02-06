@@ -1,4 +1,4 @@
-glibc (2.24-11+deb9u4) UNRELEASED; urgency=medium
+glibc (2.24-11+deb9u4) stretch; urgency=medium
 
   [ Aurelien Jarno ]
   * debian/patches/git-updates.diff: update from upstream stable branch:
@@ -30,7 +30,7 @@ glibc (2.24-11+deb9u4) UNRELEASED; urgency=medium
     patch to fix pthread_cond_wait() in the pshared case on non-x86.  Closes:
     #904158.
 
- -- Aurelien Jarno <aurel32@debian.org>  Wed, 15 Aug 2018 11:01:50 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 06 Feb 2019 22:17:41 +0100
 
 glibc (2.24-11+deb9u3) stretch; urgency=medium
 
