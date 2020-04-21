@@ -1,3 +1,12 @@
+glibc (2.31-8) UNRELEASED; urgency=medium
+
+  [ Stephen Kitt ]
+  * Build memusage and memusagestat in the libc pass and ship them into
+    libc-devtools. Move mtrace, sotruss and sprof into that package.
+    Closes: #91815.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 03 Jan 2021 17:09:39 +0100
+
 glibc (2.31-7) unstable; urgency=medium
 
   [ Samuel Thibault ]
