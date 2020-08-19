@@ -163,6 +163,7 @@ ifeq ($(filter stage1 stage2,$(DEB_BUILD_PROFILES)),)
 	echo 'libnsl-dev:Depends=libnsl-dev' >> tmp.substvars
 	echo 'libnss-nis:Depends=libnss-nis' >> tmp.substvars
 	echo 'libnss-nisplus:Depends=libnss-nisplus' >> tmp.substvars
+	echo 'rpcsvc-proto:Depends=rpcsvc-proto' >> tmp.substvars
 	echo 'libc-dev:Breaks=$(libc)-dev-$(DEB_HOST_ARCH)-cross (<< $(GLIBC_VERSION)~)' >> tmp.substvars
 endif
 	for pkg in $(DEB_ARCH_REGULAR_PACKAGES) $(DEB_INDEP_REGULAR_PACKAGES) $(DEB_UDEB_PACKAGES); do \

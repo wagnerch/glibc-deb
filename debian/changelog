@@ -1,3 +1,17 @@
+glibc (2.31-5) UNRELEASED; urgency=medium
+
+  * debian/rules.d/build.mk: stop passing --enable-obsolete-rpc.
+  * debian/debhelper.in/libc-dev.install{,.hurd-i386}: do not install
+    librpcsvc.a.
+  * debian/debhelper.in/libc-dev-bin.manpage, debian/local/manpages/rpcgen.1:
+    do not install rpcgen (1) manpage.
+  * debian/rules.d/build.mk: stop deleting <rpcsvc/yppasswd.h> and
+    <rpcsvc/yppasswd.x>.
+  * debian/control.in/libc, debian/rules.d/debhelper.mk: make libc6-dev to
+    depend on rpcsvc-proto, except for stage1 and stage2.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 11 Oct 2020 14:21:56 +0200
+
 glibc (2.31-4) unstable; urgency=medium
 
   [ Samuel Thibault ]
