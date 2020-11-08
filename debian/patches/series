@@ -30,7 +30,7 @@ arm/local-arm-futex.diff
 
 hppa/local-inlining.diff
 
-hurd-i386/posix_openpt.diff
+hurd-i386/git-posix_openpt.diff
 hurd-i386/local-enable-ldconfig.diff
 hurd-i386/tg-sysvshm.diff
 hurd-i386/tg-thread-cancel.diff
