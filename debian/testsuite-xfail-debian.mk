@@ -390,6 +390,8 @@ test-xfail-tst-waitid = yes
 # new in 2.33
 test-xfail-tst-cpu-features-cpuinfo = yes
 test-xfail-tst-cpu-features-supports = yes
+# Mach misses getting adjtime without privileges
+test-xfail-tst-adjtime = yes
 
 # actually never succeded
 test-xfail-tst-create_format1 = yes
