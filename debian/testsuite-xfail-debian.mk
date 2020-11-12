@@ -391,12 +391,12 @@ test-xfail-tst-malloc-usable-static-tunables = yes
 test-xfail-tst-malloc-usable-static = yes
 test-xfail-tst-get-cpu-features = yes
 test-xfail-test-fenv-sse-2 = yes
+test-xfail-test-fesetexcept-traps = yes
 
 # actually never succeded
 test-xfail-tst-create_format1 = yes
 test-xfail-tst-getcwd-abspath = yes
 test-xfail-tst-udp-error = yes
-test-xfail-test-fesetexcept-traps = yes
 
 # Child seems to be inheriting the lockf from the parent?
 test-xfail-tst-lockf = yes
