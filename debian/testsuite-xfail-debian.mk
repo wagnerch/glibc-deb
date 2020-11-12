@@ -303,10 +303,6 @@ test-xfail-tst-tzset = yes
 test-xfail-tst-prelink = yes
 test-xfail-tst-tls-atexit = yes
 
-# need get_cpu_features
-test-xfail-tst-get-cpu-features = yes
-test-xfail-test-fenv-sse-2 = yes
-
 # new in 2.24
 test-xfail-tst-spawn2 = yes
 
@@ -389,9 +385,12 @@ test-xfail-tst-waitid = yes
 
 # new in 2.33
 test-xfail-tst-cpu-features-cpuinfo = yes
-test-xfail-tst-cpu-features-supports = yes
 # Mach misses getting adjtime without privileges
 test-xfail-tst-adjtime = yes
+
+# fixed in 2.33
+test-xfail-tst-get-cpu-features = yes
+test-xfail-test-fenv-sse-2 = yes
 
 # actually never succeded
 test-xfail-tst-create_format1 = yes
