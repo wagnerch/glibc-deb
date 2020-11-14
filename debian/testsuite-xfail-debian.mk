@@ -275,9 +275,6 @@ test-xfail-tst-audit15 = yes
 test-xfail-tst-audit16 = yes
 test-xfail-tst-auditmany = yes
 
-# yes, ptsname_r works on the PTS slave side too
-test-xfail-tst-ptsname = yes
-
 # We always put LD_ORIGIN_PATH in the environment
 test-xfail-tst-execvpe5 = yes
 
@@ -392,6 +389,7 @@ test-xfail-tst-malloc-usable-static = yes
 test-xfail-tst-get-cpu-features = yes
 test-xfail-test-fenv-sse-2 = yes
 test-xfail-test-fesetexcept-traps = yes
+test-xfail-tst-ptsname = yes
 
 # actually never succeded
 test-xfail-tst-create_format1 = yes
