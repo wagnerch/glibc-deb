@@ -10,7 +10,7 @@ glibc (2.31-5) UNRELEASED; urgency=medium
   * debian/patches/hurd-i386/git-sbrk-end.diff: Remove the tst-sbrk tests,
     they fail on various architectures.  Closes: #972510.
   * debian/patches/hurd-i386/git-posix_openpt.diff: Note that patch is
-    commited upstream.
+    committed upstream.
   * debian/patches/hurd-i386/git-WAIT.diff: Fix printing fd in ps' WAIT
     output.
 
