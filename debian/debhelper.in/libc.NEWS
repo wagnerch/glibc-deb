@@ -1,3 +1,13 @@
+glibc (2.31-5) unstable; urgency=medium
+
+  Starting withglibc 2.31-5, the NIS(+) name service modules
+  libnss_nis.so.2.0.0 and libnss_nisplus.so.2.0.0 are not provided anymore by
+  the libc6 package. People needing those modules have to install the libnss
+  and/or the libnss-nisplus packages, which are recommended by the libc6
+  package.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 30 Nov 2020 22:11:43 +0100
+
 glibc (2.31-0experimental2) experimental; urgency=medium
 
   Starting with glibc 2.31, the DNS stub resolver does not blindly trust the
