@@ -1,5 +1,6 @@
 glibc (2.31-5) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
   * debian/testsuite-xfail-debian.mk: Update with 2.33 tests.
   * debian/patches/hurd-i386/git-clock-cputime.diff: New patch to support
     clock_gettime(CPUTIME).
@@ -12,6 +13,11 @@ glibc (2.31-5) UNRELEASED; urgency=medium
     commited upstream.
   * debian/patches/hurd-i386/git-WAIT.diff: Fix printing fd in ps' WAIT
     output.
+
+  [ Aurelien Jarno ]
+  * debian/patches/git-updates.diff: update from upstream stable branch:
+    - Fix missing floating-point rounding and exception handling functions
+      missing on SH4.  Closes: #975421.
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 10 Oct 2020 22:41:14 +0200
 
