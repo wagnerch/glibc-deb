@@ -6,7 +6,7 @@ glibc (2.31-5) unstable; urgency=medium
   and/or the libnss-nisplus packages, which are recommended by the libc6
   package.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 30 Nov 2020 22:11:43 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 01 Dec 2020 08:42:44 +0100
 
 glibc (2.31-0experimental2) experimental; urgency=medium
 
