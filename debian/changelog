@@ -18,6 +18,9 @@ glibc (2.31-5) UNRELEASED; urgency=medium
   * debian/patches/git-updates.diff: update from upstream stable branch:
     - Fix missing floating-point rounding and exception handling functions
       missing on SH4.  Closes: #975421.
+    - Fix an infinite loop in iconv with input containing redundant shift
+      sequences in the IBM1364, ++  IBM1371, IBM1388, IBM1390, or IBM1399
+      character sets (CVE-2020-27618).  Closes: #973914.
   * debian/patches/localedata/locale-C.diff: replace the LC_CTYPE definition
     by 'copy "i18n"'. Note that with this change the "blank", "cntrl",
     "space" classes do not conform to POSIX anymore, however this matches the
