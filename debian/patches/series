@@ -82,6 +82,10 @@ hurd-i386/git-bsd4.3-ioctls.diff
 hurd-i386/git-clock-cputime.diff
 hurd-i386/git-raise.diff
 hurd-i386/git-WAIT.diff
+hurd-i386/git-pthread_link_tests.diff
+hurd-i386/git-libpthread_syms.diff
+hurd-i386/git-libpthread-nodelete.diff
+hurd-i386/git-cthreads.diff
 
 i386/local-biarch.diff
 i386/unsubmitted-quiet-ldconfig.diff
