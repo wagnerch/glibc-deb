@@ -10,6 +10,7 @@ glibc (2.31-6) UNRELEASED; urgency=medium
   * debian/patches/hurd-i386/git-cthreads.diff: Fix build without cthreads.h.
   * debian/patches/hurd-i386/git-cthreads-symbols.diff: Fix libpthread
     detection from libc.
+  * debian/patches/hurd-i386/git-libpthread_plt.diff: Fix spurious PLT.
 
   [ Aurelien Jarno ]
   * debian/debhelper.in/libc.NEWS: fix the name if the libnss-nis package,
