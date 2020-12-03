@@ -86,6 +86,7 @@ hurd-i386/git-pthread_link_tests.diff
 hurd-i386/git-libpthread_syms.diff
 hurd-i386/git-libpthread-nodelete.diff
 hurd-i386/git-cthreads.diff
+hurd-i386/git-cthreads-symbols.diff
 
 i386/local-biarch.diff
 i386/unsubmitted-quiet-ldconfig.diff
