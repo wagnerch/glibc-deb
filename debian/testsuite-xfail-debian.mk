@@ -383,6 +383,7 @@ test-xfail-tst-cpu-features-cpuinfo = yes
 test-xfail-tst-cpu-features-support = yes
 # Mach misses getting adjtime without privileges
 test-xfail-tst-adjtime = yes
+test-xfail-tst-join15 = yes
 
 # fixed in 2.33
 test-xfail-tst-malloc-usable-static-tunables = yes

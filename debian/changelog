@@ -1,6 +1,7 @@
 glibc (2.31-6) UNRELEASED; urgency=medium
 
   [ Samuel Thibault ]
+  * debian/testsuite-xfail-debian.mk: Update with 2.33 tests.
   * debian/patches/hurd-i386/git-pthread_link_tests.diff: Fix linking static
     tests with the build libpthread.a.
   * debian/patches/hurd-i386/git-libpthread_syms.diff: Fix linking static tests
