@@ -357,9 +357,6 @@ test-xfail-tst-mallocfork2 = yes
 test-xfail-tst-updwtmpx = yes
 test-xfail-tst-lchmod = yes
 
-# new in 2.31
-test-xfail-tst-dlopenfail = yes
-
 # new in 2.32
 test-xfail-tst-safe-linking = yes
 # Assumes some linuxish strings
