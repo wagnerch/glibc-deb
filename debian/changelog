@@ -1,4 +1,4 @@
-glibc (2.31-6) UNRELEASED; urgency=medium
+glibc (2.31-6) unstable; urgency=medium
 
   [ Samuel Thibault ]
   * debian/testsuite-xfail-debian.mk: Update with 2.33 tests.
@@ -31,7 +31,7 @@ glibc (2.31-6) UNRELEASED; urgency=medium
   * debian/debhelper.in/libc.NEWS: fix the name if the libnss-nis package,
     thanks to Diederik de Haas for the hint.
 
- -- Samuel Thibault <sthibault@debian.org>  Tue, 01 Dec 2020 14:44:02 +0000
+ -- Samuel Thibault <sthibault@debian.org>  Wed, 16 Dec 2020 22:33:25 +0100
 
 glibc (2.31-5) unstable; urgency=medium
 
