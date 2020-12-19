@@ -9,8 +9,9 @@ glibc (2.31-7) UNRELEASED; urgency=medium
     git-sigstate_thread_reference.diff.
   * debian/patches/hurd-i386/git-siginfo_uesp.diff: Fix ss_sp field in
     siginfo.
+  * debian/patches/hurd-i386/git-mmap-EINVAL.diff: Fix mmap EINVAL return value.
 
- -- Samuel Thibault <sthibault@debian.org>  Mon, 21 Dec 2020 01:16:32 +0100
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 19 Dec 2020 17:56:27 +0000
 
 glibc (2.31-6) unstable; urgency=medium
 
