@@ -102,6 +102,7 @@ hurd-i386/git-SEM_VALUE_MAX.diff
 hurd-i386/git-sem-pshared.diff
 hurd-i386/git-sem-open-init.diff
 hurd-i386/git-sem-open.diff
+hurd-i386/git-siginfo_uesp.diff
 
 i386/local-biarch.diff
 i386/unsubmitted-quiet-ldconfig.diff
