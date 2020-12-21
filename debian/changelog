@@ -4,6 +4,8 @@ glibc (2.31-7) UNRELEASED; urgency=medium
     CLOCK_MONOTONIC_RAW, CLOCK_REALTIME_COARSE, CLOCK_MONOTONIC_COARSE.
   * debian/patches/hurd-i386/tg-hurdsig-SA_SIGINFO.diff: Rename to
     git-hurdsig-SA_SIGINFO.diff.
+  * debian/patches/hurd-i386/tg-sigstate_thread_reference.diff: Rename to
+    git-sigstate_thread_reference.diff.
 
  -- Samuel Thibault <sthibault@debian.org>  Mon, 21 Dec 2020 01:16:32 +0100
 

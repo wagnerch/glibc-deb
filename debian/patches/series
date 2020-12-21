@@ -49,7 +49,7 @@ hurd-i386/tg-EIEIO-fr.diff
 hurd-i386/tg-EGREGIOUS-fr.diff
 hurd-i386/unsubmitted-clock_t_centiseconds.diff
 hurd-i386/submitted-path_mounted.diff
-hurd-i386/tg-sigstate_thread_reference.diff
+hurd-i386/git-sigstate_thread_reference.diff
 hurd-i386/submitted-bind_umask2.diff
 hurd-i386/tg-bootstrap.diff
 hurd-i386/local-mach_print.diff
