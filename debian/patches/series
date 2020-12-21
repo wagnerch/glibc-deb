@@ -40,7 +40,7 @@ hurd-i386/tg-sendmsg-SCM_CREDS.diff
 hurd-i386/tg-mach-hurd-link.diff
 hurd-i386/local-ED.diff
 hurd-i386/local-madvise_warn.diff
-hurd-i386/tg-hurdsig-SA_SIGINFO.diff
+hurd-i386/git-hurdsig-SA_SIGINFO.diff
 hurd-i386/tg-hooks.diff
 hurd-i386/local-usr.diff
 hurd-i386/git-sbrk-end.diff
