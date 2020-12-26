@@ -1,5 +1,6 @@
 glibc (2.31-7) UNRELEASED; urgency=medium
 
+  * debian/testsuite-xfail-debian.mk: Update with 2.33 tests.
   * debian/patches/hurd-i386/local-clock_gettime_MONOTONIC.diff: Also accept
     CLOCK_MONOTONIC_RAW, CLOCK_REALTIME_COARSE, CLOCK_MONOTONIC_COARSE.
   * debian/patches/hurd-i386/tg-hurdsig-SA_SIGINFO.diff: Rename to

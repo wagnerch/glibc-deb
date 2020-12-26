@@ -242,6 +242,7 @@ test-xfail-tst-null-argv = yes
 
 # bounding memory allocation is not supported yet
 tests-unsupported += tst-malloc-thread-fail
+tests-unsupported += tst-malloc-thread-fail-mcheck
 tests-unsupported += tst-dynarray-fail
 
 # We don't provide /proc/cpuinfo yet
@@ -352,6 +353,7 @@ test-xfail-tst-res_hconf_reorder = yes
 test-xfail-tst-pututxline-cache = yes
 test-xfail-tst-pututxline-lockfail = yes
 test-xfail-tst-mallocfork2 = yes
+test-xfail-tst-mallocfork2-mcheck = yes
 
 # wants /proc/self/fd
 test-xfail-tst-updwtmpx = yes
