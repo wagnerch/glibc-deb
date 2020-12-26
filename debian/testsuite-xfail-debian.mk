@@ -333,7 +333,6 @@ test-xfail-tst-gmon-static-gprof = yes
 test-xfail-tst-tls1-static-non-pie = yes
 test-xfail-tst-libc_dlvsym-static = yes
 test-xfail-tst-libc_dlvsym = yes
-test-xfail-tst-spawn4 = yes
 test-xfail-tst-spawn4-compat = yes
 
 # want /proc/self/fd
@@ -391,6 +390,7 @@ test-xfail-tst-get-cpu-features = yes
 test-xfail-test-fenv-sse-2 = yes
 test-xfail-test-fesetexcept-traps = yes
 test-xfail-tst-ptsname = yes
+test-xfail-tst-spawn4 = yes
 
 # actually never succeded
 test-xfail-tst-create_format1 = yes
