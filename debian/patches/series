@@ -105,6 +105,7 @@ hurd-i386/git-sem-open.diff
 hurd-i386/git-siginfo_uesp.diff
 hurd-i386/git-mmap-EINVAL.diff
 hurd-i386/git-waitid.diff
+hurd-i386/git-hurd-version.diff
 
 i386/local-biarch.diff
 i386/unsubmitted-quiet-ldconfig.diff
