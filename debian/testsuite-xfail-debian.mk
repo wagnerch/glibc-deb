@@ -377,6 +377,7 @@ test-xfail-tst-stackguard1 = yes
 test-xfail-tst-ptrguard1-static = yes
 test-xfail-tst-ptrguard1 = yes
 test-xfail-tst-malloc-stats-cancellation = yes
+test-xfail-tst-malloc-stats-cancellation-mcheck = yes
 
 # new in 2.33
 test-xfail-tst-cpu-features-cpuinfo = yes
