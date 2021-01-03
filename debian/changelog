@@ -1,4 +1,4 @@
-glibc (2.31-7~0) UNRELEASED; urgency=medium
+glibc (2.31-7) unstable; urgency=medium
 
   [ Samuel Thibault ]
   * debian/testsuite-xfail-debian.mk: Update with 2.33 tests.
@@ -35,7 +35,7 @@ glibc (2.31-7~0) UNRELEASED; urgency=medium
   * debian/patches/any/git-ld.so-cache-endianness-markup.diff: backport ld.so
     cache endianness support from upstream.  Closes: #731082.
 
- -- Samuel Thibault <sthibault@debian.org>  Sat, 19 Dec 2020 17:56:27 +0000
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 03 Jan 2021 17:01:18 +0100
 
 glibc (2.31-6) unstable; urgency=medium
 
