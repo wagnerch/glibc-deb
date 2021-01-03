@@ -166,3 +166,4 @@ any/local-cudacc-float128.diff
 any/submitted-ld.so-cache-new-format.diff
 any/local-test-install.diff
 any/git-surplus-tls-accounting.diff
+any/git-ld.so-cache-endianness-markup.diff

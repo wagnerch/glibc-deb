@@ -32,6 +32,8 @@ glibc (2.31-7~0) UNRELEASED; urgency=medium
   * debian/local/manpages/po/pt_BR.po: recode to UTF-8 to make lintian happy.
   * debian/debhelper.in/*.lintian-overrides: update for recent lintian
     versions.
+  * debian/patches/any/git-ld.so-cache-endianness-markup.diff: backport ld.so
+    cache endianness support from upstream.  Closes: #731082.
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 19 Dec 2020 17:56:27 +0000
 
