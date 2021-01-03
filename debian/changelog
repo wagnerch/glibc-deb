@@ -26,6 +26,7 @@ glibc (2.31-7~0) UNRELEASED; urgency=medium
     #973430.
   * debian/patches/localedata/git-unicode-13-support.diff: backport Unicode 13
     support from upstream.  Closes: #977691.
+  * debian/local/manpages/po/pt_BR.po: recode to UTF-8 to make lintian happy.
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 19 Dec 2020 17:56:27 +0000
 
