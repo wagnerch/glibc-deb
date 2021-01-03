@@ -1,5 +1,6 @@
 glibc (2.31-7~0) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
   * debian/testsuite-xfail-debian.mk: Update with 2.33 tests.
   * debian/patches/hurd-i386/local-clock_gettime_MONOTONIC.diff: Also accept
     CLOCK_MONOTONIC_RAW, CLOCK_REALTIME_COARSE, CLOCK_MONOTONIC_COARSE.
@@ -19,6 +20,12 @@ glibc (2.31-7~0) UNRELEASED; urgency=medium
   * debian/libc0.3.symbols.hurd-i386: Add proc_waitid RPC.
   * debian/debhelper.in/libc-dev.install.hurd-i386: Add missing
     libpthread_syms.a.
+
+  [ Aurelien Jarno ]
+  * debian/sysdeps/arm64.mk: enable static PIE support on arm64.  Closes:
+    #973430.
+  * debian/patches/localedata/git-unicode-13-support.diff: backport Unicode 13
+    support from upstream.  Closes: #977691.
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 19 Dec 2020 17:56:27 +0000
 
