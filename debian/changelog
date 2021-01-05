@@ -4,6 +4,11 @@ glibc (2.31-9) UNRELEASED; urgency=medium
   * debian/testsuite-xfail-debian.mk: Update tests.
   * debian/patches/hurd-i386/git-mmap_addr.diff: Fix long-running ghc processes.
 
+  [ Aurelien Jarno ]
+  * debian/patches/git-updates.diff: update from upstream stable branch:
+    - Fix a buffer over-read when processing invalid multi-byte input
+      sequences in the EUC-KR encoding (CVE-2019-25013).  Closes: #979273.
+
  -- Samuel Thibault <sthibault@debian.org>  Sun, 03 Jan 2021 23:59:09 +0100
 
 glibc (2.31-8) experimental; urgency=medium

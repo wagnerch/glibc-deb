@@ -1,10 +1,10 @@
 GIT update of https://sourceware.org/git/glibc.git/release/2.31/master from glibc-2.31
 
 diff --git a/NEWS b/NEWS
-index 292fbc595a..9e514f5af1 100644
+index 292fbc595a..67d5e08f2a 100644
 --- a/NEWS
 +++ b/NEWS
-@@ -5,6 +5,63 @@ See the end for copying conditions.
+@@ -5,6 +5,65 @@ See the end for copying conditions.
  Please send GNU C library bug reports via <https://sourceware.org/bugzilla/>
  using `glibc' in the "product" field.
  
@@ -15,6 +15,8 @@ index 292fbc595a..9e514f5af1 100644
 +    (CVE-2016-10228)
 +  [20543] Please move from .gnu.linkonce to comdat
 +  [23296] Data race in setting function descriptor during lazy binding
++  [24973] iconv encounters segmentation fault when converting 0x00 0xfe in
++    EUC-KR to UTF-8 (CVE-2019-25013)
 +  [25487] sinl() stack corruption from crafted input (CVE-2020-10029)
 +  [25523] MIPS/Linux inline syscall template is miscompiled
 +  [25623] test-sysvmsg, test-sysvsem, test-sysvshm fail with 2.31 on 32 bit and
@@ -1622,6 +1624,95 @@ index 0000000000..d8db7b335c
 +  execute_test
 +  check_errtest_result
 +done
+diff --git a/iconvdata/Makefile b/iconvdata/Makefile
+index c83962f351..9ac3ccc77b 100644
+--- a/iconvdata/Makefile
++++ b/iconvdata/Makefile
+@@ -73,7 +73,7 @@ modules.so := $(addsuffix .so, $(modules))
+ ifeq (yes,$(build-shared))
+ tests = bug-iconv1 bug-iconv2 tst-loading tst-e2big tst-iconv4 bug-iconv4 \
+ 	tst-iconv6 bug-iconv5 bug-iconv6 tst-iconv7 bug-iconv8 bug-iconv9 \
+-	bug-iconv10 bug-iconv11 bug-iconv12
++	bug-iconv10 bug-iconv11 bug-iconv12 bug-iconv13
+ ifeq ($(have-thread-library),yes)
+ tests += bug-iconv3
+ endif
+diff --git a/iconvdata/bug-iconv13.c b/iconvdata/bug-iconv13.c
+new file mode 100644
+index 0000000000..87aaff398e
+--- /dev/null
++++ b/iconvdata/bug-iconv13.c
+@@ -0,0 +1,53 @@
++/* bug 24973: Test EUC-KR module
++   Copyright (C) 2020 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <https://www.gnu.org/licenses/>.  */
++
++#include <errno.h>
++#include <iconv.h>
++#include <stdio.h>
++#include <support/check.h>
++
++static int
++do_test (void)
++{
++  iconv_t cd = iconv_open ("UTF-8//IGNORE", "EUC-KR");
++  TEST_VERIFY_EXIT (cd != (iconv_t) -1);
++
++  /* 0xfe (->0x7e : row 94) and 0xc9 (->0x49 : row 41) are user-defined
++     areas, which are not allowed and should be skipped over due to
++     //IGNORE.  The trailing 0xfe also is an incomplete sequence, which
++     should be checked first.  */
++  char input[4] = { '\xc9', '\xa1', '\0', '\xfe' };
++  char *inptr = input;
++  size_t insize = sizeof (input);
++  char output[4];
++  char *outptr = output;
++  size_t outsize = sizeof (output);
++
++  /* This used to crash due to buffer overrun.  */
++  TEST_VERIFY (iconv (cd, &inptr, &insize, &outptr, &outsize) == (size_t) -1);
++  TEST_VERIFY (errno == EINVAL);
++  /* The conversion should produce one character, the converted null
++     character.  */
++  TEST_VERIFY (sizeof (output) - outsize == 1);
++
++  TEST_VERIFY_EXIT (iconv_close (cd) != -1);
++
++  return 0;
++}
++
++#include <support/test-driver.c>
+diff --git a/iconvdata/euc-kr.c b/iconvdata/euc-kr.c
+index b0d56cf3ee..1045bae926 100644
+--- a/iconvdata/euc-kr.c
++++ b/iconvdata/euc-kr.c
+@@ -80,11 +80,7 @@ euckr_from_ucs4 (uint32_t ch, unsigned char *cp)
+ 									      \
+     if (ch <= 0x9f)							      \
+       ++inptr;								      \
+-    /* 0xfe(->0x7e : row 94) and 0xc9(->0x59 : row 41) are		      \
+-       user-defined areas.  */						      \
+-    else if (__builtin_expect (ch == 0xa0, 0)				      \
+-	     || __builtin_expect (ch > 0xfe, 0)				      \
+-	     || __builtin_expect (ch == 0xc9, 0))			      \
++    else if (__glibc_unlikely (ch == 0xa0))				      \
+       {									      \
+ 	/* This is illegal.  */						      \
+ 	STANDARD_FROM_LOOP_ERR_HANDLER (1);				      \
 diff --git a/iconvdata/ibm1364.c b/iconvdata/ibm1364.c
 index 49e7267ab4..521f0825b7 100644
 --- a/iconvdata/ibm1364.c
@@ -1653,6 +1744,29 @@ index 49e7267ab4..521f0825b7 100644
  	curcs = sb;							      \
  	++inptr;							      \
  	continue;							      \
+diff --git a/iconvdata/ksc5601.h b/iconvdata/ksc5601.h
+index d3eb3a4ff8..f5cdc72797 100644
+--- a/iconvdata/ksc5601.h
++++ b/iconvdata/ksc5601.h
+@@ -50,15 +50,15 @@ ksc5601_to_ucs4 (const unsigned char **s, size_t avail, unsigned char offset)
+   unsigned char ch2;
+   int idx;
+ 
++  if (avail < 2)
++    return 0;
++
+   /* row 94(0x7e) and row 41(0x49) are user-defined area in KS C 5601 */
+ 
+   if (ch < offset || (ch - offset) <= 0x20 || (ch - offset) >= 0x7e
+       || (ch - offset) == 0x49)
+     return __UNKNOWN_10646_CHAR;
+ 
+-  if (avail < 2)
+-    return 0;
+-
+   ch2 = (*s)[1];
+   if (ch2 < offset || (ch2 - offset) <= 0x20 || (ch2 - offset) >= 0x7f)
+     return __UNKNOWN_10646_CHAR;
 diff --git a/include/sys/prctl.h b/include/sys/prctl.h
 index 0920ed642b..d33f3a290e 100644
 --- a/include/sys/prctl.h
