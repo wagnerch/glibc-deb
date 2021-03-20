@@ -8,6 +8,11 @@ glibc (2.31-10) UNRELEASED; urgency=medium
   * debian/testsuite-xfail-debian.mk: Update tests.
 
   [ Aurelien Jarno ]
+  * debian/patches/git-updates.diff: update from upstream stable branch:
+    - Fix a possible assertion failure in iconv when converting
+      from ISO-2022-JP-3 to UTF-8 (CVE-2021-3326).  Closes: #981198.
+    - Fix a possible double-free in nscd when processing a request for netgroup
+      lookup (CVE-2021-27645).  Closes: #983479.
   * debian/debhelper.in/libc.preinst: fallback to text mode in case 1) debconf
     is about to use the dialog frontend with whiptail or frontend and 2) the
     corresponding executable is unusable.  Closes: #984533.
