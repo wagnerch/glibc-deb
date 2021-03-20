@@ -1,10 +1,16 @@
 glibc (2.31-10) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
   * debian/patches/hurd-i386/git-tiocflush.diff: Cope with
     BSD 4.1-ish ioctl(..., TIOCFLUSH, NULL).
   * debian/debhelper.in/libc-udeb.install.hurd-i386: Add missing
     libmachuser/libhurduser.
   * debian/testsuite-xfail-debian.mk: Update tests.
+
+  [ Aurelien Jarno ]
+  * debian/debhelper.in/libc.preinst: fallback to text mode in case 1) debconf
+    is about to use the dialog frontend with whiptail or frontend and 2) the
+    corresponding executable is unusable.  Closes: #984533.
 
  -- Samuel Thibault <sthibault@debian.org>  Fri, 29 Jan 2021 23:41:53 +0000
 
