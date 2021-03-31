@@ -1,7 +1,7 @@
 glibc (2.31-11) UNRELEASED; urgency=medium
 
   * debian/debhelper.in/libc.preinst: handle the case where debconf
-    configuration has never been done.
+    configuration has never been done.  Closes: #986180.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 27 Mar 2021 16:19:59 +0100
 
