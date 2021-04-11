@@ -1,6 +1,9 @@
 glibc (2.31-12) UNRELEASED; urgency=medium
 
   * debian/po/de.po: fix encoding declaration.  Closes: #986450.
+  * debian/patches/git-updates.diff: update from upstream stable branch:
+    - On s390x, check for vector support in memmove ifunc-selector in
+      addition to Miscellaneous-Instruction-Extensions.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 12 Apr 2021 00:31:52 +0200
 
