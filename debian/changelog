@@ -4,6 +4,19 @@ glibc (2.31-12) UNRELEASED; urgency=medium
   * debian/patches/git-updates.diff: update from upstream stable branch:
     - On s390x, check for vector support in memmove ifunc-selector in
       addition to Miscellaneous-Instruction-Extensions.
+  * debian/patches/any/local-rtlddir-cross.diff: drop patch, letting upstream
+    makefiles to install the dynamic linker symlink directly in the right
+    location. This fixes the temporary installation done by upstream makefiles
+    to run some tests in a container.  Closes: #973278, #985617.
+  * debian/rules.d/build.mk: do not create the dynamic linker manually.
+  * debian/sysdeps/*.mk: do not create the dynamic linker manually for
+    bi/tri-arch packages.
+  * debian/rules.d/build.mk: create the soname symlink for ld-2.xx.so, to
+    avoid its creation later by ldconfig.
+  * debian/debhelper.in/libc.install, debhelper.in/libc-alt.install,
+    debhelper.in/libc-udeb.install, debhelper.in/libc-udeb.install.hurd-i386:
+    adjust given that the dynamic linker symlink is now already at the correct
+    location.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 12 Apr 2021 00:31:52 +0200
 
