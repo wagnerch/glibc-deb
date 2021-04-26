@@ -17,6 +17,8 @@ glibc (2.31-12) UNRELEASED; urgency=medium
     debhelper.in/libc-udeb.install, debhelper.in/libc-udeb.install.hurd-i386:
     adjust given that the dynamic linker symlink is now already at the correct
     location.
+  * debian/patches/git-updates.diff: update from upstream stable branch:
+    - Fix GLIBC_TUNABLES parsing for AT_SECURE binaries.
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 12 Apr 2021 00:31:52 +0200
 
