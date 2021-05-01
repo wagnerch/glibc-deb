@@ -94,8 +94,8 @@ endif
 	    echo "No.  Forcing cross-compile by setting build to $$configure_build."; \
 	  fi; \
 	fi; \
-	echo -n "Build started: " ; date --rfc-2822
-	echo "---------------"
+	echo -n "Build started: " ; date --rfc-2822; \
+	echo "---------------"; \
 	cd $(DEB_BUILDDIR) && \
 		CC="$(call xx,CC)" \
 		CXX=$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),:,"$(call xx,CXX)") \
