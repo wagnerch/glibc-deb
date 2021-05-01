@@ -1,4 +1,4 @@
-glibc (2.31-12) UNRELEASED; urgency=medium
+glibc (2.31-12) unstable; urgency=medium
 
   * debian/po/de.po: fix encoding declaration.  Closes: #986450.
   * debian/patches/git-updates.diff: update from upstream stable branch:
@@ -22,7 +22,7 @@ glibc (2.31-12) UNRELEASED; urgency=medium
   * debian/rules.d/build.mk: escape EOL so that $configure_build is correctly
     passed to the configure script.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 12 Apr 2021 00:31:52 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 01 May 2021 22:56:06 +0200
 
 glibc (2.31-11) unstable; urgency=medium
 
