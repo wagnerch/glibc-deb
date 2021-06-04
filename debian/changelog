@@ -17,7 +17,13 @@ glibc (2.28-10+deb10u1) UNRELEASED; urgency=medium
     - Improve string functions performances on arm64.
   * debian/patches/any/git-libio-stdout-putc.diff: refresh.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 08 Mar 2020 13:40:42 +0100
+  [ Florian Weimer ]
+  * debian/patches/all/{cvs,local}-bug969926-*.patch: DJ Delorie's
+    backport of the gshadow parsing fixes from glibc 2.32, with Carlos
+    O'Donell's GLIBC_PRIVATE internal ABI preservation patch.
+    Closes: #969926.
+
+ -- Florian Weimer <fw@deneb.enyo.de>  Fri, 04 Jun 2021 21:14:20 +0200
 
 glibc (2.28-10) unstable; urgency=medium
 

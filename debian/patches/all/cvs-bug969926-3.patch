@@ -1,0 +1,224 @@
+From e9b2340998ab22402a8e968ba674c380a625b9dc Mon Sep 17 00:00:00 2001
+From: Florian Weimer <fweimer@redhat.com>
+Date: Thu, 16 Jul 2020 16:40:44 +0200
+Subject: [PATCH 03/11] nss_files: Consolidate line parse declarations in
+ <nss_files.h>
+
+These functions should eventually have the same type, so it makes
+sense to declare them together.
+
+Tested-by: Carlos O'Donell <carlos@redhat.com>
+Reviewed-by: Carlos O'Donell <carlos@redhat.com>
+---
+ include/grp.h               |  6 ------
+ include/gshadow.h           |  6 ------
+ include/netdb.h             | 13 ------------
+ include/netinet/ether.h     |  6 ------
+ include/nss_files.h         | 51 +++++++++++++++++++++++++++++++++++++++++++++
+ include/pwd.h               |  6 ------
+ include/rpc/netdb.h         |  6 ------
+ include/shadow.h            |  6 ------
+ nss/nss_files/files-parse.c |  1 +
+ 9 files changed, 52 insertions(+), 49 deletions(-)
+
+Index: glibc-2.28/include/grp.h
+===================================================================
+--- glibc-2.28.orig/include/grp.h	2021-06-04 20:45:35.495939515 +0200
++++ glibc-2.28/include/grp.h	2021-06-04 20:45:35.475939540 +0200
+@@ -30,12 +30,6 @@
+ 			     char *__buffer, size_t __buflen,
+ 			     struct group **__result);
+ 
+-struct parser_data;
+-extern int _nss_files_parse_grent (char *line, struct group *result,
+-				   struct parser_data *data,
+-				   size_t datalen, int *errnop);
+-libc_hidden_proto (_nss_files_parse_grent)
+-
+ #define DECLARE_NSS_PROTOTYPES(service)					   \
+ extern enum nss_status _nss_ ## service ## _setgrent (int);		   \
+ extern enum nss_status _nss_ ## service ## _endgrent (void);		   \
+Index: glibc-2.28/include/gshadow.h
+===================================================================
+--- glibc-2.28.orig/include/gshadow.h	2021-06-04 20:45:35.495939515 +0200
++++ glibc-2.28/include/gshadow.h	2021-06-04 20:45:35.475939540 +0200
+@@ -10,11 +10,5 @@
+ 			  char *buffer, size_t buflen, struct sgrp **result)
+      attribute_hidden;
+ 
+-struct parser_data;
+-extern int _nss_files_parse_sgent (char *line, struct sgrp *result,
+-                                   struct parser_data *data,
+-                                   size_t datalen, int *errnop);
+-libc_hidden_proto (_nss_files_parse_sgent)
+-
+ # endif /* !_ISOMAC */
+ #endif
+Index: glibc-2.28/include/netdb.h
+===================================================================
+--- glibc-2.28.orig/include/netdb.h	2021-06-04 20:45:35.495939515 +0200
++++ glibc-2.28/include/netdb.h	2021-06-04 20:45:35.479939535 +0200
+@@ -202,23 +202,10 @@
+ 
+ #include <inet/netgroup.h>
+ 
+-struct parser_data;
+-extern int _nss_files_parse_protoent (char *line, struct protoent *result,
+-				      struct parser_data *data,
+-				      size_t datalen, int *errnop);
+-extern int _nss_files_parse_servent (char *line, struct servent *result,
+-				     struct parser_data *data,
+-				     size_t datalen, int *errnop);
+-extern int _nss_files_parse_netent (char *line, struct netent *result,
+-				    struct parser_data *data,
+-				    size_t datalen, int *errnop);
+ extern enum nss_status _nss_netgroup_parseline (char **cursor,
+ 						struct __netgrent *result,
+ 						char *buffer, size_t buflen,
+ 						int *errnop);
+-libnss_files_hidden_proto (_nss_files_parse_protoent)
+-libnss_files_hidden_proto (_nss_files_parse_servent)
+-libnss_files_hidden_proto (_nss_files_parse_netent)
+ libnss_files_hidden_proto (_nss_netgroup_parseline)
+ 
+ #define DECLARE_NSS_PROTOTYPES(service)					      \
+Index: glibc-2.28/include/netinet/ether.h
+===================================================================
+--- glibc-2.28.orig/include/netinet/ether.h	2021-06-04 20:45:35.495939515 +0200
++++ glibc-2.28/include/netinet/ether.h	2021-06-04 20:45:35.479939535 +0200
+@@ -15,12 +15,6 @@
+   struct ether_addr e_addr;
+ };
+ 
+-struct parser_data;
+-extern int _nss_files_parse_etherent (char *line, struct etherent *result,
+-				      struct parser_data *data,
+-				      size_t datalen, int *errnop);
+-libnss_files_hidden_proto (_nss_files_parse_etherent)
+-
+ #define DECLARE_NSS_PROTOTYPES(service)					      \
+ extern enum nss_status _nss_ ## service ## _setetherent (int __stayopen);     \
+ extern enum nss_status _nss_ ## service ## _endetherent (void);		      \
+Index: glibc-2.28/include/nss_files.h
+===================================================================
+--- glibc-2.28.orig/include/nss_files.h	2021-06-04 20:45:35.495939515 +0200
++++ glibc-2.28/include/nss_files.h	2021-06-04 20:45:35.483939530 +0200
+@@ -25,4 +25,55 @@
+ FILE *__nss_files_fopen (const char *path);
+ libc_hidden_proto (__nss_files_fopen)
+ 
++struct parser_data;
++struct etherent;
++struct group;
++struct netent;
++struct passwd;
++struct protoent;
++struct rpcent;
++struct servent;
++struct sgrp;
++struct spwd;
++
++/* Instances of the parse_line function from
++   nss/nss_files/files-parse.c.  */
++extern int _nss_files_parse_etherent (char *line, struct etherent *result,
++                                      struct parser_data *data,
++                                      size_t datalen, int *errnop);
++extern int _nss_files_parse_grent (char *line, struct group *result,
++                                   struct parser_data *data,
++                                   size_t datalen, int *errnop);
++extern int _nss_files_parse_netent (char *line, struct netent *result,
++                                    struct parser_data *data,
++                                    size_t datalen, int *errnop);
++extern int _nss_files_parse_protoent (char *line, struct protoent *result,
++                                      struct parser_data *data,
++                                      size_t datalen, int *errnop);
++extern int _nss_files_parse_pwent (char *line, struct passwd *result,
++                                   struct parser_data *data,
++                                   size_t datalen, int *errnop);
++extern int _nss_files_parse_rpcent (char *line, struct rpcent *result,
++                                    struct parser_data *data,
++                                    size_t datalen, int *errnop);
++extern int _nss_files_parse_servent (char *line, struct servent *result,
++                                     struct parser_data *data,
++                                     size_t datalen, int *errnop);
++extern int _nss_files_parse_sgent (char *line, struct sgrp *result,
++                                   struct parser_data *data,
++                                   size_t datalen, int *errnop);
++extern int _nss_files_parse_spent (char *line, struct spwd *result,
++                                   struct parser_data *data,
++                                   size_t datalen, int *errnop);
++
++libnss_files_hidden_proto (_nss_files_parse_etherent)
++libc_hidden_proto (_nss_files_parse_grent)
++libnss_files_hidden_proto (_nss_files_parse_netent)
++libnss_files_hidden_proto (_nss_files_parse_protoent)
++libc_hidden_proto (_nss_files_parse_pwent)
++libnss_files_hidden_proto (_nss_files_parse_rpcent)
++libnss_files_hidden_proto (_nss_files_parse_servent)
++libc_hidden_proto (_nss_files_parse_sgent)
++libc_hidden_proto (_nss_files_parse_spent)
++
+ #endif /* _NSS_FILES_H */
+Index: glibc-2.28/include/pwd.h
+===================================================================
+--- glibc-2.28.orig/include/pwd.h	2021-06-04 20:45:35.495939515 +0200
++++ glibc-2.28/include/pwd.h	2021-06-04 20:45:35.483939530 +0200
+@@ -26,12 +26,6 @@
+ 
+ #include <nss.h>
+ 
+-struct parser_data;
+-extern int _nss_files_parse_pwent (char *line, struct passwd *result,
+-				   struct parser_data *data,
+-				   size_t datalen, int *errnop);
+-libc_hidden_proto (_nss_files_parse_pwent)
+-
+ #define DECLARE_NSS_PROTOTYPES(service)					\
+ extern enum nss_status _nss_ ## service ## _setpwent (int);		\
+ extern enum nss_status _nss_ ## service ## _endpwent (void);		\
+Index: glibc-2.28/include/rpc/netdb.h
+===================================================================
+--- glibc-2.28.orig/include/rpc/netdb.h	2021-06-04 20:45:35.495939515 +0200
++++ glibc-2.28/include/rpc/netdb.h	2021-06-04 20:45:35.487939525 +0200
+@@ -24,12 +24,6 @@
+ extern int __old_getrpcent_r (struct rpcent *__result_buf, char *__buffer,
+ 			      size_t __buflen, struct rpcent **__result);
+ 
+-struct parser_data;
+-extern int _nss_files_parse_rpcent (char *line, struct rpcent *result,
+-				    struct parser_data *data,
+-				    size_t datalen, int *errnop);
+-libnss_files_hidden_proto (_nss_files_parse_rpcent)
+-
+ #define DECLARE_NSS_PROTOTYPES(service)					      \
+ extern enum nss_status _nss_ ## service ## _setrpcent (int);		      \
+ extern enum nss_status _nss_ ## service ## _endrpcent (void);		      \
+Index: glibc-2.28/include/shadow.h
+===================================================================
+--- glibc-2.28.orig/include/shadow.h	2021-06-04 20:45:35.495939515 +0200
++++ glibc-2.28/include/shadow.h	2021-06-04 20:45:35.487939525 +0200
+@@ -25,12 +25,6 @@
+ extern int __lckpwdf (void);
+ extern int __ulckpwdf (void);
+ 
+-struct parser_data;
+-extern int _nss_files_parse_spent (char *line, struct spwd *result,
+-				   struct parser_data *data,
+-				   size_t datalen, int *errnop);
+-libc_hidden_proto (_nss_files_parse_spent)
+-
+ #define DECLARE_NSS_PROTOTYPES(service)					\
+ extern enum nss_status _nss_ ## service ## _setspent (int);		\
+ extern enum nss_status _nss_ ## service ## _endspent (void);		\
+Index: glibc-2.28/nss/nss_files/files-parse.c
+===================================================================
+--- glibc-2.28.orig/nss/nss_files/files-parse.c	2021-06-04 20:45:35.495939515 +0200
++++ glibc-2.28/nss/nss_files/files-parse.c	2021-06-04 20:46:18.723885931 +0200
+@@ -22,6 +22,7 @@
+ #include <stdlib.h>
+ #include <stdint.h>
+ #include <limits.h>
++#include <nss_files.h>
+ 
+ /* These symbols are defined by the including source file:
+ 

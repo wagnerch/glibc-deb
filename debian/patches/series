@@ -160,3 +160,17 @@ any/local-bootstrap-headers.diff
 any/submitted-resolv-unaligned.diff
 any/local-cudacc-float128.diff
 any/git-libio-stdout-putc.diff
+
+
+all/cvs-bug969926-1.patch
+all/cvs-bug969926-2.patch
+all/cvs-bug969926-3.patch
+all/cvs-bug969926-4.patch
+all/cvs-bug969926-5.patch
+all/cvs-bug969926-6.patch
+all/cvs-bug969926-7.patch
+all/cvs-bug969926-8.patch
+all/cvs-bug969926-9.patch
+all/cvs-bug969926-10.patch
+all/cvs-bug969926-11.patch
+all/local-bug969926-12.patch
