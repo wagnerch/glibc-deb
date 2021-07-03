@@ -1,3 +1,10 @@
+glibc (2.31-13) UNRELEASED; urgency=medium
+
+  * debian/debhelper.in/libc.postinst, script.in/nsscheck.sh: Look for
+    openssh-server package rather than ssh.  Closes: #990069
+
+ -- Colin Watson <cjwatson@debian.org>  Sat, 03 Jul 2021 23:32:56 +0100
+
 glibc (2.31-12) unstable; urgency=medium
 
   * debian/po/de.po: fix encoding declaration.  Closes: #986450.
