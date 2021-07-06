@@ -1,4 +1,4 @@
-glibc (2.31-13) UNRELEASED; urgency=medium
+glibc (2.31-13) unstable; urgency=medium
 
   [ Colin Watson ]
   * debian/debhelper.in/libc.postinst, script.in/nsscheck.sh: Look for
@@ -9,7 +9,7 @@ glibc (2.31-13) UNRELEASED; urgency=medium
     - Fix an arbitrary read in wordexp() (CVE-2021-35942).  Closes:
       #990542.
 
- -- Colin Watson <cjwatson@debian.org>  Sat, 03 Jul 2021 23:32:56 +0100
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 06 Jul 2021 21:16:59 +0200
 
 glibc (2.31-12) unstable; urgency=medium
 
