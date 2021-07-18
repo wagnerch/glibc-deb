@@ -242,6 +242,7 @@ test-xfail-tst-null-argv = yes
 
 # bounding memory allocation is not supported yet
 tests-unsupported += tst-malloc-thread-fail
+tests-unsupported += tst-malloc-thread-fail-malloc-check
 tests-unsupported += tst-malloc-thread-fail-mcheck
 tests-unsupported += tst-dynarray-fail
 
@@ -356,6 +357,7 @@ test-xfail-tst-pututxline-cache = yes
 test-xfail-tst-pututxline-lockfail = yes
 test-xfail-tst-mallocfork2 = yes
 test-xfail-tst-mallocfork2-mcheck = yes
+test-xfail-tst-mallocfork2-malloc-check = yes
 
 # wants /proc/self/fd
 test-xfail-tst-updwtmpx = yes
@@ -398,6 +400,12 @@ test-xfail-tst-spawn4-compat = yes
 
 # new in 2.34
 test-xfail-tst-cpu-features-cpuinfo-static = yes
+test-xfail-test-cxa_atexit-race2 = yes
+test-xfail-tst-itimer = yes
+test-xfail-tst-timespec_getres = yes
+test-xfail-tst-wait3 = yes
+test-xfail-tst-mqueue10 = yes
+test-xfail-tst-closefrom = yes
 
 # actually never succeded
 test-xfail-tst-create_format1 = yes
