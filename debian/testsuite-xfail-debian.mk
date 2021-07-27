@@ -406,6 +406,7 @@ test-xfail-tst-timespec_getres = yes
 test-xfail-tst-wait3 = yes
 test-xfail-tst-mqueue10 = yes
 test-xfail-tst-closefrom = yes
+test-xfail-tst-spawn5 = yes
 
 # actually never succeded
 test-xfail-tst-create_format1 = yes
