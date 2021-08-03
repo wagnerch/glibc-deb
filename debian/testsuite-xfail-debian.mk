@@ -346,12 +346,6 @@ test-xfail-tst-support_descriptors = yes
 # new in 2.30
 test-xfail-tst-nss-files-hosts-long = yes
 
-# This redirects realloc with dlsym
-# Problem is: that creates a loop: realloc() calls dlsym() which calls
-# _dlerror_run calls libc_once(init) which calls pthread_key_create which calls
-# realloc() etc.
-test-xfail-tst-res_hconf_reorder = yes
-
 # wants pthread_barrierattr_setpshared
 test-xfail-tst-pututxline-cache = yes
 test-xfail-tst-pututxline-lockfail = yes
@@ -407,6 +401,10 @@ test-xfail-tst-wait3 = yes
 test-xfail-tst-mqueue10 = yes
 test-xfail-tst-closefrom = yes
 test-xfail-tst-spawn5 = yes
+
+# fixed in 2.34
+test-xfail-tst-res_hconf_reorder = yes
+
 
 # actually never succeded
 test-xfail-tst-create_format1 = yes
