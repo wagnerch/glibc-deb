@@ -338,6 +338,8 @@ libhurduser.so.0.3 #PACKAGE# #MINVER#
  __proc_reassign@Base 2.11
  __proc_reassign_request@Base 2.11
  __proc_reauthenticate@Base 2.11
+ __proc_reauthenticate_complete@Base 2.31-13+hurd.2~
+ __proc_reauthenticate_reassign@Base 2.31-13+hurd.1~
  __proc_reauthenticate_request@Base 2.11
  __proc_register_version@Base 2.11
  __proc_register_version_request@Base 2.11
@@ -717,6 +719,8 @@ libhurduser.so.0.3 #PACKAGE# #MINVER#
  proc_reassign@Base 2.11
  proc_reassign_request@Base 2.11
  proc_reauthenticate@Base 2.11
+ proc_reauthenticate_complete@Base 2.31-13+hurd.2~
+ proc_reauthenticate_reassign@Base 2.31-13+hurd.1~
  proc_reauthenticate_request@Base 2.11
  proc_register_version@Base 2.11
  proc_register_version_request@Base 2.11
