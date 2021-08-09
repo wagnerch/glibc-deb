@@ -8,8 +8,9 @@ glibc (2.31-14) UNRELEASED; urgency=medium
     __proc_reauthenticate_complete protocol.
   * control: Break hurd version that erroneously depended on an update libc0.3
     for the auth_complete_reauthentication RPC
+  * debian/libc0.3.symbols.hurd-i386: Add missing gsync_wait_intr symbol.
 
- -- Samuel Thibault <sthibault@debian.org>  Sun, 08 Aug 2021 14:30:11 +0000
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 09 Aug 2021 01:49:29 +0000
 
 glibc (2.31-13) unstable; urgency=medium
 

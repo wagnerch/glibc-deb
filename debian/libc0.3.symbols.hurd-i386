@@ -121,6 +121,7 @@ libhurduser.so.0.3 #PACKAGE# #MINVER#
  __fsys_set_options@Base 2.11
  __fsys_startup@Base 2.11
  __fsys_syncfs@Base 2.11
+ __gsync_wait_intr@Base 2.31-6~
  __ifsock_getsockaddr@Base 2.11
  __interrupt_operation@Base 2.11
  __io_async@Base 2.11
@@ -502,6 +503,7 @@ libhurduser.so.0.3 #PACKAGE# #MINVER#
  fsys_set_options@Base 2.11
  fsys_startup@Base 2.11
  fsys_syncfs@Base 2.11
+ gsync_wait_intr@Base 2.31-6~
  ifsock_getsockaddr@Base 2.11
  interrupt_operation@Base 2.11
  io_async@Base 2.11
