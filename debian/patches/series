@@ -110,6 +110,7 @@ hurd-i386/git-mmap_addr.diff
 hurd-i386/git-tiocflush.diff
 hurd-i386/git-eintr.diff
 hurd-i386/proc_reauth.diff
+hurd-i386/git-AT_NO_AUTOMOUNT.diff
 
 i386/local-biarch.diff
 i386/unsubmitted-quiet-ldconfig.diff
