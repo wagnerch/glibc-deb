@@ -111,6 +111,7 @@ hurd-i386/git-tiocflush.diff
 hurd-i386/git-eintr.diff
 hurd-i386/proc_reauth.diff
 hurd-i386/git-AT_NO_AUTOMOUNT.diff
+hurd-i386/git-ELF_MACHINE_USER_ADDRESS_MASK.diff
 
 i386/local-biarch.diff
 i386/unsubmitted-quiet-ldconfig.diff
