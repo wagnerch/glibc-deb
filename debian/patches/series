@@ -28,6 +28,7 @@ arm/unsubmitted-ldso-multilib.diff
 arm/local-arm-futex.diff
 
 hppa/local-inlining.diff
+hppa/git-fcntl.h-update.diff
 
 # 2.32
 hurd-i386/git-fork-pthread_exit.diff
