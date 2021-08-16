@@ -15,6 +15,7 @@ glibc (2.31-14) UNRELEASED; urgency=medium
   * debian/patches/hurd-i386/tg-bigmem.diff: Relace by git-drop-rmh.diff.
   * debian/patches/series: Reorder hurd-i386 git patches according to glibc
     release dates.
+  * debian/patches/hurd-i386/sysvshm-lll.diff: Fold into tg-sysvshm.diff.
 
  -- Samuel Thibault <sthibault@debian.org>  Mon, 09 Aug 2021 01:49:29 +0000
 

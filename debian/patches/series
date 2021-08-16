@@ -118,7 +118,6 @@ hurd-i386/tg-libc_rwlock_recursive.diff
 hurd-i386/local-no_unsupported_ioctls.diff
 hurd-i386/local-exec_filename.diff
 hurd-i386/local-tls-ie-align.diff
-hurd-i386/sysvshm-lll.diff
 hurd-i386/proc_reauth.diff
 
 i386/local-biarch.diff
