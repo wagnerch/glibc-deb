@@ -35,7 +35,7 @@ hurd-i386/git-posix_openpt.diff
 hurd-i386/local-enable-ldconfig.diff
 hurd-i386/tg-sysvshm.diff
 hurd-i386/tg-thread-cancel.diff
-hurd-i386/tg-bigmem.diff
+hurd-i386/git-drop-rmh.diff
 hurd-i386/local-disable-ioctls.diff
 hurd-i386/tg-sendmsg-SCM_CREDS.diff
 hurd-i386/tg-mach-hurd-link.diff
