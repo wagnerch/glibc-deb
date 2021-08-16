@@ -23,6 +23,8 @@ glibc (2.31-14) UNRELEASED; urgency=medium
     anymore.
   * debian/control.in/main: remove Adam Conrad from Uploaders. RIP.  Closes:
     #986951.
+  * debian/testsuite-xfail-debian.mk: drop tst-malloc-usable-tunables from
+    XFAIL, the kernel bug has been fixed. 
 
  -- Samuel Thibault <sthibault@debian.org>  Mon, 09 Aug 2021 01:49:29 +0000
 

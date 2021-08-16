@@ -147,10 +147,6 @@ test-xfail-tst-writev = yes
 # There is not support for protection key on Alpha yet, and there is a
 # disagreement between kernel and glibc how to report that.
 test-xfail-tst-pkey = yes
-
-# In some conditions the kernel might not provide a heap, causing
-# some tests to fail. See bug#889817 for details.
-test-xfail-tst-malloc-usable-tunables = yes
 endif
 
 
