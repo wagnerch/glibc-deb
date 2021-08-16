@@ -37,6 +37,9 @@ glibc (2.31-14) UNRELEASED; urgency=medium
   * debian/debhelper.in/locales.postinst: simplify locales-all detection. 
   * debian/control.in/main: drop arch specific depends on gcc-10 now that the
     minimum version is already in bullseye.
+  * debian/debhelper.in/libc.preinst: simplify the version comparison by only
+    comparing the two first parts, now that kernel 2.X are not supported
+    anymore.
 
   [ Helmut Grohne ]
   * Fix FTCBFS: (Closes: #990031)

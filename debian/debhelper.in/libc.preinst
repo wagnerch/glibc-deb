@@ -5,14 +5,7 @@ export LC_ALL=C
 type=$1
 preversion=$2
 
-linux_compare_versions () {
-    verA=$(($(echo "$1" | sed 's/^\([0-9]*\.[0-9]*\)\([^.0-9]\|$\)/\1.0\2/; s/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 10000 + \2 \* 100 + \3/')))
-    verB=$(($(echo "$3" | sed 's/^\([0-9]*\.[0-9]*\)\([^.0-9]\|$\)/\1.0\2/; s/\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\).*/\1 \* 10000 + \2 \* 100 + \3/')))
-
-    test $verA -$2 $verB
-}
-
-kfreebsd_compare_versions () {
+kernel_compare_versions () {
     verA=$(($(echo "$1" | sed 's/\([0-9]*\)\.\([0-9]*\).*/\1 \* 100 + \2/')))
     verB=$(($(echo "$3" | sed 's/\([0-9]*\)\.\([0-9]*\).*/\1 \* 100 + \2/')))
 
@@ -115,7 +108,7 @@ then
                 ;;
         esac
 
-        if linux_compare_versions "$kernel_ver" lt $kernel_ver_min
+        if kernel_compare_versions "$kernel_ver" lt $kernel_ver_min
         then
             if [ "$USE_DEBCONF" ]
             then
@@ -135,7 +128,7 @@ then
             exit 1
         fi
 
-        if linux_compare_versions "$kernel_ver" lt $kernel_ver_rec
+        if kernel_compare_versions "$kernel_ver" lt $kernel_ver_rec
         then
             if [ "$USE_DEBCONF" ]
             then
@@ -158,7 +151,7 @@ then
     then
         kernel_ver=`uname -r`
         kernel_ver_min=8.3
-        if kfreebsd_compare_versions "$kernel_ver" lt $kernel_ver_min
+        if kernel_compare_versions "$kernel_ver" lt $kernel_ver_min
         then
             if [ "$USE_DEBCONF" ]
             then
