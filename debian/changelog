@@ -17,6 +17,11 @@ glibc (2.31-14) UNRELEASED; urgency=medium
     release dates.
   * debian/patches/hurd-i386/sysvshm-lll.diff: Fold into tg-sysvshm.diff.
 
+  [ Aurelien Jarno ]
+  * Drop debian/patches/arm/local-soname-hack.diff: not needed anymore.
+  * Drop debian/patches/arm/unsubmitted-ldconfig-cache-abi.diff: not needed
+    anymore.
+
  -- Samuel Thibault <sthibault@debian.org>  Mon, 09 Aug 2021 01:49:29 +0000
 
 glibc (2.31-13) unstable; urgency=medium
