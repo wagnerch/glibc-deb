@@ -35,6 +35,8 @@ glibc (2.31-14) UNRELEASED; urgency=medium
     update EFD_NONBLOCK, IN_NONBLOCK, SFD_NONBLOCK and TFD_NONBLOCK on HPPA.
     Closes: #981650.
   * debian/debhelper.in/locales.postinst: simplify locales-all detection. 
+  * debian/control.in/main: drop arch specific depends on gcc-10 now that the
+    minimum version is already in bullseye.
 
   [ Helmut Grohne ]
   * Fix FTCBFS: (Closes: #990031)
