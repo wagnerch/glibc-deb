@@ -93,9 +93,9 @@ index db8989eef6..c39da7cf28 100644
    ss = _hurd_self_sigstate ();
  
 +retry:
+   assert (! __spin_lock_locked (&ss->critical_section_lock));
    __spin_lock (&ss->critical_section_lock);
  
-   _hurd_sigstate_lock (ss);
 @@ -429,6 +430,9 @@ _hurd_exec_paths (task_t task, file_t file,
  
    /* Safe to let signals happen now.  */
@@ -650,9 +650,9 @@ index 9bc1571c29..d3eb5abcf0 100644
    ss = _hurd_self_sigstate ();
  
 +retry:
+   assert (! __spin_lock_locked (&ss->critical_section_lock));
    __spin_lock (&ss->critical_section_lock);
  
-   _hurd_sigstate_lock (ss);
 @@ -437,7 +438,20 @@ __spawni (pid_t *pid, const char *file,
  						 MACH_PORT_RIGHT_SEND, +1));
  

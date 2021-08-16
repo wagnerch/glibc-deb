@@ -14,8 +14,10 @@ Date:   Thu Dec 3 12:21:47 2020 +0100
  sysdeps/htl/pthreadP.h |    2 ++
  3 files changed, 4 insertions(+)
 
---- a/htl/pt-create.c
-+++ b/htl/pt-create.c
+Index: glibc-2.31/htl/pt-create.c
+===================================================================
+--- glibc-2.31.orig/htl/pt-create.c
++++ glibc-2.31/htl/pt-create.c
 @@ -80,6 +80,7 @@ __pthread_create (pthread_t * thread, co
    return err;
  }
@@ -24,17 +26,21 @@ Date:   Thu Dec 3 12:21:47 2020 +0100
  
  /* Internal version of pthread_create.  See comment in
     pt-internal.h.  */
---- a/htl/pt-detach.c
-+++ b/htl/pt-detach.c
+Index: glibc-2.31/htl/pt-detach.c
+===================================================================
+--- glibc-2.31.orig/htl/pt-detach.c
++++ glibc-2.31/htl/pt-detach.c
 @@ -78,3 +78,4 @@ __pthread_detach (pthread_t thread)
    return err;
  }
  strong_alias (__pthread_detach, pthread_detach)
 +hidden_def (__pthread_detach)
---- a/sysdeps/htl/pthreadP.h
-+++ b/sysdeps/htl/pthreadP.h
+Index: glibc-2.31/sysdeps/htl/pthreadP.h
+===================================================================
+--- glibc-2.31.orig/sysdeps/htl/pthreadP.h
++++ glibc-2.31/sysdeps/htl/pthreadP.h
 @@ -70,6 +70,8 @@ int __pthread_attr_getstack (const pthre
- struct __pthread_cancelation_handler **___pthread_get_cleanup_stack (void) attribute_hidden;
+ void __pthread_testcancel (void);
  
  #if IS_IN (libpthread)
 +hidden_proto (__pthread_create)

@@ -8,7 +8,7 @@ Index: glibc-2.29/nss/tst-nss-test3.c
 +++ glibc-2.29/nss/tst-nss-test3.c
 @@ -16,6 +16,7 @@
     License along with the GNU C Library; if not, see
-    <http://www.gnu.org/licenses/>.  */
+    <https://www.gnu.org/licenses/>.  */
  
 +#include <sched.h>
  #include <nss.h>

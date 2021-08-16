@@ -28,11 +28,11 @@ Index: glibc-2.31/sysdeps/htl/pthreadP.h
 ===================================================================
 --- glibc-2.31.orig/sysdeps/htl/pthreadP.h
 +++ glibc-2.31/sysdeps/htl/pthreadP.h
-@@ -68,6 +68,7 @@ int __pthread_attr_setstack (pthread_att
+@@ -67,6 +67,7 @@ int __pthread_attr_setstacksize (pthread
  int __pthread_attr_setstack (pthread_attr_t *__attr, void *__stackaddr,
  			     size_t __stacksize);
  int __pthread_attr_getstack (const pthread_attr_t *, void **, size_t *);
 +void __pthread_testcancel (void);
  
  #if IS_IN (libpthread)
- hidden_proto (__pthread_create)
+ hidden_proto (__pthread_key_create)
