@@ -34,6 +34,7 @@ glibc (2.31-14) UNRELEASED; urgency=medium
   * debian/patches/hppa/git-fcntl.h-update.diff: new patch from upstream to
     update EFD_NONBLOCK, IN_NONBLOCK, SFD_NONBLOCK and TFD_NONBLOCK on HPPA.
     Closes: #981650.
+  * debian/debhelper.in/locales.postinst: simplify locales-all detection. 
 
  -- Samuel Thibault <sthibault@debian.org>  Mon, 09 Aug 2021 01:49:29 +0000
 
