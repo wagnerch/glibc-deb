@@ -40,6 +40,8 @@ glibc (2.31-14) UNRELEASED; urgency=medium
   * debian/debhelper.in/libc.preinst: simplify the version comparison by only
     comparing the two first parts, now that kernel 2.X are not supported
     anymore.
+  * debian/debhelper.in/libc.preinst: drop the check for kernel release > 255
+    now that glibc and preinstall script are fixed.  Closes: #987266.
 
   [ Helmut Grohne ]
   * Fix FTCBFS: (Closes: #990031)
