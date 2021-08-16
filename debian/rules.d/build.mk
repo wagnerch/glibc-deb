@@ -171,15 +171,32 @@ $(stamp)check_%: $(stamp)build_%
 	    echo "+---------------------------------------------------------------------+" ; \
 	    grep -E '^FAIL:' $(DEB_BUILDDIR)/tests.sum | sort ; \
 	    if ! dpkg-parsechangelog | egrep -q '^Version:.*\+deb[0-9]+u[0-9]+' ; then \
-	        exit 1 ; \
+	        touch $@_failed ; \
 	    fi ; \
 	  else \
 	    echo "+---------------------------------------------------------------------+" ; \
 	    echo "| Passed regression testing.  Give yourself a hearty pat on the back. |" ; \
 	    echo "+---------------------------------------------------------------------+" ; \
+	    touch $@_passed ; \
 	  fi ; \
 	fi
 	touch $@
+
+build-arch-post-check: $(patsubst %,$(stamp)check_%,$(GLIBC_PASSES))
+	@echo "CHECK SUMMARY"
+	@for pass in $(patsubst %,$(stamp)check_%,$(GLIBC_PASSES)); do \
+	  if [ -f $${pass}_passed ]; then \
+	    echo "check for $$(basename $$pass) passed"; \
+	  fi; \
+	done
+	@fail=0; \
+	for pass in $(patsubst %,$(stamp)check_%,$(GLIBC_PASSES)); do \
+	  if [ -f $${pass}_failed ]; then \
+	    echo "check for $$(basename $$pass) failed"; \
+	    fail=1; \
+	  fi; \
+	done; \
+	exit $$fail
 
 # Make sure to use the just built iconvconfig for native builds. When
 # cross-compiling use the system iconvconfig. A cross-specific
