@@ -21,6 +21,8 @@ glibc (2.31-14) UNRELEASED; urgency=medium
   * Drop debian/patches/arm/local-soname-hack.diff: not needed anymore.
   * Drop debian/patches/arm/unsubmitted-ldconfig-cache-abi.diff: not needed
     anymore.
+  * debian/sysdeps/armhf.mk: drop old armhf compat symlink, this is not
+    supported anymore.
   * debian/control.in/main: remove Adam Conrad from Uploaders. RIP.  Closes:
     #986951.
   * debian/testsuite-xfail-debian.mk: drop tst-malloc-usable-tunables from

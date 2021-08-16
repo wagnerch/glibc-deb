@@ -1,17 +1,6 @@
 # configuration options for all flavours
 extra_config_options = --enable-multi-arch
 
-# Install a compat symlink so old binaries keep working:
-define libc6_extra_pkg_install
-mkdir -p debian/libc6/lib/arm-linux-gnueabihf
-ln -sf ld-linux-armhf.so.3 debian/libc6/lib/arm-linux-gnueabihf/ld-linux.so.3
-endef
-
-define libc6-udeb_extra_pkg_install
-mkdir -p debian/libc6-udeb/lib/arm-linux-gnueabihf
-ln -sf /lib/ld-linux-armhf.so.3 debian/libc6-udeb/lib/arm-linux-gnueabihf/ld-linux.so.3
-endef
-
 # multilib flavours
 ifeq (,$(filter nobiarch, $(DEB_BUILD_PROFILES)))
 
