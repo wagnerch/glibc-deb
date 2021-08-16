@@ -42,6 +42,15 @@ glibc (2.31-14) UNRELEASED; urgency=medium
     anymore.
   * debian/debhelper.in/libc.preinst: drop the check for kernel release > 255
     now that glibc and preinstall script are fixed.  Closes: #987266.
+  * debian/rules.d/build.mk: stop passing --enable-obsolete-rpc.
+  * debian/debhelper.in/libc-dev.install{,.hurd-i386}: do not install
+    librpcsvc.a.
+  * debian/debhelper.in/libc-dev-bin.manpage, debian/local/manpages/rpcgen.1:
+    do not install rpcgen (1) manpage.
+  * debian/rules.d/build.mk: stop deleting <rpcsvc/yppasswd.h> and
+    <rpcsvc/yppasswd.x>.
+  * debian/control.in/libc, debian/rules.d/debhelper.mk: make libc6-dev to
+    depend on rpcsvc-proto, except for stage1 and stage2.
 
   [ Helmut Grohne ]
   * Fix FTCBFS: (Closes: #990031)

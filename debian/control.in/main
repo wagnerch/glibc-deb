@@ -56,7 +56,6 @@ Description: GNU C Library: Development binaries
  development package.
  .
   * gencat: generate message catalogs
-  * rpcgen: compile RPC protocols to C
 
 Package: libc-devtools
 Architecture: any
