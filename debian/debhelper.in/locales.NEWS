@@ -1,3 +1,16 @@
+locales (2.31-14) unstable; urgency=low
+
+  * Starting with locales 2.31-14, non UTF-8 locales are deprecated and not
+    offered anymore in the debconf dialog, except for the ones already
+    configured. Nevertheless users of non UTF-8 locales are encouraged to
+    switch their system to an UTF-8 locale.
+
+    Please note that iconv still supports conversion to and from non UTF-8
+    charset. For instance reading a file using an ISO-8859-15 charset can be
+    done with: iconv --from-code=ISO-8859-1 foobar.txt
+
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 17 Aug 2021 15:29:24 +0200
+
 locales (2.7-3) unstable; urgency=low
 
   * Starting with locales 2.7-3, users can provide their own locales in

@@ -51,6 +51,9 @@ glibc (2.31-14) UNRELEASED; urgency=medium
     <rpcsvc/yppasswd.x>.
   * debian/control.in/libc, debian/rules.d/debhelper.mk: make libc6-dev to
     depend on rpcsvc-proto, except for stage1 and stage2.
+  * debian/patches/localedata/supported.diff: update to drop all non-UTF-8
+    locales.  Closes: #603914.
+  * debian/patches/localedata/sort-UTF8-first.diff: drop.
 
   [ Helmut Grohne ]
   * Fix FTCBFS: (Closes: #990031)
