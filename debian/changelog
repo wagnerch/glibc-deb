@@ -1,10 +1,10 @@
-glibc (2.31-15) UNRELEASED; urgency=medium
+glibc (2.31-15) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * debian/patches/amd64/git-x86_64-remove-pie-check.diff: new patch from
     upstream to fix FTBFS on amd64 with binutils 2.37.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 17 Aug 2021 19:50:09 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 17 Aug 2021 21:46:43 +0200
 
 glibc (2.31-14) unstable; urgency=medium
 
