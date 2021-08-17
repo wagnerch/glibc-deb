@@ -75,7 +75,7 @@ Drop support for locales using a non-UTF-8 charset.
  bhb_IN.UTF-8/UTF-8 \
  bho_IN/UTF-8 \
  bho_NP/UTF-8 \
-@@ -73,271 +50,165 @@
+@@ -73,272 +50,166 @@
  bo_CN/UTF-8 \
  bo_IN/UTF-8 \
  br_FR.UTF-8/UTF-8 \
@@ -97,6 +97,7 @@ Drop support for locales using a non-UTF-8 charset.
 -ca_IT/ISO-8859-15 \
  ce_RU/UTF-8 \
  chr_US/UTF-8 \
+ ckb_IQ/UTF-8 \
  cmn_TW/UTF-8 \
  crh_UA/UTF-8 \
  cs_CZ.UTF-8/UTF-8 \
@@ -347,7 +348,7 @@ Drop support for locales using a non-UTF-8 charset.
  nds_DE/UTF-8 \
  nds_NL/UTF-8 \
  ne_NP/UTF-8 \
-@@ -346,20 +217,13 @@
+@@ -347,20 +218,13 @@
  niu_NZ/UTF-8 \
  nl_AW/UTF-8 \
  nl_BE.UTF-8/UTF-8 \
@@ -368,7 +369,7 @@ Drop support for locales using a non-UTF-8 charset.
  or_IN/UTF-8 \
  os_RU/UTF-8 \
  pa_IN/UTF-8 \
-@@ -367,22 +231,14 @@
+@@ -368,22 +232,14 @@
  pap_AW/UTF-8 \
  pap_CW/UTF-8 \
  pl_PL.UTF-8/UTF-8 \
@@ -391,7 +392,7 @@ Drop support for locales using a non-UTF-8 charset.
  rw_RW/UTF-8 \
  sa_IN/UTF-8 \
  sah_RU/UTF-8 \
-@@ -397,31 +253,21 @@
+@@ -398,31 +254,21 @@
  si_LK/UTF-8 \
  sid_ET/UTF-8 \
  sk_SK.UTF-8/UTF-8 \
@@ -423,7 +424,7 @@ Drop support for locales using a non-UTF-8 charset.
  sw_KE/UTF-8 \
  sw_TZ/UTF-8 \
  szl_PL/UTF-8 \
-@@ -430,61 +276,41 @@
+@@ -431,61 +277,41 @@
  tcy_IN.UTF-8/UTF-8 \
  te_IN/UTF-8 \
  tg_TJ.UTF-8/UTF-8 \

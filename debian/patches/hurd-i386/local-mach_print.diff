@@ -2,6 +2,11 @@ TODO: glibc 2.32 will provide it. Once it is uploaded, rebuild binaries
 which might be referencing the 2.21-versioned symbol, and drop this
 patch.
 
+---
+ mach/Versions                       |    1 +
+ sysdeps/mach/hurd/i386/libc.abilist |    1 +
+ 2 files changed, 2 insertions(+)
+
 --- a/mach/Versions
 +++ b/mach/Versions
 @@ -57,6 +57,7 @@
@@ -10,11 +15,11 @@ patch.
      __mach_host_self_;
 +    mach_print;
    }
- 
-   HURD_CTHREADS_0.3 {
+   GLIBC_2.32 {
+     mach_print;
 --- a/sysdeps/mach/hurd/i386/libc.abilist
 +++ b/sysdeps/mach/hurd/i386/libc.abilist
-@@ -1947,6 +1947,7 @@
+@@ -1946,6 +1946,7 @@
  GLIBC_2.2.6 xprt_unregister F
  GLIBC_2.21 __mach_host_self_ D 0x4
  GLIBC_2.21 __pthread_get_cleanup_stack F
