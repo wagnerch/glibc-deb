@@ -54,6 +54,8 @@ glibc (2.31-14) UNRELEASED; urgency=medium
   * debian/patches/localedata/supported.diff: update to drop all non-UTF-8
     locales.  Closes: #603914.
   * debian/patches/localedata/sort-UTF8-first.diff: drop.
+  * debian/script.in/nsscheck.sh: restart openssh-server even if it has been
+    deconfigured during the upgrade.  Closes: #990069.
 
   [ Helmut Grohne ]
   * Fix FTCBFS: (Closes: #990031)
