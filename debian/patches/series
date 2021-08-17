@@ -21,6 +21,8 @@ alpha/local-string-functions.diff
 alpha/submitted-fts64.diff
 alpha/submitted-makecontext.diff
 
+amd64/git-x86_64-remove-pie-check.diff
+
 arm/local-sigaction.diff
 arm/local-vfp-sysdeps.diff
 arm/unsubmitted-ldso-multilib.diff
