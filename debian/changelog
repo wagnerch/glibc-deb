@@ -1,3 +1,11 @@
+glibc (2.31-16) UNRELEASED; urgency=medium
+
+  [ Aurelien Jarno ]
+  * debian/debhelper.in/libc.postinst, debian/debhelper.in/libc.preinst:
+    replace calls to which by call to command -v.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Wed, 18 Aug 2021 11:20:16 +0200
+
 glibc (2.31-15) unstable; urgency=medium
 
   [ Aurelien Jarno ]

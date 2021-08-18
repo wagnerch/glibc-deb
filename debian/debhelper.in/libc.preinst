@@ -37,12 +37,12 @@ then
             dialog)
                 # debconf uses whiptail by default unless dialog is available and
                 # $DEBCONF_FORCE_DIALOG is set
-                if [ -x "$(which whiptail)" ] && ! ( [ -n "$DEBCONF_FORCE_DIALOG" ] && [ -x "$(which dialog)" ] ); then
+                if [ -x "$(command -v whiptail)" ] && ! ( [ -n "$DEBCONF_FORCE_DIALOG" ] && [ -x "$(command -v dialog)" ] ); then
                     frontend=whiptail
                 fi
                 # Only enable debconf if the whiptail/dialog are not available
                 # (in which case debconf has a fallback mechanism) or usable
-                if ! [ -x "$(which $frontend)" ] || $frontend --version > /dev/null 2>&1 ; then
+                if ! [ -x "$(command -v $frontend)" ] || $frontend --version > /dev/null 2>&1 ; then
                     USE_DEBCONF=1
                 fi
                 ;;
@@ -161,7 +161,7 @@ fi
 
 if [ "$type" = upgrade -a -z "$DPKG_ROOT" ]
 then
-    if [ -n "$preversion" ] && [ -x "$(which ischroot)" ] && ! ischroot; then
+    if [ -n "$preversion" ] && [ -x "$(command -v ischroot)" ] && ! ischroot; then
 	# NSS authentication trouble guard
 	if dpkg --compare-versions "$preversion" lt GLIBC_VERSION; then
 	    if pidof xscreensaver xlockmore >/dev/null; then
