@@ -1,6 +1,11 @@
 glibc (2.31-17) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
   * debian/testsuite-xfail-debian.mk: Update tests.
+
+  [ Aurelien Jarno ]
+  * debian/debhelper.in/locales.NEWS, debian/debhelper.in/locales-all.NEWS:
+    fix charset mismatch in example iconv command.  Closes: ##992568.
 
  -- Samuel Thibault <sthibault@debian.org>  Wed, 18 Aug 2021 23:04:08 +0200
 
