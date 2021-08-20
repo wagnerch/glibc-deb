@@ -20,7 +20,7 @@ then
     __NOHWCAP__
 fi
 
-if [ "$type" = configure -a -z "$DPKG_ROOT" ]
+if [ "$type" = configure ]
 then
     # Load debconf module if available
     if [ -f /usr/share/debconf/confmodule ] ; then
