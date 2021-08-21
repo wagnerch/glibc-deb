@@ -3,7 +3,7 @@ glibc (2.32-0experimental0) experimental; urgency=medium
   [ Aurelien Jarno ]
   * New upstream release:
     - Fixes a use-after-free in the mq_notify function (CVE-2021-33574).
-      Closes: #964477.
+      Closes: #989147.
     - debian/symbols.wildcard: add 2.32.
     - debian/patches/localedata/supported.diff: refresh.
     - debian/patches/localedata/git-unicode-13-support.diff: upstreamed.
