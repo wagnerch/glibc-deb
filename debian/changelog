@@ -1,4 +1,4 @@
-glibc (2.32-0experimental0) UNRELEASED; urgency=medium
+glibc (2.32-0experimental0) experimental; urgency=medium
 
   [ Aurelien Jarno ]
   * New upstream release:
@@ -58,7 +58,7 @@ glibc (2.32-0experimental0) UNRELEASED; urgency=medium
   * debian/patches/hurd-i386/git-sched_gets_hidden.diff: new patch from
     upstream to fix FTBFS on hurd-i386.
 
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 17 Aug 2021 16:44:09 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sat, 21 Aug 2021 19:24:41 +0200
 
 glibc (2.31-16) unstable; urgency=medium
 
