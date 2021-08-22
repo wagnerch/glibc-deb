@@ -1,8 +1,13 @@
 glibc (2.32-0experimental1) UNRELEASED; urgency=medium
 
+  [ Samuel Thibault ]
   * debian/patches/hurd-i386/local-clock_gettime_MONOTONIC.diff: Complete with
     timed locks.
   * debian/testsuite-xfail-debian.mk: Update tests.
+
+  [ Aurelien Jarno ]
+  * debian/patches/git-updates.diff: update from upstream stable branch:
+    - Fix tst-sysvshm-linux failure on armel and x32.
 
  -- Samuel Thibault <sthibault@debian.org>  Sat, 21 Aug 2021 19:54:27 +0000
 
