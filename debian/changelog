@@ -4,8 +4,20 @@ glibc (2.31-17) UNRELEASED; urgency=medium
   * debian/testsuite-xfail-debian.mk: Update tests.
 
   [ Aurelien Jarno ]
-  * debian/debhelper.in/locales.NEWS, debian/debhelper.in/locales-all.NEWS:
-    fix charset mismatch in example iconv command.  Closes: ##992568.
+  * debian/debhelper.in/locales.NEWS: fix charset mismatch in example iconv
+    command.  Closes: #992568
+  * Replace the non UTF-8 locales removal by a deprecation as they are still
+    used in many other packages (especially testsuites): non UTF-8 locales are
+    not offered anymore in the debconf dialog (except for the ones already
+    configured), but they are still listed in SUPPORTED and provided in the
+    locales-all package (Closes: #992500, #992653):
+    - debian/patches/localedata/locale-en_DK.diff,
+      debian/patches/localedata/locale-eu_FR.diff,
+      debian/patches/localedata/supported.diff: revert the removal of non-UTF-8
+      locales.
+    - debian/debhelper.in/locales-all.NEWS: remove 2.31-14 entry.
+    - debian/rules.d/debhelper.mk: fill __PROVIDED_LOCALES__ with UTF-8
+      locales only.
 
   [ Johannes Schauer Marin Rodrigues ]
   * additional bits to support DPKG_ROOT (closes: #983412)

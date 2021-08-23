@@ -132,9 +132,9 @@ $(stamp)debhelper-common:
 	for x in `find debian/debhelper.in -maxdepth 1 -type f`; do \
 	  y=debian/`basename $$x`; \
 	  perl -p \
-	      -e 'BEGIN {undef $$/; open(IN, "debian/script.in/nsscheck.sh"); $$j=<IN>;} s/__NSS_CHECK__/$$j/g;' \
-	      -e 'BEGIN {undef $$/; open(IN, "debian/script.in/nohwcap.sh"); $$k=<IN>;} s/__NOHWCAP__/$$k/g;' \
-	      -e 'BEGIN {undef $$/; open(IN, "debian/tmp-libc/usr/share/i18n/SUPPORTED"); $$l=<IN>;} s/__PROVIDED_LOCALES__/$$l/g;' \
+	      -e 'BEGIN {local $$/=undef; open(IN, "debian/script.in/nsscheck.sh"); $$j=<IN>;} s/__NSS_CHECK__/$$j/g;' \
+	      -e 'BEGIN {local $$/=undef; open(IN, "debian/script.in/nohwcap.sh"); $$k=<IN>;} s/__NOHWCAP__/$$k/g;' \
+	      -e 'BEGIN {open(IN, "debian/tmp-libc/usr/share/i18n/SUPPORTED"); $$l = join("", grep { /UTF-8/ } <IN>);} s/__PROVIDED_LOCALES__/$$l/g;' \
 	      -e 's#GLIBC_VERSION#$(GLIBC_VERSION)#g;' \
 	      -e 's#CURRENT_VER#$(DEB_VERSION)#g;' \
 	      -e 's#BUILD-TREE#$(build-tree)#g;' \
