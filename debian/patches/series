@@ -3,6 +3,7 @@ git-updates.diff
 locale/check-unknown-symbols.diff
 locale/locale-print-LANGUAGE.diff
 locale/LC_IDENTIFICATION-optional-fields.diff
+localedata/sort-UTF8-first.diff
 localedata/supported.diff
 localedata/locale-eu_FR.diff
 localedata/locale-ku_TR.diff

@@ -7,7 +7,7 @@ locales (2.31-14) unstable; urgency=low
 
     Please note that iconv still supports conversion to and from non UTF-8
     charset. For instance reading a file using an ISO-8859-15 charset can be
-    done with: iconv --from-code=ISO-8859-1 foobar.txt
+    done with: iconv --from-code=ISO-8859-15 foobar.txt
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 17 Aug 2021 16:27:59 +0200 
 

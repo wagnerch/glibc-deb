@@ -1,15 +1,3 @@
-locales-all (2.31-14) unstable; urgency=low
-
-  * Starting with locales-all 2.31-14, only the UTF-8 locales are provided by
-    this package. Users of non UTF-8 locales should update their settings
-    following the installation of this package.
-
-    Please note that iconv still supports conversion to and from non UTF-8
-    charsets. For instance reading a file using an ISO-8859-15 charset can be
-    done with: iconv --from-code=ISO-8859-1 foobar.txt
-
- -- Aurelien Jarno <aurel32@debian.org>  Tue, 17 Aug 2021 16:27:59 +0200 
-
 locales-all (2.7-1) unstable; urgency=low
 
   * Starting with locales 2.7-1 the deprecated no_NO locale has been 

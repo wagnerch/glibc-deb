@@ -12,7 +12,7 @@ kernel_compare_versions () {
     test $verA -$2 $verB
 }
 
-if [ "$type" != abort-upgrade -a -z "$DPKG_ROOT" ]
+if [ "$type" != abort-upgrade ]
 then
     # Load debconf module if available and usable
     if [ -f /usr/share/debconf/confmodule ]; then
@@ -159,7 +159,7 @@ then
     fi
 fi
 
-if [ "$type" = upgrade -a -z "$DPKG_ROOT" ]
+if [ "$type" = upgrade ]
 then
     if [ -n "$preversion" ] && [ -x "$(command -v ischroot)" ] && ! ischroot; then
 	# NSS authentication trouble guard
@@ -247,7 +247,7 @@ then
 
     # This will keep us from using hwcap libs (optimized) during an
     # upgrade.
-    touch /etc/ld.so.nohwcap
+    touch "$DPKG_ROOT/etc/ld.so.nohwcap"
 fi
 
 #DEBHELPER#
