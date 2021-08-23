@@ -7,6 +7,8 @@ glibc (2.32-0experimental1) UNRELEASED; urgency=medium
   * debian/patches/hurd-i386/git-get_errlist.diff: Fix get_errlist.
   * debian/patches/hurd-i386/local-mach_print.diff: Keep mach_print@GLIBC_2.21
     for now, until packages are rebuilt against mach_print@@GLIBC_2.32.
+  * debian/patches/hurd-i386/local-stack_chk_guard.diff: Fix compatibility with
+    binaries that reference __stack_chk_guard.
 
   [ Aurelien Jarno ]
   * debian/patches/git-updates.diff: update from upstream stable branch:
