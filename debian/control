@@ -754,38 +754,6 @@ Description: GNU C Library: X32 ABI Development Libraries for AMD64
  which use the standard C library. This is the X32 ABI version of the
  library, meant for amd64 systems.
 
-Package: libc6-xen
-Architecture: i386
-Section: libs
-Priority: optional
-Multi-Arch: same
-Pre-Depends: libc6 (= ${binary:Version})
-Depends: ${misc:Depends}
-Build-Profiles: <!stage1>
-Description: GNU C Library: Shared libraries [Xen version]
- Contains the standard libraries that are used by nearly all programs on
- the system. This package includes shared versions of the standard C
- library and the standard math library, as well as many others.
- .
- This set of libraries is optimized for the Xen hypervisor, and will be
- selected instead when running under Xen.
-
-Package: libc0.3-xen
-Architecture: hurd-i386
-Section: libs
-Priority: optional
-Multi-Arch: same
-Pre-Depends: libc0.3 (= ${binary:Version})
-Depends: ${misc:Depends}
-Build-Profiles: <!stage1>
-Description: GNU C Library: Shared libraries [Xen version]
- Contains the standard libraries that are used by nearly all programs on
- the system. This package includes shared versions of the standard C
- library and the standard math library, as well as many others.
- .
- This set of libraries is optimized for the Xen hypervisor, and will be
- selected instead when running under Xen.
-
 Package: libc6.1-alphaev67
 Architecture: alpha
 Section: libs

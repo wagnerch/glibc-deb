@@ -177,7 +177,6 @@ NOSTRIP_$(libc)-dbg = 1
 
 # Put the debug files from these packages in $(libc)-dbg
 DEBUG_$(libc) = 1
-DEBUG_libc6-xen = 1
 DEBUG_libc6.1-alphaev67 = 1
 
 ifeq ($(filter stage1,$(DEB_BUILD_PROFILES)),)
