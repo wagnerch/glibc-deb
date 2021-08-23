@@ -5,6 +5,8 @@ glibc (2.32-0experimental1) UNRELEASED; urgency=medium
     timed locks.
   * debian/testsuite-xfail-debian.mk: Update tests.
   * debian/patches/hurd-i386/git-get_errlist.diff: Fix get_errlist.
+  * debian/patches/hurd-i386/local-mach_print.diff: Keep mach_print@GLIBC_2.21
+    for now, until packages are rebuilt against mach_print@@GLIBC_2.32.
 
   [ Aurelien Jarno ]
   * debian/patches/git-updates.diff: update from upstream stable branch:
