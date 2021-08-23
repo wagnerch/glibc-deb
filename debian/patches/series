@@ -65,6 +65,7 @@ hurd-i386/git-eintr.diff
 # 2.35
 hurd-i386/git-drop-rmh.diff
 hurd-i386/git-AT_NO_AUTOMOUNT.diff
+hurd-i386/git-get_errlist.diff
 
 hurd-i386/local-enable-ldconfig.diff
 hurd-i386/tg-sysvshm.diff

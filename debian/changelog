@@ -4,6 +4,7 @@ glibc (2.32-0experimental1) UNRELEASED; urgency=medium
   * debian/patches/hurd-i386/local-clock_gettime_MONOTONIC.diff: Complete with
     timed locks.
   * debian/testsuite-xfail-debian.mk: Update tests.
+  * debian/patches/hurd-i386/git-get_errlist.diff: Fix get_errlist.
 
   [ Aurelien Jarno ]
   * debian/patches/git-updates.diff: update from upstream stable branch:
