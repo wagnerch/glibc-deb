@@ -5,7 +5,7 @@ glibc (2.32-0experimental1) experimental; urgency=medium
   removal of 32-bit Xen PV support from Linux kernel 5.9. PVH or PVHVM guests
   should be used instead.
 
- -- Aurelien Jarno <aurel32@debian.org>  Mon, 23 Aug 2021 22:48:13 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 24 Aug 2021 20:42:24 +0200
 
 glibc (2.31-5) unstable; urgency=medium
 
