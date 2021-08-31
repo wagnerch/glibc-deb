@@ -88,6 +88,12 @@ glibc (2.32-0experimental0) experimental; urgency=medium
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 21 Aug 2021 19:24:41 +0200
 
+glibc (2.31-18) UNRELEASED; urgency=medium
+
+  * debian/patches/hurd-i386/git-msync.diff: Fix msync.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 31 Aug 2021 14:57:34 +0200
+
 glibc (2.31-17) unstable; urgency=medium
 
   [ Samuel Thibault ]
