@@ -1,21 +1,23 @@
-commit e2930d8777c0331b5882e27cbb53f3cf8516a62d
+commit 60dfb30976761c9b20a22f18356e0c3e581f5394
 Author: Samuel Thibault <samuel.thibault@ens-lyon.org>
-Date:   Tue Aug 31 14:36:08 2021 +0200
+Date:   Tue Aug 31 19:41:02 2021 +0200
 
-    hurd: Fix typo in msync
-    
-    == has higher priority than &
+    hurd msync: Drop bogus test
 
-diff --git a/sysdeps/mach/hurd/msync.c b/sysdeps/mach/hurd/msync.c
-index 4311dd56d1..a1244e42e2 100644
---- a/sysdeps/mach/hurd/msync.c
-+++ b/sysdeps/mach/hurd/msync.c
-@@ -47,7 +47,7 @@ msync (void *addr, size_t length, int flags)
+    MS_SYNC is actually 0, so we cannot test that both MS_SYNC and MS_ASYNC
+    are set.
+
+Index: glibc-2.31/sysdeps/mach/hurd/msync.c
+===================================================================
+--- glibc-2.31.orig/sysdeps/mach/hurd/msync.c
++++ glibc-2.31/sysdeps/mach/hurd/msync.c
+@@ -45,9 +45,6 @@ msync (void *addr, size_t length, int fl
  
    kern_return_t err;
  
 -  if (flags & (MS_SYNC | MS_ASYNC) == (MS_SYNC | MS_ASYNC))
-+  if ((flags & (MS_SYNC | MS_ASYNC)) == (MS_SYNC | MS_ASYNC))
-     return __hurd_fail (EINVAL);
- 
+-    return __hurd_fail (EINVAL);
+-
    while (cur < target)
+     {
+       vm_address_t begin = cur;
