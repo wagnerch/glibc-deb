@@ -117,6 +117,7 @@ mips/submitted-rld_map.diff
 powerpc/local-powerpc8xx-dcbz.diff
 
 riscv64/local-asin-acos-raise-invalid.diff
+riscv64/git-riscv64-gnu-ifunc.diff
 
 sh4/local-fpscr_values.diff
 
