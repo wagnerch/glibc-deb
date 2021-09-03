@@ -1,3 +1,10 @@
+glibc (2.24-111.4) unstable; urgency=medium
+
+  * Remove patches known to cause issues with LLVM executables.
+  * Add SHT_RELR & TLS alignment patches for Widevine.
+
+ -- Chad Wagner <47257594+wagnerch@users.noreply.github.com>  Wed, 10 Sep 2021 09:14:32 -0500
+
 glibc (2.24-11+deb9u4) stretch; urgency=medium
 
   [ Aurelien Jarno ]
