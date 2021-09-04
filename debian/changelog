@@ -18,6 +18,8 @@ glibc (2.32-0experimental2) UNRELEASED; urgency=medium
   * debian/libc6-i386.symbols.x32, debian/libc6.symbols.i386: drop symbol
     overrides for TLS support.
   * debian/libc6.symbols.powerpc: drop symbol overrides for TLS support.
+  * debian/libc6.symbols.mips, debian/libc6.symbols.mipsel: drop symbol
+    overrides for TLS support.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 31 Aug 2021 21:55:47 +0200
 
