@@ -84,9 +84,6 @@ endif
 	dh_installdeb -p$(curpass)
 	dh_shlibdeps -p$(curpass)
 	dh_gencontrol -p$(curpass)
-	if [ $(curpass) = nscd ] ; then \
-		sed -i -e "s/\(Depends:.*libc[0-9.]\+\)-[a-z0-9]\+/\1/" debian/nscd/DEBIAN/control ; \
-	fi
 	dh_md5sums -p$(curpass)
 
 	# We adjust the compression format depending on the package:
