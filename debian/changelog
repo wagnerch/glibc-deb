@@ -9,6 +9,8 @@ glibc (2.32-0experimental2) UNRELEASED; urgency=medium
     with libcrypt now that the transition has been done in bullseye.
   * debian/libc6.symbols.hppa: drop symbol overrides for linuxthreads -> NPTL
     transition.
+  * debian/libc6.symbols.sparc, debian/libc6-sparc.symbols.sparc64: drop symbol
+    overrides for SPARCV8 -> SPARCV8PLUS ABI transition.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 31 Aug 2021 21:55:47 +0200
 
