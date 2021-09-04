@@ -173,7 +173,7 @@ glibc (2.31-14) unstable; urgency=medium
   * debian/control.in/main: remove Adam Conrad from Uploaders. RIP.  Closes:
     #986951.
   * debian/testsuite-xfail-debian.mk: drop tst-malloc-usable-tunables from
-    XFAIL, the kernel bug has been fixed. 
+    XFAIL, the kernel bug has been fixed.
   * debian/control.in/libc, debian/rules.d/debhelper.mk: Drop the depends in
     libcrypt1 as upgrades from buster to bookworm are not supported. Demote
     the libnss-nis and libnss-nisplus recommends to suggests.  Closes:
@@ -181,7 +181,7 @@ glibc (2.31-14) unstable; urgency=medium
   * debian/patches/hppa/git-fcntl.h-update.diff: new patch from upstream to
     update EFD_NONBLOCK, IN_NONBLOCK, SFD_NONBLOCK and TFD_NONBLOCK on HPPA.
     Closes: #981650.
-  * debian/debhelper.in/locales.postinst: simplify locales-all detection. 
+  * debian/debhelper.in/locales.postinst: simplify locales-all detection.
   * debian/control.in/main: drop arch specific depends on gcc-10 now that the
     minimum version is already in bullseye.
   * debian/debhelper.in/libc.preinst: simplify the version comparison by only
