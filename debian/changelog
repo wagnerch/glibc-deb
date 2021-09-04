@@ -22,6 +22,9 @@ glibc (2.32-0experimental2) UNRELEASED; urgency=medium
     overrides for TLS support.
   * debian/rules.d/debhelper.mk: drop workaround for an old dpkg-shlibdeps
     bugs (see #433723).
+  * debian/debhelper.in/libc-dev.install, debian/debhelper.in/libc.install,
+    debian/control.in/libc: move sotruss-lib.so from libc6 to libc6-dev.
+    Closes: #976133.
 
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 31 Aug 2021 21:55:47 +0200
 
