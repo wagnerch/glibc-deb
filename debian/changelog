@@ -1,3 +1,71 @@
+glibc (2.33-0experimental0) UNRELEASED; urgency=medium
+
+  [ Aurelien Jarno ]
+  * New upstream release:
+    - debian/symbols.wildcard: add 2.33.
+    - debian/sysdeps/hurd-i386.mk: do not disable ifunc on hurd-i386, it is
+      now supported.
+    - debian/patches/alpha/local-string-functions.diff: upstreamed.
+    - debian/patches/hppa/git-fcntl.h-update.diff: rebased.
+    - debian/patches/hurd-i386/git-posix_openpt.diff: upstreamed.
+    - debian/patches/hurd-i386/git-hurdsig-SA_SIGINFO.diff: upstreamed.
+    - debian/patches/hurd-i386/git-sbrk-end.diff: upstreamed.
+    - debian/patches/hurd-i386/git-sigstate_thread_reference.diff: upstreamed.
+    - debian/patches/hurd-i386/git-sched_sets.diff: upstreamed.
+    - debian/patches/hurd-i386/git-sched_gets_hidden.diff: upstreamed.
+    - debian/patches/hurd-i386/git-bsd4.3-ioctls.diff: upstreamed.
+    - debian/patches/hurd-i386/git-clock-cputime.diff: upstreamed.
+    - debian/patches/hurd-i386/git-WAIT.diff: upstreamed.
+    - debian/patches/hurd-i386/git-cthreads.diff: upstreamed.
+    - debian/patches/hurd-i386/git-cthreads-symbols.diff: upstreamed.
+    - debian/patches/hurd-i386/git-libpthread_plt.diff: upstreamed.
+    - debian/patches/hurd-i386/git-lll-initializer.diff: upstreamed.
+    - debian/patches/hurd-i386/git-lll-ptr.diff: upstreamed.
+    - debian/patches/hurd-i386/git-ld-library-path-checks.diff: upstreamed.
+    - debian/patches/hurd-i386/git-lll-wait-intr.diff: upstreamed.
+    - debian/patches/hurd-i386/git-lll-private.diff: upstreamed.
+    - debian/patches/hurd-i386/git-futex-internal.diff: upstreamed.
+    - debian/patches/hurd-i386/git-libc-open.diff: upstreamed.
+    - debian/patches/hurd-i386/git-sem-pshared.diff: upstreamed.
+    - debian/patches/hurd-i386/git-sem-open-init.diff: upstreamed.
+    - debian/patches/hurd-i386/git-sem-open.diff: upstreamed.
+    - debian/patches/hurd-i386/git-siginfo_uesp.diff: upstreamed.
+    - debian/patches/hurd-i386/git-mmap-EINVAL.diff: upstreamed.
+    - debian/patches/hurd-i386/git-waitid.diff: upstreamed.
+    - debian/patches/hurd-i386/git-hurd-version.diff: upstreamed.
+    - debian/patches/hurd-i386/git-mmap_addr.diff: upstreamed.
+    - debian/patches/hurd-i386/git-ELF_MACHINE_USER_ADDRESS_MASK.diff:
+      upstreamed.
+    - debian/patches/hurd-i386/git-drop-rmh.diff: rebased.
+    - debian/patches/hurd-i386/local-enable-ldconfig.diff: rebased.
+    - debian/patches/hurd-i386/tg-EIEIO-fr.diff: rebased.
+    - debian/patches/hurd-i386/tg-EGREGIOUS-fr.diff: rebased.
+    - debian/patches/i386/unsubmitted-quiet-ldconfig.diff: rebased.
+    - debian/patches/kfreebsd/submitted-auxv.diff: rebased.
+    - debian/patches/kfreebsd/local-no-execfn.diff: rebased.
+    - debian/patches/riscv64/git-riscv64-gnu-ifunc.diff: upstreamed.
+    - debian/patches/all/local-ldd.diff: updated to take into account the new
+      exit values returned by ld.so.  Closes: #982203.
+    - debian/local/etc/nss: import latest version from upstream and keep
+      installing it in /etc/defaults/nss, until we find a way to move this
+      file to the libnss-nis package.
+    - debian/patches/all/local-nis-shadow.diff: removed, obsolete.
+    - debian/patches/all/submitted-po-fr-fixes.diff: rebased.
+    - debian/patches/any/local-ldso-disable-hwcap.diff: rebased.
+    - debian/patches/any/local-nss-upgrade.diff: removed, obsolete. The patch
+      was added to prepare the upgrade from glibc 2.2.X to 2.3.X, but has never
+      been useful due to a typo in the NSS module name. In addition the new NSS
+      code is able to use an in-memory version of a module if it has been
+      removed from disk.
+    - debian/patches/any/local-revert-bz13979.diff: removed, obsolete. 8+
+      years after, AC macros should have been fixed.
+    - debian/patches/any/git-ld.so-cache-endianness-markup.diff: upstreamed.
+    - debian/patches/hurd-i386/submitted-net.diff: rebased.
+    - debian/patches/hurd-i386/unsubmitted-getaux_at_secure.diff: rebased.
+    - debian/debhelper.in/libc-bin.install: move zdump to /usr/bin.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 05 Sep 2021 10:43:56 +0200
+
 glibc (2.32-1) unstable; urgency=medium
 
   [ Aurelien Jarno ]

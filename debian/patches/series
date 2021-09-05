@@ -29,36 +29,6 @@ arm/local-arm-futex.diff
 hppa/local-inlining.diff
 hppa/git-fcntl.h-update.diff
 
-# 2.33
-hurd-i386/git-posix_openpt.diff
-hurd-i386/git-hurdsig-SA_SIGINFO.diff
-hurd-i386/git-sbrk-end.diff
-hurd-i386/git-sigstate_thread_reference.diff
-hurd-i386/git-sched_sets.diff
-hurd-i386/git-sched_gets_hidden.diff
-hurd-i386/git-bsd4.3-ioctls.diff
-hurd-i386/git-clock-cputime.diff
-hurd-i386/git-WAIT.diff
-hurd-i386/git-cthreads.diff
-hurd-i386/git-cthreads-symbols.diff
-hurd-i386/git-libpthread_plt.diff
-hurd-i386/git-lll-initializer.diff
-hurd-i386/git-lll-ptr.diff
-hurd-i386/git-ld-library-path-checks.diff
-hurd-i386/git-lll-wait-intr.diff
-hurd-i386/git-lll-private.diff
-hurd-i386/git-futex-internal.diff
-hurd-i386/git-libc-open.diff
-hurd-i386/git-sem-pshared.diff
-hurd-i386/git-sem-open-init.diff
-hurd-i386/git-sem-open.diff
-hurd-i386/git-siginfo_uesp.diff
-hurd-i386/git-mmap-EINVAL.diff
-hurd-i386/git-waitid.diff
-hurd-i386/git-hurd-version.diff
-hurd-i386/git-mmap_addr.diff
-hurd-i386/git-ELF_MACHINE_USER_ADDRESS_MASK.diff
-
 # 2.34
 hurd-i386/git-tiocflush.diff
 hurd-i386/git-eintr.diff
@@ -117,7 +87,6 @@ mips/submitted-rld_map.diff
 powerpc/local-powerpc8xx-dcbz.diff
 
 riscv64/local-asin-acos-raise-invalid.diff
-riscv64/git-riscv64-gnu-ifunc.diff
 
 sh4/local-fpscr_values.diff
 
@@ -125,7 +94,6 @@ all/local-alias-et_EE.diff
 all/local-remove-manual.diff
 all/local-ru_RU.diff
 all/local-ldd.diff
-all/local-nis-shadow.diff
 all/submitted-po-fr-fixes.diff
 
 any/local-asserth-decls.diff
@@ -133,7 +101,6 @@ any/local-fhs-linux-paths.diff
 any/local-fhs-nscd.diff
 any/local-ld-multiarch.diff
 any/local-ldso-disable-hwcap.diff
-any/local-nss-upgrade.diff
 any/local-stubs_h.diff
 any/local-tcsetaddr.diff
 any/local-nss-overflow.diff
@@ -142,12 +109,10 @@ any/submitted-bits-fcntl_h-at.diff
 any/submitted-nptl-invalid-td.patch
 any/local-ldconfig-multiarch.diff
 any/local-disable-libnss-db.diff
-any/local-revert-bz13979.diff
 any/unsubmitted-ldso-machine-mismatch.diff
 any/local-ldconfig-ignore-ld.so.diff
 any/local-bootstrap-headers.diff
 any/submitted-resolv-unaligned.diff
 any/local-cudacc-float128.diff
 any/local-test-install.diff
-any/git-ld.so-cache-endianness-markup.diff
 any/local-cross.patch
