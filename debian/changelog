@@ -26,6 +26,9 @@ glibc (2.32-1) UNRELEASED; urgency=medium
     debian/control.in/libc: move sotruss-lib.so from libc6 to libc6-dev.
     Closes: #976133.
 
+  [ Samuel Thibault ]
+  * debian/patches/hurd-i386/git-msync.diff: Fix msync.
+
  -- Aurelien Jarno <aurel32@debian.org>  Tue, 31 Aug 2021 21:55:47 +0200
 
 glibc (2.32-0experimental1) experimental; urgency=medium
@@ -117,12 +120,6 @@ glibc (2.32-0experimental0) experimental; urgency=medium
     upstream to fix FTBFS on hurd-i386.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sat, 21 Aug 2021 19:24:41 +0200
-
-glibc (2.31-18) UNRELEASED; urgency=medium
-
-  * debian/patches/hurd-i386/git-msync.diff: Fix msync.
-
- -- Samuel Thibault <sthibault@debian.org>  Tue, 31 Aug 2021 14:57:34 +0200
 
 glibc (2.31-17) unstable; urgency=medium
 
