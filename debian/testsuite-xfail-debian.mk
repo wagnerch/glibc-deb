@@ -365,6 +365,7 @@ test-xfail-tst-strerror = yes
 test-xfail-tst-single_threaded-pthread = yes
 test-xfail-tst-latepthread = yes
 test-xfail-tst-initfinilazyfail = yes
+test-xfail-tst-kill6 = yes
 
 # new in 2.33
 test-xfail-tst-cpu-features-cpuinfo = yes
