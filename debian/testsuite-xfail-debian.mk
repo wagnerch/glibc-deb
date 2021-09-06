@@ -362,7 +362,6 @@ test-xfail-tst-adjtime = yes
 test-xfail-tst-join15 = yes
 test-xfail-tst-reload1 = yes
 test-xfail-tst-reload2 = yes
-test-xfail-tst-canon-bz26341 = yes
 
 # fixed in 2.33
 test-xfail-tst-spawn4-compat = yes
@@ -379,6 +378,7 @@ test-xfail-tst-spawn5 = yes
 
 # fixed in 2.34
 test-xfail-tst-res_hconf_reorder = yes
+test-xfail-tst-canon-bz26341 = yes
 
 
 # actually never succeded
