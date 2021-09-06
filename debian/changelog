@@ -64,6 +64,9 @@ glibc (2.33-0experimental0) UNRELEASED; urgency=medium
     - debian/patches/hurd-i386/unsubmitted-getaux_at_secure.diff: rebased.
     - debian/debhelper.in/libc-bin.install: move zdump to /usr/bin.
 
+  [ Samuel Thibault ]
+  * debian/testsuite-xfail-debian.mk: Update tests.
+
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 05 Sep 2021 10:43:56 +0200
 
 glibc (2.32-1) unstable; urgency=medium
