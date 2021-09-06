@@ -1,3 +1,16 @@
+glibc (2.31-113.1) unstable; urgency=medium
+
+  [ Chad Wagner ]
+  * add debian/patches/arm/0001-sys-libs-glibc-add-support-for-SHT_RELR-sections.patch
+  * add debian/patches/arm/0002-tls-libwidevinecdm.so-since-4.10.2252.0-has-TLS-with.patch
+
+  [ Aurelien Jarno ]
+  * Drop debian/patches/arm/local-soname-hack.diff: not needed anymore.
+  * Drop debian/patches/arm/unsubmitted-ldconfig-cache-abi.diff: not needed
+    anymore.
+
+ -- Chad Wagner <47257594+wagnerch@users.noreply.github.com>  Mon, 06 Sep 2021 08:30:12 +0500
+
 glibc (2.31-13) unstable; urgency=medium
 
   [ Colin Watson ]
