@@ -1,4 +1,4 @@
-glibc (2.33-0experimental0) UNRELEASED; urgency=medium
+glibc (2.33-0experimental0) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * New upstream release:
@@ -67,7 +67,7 @@ glibc (2.33-0experimental0) UNRELEASED; urgency=medium
   [ Samuel Thibault ]
   * debian/testsuite-xfail-debian.mk: Update tests.
 
- -- Aurelien Jarno <aurel32@debian.org>  Sun, 05 Sep 2021 10:43:56 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Mon, 06 Sep 2021 07:03:55 +0200
 
 glibc (2.32-1) unstable; urgency=medium
 
