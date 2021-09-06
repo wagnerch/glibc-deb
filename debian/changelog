@@ -1,4 +1,4 @@
-glibc (2.33-0experimental0) unstable; urgency=medium
+glibc (2.33-0experimental0) experimental; urgency=medium
 
   [ Aurelien Jarno ]
   * New upstream release:
