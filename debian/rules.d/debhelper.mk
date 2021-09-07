@@ -204,6 +204,7 @@ $(stamp)debhelper_%: $(stamp)debhelper-common $(stamp)install_%
 		-e "s#SLIBDIR#$$slibdir#g" \
 		-e "s#LIBDIR#$$libdir#g" \
 		-e "/gdb/d" \
+		-e "/audit/d" \
 	      $$t; \
 	  done ; \
 	done
