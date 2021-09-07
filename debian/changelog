@@ -76,6 +76,18 @@ glibc (2.33-0experimental0) experimental; urgency=medium
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 06 Sep 2021 07:03:55 +0200
 
+glibc (2.32-2) unstable; urgency=medium
+
+  [ Aurelien Jarno ]
+  * debian/rules.d/debhelper.mk: do not try to install audit/sotruss-lib.so
+    in stage1 profile.
+  * debian/debhelper.in/libc.postinst: grab patch from Ubuntu to carefully
+    restart systemd on libc6 upgrade.  Closes: #993821.
+  * debian/debhelper.in/libc.lintian-overrides: and an override about the
+    systemctl call in libc6.postinst.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 07 Sep 2021 21:57:34 +0200
+
 glibc (2.32-1) unstable; urgency=medium
 
   [ Aurelien Jarno ]
