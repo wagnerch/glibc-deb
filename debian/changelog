@@ -3,6 +3,9 @@ glibc (2.33-0experimental1) UNRELEASED; urgency=medium
   [ Samuel Thibault ]
   * debian/testsuite-xfail-debian.mk: Update hurd tests.
 
+  [ Aurelien Jarno ]
+  * debian/patches/git-updates.diff: update from upstream stable branch.
+
  -- Samuel Thibault <sthibault@debian.org>  Mon, 06 Sep 2021 09:10:55 +0200
 
 glibc (2.33-0experimental0) experimental; urgency=medium

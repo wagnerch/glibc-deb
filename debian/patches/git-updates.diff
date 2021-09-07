@@ -4252,6 +4252,51 @@ index 993abcb445..46de80b663 100644
    struct __stat64_t64 st_t64;
    return __fstat64_time64 (fd, &st_t64)
  	 ?: __cp_stat64_t64_stat64 (&st_t64, buf);
+diff --git a/sysdeps/unix/sysv/linux/mips/fxstat.c b/sysdeps/unix/sysv/linux/mips/fxstat.c
+index 11511d30b3..4a6016ff12 100644
+--- a/sysdeps/unix/sysv/linux/mips/fxstat.c
++++ b/sysdeps/unix/sysv/linux/mips/fxstat.c
+@@ -35,7 +35,9 @@ __fxstat (int vers, int fd, struct stat *buf)
+       {
+ 	struct kernel_stat kbuf;
+ 	int r = INTERNAL_SYSCALL_CALL (fstat, fd, &kbuf);
+-	return r ?: __xstat_conv (vers, &kbuf, buf);
++	if (r == 0)
++	  return  __xstat_conv (vers, &kbuf, buf);
++	return INLINE_SYSCALL_ERROR_RETURN_VALUE (-r);
+       }
+     }
+ }
+diff --git a/sysdeps/unix/sysv/linux/mips/lxstat.c b/sysdeps/unix/sysv/linux/mips/lxstat.c
+index 871fb6c6c5..54f990a250 100644
+--- a/sysdeps/unix/sysv/linux/mips/lxstat.c
++++ b/sysdeps/unix/sysv/linux/mips/lxstat.c
+@@ -35,7 +35,9 @@ __lxstat (int vers, const char *name, struct stat *buf)
+       {
+ 	struct kernel_stat kbuf;
+ 	int r = INTERNAL_SYSCALL_CALL (lstat, name, &kbuf);
+-	return r ?: __xstat_conv (vers, &kbuf, buf);
++	if (r == 0)
++	  return  __xstat_conv (vers, &kbuf, buf);
++	return INLINE_SYSCALL_ERROR_RETURN_VALUE (-r);
+       }
+     }
+ }
+diff --git a/sysdeps/unix/sysv/linux/mips/xstat.c b/sysdeps/unix/sysv/linux/mips/xstat.c
+index 9d810b6f65..86f4dc31a8 100644
+--- a/sysdeps/unix/sysv/linux/mips/xstat.c
++++ b/sysdeps/unix/sysv/linux/mips/xstat.c
+@@ -35,7 +35,9 @@ __xstat (int vers, const char *name, struct stat *buf)
+       {
+ 	struct kernel_stat kbuf;
+ 	int r = INTERNAL_SYSCALL_CALL (stat, name, &kbuf);
+-	return r ?: __xstat_conv (vers, &kbuf, buf);
++	if (r == 0)
++	  return  __xstat_conv (vers, &kbuf, buf);
++	return INLINE_SYSCALL_ERROR_RETURN_VALUE (-r);
+       }
+     }
+ }
 diff --git a/sysdeps/unix/sysv/linux/mq_notify.c b/sysdeps/unix/sysv/linux/mq_notify.c
 index cc575a0cdd..1714e1cc5f 100644
 --- a/sysdeps/unix/sysv/linux/mq_notify.c
