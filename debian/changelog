@@ -8,6 +8,8 @@ glibc (2.32-2) UNRELEASED; urgency=medium
     in stage1 profile.
   * debian/debhelper.in/libc.postinst: grab patch from Ubuntu to carefully
     restart systemd on libc6 upgrade.  Closes: #993821.
+  * debian/debhelper.in/libc.lintian-overrides: and an override about the
+    systemctl call in libc6.postinst.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 05 Sep 2021 22:21:47 +0200
 
