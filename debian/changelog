@@ -6,6 +6,8 @@ glibc (2.32-2) UNRELEASED; urgency=medium
   [ Aurelien Jarno ]
   * debian/rules.d/debhelper.mk: do not try to install audit/sotruss-lib.so
     in stage1 profile.
+  * debian/debhelper.in/libc.postinst: grab patch from Ubuntu to carefully
+    restart systemd on libc6 upgrade.  Closes: #993821.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 05 Sep 2021 22:21:47 +0200
 
