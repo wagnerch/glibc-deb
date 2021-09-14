@@ -2,3 +2,4 @@
 ld.so.1 #PACKAGE# #MINVER#
 #include "symbols.wildcards"
 libc.so.6 #PACKAGE# #MINVER#
+#include "symbols.wildcards"
