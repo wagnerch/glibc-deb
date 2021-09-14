@@ -18,6 +18,8 @@ glibc (2.32-3) UNRELEASED; urgency=medium
     1.0.0-2).  Closes: #994233.
   * debian/patches/all/submitted-po-fr-fixes.diff: fix French translation of
     short options.  Closes: #994133.
+  * debian/control.in/libc: add a Breaks against fakechroot (<< 2.19-3.5).
+    See bug#993946.
 
   [ Simon McVittie ]
   * debian/libc6-i386.symbols.x32, debian/libc6.symbols.mips,
