@@ -1585,6 +1585,13 @@ index 88c69d1e9c..381aa721ef 100644
  		      }
  		    else if (status == NSS_STATUS_RETURN
  			     || status == NSS_STATUS_NOTFOUND
+diff --git a/nss/tst-nss-files-hosts-long.root/etc/nsswitch.conf b/nss/tst-nss-files-hosts-long.root/etc/nsswitch.conf
+new file mode 100644
+index 0000000000..5b0c6a4199
+--- /dev/null
++++ b/nss/tst-nss-files-hosts-long.root/etc/nsswitch.conf
+@@ -0,0 +1 @@
++hosts: files
 diff --git a/posix/unistd.h b/posix/unistd.h
 index 32b8161619..aac164dc9c 100644
 --- a/posix/unistd.h

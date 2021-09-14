@@ -22,6 +22,7 @@ glibc (2.32-3) UNRELEASED; urgency=medium
     See bug#993946.
   * debian/control.in/libc: add a Breaks against dazzdb
     (<< 1.0+git20201103.8d98c37-1.1). See bug#993770.
+  * debian/patches/git-updates.diff: update from upstream stable branch.
 
   [ Simon McVittie ]
   * debian/libc6-i386.symbols.x32, debian/libc6.symbols.mips,
