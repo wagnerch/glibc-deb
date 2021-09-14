@@ -20,6 +20,8 @@ glibc (2.32-3) UNRELEASED; urgency=medium
     short options.  Closes: #994133.
   * debian/control.in/libc: add a Breaks against fakechroot (<< 2.19-3.5).
     See bug#993946.
+  * debian/control.in/libc: add a Breaks against dazzdb
+    (<< 1.0+git20201103.8d98c37-1.1). See bug#993770.
 
   [ Simon McVittie ]
   * debian/libc6-i386.symbols.x32, debian/libc6.symbols.mips,
