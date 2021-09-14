@@ -23,6 +23,11 @@ glibc (2.32-3) UNRELEASED; urgency=medium
   * debian/control.in/libc: add a Breaks against dazzdb
     (<< 1.0+git20201103.8d98c37-1.1). See bug#993770.
   * debian/patches/git-updates.diff: update from upstream stable branch.
+  * debian/patches/any/submitted-getcwd-gnu-extension-warning.diff: fix
+    a warning when using the GNU extension of getcwd(). This is a TEMPORARY
+    fix until upstream takes a decision on the removal of this extension. This
+    might be REMOVED at a later point, in that case packages should be fixed
+    instead, like other distributions have already done.  Closes: #993973.
 
   [ Simon McVittie ]
   * debian/libc6-i386.symbols.x32, debian/libc6.symbols.mips,

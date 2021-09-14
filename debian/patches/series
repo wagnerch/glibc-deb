@@ -151,3 +151,4 @@ any/local-cudacc-float128.diff
 any/local-test-install.diff
 any/git-ld.so-cache-endianness-markup.diff
 any/local-cross.patch
+any/submitted-getcwd-gnu-extension-warning.diff
