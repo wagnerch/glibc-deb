@@ -2719,6 +2719,13 @@ index cf0306adc4..fb72d0cc03 100644
        return true;
      }
    local->root_ino = str.st_ino;
+diff --git a/nss/tst-nss-files-hosts-long.root/etc/nsswitch.conf b/nss/tst-nss-files-hosts-long.root/etc/nsswitch.conf
+new file mode 100644
+index 0000000000..5b0c6a4199
+--- /dev/null
++++ b/nss/tst-nss-files-hosts-long.root/etc/nsswitch.conf
+@@ -0,0 +1 @@
++hosts: files
 diff --git a/nss/tst-reload2.c b/nss/tst-reload2.c
 index 5dae16b4f0..5ecb032e9f 100644
 --- a/nss/tst-reload2.c

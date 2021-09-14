@@ -218,6 +218,7 @@ test-xfail-tst-setcontext7 = yes
 test-xfail-tst-stack4 = yes
 # The following tests sometimes fail due to timeouts.
 test-xfail-tst-barrier5 = yes
+test-xfail-tst-cond24 = yes
 test-xfail-tst-cond25 = yes
 
 # The following tests fail as xsigstack.c does not allocate stack

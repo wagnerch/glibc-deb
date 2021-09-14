@@ -116,3 +116,4 @@ any/submitted-resolv-unaligned.diff
 any/local-cudacc-float128.diff
 any/local-test-install.diff
 any/local-cross.patch
+any/submitted-getcwd-gnu-extension-warning.diff

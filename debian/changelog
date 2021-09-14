@@ -79,6 +79,44 @@ glibc (2.33-0experimental0) experimental; urgency=medium
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 06 Sep 2021 07:03:55 +0200
 
+glibc (2.32-3) unstable; urgency=medium
+
+  [ John David Anglin ]
+  * debian/testsuite-xfail-debian.mk: whitelist test-xfail-tst-cond24 on
+    hppa.  Closes: #993954.
+
+  [ Aurelien Jarno ]
+  * debian/patches/git-updates.diff: update from upstream stable branch.
+  * debian/debhelper.in/libc.preinst: drop fragile check for working debconf
+    frontend now that it is done directly in debconf (see bug#985572) and now
+    that this version is available in Bullseye.
+  * debian/control.in/libc: add a Breaks against aide (<< 0.17.3-4+b3). See
+    bug#994091.
+  * debian/debhelper.in/libc.preinst: force systemd-logind to do NSS lookups
+    to workaround the impossibility of restarting systemd-logind.  Closes:
+    #994006.
+  * debian/control.in/libc: add a Breaks against python3-iptables (<<
+    1.0.0-2).  Closes: #994233.
+  * debian/patches/all/submitted-po-fr-fixes.diff: fix French translation of
+    short options.  Closes: #994133.
+  * debian/control.in/libc: add a Breaks against fakechroot (<< 2.19-3.5).
+    See bug#993946.
+  * debian/control.in/libc: add a Breaks against dazzdb
+    (<< 1.0+git20201103.8d98c37-1.1). See bug#993770.
+  * debian/patches/git-updates.diff: update from upstream stable branch.
+  * debian/patches/any/submitted-getcwd-gnu-extension-warning.diff: fix
+    a warning when using the GNU extension of getcwd(). This is a TEMPORARY
+    fix until upstream takes a decision on the removal of this extension. This
+    might be REMOVED at a later point, in that case packages should be fixed
+    instead, like other distributions have already done.  Closes: #993973.
+
+  [ Simon McVittie ]
+  * debian/libc6-i386.symbols.x32, debian/libc6.symbols.mips,
+    debian/libc6.symbols.mipsel: fix too aggressive cleanup, leading
+    unnecessarily tight dependencies on libc6.  Closes: #994232.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Tue, 14 Sep 2021 23:47:37 +0200
+
 glibc (2.32-2) unstable; urgency=medium
 
   [ Aurelien Jarno ]
