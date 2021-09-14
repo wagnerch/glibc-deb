@@ -14,6 +14,8 @@ glibc (2.32-3) UNRELEASED; urgency=medium
   * debian/debhelper.in/libc.preinst: force systemd-logind to do NSS lookups
     to workaround the impossibility of restarting systemd-logind.  Closes:
     #994006.
+  * debian/control.in/libc: add a Breaks against python3-iptables (<<
+    1.0.0-2).  Closes: #994233.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 08 Sep 2021 21:57:46 +0200
 
