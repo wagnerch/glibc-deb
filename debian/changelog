@@ -11,6 +11,9 @@ glibc (2.32-3) UNRELEASED; urgency=medium
     that this version is available in Bullseye.
   * debian/control.in/libc: add a Breaks against aide (<< 0.17.3-4+b3). See
     bug#994091.
+  * debian/debhelper.in/libc.preinst: force systemd-logind to do NSS lookups
+    to workaround the impossibility of restarting systemd-logind.  Closes:
+    #994006.
 
  -- Aurelien Jarno <aurel32@debian.org>  Wed, 08 Sep 2021 21:57:46 +0200
 
