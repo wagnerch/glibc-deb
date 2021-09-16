@@ -1,3 +1,11 @@
+glibc (2.32-4) UNRELEASED; urgency=medium
+
+  [ Aurelien Jarno ]
+  * debian/debhelper.in/libc.preinst: make sure USE_DEBCONF can't be defined
+    from the environment.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Thu, 16 Sep 2021 22:34:20 +0200
+
 glibc (2.32-3) unstable; urgency=medium
 
   [ John David Anglin ]

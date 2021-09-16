@@ -19,6 +19,8 @@ then
        ( [ "$DEBCONF_USE_CDEBCONF" ] || perl -e "" 2>/dev/null ) ; then
         . /usr/share/debconf/confmodule
         USE_DEBCONF=1
+    else
+        USE_DEBCONF=
     fi
 
     # See if LD_LIBRARY_PATH contains the traditional /lib, but not the
