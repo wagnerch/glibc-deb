@@ -6,6 +6,8 @@ glibc (2.32-4) UNRELEASED; urgency=medium
   * debian/patches/git-updates.diff: update from upstream stable branch:
     - debian/patches/any/submitted-getcwd-gnu-extension-warning.diff:
       upstreamed.
+  * debian/control.in/libc: remove the Breaks against dazzdb, it will be fixed
+    in Buster.
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 16 Sep 2021 22:34:20 +0200
 
