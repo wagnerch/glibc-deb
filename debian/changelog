@@ -8,6 +8,9 @@ glibc (2.32-4) UNRELEASED; urgency=medium
       upstreamed.
   * debian/control.in/libc: remove the Breaks against dazzdb, it will be fixed
     in Buster.
+  * debian/patches/i386/local-setcontext-revert-eax-ecx-edx.patch: revert
+    upstream commit to not save and restore EAX, ECX and EDX in setcontext to
+    temporarily workaround a bug in libunwind8. See bug#994510.
 
  -- Aurelien Jarno <aurel32@debian.org>  Thu, 16 Sep 2021 22:34:20 +0200
 
