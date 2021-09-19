@@ -1592,11 +1592,38 @@ index 0000000000..5b0c6a4199
 +++ b/nss/tst-nss-files-hosts-long.root/etc/nsswitch.conf
 @@ -0,0 +1 @@
 +hosts: files
+diff --git a/posix/bits/unistd.h b/posix/bits/unistd.h
+index 725a83eb0d..7e5bb6fb1e 100644
+--- a/posix/bits/unistd.h
++++ b/posix/bits/unistd.h
+@@ -193,10 +193,9 @@ __NTH (readlinkat (int __fd, const char *__restrict __path,
+ #endif
+ 
+ extern char *__getcwd_chk (char *__buf, size_t __size, size_t __buflen)
+-     __THROW __wur __attr_access ((__write_only__, 1, 2));
++     __THROW __wur;
+ extern char *__REDIRECT_NTH (__getcwd_alias,
+-			     (char *__buf, size_t __size), getcwd)
+-  __wur __attr_access ((__write_only__, 1, 2));
++			     (char *__buf, size_t __size), getcwd) __wur;
+ extern char *__REDIRECT_NTH (__getcwd_chk_warn,
+ 			     (char *__buf, size_t __size, size_t __buflen),
+ 			     __getcwd_chk)
 diff --git a/posix/unistd.h b/posix/unistd.h
-index 32b8161619..aac164dc9c 100644
+index 32b8161619..acf9ee7e79 100644
 --- a/posix/unistd.h
 +++ b/posix/unistd.h
-@@ -831,7 +831,7 @@ extern int symlinkat (const char *__from, int __tofd,
+@@ -517,8 +517,7 @@ extern int fchdir (int __fd) __THROW __wur;
+    an array is allocated with `malloc'; the array is SIZE
+    bytes long, unless SIZE == 0, in which case it is as
+    big as necessary.  */
+-extern char *getcwd (char *__buf, size_t __size) __THROW __wur
+-    __attr_access ((__write_only__, 1, 2));
++extern char *getcwd (char *__buf, size_t __size) __THROW __wur;
+ 
+ #ifdef	__USE_GNU
+ /* Return a malloc'd string containing the current directory name.
+@@ -831,7 +830,7 @@ extern int symlinkat (const char *__from, int __tofd,
  /* Like readlink but a relative PATH is interpreted relative to FD.  */
  extern ssize_t readlinkat (int __fd, const char *__restrict __path,
  			   char *__restrict __buf, size_t __len)
