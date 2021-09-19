@@ -382,6 +382,12 @@ test-xfail-tst-spawn5 = yes
 test-xfail-tst-res_hconf_reorder = yes
 test-xfail-tst-canon-bz26341 = yes
 
+# new in 2.35
+test-xfail-tst-pthread_kill-exited = yes
+test-xfail-tst-pthread_kill-exiting = yes
+test-xfail-tst-compathooks-on = yes
+test-xfail-tst-support-open-dev-null-range = yes
+test-xfail-tst-xreadlink = yes
 
 # actually never succeded
 test-xfail-tst-create_format1 = yes
