@@ -1,4 +1,4 @@
-glibc (2.32-4) UNRELEASED; urgency=medium
+glibc (2.32-4) unstable; urgency=medium
 
   [ Aurelien Jarno ]
   * debian/debhelper.in/libc.preinst: make sure USE_DEBCONF can't be defined
@@ -12,7 +12,7 @@ glibc (2.32-4) UNRELEASED; urgency=medium
     upstream commit to not save and restore EAX, ECX and EDX in setcontext to
     temporarily workaround a bug in libunwind8. See bug#994510.
 
- -- Aurelien Jarno <aurel32@debian.org>  Thu, 16 Sep 2021 22:34:20 +0200
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 19 Sep 2021 20:46:59 +0200
 
 glibc (2.32-3) unstable; urgency=medium
 
