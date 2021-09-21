@@ -3,6 +3,11 @@ glibc (2.31-13+deb11u1) UNRELEASED; urgency=medium
   [ Aurelien Jarno ]
   * debian/script.in/nsscheck.sh: restart openssh-server even if it has been
     deconfigured during the upgrade.  Closes: #990069.
+  * debian/debhelper.in/libc.preinst: fix text fallback when debconf is
+    unusable, the current debconf configuration should be queried without
+    first sourcing the confmodule to avoid losing control of the tty. Big
+    thanks to Colin Watson for the help diagnosing the issue and for providing
+    an easy reproducer.  Closes: #994042.
 
  -- Aurelien Jarno <aurel32@debian.org>  Sun, 22 Aug 2021 14:38:58 +0200
 
