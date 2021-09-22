@@ -87,6 +87,22 @@ glibc (2.33-0experimental0) experimental; urgency=medium
 
  -- Aurelien Jarno <aurel32@debian.org>  Mon, 06 Sep 2021 07:03:55 +0200
 
+glibc (2.32-4) unstable; urgency=medium
+
+  [ Aurelien Jarno ]
+  * debian/debhelper.in/libc.preinst: make sure USE_DEBCONF can't be defined
+    from the environment.
+  * debian/patches/git-updates.diff: update from upstream stable branch:
+    - debian/patches/any/submitted-getcwd-gnu-extension-warning.diff:
+      upstreamed.
+  * debian/control.in/libc: remove the Breaks against dazzdb, it will be fixed
+    in Buster.
+  * debian/patches/i386/local-setcontext-revert-eax-ecx-edx.patch: revert
+    upstream commit to not save and restore EAX, ECX and EDX in setcontext to
+    temporarily workaround a bug in libunwind8. See bug#994510.
+
+ -- Aurelien Jarno <aurel32@debian.org>  Sun, 19 Sep 2021 20:46:59 +0200
+
 glibc (2.32-3) unstable; urgency=medium
 
   [ John David Anglin ]

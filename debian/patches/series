@@ -66,6 +66,7 @@ hurd-i386/local-stack_chk_guard.diff
 
 i386/local-biarch.diff
 i386/unsubmitted-quiet-ldconfig.diff
+i386/local-setcontext-revert-eax-ecx-edx.patch
 
 kfreebsd/submitted-waitid.diff
 kfreebsd/submitted-auxv.diff
@@ -116,4 +117,3 @@ any/submitted-resolv-unaligned.diff
 any/local-cudacc-float128.diff
 any/local-test-install.diff
 any/local-cross.patch
-any/submitted-getcwd-gnu-extension-warning.diff

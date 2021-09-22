@@ -19,6 +19,8 @@ then
        ( [ "$DEBCONF_USE_CDEBCONF" ] || perl -e "" 2>/dev/null ) ; then
         . /usr/share/debconf/confmodule
         USE_DEBCONF=1
+    else
+        USE_DEBCONF=
     fi
 
     # See if LD_LIBRARY_PATH contains the traditional /lib, but not the
@@ -230,7 +232,7 @@ then
             # ends-up in a stable release, this workaround can therefore be dropped.
             if [ -d /run/systemd/system ]; then
                 if ! grep -q -E 'libnss_(compat|db|files)' /proc/$(systemctl show --property MainPID --value systemd-logind.service)/maps ; then
-                    echo "Forcing systemd-logind to load NSS modules"
+                    echo "Forcing systemd-logind to load NSS modules..."
                     busctl call --system org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager \
                         SetUserLinger ubb 4294967294 false false >/dev/null 2>&1 || true
                 fi

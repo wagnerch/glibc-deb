@@ -2853,6 +2853,37 @@ index f1d73f8765..fea271869e 100644
  passwd: test2
  group: files
 +hosts: test1
+diff --git a/posix/bits/unistd.h b/posix/bits/unistd.h
+index f0831386c7..622adeb2b2 100644
+--- a/posix/bits/unistd.h
++++ b/posix/bits/unistd.h
+@@ -199,10 +199,9 @@ __NTH (readlinkat (int __fd, const char *__restrict __path,
+ #endif
+ 
+ extern char *__getcwd_chk (char *__buf, size_t __size, size_t __buflen)
+-     __THROW __wur __attr_access ((__write_only__, 1, 2));
++     __THROW __wur;
+ extern char *__REDIRECT_NTH (__getcwd_alias,
+-			     (char *__buf, size_t __size), getcwd)
+-  __wur __attr_access ((__write_only__, 1, 2));
++			     (char *__buf, size_t __size), getcwd) __wur;
+ extern char *__REDIRECT_NTH (__getcwd_chk_warn,
+ 			     (char *__buf, size_t __size, size_t __buflen),
+ 			     __getcwd_chk)
+diff --git a/posix/unistd.h b/posix/unistd.h
+index 3f22763379..bede49c1ff 100644
+--- a/posix/unistd.h
++++ b/posix/unistd.h
+@@ -517,8 +517,7 @@ extern int fchdir (int __fd) __THROW __wur;
+    an array is allocated with `malloc'; the array is SIZE
+    bytes long, unless SIZE == 0, in which case it is as
+    big as necessary.  */
+-extern char *getcwd (char *__buf, size_t __size) __THROW __wur
+-    __attr_access ((__write_only__, 1, 2));
++extern char *getcwd (char *__buf, size_t __size) __THROW __wur;
+ 
+ #ifdef	__USE_GNU
+ /* Return a malloc'd string containing the current directory name.
 diff --git a/posix/wordexp-test.c b/posix/wordexp-test.c
 index f93a546d7e..9df02dbbb3 100644
 --- a/posix/wordexp-test.c
