@@ -1,3 +1,11 @@
+glibc (2.33-0experimental3) UNRELEASED; urgency=medium
+
+  * debian/debhelper.in/libc.preinst: Require gnumach kernel >=
+    1.8+git20210923 for the xrstor fix, needed for the ifunc-optimized memcpy
+    etc.
+
+ -- Samuel Thibault <sthibault@debian.org>  Thu, 23 Sep 2021 23:44:07 +0000
+
 glibc (2.33-0experimental2) experimental; urgency=medium
 
   [ Samuel Thibault ]
